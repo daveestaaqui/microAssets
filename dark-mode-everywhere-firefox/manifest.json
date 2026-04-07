@@ -1,0 +1,50 @@
+{
+    "manifest_version": 2,
+    "name": "Dark Mode for All Websites",
+    "version": "1.0.5",
+    "description": "Force a sleek, eye-saving dark theme on every website instantly. Customizable excludes and scheduling for late-night reading.",
+    "homepage_url": "https://sporlyworks.com",
+    "permissions": [
+        "storage",
+        "activeTab"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "browser_action": {
+        "default_popup": "popup/index.html",
+        "default_title": "Dark Mode for All Websites",
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "48": "icons/icon48.png",
+            "128": "icons/icon128.png"
+        }
+    },
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "dark-mode-everywhere@omnisuite.io",
+            "strict_min_version": "142.0",
+            "data_collection_permissions": {
+                "required": [
+                    "none"
+                ]
+            }
+        }
+    },
+    "background": {
+        "service_worker": "background.js"
+    }
+}

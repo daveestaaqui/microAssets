@@ -1,0 +1,52 @@
+{
+    "manifest_version": 2,
+    "name": "Amazon Wide Mode & Product Enhancer",
+    "version": "1.0.5",
+    "description": "Expand Amazon's narrow layout to full-width for a better shopping experience. Highlights top-reviewed products automatically.",
+    "homepage_url": "https://sporlyworks.com",
+    "permissions": [
+        "storage",
+        "activeTab"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.amazon.com/*",
+                "*://*.amazon.co.uk/*",
+                "*://*.amazon.ca/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "browser_action": {
+        "default_popup": "popup/index.html",
+        "default_title": "Amazon Wide Mode & Product Enhancer",
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "48": "icons/icon48.png",
+            "128": "icons/icon128.png"
+        }
+    },
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "amazon-wide-mode@omnisuite.io",
+            "strict_min_version": "142.0",
+            "data_collection_permissions": {
+                "required": [
+                    "none"
+                ]
+            }
+        }
+    },
+    "background": {
+        "service_worker": "background.js"
+    }
+}

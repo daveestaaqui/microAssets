@@ -1,0 +1,12 @@
+node_modules/
+venv/
+__pycache__/
+.env
+*.keystore
+playwright_profile_*
+*.zip
+sporlyworks_icons/
+*.png
+*.jpg
+*.webp
+_*/**

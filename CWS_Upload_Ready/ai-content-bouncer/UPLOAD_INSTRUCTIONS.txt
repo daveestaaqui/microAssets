@@ -1,0 +1,17 @@
+EXTENSION: AI Content Bouncer
+SLUG: ai-content-bouncer
+
+UPLOAD STEPS:
+1. Go to CWS Developer Dashboard → New Item
+2. Upload: ai-content-bouncer.zip
+3. Store Listing:
+   - Description: (auto-filled from manifest)
+   - Category: Developer Tools
+   - Language: English
+4. Upload store_icon_128.png as the Store Icon (128x128)
+5. Upload screenshot_1280x800.png as a Screenshot
+6. Privacy tab:
+   - Privacy Policy URL: https://daveestaaqui.github.io/micro-assets-landing-page/privacy.html
+   - No user data collected
+   - Not using remote code
+7. Click Submit for Review

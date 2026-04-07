@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><link rel="stylesheet" href="popup.css"><title>Font Identifier</title><style>
+/* SporlyWorks Cross-Promotion */
+.ma-footer{text-align:center;padding:8px 0 4px;border-top:1px solid rgba(128,128,128,0.2);margin-top:12px;font-size:11px;opacity:0.7;}
+.ma-footer a{color:#205c40;text-decoration:none;}
+.ma-footer a:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+  <div class="sdal-header"><div class="sdal-logo">
+    <img src="../icons/icon16.png" alt="logo" style="width:16px; height:16px; border-radius:4px; object-fit:contain;">
+    <span>Font Identifier</span>
+  </div></div>
+  <div class="sdal-body">
+    <p class="sdal-desc">Click "Inspect" then hover over any text on the page to see its font details.</p>
+    <button class="sdal-btn" id="inspectBtn">🔍 Inspect Fonts</button>
+    <div id="results" style="display:none;margin-top:12px;font-size:13px;line-height:1.8;">
+      <div style="display:flex;justify-content:space-between;"><span>Font Family</span><strong id="fontFamily" style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">—</strong></div>
+      <div style="display:flex;justify-content:space-between;"><span>Size</span><strong id="fontSize">—</strong></div>
+      <div style="display:flex;justify-content:space-between;"><span>Weight</span><strong id="fontWeight">—</strong></div>
+      <div style="display:flex;justify-content:space-between;"><span>Line Height</span><strong id="lineHeight">—</strong></div>
+      <div style="display:flex;justify-content:space-between;"><span>Color</span><strong id="fontColor">—</strong></div>
+      <div style="display:flex;justify-content:space-between;"><span>Letter Spacing</span><strong id="letterSpacing">—</strong></div>
+    </div>
+    
+  </div>
+  <div class="sdal-footer"><span class="sdal-version">v1.0</span></div>
+  <script src="popup.js"></script>
+
+<!-- Self-Healing Feedback -->
+<div id="ma-feedback" style="margin-top:12px;padding:10px;background:rgba(154,127,96,0.1);border-radius:8px;text-align:center;border-top:1px solid rgba(255,255,255,0.06);display:none;">
+  <span style="font-size:11px;color:#71717a;">Enjoying this tool?</span>
+  <a id="ma-rate" href="#" target="_blank" style="color:#205c40; font-weight:bold;text-decoration:none;font-size:11px;margin-left:6px;">⭐ Rate it</a>
+  <span style="color:#3f3f46;font-size:11px;margin:0 4px;">|</span>
+  <a id="ma-report" href="https://github.com/daveestaaqui/micro-assets-landing-page/issues/new?title=Bug+Report&body=Extension:+Font Identifier & CSS Inspector%0ADescription:+" target="_blank" style="color:#71717a;text-decoration:none;font-size:11px;">🐛 Report issue</a>
+</div>
+
+<div class="ma-footer">Part of the <a href="https://chromewebstore.google.com/search/SporlyWorks" target="_blank">SporlyWorks</a></div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+{
+    "manifest_version": 3,
+    "name": "Tab Groups Saver & Restorer",
+    "version": "1.0.5",
+    "description": "Save your current tabs as named groups. Restore any saved session with one click. Never lose your workflow again.",
+    "homepage_url": "https://sporlyworks.com",
+    "permissions": [
+        "tabs",
+        "storage"
+    ],
+    "action": {
+        "default_popup": "popup/index.html",
+        "default_title": "Tab Groups Saver",
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "48": "icons/icon48.png",
+            "128": "icons/icon128.png"
+        }
+    },
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "commands": {
+        "_execute_action": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+Y",
+                "mac": "MacCtrl+Shift+Y"
+            },
+            "description": "Open Tab Groups Saver & Restorer"
+        }
+    }
+}

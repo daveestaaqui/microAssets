@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM Extractor Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="popup.css">
+<style>
+/* SporlyWorks Cross-Promotion */
+.ma-footer{text-align:center;padding:8px 0 4px;border-top:1px solid rgba(128,128,128,0.2);margin-top:12px;font-size:11px;opacity:0.7;}
+.ma-footer a{color:#205c40;text-decoration:none;}
+.ma-footer a:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+    <div class="glass-panel">
+        <header>
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                <span>Extract<span class="highlight">PRO</span></span>
+            </div>
+            <div class="credits-badge" id="creditsBadge">5 Left</div>
+        </header>
+
+        <div class="main-content">
+            <h1 id="pageContext">Detecting CRM...</h1>
+            <p class="subtitle" id="tableStatus">Scan the active page to detect virtualized tables or data grids.</p>
+
+            <button id="scanBtn" class="premium-btn">
+                <span class="btn-text">Scan Page for Data</span>
+                <div class="btn-glow"></div>
+            </button>
+
+            <div id="resultsPanel" class="results-panel hidden">
+                <div class="stats">
+                    <div class="stat-box">
+                        <span class="stat-num" id="rowCount">0</span>
+                        <span class="stat-label">Rows Found</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-num" id="colCount">0</span>
+                        <span class="stat-label">Columns</span>
+                    </div>
+                </div>
+                
+                <button id="exportCsvBtn" class="secondary-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    Export as CSV
+                </button>
+            </div>
+        </div>
+
+        <div class="upsell-container hidden" id="upsellPanel">
+            <div class="upsell-icon">💎</div>
+            <h3>Daily Limit Reached</h3>
+            <p>Upgrade to PRO for unlimited CRM data extractions and direct Google Sheets sync.</p>
+            <a href="https://buy.stripe.com/demo" target="_blank" class="stripe-btn">Unlock PRO for $12/mo</a>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+    <script src='license_validator.js'></script>
+<div class="ma-footer">Part of the <a href="https://chromewebstore.google.com/search/SporlyWorks" target="_blank">SporlyWorks</a></div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+    "manifest_version": 2,
+    "name": "Site Speed Analyzer",
+    "version": "1.0.5",
+    "description": "Analyze page load time, DOM size, resource count, and performance metrics for any webpage with one click.",
+    "homepage_url": "https://sporlyworks.com",
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "<all_urls>",
+        "storage"
+    ],
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "browser_action": {
+        "default_popup": "popup/index.html",
+        "default_title": "Site Speed",
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "48": "icons/icon48.png",
+            "128": "icons/icon128.png"
+        }
+    },
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "site-speed-analyzer@omnisuite.io",
+            "strict_min_version": "142.0",
+            "data_collection_permissions": {
+                "required": [
+                    "none"
+                ]
+            }
+        }
+    },
+    "background": {
+        "service_worker": "background.js"
+    }
+}

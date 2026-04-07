@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+  <title>OmniSuite Pro Suite</title>
+<style>
+/* SporlyWorks Cross-Promotion */
+.ma-footer{text-align:center;padding:8px 0 4px;border-top:1px solid rgba(128,128,128,0.2);margin-top:12px;font-size:11px;opacity:0.7;}
+.ma-footer a{color:#205c40;text-decoration:none;}
+.ma-footer a:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+  <div class="sdal-header">
+    <div class="sdal-logo">
+      <span>SporlyWorks Master Suite</span>
+    </div>
+    <span class="sdal-pro-badge">PRO</span>
+  </div>
+
+  <div class="sdal-body">
+    <p class="sdal-desc">Select a tool to activate on this page.</p>
+    
+    <div class="suite-tools">
+      <button class="sdal-btn" id="btn-wcag">Run WCAG Audit</button>
+      <button class="sdal-btn" id="btn-privacy">Scan Privacy Trackers</button>
+      <button class="sdal-btn" id="btn-contract">Highlight Risky Clauses</button>
+      <button class="sdal-btn" id="btn-invoice">Extract Invoice Data</button>
+    </div>
+    
+    <div class="sdal-license" id="licenseStatus">
+      <span class="sdal-lock">🔒</span> <span id="licenseText">Enter license key to activate</span>
+    </div>
+    <input type="text" id="licenseInput" class="sdal-input" placeholder="XXXX-XXXX-XXXX-XXXX">
+    <button class="sdal-btn" id="activateBtn">Activate Suite</button>
+    <a href="https://buy.stripe.com/00w28rdSKfTJ7Xtc4m" target="_blank" class="sdal-buy-link">Get a Suite License ($99/yr) →</a>
+  </div>
+  <script src="popup.js"></script>
+
+<!-- Self-Healing Feedback -->
+<div id="ma-feedback" style="margin-top:12px;padding:10px;background:rgba(154,127,96,0.1);border-radius:8px;text-align:center;border-top:1px solid rgba(255,255,255,0.06);display:none;">
+  <span style="font-size:11px;color:#71717a;">Enjoying this tool?</span>
+  <a id="ma-rate" href="#" target="_blank" style="color:#205c40; font-weight:bold;text-decoration:none;font-size:11px;margin-left:6px;">⭐ Rate it</a>
+  <span style="color:#3f3f46;font-size:11px;margin:0 4px;">|</span>
+  <a id="ma-report" href="https://github.com/daveestaaqui/micro-assets-landing-page/issues/new?title=Bug+Report&body=Extension:+OmniSuite Pro Suite | The Ultimate B2B Toolkit%0ADescription:+" target="_blank" style="color:#71717a;text-decoration:none;font-size:11px;">🐛 Report issue</a>
+</div>
+
+
+<div class="ma-footer">Part of the <a href="https://chromewebstore.google.com/search/SporlyWorks" target="_blank">SporlyWorks</a></div>
+</body>
+</html>

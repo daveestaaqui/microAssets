@@ -1,0 +1,37 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><link rel="stylesheet" href="popup.css"><title>Password Generator</title><style>
+/* SporlyWorks Cross-Promotion */
+.ma-footer{text-align:center;padding:8px 0 4px;border-top:1px solid rgba(128,128,128,0.2);margin-top:12px;font-size:11px;opacity:0.7;}
+.ma-footer a{color:#205c40;text-decoration:none;}
+.ma-footer a:hover{text-decoration:underline;}
+</style>
+</head><body>
+<div class="sdal-header"><div class="sdal-logo"><img src="../icons/icon16.png" alt="logo" style="width:16px; height:16px; border-radius:4px; object-fit:contain;"><span>Password Generator</span></div></div>
+<div class="sdal-body">
+<div id="pw" style="padding:12px;border-radius:10px;background:rgba(0,0,0,0.4);font-family:monospace;font-size:16px;text-align:center;color:#4ade80;word-break:break-all;cursor:pointer;margin-bottom:10px;border:1px solid rgba(74,222,128,0.2);" title="Click to copy"></div>
+<div style="margin-bottom:8px;"><label style="font-size:11px;color:#a1a1aa;">Length: <span id="lenVal">16</span></label><input type="range" id="len" min="8" max="64" value="16" style="width:100%;accent-color:#205c40; font-weight:bold;"></div>
+<div style="display:flex;gap:10px;font-size:12px;color:#d4d4d8;margin-bottom:10px;flex-wrap:wrap;">
+<label><input type="checkbox" id="upper" checked> A-Z</label><label><input type="checkbox" id="lower" checked> a-z</label><label><input type="checkbox" id="nums" checked> 0-9</label><label><input type="checkbox" id="syms" checked> !@#</label></div>
+<button class="sdal-btn" id="genBtn">🔄 Generate New</button>
+
+</div><div class="sdal-footer"><span class="sdal-version">v1.0</span></div>
+<script src="popup.js"></script>
+<!-- Self-Healing Feedback -->
+<div id="ma-feedback" style="margin-top:12px;padding:10px;background:rgba(154,127,96,0.1);border-radius:8px;text-align:center;border-top:1px solid rgba(255,255,255,0.06);display:none;">
+  <span style="font-size:11px;color:#71717a;">Enjoying this tool?</span>
+  <a id="ma-rate" href="#" target="_blank" style="color:#205c40; font-weight:bold;text-decoration:none;font-size:11px;margin-left:6px;">⭐ Rate it</a>
+  <span style="color:#3f3f46;font-size:11px;margin:0 4px;">|</span>
+  <a id="ma-report" href="https://github.com/daveestaaqui/micro-assets-landing-page/issues/new?title=Bug+Report&body=Extension:+Secure Password Generator%0ADescription:+" target="_blank" style="color:#71717a;text-decoration:none;font-size:11px;">🐛 Report issue</a>
+</div>
+
+
+<!-- Stripe Pro Upsell (usage-gated) -->
+<div id="ma-pro-upsell" style="display:none;margin-top:12px;padding:14px;background:linear-gradient(135deg,rgba(168,85,247,0.12),rgba(236,72,153,0.12));border-radius:10px;text-align:center;border:1px solid rgba(168,85,247,0.25);position:relative;">
+  <button id="ma-dismiss-pro" style="position:absolute;top:6px;right:8px;background:none;border:none;color:#71717a;cursor:pointer;font-size:14px;">✕</button>
+  <p style="margin:0 0 8px 0;font-size:12px;color:#e2e8f0;font-weight:600;">⚡ You're a power user!</p>
+  <p style="margin:0 0 10px 0;font-size:11px;color:#94a3b8;">Unlock Pro features and support indie development</p>
+  <a id="ma-stripe-link" href="https://buy.stripe.com/00w8wPg0ScHx1zv8Sa" target="_blank" style="display:inline-block;padding:8px 20px;background:linear-gradient(135deg,#a855f7,#ec4899);color:white;text-decoration:none;border-radius:8px;font-size:12px;font-weight:600;transition:transform 0.2s;box-shadow:0 2px 8px rgba(168,85,247,0.3);">Upgrade to Pro — $2.99</a>
+  <p style="margin:8px 0 0 0;font-size:10px;color:#64748b;">One-time payment • Lifetime access</p>
+</div>
+
+<div class="ma-footer">Part of the <a href="https://chromewebstore.google.com/search/SporlyWorks" target="_blank">SporlyWorks</a></div>
+</body></html>

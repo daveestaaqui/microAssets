@@ -1,0 +1,48 @@
+{
+    "manifest_version": 3,
+    "name": "Pomodoro Timer Desktop Widget",
+    "version": "1.0.5",
+    "description": "Stay focused with a customizable Pomodoro technique timer right in your browser. Block distracting sites during work sessions.",
+    "homepage_url": "https://sporlyworks.com",
+    "permissions": [
+        "storage",
+        "activeTab"
+    ],
+    "action": {
+        "default_popup": "popup/index.html",
+        "default_title": "Pomodoro Timer Desktop Widget",
+        "default_icon": {
+            "16": "icons/icon16.png",
+            "48": "icons/icon48.png",
+            "128": "icons/icon128.png"
+        }
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "commands": {
+        "_execute_action": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+Y",
+                "mac": "MacCtrl+Shift+Y"
+            },
+            "description": "Open Pomodoro Timer Desktop Widget"
+        }
+    }
+}

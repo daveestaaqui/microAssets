@@ -1,0 +1,187 @@
+============================================================
+  🦊 AMO Playwright Initial Submitter
+============================================================
+  Extensions: 85
+
+🌐 Launching browser...
+
+⚠️  LOGIN REQUIRED
+   1. Log into Firefox AMO in the browser window
+   2. Come back here and press Enter
+
+   Press Enter when logged in...   [1/85] 📦 ai-content-bouncer
+    ❌ No file input found on upload page
+  [2/85] 📦 amazon-fake-review-skimmer
+    ❌ No file input found on upload page
+  [3/85] 📦 amazon-wide-mode
+    ❌ No file input found on upload page
+  [4/85] 📦 api-tester-pro
+    ❌ No file input found on upload page
+  [5/85] 📦 base64-encoder
+    ❌ No file input found on upload page
+  [6/85] 📦 bookmark-manager
+    ❌ No file input found on upload page
+  [7/85] 📦 carbon-footprint-checker
+    ❌ No file input found on upload page
+  [8/85] 📦 clipboard-history
+    ❌ No file input found on upload page
+  [9/85] 📦 code-snippet-manager
+    ❌ No file input found on upload page
+  [10/85] 📦 color-palette-generator
+    ❌ No file input found on upload page
+  [11/85] 📦 color-picker-eyedropper
+    ❌ No file input found on upload page
+  [12/85] 📦 contract-highlighter
+    ❌ No file input found on upload page
+  [13/85] 📦 cookie-banner-rejector
+    ❌ No file input found on upload page
+  [14/85] 📦 cookie-manager
+    ❌ No file input found on upload page
+  [15/85] 📦 copy-as-markdown
+    ❌ No file input found on upload page
+  [16/85] 📦 css-box-shadow
+    ❌ No file input found on upload page
+  [17/85] 📦 css-flexbox-generator
+    ❌ No file input found on upload page
+  [18/85] 📦 css-gradient-generator
+    ❌ No file input found on upload page
+  [19/85] 📦 css-grid-generator
+    ❌ No file input found on upload page
+  [20/85] 📦 css-inspector-pro
+    ❌ No file input found on upload page
+  [21/85] 📦 css-minifier
+    ❌ No file input found on upload page
+  [22/85] 📦 dark-mode-everywhere
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [23/85] 📦 diff-checker
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [24/85] 📦 diff-viewer
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [25/85] 📦 dom-editor-pro
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [26/85] 📦 email-template-builder
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [27/85] 📦 favicon-grabber
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [28/85] 📦 font-identifier
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [29/85] 📦 form-filler-pro
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [30/85] 📦 gdocs-focus-mode
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [31/85] 📦 github-line-numbers
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [32/85] 📦 github-quick-stats
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [33/85] 📦 google-dark-search
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [34/85] 📦 hash-generator
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [35/85] 📦 html-table-extractor
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [36/85] 📦 http-headers
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [37/85] 📦 http-status-checker
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [38/85] 📦 instagram-clean-feed
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [39/85] 📦 invoice-extractor
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [40/85] 📦 jira-declutter
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [41/85] 📦 json-csv-converter
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [42/85] 📦 json-formatter
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [43/85] 📦 json-path-finder
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [44/85] 📦 jwt-decoder
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [45/85] 📦 link-checker
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [46/85] 📦 linkedin-hide-feed
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [47/85] 📦 llm-privacy-scrub
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [48/85] 📦 lorem-ipsum-generator
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [49/85] 📦 markdown-preview
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [50/85] 📦 meet-zoom-automute
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [51/85] 📦 meta-tag-editor
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [52/85] 📦 microassets-master-suite
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [53/85] 📦 network-monitor-pro
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [54/85] 📦 network-speed-test
+    ⚠️  Error during submission: Page.goto: net::ERR_INTERNET_DISCONNECTED at https://addons.mozilla.org/en-US/de
+  [55/85] 📦 og-previewer
+    ❌ No file input found on upload page
+  [56/85] 📦 page-ruler
+    ❌ No file input found on upload page
+  [57/85] 📦 page-seo-analyzer
+    ❌ No file input found on upload page
+  [58/85] 📦 password-generator
+    ⚠️  Error during submission: Page.goto: Timeout 45000ms exceeded.
+Call log:
+  - navigating to "https://addons
+  [59/85] 📦 pomodoro-anywhere
+    ❌ No file input found on upload page
+  [60/85] 📦 privacy-scanner
+    ❌ No file input found on upload page
+  [61/85] 📦 qr-code-generator
+    ❌ No file input found on upload page
+  [62/85] 📦 quick-notepad
+    ❌ No file input found on upload page
+  [63/85] 📦 reading-mode
+    ❌ No file input found on upload page
+  [64/85] 📦 reading-time-badge
+    ❌ No file input found on upload page
+  [65/85] 📦 reddit-redirect
+    ❌ No file input found on upload page
+  [66/85] 📦 regex-tester
+    ❌ No file input found on upload page
+  [67/85] 📦 responsive-viewer
+    ❌ No file input found on upload page
+  [68/85] 📦 robots-viewer
+    ❌ No file input found on upload page
+  [69/85] 📦 screenshot-capture
+    ❌ No file input found on upload page
+  [70/85] 📦 seo-content-pro
+    ❌ No file input found on upload page
+  [71/85] 📦 site-speed-analyzer
+    ❌ No file input found on upload page
+  [72/85] 📦 sponsor-skipper
+    ❌ No file input found on upload page
+  [73/85] 📦 tab-groups-saver
+    ❌ No file input found on upload page
+  [74/85] 📦 tab-suspender
+    ❌ No file input found on upload page
+  [75/85] 📦 text-case-converter
+    ❌ No file input found on upload page
+  [76/85] 📦 time-tracker
+    ❌ No file input found on upload page
+  [77/85] 📦 timestamp-converter
+    ❌ No file input found on upload page
+  [78/85] 📦 url-encoder-decoder
+    ❌ No file input found on upload page
+  [79/85] 📦 url-shortener
+    ❌ No file input found on upload page
+  [80/85] 📦 user-agent-switcher
+    ❌ No file input found on upload page
+  [81/85] 📦 wayback-machine-quick
+    ❌ No file input found on upload page
+  [82/85] 📦 wcag-auditor
+    ❌ No file input found on upload page
+  [83/85] 📦 website-monitor-pro
+    ❌ No file input found on upload page
+  [84/85] 📦 whois-lookup
+    ❌ No file input found on upload page
+  [85/85] 📦 word-counter
+    ❌ No file input found on upload page
+
+============================================================
+  Results: ✅ 0, ⏭ 0, ❌ 85
+  Progress saved to: /Users/davidmahler/Desktop/microAssets/amo_upload_progress.json

@@ -1,0 +1,31 @@
+2026-04-04T12:50:49Z INF Thank you for trying Cloudflare Tunnel. Doing so, without a Cloudflare account, is a quick way to experiment and try it out. However, be aware that these account-less Tunnels have no uptime guarantee, are subject to the Cloudflare Online Services Terms of Use (https://www.cloudflare.com/website-terms/), and Cloudflare reserves the right to investigate your use of Tunnels for violations of such terms. If you intend to use Tunnels in production you should use a pre-created named tunnel by following: https://developers.cloudflare.com/cloudflare-one/connections/connect-apps
+2026-04-04T12:50:49Z INF Requesting new quick Tunnel on trycloudflare.com...
+2026-04-04T12:50:53Z INF +--------------------------------------------------------------------------------------------+
+2026-04-04T12:50:53Z INF |  Your quick Tunnel has been created! Visit it at (it may take some time to be reachable):  |
+2026-04-04T12:50:53Z INF |  https://expiration-epa-trail-martin.trycloudflare.com                                     |
+2026-04-04T12:50:53Z INF +--------------------------------------------------------------------------------------------+
+2026-04-04T12:50:53Z INF Cannot determine default configuration path. No file [config.yml config.yaml] in [~/.cloudflared ~/.cloudflare-warp ~/cloudflare-warp /etc/cloudflared /usr/local/etc/cloudflared]
+2026-04-04T12:50:53Z INF Version 2025.11.1 (Checksum 5c82c2bd0b57c01fc1aee533aac606c8a6496d49446b68f307b46a6be4524739)
+2026-04-04T12:50:53Z INF GOOS: darwin, GOVersion: go1.25.4, GoArch: arm64
+2026-04-04T12:50:53Z INF Settings: map[ha-connections:1 protocol:quic url:http://localhost:3000]
+2026-04-04T12:50:53Z INF cloudflared will not automatically update if installed by a package manager.
+2026-04-04T12:50:53Z INF Generated Connector ID: dfb03c81-976b-426c-9f17-20f518a6ebc9
+2026-04-04T12:50:53Z INF Initial protocol quic
+2026-04-04T12:50:53Z INF ICMP proxy will use 192.168.68.60 as source for IPv4
+2026-04-04T12:50:53Z INF ICMP proxy will use fe80::e9:d2aa:e7a6:6459 in zone en0 as source for IPv6
+2026-04-04T12:50:53Z INF Created ICMP proxy listening on 192.168.68.60:0
+2026-04-04T12:50:53Z ERR Cannot determine default origin certificate path. No file cert.pem in [~/.cloudflared ~/.cloudflare-warp ~/cloudflare-warp /etc/cloudflared /usr/local/etc/cloudflared]. You need to specify the origin certificate path by specifying the origincert option in the configuration file, or set TUNNEL_ORIGIN_CERT environment variable originCertPath=
+2026-04-04T12:50:53Z INF ICMP proxy will use 192.168.68.60 as source for IPv4
+2026-04-04T12:50:53Z INF ICMP proxy will use fe80::e9:d2aa:e7a6:6459 in zone en0 as source for IPv6
+2026-04-04T12:50:53Z INF Starting metrics server on 127.0.0.1:20241/metrics
+2026-04-04T12:50:53Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveP256] connIndex=0 event=0 ip=198.41.192.47
+2026-04-04T12:50:53Z INF Registered tunnel connection connIndex=0 connection=6c913038-5044-46a4-a454-2d36a60466d0 event=0 ip=198.41.192.47 location=bos04 protocol=quic
+2026-04-04T13:05:16Z INF Initiating graceful shutdown due to signal terminated ...
+2026-04-04T13:05:16Z ERR failed to run the datagram handler error="context canceled" connIndex=0 event=0 ip=198.41.192.47
+2026-04-04T13:05:16Z ERR failed to serve tunnel connection error="accept stream listener encountered a failure while serving" connIndex=0 event=0 ip=198.41.192.47
+2026-04-04T13:05:16Z ERR Serve tunnel error error="accept stream listener encountered a failure while serving" connIndex=0 event=0 ip=198.41.192.47
+2026-04-04T13:05:16Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.192.47
+2026-04-04T13:05:16Z ERR Connection terminated connIndex=0
+2026-04-04T13:05:16Z ERR no more connections active and exiting
+2026-04-04T13:05:16Z INF Tunnel server stopped
+2026-04-04T13:05:16Z INF Metrics server stopped
