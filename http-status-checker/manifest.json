@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "HTTP Status Checker",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Check HTTP status codes of any URL. View response headers, redirect chains, and timing.",
   "homepage_url": "https://sporlyworks.com",
   "action": {

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Word & Character Counter for Any Page",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Instantly count words, characters, sentences, and paragraphs on any web page or selected text. Great for writers and SEO.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

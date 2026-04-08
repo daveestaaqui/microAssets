@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "URL Encoder Decoder",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Encode and decode URLs instantly. Handles special characters, query strings, and Unicode.",
   "homepage_url": "https://sporlyworks.com",
   "action": {

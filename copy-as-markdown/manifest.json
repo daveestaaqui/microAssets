@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Copy to Markdown - Link Converter",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "One-click copy of the current tab's title and URL or selected text as perfectly formatted Markdown for Notion or Obsidian.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

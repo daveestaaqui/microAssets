@@ -1,38 +1,38 @@
 {
-    "manifest_version": 2,
-    "name": "JSON Path Finder",
-    "version": "1.0.5",
-    "description": "Paste JSON and click any value to get its path. Supports dot notation and bracket notation.",
-    "homepage_url": "https://sporlyworks.com",
-    "permissions": [
-        "storage"
-    ],
-    "icons": {
-        "16": "icons/icon16.png",
-        "48": "icons/icon48.png",
-        "128": "icons/icon128.png"
-    },
-    "browser_action": {
-        "default_popup": "popup/index.html",
-        "default_title": "JSON Path",
-        "default_icon": {
-            "16": "icons/icon16.png",
-            "48": "icons/icon48.png",
-            "128": "icons/icon128.png"
-        }
-    },
-    "browser_specific_settings": {
-        "gecko": {
-            "id": "json-path-finder@omnisuite.io",
-            "strict_min_version": "142.0",
-            "data_collection_permissions": {
-                "required": [
-                    "none"
-                ]
-            }
-        }
-    },
-    "background": {
-        "service_worker": "background.js"
+  "manifest_version": 2,
+  "name": "JSON Path Finder",
+  "version": "1.1.0",
+  "description": "Paste JSON and click any value to get its path. Supports dot notation and bracket notation.",
+  "homepage_url": "https://sporlyworks.com",
+  "permissions": [
+    "storage"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "browser_action": {
+    "default_popup": "popup/index.html",
+    "default_title": "JSON Path",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
     }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "json-path-finder@omnisuite.io",
+      "strict_min_version": "142.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
 }

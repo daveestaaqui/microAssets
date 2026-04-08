@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Old Reddit Redirect & UI Fixer",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Automatically redirect new Reddit to old.reddit.com for a faster, cleaner browsing experience. Removes promoted posts.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

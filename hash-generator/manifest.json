@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Hash Generator \u2014 SHA256 & MD5 Tool",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Generate MD5, SHA-1, SHA-256 hashes from any text. Copy with one click.",
   "homepage_url": "https://sporlyworks.com",
   "action": {

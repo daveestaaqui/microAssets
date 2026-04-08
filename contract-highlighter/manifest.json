@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Contract Scanner: Highlight Risky Clauses",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Instantly highlight risky legal clauses (indemnification, auto-renewal, liability) in any web contract or Google Docs.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

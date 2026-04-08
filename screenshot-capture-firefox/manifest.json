@@ -1,39 +1,39 @@
 {
-    "manifest_version": 2,
-    "name": "Screenshot Capture & Annotate Tool",
-    "version": "1.0.5",
-    "description": "Capture full-page or visible-area screenshots instantly. Download as PNG. Great for bug reports, design reviews, and documentation.",
-    "homepage_url": "https://sporlyworks.com",
-    "permissions": [
-        "activeTab",
-        "storage"
-    ],
-    "icons": {
-        "16": "icons/icon16.png",
-        "48": "icons/icon48.png",
-        "128": "icons/icon128.png"
-    },
-    "browser_action": {
-        "default_popup": "popup/index.html",
-        "default_title": "Screenshot Capture",
-        "default_icon": {
-            "16": "icons/icon16.png",
-            "48": "icons/icon48.png",
-            "128": "icons/icon128.png"
-        }
-    },
-    "browser_specific_settings": {
-        "gecko": {
-            "id": "screenshot-capture@omnisuite.io",
-            "strict_min_version": "142.0",
-            "data_collection_permissions": {
-                "required": [
-                    "none"
-                ]
-            }
-        }
-    },
-    "background": {
-        "service_worker": "background.js"
+  "manifest_version": 2,
+  "name": "Screenshot Capture & Annotate Tool",
+  "version": "1.1.0",
+  "description": "Capture full-page or visible-area screenshots instantly. Download as PNG. Great for bug reports, design reviews, and documentation.",
+  "homepage_url": "https://sporlyworks.com",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "browser_action": {
+    "default_popup": "popup/index.html",
+    "default_title": "Screenshot Capture",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
     }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "screenshot-capture@omnisuite.io",
+      "strict_min_version": "142.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
 }

@@ -13,7 +13,7 @@
 
 body {
     width: 340px;
-    font-family: 'Inter', -apple-system, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
     background: var(--bg-dark);
     color: var(--text-main);
     overflow: hidden;
@@ -93,7 +93,7 @@ header {
     background: var(--accent);
     color: #fff;
     border: none;
-    font-family: inherit;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
     font-weight: 600;
     font-size: 14px;
     cursor: pointer;
@@ -164,7 +164,7 @@ header {
     background: transparent;
     color: var(--text-main);
     border: 1px solid var(--glass-border);
-    font-family: inherit;
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
     font-weight: 500;
     font-size: 13px;
     cursor: pointer;

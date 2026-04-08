@@ -6,9 +6,9 @@
   },
   "waves": {
     "wave_1": {
-      "status": "pending",
+      "status": "partial",
       "priority": "highest",
-      "note": "Universal tools with broadest appeal — submit immediately",
+      "note": "Universal tools with broadest appeal \u2014 submit immediately",
       "items": [
         "json-formatter",
         "dark-mode-everywhere",
@@ -35,7 +35,7 @@
     "wave_2": {
       "status": "queued",
       "priority": "high",
-      "note": "Dev tools + privacy — submit after wave 1 approvals free up slots",
+      "note": "Dev tools + privacy \u2014 submit after wave 1 approvals free up slots",
       "items": [
         "css-gradient-generator",
         "css-flexbox-generator",
@@ -62,7 +62,7 @@
     "wave_3": {
       "status": "queued",
       "priority": "medium",
-      "note": "SEO + productivity — submit after wave 2 fills slots",
+      "note": "SEO + productivity \u2014 submit after wave 2 fills slots",
       "items": [
         "page-seo-analyzer",
         "seo-content-pro",
@@ -89,7 +89,7 @@
     "wave_4": {
       "status": "queued",
       "priority": "medium",
-      "note": "Social + niche tools — submit as more slots open",
+      "note": "Social + niche tools \u2014 submit as more slots open",
       "items": [
         "linkedin-hide-feed",
         "instagram-clean-feed",
@@ -116,7 +116,7 @@
     "wave_5": {
       "status": "queued",
       "priority": "low",
-      "note": "Remaining + new additions — final batch + master suite",
+      "note": "Remaining + new additions \u2014 final batch + master suite",
       "items": [
         "ai-content-bouncer",
         "amazon-fake-review-skimmer",
@@ -128,6 +128,31 @@
       ]
     }
   },
-  "submissions": {},
+  "submissions": {
+    "dark-mode-everywhere": {
+      "cws_id": "gcdadpmhmnojjbdaogmgdpooacaipemi",
+      "submitted_at": "2026-04-08T15:40:16.122696",
+      "wave": "wave_1",
+      "status": "pending_review"
+    },
+    "color-picker-eyedropper": {
+      "cws_id": "bgjfhdkolahnkbdlcbjnchjhhagkooah",
+      "submitted_at": "2026-04-08T15:40:16.122726",
+      "wave": "wave_1",
+      "status": "pending_review"
+    },
+    "bookmark-manager": {
+      "cws_id": "hpafgepmlbilphgjfagdaddkbfokijnd",
+      "submitted_at": "2026-04-08T15:40:16.122733",
+      "wave": "wave_1",
+      "status": "pending_review"
+    },
+    "clipboard-history": {
+      "cws_id": "gddkigpfifddolcidcaokgialpcmijgl",
+      "submitted_at": "2026-04-08T15:40:16.122738",
+      "wave": "wave_1",
+      "status": "pending_review"
+    }
+  },
   "approvals": {}
 }

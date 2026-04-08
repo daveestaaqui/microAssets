@@ -1,56 +1,56 @@
 {
-    "manifest_version": 2,
-    "name": "OmniSuite Pro Suite | The Ultimate B2B Toolkit",
-    "version": "1.0.5",
-    "icons": {
-        "16": "icons/icon16.png",
-        "48": "icons/icon48.png",
-        "128": "icons/icon128.png"
-    },
-    "description": "All 5 premium B2B tools in one extension. WCAG Auditing, Privacy Scanning, Contract Highlighting, Invoice & Time.",
-    "homepage_url": "https://sporlyworks.com",
-    "permissions": [
-        "activeTab",
-        "storage",
-        "scripting"
-    ],
-    "content_scripts": [
-        {
-            "matches": [
-                "<all_urls>"
-            ],
-            "js": [
-                "wcag_auditor_content.js",
-                "privacy_scanner_content.js",
-                "contract_highlighter_content.js",
-                "invoice_extractor_content.js",
-                "time_tracker_content.js"
-            ]
-        }
-    ],
-    "background": {
-        "scripts": [
-            "time_tracker_background.js"
-        ],
-        "service_worker": "background.js"
-    },
-    "browser_action": {
-        "default_popup": "popup/index.html",
-        "default_icon": {
-            "16": "icons/icon16.png",
-            "48": "icons/icon48.png",
-            "128": "icons/icon128.png"
-        }
-    },
-    "browser_specific_settings": {
-        "gecko": {
-            "id": "omnisuite-master-suite@omnisuite.io",
-            "strict_min_version": "142.0",
-            "data_collection_permissions": {
-                "required": [
-                    "none"
-                ]
-            }
-        }
+  "manifest_version": 2,
+  "name": "OmniSuite Pro Suite | The Ultimate B2B Toolkit",
+  "version": "1.1.0",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "description": "All 5 premium B2B tools in one extension. WCAG Auditing, Privacy Scanning, Contract Highlighting, Invoice & Time.",
+  "homepage_url": "https://sporlyworks.com",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "wcag_auditor_content.js",
+        "privacy_scanner_content.js",
+        "contract_highlighter_content.js",
+        "invoice_extractor_content.js",
+        "time_tracker_content.js"
+      ]
     }
+  ],
+  "background": {
+    "scripts": [
+      "time_tracker_background.js"
+    ],
+    "service_worker": "background.js"
+  },
+  "browser_action": {
+    "default_popup": "popup/index.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "omnisuite-master-suite@omnisuite.io",
+      "strict_min_version": "142.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
+  }
 }

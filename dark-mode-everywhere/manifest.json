@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Dark Mode for All Websites",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Force a sleek, eye-saving dark theme on every website instantly. Customizable excludes and scheduling for late-night reading.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

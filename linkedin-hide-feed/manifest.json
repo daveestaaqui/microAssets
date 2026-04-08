@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "LinkedIn Feed Hider & Recruiter Block",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Hide the noisy LinkedIn news feed and block persistent recruiter messages to focus purely on professional networking.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

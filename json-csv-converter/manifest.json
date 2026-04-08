@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "JSON to CSV Converter",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Convert JSON arrays to CSV format instantly. Paste JSON, get CSV. Download or copy to clipboard.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

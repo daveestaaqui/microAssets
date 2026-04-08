@@ -1,50 +1,50 @@
 {
-    "manifest_version": 2,
-    "name": "Invoice Data Extractor to CSV",
-    "version": "1.0.5",
-    "description": "Instantly extract line items, totals, dates, and currencies from web invoices (Stripe, PayPal, QuickBooks) into CSVs.",
-    "homepage_url": "https://sporlyworks.com",
-    "permissions": [
-        "storage",
-        "activeTab"
-    ],
-    "content_scripts": [
-        {
-            "matches": [
-                "<all_urls>"
-            ],
-            "js": [
-                "content.js"
-            ],
-            "run_at": "document_idle"
-        }
-    ],
-    "icons": {
-        "16": "icons/icon16.png",
-        "48": "icons/icon48.png",
-        "128": "icons/icon128.png"
-    },
-    "browser_action": {
-        "default_popup": "popup/index.html",
-        "default_title": "Invoice Data Extractor to CSV",
-        "default_icon": {
-            "16": "icons/icon16.png",
-            "48": "icons/icon48.png",
-            "128": "icons/icon128.png"
-        }
-    },
-    "browser_specific_settings": {
-        "gecko": {
-            "id": "invoice-extractor@omnisuite.io",
-            "strict_min_version": "142.0",
-            "data_collection_permissions": {
-                "required": [
-                    "none"
-                ]
-            }
-        }
-    },
-    "background": {
-        "service_worker": "background.js"
+  "manifest_version": 2,
+  "name": "Invoice Data Extractor to CSV",
+  "version": "1.1.0",
+  "description": "Instantly extract line items, totals, dates, and currencies from web invoices (Stripe, PayPal, QuickBooks) into CSVs.",
+  "homepage_url": "https://sporlyworks.com",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
     }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "browser_action": {
+    "default_popup": "popup/index.html",
+    "default_title": "Invoice Data Extractor to CSV",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "invoice-extractor@omnisuite.io",
+      "strict_min_version": "142.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
 }

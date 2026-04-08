@@ -1,38 +1,38 @@
 {
-    "manifest_version": 2,
-    "name": "Hash Generator \u2014 SHA256 & MD5 Tool",
-    "version": "1.0.5",
-    "description": "Generate MD5, SHA-1, SHA-256, SHA-512 hashes from any text. One-click copy to clipboard.",
-    "homepage_url": "https://sporlyworks.com",
-    "permissions": [
-        "storage"
-    ],
-    "icons": {
-        "16": "icons/icon16.png",
-        "48": "icons/icon48.png",
-        "128": "icons/icon128.png"
-    },
-    "browser_action": {
-        "default_popup": "popup/index.html",
-        "default_title": "Hash",
-        "default_icon": {
-            "16": "icons/icon16.png",
-            "48": "icons/icon48.png",
-            "128": "icons/icon128.png"
-        }
-    },
-    "browser_specific_settings": {
-        "gecko": {
-            "id": "hash-generator@omnisuite.io",
-            "strict_min_version": "142.0",
-            "data_collection_permissions": {
-                "required": [
-                    "none"
-                ]
-            }
-        }
-    },
-    "background": {
-        "service_worker": "background.js"
+  "manifest_version": 2,
+  "name": "Hash Generator \u2014 SHA256 & MD5 Tool",
+  "version": "1.1.0",
+  "description": "Generate MD5, SHA-1, SHA-256, SHA-512 hashes from any text. One-click copy to clipboard.",
+  "homepage_url": "https://sporlyworks.com",
+  "permissions": [
+    "storage"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "browser_action": {
+    "default_popup": "popup/index.html",
+    "default_title": "Hash",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
     }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "hash-generator@omnisuite.io",
+      "strict_min_version": "142.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
 }

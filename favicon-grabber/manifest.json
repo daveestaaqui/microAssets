@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Favicon Grabber \u2014 Site Icon Extractor",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Extract favicons from any website. Download in multiple sizes or copy the URL.",
   "homepage_url": "https://sporlyworks.com",
   "action": {

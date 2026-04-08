@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Quick Note Taker",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Quickly jot down notes in a pop-up window. Categorize and color-code them for easy organization.",
   "action": {
     "default_popup": "popup/index.html",

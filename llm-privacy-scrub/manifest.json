@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "LLM Privacy Scrub & Data Redactor",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Automatically detect and redact PII (emails, phone numbers, SSNs, credit cards) before you paste text into any AI chatbot.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

@@ -4,7 +4,7 @@
 
 body {
   width: 260px;
-  font-family: 'Inter', -apple-system, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
   background: #121214;
   color: #E2E2E2;
 }
