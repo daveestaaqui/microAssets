@@ -1,48 +1,48 @@
 {
-    "manifest_version": 3,
-    "name": "Tab Suspender - Reduce Memory Usage",
-    "version": "1.0.5",
-    "description": "Automatically suspend inactive tabs to save up to 80% RAM and extend battery life. Unsuspend with one click when you return.",
-    "homepage_url": "https://sporlyworks.com",
-    "permissions": [
-        "storage",
-        "activeTab"
-    ],
-    "action": {
-        "default_popup": "popup/index.html",
-        "default_title": "Tab Suspender - Reduce Memory Usage",
-        "default_icon": {
-            "16": "icons/icon16.png",
-            "48": "icons/icon48.png",
-            "128": "icons/icon128.png"
-        }
-    },
-    "content_scripts": [
-        {
-            "matches": [
-                "<all_urls>"
-            ],
-            "js": [
-                "content.js"
-            ],
-            "run_at": "document_idle"
-        }
-    ],
-    "icons": {
-        "16": "icons/icon16.png",
-        "48": "icons/icon48.png",
-        "128": "icons/icon128.png"
-    },
-    "background": {
-        "service_worker": "background.js"
-    },
-    "commands": {
-        "_execute_action": {
-            "suggested_key": {
-                "default": "Ctrl+Shift+Y",
-                "mac": "MacCtrl+Shift+Y"
-            },
-            "description": "Open Tab Suspender - Reduce Memory Usage"
-        }
+  "manifest_version": 3,
+  "name": "Tab Suspender - Reduce Memory Usage",
+  "version": "1.0.6",
+  "description": "Automatically suspend inactive tabs to save up to 80% RAM and extend battery life. Unsuspend with one click when you return.",
+  "homepage_url": "https://sporlyworks.com",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "action": {
+    "default_popup": "popup/index.html",
+    "default_title": "Tab Suspender - Reduce Memory Usage",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
     }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "MacCtrl+Shift+Y"
+      },
+      "description": "Open Tab Suspender - Reduce Memory Usage"
+    }
+  }
 }

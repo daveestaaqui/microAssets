@@ -1,38 +1,38 @@
 {
-    "manifest_version": 3,
-    "name": "Meta Tag Viewer & Editor",
-    "version": "1.0.5",
-    "description": "View and edit meta tags, Open Graph, and Twitter Card data for any webpage. Perfect for SEO auditing.",
-    "homepage_url": "https://sporlyworks.com",
-    "permissions": [
-        "activeTab",
-        "scripting",
-        "storage"
-    ],
-    "action": {
-        "default_popup": "popup/index.html",
-        "default_title": "Meta Tags",
-        "default_icon": {
-            "16": "icons/icon16.png",
-            "48": "icons/icon48.png",
-            "128": "icons/icon128.png"
-        }
-    },
-    "icons": {
-        "16": "icons/icon16.png",
-        "48": "icons/icon48.png",
-        "128": "icons/icon128.png"
-    },
-    "background": {
-        "service_worker": "background.js"
-    },
-    "commands": {
-        "_execute_action": {
-            "suggested_key": {
-                "default": "Ctrl+Shift+Y",
-                "mac": "MacCtrl+Shift+Y"
-            },
-            "description": "Open Meta Tag Viewer & Editor"
-        }
+  "manifest_version": 3,
+  "name": "Meta Tag Viewer & Editor",
+  "version": "1.0.6",
+  "description": "View and edit meta tags, Open Graph, and Twitter Card data for any webpage. Perfect for SEO auditing.",
+  "homepage_url": "https://sporlyworks.com",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup/index.html",
+    "default_title": "Meta Tags",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
     }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "MacCtrl+Shift+Y"
+      },
+      "description": "Open Meta Tag Viewer & Editor"
+    }
+  }
 }

@@ -1,40 +1,40 @@
 {
-    "manifest_version": 3,
-    "name": "Network Request Monitor Pro",
-    "version": "1.0.5",
-    "description": "Monitor all network requests in real-time. Filter by type, status, domain. Measure load times and find bottlenecks.",
-    "homepage_url": "https://sporlyworks.com",
-    "permissions": [
-        "webRequest",
-        "storage"
-    ],
-    "host_permissions": [
-        "<all_urls>"
-    ],
-    "action": {
-        "default_popup": "popup/index.html",
-        "default_title": "Network Monitor",
-        "default_icon": {
-            "16": "icons/icon16.png",
-            "48": "icons/icon48.png",
-            "128": "icons/icon128.png"
-        }
-    },
-    "icons": {
-        "16": "icons/icon16.png",
-        "48": "icons/icon48.png",
-        "128": "icons/icon128.png"
-    },
-    "background": {
-        "service_worker": "background/sw.js"
-    },
-    "commands": {
-        "_execute_action": {
-            "suggested_key": {
-                "default": "Ctrl+Shift+Y",
-                "mac": "MacCtrl+Shift+Y"
-            },
-            "description": "Open Network Request Monitor Pro"
-        }
+  "manifest_version": 3,
+  "name": "Network Request Monitor Pro",
+  "version": "1.0.6",
+  "description": "Monitor all network requests in real-time. Filter by type, status, domain. Measure load times and find bottlenecks.",
+  "homepage_url": "https://sporlyworks.com",
+  "permissions": [
+    "webRequest",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup/index.html",
+    "default_title": "Network Monitor",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
     }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background/sw.js"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "MacCtrl+Shift+Y"
+      },
+      "description": "Open Network Request Monitor Pro"
+    }
+  }
 }

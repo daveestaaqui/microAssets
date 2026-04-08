@@ -1,0 +1,133 @@
+{
+  "config": {
+    "max_slots": 20,
+    "batch_size": 5,
+    "created": "2026-04-08T14:49:00-04:00"
+  },
+  "waves": {
+    "wave_1": {
+      "status": "pending",
+      "priority": "highest",
+      "note": "Universal tools with broadest appeal — submit immediately",
+      "items": [
+        "json-formatter",
+        "dark-mode-everywhere",
+        "qr-code-generator",
+        "password-generator",
+        "color-picker-eyedropper",
+        "screenshot-capture",
+        "bookmark-manager",
+        "clipboard-history",
+        "tab-suspender",
+        "reading-mode",
+        "word-counter",
+        "regex-tester",
+        "pomodoro-anywhere",
+        "markdown-preview",
+        "text-case-converter",
+        "quick-notepad",
+        "hash-generator",
+        "lorem-ipsum-generator",
+        "link-checker",
+        "timestamp-converter"
+      ]
+    },
+    "wave_2": {
+      "status": "queued",
+      "priority": "high",
+      "note": "Dev tools + privacy — submit after wave 1 approvals free up slots",
+      "items": [
+        "css-gradient-generator",
+        "css-flexbox-generator",
+        "css-grid-generator",
+        "css-box-shadow",
+        "css-inspector-pro",
+        "css-minifier",
+        "json-csv-converter",
+        "json-path-finder",
+        "jwt-decoder",
+        "api-tester-pro",
+        "diff-viewer",
+        "diff-checker",
+        "http-headers",
+        "http-status-checker",
+        "base64-encoder",
+        "url-encoder-decoder",
+        "dom-editor-pro",
+        "code-snippet-manager",
+        "form-filler-pro",
+        "privacy-scanner"
+      ]
+    },
+    "wave_3": {
+      "status": "queued",
+      "priority": "medium",
+      "note": "SEO + productivity — submit after wave 2 fills slots",
+      "items": [
+        "page-seo-analyzer",
+        "seo-content-pro",
+        "og-previewer",
+        "meta-tag-editor",
+        "page-ruler",
+        "responsive-viewer",
+        "robots-viewer",
+        "whois-lookup",
+        "network-speed-test",
+        "network-monitor-pro",
+        "website-monitor-pro",
+        "site-speed-analyzer",
+        "html-table-extractor",
+        "wcag-auditor",
+        "font-identifier",
+        "color-palette-generator",
+        "favicon-grabber",
+        "reading-time-badge",
+        "time-tracker",
+        "tab-groups-saver"
+      ]
+    },
+    "wave_4": {
+      "status": "queued",
+      "priority": "medium",
+      "note": "Social + niche tools — submit as more slots open",
+      "items": [
+        "linkedin-hide-feed",
+        "instagram-clean-feed",
+        "reddit-redirect",
+        "google-dark-search",
+        "github-line-numbers",
+        "github-quick-stats",
+        "sponsor-skipper",
+        "meet-zoom-automute",
+        "gdocs-focus-mode",
+        "jira-declutter",
+        "wayback-machine-quick",
+        "cookie-manager",
+        "cookie-banner-rejector",
+        "user-agent-switcher",
+        "url-shortener",
+        "email-template-builder",
+        "copy-as-markdown",
+        "contract-highlighter",
+        "invoice-extractor",
+        "carbon-footprint-checker"
+      ]
+    },
+    "wave_5": {
+      "status": "queued",
+      "priority": "low",
+      "note": "Remaining + new additions — final batch + master suite",
+      "items": [
+        "ai-content-bouncer",
+        "amazon-fake-review-skimmer",
+        "amazon-wide-mode",
+        "llm-privacy-scrub",
+        "quick-note-taker",
+        "crm-data-extractor",
+        "omnisuite-master-suite"
+      ]
+    }
+  },
+  "submissions": {},
+  "approvals": {}
+}

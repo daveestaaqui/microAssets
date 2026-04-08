@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Quick Note Taker",
-  "version": "1.0",
-  "description": "A simple Chrome extension that allows users to quickly jot down notes in a pop-up window, with options to categorize and color-code them for better organization.",
+  "version": "1.0.6",
+  "description": "Quickly jot down notes in a pop-up window. Categorize and color-code them for easy organization.",
   "action": {
     "default_popup": "popup/index.html",
     "default_icon": {
@@ -16,7 +16,9 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "permissions": ["storage"],
+  "permissions": [
+    "storage"
+  ],
   "background": {
     "service_worker": "background.js"
   }

@@ -1,37 +1,37 @@
 {
-    "manifest_version": 3,
-    "name": "Screenshot Capture & Annotate Tool",
-    "version": "1.0.5",
-    "description": "Capture full-page or visible-area screenshots instantly. Download as PNG. Great for bug reports, design reviews, and documentation.",
-    "homepage_url": "https://sporlyworks.com",
-    "permissions": [
-        "activeTab",
-        "storage"
-    ],
-    "action": {
-        "default_popup": "popup/index.html",
-        "default_title": "Screenshot Capture",
-        "default_icon": {
-            "16": "icons/icon16.png",
-            "48": "icons/icon48.png",
-            "128": "icons/icon128.png"
-        }
-    },
-    "icons": {
-        "16": "icons/icon16.png",
-        "48": "icons/icon48.png",
-        "128": "icons/icon128.png"
-    },
-    "commands": {
-        "_execute_action": {
-            "suggested_key": {
-                "default": "Ctrl+Shift+S",
-                "mac": "MacCtrl+Shift+S"
-            },
-            "description": "Take Screenshot"
-        }
-    },
-    "background": {
-        "service_worker": "background.js"
+  "manifest_version": 3,
+  "name": "Screenshot Capture & Annotate Tool",
+  "version": "1.0.6",
+  "description": "Capture full-page or visible-area screenshots instantly. Download as PNG. Great for bug reports, design reviews, and documentation.",
+  "homepage_url": "https://sporlyworks.com",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup/index.html",
+    "default_title": "Screenshot Capture",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
     }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S",
+        "mac": "MacCtrl+Shift+S"
+      },
+      "description": "Take Screenshot"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
 }
