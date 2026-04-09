@@ -10,3 +10,42 @@ sporlyworks_icons/
 *.jpg
 *.webp
 _*/**
+
+# ============================================
+# SECURITY: Explicit secrets blocklist
+# ============================================
+# Service account keys
+google_play_key.json
+play_console_service_account.json
+edge_credentials.json
+*_service_account*.json
+*credentials*.json
+
+# API tokens and keys
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Environment files (anywhere in tree)
+**/.env
+**/.env.*
+.env.*
+.env.local
+.env.production
+.env.staging
+
+# IDE/Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+.atomic_*
