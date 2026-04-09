@@ -13,7 +13,7 @@ import logging
 import urllib.request
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-REPO_ROOT = os.path.dirname(SCRIPT_DIR)
+REPO_ROOT = os.path.dirname(SCRIPT_DIR)  # Parent of _scripts/
 
 logging.basicConfig(
     format='%(asctime)s | Execution Sub-Agent | [%(levelname)s] %(message)s',
@@ -58,7 +58,7 @@ Return ONLY the raw HTML code. Do not use blockquotes."""
             html = result['choices'][0]['message']['content'].strip()
             if html.startswith("```html"): html = html[7:]
             if html.endswith("```"): html = html[:-3]
-
+            # Write out to physical system
             output_dir = os.path.join(REPO_ROOT, "marketing", app_id)
             os.makedirs(output_dir, exist_ok=True)
             output_path = os.path.join(output_dir, "landing_page.html")
