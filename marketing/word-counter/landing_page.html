@@ -1,128 +1,125 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Counter - Boost Productivity with SporlyWorks</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>SporlyWorks Word Counter</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <style>
-        body, html {
+        body {
             margin: 0;
-            padding: 0;
             font-family: 'Roboto', sans-serif;
+            background-color: #f0f4f8;
             color: #333;
         }
-        .header {
-            background-image: url('https://source.unsplash.com/1600x900/?nature,technology');
-            background-size: cover;
-            background-position: center;
-            color: #fff;
+        
+        header {
+            background: linear-gradient(135deg, #6dd5ed, #2193b0);
+            padding: 20px;
             text-align: center;
-            padding: 100px 20px;
-        }
-        .header h1 {
-            font-size: 3em;
-            margin: 0;
-        }
-        .header p {
-            font-size: 1.2em;
-            margin: 10px 0 30px;
-        }
-        .header a {
-            background-color: #4CAF50;
             color: white;
-            padding: 15px 25px;
-            text-decoration: none;
-            font-size: 1em;
-            border-radius: 5px;
         }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        
+        h2 {
+            font-size: 1.5em;
+            margin: 0.5em 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
         .features {
             display: flex;
+            justify-content: space-around;
             flex-wrap: wrap;
-            justify-content: center;
-            padding: 50px 20px;
-            background-color: #f9f9f9;
+            margin: 40px 0;
         }
+        
         .feature {
-            flex: 1;
-            max-width: 300px;
-            margin: 20px;
-            text-align: center;
-        }
-        .feature img {
-            width: 100px;
-            height: 100px;
-            margin-bottom: 20px;
-        }
-        .feature h3 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-        .feature p {
-            font-size: 1em;
-            margin: 0;
-        }
-        .cta {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 50px 20px;
-        }
-        .cta h2 {
-            font-size: 2em;
-            margin: 0 0 20px;
-        }
-        .cta a {
+            flex-basis: 30%;
             background-color: white;
-            color: #4CAF50;
-            padding: 15px 25px;
-            text-decoration: none;
-            font-size: 1em;
-            border-radius: 5px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+            text-align: center;
         }
-        .footer {
+        
+        .cta {
+            background-color: #2193b0;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .cta:hover {
+            background-color: #6dd5ed;
+        }
+        
+        footer {
             text-align: center;
             padding: 20px;
             background-color: #333;
             color: white;
         }
+        
+        @media (max-width: 768px) {
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+            .feature {
+                flex-basis: 80%;
+            }
+        }
     </style>
 </head>
+
 <body>
+    <header>
+        <h1>Transform Your Productivity</h1>
+        <h2>Introducing SporlyWorks Word Counter</h2>
+    </header>
 
-    <div class="header">
-        <h1>Enhance Your Team's Productivity</h1>
-        <p>Discover the seamless integration of technology and nature with our Word Counter tool.</p>
-        <a href="#cta">Get Started</a>
+    <div class="container">
+        <section class="features">
+            <div class="feature">
+                <h3>Real-Time Analytics</h3>
+                <p>Monitor your word count as you type, ensuring you're always on track.</p>
+            </div>
+            <div class="feature">
+                <h3>Team Collaboration</h3>
+                <p>Share your projects with teammates and track progress together.</p>
+            </div>
+            <div class="feature">
+                <h3>Custom Reports</h3>
+                <p>Generate detailed reports to analyze your writing habits and improve efficiency.</p>
+            </div>
+        </section>
+
+        <section style="text-align: center;">
+            <h2>Start Boosting Your Productivity Today!</h2>
+            <button class="cta">Try It Free for 14 Days</button>
+        </section>
     </div>
 
-    <div class="features">
-        <div class="feature">
-            <img src="https://source.unsplash.com/100x100/?analytics" alt="Analytics">
-            <h3>Real-time Analytics</h3>
-            <p>Gain insights into your text data with our advanced analytics features.</p>
-        </div>
-        <div class="feature">
-            <img src="https://source.unsplash.com/100x100/?collaboration" alt="Collaboration">
-            <h3>Seamless Collaboration</h3>
-            <p>Enhance teamwork with our collaborative platform.</p>
-        </div>
-        <div class="feature">
-            <img src="https://source.unsplash.com/100x100/?security" alt="Security">
-            <h3>Top-notch Security</h3>
-            <p>Protect your data with our secure and reliable service.</p>
-        </div>
-    </div>
-
-    <div class="cta" id="cta">
-        <h2>Ready to Transform Your Workflow?</h2>
-        <a href="#contact">Contact Us Today</a>
-    </div>
-
-    <div class="footer">
-        <p>&copy; 2023 SporlyWorks. All Rights Reserved.</p>
-    </div>
-
+    <footer>
+        <p>&copy; 2023 SporlyWorks | <a href="#" style="color: white;">Privacy Policy</a> | <a href="#" style="color: white;">Terms of Service</a></p>
+    </footer>
 </body>
+
 </html>

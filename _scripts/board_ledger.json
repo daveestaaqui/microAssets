@@ -2,45 +2,44 @@
   "last_audit": "2026-04-09T00:37:00Z",
   "audit_version": "6.0",
   "pending_marketing": [
-    "word-counter: Generate high-conversion B2B SEO landing page",
     "css-gradient-generator: Connect to Reddit API outreach bot"
   ],
   "pending_deployments": {
     "status": "Awaiting CWS Wave 2 Unblock",
     "queue_size": 67,
-    "auto_expansion": "ACTIVE — CWS monitor will auto-submit as slots open"
+    "auto_expansion": "ACTIVE \u2014 CWS monitor will auto-submit as slots open"
   },
   "pending_compliance": [
     "Manual review required for privacy data-usage assertions on all 87 apps."
   ],
   "security_audit_findings": {
     "P0_CRITICAL": [
-      "google_play_key.json was tracked in git — FIXED: untracked and added to .gitignore. KEY MUST BE ROTATED in Google Cloud Console.",
-      "License server rate limiting reset on restart — FIXED: persistent file-backed rate limiting.",
-      "No atomic file writes — FIXED: all critical writes now use temp+rename pattern."
+      "google_play_key.json was tracked in git \u2014 FIXED: untracked and added to .gitignore. KEY MUST BE ROTATED in Google Cloud Console.",
+      "License server rate limiting reset on restart \u2014 FIXED: persistent file-backed rate limiting.",
+      "No atomic file writes \u2014 FIXED: all critical writes now use temp+rename pattern."
     ],
     "P1_HIGH": [
-      "License database had no backup system — FIXED: auto-backup before every write with rolling 5-copy window.",
-      "No audit log rotation — FIXED: auto-rotate at 50K lines, compress old entries to .gz archives.",
-      "No disk space monitoring — FIXED: alerts at 80% and 95% usage.",
-      "No scheduler self-healing — FIXED: watchdog auto-restarts up to 5x with exponential backoff.",
-      "No memory leak protection — FIXED: memory guard auto-restarts at 512MB.",
-      "Discord notifications had no retry — FIXED: 3x retry with exponential backoff + local file fallback.",
-      "CWS API had no retry/circuit breaker — FIXED: retry with backoff + circuit breaker (opens after 5 failures).",
-      "Legacy support_bot_daemon.py should be decommissioned — PENDING user decision."
+      "License database had no backup system \u2014 FIXED: auto-backup before every write with rolling 5-copy window.",
+      "No audit log rotation \u2014 FIXED: auto-rotate at 50K lines, compress old entries to .gz archives.",
+      "No disk space monitoring \u2014 FIXED: alerts at 80% and 95% usage.",
+      "No scheduler self-healing \u2014 FIXED: watchdog auto-restarts up to 5x with exponential backoff.",
+      "No memory leak protection \u2014 FIXED: memory guard auto-restarts at 512MB.",
+      "Discord notifications had no retry \u2014 FIXED: 3x retry with exponential backoff + local file fallback.",
+      "CWS API had no retry/circuit breaker \u2014 FIXED: retry with backoff + circuit breaker (opens after 5 failures).",
+      "Legacy support_bot_daemon.py should be decommissioned \u2014 PENDING user decision."
     ],
     "P2_MEDIUM": [
-      "Security headers missing on license server — FIXED: HSTS, X-XSS-Protection, X-Frame-Options, etc.",
-      "No request ID tracking — FIXED: UUID request IDs across all license server endpoints.",
-      "Board Coordinator sends customer emails to OpenAI — PENDING: consider PII redaction."
+      "Security headers missing on license server \u2014 FIXED: HSTS, X-XSS-Protection, X-Frame-Options, etc.",
+      "No request ID tracking \u2014 FIXED: UUID request IDs across all license server endpoints.",
+      "Board Coordinator sends customer emails to OpenAI \u2014 PENDING: consider PII redaction."
     ]
   },
   "hardening_applied": {
-    "license_server": "v6.0 — atomic writes, persistent rate limiting, auto-backup, security headers, corruption recovery",
-    "worker": "v6.0 — self-healing watchdog, signal handlers, memory guard, circuit breakers, startup integrity",
-    "system_monitor": "v6.0 — audit log rotation, disk monitoring, license server health, file checksums",
-    "notifications": "v6.0 — retry with backoff, fallback logging, rate limiting, deduplication",
-    "cws_client": "v6.0 — retry with backoff, circuit breaker, token caching",
-    "gitignore": "v6.0 — explicit secrets blocklist for all credential patterns"
+    "license_server": "v6.0 \u2014 atomic writes, persistent rate limiting, auto-backup, security headers, corruption recovery",
+    "worker": "v6.0 \u2014 self-healing watchdog, signal handlers, memory guard, circuit breakers, startup integrity",
+    "system_monitor": "v6.0 \u2014 audit log rotation, disk monitoring, license server health, file checksums",
+    "notifications": "v6.0 \u2014 retry with backoff, fallback logging, rate limiting, deduplication",
+    "cws_client": "v6.0 \u2014 retry with backoff, circuit breaker, token caching",
+    "gitignore": "v6.0 \u2014 explicit secrets blocklist for all credential patterns"
   }
 }
