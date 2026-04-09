@@ -2,14 +2,14 @@
   "last_audit": "2026-04-09T01:28:00Z",
   "audit_version": "6.1",
   "infrastructure_status": {
-    "github_actions_board": "OPERATIONAL — Workflow #6 passed. 4-hour cron active.",
-    "railway_license_server": "HEALTHY — gunicorn running on port 8080, all env vars set.",
-    "railway_worker": "DEGRADED — Running but CWS_REFRESH_TOKEN is expired (invalid_grant). CWS monitoring disabled until token rotated.",
-    "cloudflare_email_worker": "OPERATIONAL — handling support@sporlyworks.com"
+    "github_actions_board": "OPERATIONAL \u2014 Workflow #6 passed. 4-hour cron active.",
+    "railway_license_server": "HEALTHY \u2014 gunicorn running on port 8080, all env vars set.",
+    "railway_worker": "DEGRADED \u2014 Running but CWS_REFRESH_TOKEN is expired (invalid_grant). CWS monitoring disabled until token rotated.",
+    "cloudflare_email_worker": "OPERATIONAL \u2014 handling support@sporlyworks.com"
   },
   "pending_critical": [
-    "ROTATE CWS_REFRESH_TOKEN — Worker cannot monitor Chrome Web Store. Run cws_get_refresh_token.py to get a new token and update in Railway.",
-    "ROTATE google_play_key.json — Old key (3fbbd432) was exposed in git history. Delete in GCP Console and generate new one."
+    "ROTATE CWS_REFRESH_TOKEN \u2014 Worker cannot monitor Chrome Web Store. Run cws_get_refresh_token.py to get a new token and update in Railway.",
+    "ROTATE google_play_key.json \u2014 Old key (3fbbd432) was exposed in git history. Delete in GCP Console and generate new one."
   ],
   "pending_compliance": [
     "Update 'Copy to Markdown' extension privacy fields in CWS Developer Console (single purpose + permission justifications).",
@@ -17,19 +17,18 @@
     "Add privacy policy URL (https://sporlyworks.com/privacy) to all published extensions."
   ],
   "pending_marketing": [
-    "word-counter: Generate high-conversion B2B SEO landing page",
     "css-gradient-generator: Connect to Reddit API outreach bot",
     "Publish sporlyworks.com landing page with SEO optimization"
   ],
   "pending_deployments": {
     "status": "Awaiting CWS Wave 2 Unblock + CWS token rotation",
     "queue_size": 67,
-    "auto_expansion": "PAUSED — CWS_REFRESH_TOKEN expired, auto-submission blocked"
+    "auto_expansion": "PAUSED \u2014 CWS_REFRESH_TOKEN expired, auto-submission blocked"
   },
   "completed_this_session": [
     "Fixed hardcoded ~/Desktop paths in board_coordinator.py and sub_agents.py for CI compatibility",
     "Successfully ran Board Coordinator on GitHub Actions (Workflow #6 PASSED)",
-    "Verified Railway deployments — both services online",
+    "Verified Railway deployments \u2014 both services online",
     "Configured 11 GitHub Actions secrets",
     "Configured all Railway environment variables for worker + license server",
     "Hardened 6 Python files with security patterns (atomic writes, circuit breakers, etc.)",
@@ -38,34 +37,34 @@
   ],
   "security_audit_findings": {
     "P0_CRITICAL": [
-      "google_play_key.json was tracked in git — FIXED: untracked. KEY ROTATION PENDING.",
-      "License server rate limiting reset on restart — FIXED: persistent file-backed.",
-      "No atomic file writes — FIXED: temp+rename pattern.",
-      "CWS_REFRESH_TOKEN expired — PENDING: needs rotation via OAuth flow."
+      "google_play_key.json was tracked in git \u2014 FIXED: untracked. KEY ROTATION PENDING.",
+      "License server rate limiting reset on restart \u2014 FIXED: persistent file-backed.",
+      "No atomic file writes \u2014 FIXED: temp+rename pattern.",
+      "CWS_REFRESH_TOKEN expired \u2014 PENDING: needs rotation via OAuth flow."
     ],
     "P1_HIGH": [
-      "License database had no backup — FIXED: auto-backup with rolling 5-copy window.",
-      "No audit log rotation — FIXED: auto-rotate at 50K lines.",
-      "No disk space monitoring — FIXED: alerts at 80%/95%.",
-      "No scheduler self-healing — FIXED: watchdog auto-restarts with backoff.",
-      "No memory leak protection — FIXED: memory guard at 512MB.",
-      "Discord notifications no retry — FIXED: 3x retry + file fallback.",
-      "CWS API no retry/circuit breaker — FIXED: retry + circuit breaker."
+      "License database had no backup \u2014 FIXED: auto-backup with rolling 5-copy window.",
+      "No audit log rotation \u2014 FIXED: auto-rotate at 50K lines.",
+      "No disk space monitoring \u2014 FIXED: alerts at 80%/95%.",
+      "No scheduler self-healing \u2014 FIXED: watchdog auto-restarts with backoff.",
+      "No memory leak protection \u2014 FIXED: memory guard at 512MB.",
+      "Discord notifications no retry \u2014 FIXED: 3x retry + file fallback.",
+      "CWS API no retry/circuit breaker \u2014 FIXED: retry + circuit breaker."
     ],
     "P2_MEDIUM": [
-      "Security headers missing — FIXED: HSTS, XSS, Frame-Options.",
-      "No request ID tracking — FIXED: UUID per request.",
-      "Board Coordinator sends emails to OpenAI — consider PII redaction.",
-      "Git CLI push from local machine hangs — need SSH key or PAT setup."
+      "Security headers missing \u2014 FIXED: HSTS, XSS, Frame-Options.",
+      "No request ID tracking \u2014 FIXED: UUID per request.",
+      "Board Coordinator sends emails to OpenAI \u2014 consider PII redaction.",
+      "Git CLI push from local machine hangs \u2014 need SSH key or PAT setup."
     ]
   },
   "hardening_applied": {
-    "license_server": "v6.0 — atomic writes, persistent rate limiting, auto-backup, security headers, corruption recovery",
-    "worker": "v6.0 — self-healing watchdog, signal handlers, memory guard, circuit breakers, startup integrity",
-    "system_monitor": "v6.0 — audit log rotation, disk monitoring, license server health, file checksums",
-    "notifications": "v6.0 — retry with backoff, fallback logging, rate limiting, deduplication",
-    "cws_client": "v6.0 — retry with backoff, circuit breaker, token caching",
-    "gitignore": "v6.0 — explicit secrets blocklist",
-    "board_coordinator": "v6.1 — CI-compatible paths (SCRIPT_DIR), runs on GitHub Actions"
+    "license_server": "v6.0 \u2014 atomic writes, persistent rate limiting, auto-backup, security headers, corruption recovery",
+    "worker": "v6.0 \u2014 self-healing watchdog, signal handlers, memory guard, circuit breakers, startup integrity",
+    "system_monitor": "v6.0 \u2014 audit log rotation, disk monitoring, license server health, file checksums",
+    "notifications": "v6.0 \u2014 retry with backoff, fallback logging, rate limiting, deduplication",
+    "cws_client": "v6.0 \u2014 retry with backoff, circuit breaker, token caching",
+    "gitignore": "v6.0 \u2014 explicit secrets blocklist",
+    "board_coordinator": "v6.1 \u2014 CI-compatible paths (SCRIPT_DIR), runs on GitHub Actions"
   }
 }
