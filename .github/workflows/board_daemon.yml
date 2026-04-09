@@ -2,80 +2,85 @@ name: SporlyWorks AI Serverless Board
 
 on:
   schedule:
-      - cron: '0 */4 * * *'
-        workflow_dispatch:
+    - cron: '0 */4 * * *'
+  workflow_dispatch: # Enable manual triggering for testing
 
-        concurrency:
-          group: sporlyworks-board
-            cancel-in-progress: false
+# Prevent overlapping runs — only one board session at a time
+concurrency:
+  group: sporlyworks-board
+  cancel-in-progress: false
 
-            jobs:
-              board_coordinator:
-                  runs-on: ubuntu-latest
-                      timeout-minutes: 10
-                          permissions:
-                                contents: write
+jobs:
+  board_coordinator:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10  # Hard cap — prevent runaway API costs
+    permissions:
+      contents: write # Needed to push history back
+      
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1  # Shallow clone for speed
+        
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          # Only install what the board coordinator actually needs
+          pip install requests 2>/dev/null || true
+          
+      - name: Run Master Coordinator (gpt-4o-mini)
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
+          SENDER_APP_PASSWORD: ${{ secrets.SENDER_APP_PASSWORD }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
+        run: |
+          python _scripts/sporlyworks_board_coordinator.py
+          
+      - name: Commit and Push State Updates
+        run: |
+          git config --global user.name 'sporlyworks-ai-board'
+          git config --global user.email 'board@sporlyworks.com'
+          
+          # Add potentially generated new files like marketing SEO or board history
+          git add -A
+          
+          # Only commit if there are changes
+          if git diff-index --quiet HEAD --; then
+            echo "No state changes dynamically generated this cycle."
+          else
+            git commit -m "🤖 AI Board Deployment | State & History Checkpoint"
+            git push
+          fi
 
-                                          steps:
-                                                - name: Check out repository
-                                                        uses: actions/checkout@v4
-                                                                with:
-                                                                          fetch-depth: 1
-
-                                                                                        - name: Setup Python
-                                                                                                uses: actions/setup-python@v5
-                                                                                                        with:
-                                                                                                                  python-version: '3.11'
-                                                                                                                            
-                                                                                                                                  - name: Install dependencies
-                                                                                                                                          run: |
-                                                                                                                                                    python -m pip install --upgrade pip
-                                                                                                                                                              pip install requests 2>/dev/null || true
-                                                                                                                                                                        
-                                                                                                                                                                              - name: Run Master Coordinator (gpt-4o-mini)
-                                                                                                                                                                                      env:
-                                                                                                                                                                                                OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-                                                                                                                                                                                                          SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
-                                                                                                                                                                                                                    SENDER_APP_PASSWORD: ${{ secrets.SENDER_APP_PASSWORD }}
-                                                                                                                                                                                                                              CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-                                                                                                                                                                                                                                        CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-                                                                                                                                                                                                                                                  RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
-                                                                                                                                                                                                                                                          run: |
-                                                                                                                                                                                                                                                                    python _scripts/sporlyworks_board_coordinator.py
-                                                                                                                                                                                                                                                                              
-                                                                                                                                                                                                                                                                                    - name: Commit and Push State Updates
-                                                                                                                                                                                                                                                                                            run: |
-                                                                                                                                                                                                                                                                                                      git config --global user.name 'sporlyworks-ai-board'
-                                                                                                                                                                                                                                                                                                                git config --global user.email 'board@sporlyworks.com'
-                                                                                                                                                                                                                                                                                                                          git add -A
-                                                                                                                                                                                                                                                                                                                                    if git diff-index --quiet HEAD --; then
-                                                                                                                                                                                                                                                                                                                                                echo "No state changes dynamically generated this cycle."
-                                                                                                                                                                                                                                                                                                                                                          else
-                                                                                                                                                                                                                                                                                                                                                                      git commit -m "AI Board Deployment | State and History Checkpoint"
-                                                                                                                                                                                                                                                                                                                                                                                  git push
-                                                                                                                                                                                                                                                                                                                                                                                            fi
-                                                                                                                                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                                                                                                                                                  - name: Notify on Failure
-                                                                                                                                                                                                                                                                                                                                                                                                          if: failure()
-                                                                                                                                                                                                                                                                                                                                                                                                                  env:
-                                                                                                                                                                                                                                                                                                                                                                                                                            SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
-                                                                                                                                                                                                                                                                                                                                                                                                                                      SENDER_APP_PASSWORD: ${{ secrets.SENDER_APP_PASSWORD }}
-                                                                                                                                                                                                                                                                                                                                                                                                                                              run: |
-                                                                                                                                                                                                                                                                                                                                                                                                                                                        python -c "
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                  import smtplib, os
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                            from email.message import EmailMessage
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      msg = EmailMessage()
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                msg.set_content('The SporlyWorks AI Board Coordinator failed on GitHub Actions.\n\nCheck: https://github.com/daveestaaqui/microAssets/actions\n\nThis is an automated alert.')
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          msg['Subject'] = 'SporlyWorks Board FAILED - Action Required'
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    msg['From'] = os.environ.get('SENDER_EMAIL', '')
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              msg['To'] = 'sandwichfitness@gmail.com'
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        try:
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    server.login(os.environ['SENDER_EMAIL'], os.environ['SENDER_APP_PASSWORD'])
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  server.send_message(msg)
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                server.quit()
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              print('Failure notification sent.')
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        except Exception as e:
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      print(f'Failed to send notification: {e}')
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                "
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+      - name: Notify on Failure
+        if: failure()
+        env:
+          SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
+          SENDER_APP_PASSWORD: ${{ secrets.SENDER_APP_PASSWORD }}
+        run: |
+          python -c "
+          import smtplib, os
+          from email.message import EmailMessage
+          msg = EmailMessage()
+          msg.set_content('The SporlyWorks AI Board Coordinator failed on GitHub Actions.\n\nCheck: https://github.com/daveestaaqui/microAssets/actions\n\nThis is an automated alert.')
+          msg['Subject'] = '🚨 SporlyWorks Board FAILED — Action Required'
+          msg['From'] = os.environ.get('SENDER_EMAIL', '')
+          msg['To'] = 'sandwichfitness@gmail.com'
+          try:
+              server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+              server.login(os.environ['SENDER_EMAIL'], os.environ['SENDER_APP_PASSWORD'])
+              server.send_message(msg)
+              server.quit()
+              print('Failure notification sent.')
+          except Exception as e:
+              print(f'Failed to send notification: {e}')
+          "

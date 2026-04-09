@@ -1,39 +1,199 @@
 <!DOCTYPE html>
+
 <html><head>
-<meta charset="UTF-8">
+<meta charset="utf-8"/>
+
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
-body{width:320px;padding:16px;background:#181825;color:#cdd6f4}
-h3{font-size:14px;margin-bottom:12px;background:linear-gradient(135deg,#667eea,#764ba2);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-</style>
-<style>
-/* SporlyWorks Cross-Promotion */
-.ma-footer{text-align:center;padding:8px 0 4px;border-top:1px solid rgba(128,128,128,0.2);margin-top:12px;font-size:11px;opacity:0.7;}
-.ma-footer a{color:#205c40;text-decoration:none;}
-.ma-footer a:hover{text-decoration:underline;}
-</style>
-</head>
+/* 🌟 SporlyWorks Premium Global Theme */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+body {
+    width: 340px;
+    padding: 20px;
+    background: #0f172a; /* Deep elegant slate dark mode */
+    color: #f8fafc;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Glassmorphism Background Accent */
+body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(16, 185, 129, 0.08) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+h3, h2, h1 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #34d399, #059669); /* Elegant Emerald Gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+/* Beautiful Inputs */
+input, textarea, select {
+    width: 100%;
+    padding: 10px 14px;
+    background: rgba(30, 41, 59, 0.7);
+    color: #f8fafc;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    outline: none;
+    backdrop-filter: blur(8px);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: #10b981;
+    background: rgba(15, 23, 42, 0.9);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+
+/* Premium Buttons with Micro-animations */
+button {
+    width: 100%;
+    padding: 10px 16px;
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2), 0 2px 4px -2px rgba(16, 185, 129, 0.1);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px -2px rgba(16, 185, 129, 0.3);
+    background: linear-gradient(135deg, #34d399, #10b981);
+}
+
+button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px -1px rgba(16, 185, 129, 0.2);
+}
+
+/* Glassy Output/Pre blocks */
+pre {
+    padding: 12px;
+    background: rgba(15, 23, 42, 0.6);
+    color: #cbd5e1;
+    border-radius: 8px;
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    white-space: pre-wrap;
+    word-break: break-all;
+    backdrop-filter: blur(4px);
+    margin-bottom: 12px;
+}
+
+/* SporlyWorks Cross-Promotion & Feedback Polish */
+.ma-footer {
+    text-align: center;
+    padding: 12px 0 4px;
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
+    margin-top: 16px;
+    font-size: 11px;
+    color: #64748b;
+}
+
+.ma-footer a {
+    color: #10b981;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.ma-footer a:hover {
+    color: #34d399;
+    text-decoration: underline;
+}
+
+#sporlyworks-promo {
+    margin-top: 16px;
+    padding: 16px;
+    background: linear-gradient(145deg, rgba(16, 185, 129, 0.05), rgba(5, 150, 105, 0.1));
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+#sporlyworks-promo p { margin: 0 0 6px 0; font-size: 12px; color: #94a3b8; }
+#sporlyworks-promo strong { color: #10b981; font-weight: 700; }
+#sporlyworks-promo a {
+    color: #34d399;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 12px;
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: rgba(16, 185, 129, 0.1);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+#sporlyworks-promo a:hover {
+    background: rgba(16, 185, 129, 0.2);
+    transform: translateY(-1px);
+}
+
+#ma-feedback {
+    margin-top: 12px;
+    padding: 12px;
+    background: rgba(30, 41, 59, 0.5);
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+#ma-feedback a { color: #10b981; text-decoration: none; font-weight: 500; transition: color 0.15s; }
+#ma-feedback a:hover { color: #34d399; }
+</style></head>
 <body>
 <h3>Timestamp Converter</h3>
-<input id="input" placeholder="Unix timestamp or date..." style="width:100%;padding:8px;background:#1e1e2e;color:#cdd6f4;border:1px solid #45475a;border-radius:6px;margin-bottom:8px;"><button id="now" style="width:100%;padding:6px;background:#667eea;color:#fff;border:none;border-radius:6px;cursor:pointer;margin-bottom:8px;">Now</button><pre id="output" style="color:#a6adc8;font-size:12px;white-space:pre-wrap;"></pre>
+<input id="input" placeholder="Unix timestamp or date..."/><button id="now">Now</button><pre id="output"></pre>
 <script src="popup.js"></script>
-
 <!-- Self-Healing Feedback -->
-<div id="ma-feedback" style="margin-top:12px;padding:10px;background:rgba(154,127,96,0.1);border-radius:8px;text-align:center;border-top:1px solid rgba(255,255,255,0.06);display:none;">
-  <span style="font-size:11px;color:#71717a;">Enjoying this tool?</span>
-  <a id="ma-rate" href="#" target="_blank" style="color:#205c40; font-weight:bold;text-decoration:none;font-size:11px;margin-left:6px;">⭐ Rate it</a>
-  <span style="color:#3f3f46;font-size:11px;margin:0 4px;">|</span>
-  <a id="ma-report" href="https://github.com/daveestaaqui/micro-assets-landing-page/issues/new?title=Bug+Report&body=Extension:+Timestamp Converter%0ADescription:+" target="_blank" style="color:#71717a;text-decoration:none;font-size:11px;">🐛 Report issue</a>
+<div id="ma-feedback" style="display: none;">
+<span style="font-size:11px;color:#71717a;">Enjoying this tool?</span>
+<a href="#" id="ma-rate" style="color:#205c40; font-weight:bold;text-decoration:none;font-size:11px;margin-left:6px;" target="_blank">⭐ Rate it</a>
+<span style="color:#3f3f46;font-size:11px;margin:0 4px;">|</span>
+<a href="https://github.com/daveestaaqui/micro-assets-landing-page/issues/new?title=Bug+Report&amp;body=Extension:+Timestamp Converter%0ADescription:+" id="ma-report" style="color:#71717a;text-decoration:none;font-size:11px;" target="_blank">🐛 Report issue</a>
 </div>
-
-
 <!-- SporlyWorks Cross-Promotion -->
 <div id="sporlyworks-promo" style="margin-top:16px;padding:12px;background:rgba(32,92,64,0.1);border-radius:8px;text-align:center;border:1px solid rgba(32,92,64,0.2);">
-  <p style="margin:0;font-size:11px;color:#8b949e;">Part of <strong style="color:#205c40; font-weight:bold;">SporlyWorks</strong> — 85+ developer tools</p>
-  <a href="https://sporlyworks.com/" target="_blank" style="color:#205c40; font-weight:bold;text-decoration:none;font-size:11px;">Browse all extensions →</a>
+<p style="margin:0;font-size:11px;color:#8b949e;">Part of <strong style="color:#205c40; font-weight:bold;">SporlyWorks</strong> — 85+ developer tools</p>
+<a href="https://sporlyworks.com/" style="color:#205c40; font-weight:bold;text-decoration:none;font-size:11px;" target="_blank">Browse all extensions →</a>
 </div>
-
-
-    <script src='license_validator.js'></script>
+<script src="license_validator.js"></script>
 <div class="ma-footer">Part of the <a href="https://chromewebstore.google.com/search/SporlyWorks" target="_blank">SporlyWorks</a></div>
 </body></html>

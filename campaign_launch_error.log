@@ -34,3 +34,7 @@ Traceback (most recent call last):
   File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 2, in <module>
     import os, sys, json, requests, time, subprocess
 ModuleNotFoundError: No module named 'requests'
+Traceback (most recent call last):
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 2, in <module>
+    import os, sys, json, requests, time, subprocess
+ModuleNotFoundError: No module named 'requests'

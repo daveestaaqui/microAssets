@@ -1,135 +1,120 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Boost your team's productivity with SporlyWorks' Word Counter tool.">
-    <title>Word Counter - SporlyWorks</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap">
+    <title>SporlyWorks Word Counter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to right, #e0f7fa, #b2ebf2);
+            background: linear-gradient(135deg, #f0f4f8 0%, #d9e4ef 100%);
             color: #333;
         }
-
         header {
-            background-color: #00796b;
+            background: #4CAF50;
             color: white;
-            padding: 20px;
             text-align: center;
+            padding: 2rem 0;
         }
-
-        h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-
-        h2 {
-            font-size: 1.5em;
-            margin: 10px 0;
-        }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 2rem;
         }
-
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
         .cta-button {
-            background-color: #ffab00;
+            background: #ff9800;
             color: white;
-            padding: 15px 30px;
-            text-decoration: none;
+            padding: 1rem 2rem;
+            border: none;
             border-radius: 5px;
-            font-size: 1.2em;
-            transition: background-color 0.3s;
+            font-size: 1.2rem;
+            cursor: pointer;
+            text-decoration: none;
         }
-
-        .cta-button:hover {
-            background-color: #ff8f00;
-        }
-
         .features {
             display: flex;
-            flex-wrap: wrap;
             justify-content: space-around;
-            margin: 20px 0;
+            flex-wrap: wrap;
+            margin-top: 2rem;
         }
-
         .feature {
             background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 10px;
-            padding: 20px;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             flex: 1 1 30%;
+            margin: 1rem;
             text-align: center;
         }
-
+        .feature i {
+            font-size: 2rem;
+            color: #4CAF50;
+            margin-bottom: 1rem;
+        }
         footer {
             text-align: center;
-            padding: 20px;
-            background-color: #00796b;
+            padding: 2rem 0;
+            background: #4CAF50;
             color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
         }
-
         @media (max-width: 768px) {
             .features {
                 flex-direction: column;
                 align-items: center;
             }
-
             .feature {
                 flex: 1 1 80%;
             }
         }
     </style>
 </head>
-
 <body>
     <header>
-        <h1>Transform Your Productivity</h1>
-        <h2>Introducing the Ultimate Word Counter Tool</h2>
+        <h1>Welcome to SporlyWorks</h1>
+        <p>Your ultimate Word Counter tool</p>
     </header>
-
     <div class="container">
-        <p>Unlock the power of concise communication with SporlyWorks' Word Counter. Enhance your team's efficiency and ensure clarity in every document.</p>
+        <h2>Enhance Your Writing Experience</h2>
+        <p>Our Word Counter is designed to help you track your writing progress effortlessly. Whether you're a student, a professional writer, or anyone who loves to write, our tool offers a user-friendly interface to meet your needs.</p>
         <a href="#signup" class="cta-button">Get Started for Free</a>
-
+        
+        <h2>Features</h2>
         <div class="features">
             <div class="feature">
+                <i class="fas fa-pencil-alt"></i>
                 <h3>Real-Time Counting</h3>
-                <p>Track your word count as you type. No more guessing!</p>
+                <p>Get instant feedback on your word count as you write.</p>
             </div>
             <div class="feature">
-                <h3>Detailed Analytics</h3>
-                <p>Gain insights into your writing habits and improve over time.</p>
+                <i class="fas fa-chart-line"></i>
+                <h3>Progress Tracking</h3>
+                <p>Track your writing goals and see your progress over time.</p>
             </div>
             <div class="feature">
-                <h3>Seamless Integration</h3>
-                <p>Integrate effortlessly with your favorite apps and tools.</p>
+                <i class="fas fa-share-alt"></i>
+                <h3>Easy Sharing</h3>
+                <p>Share your writing with peers and receive feedback effortlessly.</p>
             </div>
-        </div>
-
-        <div id="signup">
-            <h2>Join Us Today</h2>
-            <p>Sign up now to start maximizing your productivity with our Word Counter tool.</p>
-            <form action="/submit" method="POST">
-                <input type="email" name="email" placeholder="Enter your email" required>
-                <button type="submit" class="cta-button">Sign Up</button>
-            </form>
         </div>
     </div>
-
     <footer>
         <p>&copy; 2023 SporlyWorks. All rights reserved.</p>
-        <p><a href="/privacy-policy" style="color: white;">Privacy Policy</a> | <a href="/terms-of-service" style="color: white;">Terms of Service</a></p>
+        <p><a href="/privacy-policy" style="color:white;">Privacy Policy</a> | <a href="/terms-of-service" style="color:white;">Terms of Service</a></p>
     </footer>
 </body>
-
 </html>
