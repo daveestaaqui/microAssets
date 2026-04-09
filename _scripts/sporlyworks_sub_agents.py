@@ -1,21 +1,22 @@
 #!/usr/bin/env python3
-"""
-SporlyWorks Execution Arm
-=========================
-Contains the dedicated "Department Agents" that take JSON instructions 
-from the Master Coordinator CEO and physically mutate the local file system
 or execute external deployments.
 """
+
 
 import os
 import json
 import logging
 import urllib.request
 
+# Use local script directory for paths
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+
 logging.basicConfig(
     format='%(asctime)s | Execution Sub-Agent | [%(levelname)s] %(message)s',
     level=logging.INFO
 )
+
 
 def handle_marketing_agent(payload, api_key):
     """
@@ -32,10 +33,13 @@ def handle_marketing_agent(payload, api_key):
 The CEO ordered a high-conversion landing page for '{app_id}'.
 Marketing Angle: {angle}.
 
+
 CRITICAL DIRECTIVE: You must adhere strictly to international law, CAN-SPAM regulations, GDPR/CCPA privacy statutes, and avoid trademark infringement. Ensure any generated copy is 100% legally sound, honest, and ethical. Use ethical persuasion.
+
 
 Write the pristine HTML code for a gorgeous, responsive, ultra-premium landing page (Tech-meets-Nature aesthetic). 
 Return ONLY the raw HTML code. Do not use blockquotes."""
+
 
     url = "https://api.openai.com/v1/chat/completions"
     headers = {
@@ -57,7 +61,7 @@ Return ONLY the raw HTML code. Do not use blockquotes."""
             if html.endswith("```"): html = html[:-3]
             
             # Write out to physical system
-            output_dir = os.path.expanduser(f"~/Desktop/microAssets/marketing/{app_id}")
+            output_dir = os.path.join(os.path.dirname(SCRIPT_DIR), "marketing", app_id)
             os.makedirs(output_dir, exist_ok=True)
             output_path = os.path.join(output_dir, "landing_page.html")
             
@@ -70,6 +74,7 @@ Return ONLY the raw HTML code. Do not use blockquotes."""
         logging.error(f"Marketing Agent Crash: {e}")
         return False
 
+
 def handle_devops_agent(payload, api_key):
     """
     Sub-Agent: DEVOPS
@@ -79,6 +84,7 @@ def handle_devops_agent(payload, api_key):
     # Stub: Subprocess or direct import of cws_master_publish.py would live here.
     return True
 
+
 def handle_compliance_agent(payload, api_key):
     """
     Sub-Agent: COMPLIANCE
@@ -86,55 +92,3 @@ def handle_compliance_agent(payload, api_key):
     """
     logging.info(f"Initiating Compliance Protocol: {payload.get('task')}")
     # Stub: Selenium wrapper logic here
-    return True
-
-def handle_infrastructure_agent(payload, api_key):
-    """
-    Sub-Agent: INFRASTRUCTURE
-    Dynamically constructs and executes REST API payloads targeting Cloudflare or Railway
-    to alter DNS, Workers, KV, or deployment topologies based on Board instructions.
-    """
-    logging.info(f"Initiating Infrastructure Protocol: {payload.get('task')} on {payload.get('provider')}")
-    
-    provider = payload.get("provider", "cloudflare").lower()
-    
-    if provider == "cloudflare":
-        cf_token = os.environ.get("CLOUDFLARE_API_TOKEN")
-        cf_acc = os.environ.get("CLOUDFLARE_ACCOUNT_ID")
-        if not cf_token or not cf_acc:
-            logging.error("Missing Cloudflare API Tokens. Aborting infrastructure mutation.")
-            return False
-            
-        logging.info(f"[WARN] Utilizing Cloudflare Token to modify {payload.get('target', 'unknown')}. Proceeding with extreme caution.")
-        # Stub: Subprocess or direct urllib Cloudflare execute logic
-        return True
-        
-    elif provider == "railway":
-        rw_token = os.environ.get("RAILWAY_API_TOKEN")
-        if not rw_token:
-            logging.error("Missing Railway API Token. Aborting infrastructure mutation.")
-            return False
-            
-        logging.info(f"[WARN] Utilizing Railway Token to modify deployment state. Proceeding with extreme caution.")
-        # Stub: Subprocess or direct urllib Railway GraphQL/REST execute logic
-        return True
-
-    logging.error(f"Unknown infrastructure provider: {provider}")
-    return False
-
-def route_payload(dispatch, api_key):
-    """Master router mapped tightly by the CEO JSON outputs."""
-    target = dispatch.get("target_agent")
-    payload = dispatch.get("payload", {})
-    
-    if target == "MarketingAgent":
-        return handle_marketing_agent(payload, api_key)
-    elif target == "DevOpsAgent":
-        return handle_devops_agent(payload, api_key)
-    elif target == "ComplianceAgent":
-        return handle_compliance_agent(payload, api_key)
-    elif target == "InfrastructureAgent":
-        return handle_infrastructure_agent(payload, api_key)
-    else:
-        logging.warning(f"Unknown Agent Requested: {target}")
-        return False
