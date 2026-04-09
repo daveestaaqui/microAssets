@@ -2,7 +2,8 @@
   "last_audit": "2026-04-09T00:37:00Z",
   "audit_version": "6.0",
   "pending_marketing": [
-    "css-gradient-generator: Connect to Reddit API outreach bot"
+    "css-gradient-generator: Connect to Reddit API outreach bot",
+    "word-counter: Generate high-conversion B2B SEO blog post"
   ],
   "pending_deployments": {
     "status": "Awaiting CWS Wave 2 Unblock",
