@@ -1,91 +1,135 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Boost your productivity with SporlyWorks' Word Counter. Optimize your writing process effortlessly.">
-    <title>Word Counter | SporlyWorks</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <meta name="description" content="Boost your team's productivity with SporlyWorks' Word Counter tool.">
+    <title>Word Counter - SporlyWorks</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to right, #e0f7fa, #ffe0b2);
+            background: linear-gradient(to right, #e0f7fa, #b2ebf2);
             color: #333;
-            line-height: 1.6;
         }
+
         header {
-            background: #004d40;
-            color: #ffffff;
-            padding: 20px 0;
+            background-color: #00796b;
+            color: white;
+            padding: 20px;
             text-align: center;
         }
+
         h1 {
             margin: 0;
             font-size: 2.5em;
         }
+
         h2 {
-            margin: 20px 0;
-            font-size: 1.8em;
+            font-size: 1.5em;
+            margin: 10px 0;
         }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
-        .cta {
-            display: inline-block;
+
+        .cta-button {
+            background-color: #ffab00;
+            color: white;
             padding: 15px 30px;
-            background: #ff5722;
-            color: #ffffff;
             text-decoration: none;
             border-radius: 5px;
             font-size: 1.2em;
-            transition: background 0.3s;
+            transition: background-color 0.3s;
         }
-        .cta:hover {
-            background: #e64a19;
+
+        .cta-button:hover {
+            background-color: #ff8f00;
         }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        .feature {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+            flex: 1 1 30%;
+            text-align: center;
+        }
+
         footer {
             text-align: center;
-            padding: 20px 0;
-            background: #004d40;
-            color: #ffffff;
+            padding: 20px;
+            background-color: #00796b;
+            color: white;
         }
+
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2em;
+            .features {
+                flex-direction: column;
+                align-items: center;
             }
-            h2 {
-                font-size: 1.5em;
-            }
-            .cta {
-                font-size: 1em;
+
+            .feature {
+                flex: 1 1 80%;
             }
         }
     </style>
 </head>
+
 <body>
     <header>
-        <h1>SporlyWorks Word Counter</h1>
-        <h2>Enhance Your Writing Productivity</h2>
+        <h1>Transform Your Productivity</h1>
+        <h2>Introducing the Ultimate Word Counter Tool</h2>
     </header>
+
     <div class="container">
-        <p>Welcome to SporlyWorks' Word Counter, the ultimate tool designed for businesses looking to maximize their writing efficiency. Whether you're drafting reports, creating content, or managing communications, our Word Counter helps streamline your workflow.</p>
-        <p>With a clean interface and powerful features, you can:</p>
-        <ul>
-            <li>Track word counts in real-time</li>
-            <li>Set writing goals and monitor progress</li>
-            <li>Analyze text for better clarity and impact</li>
-        </ul>
-        <p>Join thousands of professionals who trust SporlyWorks to enhance their productivity and achieve their writing goals.</p>
-        <a href="#signup" class="cta">Get Started for Free</a>
+        <p>Unlock the power of concise communication with SporlyWorks' Word Counter. Enhance your team's efficiency and ensure clarity in every document.</p>
+        <a href="#signup" class="cta-button">Get Started for Free</a>
+
+        <div class="features">
+            <div class="feature">
+                <h3>Real-Time Counting</h3>
+                <p>Track your word count as you type. No more guessing!</p>
+            </div>
+            <div class="feature">
+                <h3>Detailed Analytics</h3>
+                <p>Gain insights into your writing habits and improve over time.</p>
+            </div>
+            <div class="feature">
+                <h3>Seamless Integration</h3>
+                <p>Integrate effortlessly with your favorite apps and tools.</p>
+            </div>
+        </div>
+
+        <div id="signup">
+            <h2>Join Us Today</h2>
+            <p>Sign up now to start maximizing your productivity with our Word Counter tool.</p>
+            <form action="/submit" method="POST">
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <button type="submit" class="cta-button">Sign Up</button>
+            </form>
+        </div>
     </div>
+
     <footer>
         <p>&copy; 2023 SporlyWorks. All rights reserved.</p>
-        <p><a href="/privacy-policy" style="color: #ffffff;">Privacy Policy</a> | <a href="/terms-of-service" style="color: #ffffff;">Terms of Service</a></p>
+        <p><a href="/privacy-policy" style="color: white;">Privacy Policy</a> | <a href="/terms-of-service" style="color: white;">Terms of Service</a></p>
     </footer>
 </body>
+
 </html>
