@@ -121,6 +121,7 @@ Available Core Agents (but you may invent new ones):
 Return FORMAT MUST BE EXACT JSON:
 {{
   "board_rationale": "A highly intelligent, savvy explanation of why this specific action drives the most value and strategically positions the company right now.",
+  "updated_ledger": {{"status": "Your completely re-written and modified ledger tracking current long term tasks. Cross off dispatched items and invent new ones as you steer the company."}},
   "dispatches": [
     {{
       "target_agent": "MarketingAgent",
@@ -148,24 +149,16 @@ Return FORMAT MUST BE EXACT JSON:
         logging.error(f"Coordinator API Error: {e}")
         return None
 
+LEDGER_FILE = os.path.join(os.path.expanduser("~/Desktop/microAssets/_scripts"), "board_ledger.json")
+
 def fetch_undone_ledger():
     """
-    In production, this would pull from a managed DB or Cloudflare KV.
-    For this initial release, returning the high-level roadmap we discovered.
+    Loads the persistent board ledger from disk. If none exists, returns empty.
     """
-    return {
-        "pending_marketing": [
-            "word-counter: Generate high-conversion B2B SEO landing page",
-            "css-gradient-generator: Connect to Reddit API outreach bot"
-        ],
-        "pending_deployments": {
-            "status": "Awaiting CWS Wave 2 Unblock",
-            "queue_size": 67
-        },
-        "pending_compliance": [
-            "Manual review required for privacy data-usage assertions on all 87 apps."
-        ]
-    }
+    if os.path.exists(LEDGER_FILE):
+        with open(LEDGER_FILE, "r") as f:
+            return json.load(f)
+    return {}
 
 import sporlyworks_sub_agents
 
@@ -261,6 +254,12 @@ def main():
             trigger_department_webhook(dispatch)
             
         log_accomplishment(decisions.get('board_rationale'), dispatches)
+        
+        updated_ledger = decisions.get('updated_ledger')
+        if updated_ledger:
+            with open(LEDGER_FILE, "w") as f:
+                json.dump(updated_ledger, f, indent=2)
+            logging.info("Successfully persisted updated ledger state back to file.")
     else:
         logging.error("Failed to generate board decisions. Will retry next Serverless cycle.")
 

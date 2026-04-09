@@ -1,0 +1,13 @@
+{
+  "pending_marketing": [
+    "word-counter: Generate high-conversion B2B SEO landing page",
+    "css-gradient-generator: Connect to Reddit API outreach bot"
+  ],
+  "pending_deployments": {
+    "status": "Awaiting CWS Wave 2 Unblock",
+    "queue_size": 67
+  },
+  "pending_compliance": [
+    "Manual review required for privacy data-usage assertions on all 87 apps."
+  ]
+}
