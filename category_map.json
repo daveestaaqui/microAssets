@@ -305,12 +305,6 @@
     "amo": "Other",
     "edge": "Productivity"
   },
-  "omnisuite-master-suite": {
-    "title": "OmniSuite Dev Toolkit",
-    "cws": "Productivity",
-    "amo": "Other",
-    "edge": "Productivity"
-  },
   "network-monitor-pro": {
     "title": "Network Request Monitor Pro",
     "cws": "Productivity",
@@ -505,6 +499,12 @@
   },
   "word-counter": {
     "title": "Word & Character Counter for Any Page",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "microassets-master-suite": {
+    "title": "OmniSuite Dev Toolkit",
     "cws": "Productivity",
     "amo": "Other",
     "edge": "Productivity"
