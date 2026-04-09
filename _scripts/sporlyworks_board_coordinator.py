@@ -56,7 +56,7 @@ def fallback_load_env():
 
 def fetch_recent_emails():
     """Connects to Gmail IMAP using SENDER_EMAIL and SENDER_APP_PASSWORD to fetch latest 5 unread emails."""
-    sender_email = os.environ.get("SENDER_EMAIL")
+    send    r_eml = os.environ.get("SENDER_EMAIL")
     sender_password = os.environ.get("SENDER_APP_PASSWORD")
     if not sender_email or not sender_password:
         return "IMAP credentials missing. Cannot fetch correspondence."
