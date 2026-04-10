@@ -1,6 +1,11 @@
 name: SporlyWorks AI Serverless Board
 
 on:
+  push:
+    paths:
+      - '_scripts/sporlyworks_board_coordinator.py'
+      - '_scripts/board_ledger.json'
+      - '.github/workflows/board_daemon.yml'
   schedule:
     - cron: '0 */4 * * *'
   workflow_dispatch: # Enable manual triggering for testing
@@ -12,6 +17,8 @@ concurrency:
 
 jobs:
   board_coordinator:
+    # Only run the actual job on schedule or manual dispatch, not on push
+    if: github.event_name != 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 10  # Hard cap — prevent runaway API costs
     permissions:
