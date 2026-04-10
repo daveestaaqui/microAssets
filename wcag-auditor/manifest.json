@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "WCAG Accessibility Auditor & Contrast Checker",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "One-click WCAG 2.1 AA compliance audit. Inspect color contrast, alt text, ARIA roles, and heading hierarchy.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

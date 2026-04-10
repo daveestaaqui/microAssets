@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "API Tester Pro \u2014 REST Client",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Test REST APIs from your browser. Send GET, POST, PUT, DELETE requests with headers and body. View formatted responses.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

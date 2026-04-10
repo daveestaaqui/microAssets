@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Tab Groups Saver & Restorer",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Save your current tabs as named groups. Restore any saved session with one click. Never lose your workflow again.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

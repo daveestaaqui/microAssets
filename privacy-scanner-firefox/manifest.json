@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "GDPR/CCPA Privacy & Cookie Scanner",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Scan websites for hidden 3rd-party trackers, analyze cookie consent banners, and score GDPR/CCPA privacy compliance.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

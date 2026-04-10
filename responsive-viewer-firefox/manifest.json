@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Responsive Viewport Tester",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Test any webpage at multiple screen sizes. One-click resize to mobile, tablet, and desktop viewports.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

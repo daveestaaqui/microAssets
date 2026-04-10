@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "GitHub Line Numbers & Code Viewer",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Enhance GitHub pull requests and code review with sticky line numbers, better syntax highlighting, and code folding.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

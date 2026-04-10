@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "SEO Content Analyzer Pro",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Deep SEO analysis: keyword density, readability, heading structure, meta tags, links, and optimization tips.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

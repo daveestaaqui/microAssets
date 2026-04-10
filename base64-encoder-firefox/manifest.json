@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Base64 Encoder & Decoder Tool",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Encode and decode Base64 strings instantly. Supports text and data URLs. Copy results with one click.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

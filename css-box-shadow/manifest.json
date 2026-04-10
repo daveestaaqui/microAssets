@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "CSS Box Shadow Generator",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Visual box shadow generator. Adjust offset, blur, spread, and color with live preview.",
   "homepage_url": "https://sporlyworks.com",
   "action": {

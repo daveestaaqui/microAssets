@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "GitHub Quick Stats",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "View GitHub repository stats at a glance. Stars, forks, issues, and language breakdown.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

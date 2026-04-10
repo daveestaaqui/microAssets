@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Page SEO Analyzer & Meta Inspector",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Instantly analyze any page's title, meta description, Open Graph tags, headings, and canonical URL. Perfect for SEO pros.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Wayback Machine Quick",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Open the current page in the Wayback Machine with one click. See archived versions instantly.",
   "homepage_url": "https://sporlyworks.com",
   "action": {

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Email Template Builder Pro",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Create, save, and insert professional email templates anywhere. Variables, formatting, and one-click paste.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

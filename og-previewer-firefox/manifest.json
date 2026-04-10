@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Open Graph Previewer",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Preview how the current page looks when shared on social media. View Open Graph tags.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

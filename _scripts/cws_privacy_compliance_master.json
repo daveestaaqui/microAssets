@@ -1,0 +1,1832 @@
+{
+  "ai-content-bouncer": {
+    "slug": "ai-content-bouncer",
+    "cws_id": "adiokjgmebibpplkhpehljlamghhbhki",
+    "name": "AI Content Bouncer",
+    "version": "1.2.0",
+    "single_purpose": "Detects and highlights AI-generated text on web pages using heuristic analysis. Toggle detection from the popup.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into <all_urls> pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "amazon-fake-review-skimmer": {
+    "slug": "amazon-fake-review-skimmer",
+    "cws_id": "gdkfakbefcpoekecmjabigllmagdagpm",
+    "name": "Amazon Fake Review Skimmer",
+    "version": "1.2.0",
+    "single_purpose": "Highlights potentially suspicious reviews on Amazon product pages using heuristic analysis of review patterns and language.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into amazon.com, amazon.co.uk, amazon.ca pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "amazon-wide-mode": {
+    "slug": "amazon-wide-mode",
+    "cws_id": "mmhhmjeodhhfcbmejgfonbnemaponcbj",
+    "name": "Amazon Wide Mode & Product Enhancer",
+    "version": "1.2.0",
+    "single_purpose": "Expand Amazon's narrow layout to full-width for a better shopping experience. Highlights top-reviewed products automatically.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into amazon.com, amazon.co.uk, amazon.ca pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "api-tester-pro": {
+    "slug": "api-tester-pro",
+    "cws_id": "ilplnblbdmcdeffcfjdlecnnoimehlii",
+    "name": "API Tester Pro \u2014 REST Client",
+    "version": "1.2.0",
+    "single_purpose": "Test REST APIs from your browser. Send GET, POST, PUT, DELETE requests with headers and body. View formatted responses.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "base64-encoder": {
+    "slug": "base64-encoder",
+    "cws_id": "hnmminaepakpnaepefffkoecncdkeefc",
+    "name": "Base64 Encoder & Decoder Tool",
+    "version": "1.2.0",
+    "single_purpose": "Encode and decode Base64 strings instantly. Supports text and data URLs. Copy results with one click.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "bookmark-manager": {
+    "slug": "bookmark-manager",
+    "cws_id": "hpafgepmlbilphgjfagdaddkbfokijnd",
+    "name": "Bookmark Manager & Quick Search",
+    "version": "1.2.0",
+    "single_purpose": "Search, sort, and organize all your bookmarks from the popup. Find any bookmark instantly with fuzzy search.",
+    "permission_justifications": {
+      "bookmarks": "Used to read and organize bookmarks as the extension's primary bookmark management feature.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "carbon-footprint-checker": {
+    "slug": "carbon-footprint-checker",
+    "cws_id": "oafkmbeglggebjocpdodfejddanniihe",
+    "name": "Carbon Footprint Checker",
+    "version": "1.2.0",
+    "single_purpose": "Estimate the carbon footprint of any webpage. Check page weight and eco-friendliness.",
+    "permission_justifications": {
+      "scripting": "Used to inject the extension's core functionality script into the active tab when the user triggers the extension.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "clipboard-history": {
+    "slug": "clipboard-history",
+    "cws_id": "gddkigpfifddolcidcaokgialpcmijgl",
+    "name": "Clipboard History Manager",
+    "version": "1.2.0",
+    "single_purpose": "Keep a searchable history of everything you copy. Access your clipboard history from any tab with one click.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "clipboardRead": "Used to read clipboard contents for processing within the extension's popup interface."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "code-snippet-manager": {
+    "slug": "code-snippet-manager",
+    "cws_id": "hfbclpbmkohbachjenbfbjolponhephe",
+    "name": "Code Snippet Manager Pro",
+    "version": "1.2.0",
+    "single_purpose": "Save, organize, and instantly paste code snippets from any webpage. Tag, search, and sync across tabs.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "color-palette-generator": {
+    "slug": "color-palette-generator",
+    "cws_id": "mofdnfgmnjecakjjocdkdekdggplaoje",
+    "name": "Color Palette Generator",
+    "version": "1.2.0",
+    "single_purpose": "Generate beautiful color palettes with complementary, analogous, and triadic schemes. Copy HEX/RGB values instantly.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "color-picker-eyedropper": {
+    "slug": "color-picker-eyedropper",
+    "cws_id": "bgjfhdkolahnkbdlcbjnchjhhagkooah",
+    "name": "Color Picker Eyedropper & Palette Extractor",
+    "version": "1.2.0",
+    "single_purpose": "Pick any color from any web page with a crosshair eyedropper. Copies HEX, RGB, and HSL values to your clipboard instantly.",
+    "permission_justifications": {
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "contract-highlighter": {
+    "slug": "contract-highlighter",
+    "cws_id": "bmjhofaajmdmjghociahhjijifmbjnoc",
+    "name": "Contract Scanner: Highlight Risky Clauses",
+    "version": "1.2.0",
+    "single_purpose": "Instantly highlight risky legal clauses (indemnification, auto-renewal, liability) in any web contract or Google Docs.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into <all_urls> pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "cookie-banner-rejector": {
+    "slug": "cookie-banner-rejector",
+    "cws_id": "iocpppfidhnhdpnnlfidjmpmjkpikchn",
+    "name": "Auto Cookie-Banner Rejector",
+    "version": "1.2.0",
+    "single_purpose": "Attempts to detect and dismiss cookie consent banners on websites so you can browse without interruptions.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into <all_urls> pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "cookie-manager": {
+    "slug": "cookie-manager",
+    "cws_id": "clpdkpijjapanbgknccmhlibpjobmnfo",
+    "name": "Cookie Manager & Viewer",
+    "version": "1.2.0",
+    "single_purpose": "View, edit, and delete cookies for any website. Search and filter cookies with one click.",
+    "permission_justifications": {
+      "cookies": "Used to read and manage browser cookies as the extension's core feature for cookie inspection/management.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {
+      "<all_urls>": "Required to inject the extension's content script on any page the user visits, enabling its core functionality across all websites."
+    },
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "copy-as-markdown": {
+    "slug": "copy-as-markdown",
+    "cws_id": "amobacggogclabjdoibepmdcdplkapch",
+    "name": "Copy to Markdown - Link Converter",
+    "version": "1.2.0",
+    "single_purpose": "One-click copy of the current tab's title and URL or selected text as perfectly formatted Markdown for Notion or Obsidian.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into <all_urls> pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "crm-data-extractor": {
+    "slug": "crm-data-extractor",
+    "cws_id": "lofmkpffcgpokbhfnpcmpckdlngjbkap",
+    "name": "CRM Bulk Data Extractor PRO",
+    "version": "1.2.0",
+    "single_purpose": "Instantly parse and export virtualized React tables and generic lead lists from HubSpot, Salesforce, and LinkedIn to neat CSVs.",
+    "permission_justifications": {
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "scripting": "Used to inject the extension's core functionality script into the active tab when the user triggers the extension.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {
+      "<all_urls>": "Required to inject the extension's content script on any page the user visits, enabling its core functionality across all websites."
+    },
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "css-box-shadow": {
+    "slug": "css-box-shadow",
+    "cws_id": "baioahlkbcdcehmmhbmmblmokbddgcgo",
+    "name": "CSS Box Shadow Generator",
+    "version": "1.2.0",
+    "single_purpose": "Visual box shadow generator. Adjust offset, blur, spread, and color with live preview.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "css-flexbox-generator": {
+    "slug": "css-flexbox-generator",
+    "cws_id": "pekaanlachbeghpepfkcmfjnljmklghb",
+    "name": "CSS Flexbox Generator",
+    "version": "1.2.0",
+    "single_purpose": "Visual flexbox layout generator. Set direction, wrap, justify, align with live preview.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "css-gradient-generator": {
+    "slug": "css-gradient-generator",
+    "cws_id": "ochfcilacalifjknbnddcoedmhmpaaej",
+    "name": "CSS Gradient Generator & Picker",
+    "version": "1.2.0",
+    "single_purpose": "Create beautiful CSS gradients with a visual picker. Copy the CSS code with one click. Linear and radial gradients.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "css-grid-generator": {
+    "slug": "css-grid-generator",
+    "cws_id": "mdmjcpnolebmhhdpflomcojpdbahilag",
+    "name": "CSS Grid Generator",
+    "version": "1.2.0",
+    "single_purpose": "Visual CSS Grid layout builder. Set rows, columns, gaps with live preview and copy CSS.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "css-inspector-pro": {
+    "slug": "css-inspector-pro",
+    "cws_id": "babohnepdllpnhhpahpeploeedbnfhkl",
+    "name": "CSS Inspector Pro",
+    "version": "1.2.0",
+    "single_purpose": "Inspect CSS properties of any element with one click. Copy styles, view computed values, and compare elements.",
+    "permission_justifications": {
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "scripting": "Used to inject the extension's core functionality script into the active tab when the user triggers the extension.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "css-minifier": {
+    "slug": "css-minifier",
+    "cws_id": "ipdoglkkldjcbbcghdnginlmejpmjmnc",
+    "name": "CSS & JS Minifier",
+    "version": "1.2.0",
+    "single_purpose": "Minify CSS and JavaScript code instantly. Paste code, get minified output with size savings.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "dark-mode-everywhere": {
+    "slug": "dark-mode-everywhere",
+    "cws_id": "gcdadpmhmnojjbdaogmgdpooacaipemi",
+    "name": "Dark Mode for All Websites",
+    "version": "1.2.0",
+    "single_purpose": "Force a sleek, eye-saving dark theme on every website instantly. Customizable excludes and scheduling for late-night reading.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into <all_urls> pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "diff-checker": {
+    "slug": "diff-checker",
+    "cws_id": "pihfknjlnmpmjjgibacgflbjaafmigjl",
+    "name": "Diff Checker \u2014 Text Compare Tool",
+    "version": "1.2.0",
+    "single_purpose": "Compare two text snippets side by side. Highlight additions, deletions, and changes.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "diff-viewer": {
+    "slug": "diff-viewer",
+    "cws_id": "odggaobpjeffjgimmkiljljeanogphnh",
+    "name": "Text Diff Viewer \u2014 Side-by-Side Compare",
+    "version": "1.2.0",
+    "single_purpose": "Compare two text blocks side by side. Highlights additions, deletions, and changes instantly.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "dom-editor-pro": {
+    "slug": "dom-editor-pro",
+    "cws_id": "cohlidmddikpmnffkndcpfcoaognhiof",
+    "name": "Live DOM Editor Pro",
+    "version": "1.2.0",
+    "single_purpose": "Edit any webpage live. Change text, colors, layouts, and styles in real-time. Save snapshots and export changes.",
+    "permission_justifications": {
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "scripting": "Used to inject the extension's core functionality script into the active tab when the user triggers the extension.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "email-template-builder": {
+    "slug": "email-template-builder",
+    "cws_id": "ceidnekmmhddkbneaccmekgglhihjnie",
+    "name": "Email Template Builder Pro",
+    "version": "1.2.0",
+    "single_purpose": "Create, save, and insert professional email templates anywhere. Variables, formatting, and one-click paste.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "favicon-grabber": {
+    "slug": "favicon-grabber",
+    "cws_id": "hmihjlhimnfamlolnfdemmgigonelppn",
+    "name": "Favicon Grabber \u2014 Site Icon Extractor",
+    "version": "1.2.0",
+    "single_purpose": "Extract favicons from any website. Download in multiple sizes or copy the URL.",
+    "permission_justifications": {
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "font-identifier": {
+    "slug": "font-identifier",
+    "cws_id": "ppgbckbphgdmlbkgogkdjlfbplddmapp",
+    "name": "Font Identifier & CSS Inspector",
+    "version": "1.2.0",
+    "single_purpose": "Hover over any text to identify the font family, size, weight, line-height, and color. Essential for designers.",
+    "permission_justifications": {
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "scripting": "Used to inject the extension's core functionality script into the active tab when the user triggers the extension."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "form-filler-pro": {
+    "slug": "form-filler-pro",
+    "cws_id": "ghifimkepoiebgboklfigdhmngngghpc",
+    "name": "Smart Form Filler Pro",
+    "version": "1.2.0",
+    "single_purpose": "Auto-fill forms with saved profiles. Create multiple identities for testing. Supports all standard HTML form fields.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "scripting": "Used to inject the extension's core functionality script into the active tab when the user triggers the extension."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "gdocs-focus-mode": {
+    "slug": "gdocs-focus-mode",
+    "cws_id": "nemkogdkcniicjekookgnaebnbicnjlk",
+    "name": "Docs Focus Mode \u2014 Distraction Blocker",
+    "version": "1.2.0",
+    "single_purpose": "Hide Google Docs menus, toolbars, and sidebars with one click to enter a clean, distraction-free writing environment.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into docs.google.com pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "github-line-numbers": {
+    "slug": "github-line-numbers",
+    "cws_id": "anccjbbbbpagehaphcndeimdglcggnlj",
+    "name": "GitHub Line Numbers & Code Viewer",
+    "version": "1.2.0",
+    "single_purpose": "Enhance GitHub pull requests and code review with sticky line numbers, better syntax highlighting, and code folding.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into github.com pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "github-quick-stats": {
+    "slug": "github-quick-stats",
+    "cws_id": "ddijdachlgpbknkflkldkilbegaklheg",
+    "name": "GitHub Quick Stats",
+    "version": "1.2.0",
+    "single_purpose": "View GitHub repository stats at a glance. Stars, forks, issues, and language breakdown.",
+    "permission_justifications": {
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "google-dark-search": {
+    "slug": "google-dark-search",
+    "cws_id": "plnkdnnmlgjjkdnkcgaaiadaakngcjfd",
+    "name": "Dark Search \u2014 Google Night Mode",
+    "version": "1.2.0",
+    "single_purpose": "Applies a dark theme to Google Search results pages. Toggle the dark mode on or off from the extension popup.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into www.google.com, www.google.co.uk, www.google.ca pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "hash-generator": {
+    "slug": "hash-generator",
+    "cws_id": "ffooinfpigmclolbfiphkkakcolgmoga",
+    "name": "Hash Generator \u2014 SHA256 & MD5 Tool",
+    "version": "1.2.0",
+    "single_purpose": "Generate MD5, SHA-1, SHA-256 hashes from any text. Copy with one click.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "html-table-extractor": {
+    "slug": "html-table-extractor",
+    "cws_id": "kbbonnfamamdldkefelkkjjchehkdjbi",
+    "name": "HTML Table to CSV Extractor",
+    "version": "1.2.0",
+    "single_purpose": "Extract any HTML table from a webpage and download as CSV. One click to grab pricing tables, data lists, and more.",
+    "permission_justifications": {
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "scripting": "Used to inject the extension's core functionality script into the active tab when the user triggers the extension.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "http-headers": {
+    "slug": "http-headers",
+    "cws_id": "micbjfghmhnngicmgjhfmdeeinncjepm",
+    "name": "HTTP Headers Viewer",
+    "version": "1.2.0",
+    "single_purpose": "View HTTP response headers for the current page. Inspect security headers, caching, and server info.",
+    "permission_justifications": {
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "scripting": "Used to inject the extension's core functionality script into the active tab when the user triggers the extension.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "http-status-checker": {
+    "slug": "http-status-checker",
+    "cws_id": "dpcnlkfcmlbfojenengkplgfpogkpmmc",
+    "name": "HTTP Status Checker",
+    "version": "1.2.0",
+    "single_purpose": "Check HTTP status codes of any URL. View response headers, redirect chains, and timing.",
+    "permission_justifications": {
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "instagram-clean-feed": {
+    "slug": "instagram-clean-feed",
+    "cws_id": "bcideefhjblnapodlfnmlnjdgalhpbnm",
+    "name": "Instagram Web Clean Feed",
+    "version": "1.2.0",
+    "single_purpose": "Hides suggested posts, Reels, and sponsored content from your Instagram web feed to show only posts from accounts you follow.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into www.instagram.com pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "invoice-extractor": {
+    "slug": "invoice-extractor",
+    "cws_id": "bibpmliemhpflogfllidimecanplamei",
+    "name": "Invoice Data Extractor to CSV",
+    "version": "1.2.0",
+    "single_purpose": "Instantly extract line items, totals, dates, and currencies from web invoices (Stripe, PayPal, QuickBooks) into CSVs.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into <all_urls> pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "jira-declutter": {
+    "slug": "jira-declutter",
+    "cws_id": "obngljhebccogmbklppdbalonlknpkdi",
+    "name": "Jira Declutter \u2014 Board Simplifier",
+    "version": "1.2.0",
+    "single_purpose": "Hides distracting UI elements on Jira boards and issue pages to create a cleaner, focused project management view.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into atlassian.net pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "json-csv-converter": {
+    "slug": "json-csv-converter",
+    "cws_id": "hkphbkhangnmmjbgakgolhjpbamabfic",
+    "name": "JSON to CSV Converter",
+    "version": "1.2.0",
+    "single_purpose": "Convert JSON arrays to CSV format instantly. Paste JSON, get CSV. Download or copy to clipboard.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "json-formatter": {
+    "slug": "json-formatter",
+    "cws_id": "oggfgcefoipfjapigddoogeapmdmgjoh",
+    "name": "JSON Formatter & Viewer Pro",
+    "version": "1.2.0",
+    "single_purpose": "Beautifully format, highlight, and explore raw JSON data in your browser. Features collapsible trees, syntax coloring, and copy.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into <all_urls> pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "json-path-finder": {
+    "slug": "json-path-finder",
+    "cws_id": "ckjohdklmgdilmkhkcebemogjdcchngl",
+    "name": "JSON Path Finder",
+    "version": "1.2.0",
+    "single_purpose": "Paste JSON and click any value to get its path. Supports dot notation and bracket notation.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "jwt-decoder": {
+    "slug": "jwt-decoder",
+    "cws_id": "ddjegckhclkgdgpcdngbdogioemhanhp",
+    "name": "JWT Decoder \u2014 Token Inspector",
+    "version": "1.2.0",
+    "single_purpose": "Decode JSON Web Tokens instantly. View header, payload, and expiration without external tools.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "link-checker": {
+    "slug": "link-checker",
+    "cws_id": "lmokkjibpihplmnkjcgnippnicfadfcj",
+    "name": "Broken Link Checker",
+    "version": "1.2.0",
+    "single_purpose": "Scan any webpage for broken links. Find 404s, redirects, and missing resources instantly.",
+    "permission_justifications": {
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "scripting": "Used to inject the extension's core functionality script into the active tab when the user triggers the extension.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "linkedin-hide-feed": {
+    "slug": "linkedin-hide-feed",
+    "cws_id": "gkankfnieaplhegajeadbgmopkgmpkfa",
+    "name": "LinkedIn Feed Hider & Recruiter Block",
+    "version": "1.2.0",
+    "single_purpose": "Hide the noisy LinkedIn news feed and block persistent recruiter messages to focus purely on professional networking.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into linkedin.com pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "llm-privacy-scrub": {
+    "slug": "llm-privacy-scrub",
+    "cws_id": "ohlnoekleoijknaegfdhboebgnodcmei",
+    "name": "LLM Privacy Scrub & Data Redactor",
+    "version": "1.2.0",
+    "single_purpose": "Automatically detect and redact PII (emails, phone numbers, SSNs, credit cards) before you paste text into any AI chatbot.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into chat.openai.com, chatgpt.com, claude.ai pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "lorem-ipsum-generator": {
+    "slug": "lorem-ipsum-generator",
+    "cws_id": "amdkaoeibdnboiejefimdfodbcodoila",
+    "name": "Lorem Ipsum & Placeholder Text",
+    "version": "1.2.0",
+    "single_purpose": "Generate lorem ipsum paragraphs, sentences, or words instantly. Copy to clipboard with one click.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "markdown-preview": {
+    "slug": "markdown-preview",
+    "cws_id": "oepeomppjiinlbppbnfjjpficmhcfmfg",
+    "name": "Markdown Preview \u2014 Live Renderer",
+    "version": "1.2.0",
+    "single_purpose": "Preview Markdown files in your browser with GitHub-flavored styling, syntax highlighting, and tables.",
+    "permission_justifications": {
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "scripting": "Used to inject the extension's core functionality script into the active tab when the user triggers the extension.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "meet-zoom-automute": {
+    "slug": "meet-zoom-automute",
+    "cws_id": "opckodgeclonnmeofaiakoiogfjicbeo",
+    "name": "Meet Auto-Muter \u2014 Smart Mic Control",
+    "version": "1.2.0",
+    "single_purpose": "Auto-mute your mic and disable camera on Google Meet's pre-join screen. Private-by-default meetings, every time.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into meet.google.com pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "meta-tag-editor": {
+    "slug": "meta-tag-editor",
+    "cws_id": "mjjfhbmgbehdllifbappcmolicdaikgf",
+    "name": "Meta Tag Viewer & Editor",
+    "version": "1.2.0",
+    "single_purpose": "View and edit meta tags, Open Graph, and Twitter Card data for any webpage. Perfect for SEO auditing.",
+    "permission_justifications": {
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "scripting": "Used to inject the extension's core functionality script into the active tab when the user triggers the extension.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "microassets-master-suite": {
+    "slug": "microassets-master-suite",
+    "cws_id": "eeckngdfhplkgcpglhcddcddfkmillgj",
+    "name": "OmniSuite Dev Toolkit",
+    "version": "1.2.0",
+    "single_purpose": "All 5 premium B2B tools in one extension. WCAG Auditing, Privacy Scanning, Contract Highlighting, Invoice & Time.",
+    "permission_justifications": {
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "scripting": "Used to inject the extension's core functionality script into the active tab when the user triggers the extension."
+    },
+    "host_permission_justifications": {
+      "<all_urls>": "Required to inject the extension's content script on any page the user visits, enabling its core functionality across all websites."
+    },
+    "content_script_justification": "Content scripts are injected into <all_urls> pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "network-monitor-pro": {
+    "slug": "network-monitor-pro",
+    "cws_id": "ijjmoegjppaoheldjmfabbfoghginfgn",
+    "name": "Network Request Monitor Pro",
+    "version": "1.2.0",
+    "single_purpose": "Monitor all network requests in real-time. Filter by type, status, domain. Measure load times and find bottlenecks.",
+    "permission_justifications": {
+      "webRequest": "Used to observe network requests for debugging/analysis purposes as the extension's core feature.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {
+      "<all_urls>": "Required to inject the extension's content script on any page the user visits, enabling its core functionality across all websites."
+    },
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "network-speed-test": {
+    "slug": "network-speed-test",
+    "cws_id": "habmlmjcdcikknbdffkidhnhpginfpib",
+    "name": "Network Speed Test \u2014 Bandwidth Meter",
+    "version": "1.2.0",
+    "single_purpose": "Quick network speed test right from your browser toolbar. Test download speed in seconds.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "og-previewer": {
+    "slug": "og-previewer",
+    "cws_id": "ajnphaakocmljjbndbdfkfpbpbmeolia",
+    "name": "Open Graph Previewer",
+    "version": "1.2.0",
+    "single_purpose": "Preview how the current page looks when shared on social media. View Open Graph tags.",
+    "permission_justifications": {
+      "scripting": "Used to inject the extension's core functionality script into the active tab when the user triggers the extension.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "page-ruler": {
+    "slug": "page-ruler",
+    "cws_id": "dgibbhcbcinigfdmcgdllpchgiepkbpn",
+    "name": "Page Ruler & Measure",
+    "version": "1.2.0",
+    "single_purpose": "Measure elements on any webpage in pixels. Hover to see dimensions, click to copy measurements.",
+    "permission_justifications": {
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "scripting": "Used to inject the extension's core functionality script into the active tab when the user triggers the extension.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "page-seo-analyzer": {
+    "slug": "page-seo-analyzer",
+    "cws_id": "mhkmhnfnbjbbhlhhlgofkkcjjklcodij",
+    "name": "Page SEO Analyzer & Meta Inspector",
+    "version": "1.2.0",
+    "single_purpose": "Instantly analyze any page's title, meta description, Open Graph tags, headings, and canonical URL. Perfect for SEO pros.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into <all_urls> pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "password-generator": {
+    "slug": "password-generator",
+    "cws_id": "okkhiiehmfpldabmamifpfoehhilegmm",
+    "name": "Secure Password Generator",
+    "version": "1.2.0",
+    "single_purpose": "Generate strong, random passwords with customizable length, symbols, numbers, and uppercase options.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "pomodoro-anywhere": {
+    "slug": "pomodoro-anywhere",
+    "cws_id": "cnpebjgjbmkeeakpjfmjbgdboidicdaj",
+    "name": "Pomodoro Timer Desktop Widget",
+    "version": "1.2.0",
+    "single_purpose": "Stay focused with a customizable Pomodoro technique timer right in your browser. Block distracting sites during work sessions.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into <all_urls> pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "privacy-scanner": {
+    "slug": "privacy-scanner",
+    "cws_id": "hgdimigfkphmenbhgbdjnlgccmdlodpo",
+    "name": "GDPR/CCPA Privacy & Cookie Scanner",
+    "version": "1.2.0",
+    "single_purpose": "Scan websites for hidden 3rd-party trackers, analyze cookie consent banners, and score GDPR/CCPA privacy compliance.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into <all_urls> pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "qr-code-generator": {
+    "slug": "qr-code-generator",
+    "cws_id": "cijkbpjipgkdmckkdoiafjcmiogkihlp",
+    "name": "QR Code Generator - Instant URL to QR",
+    "version": "1.2.0",
+    "single_purpose": "Generate a QR code for any URL or text instantly. Download as PNG or copy to clipboard with one click from any web page.",
+    "permission_justifications": {
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "quick-note-taker": {
+    "slug": "quick-note-taker",
+    "cws_id": "pbpmacalkelchnjikobjbdecnomfojgh",
+    "name": "Quick Note Taker",
+    "version": "1.2.0",
+    "single_purpose": "Quickly jot down notes in a pop-up window. Categorize and color-code them for easy organization.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "quick-notepad": {
+    "slug": "quick-notepad",
+    "cws_id": "cjmeaglgjllmehpoklgaabnjbmmgdpic",
+    "name": "Quick Note Pad",
+    "version": "1.2.0",
+    "single_purpose": "Simple notepad in your browser toolbar. Auto-saves your notes locally. Supports multiple notes.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "reading-mode": {
+    "slug": "reading-mode",
+    "cws_id": "ljcindajlkjfpiklfkbpkdpiodfhodhj",
+    "name": "Reader Mode \u2014 Clean Articles",
+    "version": "1.2.0",
+    "single_purpose": "Strip clutter from any article. Remove ads, sidebars, and popups for a clean, distraction-free reading experience.",
+    "permission_justifications": {
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "scripting": "Used to inject the extension's core functionality script into the active tab when the user triggers the extension.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "reading-time-badge": {
+    "slug": "reading-time-badge",
+    "cws_id": "lpgohcjiamhdhdoegeificlkiiojmeoh",
+    "name": "Estimated Reading Time Badge",
+    "version": "1.2.0",
+    "single_purpose": "See exactly how many minutes any article or blog post will take to read before you start, displayed on a clean icon badge.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into <all_urls> pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "reddit-redirect": {
+    "slug": "reddit-redirect",
+    "cws_id": "eaikbgbdohegpojkeallpegckbphkidd",
+    "name": "Old Reddit Redirect & UI Fixer",
+    "version": "1.2.0",
+    "single_purpose": "Automatically redirect new Reddit to old.reddit.com for a faster, cleaner browsing experience. Removes promoted posts.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into reddit.com pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "regex-tester": {
+    "slug": "regex-tester",
+    "cws_id": "dcjmjfcfbbdolfpojloplabioljppnof",
+    "name": "Regex Tester & Debugger",
+    "version": "1.2.0",
+    "single_purpose": "Test regular expressions live with match highlighting, capture groups, and common regex patterns library.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "responsive-viewer": {
+    "slug": "responsive-viewer",
+    "cws_id": "jhipfnpkbledjfkpolldcapgeagdmhio",
+    "name": "Responsive Viewport Tester",
+    "version": "1.2.0",
+    "single_purpose": "Resize your browser window to common device sizes like iPhone, iPad, and Desktop with one click.",
+    "permission_justifications": {
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "robots-viewer": {
+    "slug": "robots-viewer",
+    "cws_id": "bklbehgnfjjldlkecnjgiclekjgpajcm",
+    "name": "Robots.txt Viewer \u2014 SEO Inspector",
+    "version": "1.2.0",
+    "single_purpose": "View and analyze any website robots.txt file. Check crawl rules, sitemaps, and blocked paths.",
+    "permission_justifications": {
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "screenshot-capture": {
+    "slug": "screenshot-capture",
+    "cws_id": "floojgcoonjnhhhpkbpmemoaagpdnkbc",
+    "name": "Screenshot Capture & Annotate Tool",
+    "version": "1.2.0",
+    "single_purpose": "Capture full-page or visible-area screenshots instantly. Download as PNG. Great for bug reports, design reviews, and documentation.",
+    "permission_justifications": {
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "seo-content-pro": {
+    "slug": "seo-content-pro",
+    "cws_id": "ckfkcopdagjhlkchdnpohkhahmlajgjo",
+    "name": "SEO Content Analyzer Pro",
+    "version": "1.2.0",
+    "single_purpose": "Deep SEO analysis: keyword density, readability, heading structure, meta tags, links, and optimization tips.",
+    "permission_justifications": {
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "scripting": "Used to inject the extension's core functionality script into the active tab when the user triggers the extension.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "site-speed-analyzer": {
+    "slug": "site-speed-analyzer",
+    "cws_id": "hgdjdehioibedckafagjpjjhblbhpade",
+    "name": "Site Speed Analyzer",
+    "version": "1.2.0",
+    "single_purpose": "Analyze page load time, DOM size, resource count, and performance metrics for any webpage with one click.",
+    "permission_justifications": {
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "scripting": "Used to inject the extension's core functionality script into the active tab when the user triggers the extension.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "sponsor-skipper": {
+    "slug": "sponsor-skipper",
+    "cws_id": "eilkklndnimcglpaaajmidnmpghgkpei",
+    "name": "Sponsor Skipper for YouTube",
+    "version": "1.2.0",
+    "single_purpose": "Automatically skip sponsored segments, intros, outros, and subscription begging in YouTube videos. Save time watching content.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into youtube.com pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "tab-groups-saver": {
+    "slug": "tab-groups-saver",
+    "cws_id": "mpdefnhknkgoficcljnhgpeilcmfgbmb",
+    "name": "Tab Groups Saver & Restorer",
+    "version": "1.2.0",
+    "single_purpose": "Save your current tabs as named groups. Restore any saved session with one click. Never lose your workflow again.",
+    "permission_justifications": {
+      "tabs": "Used to read the current tab's URL and title for the extension's core feature. No browsing history is collected or transmitted.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "tab-suspender": {
+    "slug": "tab-suspender",
+    "cws_id": "fokgokccldkiodmehplaekibbmakkbgj",
+    "name": "Tab Suspender - Reduce Memory Usage",
+    "version": "1.2.0",
+    "single_purpose": "Automatically suspend inactive tabs to save up to 80% RAM and extend battery life. Unsuspend with one click when you return.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into <all_urls> pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "text-case-converter": {
+    "slug": "text-case-converter",
+    "cws_id": "mkfmpdckhadolkmafmniaapacdhffcgi",
+    "name": "Text Case Converter",
+    "version": "1.2.0",
+    "single_purpose": "Convert text between UPPERCASE, lowercase, Title Case, camelCase, snake_case, and more. One click copy.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "time-tracker": {
+    "slug": "time-tracker",
+    "cws_id": "dkcgnmnmkfpoaikadlhofpmdhplbpffj",
+    "name": "Client Time Tracker - Auto Web Timer",
+    "version": "1.2.0",
+    "single_purpose": "Auto-track billable hours by client based on URL patterns. Features idle detection, daily reports, and real-time badge timer.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into <all_urls> pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "timestamp-converter": {
+    "slug": "timestamp-converter",
+    "cws_id": "mgafeofajpphfmghanmeapkdonedanlh",
+    "name": "Timestamp Converter \u2014 Unix & ISO Tool",
+    "version": "1.2.0",
+    "single_purpose": "Convert Unix timestamps to human-readable dates and back. Click any timestamp to decode.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "url-encoder-decoder": {
+    "slug": "url-encoder-decoder",
+    "cws_id": "jilpnlodoahgjacaljfoochjegihllja",
+    "name": "URL Encoder Decoder",
+    "version": "1.2.0",
+    "single_purpose": "Encode and decode URLs instantly. Handles special characters, query strings, and Unicode.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "url-shortener": {
+    "slug": "url-shortener",
+    "cws_id": "dlbnnimofknhmlmcnchnilflejlodmdb",
+    "name": "URL Shortener & QR Generator",
+    "version": "1.2.0",
+    "single_purpose": "Shorten any URL instantly and generate a QR code. Copy shortened links with one click. No account required.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "user-agent-switcher": {
+    "slug": "user-agent-switcher",
+    "cws_id": "hcjicnjeafkgbecjldgldjcoebejhdhf",
+    "name": "User Agent Switcher",
+    "version": "1.2.0",
+    "single_purpose": "Switch browser user agent to Chrome, Firefox, Safari, Edge, mobile devices, or Googlebot.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "wayback-machine-quick": {
+    "slug": "wayback-machine-quick",
+    "cws_id": "oiakacbcppcdabfimcbnakefcaphfdfa",
+    "name": "Wayback Machine Quick",
+    "version": "1.2.0",
+    "single_purpose": "Open the current page in the Wayback Machine with one click. See archived versions instantly.",
+    "permission_justifications": {
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "wcag-auditor": {
+    "slug": "wcag-auditor",
+    "cws_id": "hgnjeckoabimlbenpjfgmkggfobjiebh",
+    "name": "WCAG Accessibility Auditor & Contrast Checker",
+    "version": "1.2.0",
+    "single_purpose": "One-click WCAG 2.1 AA compliance audit. Inspect color contrast, alt text, ARIA roles, and heading hierarchy.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": "Content scripts are injected into <all_urls> pages to apply the extension's core functionality directly on those sites.",
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "website-monitor-pro": {
+    "slug": "website-monitor-pro",
+    "cws_id": "alpdnmifjoapfbppblpepleklpmehdne",
+    "name": "Website Change Monitor Pro",
+    "version": "1.2.0",
+    "single_purpose": "Monitor any webpage for changes. Get notified when prices drop, content updates, or pages go down. Set check intervals.",
+    "permission_justifications": {
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "alarms": "Used to schedule periodic background tasks such as reminders or timer notifications.",
+      "notifications": "Used to display browser notifications for alerts, timers, or important status updates."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "whois-lookup": {
+    "slug": "whois-lookup",
+    "cws_id": "feipbgccldehllknhhonajcmihfaimbg",
+    "name": "Whois & DNS Lookup",
+    "version": "1.2.0",
+    "single_purpose": "Quick DNS and domain info lookup for any website. See IP, registrar, nameservers, and DNS records.",
+    "permission_justifications": {
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  },
+  "word-counter": {
+    "slug": "word-counter",
+    "cws_id": "ifpioidddclcfiecdcaibjfgmobiaddh",
+    "name": "Word & Character Counter for Any Page",
+    "version": "1.2.0",
+    "single_purpose": "Instantly count words, characters, sentences, and paragraphs on any web page or selected text. Great for writers and SEO.",
+    "permission_justifications": {
+      "activeTab": "Used to access the current tab's content when the user explicitly activates the extension, enabling it to perform its core function on the active page.",
+      "storage": "Used to save user preferences and settings locally so they persist between browser sessions. No data is transmitted externally.",
+      "scripting": "Used to inject the extension's core functionality script into the active tab when the user triggers the extension."
+    },
+    "host_permission_justifications": {},
+    "content_script_justification": null,
+    "remote_code_declaration": "No remote code is executed. All logic runs locally within the extension.",
+    "data_usage": {
+      "collects_personal_data": false,
+      "sells_data_to_third_parties": false,
+      "uses_data_for_unrelated_purposes": false,
+      "data_disclosure": "This extension does not collect, transmit, or sell any user data. All processing occurs locally on the user's device."
+    },
+    "privacy_policy_url": "https://sporlyworks.com/privacy"
+  }
+}

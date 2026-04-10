@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Network Request Monitor Pro",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Monitor all network requests in real-time. Filter by type, status, domain. Measure load times and find bottlenecks.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

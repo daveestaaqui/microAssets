@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Timestamp Converter \u2014 Unix & ISO Tool",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Convert Unix timestamps to human-readable dates and back. Click any timestamp to decode.",
   "homepage_url": "https://sporlyworks.com",
   "action": {

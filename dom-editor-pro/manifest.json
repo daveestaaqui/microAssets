@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Live DOM Editor Pro",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Edit any webpage live. Change text, colors, layouts, and styles in real-time. Save snapshots and export changes.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

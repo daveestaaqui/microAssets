@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "CSS Gradient Generator & Picker",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Create beautiful CSS gradients with a visual picker. Copy the CSS code with one click. Linear and radial gradients.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

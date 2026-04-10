@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Tab Suspender - Reduce Memory Usage",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Automatically suspend inactive tabs to save up to 80% RAM and extend battery life. Unsuspend with one click when you return.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Jira Declutter \u2014 Board Simplifier",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Hides distracting UI elements on Jira boards and issue pages to create a cleaner, focused project management view.",
   "homepage_url": "https://sporlyworks.com",
   "icons": {

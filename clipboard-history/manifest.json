@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Clipboard History Manager",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Keep a searchable history of everything you copy. Access your clipboard history from any tab with one click.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

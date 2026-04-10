@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Reader Mode \u2014 Clean Articles",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Strip clutter from any article. Remove ads, sidebars, and popups for a clean, distraction-free reading experience.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

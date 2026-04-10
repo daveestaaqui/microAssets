@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Sponsor Skipper for YouTube",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Automatically skip sponsored segments, intros, outros, and subscription begging in YouTube videos. Save time watching content.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

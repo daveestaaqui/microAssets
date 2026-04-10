@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Website Change Monitor Pro",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Monitor any webpage for changes. Get notified when prices drop, content updates, or pages go down. Set check intervals.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Text Diff Viewer \u2014 Side-by-Side Compare",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Compare two text blocks side by side. Highlights additions, deletions, and changes instantly.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

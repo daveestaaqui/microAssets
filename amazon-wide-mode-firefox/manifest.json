@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Amazon Wide Mode & Product Enhancer",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Expand Amazon's narrow layout to full-width for a better shopping experience. Highlights top-reviewed products automatically.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

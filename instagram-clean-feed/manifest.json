@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Instagram Web Clean Feed",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Hides suggested posts, Reels, and sponsored content from your Instagram web feed to show only posts from accounts you follow.",
   "homepage_url": "https://sporlyworks.com",
   "icons": {

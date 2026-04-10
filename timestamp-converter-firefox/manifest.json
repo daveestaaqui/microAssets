@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Timestamp Converter \u2014 Unix & ISO Tool",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Convert between Unix timestamps, ISO 8601, and human-readable dates. Live clock display.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

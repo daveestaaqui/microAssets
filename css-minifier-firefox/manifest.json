@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "CSS & JS Minifier",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Minify CSS and JavaScript code instantly. Paste code, get minified output with size savings.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [
