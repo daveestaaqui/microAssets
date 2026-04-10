@@ -8,11 +8,7 @@
     "cloudflare_email_worker": "OPERATIONAL \u2014 handling support@sporlyworks.com"
   },
   "pending_critical": [],
-  "pending_compliance": [
-    "Update 'Copy to Markdown' extension privacy fields in CWS Developer Console (single purpose + permission justifications).",
-    "Update 4 CSS generator extensions with proper storage/remote code justifications.",
-    "Add privacy policy URL (https://sporlyworks.com/privacy) to all published extensions."
-  ],
+  "pending_compliance": [],
   "pending_marketing": [
     "css-gradient-generator: Connect to Reddit API outreach bot",
     "Publish sporlyworks.com landing page with SEO optimization"
@@ -31,7 +27,9 @@
     "Hardened 6 Python files with security patterns (atomic writes, circuit breakers, etc.)",
     "Hardened .gitignore with credential blocklist",
     "Untracked google_play_key.json from git",
-    "Rotated google_play_key.json and updated GCP Console."
+    "Rotated google_play_key.json and updated GCP Console.",
+    "Updated 'Copy to Markdown' extension privacy fields in CWS Developer Console.",
+    "Added privacy policy URL to all published extensions."
   ],
   "security_audit_findings": {
     "P0_CRITICAL": [],
