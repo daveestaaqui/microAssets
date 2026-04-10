@@ -1,4 +1,4 @@
-name: Build Native Installers
+name: Build Extension Pack
 
 on:
   push:
@@ -7,122 +7,77 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    name: Build on ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        include:
-          - os: ubuntu-latest
-            artifact_name: SporlyWorks_Installer_Linux
-            executable_name: SporlyWorks_Installer
-          - os: windows-latest
-            artifact_name: SporlyWorks_Installer_Windows
-            executable_name: SporlyWorks_Installer.exe
-          - os: macos-latest
-            artifact_name: SporlyWorks_Installer_MacOS
-            executable_name: SporlyWorks_Installer.app
-
+  package:
+    name: Package Extension Suite
+    runs-on: ubuntu-latest
+    
     steps:
     - name: Check out repository
       uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
-
-    - name: Install system dependencies (Linux)
-      if: matrix.os == 'ubuntu-latest'
+    - name: Collect Chrome extensions
       run: |
-        sudo apt-get update
-        sudo apt-get install -y python3-tk xvfb
+        mkdir -p pack/SporlyWorks_Extensions
+        
+        # Copy all directories that contain a manifest.json (real extensions)
+        for dir in */; do
+          # Skip non-extension directories
+          case "$dir" in
+            _*|.*|dist/|build/|node_modules/|CWS_Upload*|microassets-master*)
+              continue
+              ;;
+          esac
+          
+          # Skip Firefox extensions
+          echo "$dir" | grep -q "firefox" && continue
+          
+          # Only copy if it has a manifest.json
+          if [ -f "${dir}manifest.json" ]; then
+            ext_name=$(basename "$dir")
+            cp -r "$dir" "pack/SporlyWorks_Extensions/$ext_name"
+            
+            # Strip store-only assets to keep the zip lean
+            rm -rf "pack/SporlyWorks_Extensions/$ext_name/store"
+            rm -f "pack/SporlyWorks_Extensions/$ext_name/cws_promo_"*.png
+            rm -f "pack/SporlyWorks_Extensions/$ext_name/LICENSE"
+          fi
+        done
+        
+        echo "✅ Packaged $(ls pack/SporlyWorks_Extensions/ | wc -l) extensions"
 
-    - name: Install PyInstaller and dependencies
+    - name: Create README
       run: |
-        python -m pip install --upgrade pip
-        pip install pyinstaller Pillow requests
-
-    - name: Build with PyInstaller (Windows)
-      if: matrix.os == 'windows-latest'
-      run: pyinstaller --noconfirm --onedir --windowed --name "SporlyWorks_Installer" "_installer/SporlyWorks_Installer.py"
-
-    - name: Build with PyInstaller (Linux)
-      if: matrix.os == 'ubuntu-latest'
-      run: xvfb-run pyinstaller --noconfirm --onedir --name "SporlyWorks_Installer" "_installer/SporlyWorks_Installer.py"
-
-    - name: Build with PyInstaller (MacOS)
-      if: matrix.os == 'macos-latest'
-      run: pyinstaller --noconfirm --windowed --name "SporlyWorks_Installer" --osx-bundle-identifier "com.sporlyworks.installer" "_installer/SporlyWorks_Installer.py"
-
-    - name: Sign MacOS App (ad-hoc)
-      if: matrix.os == 'macos-latest'
-      run: |
-        # Remove quarantine attributes and ad-hoc sign the app
-        xattr -cr dist/SporlyWorks_Installer.app
-        codesign --force --deep --sign - dist/SporlyWorks_Installer.app
-        echo "✅ Ad-hoc signed successfully"
-
-    - name: Archive Linux build
-      if: matrix.os == 'ubuntu-latest'
-      run: |
-        cd dist
-        zip -r SporlyWorks_Installer_Linux.zip SporlyWorks_Installer/
-
-    - name: Archive MacOS App
-      if: matrix.os == 'macos-latest'
-      run: |
-        # Create a README with Gatekeeper bypass instructions
-        cat > dist/README_MACOS.txt << 'EOF'
-        ============================================
-        SporlyWorks Installer — macOS Instructions
-        ============================================
-
-        If macOS blocks the app with a security warning:
-
-        OPTION 1 (Recommended):
-          Right-click the app → Click "Open" → Click "Open" again.
-
-        OPTION 2 (Terminal):
-          Open Terminal and run:
-          xattr -cr ~/Downloads/SporlyWorks_Installer.app
-          Then double-click the app normally.
-
-        OPTION 3 (System Settings):
-          Go to System Settings → Privacy & Security
-          Scroll down and click "Open Anyway" next to the blocked app.
-
-        This app is open-source and safe. macOS shows this warning
-        for any app not distributed through the Mac App Store.
-        ============================================
+        cat > pack/SporlyWorks_Extensions/README.txt << 'EOF'
+        ═══════════════════════════════════════════════════════
+           SporlyWorks OmniSuite — Complete Extension Pack
+        ═══════════════════════════════════════════════════════
+        
+        HOW TO INSTALL:
+        
+        1. Unzip this file
+        2. Open your browser:
+           • Chrome:  chrome://extensions
+           • Edge:    edge://extensions
+           • Brave:   brave://extensions
+           • Opera:   opera://extensions
+        3. Turn ON "Developer Mode" (top-right toggle)
+        4. Click "Load unpacked"
+        5. Select any extension folder from this directory
+        6. Repeat for each extension you want!
+        
+        SUPPORT: support@sporlyworks.com
+        WEBSITE: https://sporlyworks.com
+        ═══════════════════════════════════════════════════════
         EOF
-        cd dist
-        zip -r SporlyWorks_Installer_MacOS.zip SporlyWorks_Installer.app README_MACOS.txt
 
-    - name: Archive Windows build
-      if: matrix.os == 'windows-latest'
-      shell: powershell
+    - name: Create zip package
       run: |
-        Compress-Archive -Path dist/SporlyWorks_Installer -DestinationPath dist/SporlyWorks_Installer_Windows.zip
+        cd pack
+        zip -r -9 SporlyWorks_OmniSuite_Complete.zip SporlyWorks_Extensions/
+        echo "✅ Created: $(du -h SporlyWorks_OmniSuite_Complete.zip | cut -f1)"
 
-    - name: Upload Artifact (Windows)
-      if: matrix.os == 'windows-latest'
+    - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ matrix.artifact_name }}
-        path: dist/SporlyWorks_Installer_Windows.zip
-
-    - name: Upload Artifact (Linux)
-      if: matrix.os == 'ubuntu-latest'
-      uses: actions/upload-artifact@v4
-      with:
-        name: ${{ matrix.artifact_name }}
-        path: dist/SporlyWorks_Installer_Linux.zip
-
-    - name: Upload Artifact (MacOS)
-      if: matrix.os == 'macos-latest'
-      uses: actions/upload-artifact@v4
-      with:
-        name: ${{ matrix.artifact_name }}
-        path: dist/SporlyWorks_Installer_MacOS.zip
+        name: SporlyWorks_OmniSuite_Complete
+        path: pack/SporlyWorks_OmniSuite_Complete.zip
