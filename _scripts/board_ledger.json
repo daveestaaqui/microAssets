@@ -4,11 +4,10 @@
   "infrastructure_status": {
     "github_actions_board": "OPERATIONAL \u2014 Workflow #6 passed. 4-hour cron active.",
     "railway_license_server": "HEALTHY \u2014 gunicorn running on port 8080, all env vars set.",
-    "railway_worker": "DEGRADED \u2014 Running but CWS_REFRESH_TOKEN is expired (invalid_grant). CWS monitoring disabled until token rotated.",
+    "railway_worker": "OPERATIONAL \u2014 CWS_REFRESH_TOKEN rotated successfully.",
     "cloudflare_email_worker": "OPERATIONAL \u2014 handling support@sporlyworks.com"
   },
   "pending_critical": [
-    "ROTATE CWS_REFRESH_TOKEN \u2014 Worker cannot monitor Chrome Web Store. Run cws_get_refresh_token.py to get a new token and update in Railway.",
     "ROTATE google_play_key.json \u2014 Old key (3fbbd432) was exposed in git history. Delete in GCP Console and generate new one."
   ],
   "pending_compliance": [
@@ -21,9 +20,9 @@
     "Publish sporlyworks.com landing page with SEO optimization"
   ],
   "pending_deployments": {
-    "status": "Awaiting CWS Wave 2 Unblock + CWS token rotation",
+    "status": "Awaiting CWS Wave 2 Unblock + google_play_key.json rotation",
     "queue_size": 67,
-    "auto_expansion": "PAUSED \u2014 CWS_REFRESH_TOKEN expired, auto-submission blocked"
+    "auto_expansion": "ACTIVE \u2014 CWS_REFRESH_TOKEN successfully rotated."
   },
   "completed_this_session": [
     "Fixed hardcoded ~/Desktop paths in board_coordinator.py and sub_agents.py for CI compatibility",
@@ -39,8 +38,7 @@
     "P0_CRITICAL": [
       "google_play_key.json was tracked in git \u2014 FIXED: untracked. KEY ROTATION PENDING.",
       "License server rate limiting reset on restart \u2014 FIXED: persistent file-backed.",
-      "No atomic file writes \u2014 FIXED: temp+rename pattern.",
-      "CWS_REFRESH_TOKEN expired \u2014 PENDING: needs rotation via OAuth flow."
+      "No atomic file writes \u2014 FIXED: temp+rename pattern."
     ],
     "P1_HIGH": [
       "License database had no backup \u2014 FIXED: auto-backup with rolling 5-copy window.",
