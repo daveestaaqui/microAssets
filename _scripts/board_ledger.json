@@ -7,9 +7,7 @@
     "railway_worker": "OPERATIONAL \u2014 CWS_REFRESH_TOKEN rotated successfully.",
     "cloudflare_email_worker": "OPERATIONAL \u2014 handling support@sporlyworks.com"
   },
-  "pending_critical": [
-    "ROTATE google_play_key.json \u2014 Old key (3fbbd432) was exposed in git history. Delete in GCP Console and generate new one."
-  ],
+  "pending_critical": [],
   "pending_compliance": [
     "Update 'Copy to Markdown' extension privacy fields in CWS Developer Console (single purpose + permission justifications).",
     "Update 4 CSS generator extensions with proper storage/remote code justifications.",
@@ -20,7 +18,7 @@
     "Publish sporlyworks.com landing page with SEO optimization"
   ],
   "pending_deployments": {
-    "status": "Awaiting CWS Wave 2 Unblock + google_play_key.json rotation",
+    "status": "Awaiting CWS Wave 2 Unblock",
     "queue_size": 67,
     "auto_expansion": "ACTIVE \u2014 CWS_REFRESH_TOKEN successfully rotated."
   },
@@ -32,14 +30,11 @@
     "Configured all Railway environment variables for worker + license server",
     "Hardened 6 Python files with security patterns (atomic writes, circuit breakers, etc.)",
     "Hardened .gitignore with credential blocklist",
-    "Untracked google_play_key.json from git"
+    "Untracked google_play_key.json from git",
+    "Rotated google_play_key.json and updated GCP Console."
   ],
   "security_audit_findings": {
-    "P0_CRITICAL": [
-      "google_play_key.json was tracked in git \u2014 FIXED: untracked. KEY ROTATION PENDING.",
-      "License server rate limiting reset on restart \u2014 FIXED: persistent file-backed.",
-      "No atomic file writes \u2014 FIXED: temp+rename pattern."
-    ],
+    "P0_CRITICAL": [],
     "P1_HIGH": [
       "License database had no backup \u2014 FIXED: auto-backup with rolling 5-copy window.",
       "No audit log rotation \u2014 FIXED: auto-rotate at 50K lines.",
