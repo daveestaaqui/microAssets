@@ -54,7 +54,15 @@ jobs:
 
     - name: Build with PyInstaller (MacOS)
       if: matrix.os == 'macos-latest'
-      run: pyinstaller --noconfirm --windowed --name "SporlyWorks_Installer" "_installer/SporlyWorks_Installer.py"
+      run: pyinstaller --noconfirm --windowed --name "SporlyWorks_Installer" --osx-bundle-identifier "com.sporlyworks.installer" "_installer/SporlyWorks_Installer.py"
+
+    - name: Sign MacOS App (ad-hoc)
+      if: matrix.os == 'macos-latest'
+      run: |
+        # Remove quarantine attributes and ad-hoc sign the app
+        xattr -cr dist/SporlyWorks_Installer.app
+        codesign --force --deep --sign - dist/SporlyWorks_Installer.app
+        echo "✅ Ad-hoc signed successfully"
 
     - name: Archive Linux build
       if: matrix.os == 'ubuntu-latest'
@@ -65,8 +73,32 @@ jobs:
     - name: Archive MacOS App
       if: matrix.os == 'macos-latest'
       run: |
+        # Create a README with Gatekeeper bypass instructions
+        cat > dist/README_MACOS.txt << 'EOF'
+        ============================================
+        SporlyWorks Installer — macOS Instructions
+        ============================================
+
+        If macOS blocks the app with a security warning:
+
+        OPTION 1 (Recommended):
+          Right-click the app → Click "Open" → Click "Open" again.
+
+        OPTION 2 (Terminal):
+          Open Terminal and run:
+          xattr -cr ~/Downloads/SporlyWorks_Installer.app
+          Then double-click the app normally.
+
+        OPTION 3 (System Settings):
+          Go to System Settings → Privacy & Security
+          Scroll down and click "Open Anyway" next to the blocked app.
+
+        This app is open-source and safe. macOS shows this warning
+        for any app not distributed through the Mac App Store.
+        ============================================
+        EOF
         cd dist
-        zip -r SporlyWorks_Installer_MacOS.zip SporlyWorks_Installer.app
+        zip -r SporlyWorks_Installer_MacOS.zip SporlyWorks_Installer.app README_MACOS.txt
 
     - name: Archive Windows build
       if: matrix.os == 'windows-latest'
