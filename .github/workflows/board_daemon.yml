@@ -61,6 +61,71 @@ jobs:
             git push
           fi
 
+      - name: Send Digest Email (every ~3 days)
+        if: success()
+        env:
+          SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
+          SENDER_APP_PASSWORD: ${{ secrets.SENDER_APP_PASSWORD }}
+        run: |
+          python -c "
+          import datetime, json, smtplib, os, sys
+          from email.message import EmailMessage
+
+          # Only send at the 12:00 UTC cycle, every 3 days
+          now = datetime.datetime.utcnow()
+          if now.hour != 12 or now.timetuple().tm_yday % 3 != 0:
+              print('Not a digest day/hour — skipping email.')
+              sys.exit(0)
+
+          # Load ledger for summary
+          ledger = {}
+          try:
+              with open('_scripts/board_ledger.json') as f:
+                  ledger = json.load(f)
+          except: pass
+
+          infra = ledger.get('infrastructure_status', {})
+          pending = ledger.get('pending_critical', [])
+          completed = ledger.get('completed_this_session', [])
+          deploys = ledger.get('pending_deployments', {})
+
+          body = f'''SporlyWorks AI Board — Periodic CEO Digest
+          
+Date: {now.strftime('%B %d, %Y %H:%M UTC')}
+
+=== INFRASTRUCTURE STATUS ===
+''' + '\\n'.join(f'  • {k}: {v}' for k,v in infra.items()) + '''
+
+=== PENDING CRITICAL ===
+''' + ('\\n'.join(f'  🔴 {p}' for p in pending) if pending else '  ✅ None — all clear!') + '''
+
+=== DEPLOYMENT QUEUE ===
+  Status: ''' + deploys.get('status','N/A') + '''
+  Queue size: ''' + str(deploys.get('queue_size','N/A')) + '''
+
+=== RECENTLY COMPLETED ===
+''' + '\\n'.join(f'  ✓ {c}' for c in completed[-5:]) + '''
+
+---
+This is an automated digest from the SporlyWorks AI Board.
+Dashboard: https://github.com/daveestaaqui/microAssets/actions
+'''
+
+          msg = EmailMessage()
+          msg.set_content(body)
+          msg['Subject'] = f'📊 SporlyWorks Board Digest — {now.strftime(\"%b %d\")}'
+          msg['From'] = os.environ.get('SENDER_EMAIL', '')
+          msg['To'] = 'sandwichfitness@gmail.com'
+          try:
+              server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+              server.login(os.environ['SENDER_EMAIL'], os.environ['SENDER_APP_PASSWORD'])
+              server.send_message(msg)
+              server.quit()
+              print('Digest email sent successfully.')
+          except Exception as e:
+              print(f'Failed to send digest: {e}')
+          "
+
       - name: Notify on Failure
         if: failure()
         env:
