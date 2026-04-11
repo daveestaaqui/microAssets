@@ -3,7 +3,7 @@ name: SporlyWorks AI Serverless Board
 on:
   schedule:
     - cron: '0 */4 * * *'
-  workflow_dispatch: # Enable manual triggering for testing
+  workflow_dispatch:
 
 # Prevent overlapping runs — only one board session at a time
 concurrency:
@@ -15,25 +15,24 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10  # Hard cap — prevent runaway API costs
     permissions:
-      contents: write # Needed to push history back
-      
+      contents: write
+
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1  # Shallow clone for speed
-        
+          fetch-depth: 1
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          # Only install what the board coordinator actually needs
           pip install requests 2>/dev/null || true
-          
+
       - name: Run Master Coordinator (gpt-4o-mini)
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
@@ -43,89 +42,42 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
         run: |
-          python _scripts/sporlyworks_board_coordinator.py
-          
+          cd _scripts && python sporlyworks_board_coordinator.py
+
       - name: Commit and Push State Updates
         run: |
           git config --global user.name 'sporlyworks-ai-board'
           git config --global user.email 'board@sporlyworks.com'
-          
-          # Add potentially generated new files like marketing SEO or board history
-          git add -A
-          
-          # Only commit if there are changes
-          if git diff-index --quiet HEAD --; then
-            echo "No state changes dynamically generated this cycle."
+
+          # Scope git add — only track known safe paths
+          # This prevents accidentally committing secrets, pycache, etc.
+          git add -f _scripts/board_ledger.json || true
+          git add -f _scripts/board_history.json || true
+          git add marketing/ 2>/dev/null || true
+
+          # Never commit these
+          git reset -- '*.pyc' '__pycache__' '.env' '*credentials*' '*secret*' '*.key' 2>/dev/null || true
+
+          # Only commit if there are staged changes
+          if git diff --cached --quiet; then
+            echo "No state changes this cycle."
           else
-            git commit -m "🤖 AI Board Deployment | State & History Checkpoint"
+            git commit -m "🤖 AI Board v8.0 | $(date -u '+%Y-%m-%d %H:%M UTC')"
             git push
           fi
 
-      - name: Send Digest Email (every ~3 days)
-        if: success()
-        env:
-          SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
-          SENDER_APP_PASSWORD: ${{ secrets.SENDER_APP_PASSWORD }}
-        run: |
-          python -c "
-          import datetime, json, smtplib, os, sys
-          from email.message import EmailMessage
-
-          # Only send at the 12:00 UTC cycle, every 3 days
-          now = datetime.datetime.utcnow()
-          if now.hour != 12 or now.timetuple().tm_yday % 3 != 0:
-              print('Not a digest day/hour — skipping email.')
-              sys.exit(0)
-
-          # Load ledger for summary
-          ledger = {}
-          try:
-              with open('_scripts/board_ledger.json') as f:
-                  ledger = json.load(f)
-          except: pass
-
-          infra = ledger.get('infrastructure_status', {})
-          pending = ledger.get('pending_critical', [])
-          completed = ledger.get('completed_this_session', [])
-          deploys = ledger.get('pending_deployments', {})
-
-          body = f'''SporlyWorks AI Board — Periodic CEO Digest
-          
-Date: {now.strftime('%B %d, %Y %H:%M UTC')}
-
-=== INFRASTRUCTURE STATUS ===
-''' + '\\n'.join(f'  • {k}: {v}' for k,v in infra.items()) + '''
-
-=== PENDING CRITICAL ===
-''' + ('\\n'.join(f'  🔴 {p}' for p in pending) if pending else '  ✅ None — all clear!') + '''
-
-=== DEPLOYMENT QUEUE ===
-  Status: ''' + deploys.get('status','N/A') + '''
-  Queue size: ''' + str(deploys.get('queue_size','N/A')) + '''
-
-=== RECENTLY COMPLETED ===
-''' + '\\n'.join(f'  ✓ {c}' for c in completed[-5:]) + '''
-
----
-This is an automated digest from the SporlyWorks AI Board.
-Dashboard: https://github.com/daveestaaqui/microAssets/actions
-'''
-
-          msg = EmailMessage()
-          msg.set_content(body)
-          msg['Subject'] = f'📊 SporlyWorks Board Digest — {now.strftime(\"%b %d\")}'
-          msg['From'] = os.environ.get('SENDER_EMAIL', '')
-          msg['To'] = 'sandwichfitness@gmail.com'
-          try:
-              server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
-              server.login(os.environ['SENDER_EMAIL'], os.environ['SENDER_APP_PASSWORD'])
-              server.send_message(msg)
-              server.quit()
-              print('Digest email sent successfully.')
-          except Exception as e:
-              print(f'Failed to send digest: {e}')
-          "
+      - name: Upload Audit Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: board-cycle-${{ github.run_number }}
+          path: |
+            _scripts/board_ledger.json
+            _scripts/board_history.json
+            marketing/**/*.json
+          retention-days: 30
 
       - name: Notify on Failure
         if: failure()
@@ -133,12 +85,17 @@ Dashboard: https://github.com/daveestaaqui/microAssets/actions
           SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
           SENDER_APP_PASSWORD: ${{ secrets.SENDER_APP_PASSWORD }}
         run: |
-          python -c "
+          python3 -c "
           import smtplib, os
           from email.message import EmailMessage
           msg = EmailMessage()
-          msg.set_content('The SporlyWorks AI Board Coordinator failed on GitHub Actions.\n\nCheck: https://github.com/daveestaaqui/microAssets/actions\n\nThis is an automated alert.')
-          msg['Subject'] = '🚨 SporlyWorks Board FAILED — Action Required'
+          msg.set_content(
+              'The SporlyWorks AI Board Coordinator FAILED.\n\n'
+              'Dashboard: https://github.com/daveestaaqui/microAssets/actions\n\n'
+              'Run: #${{ github.run_number }}\n'
+              'This is an automated alert from the Board v8.0.'
+          )
+          msg['Subject'] = '🚨 SporlyWorks Board FAILED — Run #${{ github.run_number }}'
           msg['From'] = os.environ.get('SENDER_EMAIL', '')
           msg['To'] = 'sandwichfitness@gmail.com'
           try:

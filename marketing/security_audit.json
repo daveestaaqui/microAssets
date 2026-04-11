@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-04-11T16:13:56.340106Z",
+  "findings": [
+    "MISSING_SECRET: OPENAI_API_KEY is not set",
+    "MISSING_SECRET: GITHUB_TOKEN is not set",
+    "MISSING_SECRET: SENDER_EMAIL is not set",
+    "MISSING_SECRET: SENDER_APP_PASSWORD is not set",
+    "MISSING_SECRET: CLOUDFLARE_API_TOKEN is not set",
+    "MISSING_SECRET: CLOUDFLARE_ACCOUNT_ID is not set",
+    "MISSING_SECRET: RAILWAY_API_TOKEN is not set"
+  ],
+  "status": "FAIL"
+}

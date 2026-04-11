@@ -1,0 +1,9 @@
+{
+  "timestamp": "2026-04-11T16:13:56.345906Z",
+  "findings": [
+    "BROAD_PERMS: cookie-manager requests <all_urls>",
+    "BROAD_PERMS: crm-data-extractor requests <all_urls>",
+    "BROAD_PERMS: microassets-master-suite requests <all_urls>",
+    "BROAD_PERMS: network-monitor-pro requests <all_urls>"
+  ]
+}
