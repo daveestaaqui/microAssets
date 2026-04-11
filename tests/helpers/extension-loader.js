@@ -88,35 +88,62 @@ async function launchWithExtension(extensionDir, options = {}) {
   // Wait for the service worker to register and get the extension ID
   let extensionId = '';
 
-  // Try to get the extension ID from the service worker
-  let serviceWorker;
+  // Get extension ID from the service worker URL
   try {
-    serviceWorker = context.serviceWorkers()[0] ||
-      await context.waitForEvent('serviceworker', { timeout: 5000 });
+    const serviceWorker = context.serviceWorkers()[0] ||
+      await context.waitForEvent('serviceworker', { timeout: 8000 });
     const swUrl = serviceWorker.url();
     const match = swUrl.match(/chrome-extension:\/\/([a-z]+)\//);
     if (match) extensionId = match[1];
   } catch {
-    // Extension may not have a service worker — that's OK
-    // Try to find it via the extensions page
-    const extPage = await context.newPage();
-    await extPage.goto('chrome://extensions/', { waitUntil: 'domcontentloaded' });
-
-    // Extract extension ID from the extensions management page
-    extensionId = await extPage.evaluate(() => {
-      const manager = document.querySelector('extensions-manager');
-      if (!manager || !manager.shadowRoot) return '';
-      const itemList = manager.shadowRoot.querySelector('extensions-item-list');
-      if (!itemList || !itemList.shadowRoot) return '';
-      const item = itemList.shadowRoot.querySelector('extensions-item');
-      if (!item) return '';
-      return item.id || '';
-    }).catch(() => '');
-
-    await extPage.close();
+    // Extension may not have a service worker — skip browser test for this one
+    // Do NOT try chrome://extensions/ — it's blocked in headless CI
   }
 
   return { context, extensionId };
+}
+
+/**
+ * Discover all Firefox extension directories in the repo root.
+ * Firefox extensions have a `-firefox` suffix and contain a manifest.json
+ * with `browser_specific_settings.gecko`.
+ *
+ * @returns {Array<{name: string, path: string, manifest: object}>}
+ */
+function discoverFirefoxExtensions() {
+  const entries = fs.readdirSync(ROOT, { withFileTypes: true });
+  const extensions = [];
+
+  for (const entry of entries) {
+    if (!entry.isDirectory()) continue;
+    const name = entry.name;
+
+    // Only include Firefox variants
+    if (!name.endsWith('-firefox')) continue;
+    if (SKIP_PREFIXES.some(prefix => name.startsWith(prefix))) continue;
+
+    const manifestPath = path.join(ROOT, name, 'manifest.json');
+    if (!fs.existsSync(manifestPath)) continue;
+
+    try {
+      const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
+      extensions.push({
+        name,
+        path: path.join(ROOT, name),
+        manifest,
+        chromeName: name.replace(/-firefox$/, ''),
+      });
+    } catch (e) {
+      extensions.push({
+        name,
+        path: path.join(ROOT, name),
+        manifest: null,
+        chromeName: name.replace(/-firefox$/, ''),
+      });
+    }
+  }
+
+  return extensions.sort((a, b) => a.name.localeCompare(b.name));
 }
 
 /**
@@ -197,6 +224,7 @@ function findFilesRecursive(dir, pattern) {
 module.exports = {
   ROOT,
   discoverExtensions,
+  discoverFirefoxExtensions,
   launchWithExtension,
   getPopupUrl,
   scanForbiddenPatterns,
