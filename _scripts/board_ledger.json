@@ -5,7 +5,7 @@
     "github_actions_board": "OPERATIONAL — 4-hour cron, v8.0 coordinator with retry + backup",
     "railway_license_server": "HEALTHY — gunicorn on port 8080, all env vars set",
     "railway_worker": "OPERATIONAL — CWS_REFRESH_TOKEN rotated successfully",
-    "cloudflare_email_worker": "OPERATIONAL — DMARC/approvals silent (KV-only), rejections forwarded",
+    "cloudflare_email_worker": "DOWN — Email worker health returned HTTP 404: HTTP Error 404: Not Found",
     "qa_agent": "v8.0 — 7 checks: portfolio, landing page, releases, infrastructure, workflow, MV audit, desc length",
     "ledger_backup": "ACTIVE — 20-backup rolling window before every LLM overwrite"
   },
@@ -51,8 +51,15 @@
     "customer_success": "CustomerSuccessAgent — KV ticket monitoring, rejection tracking, response times."
   },
   "email_forwarding_policy": {
-    "forwarded_to_owner": ["rejection", "unknown"],
-    "handled_silently": ["approval", "dmarc_report", "review_update"],
+    "forwarded_to_owner": [
+      "rejection",
+      "unknown"
+    ],
+    "handled_silently": [
+      "approval",
+      "dmarc_report",
+      "review_update"
+    ],
     "rationale": "Owner only receives emails requiring human intervention. Routine reports logged to KV."
   },
   "security_audit_findings": {
@@ -74,7 +81,7 @@
       "Board Coordinator sends emails to OpenAI — FIXED v8.0: PII redaction.",
       "No QA/testing function — FIXED v7.0: QA Agent runs every cycle.",
       "git add -A in workflow too broad — FIXED v8.0: scoped to known-safe paths.",
-      "Email digest had \\\\n formatting bug — FIXED v8.0: moved digest to coordinator."
+      "Email digest had \\n formatting bug — FIXED v8.0: moved digest to coordinator."
     ]
   },
   "hardening_applied": {
@@ -91,5 +98,34 @@
     "workflow": "v8.0 — scoped git add, artifact upload (30d), run-number notifications, STRIPE_SECRET_KEY env"
   },
   "gitignore_warning": "The _*/** rule in .gitignore blocks all files inside _-prefixed directories. Tracked files were force-added before this rule existed. Any NEW file in _scripts/ must use: git add -f _scripts/<filename>",
-  "qa_last_report": {}
+  "qa_last_report": {
+    "audit_timestamp": "2026-04-11T16:24:16.239602Z",
+    "qa_version": "8.0",
+    "status": "PASS",
+    "portfolio": {
+      "chrome_extensions": 87,
+      "firefox_extensions": 85,
+      "android_apps": 86,
+      "mv2_count": 0,
+      "mv3_count": 87
+    },
+    "findings": [],
+    "checks_run": [
+      "portfolio_integrity",
+      "landing_page_links",
+      "landing_page_consistency",
+      "download_binaries",
+      "github_release",
+      "infrastructure_health",
+      "workflow_status"
+    ]
+  },
+  "last_dispatch_results": [
+    {
+      "agent": "MarketingAgent",
+      "summary": "Generate high-conversion B2B SEO landing page",
+      "success": true,
+      "timestamp": "2026-04-11T16:25:15.735108Z"
+    }
+  ]
 }

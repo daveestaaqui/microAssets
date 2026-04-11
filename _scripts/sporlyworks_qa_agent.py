@@ -39,7 +39,7 @@ def check_url(url, timeout=10):
         with urllib.request.urlopen(req, timeout=timeout) as resp:
             return resp.status, None
     except urllib.error.HTTPError as e:
-        if e.code in (403, 404, 405):
+        if e.code in (403, 405):
             try:
                 req2 = urllib.request.Request(url)
                 req2.add_header("User-Agent", "SporlyWorks-QA/2.0")

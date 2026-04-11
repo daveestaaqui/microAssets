@@ -255,12 +255,12 @@ PRIORITIZATION RULES:
 QA_FINDINGS (from automated pre-flight audit):
 {json.dumps(qa_findings, indent=2)}
 
-IMPORTANT: Your 'updated_ledger' MUST preserve all existing ledger structure and keys. You may add items, update statuses, and mark tasks complete, but do NOT remove structural keys or historical data. The ledger is institutional memory.
+IMPORTANT: Your 'updated_ledger' MUST preserve all existing ledger structure and keys. You may add items, update statuses, and mark tasks complete, but do NOT remove structural keys or historical data. The ledger is institutional memory. DO NOT use "..." or truncate the json. You must output a valid JSON document in its entirety.
 
-Return FORMAT MUST BE EXACT JSON:
+Return FORMAT MUST BE EXACT VALID JSON:
 {{
   "board_rationale": "Explanation of why this action drives the most value.",
-  "updated_ledger": {{ ... full updated ledger preserving all keys ... }},
+  "updated_ledger": {{"insert_full": "updated ledger here, maintaining all previous schema and values"}},
   "dispatches": [
     {{
       "target_agent": "MarketingAgent",
@@ -479,7 +479,7 @@ def main():
 
     # 4. Ask the CEO for decisions
     logging.info("Consulting the Executive Board...")
-    decisions = call_openai and ask_coordinator(ledger)
+    decisions = ask_coordinator(ledger)
 
     if decisions:
         rationale = decisions.get("board_rationale", "No rationale provided")

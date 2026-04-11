@@ -34,8 +34,8 @@ logging.basicConfig(
 
 # ── Helper: Safe OpenAI call ────────────────────────────────────────────
 
-def _call_llm(prompt, api_key, max_tokens=2000):
-    """Make a single OpenAI call. Returns raw string content."""
+def _call_llm(prompt, api_key, max_tokens=2000, max_retries=3):
+    """Make a single OpenAI call with exponential backoff. Returns raw string content."""
     url = "https://api.openai.com/v1/chat/completions"
     headers = {
         "Content-Type": "application/json",
@@ -48,20 +48,29 @@ def _call_llm(prompt, api_key, max_tokens=2000):
         "max_tokens": max_tokens
     }).encode("utf-8")
 
-    req = urllib.request.Request(url, data=data, headers=headers)
-    with urllib.request.urlopen(req, timeout=60) as response:
-        result = json.loads(response.read().decode("utf-8"))
-        content = result["choices"][0]["message"]["content"].strip()
-        # Strip markdown code fences
-        if content.startswith("```html"):
-            content = content[7:]
-        elif content.startswith("```json"):
-            content = content[7:]
-        elif content.startswith("```"):
-            content = content[3:]
-        if content.endswith("```"):
-            content = content[:-3]
-        return content.strip()
+    import time
+    for attempt in range(1, max_retries + 1):
+        try:
+            req = urllib.request.Request(url, data=data, headers=headers)
+            with urllib.request.urlopen(req, timeout=60) as response:
+                result = json.loads(response.read().decode("utf-8"))
+                content = result["choices"][0]["message"]["content"].strip()
+                # Strip markdown code fences
+                if content.startswith("```html"):
+                    content = content[7:]
+                elif content.startswith("```json"):
+                    content = content[7:]
+                elif content.startswith("```"):
+                    content = content[3:]
+                if content.endswith("```"):
+                    content = content[:-3]
+                return content.strip()
+        except Exception as e:
+            logging.error(f"LLM API error (attempt {attempt}/{max_retries}): {e}")
+            if attempt < max_retries:
+                time.sleep(2 ** attempt)
+            else:
+                raise
 
 
 def _check_url_status(url, timeout=10):
