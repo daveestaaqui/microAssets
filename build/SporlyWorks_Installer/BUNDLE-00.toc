@@ -1,0 +1,3 @@
+([('SporlyWorks_Installer',
+   '/Users/davidmahler/Desktop/microAssets/dist/SporlyWorks_Installer',
+   'EXECUTABLE')],)

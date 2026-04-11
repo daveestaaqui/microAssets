@@ -23,6 +23,7 @@ import email
 from email.header import decode_header
 from email.message import EmailMessage
 from datetime import datetime, timedelta
+import sporlyworks_qa_agent
 
 logging.basicConfig(
     format='%(asctime)s | Master Coordinator | [%(levelname)s] %(message)s',
@@ -117,6 +118,12 @@ Available Core Agents:
 2. "DevOpsAgent" (CWS packaging, API queuing)
 3. "ComplianceAgent" (Chrome Web Store Privacy verifications)
 4. "InfrastructureAgent" (Cloudflare DNS/Workers/KV, Railway deployments)
+5. "QAAgent" (Automated testing, link checking, consistency auditing)
+
+IMPORTANT: If QA_FINDINGS below shows any issues, your FIRST priority should be to dispatch the appropriate agent to fix them. Dead links, missing files, and inconsistencies are customer-facing and must be resolved before marketing or expansion work.
+
+QA_FINDINGS (from automated pre-flight audit):
+{json.dumps(ledger_state.get('qa_last_report', {{}}).get('findings', []), indent=2)}
 
 Return FORMAT MUST BE EXACT JSON:
 {{
@@ -235,6 +242,19 @@ def main():
     
     ledger = fetch_undone_ledger()
     logging.info("Fetched Master Undone Ledger from State.")
+    
+    # ── QA PRE-FLIGHT AUDIT (mandatory every cycle) ──
+    logging.info("Running QA pre-flight audit...")
+    qa_report = sporlyworks_qa_agent.run_full_audit()
+    ledger['qa_last_report'] = qa_report
+    logging.info(f"QA Status: {qa_report['status']} | Portfolio: {qa_report['portfolio']} | Findings: {len(qa_report['findings'])}")
+    if qa_report['findings']:
+        for f in qa_report['findings']:
+            logging.warning(f"  QA: {f}")
+    
+    # Save ledger with QA results before CEO deliberation
+    with open(LEDGER_FILE, "w") as lf:
+        json.dump(ledger, lf, indent=2)
     
     decisions = ask_coordinator(ledger)
     if decisions:

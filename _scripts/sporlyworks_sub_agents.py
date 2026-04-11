@@ -117,6 +117,28 @@ def handle_infrastructure_agent(payload, api_key):
     logging.error(f"Unknown infrastructure provider: {provider}")
     return False
 
+def handle_qa_agent(payload, api_key):
+    """
+    Sub-Agent: QA / TESTING
+    Runs targeted audits as directed by the CEO.
+    Can audit specific components: 'portfolio', 'landing_page', 'releases', 'full'
+    """
+    import sporlyworks_qa_agent
+    target = payload.get("target", "full")
+    logging.info(f"Initiating QA Protocol: {target}")
+
+    if target == "portfolio":
+        result = sporlyworks_qa_agent.audit_portfolio_integrity()
+    elif target == "landing_page":
+        result = sporlyworks_qa_agent.audit_landing_page()
+    elif target == "releases":
+        result = sporlyworks_qa_agent.audit_github_release()
+    else:
+        result = sporlyworks_qa_agent.run_full_audit()
+
+    logging.info(f"QA Result: {json.dumps(result, indent=2)}")
+    return True
+
 def route_payload(dispatch, api_key):
     """Master router mapped tightly by the CEO JSON outputs."""
     target = dispatch.get("target_agent")
@@ -130,6 +152,8 @@ def route_payload(dispatch, api_key):
         return handle_compliance_agent(payload, api_key)
     elif target == "InfrastructureAgent":
         return handle_infrastructure_agent(payload, api_key)
+    elif target == "QAAgent":
+        return handle_qa_agent(payload, api_key)
     else:
         logging.warning(f"Unknown Agent Requested: {target}")
         return False
