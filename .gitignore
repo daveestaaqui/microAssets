@@ -49,3 +49,8 @@ Thumbs.db
 # Temporary files
 *.tmp
 .atomic_*
+
+# Old installer build artifacts
+build/
+dist/
+*.spec
