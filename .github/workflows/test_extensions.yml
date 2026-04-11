@@ -1,0 +1,144 @@
+name: Extension QA Gate
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    paths-ignore:
+      - '_scripts/**'
+      - 'marketing/**'
+      - '*.md'
+      - '.coderabbit.yaml'
+
+# Cancel in-flight runs for the same branch
+concurrency:
+  group: qa-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ──────────────────────────────────────────────────────
+  # Job 1: Fast manifest lint (no browser, ~15 seconds)
+  # ──────────────────────────────────────────────────────
+  lint-manifests:
+    name: 🔍 Lint Manifests
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run manifest linter
+        run: node tests/helpers/manifest-lint.js
+
+  # ──────────────────────────────────────────────────────
+  # Job 2: Static analysis tests (no browser)
+  # ──────────────────────────────────────────────────────
+  static-analysis:
+    name: 🛡️ Static Analysis
+    runs-on: ubuntu-latest
+    needs: lint-manifests
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run static tests (no browser)
+        env:
+          SKIP_BROWSER_TESTS: "1"
+        run: npx playwright test --reporter=github,html
+
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: static-analysis-report
+          path: test-results/html-report/
+          retention-days: 14
+
+  # ──────────────────────────────────────────────────────
+  # Job 3: Browser tests — popup rendering (sharded)
+  # ──────────────────────────────────────────────────────
+  browser-tests:
+    name: 🌐 Browser Tests (shard ${{ matrix.shard }}/${{ strategy.job-total }})
+    runs-on: ubuntu-latest
+    needs: lint-manifests
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install chromium --with-deps
+
+      - name: Run browser tests (shard ${{ matrix.shard }}/4)
+        run: npx playwright test --shard=${{ matrix.shard }}/4 --reporter=github,html
+        env:
+          CI: "true"
+
+      - name: Upload test artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-test-shard-${{ matrix.shard }}
+          path: |
+            test-results/html-report/
+            test-results/artifacts/
+          retention-days: 14
+
+  # ──────────────────────────────────────────────────────
+  # Job 4: Summary — aggregate results
+  # ──────────────────────────────────────────────────────
+  qa-summary:
+    name: ✅ QA Summary
+    runs-on: ubuntu-latest
+    needs: [lint-manifests, static-analysis, browser-tests]
+    if: always()
+    steps:
+      - name: Check results
+        run: |
+          echo "═══════════════════════════════════════════════"
+          echo "  SporlyWorks Extension QA Gate — Summary"
+          echo "═══════════════════════════════════════════════"
+          echo ""
+          echo "Manifest Lint:    ${{ needs.lint-manifests.result }}"
+          echo "Static Analysis:  ${{ needs.static-analysis.result }}"
+          echo "Browser Tests:    ${{ needs.browser-tests.result }}"
+          echo ""
+
+          if [ "${{ needs.lint-manifests.result }}" != "success" ] || \
+             [ "${{ needs.static-analysis.result }}" != "success" ] || \
+             [ "${{ needs.browser-tests.result }}" != "success" ]; then
+            echo "❌ QA Gate FAILED — fix issues above before merging."
+            exit 1
+          else
+            echo "✅ All checks passed — safe to merge!"
+          fi

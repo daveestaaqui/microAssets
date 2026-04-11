@@ -50,6 +50,13 @@ Thumbs.db
 *.tmp
 .atomic_*
 
+# ============================================
+# Test / Playwright artifacts
+# ============================================
+test-results/
+playwright-report/
+blob-report/
+
 # Old installer build artifacts
 build/
 dist/
