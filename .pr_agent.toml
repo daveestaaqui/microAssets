@@ -1,0 +1,127 @@
+# ============================================================
+# Qodo PR-Agent Configuration — SporlyWorks OmniSuite
+# Docs: https://qodo-merge-docs.qodo.ai/usage-guide/configuration_options/
+# ============================================================
+
+[config]
+# Use gpt-4o-mini for cost efficiency (~$0.01-0.05 per review)
+model = "gpt-4o-mini"
+fallback_models = ["gpt-4o-mini"]
+# Max tokens for the model response
+max_model_tokens = 4096
+
+# ── PR Description ─────────────────────────────────────────
+[pr_description]
+enable_pr_type = true
+publish_labels = true
+# Generate a concise PR summary
+use_bullet_points = true
+
+# ── PR Review ──────────────────────────────────────────────
+[pr_reviewer]
+# Ask the model to do an inline code review
+enable_review = true
+# Post a summary at the top
+require_all_thresholds_for_ai_review = false
+# Security-focused review
+require_security_review = true
+# Estimate effort
+require_estimate_effort_to_review = true
+# Don't block — just advise
+enable_auto_approval = false
+# Skip non-code files
+ignore_pr_title = ["WIP", "DO NOT REVIEW"]
+
+# ── PR Code Suggestions ───────────────────────────────────
+[pr_code_suggestions]
+# Provide inline fix suggestions
+num_code_suggestions = 4
+
+# ── Path Filters ───────────────────────────────────────────
+# Skip store assets, icons, infra, and binary files
+[ignore]
+glob = [
+    # Binary / generated assets
+    "**/*.png",
+    "**/*.jpg",
+    "**/*.webp",
+    "**/*.ico",
+    "**/*.ttf",
+    "**/*.woff",
+    "**/*.woff2",
+    "**/*.zip",
+    "**/*.crx",
+    "**/*.xpi",
+    # Store / marketing materials
+    "**/store/**",
+    "**/cws_promo_*.png",
+    "**/promo_*.png",
+    "_cws_screenshots/**",
+    "_cws_uploads/**",
+    "_cws_zips/**",
+    "_launch_materials/**",
+    "_guerrilla_posts/**",
+    "_b2b_marketing/**",
+    # Infrastructure directories
+    "_scripts/**",
+    "_builds/**",
+    "_installer/**",
+    "_worker/**",
+    "_cloudflare_email_worker/**",
+    "_license_server/**",
+    "_license_server_alt/**",
+    "_saas_boilerplate/**",
+    "_edge_uploads/**",
+    "_android*/**",
+    "_safari/**",
+    "_templates/**",
+    "_vscode*/**",
+    "_digital_products/**",
+    "_logs/**",
+    # Batch processing scripts
+    "process_batch_*.py",
+    "process_images.py",
+    "submit_for_review.py",
+    # Playwright browser profiles
+    "playwright_profile_*/**",
+    # Lock files
+    "package-lock.json",
+]
+
+# ── Custom Prompts ─────────────────────────────────────────
+[pr_reviewer.extra_instructions]
+extra_instructions = """
+## Chrome Extension Review Guidelines (SporlyWorks Portfolio)
+
+You are reviewing Chrome/Firefox browser extensions. Apply these rules:
+
+### Manifest Compliance
+- All extensions MUST use `manifest_version: 3` (MV3). Flag any MV2 manifests.
+- Every manifest must have: `name`, `version`, `description`, `icons` (16, 48, 128).
+- `version` must be valid semver (e.g., "1.2.0").
+- `description` must be ≤ 132 characters (Chrome Web Store limit).
+
+### Permissions — Minimize Attack Surface
+- Flag `<all_urls>` — suggest using `activeTab` instead where possible.
+- Flag `webRequestBlocking` — it's removed in MV3, suggest `declarativeNetRequest`.
+- Flag `tabs` permission if the extension only needs `activeTab`.
+- Flag `nativeMessaging` unless the extension genuinely needs it.
+- Warn if `host_permissions` uses broad wildcards like `*://*/*`.
+
+### Security
+- BLOCK any hardcoded API keys, tokens, or credentials in source code.
+- Flag use of `eval()`, `new Function()`, or `document.write()`.
+- Flag inline event handlers in HTML (`onclick=`, `onerror=`).
+- Ensure CSP is not weakened with `unsafe-eval` or `unsafe-inline`.
+- Flag `innerHTML` with dynamic/user-supplied content — suggest `textContent` or DOM API.
+
+### Code Quality
+- Service workers (`background.js`) should not use `window` or DOM APIs.
+- Content scripts should check `document.readyState` or use `run_at: document_idle`.
+- Popup scripts should handle the case where no tab is active.
+- Prefer `chrome.storage.local` over `localStorage` in extensions.
+
+### Firefox Compatibility
+- The `-firefox` variant directories should use `browser_specific_settings.gecko.id`.
+- Firefox manifests should use `browser.` API namespace or include a polyfill.
+"""
