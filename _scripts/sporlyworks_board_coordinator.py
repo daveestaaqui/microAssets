@@ -123,7 +123,7 @@ Available Core Agents:
 IMPORTANT: If QA_FINDINGS below shows any issues, your FIRST priority should be to dispatch the appropriate agent to fix them. Dead links, missing files, and inconsistencies are customer-facing and must be resolved before marketing or expansion work.
 
 QA_FINDINGS (from automated pre-flight audit):
-{json.dumps(ledger_state.get('qa_last_report', {{}}).get('findings', []), indent=2)}
+{json.dumps(ledger_state.get('qa_last_report', dict()).get('findings', []), indent=2)}
 
 Return FORMAT MUST BE EXACT JSON:
 {{
