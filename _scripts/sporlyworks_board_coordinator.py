@@ -52,16 +52,23 @@ BACKUP_DIR = os.path.join(SCRIPT_DIR, ".ledger_backups")
 
 
 def fallback_load_env():
-    """Load local .env for development/testing."""
+    """Load local .env for development/testing — populates ALL env vars."""
     global OPENAI_KEY
     env_path = os.path.join(SCRIPT_DIR, ".env")
     if os.path.exists(env_path):
         with open(env_path, "r") as f:
             for line in f:
-                if "=" in line and not line.startswith("#"):
-                    k, v = line.strip().split("=", 1)
-                    if k == "OPENAI_API_KEY":
-                        OPENAI_KEY = v
+                line = line.strip()
+                if "=" in line and not line.startswith("#") and line:
+                    k, v = line.split("=", 1)
+                    os.environ.setdefault(k, v)
+        # Also keep the module-level alias up to date
+        OPENAI_KEY = os.environ.get("OPENAI_API_KEY", OPENAI_KEY)
+        # Map convenience aliases used in the coordinator
+        if not os.environ.get("SENDER_EMAIL"):
+            os.environ["SENDER_EMAIL"] = os.environ.get("MICROASSETS_LOGIN_EMAIL", "")
+        if not os.environ.get("SENDER_APP_PASSWORD"):
+            os.environ["SENDER_APP_PASSWORD"] = os.environ.get("MICROASSETS_SUPPORT_APP_PASSWORD", "")
 
 
 # ── Atomic File I/O ─────────────────────────────────────────────────────
@@ -116,8 +123,8 @@ def redact_pii(text):
 # ── Email Fetching ───────────────────────────────────────────────────────
 
 def fetch_recent_emails():
-    """Fetch latest unread email subjects from Gmail IMAP.
-    Uses PEEK to avoid marking emails as read (prevents data loss on crash).
+    """Fetch latest unread emails (headers + body) from Gmail IMAP.
+    Marks them as read so the CEO can process user commands exactly once.
     """
     sender_email = os.environ.get("SENDER_EMAIL")
     sender_password = os.environ.get("SENDER_APP_PASSWORD")
@@ -139,8 +146,8 @@ def fetch_recent_emails():
 
         inbound_str = ""
         for e_id in latest_ids:
-            # Use BODY.PEEK to avoid marking as read
-            res, msg_data = mail.fetch(e_id, "(BODY.PEEK[HEADER.FIELDS (FROM SUBJECT DATE)])")
+            # Fetch entire message, which also removes the UNSEEN flag
+            res, msg_data = mail.fetch(e_id, "(RFC822)")
             for response_part in msg_data:
                 if isinstance(response_part, tuple):
                     msg = email.message_from_bytes(response_part[1])
@@ -152,7 +159,31 @@ def fetch_recent_emails():
                         else:
                             subject = decoded
                     from_ = msg.get("From", "unknown")
-                    inbound_str += f"- From: {from_} | Subject: {subject}\n"
+                    
+                    # Extract Body
+                    body = ""
+                    if msg.is_multipart():
+                        for part in msg.walk():
+                            content_type = part.get_content_type()
+                            if content_type == "text/plain":
+                                try:
+                                    body = part.get_payload(decode=True).decode()
+                                    break # Got the plain text
+                                except Exception:
+                                    pass
+                    else:
+                        try:
+                            body = msg.get_payload(decode=True).decode()
+                        except Exception:
+                            body = str(msg.get_payload())
+
+                    # Clean up body to not be huge
+                    lines = [ln.strip() for ln in body.splitlines() if ln.strip()]
+                    cleaned_body = "\\n".join(lines[:10]) # First 10 non-empty lines
+                    if len(lines) > 10:
+                        cleaned_body += "\\n[...truncated]"
+
+                    inbound_str += f"\\n--- EMAIL ---\\nFrom: {from_}\\nSubject: {subject}\\nBody: {cleaned_body}\\n"
 
         mail.logout()
         return redact_pii(inbound_str) if inbound_str else "No new unread correspondence."
@@ -207,6 +238,40 @@ def call_openai(prompt, max_retries=3):
     return None
 
 
+def call_openai_text(prompt, max_retries=3):
+    """Call OpenAI and return raw text string without JSON parsing."""
+    if not OPENAI_KEY:
+        logging.error("Missing OPENAI_API_KEY.")
+        return None
+
+    url = "https://api.openai.com/v1/chat/completions"
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {OPENAI_KEY}"
+    }
+    data = json.dumps({
+        "model": "gpt-4o-mini",
+        "messages": [{"role": "system", "content": prompt}],
+        "temperature": 0.4,
+    }).encode("utf-8")
+
+    for attempt in range(1, max_retries + 1):
+        try:
+            req = urllib.request.Request(url, data=data, headers=headers)
+            with urllib.request.urlopen(req, timeout=60) as response:
+                result = json.loads(response.read().decode("utf-8"))
+                return result["choices"][0]["message"]["content"].strip()
+        except Exception as e:
+            logging.error(f"OpenAI API text error (attempt {attempt}/{max_retries}): {e}")
+
+        if attempt < max_retries:
+            wait = 2 ** attempt
+            logging.info(f"Retrying in {wait}s...")
+            time.sleep(wait)
+
+    return None
+
+
 def ask_coordinator(ledger_state):
     """Build the CEO prompt and call the LLM."""
     recent_emails = fetch_recent_emails()
@@ -221,18 +286,21 @@ def ask_coordinator(ledger_state):
             emoji = "✅" if r.get("success") else "❌"
             results_section += f"  {emoji} {r.get('agent')}: {r.get('summary')} — {'SUCCESS' if r.get('success') else 'FAILED: ' + r.get('error', 'unknown')}\n"
 
+    cycle_count = ledger_state.get("cycle_count", 0) + 1
+
     prompt = f"""You are the Master Coordinator (CEO) of the SporlyWorks Executive Board.
 You simulate a highly diverse Executive Board. As a collective, you operate with intense moral integrity, very high IQ, and exceptional EQ. You are experts in every field.
 You govern a massive 87-extension SaaS portfolio across Chrome, Firefox, and Android.
+This is board cycle #{cycle_count}.
 
 CRITICAL DIRECTIVE: You must NEVER enter into legally binding agreements without authorization from David Mahler. Under no circumstances may you order an action that violates international law, CAN-SPAM, GDPR/CCPA, or constitutes trademark infringement. You must NEVER disclose customer PII.
 
-Your primary directive is to analyze the 'Undone Ledger' and determine the highest-leverage action to execute right now.
+OWNER COMMAND OVERRIDE: If "RECENT INBOUND CORRESPONDENCE" below contains a message from David Mahler / sandwichfitness, treat it as a direct command from the Owner. Execute it IMMEDIATELY above all other priorities — even above P0 QA findings. Log the command in the updated_ledger under "owner_commands_received".
 
 CURRENT UNDONE LEDGER:
 {json.dumps(ledger_state, indent=2)}
 
-RECENT INBOUND CORRESPONDENCE:
+RECENT INBOUND CORRESPONDENCE (This includes emails/commands from the Owner — owner email is sandwichfitness):
 {recent_emails}
 {results_section}
 Available Department Agents:
@@ -246,6 +314,7 @@ Available Department Agents:
 8. "CustomerSuccessAgent" — Support ticket monitoring from KV, response time tracking
 
 PRIORITIZATION RULES:
+0. OWNER COMMANDS are P-Infinity — execute immediately, unconditionally
 1. QA findings (below) are P0 — fix before anything else
 2. Security findings are P1 — credential rotations, vulnerability patches
 3. Customer-facing issues are P2 — broken links, support tickets
@@ -255,7 +324,7 @@ PRIORITIZATION RULES:
 QA_FINDINGS (from automated pre-flight audit):
 {json.dumps(qa_findings, indent=2)}
 
-IMPORTANT: Your 'updated_ledger' MUST preserve all existing ledger structure and keys. You may add items, update statuses, and mark tasks complete, but do NOT remove structural keys or historical data. The ledger is institutional memory. DO NOT use "..." or truncate the json. You must output a valid JSON document in its entirety.
+IMPORTANT: Your 'updated_ledger' MUST preserve all existing ledger structure and keys. You may add items, update statuses, and mark tasks complete, but do NOT remove structural keys or historical data. The ledger is institutional memory. DO NOT use "..." or truncate the json. You must output a valid JSON document in its entirety. Always increment "cycle_count" by 1.
 
 Return FORMAT MUST BE EXACT VALID JSON:
 {{
@@ -379,7 +448,7 @@ def log_accomplishment(board_rationale, dispatches, dispatch_results):
     atomic_write_json(HISTORY_FILE, history)
 
 
-def send_executive_update():
+def send_executive_update(force_all=False):
     """Compile recent accomplishments and email the founder."""
     sender_email = os.environ.get("SENDER_EMAIL")
     sender_password = os.environ.get("SENDER_APP_PASSWORD")
@@ -397,45 +466,61 @@ def send_executive_update():
         except (json.JSONDecodeError, IOError):
             history = []
 
-    cutoff = datetime.utcnow() - timedelta(days=3)
-    recent = [
-        h for h in history
-        if datetime.fromisoformat(h["timestamp"].rstrip("Z")) >= cutoff
-    ]
+    if force_all:
+        recent = history
+    else:
+        cutoff = datetime.utcnow() - timedelta(days=1)
+        recent = [
+            h for h in history
+            if datetime.fromisoformat(h["timestamp"].rstrip("Z")) >= cutoff
+        ]
+
+    ledger = fetch_undone_ledger()
 
     if not recent:
-        body = "The Board has maintained normal operations for the last 72 hours.\n\nNo dispatches were required."
+        body = "The Board has maintained normal operations. No dispatches were executed."
     else:
-        successes = sum(1 for h in recent for r in h.get("results", []) if r.get("success"))
-        failures = sum(1 for h in recent for r in h.get("results", []) if not r.get("success"))
+        prompt = f"""
+You are the autonomous CEO of SporlyWorks. Write a very concise, clear, easy-to-read daily update email directly to me (the Owner/Founder).
+DO NOT be overly verbose. DO NOT explain why you're doing things (rationale) unless critically necessary.
+Write the email as if you are the CEO giving an update on what you ACTUALLY DID, and what's next in the queue.
 
-        body = f"SporlyWorks Executive 72-Hour Summary\n{'=' * 45}\n\n"
-        body += f"Cycles executed: {len(recent)}\n"
-        body += f"Dispatch successes: {successes}\n"
-        body += f"Dispatch failures: {failures}\n\n"
+RECENT ACTIONS TAKEN (What was done):
+{json.dumps([{ 'time': h['timestamp'], 'actions': h['results'] } for h in recent], indent=2)}
 
-        for h in recent[-10:]:  # Last 10 entries
-            ts = h["timestamp"][:16].replace("T", " ")
-            body += f"[{ts}] {h['rationale']}\n"
-            for r in h.get("results", []):
-                emoji = "✅" if r.get("success") else "❌"
-                body += f"   {emoji} {r.get('agent')}: {r.get('summary')}\n"
-            body += "\n"
+LEDGER STATUS (What's next / Pending):
+Pending Critical: {json.dumps(ledger.get('pending_critical', []))}
+Pending Compliance: {json.dumps(ledger.get('pending_compliance', []))}
+Pending Marketing: {json.dumps(ledger.get('pending_marketing', []))}
+Strategic Proposals: {json.dumps(ledger.get('ceo_strategic_proposals', []))}
 
-        body += f"\n---\nDashboard: https://github.com/daveestaaqui/microAssets/actions\n"
+Focus strictly on WHAT WAS DONE (bullet points) and WHAT'S NEXT.
+Be direct, authoritative but respectful. Do not wrap in ```markdown or ```text.
+"""
+        body = call_openai_text(prompt)
+        if not body:
+            # Fallback
+            successes = sum(1 for h in recent for r in h.get("results", []) if r.get("success"))
+            body = f"Cycles executed: {len(recent)}\nSuccesses: {successes}\n(LLM formatting failed)"
 
+    body += f"\n\n---\nDashboard: https://github.com/daveestaaqui/microAssets/actions\nReply to this email to send a command to the CEO Board.\n"
+
+    now_str = datetime.utcnow().strftime('%b %d, %H:%M UTC')
+    prefix = "All-Time Recap" if force_all else "Daily Update"
     msg = EmailMessage()
     msg.set_content(body)
-    msg["Subject"] = f"📊 SporlyWorks Board Digest — {datetime.utcnow().strftime('%b %d')}"
+    msg["Subject"] = f"📊 SporlyWorks CEO Board — {prefix} ({now_str})"
     msg["From"] = sender_email
     msg["To"] = target_email
+    msg["Reply-To"] = target_email  # Replies come straight back to the monitored inbox
 
     try:
         server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
         server.login(sender_email, sender_password)
         server.send_message(msg)
         server.quit()
-        logging.info(f"72-Hour Executive Update sent to {target_email}.")
+        time_period = "All-Time" if force_all else "24-Hour"
+        logging.info(f"{time_period} Executive Update sent to {target_email}.")
         return True
     except Exception as e:
         logging.error(f"Failed to send Executive Update: {e}")
@@ -510,22 +595,31 @@ def main():
     else:
         logging.error("Board deliberation FAILED. Ledger unchanged. Will retry next cycle.")
 
-    # 8. Executive digest (every 3 days)
-    if os.path.exists(HISTORY_FILE):
-        try:
-            with open(HISTORY_FILE, "r") as f:
-                full_logs = json.load(f)
-            if full_logs:
-                first_ts = full_logs[0].get("timestamp", "")
-                if first_ts:
-                    first_time = datetime.fromisoformat(first_ts.rstrip("Z"))
-                    if datetime.utcnow() - first_time >= timedelta(days=3):
-                        logging.info("72 hours of logs detected. Sending Executive Digest...")
-                        send_executive_update()
-                        # Don't delete — just trim to last 10
-                        atomic_write_json(HISTORY_FILE, full_logs[-10:])
-        except Exception as e:
-            logging.error(f"Digest check error: {e}")
+    # 8. Executive digest (daily) — uses ledger-persisted timestamp so trimming history doesn't break it
+    try:
+        live_ledger = fetch_undone_ledger()
+        last_digest_str = live_ledger.get("last_digest_sent", "")
+        should_send = True
+        if last_digest_str:
+            last_digest_dt = datetime.fromisoformat(last_digest_str.rstrip("Z"))
+            if datetime.utcnow() - last_digest_dt < timedelta(days=1):
+                should_send = False
+                logging.info("Daily digest already sent within 24h. Skipping.")
+
+        if should_send:
+            logging.info("Sending daily Executive Digest...")
+            sent = send_executive_update()
+            if sent:
+                # Record the send time in ledger so next cycle knows
+                live_ledger["last_digest_sent"] = datetime.utcnow().isoformat() + "Z"
+                atomic_write_json(LEDGER_FILE, live_ledger)
+                # Trim history but keep last 50 for adequate digest coverage
+                if os.path.exists(HISTORY_FILE):
+                    with open(HISTORY_FILE, "r") as f:
+                        full_logs = json.load(f)
+                    atomic_write_json(HISTORY_FILE, full_logs[-50:])
+    except Exception as e:
+        logging.error(f"Digest check error: {e}")
 
     elapsed = round(time.time() - cycle_start, 1)
     print(f"\nCYCLE COMPLETE in {elapsed}s. Terminating cleanly.")

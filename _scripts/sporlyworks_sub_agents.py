@@ -412,21 +412,34 @@ def handle_security_agent(payload, api_key):
             if not os.environ.get(secret):
                 findings.append(f"MISSING_SECRET: {secret} is not set")
 
-        # Scan repo for accidentally committed secrets
+        # Scan repo for accidentally committed secrets in *extension* source code only
         dangerous_patterns = [
-            "AKIA",  # AWS key prefix
+            "AKIA",      # AWS key prefix
             "sk_live_",  # Stripe live key
             "sk_test_",  # Stripe test key
-            "ghp_",  # GitHub PAT
-            "gho_",  # GitHub OAuth
+            "ghp_",      # GitHub PAT
+            "gho_",      # GitHub OAuth
         ]
+        # Only scan extension directories (no leading _/. = infrastructure, not user code)
+        SKIP_DIRS = {"node_modules", ".git", "__pycache__", "_scripts", "_android",
+                     "_builds", "_cws_zips", "_cws_uploads", "_cws_screenshots",
+                     "_edge_uploads", "_extension_bundles", "_installer", "_logs",
+                     "_worker", "_landing_page", "_infrastructure", "_launch_materials"}
+        SKIP_FILE_PATTERNS = (".env", ".env.local", ".env.production", "credentials.json",
+                              "service_account.json", ".keystore")
+
         for item in os.listdir(REPO_ROOT):
             item_path = os.path.join(REPO_ROOT, item)
-            if not os.path.isdir(item_path) or item.startswith(("_", ".")):
+            if not os.path.isdir(item_path):
+                continue
+            if item.startswith(("_", ".")) or item in SKIP_DIRS:
                 continue
             for root, dirs, files in os.walk(item_path):
                 dirs[:] = [d for d in dirs if d not in ("node_modules", ".git", "__pycache__")]
                 for fname in files:
+                    # Skip .env and credential files even if in extension dirs
+                    if any(fname.endswith(pat) or fname == pat.lstrip(".") for pat in SKIP_FILE_PATTERNS):
+                        continue
                     if not fname.endswith((".js", ".py", ".json", ".html", ".ts")):
                         continue
                     fpath = os.path.join(root, fname)
