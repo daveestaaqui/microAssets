@@ -44,6 +44,7 @@ jobs:
           RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
           RAILWAY_DAEMON_URL: ${{ secrets.RAILWAY_DAEMON_URL }}
           OMNISUITE_SECRET: ${{ secrets.OMNISUITE_SECRET }}
+          OWNER_EMAIL: ${{ secrets.OWNER_EMAIL }}
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
         run: |
           cd _scripts && python sporlyworks_board_coordinator.py
