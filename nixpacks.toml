@@ -1,0 +1,11 @@
+[providers]
+python = {}
+
+[phases.setup]
+nixPkgs = ["python3", "git"]
+
+[phases.install]
+cmds = ["python -m venv /opt/venv", ". /opt/venv/bin/activate", "pip install -r requirements.txt"]
+
+[start]
+cmd = ". /opt/venv/bin/activate && cd _scripts && gunicorn cws_wave_daemon:app --workers 1 --bind 0.0.0.0:$PORT"
