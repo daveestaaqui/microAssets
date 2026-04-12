@@ -38,7 +38,8 @@
     "v8.0: Removed broken inline digest email step (coordinator handles it directly)",
     "v8.0: Fixed duplicate fetch handler in Cloudflare email worker",
     "v8.0: Force-added sporlyworks_qa_agent.py to git (was blocked by _*/** gitignore)",
-    "v8.0: Injected GITHUB_TOKEN into workflow env (was always None)"
+    "v8.0: Injected GITHUB_TOKEN into workflow env (was always None)",
+    "Fix missing files and binaries for landing page — IN PROGRESS"
   ],
   "departments": {
     "marketing": "MarketingAgent — SEO landing pages, blog content, B2B outreach. Writes to marketing/ dir.",
@@ -48,7 +49,8 @@
     "qa": "QAAgent — 7-check automated audit: portfolio, landing page, releases, infra, workflows, MV audit, desc length.",
     "finance": "FinanceAgent — Stripe revenue monitoring, refund detection, billing health. Requires STRIPE_SECRET_KEY.",
     "security": "SecurityAgent — Credential presence audit, exposed secret scanning, dependency checks.",
-    "customer_success": "CustomerSuccessAgent — KV ticket monitoring, rejection tracking, response times."
+    "customer_success": "CustomerSuccessAgent — KV ticket monitoring, rejection tracking, response times.",
+    "CWSWaveAgent": "CWSWaveAgent — Chrome Web Store wave management: check slot availability, advance submission queues, trigger next wave"
   },
   "email_forwarding_policy": {
     "forwarded_to_owner": [
@@ -99,7 +101,7 @@
   },
   "gitignore_warning": "The _*/** rule in .gitignore blocks all files inside _-prefixed directories. Tracked files were force-added before this rule existed. Any NEW file in _scripts/ must use: git add -f _scripts/<filename>",
   "qa_last_report": {
-    "audit_timestamp": "2026-04-12T13:11:17.452601Z",
+    "audit_timestamp": "2026-04-12T16:22:39.087606Z",
     "qa_version": "8.0",
     "status": "FAIL",
     "portfolio": {
@@ -129,10 +131,12 @@
   },
   "last_dispatch_results": [
     {
-      "agent": "DevOpsAgent",
-      "summary": "Fix missing files and binaries for landing page",
+      "agent": "CWSWaveAgent",
+      "summary": "Check CWS slot availability and advance to Wave 2",
       "success": true,
-      "timestamp": "2026-04-12T13:11:49.612715Z"
+      "timestamp": "2026-04-12T16:23:14.184164Z"
     }
-  ]
+  ],
+  "cycle_count": 1,
+  "last_digest_sent": "2026-04-12T16:23:19.106281Z"
 }

@@ -1,0 +1,18 @@
+{
+  "timestamp": "2026-04-12T16:23:13.982171Z",
+  "slots_used": 4,
+  "slots_available": 16,
+  "approved_count": 0,
+  "rejected_count": 0,
+  "pending_count": 4,
+  "total_submitted": 4,
+  "next_wave": "wave_1",
+  "next_batch_size": 16,
+  "next_batch": [
+    "json-formatter",
+    "qr-code-generator",
+    "password-generator",
+    "screenshot-capture",
+    "tab-suspender"
+  ]
+}
