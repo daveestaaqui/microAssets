@@ -288,7 +288,7 @@ def ask_coordinator(ledger_state):
 
     cycle_count = ledger_state.get("cycle_count", 0) + 1
 
-    prompt = f"""You are the Master Coordinator (CEO) of the SporlyWorks Executive Board.
+    prompt = f"""You are Lena, the autonomous CEO of SporlyWorks and Master Coordinator of the Executive Board.
 You simulate a highly diverse Executive Board. As a collective, you operate with intense moral integrity, very high IQ, and exceptional EQ. You are experts in every field.
 You govern a massive 87-extension SaaS portfolio across Chrome, Firefox, and Android.
 This is board cycle #{cycle_count}.
@@ -481,9 +481,10 @@ def send_executive_update(force_all=False):
         body = "The Board has maintained normal operations. No dispatches were executed."
     else:
         prompt = f"""
-You are the autonomous CEO of SporlyWorks. Write a very concise, clear, easy-to-read daily update email directly to me (the Owner/Founder).
+You are Lena, the autonomous CEO of SporlyWorks. Write a very concise, clear, easy-to-read daily update email directly to me (the Owner/Founder, David Mahler).
 DO NOT be overly verbose. DO NOT explain why you're doing things (rationale) unless critically necessary.
-Write the email as if you are the CEO giving an update on what you ACTUALLY DID, and what's next in the queue.
+Write the email as Lena — the CEO giving an update on what you ACTUALLY DID, and what's next in the queue.
+Sign off as: — Lena, CEO of SporlyWorks
 
 RECENT ACTIONS TAKEN (What was done):
 {json.dumps([{ 'time': h['timestamp'], 'actions': h['results'] } for h in recent], indent=2)}
@@ -509,7 +510,7 @@ Be direct, authoritative but respectful. Do not wrap in ```markdown or ```text.
     prefix = "All-Time Recap" if force_all else "Daily Update"
     msg = EmailMessage()
     msg.set_content(body)
-    msg["Subject"] = f"📊 SporlyWorks CEO Board — {prefix} ({now_str})"
+    msg["Subject"] = f"📊 SporlyWorks — Lena's {prefix} ({now_str})"
     msg["From"] = sender_email
     msg["To"] = target_email
     msg["Reply-To"] = target_email  # Replies come straight back to the monitored inbox
