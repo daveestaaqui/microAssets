@@ -527,6 +527,108 @@ def handle_customer_success_agent(payload, api_key):
         return False
 
 
+# ── 9. CWS Wave Daemon Agent ─────────────────────────────────────────────
+
+def handle_cws_wave_agent(payload, api_key):
+    """Manage Chrome Web Store submission waves.
+    Reads the local cws_submission_queue.json, counts available slots,
+    and triggers the next wave via the Railway daemon webhook.
+    """
+    task = payload.get("task", "check_and_advance")
+    logging.info(f"CWSWaveAgent: {task}")
+
+    queue_file = os.path.join(REPO_ROOT, "cws_submission_queue.json")
+    ids_file = os.path.join(REPO_ROOT, "_scripts", "cws_extension_ids.json")
+
+    if not os.path.isfile(queue_file):
+        logging.error("cws_submission_queue.json not found.")
+        return False
+
+    with open(queue_file) as f:
+        queue = json.load(f)
+
+    cws_ids = {}
+    if os.path.isfile(ids_file):
+        with open(ids_file) as f:
+            cws_ids = json.load(f)
+
+    submissions = queue.get("submissions", {})
+    max_slots = queue.get("config", {}).get("max_slots", 20)
+
+    # Count slot usage
+    pending = [k for k, v in submissions.items() if v.get("status") == "pending_review"]
+    approved = [k for k, v in submissions.items() if v.get("status") in ("published", "approved")]
+    rejected = [k for k, v in submissions.items() if v.get("status") == "rejected"]
+    available_slots = max(0, max_slots - len(pending))
+
+    # Find next un-submitted extensions across all waves
+    next_batch = []
+    current_wave = None
+    for wave_id in sorted(queue.get("waves", {}).keys()):
+        wave = queue["waves"][wave_id]
+        if wave.get("status") == "completed":
+            continue
+        for ext in wave.get("items", []):
+            if ext not in submissions and available_slots > len(next_batch):
+                next_batch.append(ext)
+                current_wave = wave_id
+
+    report = {
+        "timestamp": datetime.utcnow().isoformat() + "Z",
+        "slots_used": len(pending),
+        "slots_available": available_slots,
+        "approved_count": len(approved),
+        "rejected_count": len(rejected),
+        "pending_count": len(pending),
+        "total_submitted": len(submissions),
+        "next_wave": current_wave,
+        "next_batch_size": len(next_batch),
+        "next_batch": next_batch[:5],  # first 5 for the report
+    }
+
+    report_path = os.path.join(REPO_ROOT, "marketing", "cws_wave_status.json")
+    os.makedirs(os.path.dirname(report_path), exist_ok=True)
+    with open(report_path, "w") as f:
+        json.dump(report, f, indent=2)
+
+    logging.info(
+        f"CWS queue: {len(pending)} pending / {available_slots} slots free / "
+        f"{len(approved)} approved / {len(rejected)} rejected. "
+        f"Next: {current_wave} ({len(next_batch)} items)"
+    )
+
+    if task == "check_and_advance" and available_slots > 0 and next_batch:
+        # Attempt to trigger the Railway daemon to advance the wave
+        daemon_url = os.environ.get("RAILWAY_DAEMON_URL", "")
+        daemon_secret = os.environ.get("OMNISUITE_SECRET", "")
+        if daemon_url and daemon_secret:
+            try:
+                import json as _json
+                payload_data = _json.dumps({
+                    "extensions": next_batch,
+                    "wave": current_wave
+                }).encode("utf-8")
+                req = urllib.request.Request(
+                    f"{daemon_url.rstrip('/')}/submit-wave",
+                    data=payload_data,
+                    headers={
+                        "Content-Type": "application/json",
+                        "X-Omnisuite-Token": daemon_secret
+                    },
+                    method="POST"
+                )
+                with urllib.request.urlopen(req, timeout=15) as resp:
+                    result = resp.read().decode("utf-8")
+                    logging.info(f"✅ Wave daemon triggered: {result[:200]}")
+                    return True
+            except Exception as e:
+                logging.warning(f"Railway daemon unreachable ({e}). Logging intent to ledger only.")
+        else:
+            logging.info(f"RAILWAY_DAEMON_URL not set. Reporting queue status only. Next batch: {next_batch}")
+
+    return True
+
+
 # ── Master Router ────────────────────────────────────────────────────────
 
 def route_payload(dispatch, api_key):
@@ -543,6 +645,7 @@ def route_payload(dispatch, api_key):
         "FinanceAgent": handle_finance_agent,
         "SecurityAgent": handle_security_agent,
         "CustomerSuccessAgent": handle_customer_success_agent,
+        "CWSWaveAgent": handle_cws_wave_agent,
     }
 
     handler = handlers.get(target)

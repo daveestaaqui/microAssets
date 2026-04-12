@@ -125,11 +125,16 @@ def redact_pii(text):
 def fetch_recent_emails():
     """Fetch latest unread emails (headers + body) from Gmail IMAP.
     Marks them as read so the CEO can process user commands exactly once.
+    Returns (summary_string, has_owner_command, raw_owner_commands).
     """
     sender_email = os.environ.get("SENDER_EMAIL")
     sender_password = os.environ.get("SENDER_APP_PASSWORD")
     if not sender_email or not sender_password:
-        return "IMAP credentials missing. Cannot fetch correspondence."
+        return "IMAP credentials missing. Cannot fetch correspondence.", False, []
+
+    owner_indicators = ["sandwichfitness", "david", "davidmahler"]
+    has_owner_command = False
+    raw_owner_commands = []
 
     try:
         mail = imaplib.IMAP4_SSL("imap.gmail.com")
@@ -139,7 +144,7 @@ def fetch_recent_emails():
         status, messages = mail.search(None, "UNSEEN")
         if status != "OK" or not messages[0]:
             mail.logout()
-            return "No new unread correspondence."
+            return "No new unread correspondence.", False, []
 
         email_ids = messages[0].split()
         latest_ids = email_ids[-25:]
@@ -159,7 +164,7 @@ def fetch_recent_emails():
                         else:
                             subject = decoded
                     from_ = msg.get("From", "unknown")
-                    
+
                     # Extract Body
                     body = ""
                     if msg.is_multipart():
@@ -168,7 +173,7 @@ def fetch_recent_emails():
                             if content_type == "text/plain":
                                 try:
                                     body = part.get_payload(decode=True).decode()
-                                    break # Got the plain text
+                                    break  # Got the plain text
                                 except Exception:
                                     pass
                     else:
@@ -179,17 +184,66 @@ def fetch_recent_emails():
 
                     # Clean up body to not be huge
                     lines = [ln.strip() for ln in body.splitlines() if ln.strip()]
-                    cleaned_body = "\\n".join(lines[:10]) # First 10 non-empty lines
+                    cleaned_body = "\\n".join(lines[:10])  # First 10 non-empty lines
                     if len(lines) > 10:
                         cleaned_body += "\\n[...truncated]"
 
                     inbound_str += f"\\n--- EMAIL ---\\nFrom: {from_}\\nSubject: {subject}\\nBody: {cleaned_body}\\n"
 
+                    # Detect owner commands
+                    from_lower = from_.lower()
+                    if any(ind in from_lower for ind in owner_indicators):
+                        # Don't flag our own outgoing digests bouncing back
+                        subject_lower = subject.lower()
+                        is_our_digest = "lena's" in subject_lower or "sporlyworks ceo board" in subject_lower
+                        if not is_our_digest and body.strip():
+                            has_owner_command = True
+                            raw_owner_commands.append({
+                                "from": from_,
+                                "subject": subject,
+                                "body": "\n".join(lines[:5])
+                            })
+
         mail.logout()
-        return redact_pii(inbound_str) if inbound_str else "No new unread correspondence."
+        result_str = redact_pii(inbound_str) if inbound_str else "No new unread correspondence."
+        return result_str, has_owner_command, raw_owner_commands
     except Exception as e:
         logging.error(f"IMAP Fetch Error: {e}")
-        return f"Error fetching mail: {e}"
+        return f"Error fetching mail: {e}", False, []
+
+
+def send_owner_ack(owner_commands):
+    """Send a brief acknowledgment to the owner when their command was received."""
+    sender_email = os.environ.get("SENDER_EMAIL")
+    sender_password = os.environ.get("SENDER_APP_PASSWORD")
+    target_email = os.environ.get("MICROASSETS_LOGIN_EMAIL", sender_email)
+    if not sender_email or not sender_password:
+        return
+
+    try:
+        cmds_summary = "\n".join(
+            f"  • [{c['subject']}]: {c['body'][:120]}" for c in owner_commands
+        )
+        body = (
+            f"Hi David,\n\n"
+            f"Lena here. I've received your command(s) and will prioritize them in the next board cycle (runs every 4 hours):\n\n"
+            f"{cmds_summary}\n\n"
+            f"You'll see the outcome in your next daily digest.\n\n"
+            f"— Lena, CEO of SporlyWorks"
+        )
+        msg = EmailMessage()
+        msg.set_content(body)
+        msg["Subject"] = "✅ Lena received your command"
+        msg["From"] = sender_email
+        msg["To"] = target_email
+        server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
+        server.login(sender_email, sender_password)
+        server.send_message(msg)
+        server.quit()
+        logging.info(f"Owner ACK sent for {len(owner_commands)} command(s).")
+    except Exception as e:
+        logging.error(f"Failed to send owner ACK: {e}")
+
 
 
 # ── OpenAI Integration ──────────────────────────────────────────────────
@@ -274,8 +328,35 @@ def call_openai_text(prompt, max_retries=3):
 
 def ask_coordinator(ledger_state):
     """Build the CEO prompt and call the LLM."""
-    recent_emails = fetch_recent_emails()
+    recent_emails, has_owner_command, raw_cmds = fetch_recent_emails()
     qa_findings = ledger_state.get("qa_last_report", {}).get("findings", [])
+
+    # Auto-ACK owner commands immediately before the main cycle
+    if has_owner_command and raw_cmds:
+        logging.info(f"Owner command detected ({len(raw_cmds)} message(s)). Sending ACK...")
+        send_owner_ack(raw_cmds)
+
+    # Get CWS queue snapshot for context
+    cws_snapshot = ""
+    queue_file = os.path.join(os.path.dirname(LEDGER_FILE), "..", "cws_submission_queue.json")
+    if os.path.isfile(queue_file):
+        try:
+            with open(queue_file) as f:
+                q = json.load(f)
+            subs = q.get("submissions", {})
+            pending_c = sum(1 for v in subs.values() if v.get("status") == "pending_review")
+            approved_c = sum(1 for v in subs.values() if v.get("status") in ("published", "approved"))
+            rejected_c = sum(1 for v in subs.values() if v.get("status") == "rejected")
+            total_ext = sum(len(w.get("items", [])) for w in q.get("waves", {}).values())
+            unsubmitted = total_ext - len(subs)
+            max_slots = q.get("config", {}).get("max_slots", 20)
+            cws_snapshot = (
+                f"CWS SUBMISSION QUEUE: {pending_c} pending review / {approved_c} approved / "
+                f"{rejected_c} rejected / {unsubmitted} not yet submitted / "
+                f"{max(0, max_slots - pending_c)} slots available (max {max_slots})"
+            )
+        except Exception:
+            pass
 
     # Get last cycle's dispatch results if available
     last_results = ledger_state.get("last_dispatch_results", [])
@@ -300,6 +381,8 @@ OWNER COMMAND OVERRIDE: If "RECENT INBOUND CORRESPONDENCE" below contains a mess
 CURRENT UNDONE LEDGER:
 {json.dumps(ledger_state, indent=2)}
 
+{cws_snapshot}
+
 RECENT INBOUND CORRESPONDENCE (This includes emails/commands from the Owner — owner email is sandwichfitness):
 {recent_emails}
 {results_section}
@@ -312,6 +395,7 @@ Available Department Agents:
 6. "FinanceAgent" — Stripe revenue monitoring, refund tracking, billing health
 7. "SecurityAgent" — Credential rotation reminders, dependency audit, vulnerability scanning
 8. "CustomerSuccessAgent" — Support ticket monitoring from KV, response time tracking
+9. "CWSWaveAgent" — Chrome Web Store wave management: check slot availability, advance submission queues, trigger next wave
 
 PRIORITIZATION RULES:
 0. OWNER COMMANDS are P-Infinity — execute immediately, unconditionally
@@ -332,9 +416,9 @@ Return FORMAT MUST BE EXACT VALID JSON:
   "updated_ledger": {{"insert_full": "updated ledger here, maintaining all previous schema and values"}},
   "dispatches": [
     {{
-      "target_agent": "MarketingAgent",
-      "action_summary": "Generate high-conversion B2B SEO landing page",
-      "payload": {{"app_id": "word-counter", "task": "generate_landing_page", "angle": "b2b_productivity"}}
+      "target_agent": "CWSWaveAgent",
+      "action_summary": "Check CWS slot availability and advance to Wave 2",
+      "payload": {{"task": "check_and_advance"}}
     }}
   ]
 }}"""
@@ -448,8 +532,84 @@ def log_accomplishment(board_rationale, dispatches, dispatch_results):
     atomic_write_json(HISTORY_FILE, history)
 
 
+def _build_live_snapshot(ledger):
+    """Build a compact plain-text live status block from local data files."""
+    lines = []
+
+    # CWS Submission Queue
+    queue_file = os.path.join(SCRIPT_DIR, "..", "cws_submission_queue.json")
+    if os.path.isfile(queue_file):
+        try:
+            with open(queue_file) as f:
+                q = json.load(f)
+            subs = q.get("submissions", {})
+            pending_c  = sum(1 for v in subs.values() if v.get("status") == "pending_review")
+            approved_c = sum(1 for v in subs.values() if v.get("status") in ("published", "approved"))
+            rejected_c = sum(1 for v in subs.values() if v.get("status") == "rejected")
+            total_ext  = sum(len(w.get("items", [])) for w in q.get("waves", {}).values())
+            unsubmitted = total_ext - len(subs)
+            max_slots = q.get("config", {}).get("max_slots", 20)
+            slots_free = max(0, max_slots - pending_c)
+            lines.append(
+                f"CWS Queue: {approved_c} approved | {pending_c} pending review | "
+                f"{rejected_c} rejected | {unsubmitted} not yet submitted | "
+                f"{slots_free}/{max_slots} slots free"
+            )
+        except Exception:
+            lines.append("CWS Queue: unable to read")
+
+    # QA Status from ledger
+    qa = ledger.get("qa_last_report", {})
+    if qa:
+        qa_status = qa.get("status", "UNKNOWN")
+        qa_findings = len(qa.get("findings", []))
+        chrome = qa.get("portfolio", {}).get("chrome_extensions", "?")
+        firefox = qa.get("portfolio", {}).get("firefox_extensions", "?")
+        lines.append(
+            f"QA: {qa_status} | {qa_findings} finding(s) | "
+            f"{chrome} Chrome + {firefox} Firefox extensions in portfolio"
+        )
+
+    # Infrastructure health (from saved report if available)
+    infra_file = os.path.join(SCRIPT_DIR, "..", "marketing", "infra_health.json")
+    if os.path.isfile(infra_file):
+        try:
+            with open(infra_file) as f:
+                infra = json.load(f)
+            checks = infra.get("checks", {})
+            statuses = {k: v.get("status") for k, v in checks.items()}
+            ok = [k for k, s in statuses.items() if s == "HEALTHY"]
+            down = [k for k, s in statuses.items() if s != "HEALTHY"]
+            lines.append(
+                f"Infra: {len(ok)} healthy / {len(down)} down"
+                + (f" ({', '.join(down)})" if down else "")
+            )
+        except Exception:
+            pass
+
+    # Finance snapshot
+    finance_file = os.path.join(SCRIPT_DIR, "..", "marketing", "finance_report.json")
+    if os.path.isfile(finance_file):
+        try:
+            with open(finance_file) as f:
+                fin = json.load(f)
+            if fin.get("status") == "NO_CREDENTIALS":
+                lines.append("Finance: Stripe key not configured")
+            else:
+                rev = fin.get("total_revenue_cents", 0) / 100
+                lines.append(
+                    f"Finance: ${rev:.2f} recent revenue | "
+                    f"{fin.get('refunds', 0)} refunds | Status: {fin.get('status', '?')}"
+                )
+        except Exception:
+            pass
+
+    return "\n".join(lines) if lines else "No live snapshot data available yet."
+
+
 def send_executive_update(force_all=False):
     """Compile recent accomplishments and email the founder."""
+
     sender_email = os.environ.get("SENDER_EMAIL")
     sender_password = os.environ.get("SENDER_APP_PASSWORD")
     target_email = "sandwichfitness@gmail.com"
@@ -477,8 +637,24 @@ def send_executive_update(force_all=False):
 
     ledger = fetch_undone_ledger()
 
+    # Build live snapshot block (always included regardless of history)
+    live_snapshot = _build_live_snapshot(ledger)
+
     if not recent:
-        body = "The Board has maintained normal operations. No dispatches were executed."
+        prompt = f"""You are Lena, the autonomous CEO of SporlyWorks. Write a concise, direct status email to the Owner/Founder (David Mahler).
+No dispatches executed since last report. Focus on current state and what is immediately next.
+Sign off as: — Lena, CEO of SporlyWorks
+
+CURRENT SYSTEM STATUS:
+{live_snapshot}
+
+LEDGER STATUS (Pending Items):
+Pending Critical: {json.dumps(ledger.get('pending_critical', []))}
+Pending Compliance: {json.dumps(ledger.get('pending_compliance', []))}
+Pending Marketing: {json.dumps(ledger.get('pending_marketing', []))}
+
+Be brief. Do not wrap in ```markdown or ```text."""
+        body = call_openai_text(prompt) or f"System operational. No dispatches this period.\n\n{live_snapshot}"
     else:
         prompt = f"""
 You are Lena, the autonomous CEO of SporlyWorks. Write a very concise, clear, easy-to-read daily update email directly to me (the Owner/Founder, David Mahler).
@@ -495,16 +671,19 @@ Pending Compliance: {json.dumps(ledger.get('pending_compliance', []))}
 Pending Marketing: {json.dumps(ledger.get('pending_marketing', []))}
 Strategic Proposals: {json.dumps(ledger.get('ceo_strategic_proposals', []))}
 
+LIVE SYSTEM STATUS:
+{live_snapshot}
+
 Focus strictly on WHAT WAS DONE (bullet points) and WHAT'S NEXT.
 Be direct, authoritative but respectful. Do not wrap in ```markdown or ```text.
 """
         body = call_openai_text(prompt)
         if not body:
-            # Fallback
             successes = sum(1 for h in recent for r in h.get("results", []) if r.get("success"))
-            body = f"Cycles executed: {len(recent)}\nSuccesses: {successes}\n(LLM formatting failed)"
+            body = f"Cycles executed: {len(recent)}\nSuccesses: {successes}\n\n{live_snapshot}\n(LLM formatting failed)"
 
-    body += f"\n\n---\nDashboard: https://github.com/daveestaaqui/microAssets/actions\nReply to this email to send a command to the CEO Board.\n"
+    body += f"\n\n---\nDashboard: https://github.com/daveestaaqui/microAssets/actions\nReply to this email to send a command to Lena.\n"
+
 
     now_str = datetime.utcnow().strftime('%b %d, %H:%M UTC')
     prefix = "All-Time Recap" if force_all else "Daily Update"
