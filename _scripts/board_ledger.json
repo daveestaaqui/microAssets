@@ -99,7 +99,7 @@
   },
   "gitignore_warning": "The _*/** rule in .gitignore blocks all files inside _-prefixed directories. Tracked files were force-added before this rule existed. Any NEW file in _scripts/ must use: git add -f _scripts/<filename>",
   "qa_last_report": {
-    "audit_timestamp": "2026-04-12T05:56:33.560326Z",
+    "audit_timestamp": "2026-04-12T08:55:27.518896Z",
     "qa_version": "8.0",
     "status": "FAIL",
     "portfolio": {
@@ -132,7 +132,7 @@
       "agent": "DevOpsAgent",
       "summary": "Fix missing files and binaries for landing page",
       "success": true,
-      "timestamp": "2026-04-12T05:57:04.846605Z"
+      "timestamp": "2026-04-12T08:55:58.950731Z"
     }
   ]
 }
