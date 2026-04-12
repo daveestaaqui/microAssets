@@ -13,6 +13,9 @@ _*/**
 # BUT allow these CI/automation scripts
 !_scripts/version-bump.js
 !_scripts/cws_ci_publish.py
+!_scripts/cws_wave_daemon.py
+!_infrastructure/
+!_infrastructure/cloudflare_cws_email_worker.js
 !_scripts/board_ledger.json
 !_scripts/board_history.json
 
