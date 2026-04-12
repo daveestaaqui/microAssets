@@ -4,11 +4,13 @@
 # ============================================================
 
 [config]
-# Use gpt-4o-mini for cost efficiency (~$0.01-0.05 per review)
-model = "gpt-4o-mini"
+# Use gpt-4o for deep, thorough code reviews (~$0.10-0.20 per review)
+model = "gpt-4o"
 fallback_models = ["gpt-4o-mini"]
-# Max tokens for the model response
-max_model_tokens = 4096
+# Max tokens for the model response (gpt-4o supports 128k context)
+max_model_tokens = 8192
+# Larger patch for better context
+patching_extra_lines = 5
 
 # ── PR Description ─────────────────────────────────────────
 [pr_description]
@@ -34,8 +36,10 @@ ignore_pr_title = ["WIP", "DO NOT REVIEW"]
 
 # ── PR Code Suggestions ───────────────────────────────────
 [pr_code_suggestions]
-# Provide inline fix suggestions
-num_code_suggestions = 4
+# Provide inline fix suggestions (more with gpt-4o)
+num_code_suggestions = 6
+# Focus on actionable suggestions
+focus_only_on_problems = true
 
 # ── Path Filters ───────────────────────────────────────────
 # Skip store assets, icons, infra, and binary files

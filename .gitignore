@@ -10,6 +10,11 @@ sporlyworks_icons/
 *.jpg
 *.webp
 _*/**
+# BUT allow these CI/automation scripts
+!_scripts/version-bump.js
+!_scripts/cws_ci_publish.py
+!_scripts/board_ledger.json
+!_scripts/board_history.json
 
 # ============================================
 # SECURITY: Explicit secrets blocklist

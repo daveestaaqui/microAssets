@@ -1,0 +1,112 @@
+# CWS Publish Pipeline — SporlyWorks Extension Portfolio
+#
+# Manually triggered workflow that packages and publishes
+# extensions to the Chrome Web Store via the CWS API.
+#
+# Supports:
+#   - Publishing ALL extensions
+#   - Publishing only extensions changed since last release
+#   - Publishing a single specific extension
+#
+# Requires these GitHub Secrets:
+#   - CWS_CLIENT_ID
+#   - CWS_CLIENT_SECRET
+#   - CWS_REFRESH_TOKEN
+
+name: 🚀 CWS Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Publish mode'
+        required: true
+        type: choice
+        options:
+          - changed-only
+          - all
+          - single
+        default: changed-only
+      extension:
+        description: 'Extension name (only for "single" mode)'
+        required: false
+        type: string
+      dry_run:
+        description: 'Dry run (show what would be published)'
+        required: false
+        type: boolean
+        default: false
+
+concurrency:
+  group: cws-publish
+  cancel-in-progress: false  # Never cancel a publish in progress
+
+jobs:
+  publish:
+    name: 🚀 Publish to Chrome Web Store
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Setup Node (for version bumps)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Determine extensions to publish
+        id: discover
+        run: |
+          if [ "${{ inputs.mode }}" = "single" ]; then
+            echo "extensions=${{ inputs.extension }}" >> $GITHUB_OUTPUT
+            echo "📦 Publishing single extension: ${{ inputs.extension }}"
+          elif [ "${{ inputs.mode }}" = "changed-only" ]; then
+            CHANGED=$(git diff --name-only HEAD~1 HEAD | cut -d/ -f1 | sort -u | while read dir; do
+              [ -f "$dir/manifest.json" ] && echo "$dir"
+            done | tr '\n' ',' | sed 's/,$//')
+            echo "extensions=$CHANGED" >> $GITHUB_OUTPUT
+            echo "📦 Changed extensions: $CHANGED"
+          else
+            echo "extensions=all" >> $GITHUB_OUTPUT
+            echo "📦 Publishing ALL extensions"
+          fi
+
+      - name: Publish to CWS
+        if: inputs.dry_run == false
+        env:
+          CWS_CLIENT_ID: ${{ secrets.CWS_CLIENT_ID }}
+          CWS_CLIENT_SECRET: ${{ secrets.CWS_CLIENT_SECRET }}
+          CWS_REFRESH_TOKEN: ${{ secrets.CWS_REFRESH_TOKEN }}
+          PUBLISH_EXTENSIONS: ${{ steps.discover.outputs.extensions }}
+        run: |
+          python _scripts/cws_ci_publish.py
+
+      - name: Dry run — show what would be published
+        if: inputs.dry_run == true
+        run: |
+          echo "🏃 DRY RUN — would publish: ${{ steps.discover.outputs.extensions }}"
+          echo ""
+          echo "Extensions with CWS IDs:"
+          if [ -f "_scripts/cws_item_ids.json" ]; then
+            cat _scripts/cws_item_ids.json | python3 -c "
+          import json, sys
+          ids = json.load(sys.stdin)
+          for name, cid in sorted(ids.items()):
+              print(f'  {name}: {cid}')
+          print(f'\nTotal: {len(ids)} extensions')
+          "
+          else
+            echo "  ⚠️ No cws_item_ids.json found"
+          fi
