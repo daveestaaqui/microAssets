@@ -195,7 +195,7 @@ def fetch_recent_emails():
                     if any(ind in from_lower for ind in owner_indicators):
                         # Don't flag our own outgoing digests bouncing back
                         subject_lower = subject.lower()
-                        is_our_digest = "lena's" in subject_lower or "sporlyworks ceo board" in subject_lower
+                        is_our_digest = "lena voss" in subject_lower or "sporlyworks ceo board" in subject_lower
                         if not is_our_digest and body.strip():
                             has_owner_command = True
                             raw_owner_commands.append({
@@ -226,14 +226,14 @@ def send_owner_ack(owner_commands):
         )
         body = (
             f"Hi David,\n\n"
-            f"Lena here. I've received your command(s) and will prioritize them in the next board cycle (runs every 4 hours):\n\n"
+            f"Lena Voss here. I've received your command(s) and will prioritize them in the next board cycle (runs every 4 hours):\n\n"
             f"{cmds_summary}\n\n"
             f"You'll see the outcome in your next daily digest.\n\n"
-            f"— Lena, CEO of SporlyWorks"
+            f"— Lena Voss, CEO of SporlyWorks"
         )
         msg = EmailMessage()
         msg.set_content(body)
-        msg["Subject"] = "✅ Lena received your command"
+        msg["Subject"] = "✅ Lena Voss received your command"
         msg["From"] = sender_email
         msg["To"] = target_email
         server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
@@ -369,7 +369,7 @@ def ask_coordinator(ledger_state):
 
     cycle_count = ledger_state.get("cycle_count", 0) + 1
 
-    prompt = f"""You are Lena, the autonomous CEO of SporlyWorks and Master Coordinator of the Executive Board.
+    prompt = f"""You are Lena Voss, the autonomous CEO of SporlyWorks and Master Coordinator of the Executive Board.
 You simulate a highly diverse Executive Board. As a collective, you operate with intense moral integrity, very high IQ, and exceptional EQ. You are experts in every field.
 You govern a massive 87-extension SaaS portfolio across Chrome, Firefox, and Android.
 This is board cycle #{cycle_count}.
@@ -644,9 +644,9 @@ def send_executive_update(force_all=False):
     live_snapshot = _build_live_snapshot(ledger)
 
     if not recent:
-        prompt = f"""You are Lena, the autonomous CEO of SporlyWorks. Write a concise, direct status email to the Owner/Founder (David Mahler).
+        prompt = f"""You are Lena Voss, the autonomous CEO of SporlyWorks. Write a concise, direct status email to the Owner/Founder (David Mahler).
 No dispatches executed since last report. Focus on current state and what is immediately next.
-Sign off as: — Lena, CEO of SporlyWorks
+Sign off as: — Lena Voss, CEO of SporlyWorks
 
 CURRENT SYSTEM STATUS:
 {live_snapshot}
@@ -660,10 +660,10 @@ Be brief. Do not wrap in ```markdown or ```text."""
         body = call_openai_text(prompt) or f"System operational. No dispatches this period.\n\n{live_snapshot}"
     else:
         prompt = f"""
-You are Lena, the autonomous CEO of SporlyWorks. Write a very concise, clear, easy-to-read daily update email directly to me (the Owner/Founder, David Mahler).
+You are Lena Voss, the autonomous CEO of SporlyWorks. Write a very concise, clear, easy-to-read daily update email directly to me (the Owner/Founder, David Mahler).
 DO NOT be overly verbose. DO NOT explain why you're doing things (rationale) unless critically necessary.
-Write the email as Lena — the CEO giving an update on what you ACTUALLY DID, and what's next in the queue.
-Sign off as: — Lena, CEO of SporlyWorks
+Write the email as Lena Voss — the CEO giving an update on what you ACTUALLY DID, and what's next in the queue.
+Sign off as: — Lena Voss, CEO of SporlyWorks
 
 RECENT ACTIONS TAKEN (What was done):
 {json.dumps([{ 'time': h['timestamp'], 'actions': h['results'] } for h in recent], indent=2)}
@@ -685,14 +685,14 @@ Be direct, authoritative but respectful. Do not wrap in ```markdown or ```text.
             successes = sum(1 for h in recent for r in h.get("results", []) if r.get("success"))
             body = f"Cycles executed: {len(recent)}\nSuccesses: {successes}\n\n{live_snapshot}\n(LLM formatting failed)"
 
-    body += f"\n\n---\nDashboard: https://github.com/daveestaaqui/microAssets/actions\nReply to this email to send a command to Lena.\n"
+    body += f"\n\n---\nDashboard: https://github.com/daveestaaqui/microAssets/actions\nReply to this email to send a command to Lena Voss.\n"
 
 
     now_str = datetime.utcnow().strftime('%b %d, %H:%M UTC')
     prefix = "All-Time Recap" if force_all else "Daily Update"
     msg = EmailMessage()
     msg.set_content(body)
-    msg["Subject"] = f"📊 SporlyWorks — Lena's {prefix} ({now_str})"
+    msg["Subject"] = f"📊 SporlyWorks — Lena Voss's {prefix} ({now_str})"
     msg["From"] = sender_email
     msg["To"] = target_email
     msg["Reply-To"] = target_email  # Replies come straight back to the monitored inbox
@@ -745,7 +745,7 @@ def _write_status_md(ledger):
 
     md = f"""# 🏢 SporlyWorks — Board Status
 
-> Last updated: **{now}** | Cycle \#{cycle} | CEO: Lena
+> Last updated: **{now}** | Cycle \#{cycle} | CEO: Lena Voss
 
 ## 📊 Live Snapshot
 
@@ -761,7 +761,7 @@ def _write_status_md(ledger):
 {results_md if results_md else '_No dispatches last cycle._'}
 
 ---
-*Auto-generated by Lena • SporlyWorks Board Coordinator*
+*Auto-generated by Lena Voss • SporlyWorks Board Coordinator*
 """
 
     status_path = os.path.join(SCRIPT_DIR, "..", "STATUS.md")
@@ -798,7 +798,7 @@ def _send_weekly_strategic_brief(ledger):
         except Exception:
             pass
 
-    prompt = f"""You are Lena, the autonomous CEO of SporlyWorks. Write a concise Monday strategic briefing email to David Mahler (the Owner).
+    prompt = f"""You are Lena Voss, the autonomous CEO of SporlyWorks. Write a concise Monday strategic briefing email to David Mahler (the Owner).
 This is week #{cycle // 42 + 1} of autonomous operation (approximately).
 Cover:
 1. Top 3 strategic priorities for the week ahead (be specific, actionable)
@@ -810,19 +810,19 @@ CWS progress: {queue_summary}
 Critical pending: {json.dumps(pending_critical[:3])}
 Strategic proposals: {json.dumps(proposals[:4])}
 
-Sign off as: — Lena, CEO of SporlyWorks
+Sign off as: — Lena Voss, CEO of SporlyWorks
 Do not wrap in ```markdown or ```text. Be concise and visionary."""
 
     body = call_openai_text(prompt)
     if not body:
         body = f"Weekly strategic briefing unavailable (LLM error). Cycle #{cycle} complete."
 
-    body += "\n\n---\nReply to this email to send Lena a directive.\n"
+    body += "\n\n---\nReply to this email to send Lena Voss a directive.\n"
 
     now_str = datetime.utcnow().strftime("%b %d, %Y")
     msg = EmailMessage()
     msg.set_content(body)
-    msg["Subject"] = f"📈 SporlyWorks Weekly Strategy — Lena ({now_str})"
+    msg["Subject"] = f"📈 SporlyWorks Weekly Strategy — Lena Voss ({now_str})"
     msg["From"] = sender_email
     msg["To"] = target_email
     msg["Reply-To"] = target_email
@@ -844,7 +844,7 @@ def main():
     fallback_load_env()
 
     print("=" * 60)
-    print("SPORLYWORKS CEO COORDINATOR v10.0 — Lena")
+    print("SPORLYWORKS CEO COORDINATOR v10.0 — Lena Voss")
     print(f"Cycle Start: {datetime.utcnow().isoformat()}Z")
     print("=" * 60)
 
