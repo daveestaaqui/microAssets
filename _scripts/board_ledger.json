@@ -47,7 +47,7 @@
     "devops": "DevOpsAgent — Manifest audits (MV2→MV3), version bumps, build pipeline. Writes audit reports.",
     "compliance": "ComplianceAgent — Permission audits, privacy declarations, CWS policy checks.",
     "infrastructure": "InfrastructureAgent — Cloudflare/Railway health checks, DNS management, KV operations.",
-    "qa": "QAAgent — 7-check automated audit: portfolio, landing page, releases, infra, workflows, MV audit, desc length.",
+    "qa": "QAAgent — Link checking, manifest validation, download verification, consistency audits.",
     "finance": "FinanceAgent — Stripe revenue monitoring, refund detection, billing health. Requires STRIPE_SECRET_KEY.",
     "security": "SecurityAgent — Credential presence audit, exposed secret scanning, dependency checks.",
     "customer_success": "CustomerSuccessAgent — KV ticket monitoring, rejection tracking, response times.",
@@ -102,7 +102,7 @@
   },
   "gitignore_warning": "The _*/** rule in .gitignore blocks all files inside _-prefixed directories. Tracked files were force-added before this rule existed. Any NEW file in _scripts/ must use: git add -f _scripts/<filename>",
   "qa_last_report": {
-    "audit_timestamp": "2026-04-13T03:25:30.604154Z",
+    "audit_timestamp": "2026-04-13T06:19:15.481446Z",
     "qa_version": "8.0",
     "status": "FAIL",
     "portfolio": {
@@ -135,16 +135,10 @@
       "agent": "QAAgent",
       "summary": "Fix missing files and binaries for landing page",
       "success": true,
-      "timestamp": "2026-04-13T03:26:12.243408Z"
-    },
-    {
-      "agent": "CWSWaveAgent",
-      "summary": "Check CWS slot availability and advance to Wave 2",
-      "success": true,
-      "timestamp": "2026-04-13T03:26:12.244318Z"
+      "timestamp": "2026-04-13T06:19:52.553548Z"
     }
   ],
-  "cycle_count": 5,
+  "cycle_count": 6,
   "last_digest_sent": "2026-04-12T16:23:19.106281Z",
   "last_weekly_brief_sent": "2026-04-13T01:45:19.099353Z",
   "owner_commands_received": [
