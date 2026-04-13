@@ -102,17 +102,24 @@
   },
   "gitignore_warning": "The _*/** rule in .gitignore blocks all files inside _-prefixed directories. Tracked files were force-added before this rule existed. Any NEW file in _scripts/ must use: git add -f _scripts/<filename>",
   "qa_last_report": {
-    "audit_timestamp": "2026-04-13T01:47:04.868386Z",
+    "audit_timestamp": "2026-04-13T03:25:30.604154Z",
     "qa_version": "8.0",
-    "status": "PASS",
+    "status": "FAIL",
     "portfolio": {
       "chrome_extensions": 87,
       "firefox_extensions": 85,
-      "android_apps": 86,
+      "android_apps": 0,
       "mv2_count": 0,
       "mv3_count": 87
     },
-    "findings": [],
+    "findings": [
+      "MISSING_FILE: _landing_page/index.html",
+      "MISSING_FILE: _landing_page/download.html",
+      "MISSING_FILE: _landing_page/style.css",
+      "MISSING_FILE: _landing_page/favicon.ico",
+      "MISSING_BINARY: binaries/SporlyWorks_OmniSuite_Complete.zip — download link will 404",
+      "MISSING_BINARY: binaries/SporlyWorks_Firefox_Extensions.zip — download link will 404"
+    ],
     "checks_run": [
       "portfolio_integrity",
       "landing_page_links",
@@ -125,13 +132,19 @@
   },
   "last_dispatch_results": [
     {
-      "agent": "MarketingAgent",
-      "summary": "Prepare Weekly Strategic Briefing for the Owner",
-      "success": false,
-      "timestamp": "2026-04-13T01:47:51.351017Z"
+      "agent": "QAAgent",
+      "summary": "Fix missing files and binaries for landing page",
+      "success": true,
+      "timestamp": "2026-04-13T03:26:12.243408Z"
+    },
+    {
+      "agent": "CWSWaveAgent",
+      "summary": "Check CWS slot availability and advance to Wave 2",
+      "success": true,
+      "timestamp": "2026-04-13T03:26:12.244318Z"
     }
   ],
-  "cycle_count": 4,
+  "cycle_count": 5,
   "last_digest_sent": "2026-04-12T16:23:19.106281Z",
   "last_weekly_brief_sent": "2026-04-13T01:45:19.099353Z",
   "owner_commands_received": [
