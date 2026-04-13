@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Estimated Reading Time Badge",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "See exactly how many minutes any article or blog post will take to read before you start, displayed on a clean icon badge.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Font Identifier & CSS Inspector",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Hover over any text to identify the font family, size, weight, line-height, and color. Essential for designers.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

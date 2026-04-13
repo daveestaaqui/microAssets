@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "CSS Inspector Pro",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Inspect CSS properties of any element with one click. Copy styles, view computed values, and compare elements.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

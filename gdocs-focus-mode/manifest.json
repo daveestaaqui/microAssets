@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Docs Focus Mode \u2014 Distraction Blocker",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Hide Google Docs menus, toolbars, and sidebars with one click to enter a clean, distraction-free writing environment.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

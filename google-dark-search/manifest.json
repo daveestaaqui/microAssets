@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Dark Search \u2014 Google Night Mode",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Applies a dark theme to Google Search results pages. Toggle the dark mode on or off from the extension popup.",
   "homepage_url": "https://sporlyworks.com",
   "icons": {

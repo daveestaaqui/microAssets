@@ -1,12 +1,17 @@
 {
   "manifest_version": 3,
   "name": "CRM Bulk Data Extractor PRO",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Instantly parse and export virtualized React tables and generic lead lists from HubSpot, Salesforce, and LinkedIn to neat CSVs.",
   "homepage_url": "https://sporlyworks.com",
   "action": {
     "default_popup": "popup/index.html",
-    "default_title": "Extract CRM Data"
+    "default_title": "Extract CRM Data",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
   },
   "permissions": [
     "activeTab",

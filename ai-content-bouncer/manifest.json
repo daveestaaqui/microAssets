@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "AI Content Bouncer",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Detects and highlights AI-generated text on web pages using heuristic analysis. Toggle detection from the popup.",
   "homepage_url": "https://sporlyworks.com",
   "icons": {

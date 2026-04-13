@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Amazon Fake Review Skimmer",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Highlights potentially suspicious reviews on Amazon product pages using heuristic analysis of review patterns and language.",
   "homepage_url": "https://sporlyworks.com",
   "icons": {

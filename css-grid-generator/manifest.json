@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "CSS Grid Generator",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Visual CSS Grid layout builder. Set rows, columns, gaps with live preview and copy CSS.",
   "homepage_url": "https://sporlyworks.com",
   "action": {

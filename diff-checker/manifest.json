@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Diff Checker \u2014 Text Compare Tool",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Compare two text snippets side by side. Highlight additions, deletions, and changes.",
   "homepage_url": "https://sporlyworks.com",
   "action": {

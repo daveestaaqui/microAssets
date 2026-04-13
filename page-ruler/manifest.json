@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Page Ruler & Measure",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Measure elements on any webpage in pixels. Hover to see dimensions, click to copy measurements.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

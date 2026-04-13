@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Meta Tag Viewer & Editor",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "View and edit meta tags, Open Graph, and Twitter Card data for any webpage. Perfect for SEO auditing.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

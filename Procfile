@@ -1,1 +1,1 @@
-web: cd _scripts && gunicorn cws_wave_daemon:app --workers 1 --bind 0.0.0.0:$PORT
+web: gunicorn _scripts.unified_railway_app:app --workers 2 --bind 0.0.0.0:$PORT

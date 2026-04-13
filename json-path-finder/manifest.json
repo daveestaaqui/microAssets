@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "JSON Path Finder",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Paste JSON and click any value to get its path. Supports dot notation and bracket notation.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

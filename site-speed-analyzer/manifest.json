@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Site Speed Analyzer",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Analyze page load time, DOM size, resource count, and performance metrics for any webpage with one click.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

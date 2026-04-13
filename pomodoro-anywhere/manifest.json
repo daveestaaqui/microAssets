@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Pomodoro Timer Desktop Widget",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Stay focused with a customizable Pomodoro technique timer right in your browser. Block distracting sites during work sessions.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

@@ -234,7 +234,7 @@ def audit_infrastructure():
 
     # Cloudflare email worker health
     cf_status, cf_err = check_url(
-        "https://sporlyworks-cws-email.sporlyworks.workers.dev/"
+        "https://sporlyworks-support.sporlyworks.workers.dev/health"
     )
     if cf_status not in (200, 400, 405):  # email workers return 400/405 for HTTP — that's OK
         findings.append(

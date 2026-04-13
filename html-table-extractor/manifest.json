@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "HTML Table to CSV Extractor",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Extract any HTML table from a webpage and download as CSV. One click to grab pricing tables, data lists, and more.",
   "homepage_url": "https://sporlyworks.com",
   "permissions": [

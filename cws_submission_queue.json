@@ -6,7 +6,7 @@
   },
   "waves": {
     "wave_1": {
-      "status": "partial",
+      "status": "completed",
       "priority": "highest",
       "note": "Universal tools with broadest appeal \u2014 submit immediately",
       "items": [
@@ -130,28 +130,84 @@
   },
   "submissions": {
     "dark-mode-everywhere": {
-      "cws_id": "gcdadpmhmnojjbdaogmgdpooacaipemi",
-      "submitted_at": "2026-04-08T15:40:16.122696",
-      "wave": "wave_1",
-      "status": "pending_review"
+      "status": "pending_review",
+      "timestamp": "2026-04-12T00:00:00Z"
     },
     "color-picker-eyedropper": {
-      "cws_id": "bgjfhdkolahnkbdlcbjnchjhhagkooah",
-      "submitted_at": "2026-04-08T15:40:16.122726",
-      "wave": "wave_1",
-      "status": "pending_review"
+      "status": "pending_review",
+      "timestamp": "2026-04-12T00:00:00Z"
     },
     "bookmark-manager": {
-      "cws_id": "hpafgepmlbilphgjfagdaddkbfokijnd",
-      "submitted_at": "2026-04-08T15:40:16.122733",
-      "wave": "wave_1",
-      "status": "pending_review"
+      "status": "pending_review",
+      "timestamp": "2026-04-12T00:00:00Z"
     },
     "clipboard-history": {
-      "cws_id": "gddkigpfifddolcidcaokgialpcmijgl",
-      "submitted_at": "2026-04-08T15:40:16.122738",
-      "wave": "wave_1",
-      "status": "pending_review"
+      "status": "pending_review",
+      "timestamp": "2026-04-12T00:00:00Z"
+    },
+    "json-formatter": {
+      "status": "pending_review",
+      "timestamp": "2026-04-12T00:00:00Z"
+    },
+    "qr-code-generator": {
+      "status": "pending_review",
+      "timestamp": "2026-04-12T00:00:00Z"
+    },
+    "password-generator": {
+      "status": "pending_review",
+      "timestamp": "2026-04-12T00:00:00Z"
+    },
+    "screenshot-capture": {
+      "status": "pending_review",
+      "timestamp": "2026-04-12T00:00:00Z"
+    },
+    "tab-suspender": {
+      "status": "pending_review",
+      "timestamp": "2026-04-12T00:00:00Z"
+    },
+    "reading-mode": {
+      "status": "pending_review",
+      "timestamp": "2026-04-12T00:00:00Z"
+    },
+    "word-counter": {
+      "status": "pending_review",
+      "timestamp": "2026-04-12T00:00:00Z"
+    },
+    "regex-tester": {
+      "status": "pending_review",
+      "timestamp": "2026-04-12T00:00:00Z"
+    },
+    "pomodoro-anywhere": {
+      "status": "pending_review",
+      "timestamp": "2026-04-12T00:00:00Z"
+    },
+    "markdown-preview": {
+      "status": "pending_review",
+      "timestamp": "2026-04-12T00:00:00Z"
+    },
+    "text-case-converter": {
+      "status": "pending_review",
+      "timestamp": "2026-04-12T00:00:00Z"
+    },
+    "quick-notepad": {
+      "status": "pending_review",
+      "timestamp": "2026-04-12T00:00:00Z"
+    },
+    "hash-generator": {
+      "status": "pending_review",
+      "timestamp": "2026-04-12T00:00:00Z"
+    },
+    "lorem-ipsum-generator": {
+      "status": "pending_review",
+      "timestamp": "2026-04-12T00:00:00Z"
+    },
+    "link-checker": {
+      "status": "pending_review",
+      "timestamp": "2026-04-12T00:00:00Z"
+    },
+    "timestamp-converter": {
+      "status": "pending_review",
+      "timestamp": "2026-04-12T00:00:00Z"
     }
   },
   "approvals": {}

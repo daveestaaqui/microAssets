@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Auto Cookie-Banner Rejector",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Attempts to detect and dismiss cookie consent banners on websites so you can browse without interruptions.",
   "homepage_url": "https://sporlyworks.com",
   "icons": {
