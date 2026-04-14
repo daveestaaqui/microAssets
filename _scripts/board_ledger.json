@@ -1,5 +1,5 @@
 {
-  "last_audit": "2026-04-11T16:10:00Z",
+  "last_audit": "2026-04-15T18:00:00Z",
   "audit_version": "8.0",
   "infrastructure_status": {
     "github_actions_board": "OPERATIONAL — 4-hour cron, v8.0 coordinator with retry + backup",
@@ -10,7 +10,10 @@
     "ledger_backup": "ACTIVE — 20-backup rolling window before every LLM overwrite",
     "cloudflare_worker_url": "https://sporlyworks-cws-email.sporlyworks.workers.dev"
   },
-  "pending_critical": [],
+  "pending_critical": [
+    "P0_RECOVERY: Regenerate missing landing page assets (_landing_page/index.html, download.html, style.css, favicon.ico)",
+    "P0_RECOVERY: Rebuild and package missing download binaries (OmniSuite_Complete.zip, Firefox_Extensions.zip)"
+  ],
   "pending_compliance": [],
   "pending_marketing": [
     "css-gradient-generator: Connect to Reddit API outreach bot",
@@ -39,8 +42,7 @@
     "v8.0: Removed broken inline digest email step (coordinator handles it directly)",
     "v8.0: Fixed duplicate fetch handler in Cloudflare email worker",
     "v8.0: Force-added sporlyworks_qa_agent.py to git (was blocked by _*/** gitignore)",
-    "v8.0: Injected GITHUB_TOKEN into workflow env (was always None)",
-    "Fix missing files and binaries for landing page — IN PROGRESS"
+    "v8.0: Injected GITHUB_TOKEN into workflow env (was always None)"
   ],
   "departments": {
     "marketing": "MarketingAgent — SEO landing pages, blog content, B2B outreach. Writes to marketing/ dir.",
@@ -102,7 +104,7 @@
   },
   "gitignore_warning": "The _*/** rule in .gitignore blocks all files inside _-prefixed directories. Tracked files were force-added before this rule existed. Any NEW file in _scripts/ must use: git add -f _scripts/<filename>",
   "qa_last_report": {
-    "audit_timestamp": "2026-04-14T21:00:21.815155Z",
+    "audit_timestamp": "2026-04-14T22:56:50.105053Z",
     "qa_version": "8.0",
     "status": "FAIL",
     "portfolio": {
@@ -132,16 +134,38 @@
   },
   "last_dispatch_results": [
     {
-      "agent": "QAAgent",
-      "summary": "Fix missing files and binaries for the landing page",
+      "agent": "MarketingAgent",
+      "summary": "P0 RECOVERY: Regenerate all missing landing page assets to fix broken website.",
+      "success": false,
+      "timestamp": "2026-04-14T22:57:41.955824Z"
+    },
+    {
+      "agent": "DevOpsAgent",
+      "summary": "P0 RECOVERY: Rebuild and package missing binary suites to fix broken download links.",
       "success": true,
-      "timestamp": "2026-04-14T21:01:17.501168Z"
+      "timestamp": "2026-04-14T22:57:41.955900Z"
     }
   ],
-  "cycle_count": 16,
+  "cycle_count": 17,
   "last_digest_sent": "2026-04-14T17:16:59.813603Z",
   "last_weekly_brief_sent": "2026-04-13T01:45:19.099353Z",
   "owner_commands_received": [
     "Weekly Strategic Briefing — Prioritized for next cycle"
+  ],
+  "ceo_strategic_proposals": [
+    {
+      "proposal_name": "Launch 'SporlyWorks Pro Suite'",
+      "status": "PROPOSED",
+      "business_case": "Currently, all 87 extensions are monetized uniformly, failing to capture the premium value of our best products. This proposal is to identify the top 10% of extensions by revenue and engagement, and bundle them into a 'Pro Suite'. This suite will be sold at a premium price point, targeting power users and B2B customers. This creates a new, high-margin revenue stream, increases ARPU, and establishes a clear value ladder for our user base.",
+      "estimated_effort": "Medium",
+      "estimated_reward": "High",
+      "proposed_timeline": "4-6 board cycles",
+      "required_agents": [
+        "FinanceAgent",
+        "MarketingAgent",
+        "DevOpsAgent",
+        "InfrastructureAgent"
+      ]
+    }
   ]
 }
