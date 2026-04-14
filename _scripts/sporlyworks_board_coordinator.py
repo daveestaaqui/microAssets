@@ -75,11 +75,16 @@ def fallback_load_env():
         OPENAI_KEY = os.environ.get("OPENAI_API_KEY", OPENAI_KEY)
         GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY", GOOGLE_API_KEY)
         CEO_EMAIL = os.environ.get("CEO_EMAIL", CEO_EMAIL)
-        # Map convenience aliases used in the coordinator
+        # Map convenience aliases — IMAP reads from Gmail, SMTP sends from branded alias
+        if not os.environ.get("LOGIN_EMAIL"):
+            os.environ["LOGIN_EMAIL"] = os.environ.get("MICROASSETS_LOGIN_EMAIL", "")
         if not os.environ.get("SENDER_EMAIL"):
-            os.environ["SENDER_EMAIL"] = os.environ.get("MICROASSETS_LOGIN_EMAIL", "")
+            os.environ["SENDER_EMAIL"] = os.environ.get("MICROASSETS_SENDER_EMAIL", "")
         if not os.environ.get("SENDER_APP_PASSWORD"):
             os.environ["SENDER_APP_PASSWORD"] = os.environ.get("MICROASSETS_SUPPORT_APP_PASSWORD", "")
+        # Owner email is where digests go TO
+        if not os.environ.get("OWNER_EMAIL"):
+            os.environ["OWNER_EMAIL"] = os.environ.get("MICROASSETS_LOGIN_EMAIL", "")
 
 
 # ── Atomic File I/O ─────────────────────────────────────────────────────
@@ -134,13 +139,14 @@ def redact_pii(text):
 # ── Email Fetching ───────────────────────────────────────────────────────
 
 def fetch_recent_emails():
-    """Fetch latest unread emails (headers + body) from Gmail IMAP.
-    Marks them as read so the CEO can process user commands exactly once.
+    """Fetch latest unread emails from the owner's Gmail inbox via IMAP.
+    Uses LOGIN_EMAIL (sandwichfitness@gmail.com) — the inbox where Cloudflare
+    routes lena.voss@ and where the owner sends commands.
     Returns (summary_string, has_owner_command, raw_owner_commands).
     """
-    sender_email = os.environ.get("SENDER_EMAIL")
-    sender_password = os.environ.get("SENDER_APP_PASSWORD")
-    if not sender_email or not sender_password:
+    login_email = os.environ.get("LOGIN_EMAIL") or os.environ.get("SENDER_EMAIL")
+    login_password = os.environ.get("SENDER_APP_PASSWORD")
+    if not login_email or not login_password:
         return "IMAP credentials missing. Cannot fetch correspondence.", False, []
 
     owner_indicators = ["sandwichfitness", "david", "davidmahler"]
@@ -149,7 +155,7 @@ def fetch_recent_emails():
 
     try:
         mail = imaplib.IMAP4_SSL("imap.gmail.com")
-        mail.login(sender_email, sender_password)
+        mail.login(login_email, login_password)
         mail.select("inbox")
 
         status, messages = mail.search(None, "UNSEEN")
@@ -224,13 +230,11 @@ def fetch_recent_emails():
 
 
 def send_owner_ack(owner_commands):
-    """Send a brief acknowledgment to the owner when their command was received.
-    Sent FROM Lena Voss's CEO address, Reply-To the monitored inbox so replies
-    get picked up by the CEO on the next cycle."""
-    sender_email = os.environ.get("SENDER_EMAIL")
-    sender_password = os.environ.get("SENDER_APP_PASSWORD")
-    target_email = os.environ.get("MICROASSETS_LOGIN_EMAIL", sender_email)
-    if not sender_email or not sender_password:
+    """Send acknowledgment to the owner. Sent FROM CEO's branded email."""
+    login_email = os.environ.get("LOGIN_EMAIL") or os.environ.get("SENDER_EMAIL")
+    login_password = os.environ.get("SENDER_APP_PASSWORD")
+    owner_email = os.environ.get("OWNER_EMAIL", login_email)
+    if not login_email or not login_password:
         return
 
     try:
@@ -247,13 +251,12 @@ def send_owner_ack(owner_commands):
         msg = EmailMessage()
         msg.set_content(body)
         msg["Subject"] = "✅ Lena Voss received your command"
-        # Gmail SMTP requires From to match the authenticated account.
-        # We use the display name to show the CEO identity.
-        msg["From"] = f"{CEO_DISPLAY_NAME} <{sender_email}>"
-        msg["To"] = target_email
-        msg["Reply-To"] = sender_email  # Replies go to monitored inbox → CEO reads them
-        server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
-        server.login(sender_email, sender_password)
+        msg["From"] = f"{CEO_DISPLAY_NAME} <{CEO_EMAIL}>"
+        msg["To"] = owner_email
+        msg["Reply-To"] = CEO_EMAIL
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.starttls()
+        server.login(login_email, login_password)
         server.send_message(msg)
         server.quit()
         logging.info(f"Owner ACK sent from {CEO_EMAIL} for {len(owner_commands)} command(s).")
@@ -462,7 +465,7 @@ Available Department Agents:
 7. "SecurityAgent" — Credential rotation reminders, dependency audit, vulnerability scanning
 8. "CustomerSuccessAgent" — Support ticket monitoring from KV, response time tracking
 9. "CWSWaveAgent" — Chrome Web Store wave management: check slot availability, advance submission queues, trigger next wave
-10. "DesignAgent" — UI/UX design leadership. Staffed by senior designers from San Francisco and New York with backgrounds in premium SaaS, fintech, and consumer product design. Responsible for: app/extension UI improvements, icon/logo refinements, brand consistency audits, style guide enforcement, and visual identity evolution. ALL design work MUST maintain brand consistency with the SporlyWorks flagship identity (mushroom/spore motif, cream/charcoal palette, minimalist monoline aesthetic). Only improve upon existing designs — never deviate from the established premium aesthetic standard.
+10. "DesignAgent" — UI/UX design leadership. Staffed by senior designers from San Francisco and New York with backgrounds in premium SaaS, fintech, and consumer product design. Responsible for: app/extension UI improvements, icon/logo refinements, brand consistency audits, style guide enforcement, and visual identity evolution. Design work MUST maintain brand consistency with the SporlyWorks flagship identity (mushroom/spore motif, cream/charcoal palette, minimalist monoline aesthetic). Improve upon existing designs and keep in line with the main company logo's aesthetic style. EXCEPTION: if existing assets are below the brand's premium quality standard, the DesignAgent has authority to redesign them to meet or exceed that standard.
 
 PRIORITIZATION RULES:
 0. OWNER COMMANDS are P-Infinity — execute immediately, unconditionally
@@ -684,16 +687,16 @@ def _build_live_snapshot(ledger):
 
 def send_executive_update(force_all=False):
     """Compile recent accomplishments and email the founder.
-    Sent FROM Lena Voss's CEO email, Reply-To the monitored inbox."""
-    sender_email = os.environ.get("SENDER_EMAIL")
-    sender_password = os.environ.get("SENDER_APP_PASSWORD")
+    Sent FROM Lena Voss's CEO email."""
+    login_email = os.environ.get("LOGIN_EMAIL") or os.environ.get("SENDER_EMAIL")
+    login_password = os.environ.get("SENDER_APP_PASSWORD")
     target_email = (
         os.environ.get("OWNER_EMAIL")
         or os.environ.get("MICROASSETS_LOGIN_EMAIL")
         or "sandwichfitness@gmail.com"
     )
 
-    if not sender_email or not sender_password:
+    if not login_email or not login_password:
         logging.warning("Missing email credentials. Skipping executive update.")
         return False
 
@@ -793,14 +796,14 @@ Do not wrap in ```markdown or ```text. Write in a natural, authoritative executi
     msg = EmailMessage()
     msg.set_content(body)
     msg["Subject"] = f"📊 SporlyWorks — Lena Voss's {prefix} ({now_str})"
-    # Gmail SMTP requires From to match the authenticated account.
-    msg["From"] = f"{CEO_DISPLAY_NAME} <{sender_email}>"
+    msg["From"] = f"{CEO_DISPLAY_NAME} <{CEO_EMAIL}>"
     msg["To"] = target_email
-    msg["Reply-To"] = sender_email  # Replies go to monitored inbox → CEO reads them
+    msg["Reply-To"] = CEO_EMAIL
 
     try:
-        server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
-        server.login(sender_email, sender_password)
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.starttls()
+        server.login(login_email, login_password)
         server.send_message(msg)
         server.quit()
         time_period = "All-Time" if force_all else "24-Hour"
@@ -873,14 +876,14 @@ def _write_status_md(ledger):
 
 def _send_weekly_strategic_brief(ledger):
     """Send a weekly strategic email to the owner every Monday."""
-    sender_email = os.environ.get("SENDER_EMAIL")
-    sender_password = os.environ.get("SENDER_APP_PASSWORD")
+    login_email = os.environ.get("LOGIN_EMAIL") or os.environ.get("SENDER_EMAIL")
+    login_password = os.environ.get("SENDER_APP_PASSWORD")
     target_email = (
         os.environ.get("OWNER_EMAIL")
         or os.environ.get("MICROASSETS_LOGIN_EMAIL")
         or "sandwichfitness@gmail.com"
     )
-    if not sender_email or not sender_password:
+    if not login_email or not login_password:
         return
 
     proposals = ledger.get("ceo_strategic_proposals", [])
@@ -924,13 +927,14 @@ Do not wrap in ```markdown or ```text. Be concise and visionary."""
     msg = EmailMessage()
     msg.set_content(body)
     msg["Subject"] = f"📈 SporlyWorks Weekly Strategy — Lena Voss ({now_str})"
-    msg["From"] = f"{CEO_DISPLAY_NAME} <{sender_email}>"
+    msg["From"] = f"{CEO_DISPLAY_NAME} <{CEO_EMAIL}>"
     msg["To"] = target_email
-    msg["Reply-To"] = sender_email  # Replies go to monitored inbox → CEO reads them
+    msg["Reply-To"] = CEO_EMAIL
 
     try:
-        server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
-        server.login(sender_email, sender_password)
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.starttls()
+        server.login(login_email, login_password)
         server.send_message(msg)
         server.quit()
         logging.info(f"Weekly strategic brief from {CEO_EMAIL} sent to {target_email}.")
