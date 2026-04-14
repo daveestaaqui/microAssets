@@ -102,7 +102,7 @@
   },
   "gitignore_warning": "The _*/** rule in .gitignore blocks all files inside _-prefixed directories. Tracked files were force-added before this rule existed. Any NEW file in _scripts/ must use: git add -f _scripts/<filename>",
   "qa_last_report": {
-    "audit_timestamp": "2026-04-14T09:24:35.934100Z",
+    "audit_timestamp": "2026-04-14T14:11:41.251130Z",
     "qa_version": "8.0",
     "status": "FAIL",
     "portfolio": {
@@ -132,13 +132,13 @@
   },
   "last_dispatch_results": [
     {
-      "agent": "CWSWaveAgent",
-      "summary": "Check CWS slot availability and advance to Wave 2",
+      "agent": "QAAgent",
+      "summary": "Fix missing files and binaries for landing page",
       "success": true,
-      "timestamp": "2026-04-14T09:25:31.012810Z"
+      "timestamp": "2026-04-14T14:12:36.938042Z"
     }
   ],
-  "cycle_count": 13,
+  "cycle_count": 14,
   "last_digest_sent": "2026-04-13T17:10:06.462983Z",
   "last_weekly_brief_sent": "2026-04-13T01:45:19.099353Z",
   "owner_commands_received": [
