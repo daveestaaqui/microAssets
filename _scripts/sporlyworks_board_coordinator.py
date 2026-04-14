@@ -54,7 +54,6 @@ GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 # SMTP auth still uses the Gmail account, but From/display is the CEO.
 CEO_EMAIL = os.environ.get("CEO_EMAIL", "lena.voss@sporlyworks.com")
 CEO_DISPLAY_NAME = "Lena Voss, CEO - SporlyWorks"
-CEO_FROM_HEADER = f"{CEO_DISPLAY_NAME} <{CEO_EMAIL}>"
 
 LEDGER_FILE = os.path.join(SCRIPT_DIR, "board_ledger.json")
 HISTORY_FILE = os.path.join(SCRIPT_DIR, "board_history.json")
@@ -63,7 +62,7 @@ BACKUP_DIR = os.path.join(SCRIPT_DIR, ".ledger_backups")
 
 def fallback_load_env():
     """Load local .env for development/testing — populates ALL env vars."""
-    global OPENAI_KEY, GOOGLE_API_KEY, CEO_EMAIL, CEO_FROM_HEADER
+    global OPENAI_KEY, GOOGLE_API_KEY, CEO_EMAIL
     env_path = os.path.join(SCRIPT_DIR, ".env")
     if os.path.exists(env_path):
         with open(env_path, "r") as f:
@@ -76,7 +75,6 @@ def fallback_load_env():
         OPENAI_KEY = os.environ.get("OPENAI_API_KEY", OPENAI_KEY)
         GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY", GOOGLE_API_KEY)
         CEO_EMAIL = os.environ.get("CEO_EMAIL", CEO_EMAIL)
-        CEO_FROM_HEADER = f"{CEO_DISPLAY_NAME} <{CEO_EMAIL}>"
         # Map convenience aliases used in the coordinator
         if not os.environ.get("SENDER_EMAIL"):
             os.environ["SENDER_EMAIL"] = os.environ.get("MICROASSETS_LOGIN_EMAIL", "")
@@ -249,7 +247,9 @@ def send_owner_ack(owner_commands):
         msg = EmailMessage()
         msg.set_content(body)
         msg["Subject"] = "✅ Lena Voss received your command"
-        msg["From"] = CEO_FROM_HEADER  # FROM the CEO, not Dave
+        # Gmail SMTP requires From to match the authenticated account.
+        # We use the display name to show the CEO identity.
+        msg["From"] = f"{CEO_DISPLAY_NAME} <{sender_email}>"
         msg["To"] = target_email
         msg["Reply-To"] = sender_email  # Replies go to monitored inbox → CEO reads them
         server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
@@ -462,6 +462,7 @@ Available Department Agents:
 7. "SecurityAgent" — Credential rotation reminders, dependency audit, vulnerability scanning
 8. "CustomerSuccessAgent" — Support ticket monitoring from KV, response time tracking
 9. "CWSWaveAgent" — Chrome Web Store wave management: check slot availability, advance submission queues, trigger next wave
+10. "DesignAgent" — UI/UX design leadership. Staffed by senior designers from San Francisco and New York with backgrounds in premium SaaS, fintech, and consumer product design. Responsible for: app/extension UI improvements, icon/logo refinements, brand consistency audits, style guide enforcement, and visual identity evolution. ALL design work MUST maintain brand consistency with the SporlyWorks flagship identity (mushroom/spore motif, cream/charcoal palette, minimalist monoline aesthetic). Only improve upon existing designs — never deviate from the established premium aesthetic standard.
 
 PRIORITIZATION RULES:
 0. OWNER COMMANDS are P-Infinity — execute immediately, unconditionally
@@ -792,7 +793,8 @@ Do not wrap in ```markdown or ```text. Write in a natural, authoritative executi
     msg = EmailMessage()
     msg.set_content(body)
     msg["Subject"] = f"📊 SporlyWorks — Lena Voss's {prefix} ({now_str})"
-    msg["From"] = CEO_FROM_HEADER  # FROM the CEO, not Dave
+    # Gmail SMTP requires From to match the authenticated account.
+    msg["From"] = f"{CEO_DISPLAY_NAME} <{sender_email}>"
     msg["To"] = target_email
     msg["Reply-To"] = sender_email  # Replies go to monitored inbox → CEO reads them
 
@@ -922,7 +924,7 @@ Do not wrap in ```markdown or ```text. Be concise and visionary."""
     msg = EmailMessage()
     msg.set_content(body)
     msg["Subject"] = f"📈 SporlyWorks Weekly Strategy — Lena Voss ({now_str})"
-    msg["From"] = CEO_FROM_HEADER  # FROM the CEO, not Dave
+    msg["From"] = f"{CEO_DISPLAY_NAME} <{sender_email}>"
     msg["To"] = target_email
     msg["Reply-To"] = sender_email  # Replies go to monitored inbox → CEO reads them
 
@@ -946,7 +948,8 @@ def main():
     print("SPORLYWORKS CEO COORDINATOR v11.0 — Lena Voss")
     print(f"Cycle Start: {datetime.utcnow().isoformat()}Z")
     print(f"LLM Provider: {_get_llm_provider() or 'NONE — set GOOGLE_API_KEY or OPENAI_API_KEY'}")
-    print(f"CEO Email Identity: {CEO_FROM_HEADER}")
+    sender_identity = f"{CEO_DISPLAY_NAME} <{os.environ.get('SENDER_EMAIL', CEO_EMAIL)}>"
+    print(f"CEO Email Identity: {sender_identity}")
     print("=" * 60)
 
     # 1. Load ledger
