@@ -33,8 +33,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests 2>/dev/null || true
 
-      - name: Run Master Coordinator (gpt-4o-mini)
+      - name: Run Master Coordinator (Gemini 2.5 Pro)
         env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
@@ -45,6 +46,7 @@ jobs:
           RAILWAY_DAEMON_URL: ${{ secrets.RAILWAY_DAEMON_URL }}
           OMNISUITE_SECRET: ${{ secrets.OMNISUITE_SECRET }}
           OWNER_EMAIL: ${{ secrets.OWNER_EMAIL }}
+          CEO_EMAIL: ${{ secrets.CEO_EMAIL }}
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
         run: |
           cd _scripts && python sporlyworks_board_coordinator.py
@@ -67,7 +69,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No state changes this cycle."
           else
-            git commit -m "🤖 AI Board v8.0 | $(date -u '+%Y-%m-%d %H:%M UTC')"
+            git commit -m "🤖 AI Board v11.0 | $(date -u '+%Y-%m-%d %H:%M UTC')"
             git push
           fi
 
@@ -96,7 +98,7 @@ jobs:
               'The SporlyWorks AI Board Coordinator FAILED.\n\n'
               'Dashboard: https://github.com/daveestaaqui/microAssets/actions\n\n'
               'Run: #${{ github.run_number }}\n'
-              'This is an automated alert from the Board v8.0.'
+              'This is an automated alert from the Board v11.0.'
           )
           msg['Subject'] = '🚨 SporlyWorks Board FAILED — Run #${{ github.run_number }}'
           msg['From'] = os.environ.get('SENDER_EMAIL', '')

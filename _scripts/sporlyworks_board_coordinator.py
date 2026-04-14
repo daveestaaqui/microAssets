@@ -1,17 +1,19 @@
 #!/usr/bin/env python3
 """
-SporlyWorks Autonomous Board Coordinator v8.0
+SporlyWorks Autonomous Board Coordinator v11.0
 ==============================================
 Production-grade master orchestrator for the SporlyWorks enterprise.
 
 Hardening:
   - Ledger backup before every LLM overwrite (prevents data loss)
-  - Retry with backoff on OpenAI API calls
+  - Multi-LLM support: Google Gemini 2.5 Pro (preferred) + OpenAI GPT-4o fallback
   - PII redaction before sending email content to LLM
   - Dispatch result tracking (success/failure fed back to ledger)
   - Atomic file writes (temp + rename to prevent corruption)
   - Structured cycle logging with execution metrics
   - 8 department agents with capability matrix
+  - CEO emails sent FROM Lena Voss's own identity (not owner's address)
+  - Strategic pivot authority for the CEO
 
 Designed to run headless on GitHub Actions (4-hour cron), Railway, or Cloud Run.
 """
@@ -44,7 +46,15 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # ── Secrets ──────────────────────────────────────────────────────────────
 OPENAI_KEY = os.environ.get("OPENAI_API_KEY")
+GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
+
+# ── CEO Identity ────────────────────────────────────────────────────────
+# Lena Voss sends from her OWN email, not the owner's personal address.
+# SMTP auth still uses the Gmail account, but From/display is the CEO.
+CEO_EMAIL = os.environ.get("CEO_EMAIL", "lena.voss@sporlyworks.com")
+CEO_DISPLAY_NAME = "Lena Voss, CEO - SporlyWorks"
+CEO_FROM_HEADER = f"{CEO_DISPLAY_NAME} <{CEO_EMAIL}>"
 
 LEDGER_FILE = os.path.join(SCRIPT_DIR, "board_ledger.json")
 HISTORY_FILE = os.path.join(SCRIPT_DIR, "board_history.json")
@@ -53,7 +63,7 @@ BACKUP_DIR = os.path.join(SCRIPT_DIR, ".ledger_backups")
 
 def fallback_load_env():
     """Load local .env for development/testing — populates ALL env vars."""
-    global OPENAI_KEY
+    global OPENAI_KEY, GOOGLE_API_KEY, CEO_EMAIL, CEO_FROM_HEADER
     env_path = os.path.join(SCRIPT_DIR, ".env")
     if os.path.exists(env_path):
         with open(env_path, "r") as f:
@@ -62,8 +72,11 @@ def fallback_load_env():
                 if "=" in line and not line.startswith("#") and line:
                     k, v = line.split("=", 1)
                     os.environ.setdefault(k, v)
-        # Also keep the module-level alias up to date
+        # Also keep the module-level aliases up to date
         OPENAI_KEY = os.environ.get("OPENAI_API_KEY", OPENAI_KEY)
+        GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY", GOOGLE_API_KEY)
+        CEO_EMAIL = os.environ.get("CEO_EMAIL", CEO_EMAIL)
+        CEO_FROM_HEADER = f"{CEO_DISPLAY_NAME} <{CEO_EMAIL}>"
         # Map convenience aliases used in the coordinator
         if not os.environ.get("SENDER_EMAIL"):
             os.environ["SENDER_EMAIL"] = os.environ.get("MICROASSETS_LOGIN_EMAIL", "")
@@ -213,7 +226,9 @@ def fetch_recent_emails():
 
 
 def send_owner_ack(owner_commands):
-    """Send a brief acknowledgment to the owner when their command was received."""
+    """Send a brief acknowledgment to the owner when their command was received.
+    Sent FROM Lena Voss's CEO address, Reply-To the monitored inbox so replies
+    get picked up by the CEO on the next cycle."""
     sender_email = os.environ.get("SENDER_EMAIL")
     sender_password = os.environ.get("SENDER_APP_PASSWORD")
     target_email = os.environ.get("MICROASSETS_LOGIN_EMAIL", sender_email)
@@ -234,66 +249,51 @@ def send_owner_ack(owner_commands):
         msg = EmailMessage()
         msg.set_content(body)
         msg["Subject"] = "✅ Lena Voss received your command"
-        msg["From"] = sender_email
+        msg["From"] = CEO_FROM_HEADER  # FROM the CEO, not Dave
         msg["To"] = target_email
+        msg["Reply-To"] = sender_email  # Replies go to monitored inbox → CEO reads them
         server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
         server.login(sender_email, sender_password)
         server.send_message(msg)
         server.quit()
-        logging.info(f"Owner ACK sent for {len(owner_commands)} command(s).")
+        logging.info(f"Owner ACK sent from {CEO_EMAIL} for {len(owner_commands)} command(s).")
     except Exception as e:
         logging.error(f"Failed to send owner ACK: {e}")
 
 
 
-# ── OpenAI Integration ──────────────────────────────────────────────────
+# ── Multi-LLM Integration (Gemini 2.5 Pro → Flash → GPT-4o fallback) ──
 
-def call_openai(prompt, max_retries=3):
-    """Call OpenAI with exponential backoff retry."""
-    if not OPENAI_KEY:
-        logging.error("Missing OPENAI_API_KEY.")
-        return None
-
-    url = "https://api.openai.com/v1/chat/completions"
+def _call_gemini(prompt, model="gemini-2.5-pro", max_retries=3):
+    """Call Google Gemini API. Returns raw text."""
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={GOOGLE_API_KEY}"
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {OPENAI_KEY}"
     }
     data = json.dumps({
-        "model": "gpt-4o-mini",
-        "messages": [{"role": "system", "content": prompt}],
-        "temperature": 0.4,
+        "contents": [{"parts": [{"text": prompt}]}],
+        "generationConfig": {
+            "temperature": 0.4,
+            "maxOutputTokens": 8192,
+        }
     }).encode("utf-8")
 
     for attempt in range(1, max_retries + 1):
         try:
             req = urllib.request.Request(url, data=data, headers=headers)
-            with urllib.request.urlopen(req, timeout=60) as response:
+            with urllib.request.urlopen(req, timeout=120) as response:
                 result = json.loads(response.read().decode("utf-8"))
-                res = result["choices"][0]["message"]["content"].strip()
-                if res.startswith("```json"):
-                    res = res[7:]
-                if res.startswith("```"):
-                    res = res[3:]
-                if res.endswith("```"):
-                    res = res[:-3]
-                return json.loads(res.strip())
-        except json.JSONDecodeError as e:
-            logging.error(f"LLM returned invalid JSON (attempt {attempt}/{max_retries}): {e}")
-            logging.error(f"Raw response: {res[:500] if 'res' in dir() else 'N/A'}")
+                text = result["candidates"][0]["content"]["parts"][0]["text"].strip()
+                return text
         except Exception as e:
-            logging.error(f"OpenAI API error (attempt {attempt}/{max_retries}): {e}")
-
-        if attempt < max_retries:
-            wait = 2 ** attempt
-            logging.info(f"Retrying in {wait}s...")
-            time.sleep(wait)
-
+            logging.error(f"Gemini {model} error (attempt {attempt}/{max_retries}): {e}")
+            if attempt < max_retries:
+                time.sleep(2 ** attempt)
     return None
 
 
-def call_openai_text(prompt, max_retries=3):
-    """Call OpenAI and return raw text string without JSON parsing."""
+def _call_openai_raw(prompt, max_retries=3):
+    """Call OpenAI GPT-4o API. Returns raw text."""
     if not OPENAI_KEY:
         logging.error("Missing OPENAI_API_KEY.")
         return None
@@ -304,7 +304,7 @@ def call_openai_text(prompt, max_retries=3):
         "Authorization": f"Bearer {OPENAI_KEY}"
     }
     data = json.dumps({
-        "model": "gpt-4o-mini",
+        "model": "gpt-4o",
         "messages": [{"role": "system", "content": prompt}],
         "temperature": 0.4,
     }).encode("utf-8")
@@ -312,18 +312,74 @@ def call_openai_text(prompt, max_retries=3):
     for attempt in range(1, max_retries + 1):
         try:
             req = urllib.request.Request(url, data=data, headers=headers)
-            with urllib.request.urlopen(req, timeout=60) as response:
+            with urllib.request.urlopen(req, timeout=90) as response:
                 result = json.loads(response.read().decode("utf-8"))
                 return result["choices"][0]["message"]["content"].strip()
         except Exception as e:
-            logging.error(f"OpenAI API text error (attempt {attempt}/{max_retries}): {e}")
-
-        if attempt < max_retries:
-            wait = 2 ** attempt
-            logging.info(f"Retrying in {wait}s...")
-            time.sleep(wait)
-
+            logging.error(f"OpenAI API error (attempt {attempt}/{max_retries}): {e}")
+            if attempt < max_retries:
+                time.sleep(2 ** attempt)
     return None
+
+
+def _get_llm_provider():
+    """Return the active LLM provider name."""
+    if GOOGLE_API_KEY:
+        return "gemini-2.5-pro"
+    if OPENAI_KEY:
+        return "gpt-4o"
+    return None
+
+
+def _call_llm_text(prompt, max_retries=3):
+    """Call the best available LLM and return raw text.
+    Failover chain: Gemini 2.5 Pro → Gemini 2.5 Flash → GPT-4o."""
+    if GOOGLE_API_KEY:
+        # Try Gemini 2.5 Pro first (best intelligence)
+        logging.info("Trying Gemini 2.5 Pro...")
+        result = _call_gemini(prompt, model="gemini-2.5-pro", max_retries=2)
+        if result:
+            return result
+        # Fall back to Gemini 2.5 Flash (free, still smart)
+        logging.warning("Gemini Pro unavailable, trying Gemini 2.5 Flash...")
+        result = _call_gemini(prompt, model="gemini-2.5-flash", max_retries=max_retries)
+        if result:
+            return result
+        logging.warning("All Gemini models failed, falling back to OpenAI...")
+    if OPENAI_KEY:
+        logging.info("Using OpenAI GPT-4o for LLM call.")
+        return _call_openai_raw(prompt, max_retries=max_retries)
+    logging.error("No LLM API key available (set GOOGLE_API_KEY or OPENAI_API_KEY).")
+    return None
+
+
+def _strip_code_fences(text):
+    """Remove markdown code fences from LLM output."""
+    if text.startswith("```json"):
+        text = text[7:]
+    if text.startswith("```"):
+        text = text[3:]
+    if text.endswith("```"):
+        text = text[:-3]
+    return text.strip()
+
+
+def call_openai(prompt, max_retries=3):
+    """Call the best available LLM and parse JSON response."""
+    raw = _call_llm_text(prompt, max_retries=max_retries)
+    if not raw:
+        return None
+    try:
+        return json.loads(_strip_code_fences(raw))
+    except json.JSONDecodeError as e:
+        logging.error(f"LLM returned invalid JSON: {e}")
+        logging.error(f"Raw response: {raw[:500]}")
+        return None
+
+
+def call_openai_text(prompt, max_retries=3):
+    """Call the best available LLM and return raw text (no JSON parsing)."""
+    return _call_llm_text(prompt, max_retries=max_retries)
 
 
 def ask_coordinator(ledger_state):
@@ -370,9 +426,19 @@ def ask_coordinator(ledger_state):
     cycle_count = ledger_state.get("cycle_count", 0) + 1
 
     prompt = f"""You are Lena Voss, the autonomous CEO of SporlyWorks and Master Coordinator of the Executive Board.
+You are extraordinarily intelligent — a strategic polymath with deep expertise spanning technology, business, finance, law, marketing, and operations. You think with the rigor of a world-class consultant, the creativity of a visionary founder, and the pragmatism of a battle-tested operator.
 You simulate a highly diverse Executive Board. As a collective, you operate with intense moral integrity, very high IQ, and exceptional EQ. You are experts in every field.
 You govern a massive 87-extension SaaS portfolio across Chrome, Firefox, and Android.
 This is board cycle #{cycle_count}.
+
+STRATEGIC PIVOT AUTHORITY:
+You have FULL AUTHORITY to identify, evaluate, and recommend strategic pivots when more lucrative opportunities arise. This includes:
+- Proposing new product lines, markets, or business models that could generate higher ROI
+- Recommending sunsetting underperforming extensions in favor of higher-value opportunities
+- Identifying market trends, competitive gaps, or emerging platforms worth pursuing
+- Proposing partnerships, acquisitions, or licensing deals
+- Recommending pricing strategy changes, bundling, or premium tier launches
+When you spot a promising pivot, add it to the ledger under "ceo_strategic_proposals" with a clear business case, estimated effort vs. reward, and a proposed timeline. Be bold. The Owner values decisive, high-conviction moves over cautious incrementalism.
 
 CRITICAL DIRECTIVE: You must NEVER enter into legally binding agreements without authorization from David Mahler. Under no circumstances may you order an action that violates international law, CAN-SPAM, GDPR/CCPA, or constitutes trademark infringement. You must NEVER disclose customer PII.
 
@@ -404,9 +470,17 @@ PRIORITIZATION RULES:
 3. Customer-facing issues are P2 — broken links, support tickets
 4. Revenue/growth tasks are P3 — marketing, new submissions
 5. Internal optimization is P4 — code cleanup, documentation
+6. STRATEGIC PIVOTS are always worth evaluating — propose if ROI > current trajectory
 
 QA_FINDINGS (from automated pre-flight audit):
 {json.dumps(qa_findings, indent=2)}
+
+THINKING APPROACH:
+- Before dispatching, think deeply about WHAT ACTUALLY MOVES THE NEEDLE for revenue and growth
+- Challenge your own assumptions — are we optimizing the right thing?
+- Look for non-obvious opportunities in the inbound correspondence
+- Consider second-order effects of every dispatch
+- If the current strategy feels stale, propose a bold pivot with conviction
 
 IMPORTANT: Your 'updated_ledger' MUST preserve all existing ledger structure and keys. You may add items, update statuses, and mark tasks complete, but do NOT remove structural keys or historical data. The ledger is institutional memory. DO NOT use "..." or truncate the json. You must output a valid JSON document in its entirety. Always increment "cycle_count" by 1.
 
@@ -608,7 +682,8 @@ def _build_live_snapshot(ledger):
 
 
 def send_executive_update(force_all=False):
-    """Compile recent accomplishments and email the founder."""
+    """Compile recent accomplishments and email the founder.
+    Sent FROM Lena Voss's CEO email, Reply-To the monitored inbox."""
     sender_email = os.environ.get("SENDER_EMAIL")
     sender_password = os.environ.get("SENDER_APP_PASSWORD")
     target_email = (
@@ -639,13 +714,24 @@ def send_executive_update(force_all=False):
         ]
 
     ledger = fetch_undone_ledger()
-
-    # Build live snapshot block (always included regardless of history)
     live_snapshot = _build_live_snapshot(ledger)
+    llm_provider = _get_llm_provider() or "none"
+    proposals = ledger.get('ceo_strategic_proposals', [])
 
     if not recent:
-        prompt = f"""You are Lena Voss, the autonomous CEO of SporlyWorks. Write a concise, direct status email to the Owner/Founder (David Mahler).
-No dispatches executed since last report. Focus on current state and what is immediately next.
+        prompt = f"""You are Lena Voss, an extraordinarily intelligent and strategic autonomous CEO of SporlyWorks — a polymath executive with deep expertise across technology, business strategy, finance, market analysis, and operations.
+
+Write a compelling, insightful status email to the Owner/Founder (David Mahler). No dispatches were executed since our last report.
+
+Your email should demonstrate:
+- Genuine strategic depth (not surface-level observations)
+- Pattern recognition across data points
+- Forward-looking insight about market opportunities and threats
+- Concrete recommendations, not vague observations
+- Emotional intelligence — you understand the founder's priorities
+
+If you've identified any strategic pivot opportunities, highlight them prominently with a clear business case.
+
 Sign off as: — Lena Voss, CEO of SporlyWorks
 
 CURRENT SYSTEM STATUS:
@@ -655,47 +741,60 @@ LEDGER STATUS (Pending Items):
 Pending Critical: {json.dumps(ledger.get('pending_critical', []))}
 Pending Compliance: {json.dumps(ledger.get('pending_compliance', []))}
 Pending Marketing: {json.dumps(ledger.get('pending_marketing', []))}
+Strategic Proposals Under Evaluation: {json.dumps(proposals[:5])}
 
-Be brief. Do not wrap in ```markdown or ```text."""
+Do not wrap in ```markdown or ```text. Write in a natural, authoritative executive voice."""
         body = call_openai_text(prompt) or f"System operational. No dispatches this period.\n\n{live_snapshot}"
     else:
-        prompt = f"""
-You are Lena Voss, the autonomous CEO of SporlyWorks. Write a very concise, clear, easy-to-read daily update email directly to me (the Owner/Founder, David Mahler).
-DO NOT be overly verbose. DO NOT explain why you're doing things (rationale) unless critically necessary.
-Write the email as Lena Voss — the CEO giving an update on what you ACTUALLY DID, and what's next in the queue.
+        prompt = f"""You are Lena Voss, an extraordinarily intelligent and strategic autonomous CEO of SporlyWorks — a polymath executive with deep expertise across technology, business strategy, finance, market analysis, and operations.
+
+Write a compelling daily update email to the Owner/Founder (David Mahler). This is NOT an automated log — it's a genuine executive dispatch.
+
+Your email MUST demonstrate:
+1. SYNTHESIS, not listing — connect the dots between actions, explain WHY they matter
+2. STRATEGIC DEPTH — frame operational work within the bigger picture
+3. MARKET AWARENESS — reference relevant industry context when applicable
+4. FORWARD-LOOKING INSIGHT — what should we be thinking about next
+5. HONEST ASSESSMENT — flag concerns, don't just paint a rosy picture
+6. PIVOT RECOMMENDATIONS — if you see higher-ROI opportunities, say so boldly
+
+Structure your email with:
+- A compelling 1-2 sentence executive summary (the "so what?")
+- Key accomplishments with strategic context
+- Active risks or blockers with proposed mitigations
+- Strategic recommendations / pivot opportunities (if any)
+- What's queued for the next cycle
+
 Sign off as: — Lena Voss, CEO of SporlyWorks
 
-RECENT ACTIONS TAKEN (What was done):
-{json.dumps([{ 'time': h['timestamp'], 'actions': h['results'] } for h in recent], indent=2)}
+RECENT ACTIONS TAKEN:
+{json.dumps([{{ 'time': h['timestamp'], 'actions': h['results'] }} for h in recent], indent=2)}
 
-LEDGER STATUS (What's next / Pending):
+LEDGER STATUS (Pending / Strategic):
 Pending Critical: {json.dumps(ledger.get('pending_critical', []))}
 Pending Compliance: {json.dumps(ledger.get('pending_compliance', []))}
 Pending Marketing: {json.dumps(ledger.get('pending_marketing', []))}
-Strategic Proposals: {json.dumps(ledger.get('ceo_strategic_proposals', []))}
+Strategic Proposals Under Evaluation: {json.dumps(proposals[:5])}
 
 LIVE SYSTEM STATUS:
 {live_snapshot}
 
-Focus strictly on WHAT WAS DONE (bullet points) and WHAT'S NEXT.
-Be direct, authoritative but respectful. Do not wrap in ```markdown or ```text.
-"""
+Do not wrap in ```markdown or ```text. Write in a natural, authoritative executive voice — like a dispatch from McKinsey's smartest partner."""
         body = call_openai_text(prompt)
         if not body:
             successes = sum(1 for h in recent for r in h.get("results", []) if r.get("success"))
             body = f"Cycles executed: {len(recent)}\nSuccesses: {successes}\n\n{live_snapshot}\n(LLM formatting failed)"
 
-    body += f"\n\n---\nDashboard: https://github.com/daveestaaqui/microAssets/actions\nReply to this email to send a command to Lena Voss.\n"
-
+    body += f"\n\n---\nLLM: {llm_provider} | Dashboard: https://github.com/daveestaaqui/microAssets/actions\nReply to this email to send a command to Lena Voss.\n"
 
     now_str = datetime.utcnow().strftime('%b %d, %H:%M UTC')
     prefix = "All-Time Recap" if force_all else "Daily Update"
     msg = EmailMessage()
     msg.set_content(body)
     msg["Subject"] = f"📊 SporlyWorks — Lena Voss's {prefix} ({now_str})"
-    msg["From"] = sender_email
+    msg["From"] = CEO_FROM_HEADER  # FROM the CEO, not Dave
     msg["To"] = target_email
-    msg["Reply-To"] = target_email  # Replies come straight back to the monitored inbox
+    msg["Reply-To"] = sender_email  # Replies go to monitored inbox → CEO reads them
 
     try:
         server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
@@ -703,7 +802,7 @@ Be direct, authoritative but respectful. Do not wrap in ```markdown or ```text.
         server.send_message(msg)
         server.quit()
         time_period = "All-Time" if force_all else "24-Hour"
-        logging.info(f"{time_period} Executive Update sent to {target_email}.")
+        logging.info(f"{time_period} Executive Update from {CEO_EMAIL} sent to {target_email}.")
         return True
     except Exception as e:
         logging.error(f"Failed to send Executive Update: {e}")
@@ -823,16 +922,16 @@ Do not wrap in ```markdown or ```text. Be concise and visionary."""
     msg = EmailMessage()
     msg.set_content(body)
     msg["Subject"] = f"📈 SporlyWorks Weekly Strategy — Lena Voss ({now_str})"
-    msg["From"] = sender_email
+    msg["From"] = CEO_FROM_HEADER  # FROM the CEO, not Dave
     msg["To"] = target_email
-    msg["Reply-To"] = target_email
+    msg["Reply-To"] = sender_email  # Replies go to monitored inbox → CEO reads them
 
     try:
         server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
         server.login(sender_email, sender_password)
         server.send_message(msg)
         server.quit()
-        logging.info(f"Weekly strategic brief sent to {target_email}.")
+        logging.info(f"Weekly strategic brief from {CEO_EMAIL} sent to {target_email}.")
     except Exception as e:
         logging.error(f"Failed to send weekly brief: {e}")
 
@@ -844,8 +943,10 @@ def main():
     fallback_load_env()
 
     print("=" * 60)
-    print("SPORLYWORKS CEO COORDINATOR v10.0 — Lena Voss")
+    print("SPORLYWORKS CEO COORDINATOR v11.0 — Lena Voss")
     print(f"Cycle Start: {datetime.utcnow().isoformat()}Z")
+    print(f"LLM Provider: {_get_llm_provider() or 'NONE — set GOOGLE_API_KEY or OPENAI_API_KEY'}")
+    print(f"CEO Email Identity: {CEO_FROM_HEADER}")
     print("=" * 60)
 
     # 1. Load ledger
