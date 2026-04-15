@@ -1,0 +1,12 @@
+name = "sporlyworks-ceo-inbox"
+main = "worker.js"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+# KV Namespace — CEO's private inbox
+[[kv_namespaces]]
+binding = "CEO_INBOX"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+# Email routing — enables the email() handler
+# This is configured in the Cloudflare dashboard under Email > Email Workers

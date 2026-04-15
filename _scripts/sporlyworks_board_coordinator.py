@@ -28,6 +28,7 @@ import time
 import re
 import imaplib
 import email
+import requests
 import tempfile
 import shutil
 from email.header import decode_header
@@ -136,14 +137,89 @@ def redact_pii(text):
     return text
 
 
-# ── Email Fetching ───────────────────────────────────────────────────────
+# ── Email Fetching (via Cloudflare CEO Inbox Worker) ─────────────────────
 
 def fetch_recent_emails():
-    """Fetch latest unread emails from the owner's Gmail inbox via IMAP.
-    Uses LOGIN_EMAIL (sandwichfitness@gmail.com) — the inbox where Cloudflare
-    routes lena.voss@ and where the owner sends commands.
+    """Fetch unread emails from Lena Voss's private inbox (Cloudflare Worker + KV).
+    Lena has her own inbox — completely separate from the owner's Gmail.
+    Falls back to IMAP if the Worker isn't configured yet.
     Returns (summary_string, has_owner_command, raw_owner_commands).
     """
+    inbox_url = os.environ.get("CEO_INBOX_URL")
+    inbox_secret = os.environ.get("CEO_INBOX_SECRET")
+
+    if not inbox_url or not inbox_secret:
+        logging.warning("CEO_INBOX_URL/CEO_INBOX_SECRET not set. Falling back to IMAP.")
+        return _fetch_recent_emails_imap()
+
+    owner_indicators = ["sandwichfitness", "david", "davidmahler"]
+    has_owner_command = False
+    raw_owner_commands = []
+
+    try:
+        resp = requests.get(
+            f"{inbox_url.rstrip('/')}/inbox",
+            headers={"X-Inbox-Secret": inbox_secret},
+            timeout=15,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+
+        emails = data.get("emails", [])
+        if not emails:
+            return "No new unread correspondence in CEO inbox.", False, []
+
+        inbound_str = ""
+        read_ids = []
+
+        for em in emails:
+            from_ = em.get("from", "unknown")
+            subject = em.get("subject", "(no subject)")
+            body = em.get("body", "")
+
+            lines = [ln.strip() for ln in body.splitlines() if ln.strip()]
+            cleaned_body = "\\n".join(lines[:10])
+            if len(lines) > 10:
+                cleaned_body += "\\n[...truncated]"
+
+            inbound_str += f"\\n--- EMAIL ---\\nFrom: {from_}\\nSubject: {subject}\\nBody: {cleaned_body}\\n"
+
+            from_lower = from_.lower()
+            if any(ind in from_lower for ind in owner_indicators):
+                subject_lower = subject.lower()
+                is_our_digest = "lena voss" in subject_lower or "sporlyworks ceo board" in subject_lower
+                if not is_our_digest and body.strip():
+                    has_owner_command = True
+                    raw_owner_commands.append({
+                        "from": from_,
+                        "subject": subject,
+                        "body": "\n".join(lines[:5]),
+                    })
+
+            read_ids.append(em.get("id"))
+
+        # Mark all fetched emails as read
+        if read_ids:
+            try:
+                requests.post(
+                    f"{inbox_url.rstrip('/')}/mark-read",
+                    headers={"X-Inbox-Secret": inbox_secret, "Content-Type": "application/json"},
+                    json={"ids": read_ids},
+                    timeout=10,
+                )
+            except Exception as e:
+                logging.warning(f"Failed to mark CEO emails as read: {e}")
+
+        result_str = redact_pii(inbound_str) if inbound_str else "No new unread correspondence."
+        return result_str, has_owner_command, raw_owner_commands
+
+    except Exception as e:
+        logging.error(f"CEO Inbox Fetch Error: {e}")
+        return f"Error fetching CEO inbox: {e}", False, []
+
+
+def _fetch_recent_emails_imap():
+    """Legacy IMAP fallback — reads from Gmail if Worker isn't configured yet."""
     login_email = os.environ.get("LOGIN_EMAIL") or os.environ.get("SENDER_EMAIL")
     login_password = os.environ.get("SENDER_APP_PASSWORD")
     if not login_email or not login_password:
@@ -168,7 +244,6 @@ def fetch_recent_emails():
 
         inbound_str = ""
         for e_id in latest_ids:
-            # Fetch entire message, which also removes the UNSEEN flag
             res, msg_data = mail.fetch(e_id, "(RFC822)")
             for response_part in msg_data:
                 if isinstance(response_part, tuple):
@@ -181,16 +256,13 @@ def fetch_recent_emails():
                         else:
                             subject = decoded
                     from_ = msg.get("From", "unknown")
-
-                    # Extract Body
                     body = ""
                     if msg.is_multipart():
                         for part in msg.walk():
-                            content_type = part.get_content_type()
-                            if content_type == "text/plain":
+                            if part.get_content_type() == "text/plain":
                                 try:
                                     body = part.get_payload(decode=True).decode()
-                                    break  # Got the plain text
+                                    break
                                 except Exception:
                                     pass
                     else:
@@ -199,18 +271,14 @@ def fetch_recent_emails():
                         except Exception:
                             body = str(msg.get_payload())
 
-                    # Clean up body to not be huge
                     lines = [ln.strip() for ln in body.splitlines() if ln.strip()]
-                    cleaned_body = "\\n".join(lines[:10])  # First 10 non-empty lines
+                    cleaned_body = "\\n".join(lines[:10])
                     if len(lines) > 10:
                         cleaned_body += "\\n[...truncated]"
-
                     inbound_str += f"\\n--- EMAIL ---\\nFrom: {from_}\\nSubject: {subject}\\nBody: {cleaned_body}\\n"
 
-                    # Detect owner commands
                     from_lower = from_.lower()
                     if any(ind in from_lower for ind in owner_indicators):
-                        # Don't flag our own outgoing digests bouncing back
                         subject_lower = subject.lower()
                         is_our_digest = "lena voss" in subject_lower or "sporlyworks ceo board" in subject_lower
                         if not is_our_digest and body.strip():
@@ -230,10 +298,12 @@ def fetch_recent_emails():
 
 
 def send_owner_ack(owner_commands):
-    """Send acknowledgment to the owner. Sent FROM CEO's branded email."""
+    """Send acknowledgment to the owner FROM Lena's CEO email.
+    Uses Gmail SMTP with lena.voss@sporlyworks.com identity.
+    """
     login_email = os.environ.get("LOGIN_EMAIL") or os.environ.get("SENDER_EMAIL")
     login_password = os.environ.get("SENDER_APP_PASSWORD")
-    owner_email = os.environ.get("OWNER_EMAIL", login_email)
+    owner_email = os.environ.get("OWNER_EMAIL", "sandwichfitness@gmail.com")
     if not login_email or not login_password:
         return
 
