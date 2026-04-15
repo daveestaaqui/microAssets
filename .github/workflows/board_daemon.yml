@@ -49,6 +49,8 @@ jobs:
           OWNER_EMAIL: ${{ secrets.OWNER_EMAIL }}
           CEO_EMAIL: ${{ secrets.CEO_EMAIL }}
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          CEO_INBOX_URL: ${{ secrets.CEO_INBOX_URL }}
+          CEO_INBOX_SECRET: ${{ secrets.CEO_INBOX_SECRET }}
         run: |
           cd _scripts && python sporlyworks_board_coordinator.py
 

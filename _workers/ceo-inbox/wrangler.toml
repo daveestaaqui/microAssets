@@ -6,7 +6,7 @@ compatibility_flags = ["nodejs_compat"]
 # KV Namespace — CEO's private inbox
 [[kv_namespaces]]
 binding = "CEO_INBOX"
-id = "REPLACE_WITH_KV_NAMESPACE_ID"
+id = "7c9309b54be14d059b1abc3502dc78f6"
 
 # Email routing — enables the email() handler
 # This is configured in the Cloudflare dashboard under Email > Email Workers
