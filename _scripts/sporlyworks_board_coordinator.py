@@ -297,9 +297,9 @@ def _fetch_recent_emails_imap():
         return f"Error fetching mail: {e}", False, []
 
 
-def send_owner_ack(owner_commands):
-    """Send acknowledgment to the owner FROM Lena's CEO email.
-    Uses Gmail SMTP with lena.voss@sporlyworks.com identity.
+def send_owner_reply(owner_commands, ledger_data=None):
+    """Generate a real AI-powered response from the CEO and send it immediately.
+    No templates, no 'wait for the next cycle' — David gets a direct reply.
     """
     login_email = os.environ.get("LOGIN_EMAIL") or os.environ.get("SENDER_EMAIL")
     login_password = os.environ.get("SENDER_APP_PASSWORD")
@@ -307,31 +307,68 @@ def send_owner_ack(owner_commands):
     if not login_email or not login_password:
         return
 
-    try:
-        cmds_summary = "\n".join(
-            f"  • [{c['subject']}]: {c['body'][:120]}" for c in owner_commands
-        )
-        body = (
-            f"Hi David,\n\n"
-            f"Lena Voss here. I've received your command(s) and will prioritize them in the next board cycle (runs every 4 hours):\n\n"
-            f"{cmds_summary}\n\n"
-            f"You'll see the outcome in your next daily digest.\n\n"
-            f"— Lena Voss, CEO of SporlyWorks"
-        )
-        msg = EmailMessage()
-        msg.set_content(body)
-        msg["Subject"] = "✅ Lena Voss received your command"
-        msg["From"] = f"{CEO_DISPLAY_NAME} <{CEO_EMAIL}>"
-        msg["To"] = owner_email
-        msg["Reply-To"] = CEO_EMAIL
-        server = smtplib.SMTP("smtp.gmail.com", 587)
-        server.starttls()
-        server.login(login_email, login_password)
-        server.send_message(msg)
-        server.quit()
-        logging.info(f"Owner ACK sent from {CEO_EMAIL} for {len(owner_commands)} command(s).")
-    except Exception as e:
-        logging.error(f"Failed to send owner ACK: {e}")
+    # Build context from ledger for the CEO to reference
+    ledger_context = ""
+    if ledger_data:
+        try:
+            infra = ledger_data.get("infrastructure_status", {})
+            pending = ledger_data.get("pending_critical", [])
+            depts = ledger_data.get("departments", {})
+            dist = ledger_data.get("distribution", {})
+            ledger_context = f"""
+Current infrastructure: {json.dumps(infra, indent=2)}
+Pending critical items: {json.dumps(pending)}
+Distribution: {json.dumps(dist)}
+Active departments: {', '.join(depts.keys())}
+"""
+        except Exception:
+            ledger_context = "Ledger data unavailable."
+
+    for cmd in owner_commands:
+        try:
+            prompt = f"""You are Lena Voss, CEO of SporlyWorks. You are writing a direct email reply to David Mahler, the founder and owner.
+
+David is your boss — the founder. Respond to him directly, substantively, and personally. No corporate speak. No "I'll prioritize this in the next cycle." Give him a real answer RIGHT NOW with specifics.
+
+Be concise but thorough. If he asks for an update, give him the actual status of everything. If he gives an instruction, confirm exactly what you'll do. If he asks a question, answer it.
+
+Sign off as Lena.
+
+--- CURRENT COMPANY STATUS ---
+{ledger_context}
+
+--- DAVID'S EMAIL ---
+Subject: {cmd['subject']}
+Body: {cmd['body']}
+
+--- YOUR REPLY (plain text, no markdown, no headers — just the email body) ---"""
+
+            reply_text = _call_llm_text(prompt)
+            if not reply_text:
+                reply_text = (
+                    f"Hi David,\n\n"
+                    f"I received your message about '{cmd['subject']}' but I'm having trouble "
+                    f"connecting to our AI systems right now. I'll get back to you with a full "
+                    f"response as soon as the system is back up.\n\n"
+                    f"— Lena"
+                )
+
+            # Send the real reply
+            msg = EmailMessage()
+            msg.set_content(reply_text)
+            re_prefix = "" if cmd['subject'].lower().startswith("re:") else "Re: "
+            msg["Subject"] = f"{re_prefix}{cmd['subject']}"
+            msg["From"] = f"{CEO_DISPLAY_NAME} <{CEO_EMAIL}>"
+            msg["To"] = owner_email
+            msg["Reply-To"] = CEO_EMAIL
+            server = smtplib.SMTP("smtp.gmail.com", 587)
+            server.starttls()
+            server.login(login_email, login_password)
+            server.send_message(msg)
+            server.quit()
+            logging.info(f"CEO direct reply sent for: {cmd['subject']}")
+        except Exception as e:
+            logging.error(f"Failed to send CEO reply: {e}")
 
 
 
@@ -460,10 +497,10 @@ def ask_coordinator(ledger_state):
     recent_emails, has_owner_command, raw_cmds = fetch_recent_emails()
     qa_findings = ledger_state.get("qa_last_report", {}).get("findings", [])
 
-    # Auto-ACK owner commands immediately before the main cycle
+    # Reply to owner immediately with a real AI-generated response
     if has_owner_command and raw_cmds:
-        logging.info(f"Owner command detected ({len(raw_cmds)} message(s)). Sending ACK...")
-        send_owner_ack(raw_cmds)
+        logging.info(f"Owner command detected ({len(raw_cmds)} message(s)). Generating CEO reply...")
+        send_owner_reply(raw_cmds, ledger_data=ledger_state)
 
     # Get CWS queue snapshot for context
     cws_snapshot = ""
