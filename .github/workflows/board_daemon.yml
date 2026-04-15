@@ -19,12 +19,12 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Full clone — needed for git push in commit step
 
       - name: Setup Python
-        uses: actions/setup-python@v5.6
+        uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
