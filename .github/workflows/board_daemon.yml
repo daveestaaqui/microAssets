@@ -2,7 +2,7 @@ name: SporlyWorks AI Serverless Board
 
 on:
   schedule:
-    - cron: '0 */4 * * *'
+    - cron: '*/30 * * * *'
   workflow_dispatch:
 
 # Prevent overlapping runs — only one board session at a time
