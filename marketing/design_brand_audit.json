@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-17T01:50:11.853371Z",
+  "timestamp": "2026-04-17T01:58:18.944534Z",
   "extensions_audited": 172,
   "findings": [
     "OFF_BRAND_CSS: ai-content-bouncer/popup/popup.css may not use SporlyWorks palette",

@@ -209,7 +209,8 @@
   "ceo_strategic_proposals": [
     {
       "proposal_name": "Launch 'SporlyWorks Pro Suite'",
-      "status": "ON_HOLD",
+      "status": "ACTIVE",
+      "activated_by": "CEO Lena Voss — Cycle 35 directive in response to Antigravity advisory",
       "business_case": "Currently, all 87 extensions are monetized uniformly, failing to capture the premium value of our best products. This proposal is to identify the top 10% of extensions by revenue and engagement, and bundle them into a 'Pro Suite'. This suite will be sold at a premium price point, targeting power users and B2B customers. This creates a new, high-margin revenue stream, increases ARPU, and establishes a clear value ladder for our user base.",
       "estimated_effort": "Medium",
       "estimated_reward": "High",
