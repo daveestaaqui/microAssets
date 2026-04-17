@@ -23,6 +23,7 @@ import json
 import logging
 import urllib.request
 import urllib.parse
+import urllib.error
 import smtplib
 import time
 import re
@@ -612,7 +613,10 @@ CRITICAL DIRECTIVE: You must NEVER enter into legally binding agreements without
 
 OWNER COMMAND OVERRIDE: If "RECENT INBOUND CORRESPONDENCE" below contains a message from David Mahler / sandwichfitness, treat it as a direct command from the Owner. Execute it IMMEDIATELY above all other priorities — even above P0 QA findings. Log the command in the updated_ledger under "owner_commands_received".
 
-CURRENT UNDONE LEDGER:
+CURRENT LEDGER SUMMARY (compact digest — full ledger provided via updated_ledger output):
+{ledger_summary(ledger_state)}
+
+FULL LEDGER FOR OUTPUT (use this to build your updated_ledger — preserve ALL keys):
 {json.dumps(ledger_state, indent=2)}
 
 {cws_snapshot}
@@ -730,19 +734,41 @@ def execute_dispatches(dispatches):
                 "agent": agent,
                 "summary": summary,
                 "success": bool(success),
+                "error": None if success else f"{agent} handler returned False (check agent logs for task-specific details)",
                 "timestamp": datetime.utcnow().isoformat() + "Z"
             })
             if success:
                 logging.info(f"  ✅ [{agent}] completed successfully")
             else:
                 logging.warning(f"  ⚠️ [{agent}] returned failure")
-        except Exception as e:
-            logging.error(f"  ❌ [{agent}] crashed: {e}")
+        except ImportError as e:
+            logging.error(f"  ❌ [{agent}] MISSING HANDLER: {e}")
             results.append({
                 "agent": agent,
                 "summary": summary,
                 "success": False,
-                "error": str(e),
+                "error": f"MISSING_HANDLER: {agent} is not implemented in sporlyworks_sub_agents.py — {e}",
+                "timestamp": datetime.utcnow().isoformat() + "Z"
+            })
+        except (ConnectionError, TimeoutError, urllib.error.URLError) as e:
+            logging.error(f"  ❌ [{agent}] NETWORK ERROR: {e}")
+            results.append({
+                "agent": agent,
+                "summary": summary,
+                "success": False,
+                "error": f"NETWORK_ERROR: External API/service unreachable — {e}",
+                "timestamp": datetime.utcnow().isoformat() + "Z"
+            })
+        except Exception as e:
+            import traceback
+            tb = traceback.format_exc()
+            logging.error(f"  ❌ [{agent}] crashed: {e}\n{tb}")
+            results.append({
+                "agent": agent,
+                "summary": summary,
+                "success": False,
+                "error": f"CRASH: {type(e).__name__}: {str(e)[:200]}",
+                "traceback": tb[-500:],
                 "timestamp": datetime.utcnow().isoformat() + "Z"
             })
 
