@@ -629,6 +629,129 @@ def handle_cws_wave_agent(payload, api_key):
     return True
 
 
+# ── 10. Design Agent ────────────────────────────────────────────────────
+
+def handle_design_agent(payload, api_key):
+    """Execute design tasks: brand audits, UI concepts, icon generation, style enforcement."""
+    task = payload.get("task", "brand_audit")
+    logging.info(f"Design: {task}")
+
+    if task == "brand_audit":
+        # Audit all extensions for brand consistency (icon presence, popup styling)
+        findings = []
+        audited = 0
+        for item in sorted(os.listdir(REPO_ROOT)):
+            item_path = os.path.join(REPO_ROOT, item)
+            if not os.path.isdir(item_path) or item.startswith(("_", ".")):
+                continue
+            manifest_path = os.path.join(item_path, "manifest.json")
+            if not os.path.isfile(manifest_path):
+                continue
+            audited += 1
+            # Check for spore icon
+            icons_dir = os.path.join(item_path, "icons")
+            has_spore = os.path.isfile(os.path.join(icons_dir, "icon_spore.svg")) if os.path.isdir(icons_dir) else False
+            if not has_spore:
+                # Check for any SVG icon at all
+                has_any_svg = any(
+                    f.endswith(".svg")
+                    for f in os.listdir(icons_dir)
+                ) if os.path.isdir(icons_dir) else False
+                if not has_any_svg:
+                    findings.append(f"MISSING_BRAND_ICON: {item}/ has no SVG icon asset")
+
+            # Check popup CSS for brand colors
+            popup_css = os.path.join(item_path, "popup", "popup.css")
+            if os.path.isfile(popup_css):
+                with open(popup_css, "r", errors="ignore") as f:
+                    css_content = f.read()
+                # Check for SporlyWorks brand palette presence
+                has_brand = any(c in css_content.lower() for c in ["#1a1a2e", "#16213e", "#0f3460", "sporlyworks", "spore"])
+                if not has_brand and len(css_content) > 50:
+                    findings.append(f"OFF_BRAND_CSS: {item}/popup/popup.css may not use SporlyWorks palette")
+
+        report = {
+            "timestamp": datetime.utcnow().isoformat() + "Z",
+            "extensions_audited": audited,
+            "findings": findings,
+            "status": "PASS" if not findings else "NEEDS_ATTENTION"
+        }
+        report_path = os.path.join(REPO_ROOT, "marketing", "design_brand_audit.json")
+        os.makedirs(os.path.dirname(report_path), exist_ok=True)
+        with open(report_path, "w") as f:
+            json.dump(report, f, indent=2)
+        logging.info(f"✅ Brand audit: {audited} extensions, {len(findings)} findings")
+        return True
+
+    elif task == "generate_ui_concepts":
+        # Generate textual UI/UX specifications for extensions
+        target = payload.get("target", "microassets-master-suite")
+        prompt = f"""You are the Lead UI/UX Designer for SporlyWorks, a premium SaaS company.
+Generate a detailed UI specification for the '{target}' browser extension popup.
+
+DESIGN SYSTEM:
+- Color palette: Deep charcoal (#1a1a2e), midnight (#16213e), ocean (#0f3460), cream (#faf3e0)
+- Typography: Inter (Google Fonts), clean hierarchy
+- Style: Minimalist, glassmorphic panels, subtle shadows, premium feel
+- Brand motif: Geometric mushroom/spore — used sparingly as a watermark or logo element
+
+Output a complete JSON spec with:
+- layout (grid structure, panel arrangement)
+- color_tokens (named colors with hex values)
+- typography_scale (h1-h6 sizes, weights)
+- components (buttons, cards, inputs — with CSS properties)
+- animations (hover states, transitions)
+
+Return ONLY valid JSON."""
+        try:
+            spec = _call_llm(prompt, api_key, max_tokens=3000)
+            output_dir = os.path.join(REPO_ROOT, "marketing", "design_specs")
+            os.makedirs(output_dir, exist_ok=True)
+            output_path = os.path.join(output_dir, f"{target}_ui_spec.json")
+            with open(output_path, "w", encoding="utf-8") as f:
+                f.write(spec)
+            logging.info(f"✅ UI spec generated: {output_path}")
+            return True
+        except Exception as e:
+            logging.error(f"Design spec generation failed: {e}")
+            return False
+
+    elif task == "style_guide_check":
+        # Verify popup HTML files use proper semantic structure
+        issues = []
+        checked = 0
+        for item in sorted(os.listdir(REPO_ROOT)):
+            popup_html = os.path.join(REPO_ROOT, item, "popup", "index.html")
+            if not os.path.isfile(popup_html):
+                continue
+            if item.startswith(("_", ".")):
+                continue
+            checked += 1
+            with open(popup_html, "r", errors="ignore") as f:
+                content = f.read()
+            if '<meta name="viewport"' not in content:
+                issues.append(f"NO_VIEWPORT: {item}/popup/index.html")
+            if 'lang=' not in content[:200]:
+                issues.append(f"NO_LANG: {item}/popup/index.html missing lang attribute")
+
+        report = {
+            "timestamp": datetime.utcnow().isoformat() + "Z",
+            "popups_checked": checked,
+            "issues": issues,
+            "status": "PASS" if not issues else "NEEDS_FIX"
+        }
+        report_path = os.path.join(REPO_ROOT, "marketing", "style_guide_audit.json")
+        os.makedirs(os.path.dirname(report_path), exist_ok=True)
+        with open(report_path, "w") as f:
+            json.dump(report, f, indent=2)
+        logging.info(f"✅ Style guide check: {checked} popups, {len(issues)} issues")
+        return True
+
+    # Fallback: acknowledge the task
+    logging.info(f"Design task '{task}' acknowledged. No specific handler — running brand_audit as default.")
+    return handle_design_agent({"task": "brand_audit"}, api_key)
+
+
 # ── Master Router ────────────────────────────────────────────────────────
 
 def route_payload(dispatch, api_key):
@@ -646,6 +769,7 @@ def route_payload(dispatch, api_key):
         "SecurityAgent": handle_security_agent,
         "CustomerSuccessAgent": handle_customer_success_agent,
         "CWSWaveAgent": handle_cws_wave_agent,
+        "DesignAgent": handle_design_agent,
     }
 
     handler = handlers.get(target)

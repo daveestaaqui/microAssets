@@ -1,0 +1,769 @@
+{
+  "timestamp": "2026-04-17T01:51:38.160836Z",
+  "total_analyzed": 87,
+  "cut_candidates": [
+    "amazon-wide-mode",
+    "base64-encoder",
+    "bookmark-manager",
+    "carbon-footprint-checker",
+    "clipboard-history",
+    "dark-mode-everywhere",
+    "google-dark-search",
+    "hash-generator",
+    "lorem-ipsum-generator",
+    "password-generator",
+    "qr-code-generator",
+    "reading-mode",
+    "reading-time-badge",
+    "screenshot-capture",
+    "text-case-converter",
+    "timestamp-converter",
+    "url-encoder-decoder",
+    "url-shortener",
+    "word-counter"
+  ],
+  "review_tier": [
+    "cookie-banner-rejector",
+    "css-box-shadow",
+    "css-flexbox-generator",
+    "css-gradient-generator",
+    "css-grid-generator",
+    "diff-viewer",
+    "http-status-checker",
+    "json-csv-converter",
+    "json-path-finder",
+    "meta-tag-editor",
+    "network-speed-test",
+    "og-previewer",
+    "page-seo-analyzer",
+    "quick-notepad",
+    "robots-viewer",
+    "website-monitor-pro",
+    "code-snippet-manager",
+    "color-palette-generator",
+    "color-picker-eyedropper",
+    "cookie-manager",
+    "copy-as-markdown",
+    "css-minifier",
+    "diff-checker",
+    "email-template-builder",
+    "favicon-grabber",
+    "font-identifier",
+    "gdocs-focus-mode",
+    "github-line-numbers",
+    "github-quick-stats",
+    "html-table-extractor",
+    "http-headers",
+    "instagram-clean-feed",
+    "jira-declutter",
+    "json-formatter",
+    "jwt-decoder",
+    "link-checker",
+    "linkedin-hide-feed",
+    "markdown-preview",
+    "meet-zoom-automute",
+    "microassets-master-suite",
+    "page-ruler",
+    "pomodoro-anywhere",
+    "quick-note-taker",
+    "reddit-redirect",
+    "regex-tester",
+    "responsive-viewer",
+    "sponsor-skipper",
+    "tab-groups-saver",
+    "tab-suspender",
+    "time-tracker",
+    "user-agent-switcher",
+    "wayback-machine-quick",
+    "whois-lookup"
+  ],
+  "keep_tier": [
+    "site-speed-analyzer"
+  ],
+  "flagship_tier": [
+    "llm-privacy-scrub",
+    "ai-content-bouncer",
+    "amazon-fake-review-skimmer",
+    "contract-highlighter",
+    "crm-data-extractor",
+    "invoice-extractor",
+    "privacy-scanner",
+    "wcag-auditor",
+    "api-tester-pro",
+    "css-inspector-pro",
+    "dom-editor-pro",
+    "form-filler-pro",
+    "network-monitor-pro",
+    "seo-content-pro"
+  ],
+  "full_scores": [
+    {
+      "name": "amazon-wide-mode",
+      "score": 17,
+      "flags": [
+        "COMMODITY",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "base64-encoder",
+      "score": 17,
+      "flags": [
+        "COMMODITY",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "bookmark-manager",
+      "score": 17,
+      "flags": [
+        "COMMODITY",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "carbon-footprint-checker",
+      "score": 17,
+      "flags": [
+        "COMMODITY",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "clipboard-history",
+      "score": 17,
+      "flags": [
+        "COMMODITY",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "dark-mode-everywhere",
+      "score": 17,
+      "flags": [
+        "COMMODITY",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "google-dark-search",
+      "score": 17,
+      "flags": [
+        "COMMODITY",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "hash-generator",
+      "score": 17,
+      "flags": [
+        "COMMODITY",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "lorem-ipsum-generator",
+      "score": 17,
+      "flags": [
+        "COMMODITY",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "password-generator",
+      "score": 17,
+      "flags": [
+        "COMMODITY",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "qr-code-generator",
+      "score": 17,
+      "flags": [
+        "COMMODITY",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "reading-mode",
+      "score": 17,
+      "flags": [
+        "COMMODITY",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "reading-time-badge",
+      "score": 17,
+      "flags": [
+        "COMMODITY",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "screenshot-capture",
+      "score": 17,
+      "flags": [
+        "COMMODITY",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "text-case-converter",
+      "score": 17,
+      "flags": [
+        "COMMODITY",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "timestamp-converter",
+      "score": 17,
+      "flags": [
+        "COMMODITY",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "url-encoder-decoder",
+      "score": 17,
+      "flags": [
+        "COMMODITY",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "url-shortener",
+      "score": 17,
+      "flags": [
+        "COMMODITY",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "word-counter",
+      "score": 17,
+      "flags": [
+        "COMMODITY",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "cookie-banner-rejector",
+      "score": 32,
+      "flags": [
+        "OVERLAPS:cookie-manager",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "css-box-shadow",
+      "score": 32,
+      "flags": [
+        "OVERLAPS:css-inspector-pro",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "css-flexbox-generator",
+      "score": 32,
+      "flags": [
+        "OVERLAPS:css-inspector-pro",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "css-gradient-generator",
+      "score": 32,
+      "flags": [
+        "OVERLAPS:css-inspector-pro",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "css-grid-generator",
+      "score": 32,
+      "flags": [
+        "OVERLAPS:css-inspector-pro",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "diff-viewer",
+      "score": 32,
+      "flags": [
+        "OVERLAPS:diff-checker",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "http-status-checker",
+      "score": 32,
+      "flags": [
+        "OVERLAPS:http-headers",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "json-csv-converter",
+      "score": 32,
+      "flags": [
+        "OVERLAPS:json-formatter",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "json-path-finder",
+      "score": 32,
+      "flags": [
+        "OVERLAPS:json-formatter",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "meta-tag-editor",
+      "score": 32,
+      "flags": [
+        "OVERLAPS:seo-content-pro",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "network-speed-test",
+      "score": 32,
+      "flags": [
+        "OVERLAPS:network-monitor-pro",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "og-previewer",
+      "score": 32,
+      "flags": [
+        "OVERLAPS:seo-content-pro",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "page-seo-analyzer",
+      "score": 32,
+      "flags": [
+        "OVERLAPS:seo-content-pro",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "quick-notepad",
+      "score": 32,
+      "flags": [
+        "OVERLAPS:quick-note-taker",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "robots-viewer",
+      "score": 32,
+      "flags": [
+        "OVERLAPS:seo-content-pro",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "website-monitor-pro",
+      "score": 42,
+      "flags": [
+        "OVERLAPS:network-monitor-pro",
+        "PRO_TIER",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "code-snippet-manager",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "color-palette-generator",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "color-picker-eyedropper",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "cookie-manager",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "copy-as-markdown",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "css-minifier",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "diff-checker",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "email-template-builder",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "favicon-grabber",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "font-identifier",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "gdocs-focus-mode",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "github-line-numbers",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "github-quick-stats",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "html-table-extractor",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "http-headers",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "instagram-clean-feed",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "jira-declutter",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "json-formatter",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "jwt-decoder",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "link-checker",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "linkedin-hide-feed",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "markdown-preview",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "meet-zoom-automute",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "microassets-master-suite",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "page-ruler",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "pomodoro-anywhere",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "quick-note-taker",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "reddit-redirect",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "regex-tester",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "responsive-viewer",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "sponsor-skipper",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "tab-groups-saver",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "tab-suspender",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "time-tracker",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "user-agent-switcher",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "wayback-machine-quick",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "whois-lookup",
+      "score": 47,
+      "flags": [
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "site-speed-analyzer",
+      "score": 72,
+      "flags": [
+        "FLAGSHIP",
+        "OVERLAPS:network-monitor-pro",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "llm-privacy-scrub",
+      "score": 82,
+      "flags": [
+        "FLAGSHIP",
+        "BG_SCRIPT",
+        "WIDE_INJECT:5"
+      ]
+    },
+    {
+      "name": "ai-content-bouncer",
+      "score": 87,
+      "flags": [
+        "FLAGSHIP",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "amazon-fake-review-skimmer",
+      "score": 87,
+      "flags": [
+        "FLAGSHIP",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "contract-highlighter",
+      "score": 87,
+      "flags": [
+        "FLAGSHIP",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "crm-data-extractor",
+      "score": 87,
+      "flags": [
+        "FLAGSHIP",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "invoice-extractor",
+      "score": 87,
+      "flags": [
+        "FLAGSHIP",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "privacy-scanner",
+      "score": 87,
+      "flags": [
+        "FLAGSHIP",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "wcag-auditor",
+      "score": 87,
+      "flags": [
+        "FLAGSHIP",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "api-tester-pro",
+      "score": 97,
+      "flags": [
+        "FLAGSHIP",
+        "PRO_TIER",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "css-inspector-pro",
+      "score": 97,
+      "flags": [
+        "FLAGSHIP",
+        "PRO_TIER",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "dom-editor-pro",
+      "score": 97,
+      "flags": [
+        "FLAGSHIP",
+        "PRO_TIER",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "form-filler-pro",
+      "score": 97,
+      "flags": [
+        "FLAGSHIP",
+        "PRO_TIER",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "network-monitor-pro",
+      "score": 97,
+      "flags": [
+        "FLAGSHIP",
+        "PRO_TIER",
+        "BG_SCRIPT"
+      ]
+    },
+    {
+      "name": "seo-content-pro",
+      "score": 97,
+      "flags": [
+        "FLAGSHIP",
+        "PRO_TIER",
+        "BG_SCRIPT"
+      ]
+    }
+  ]
+}

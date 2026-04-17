@@ -492,6 +492,64 @@ def call_openai_text(prompt, max_retries=3):
     return _call_llm_text(prompt, max_retries=max_retries)
 
 
+def ledger_summary(ledger):
+    """Produce a compact ~500-token digest of the ledger for prompt injection.
+    The full ledger is too large (17KB+) to inject into every LLM call.
+    This extracts only the decision-relevant signals."""
+    lines = []
+
+    # Infrastructure status (one-liner per service)
+    infra = ledger.get("infrastructure_status", {})
+    for k, v in infra.items():
+        status_word = v.split("—")[0].strip() if "—" in str(v) else str(v)[:40]
+        lines.append(f"  {k}: {status_word}")
+
+    # Portfolio numbers
+    dist = ledger.get("distribution", {})
+    lines.append(f"Portfolio: {dist.get('chrome_extensions', '?')} Chrome, {dist.get('firefox_extensions', '?')} Firefox, {dist.get('android_apps', '?')} Android")
+
+    # Pending critical (always show)
+    pending = ledger.get("pending_critical", [])
+    if pending:
+        lines.append(f"PENDING CRITICAL: {json.dumps(pending)}")
+    else:
+        lines.append("PENDING CRITICAL: None")
+
+    # Deployments
+    deps = ledger.get("pending_deployments", {})
+    lines.append(f"CWS Queue: {deps.get('status', 'unknown')}, {deps.get('queue_size', '?')} in queue")
+
+    # Strategic proposals (name + status only)
+    proposals = ledger.get("ceo_strategic_proposals", [])
+    if proposals:
+        lines.append("Strategic Proposals:")
+        for p in proposals:
+            lines.append(f"  - {p.get('proposal_name')}: {p.get('status')}")
+
+    # Last dispatch results
+    last_results = ledger.get("last_dispatch_results", [])
+    if last_results:
+        lines.append("Last Dispatches:")
+        for r in last_results:
+            emoji = "OK" if r.get("success") else "FAIL"
+            lines.append(f"  [{emoji}] {r.get('agent')}: {r.get('summary', '')[:80]}")
+
+    # Owner commands (last 2)
+    cmds = ledger.get("owner_commands_received", [])
+    if cmds:
+        lines.append(f"Recent Owner Commands ({len(cmds)} total): {cmds[-1][:120]}...")
+
+    # QA status
+    qa = ledger.get("qa_last_report", {})
+    if qa:
+        lines.append(f"QA: {qa.get('status', '?')} — {len(qa.get('findings', []))} findings, {len(qa.get('checks_run', []))} checks")
+
+    # Cycle count
+    lines.append(f"Cycle: {ledger.get('cycle_count', '?')}")
+
+    return "\n".join(lines)
+
+
 def ask_coordinator(ledger_state):
     """Build the CEO prompt and call the LLM."""
     recent_emails, has_owner_command, raw_cmds = fetch_recent_emails()
