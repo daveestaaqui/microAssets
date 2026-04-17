@@ -5,9 +5,9 @@
   "description": "Hides suggested posts, Reels, and sponsored content from your Instagram web feed to show only posts from accounts you follow.",
   "homepage_url": "https://sporlyworks.com",
   "icons": {
-    "16": "icon16.png",
-    "48": "icon48.png",
-    "128": "icon128.png"
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
   },
   "permissions": [
     "storage",

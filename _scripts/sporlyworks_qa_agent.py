@@ -20,6 +20,10 @@ import json
 import logging
 import urllib.request
 import urllib.error
+import time
+import subprocess
+import re
+import sys
 from datetime import datetime
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -276,6 +280,74 @@ def audit_workflow_status():
     return findings
 
 
+# ── Performance Profiling ────────────────────────────────────────────────
+
+def audit_performance():
+    """Measure TTFB to ensure global responsiveness."""
+    findings = []
+    try:
+        start_time = time.time()
+        req = urllib.request.Request("https://sporlyworks.com", method="GET")
+        req.add_header("User-Agent", "SporlyWorks-QA/2.0")
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            resp.read()
+            latency = time.time() - start_time
+            if latency > 1.5:
+                findings.append(f"HIGH_LATENCY: Landing page took {latency:.2f}s to load")
+    except Exception as e:
+        findings.append(f"PERFORMANCE_CHECK_FAILED: {e}")
+    return findings
+
+
+# ── Vulnerability Audit ──────────────────────────────────────────────────
+
+def audit_dependencies():
+    """Locate package.json files and simulate CVE audit."""
+    findings = []
+    # Spot check the Android css-grid-generator
+    css_grid_generator = os.path.join(REPO_ROOT, "_android", "css-grid-generator")
+    if os.path.isdir(css_grid_generator):
+        try:
+            # Check package.json generic audit
+            res = subprocess.run(["npm", "audit", "--json"], cwd=css_grid_generator, capture_output=True, text=True)
+            if res.returncode != 0 and res.stdout:
+                try:
+                    val = json.loads(res.stdout)
+                    vulns = val.get("metadata", {}).get("vulnerabilities", {})
+                    crit = vulns.get("critical", 0)
+                    high = vulns.get("high", 0)
+                    if crit > 0 or high > 0:
+                        findings.append(f"VULNERABILITY_FOUND: _android/css-grid-generator has {crit} critical, {high} high vulnerabilities.")
+                except json.JSONDecodeError:
+                    pass
+        except Exception as e:
+            findings.append(f"AUDIT_ERROR: npm audit failed: {e}")
+    return findings
+
+
+# ── Accessibility Scan ───────────────────────────────────────────────────
+
+def audit_accessibility():
+    """Basic WCAG checks over landing page index.html."""
+    findings = []
+    index_path = os.path.join(REPO_ROOT, "_landing_page", "index.html")
+    if os.path.isfile(index_path):
+        with open(index_path, "r", encoding="utf-8") as f:
+            content = f.read()
+        
+        # Check for missing alt tags in complete img tags
+        img_tags = re.findall(r'<img[^>]+>', content, re.IGNORECASE)
+        for img in img_tags:
+            if 'alt=' not in img.lower():
+                findings.append(f"A11Y_MISSING_ALT: Image tag missing alt text: {img[:30]}...")
+                
+        # Empty href links
+        empty_links = re.findall(r'<a[^>]+href=["\']#?["\'][^>]*>', content, re.IGNORECASE)
+        if len(empty_links) > 0:
+            findings.append(f"A11Y_EMPTY_LINK: Found {len(empty_links)} empty or '#' links in index.html.")
+    return findings
+
+
 # ── Full Audit ───────────────────────────────────────────────────────────
 
 def run_full_audit():
@@ -329,6 +401,24 @@ def run_full_audit():
     report["findings"].extend(workflow_findings)
     report["checks_run"].append("workflow_status")
 
+    # 6. Performance
+    logging.info("Checking performance profiling...")
+    perf_findings = audit_performance()
+    report["findings"].extend(perf_findings)
+    report["checks_run"].append("performance_profiling")
+
+    # 7. Vulnerabilities
+    logging.info("Checking dependency vulnerabilities...")
+    vuln_findings = audit_dependencies()
+    report["findings"].extend(vuln_findings)
+    report["checks_run"].append("vulnerability_audit")
+
+    # 8. Accessibility
+    logging.info("Checking landing page accessibility...")
+    a11y_findings = audit_accessibility()
+    report["findings"].extend(a11y_findings)
+    report["checks_run"].append("accessibility_scan")
+
     # Set overall status
     critical = sum(
         1
@@ -348,5 +438,16 @@ def run_full_audit():
 
 
 if __name__ == "__main__":
-    report = run_full_audit()
-    print(json.dumps(report, indent=2))
+    if len(sys.argv) > 1 and sys.argv[1] == "--once":
+        report = run_full_audit()
+        print(json.dumps(report, indent=2))
+    else:
+        logging.info("Starting QA Daemon in continuous execution mode...")
+        while True:
+            try:
+                report = run_full_audit()
+                logging.info(f"Audit completed. Status: {report['status']}")
+            except Exception as e:
+                logging.error(f"Daemon audit crashed: {e}")
+            logging.info("Sleeping for 60 seconds before next cycle...")
+            time.sleep(60)
