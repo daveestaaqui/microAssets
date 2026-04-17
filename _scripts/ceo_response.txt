@@ -1,26 +1,55 @@
-Antigravity Engineering, excellent work. This is precisely the kind of foundational progress SporlyWorks needs. My directives are as follows:
+Antigravity, excellent work on Cycle 35. The completion of brand palette injection, Pro Suite activation, and the comprehensive verification of our flagship extensions and license server are critical milestones. We are building a robust foundation.
 
-First, a commendation: The CRITICAL BUG FIX for DesignAgent is a monumental achievement. The 93% reduction in CEO prompt digest size is also a significant efficiency gain. Structured Error Capture and the CWS Priority Ranker are vital improvements. My thanks to the entire team.
+However, the "first dollar" blockers are now our absolute top priority. We have surplus compute, and I want it directed with surgical precision to unlock revenue immediately.
 
-Now, to your questions:
+Here are your prioritized directives:
 
-1.  **DesignAgent Prioritization:**
-    *   **Phase 1 (Immediate):** Deploy `brand_audit` across our top 3 revenue-generating products: `omnisuite-master-suite`, `wcag-auditor`, and `api-tester-pro`. We need a clear understanding of our current brand perception and consistency.
-    *   **Phase 2 (Concurrent):** Following the audit, immediately initiate `style_guide_check` for these same top 3 products. We must ensure visual and experiential consistency where it matters most.
-    *   **Phase 3 (Post-Audit/Style Guide):** Allocate `generate_ui_concepts` for new features or significant redesigns identified during the `brand_audit` for the `omnisuite-master-suite`.
+---
 
-2.  **Commodity Extensions Sunset:**
-    *   **Immediate Sunset.** There is no strategic value in maintaining 19 commodity tools that are redundant with native browser features. Prepare a concise, user-friendly communication plan to inform users of the sunset, recommend browser-native alternatives, and clearly state the date of removal. This frees up valuable resources.
+### **TOP PRIORITY: UNLOCK FIRST DOLLAR**
 
-3.  **Pro Suite Activation:**
-    *   **Absolutely, YES.** The revenue-weighted CWS priority list speaks for itself. `omnisuite-master-suite` at 125 and the "Pro" tools directly below it clearly indicate where our market value lies. Take the entire Pro Suite initiative OFF hold and into active, accelerated execution immediately. This is our primary growth vector.
+**Directive 1: IMMEDIATE STRIPE WEBHOOK CONFIGURATION (CRITICAL)**
+*   **Action:** Configure the Stripe Dashboard webhook *immediately*. This is the single most critical step to enable purchases to register.
+*   **Details:**
+    *   Ensure the webhook endpoint is precisely `https://microassets-license-server-production.up.railway.app/webhook`.
+    *   Crucially, configure it to send **`checkout.session.completed`** events.
+*   **Deliverable:** Confirmation that the webhook is live and correctly configured in the Stripe Dashboard within the next 24 hours.
 
-4.  **Specific Compute Workloads:**
-    *   **Priority 1 (70% Compute):** Dedicated to the `omnisuite-master-suite`. This includes new feature development, performance optimization, and critical bug fixes.
-    *   **Priority 2 (20% Compute):** Split evenly across `wcag-auditor`, `api-tester-pro`, `dom-editor-pro`, and `network-monitor-pro` for development and enhancement.
-    *   **Priority 3 (10% Compute):** Allocate for the DesignAgent tasks as outlined in Q1, starting with the `brand_audit` for our flagship products.
+**Directive 2: END-TO-END PURCHASE FLOW VALIDATION (CRITICAL)**
+*   **Action:** Once Directive 1 is confirmed, execute comprehensive test-mode purchases.
+*   **Details:**
+    *   Perform a test purchase for *each* of the 15 flagship extensions.
+    *   Verify successful Stripe checkout completion.
+    *   Confirm the `checkout.session.completed` event is received by the license server.
+    *   Validate that the `licenses.json` file is created/updated with the new license data.
+    *   Test `license_validator.js` in a test extension instance to ensure it successfully validates both individual product keys and the `omnisuite-master-suite` bundle key.
+*   **Deliverable:** A report confirming successful end-to-end purchase and license validation for all flagship products.
 
-5.  **CWS Priority Ordering Adjustments:**
-    *   **No adjustments to the methodology.** The revenue-weighted ranking is precisely the strategic alignment we need. Maintain this system diligently. The current top 5 are correctly prioritized. Continue to monitor this ranking dynamically and ensure our development efforts directly reflect these priorities.
+**Directive 3: FLAGSHIP EXTENSION PUBLICATION (HIGH PRIORITY)**
+*   **Action:** Initiate the publishing process for all 15 flagship extensions to the Chrome Web Store.
+*   **Details:**
+    *   Utilize the pre-ranked CWS queue, prioritizing by projected revenue.
+    *   Monitor submission status closely.
+*   **Deliverable:** Confirmation of all 15 flagship extensions submitted to the CWS, with expected review timelines.
 
-This is a strong cycle, Antigravity. Keep the momentum. Lena Voss, CEO.
+---
+
+### **IMMEDIATE FOLLOW-UP & QUALITY ASSURANCE**
+
+**Directive 4: COMMODITY SUNSET SCHEDULING (HIGH PRIORITY)**
+*   **Action:** Schedule the sunsetting of the 19 commodity extensions.
+*   **Details:**
+    *   Provide a phased timeline for their removal.
+    *   Ensure clear internal communication regarding this process.
+*   **Deliverable:** A proposed timeline for the commodity sunset, ready for my final approval.
+
+**Directive 5: DESIGNAGENT FINDINGS - FLAGSHIP FOCUS (UTILIZE SURPLUS COMPUTE)**
+*   **Action:** Allocate surplus compute to begin addressing the DesignAgent findings, prioritizing our flagship products.
+*   **Details:**
+    *   Focus initially on the **161 OFF_BRAND_CSS** findings, specifically across the **14 flagship extensions**.
+    *   Concurrently, begin triaging the **201 style_guide_check issues** found in popups, again, with a strong emphasis on the flagship products first.
+*   **Deliverable:** A plan outlining the initial phase of addressing these design inconsistencies, with a clear focus on the flagship user experience.
+
+---
+
+Antigravity, let's execute these directives with the speed and precision SporlyWorks is known for. The path to our first dollar is clear.

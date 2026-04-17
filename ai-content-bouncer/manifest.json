@@ -5,9 +5,10 @@
   "description": "Detects and highlights AI-generated text on web pages using heuristic analysis. Toggle detection from the popup.",
   "homepage_url": "https://sporlyworks.com",
   "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png",
+    "32": "icon32.png"
   },
   "permissions": [
     "storage",
@@ -28,9 +29,9 @@
     "default_popup": "popup/index.html",
     "default_title": "AI Content Bouncer",
     "default_icon": {
-      "16": "icons/icon16.png",
-      "48": "icons/icon48.png",
-      "128": "icons/icon128.png"
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
     }
   },
   "background": {

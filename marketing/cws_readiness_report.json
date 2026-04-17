@@ -1,0 +1,87 @@
+{
+  "api-tester-pro": {
+    "passes": 14,
+    "fails": 0,
+    "issues": []
+  },
+  "css-inspector-pro": {
+    "passes": 14,
+    "fails": 0,
+    "issues": []
+  },
+  "dom-editor-pro": {
+    "passes": 14,
+    "fails": 0,
+    "issues": []
+  },
+  "network-monitor-pro": {
+    "passes": 14,
+    "fails": 0,
+    "issues": []
+  },
+  "seo-content-pro": {
+    "passes": 14,
+    "fails": 0,
+    "issues": []
+  },
+  "form-filler-pro": {
+    "passes": 14,
+    "fails": 0,
+    "issues": []
+  },
+  "wcag-auditor": {
+    "passes": 14,
+    "fails": 1,
+    "issues": [
+      "INFO: Content script matches all URLs (may slow CWS review)"
+    ]
+  },
+  "privacy-scanner": {
+    "passes": 14,
+    "fails": 1,
+    "issues": [
+      "INFO: Content script matches all URLs (may slow CWS review)"
+    ]
+  },
+  "contract-highlighter": {
+    "passes": 14,
+    "fails": 1,
+    "issues": [
+      "INFO: Content script matches all URLs (may slow CWS review)"
+    ]
+  },
+  "invoice-extractor": {
+    "passes": 14,
+    "fails": 1,
+    "issues": [
+      "INFO: Content script matches all URLs (may slow CWS review)"
+    ]
+  },
+  "crm-data-extractor": {
+    "passes": 14,
+    "fails": 0,
+    "issues": []
+  },
+  "ai-content-bouncer": {
+    "passes": 14,
+    "fails": 1,
+    "issues": [
+      "INFO: Content script matches all URLs (may slow CWS review)"
+    ]
+  },
+  "llm-privacy-scrub": {
+    "passes": 14,
+    "fails": 0,
+    "issues": []
+  },
+  "amazon-fake-review-skimmer": {
+    "passes": 14,
+    "fails": 0,
+    "issues": []
+  },
+  "site-speed-analyzer": {
+    "passes": 14,
+    "fails": 0,
+    "issues": []
+  }
+}
