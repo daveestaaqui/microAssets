@@ -159,17 +159,24 @@
   },
   "gitignore_warning": "The _*/** rule in .gitignore blocks all files inside _-prefixed directories. Tracked files were force-added before this rule existed. Any NEW file in _scripts/ must use: git add -f _scripts/<filename>",
   "qa_last_report": {
-    "audit_timestamp": "2026-04-17T01:33:26.193556Z",
+    "audit_timestamp": "2026-04-17T02:30:41.199340Z",
     "qa_version": "8.0",
-    "status": "PASS",
+    "status": "FAIL",
     "portfolio": {
       "chrome_extensions": 87,
       "firefox_extensions": 85,
-      "android_apps": 86,
+      "android_apps": 0,
       "mv2_count": 0,
       "mv3_count": 87
     },
-    "findings": [],
+    "findings": [
+      "MISSING_FILE: _landing_page/index.html",
+      "MISSING_FILE: _landing_page/download.html",
+      "MISSING_FILE: _landing_page/style.css",
+      "MISSING_FILE: _landing_page/favicon.ico",
+      "MISSING_BINARY: binaries/SporlyWorks_OmniSuite_Complete.zip — download link will 404",
+      "MISSING_BINARY: binaries/SporlyWorks_Firefox_Extensions.zip — download link will 404"
+    ],
     "checks_run": [
       "portfolio_integrity",
       "landing_page_links",
@@ -177,7 +184,10 @@
       "download_binaries",
       "github_release",
       "infrastructure_health",
-      "workflow_status"
+      "workflow_status",
+      "performance_profiling",
+      "vulnerability_audit",
+      "accessibility_scan"
     ]
   },
   "last_dispatch_results": [
@@ -194,7 +204,7 @@
       "timestamp": "2026-04-17T01:35:20.396028Z"
     }
   ],
-  "cycle_count": 35,
+  "cycle_count": 36,
   "last_digest_sent": "2026-04-17T17:16:59.813603Z",
   "last_weekly_brief_sent": "2026-04-13T01:45:19.099353Z",
   "owner_commands_received": [
