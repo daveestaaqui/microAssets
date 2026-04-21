@@ -111,7 +111,7 @@
   },
   "gitignore_warning": "The _*/** rule in .gitignore blocks all files inside _-prefixed directories. Tracked files were force-added before this rule existed. Any NEW file in _scripts/ must use: git add -f _scripts/<filename>",
   "qa_last_report": {
-    "audit_timestamp": "2026-04-21T15:55:23.287995Z",
+    "audit_timestamp": "2026-04-21T17:00:18.142600Z",
     "qa_version": "8.0",
     "status": "FAIL",
     "portfolio": {
@@ -165,8 +165,8 @@
       "timestamp": "2026-04-20T16:41:42.687920Z"
     }
   ],
-  "cycle_count": 114,
-  "last_digest_sent": "2026-04-19T19:15:15.496935Z",
+  "cycle_count": 115,
+  "last_digest_sent": "2026-04-21T17:01:59.649025Z",
   "last_weekly_brief_sent": "2026-04-20T02:37:34.063859Z",
   "owner_commands_received": [
     "OWNER COMMAND [Cycle 30]: Request for logo and new app/extension design samples for review.",
