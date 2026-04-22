@@ -3,180 +3,172 @@
 <html><head><meta charset="utf-8"/>
 
 
-<style>
-/* 🌟 SporlyWorks Premium Global Theme */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', system-ui, sans-serif;
-    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+
+<style id='boutique-styling'>
+/* 🍄 SPORE UI OVERRIDE: Premium Minimal Geometry */
+:root {
+    --app-canvas: #F8F5EE;
+    --app-dark: #000000;
+    --app-accent: #2d2724;
 }
 
 body {
-    width: 340px;
-    padding: 20px;
-    background: #0f172a; /* Deep elegant slate dark mode */
-    color: #f8fafc;
-    position: relative;
-    overflow-x: hidden;
+    background-color: var(--app-canvas) !important;
+    color: var(--app-dark) !important;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif !important;
+    letter-spacing: -0.015em !important;
+    width: 320px;
+    margin: 0;
+    
+    /* Subtle geometric spore background */
+    background-image: radial-gradient(rgba(0,0,0, 0.03) 1px, transparent 1px) !important;
+    background-size: 24px 24px !important;
 }
 
-/* Glassmorphism Background Accent */
-body::before {
-    content: '';
-    position: fixed;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at center, rgba(16, 185, 129, 0.08) 0%, transparent 40%);
-    pointer-events: none;
-    z-index: -1;
+/* Header */
+.sdal-header {
+    background: transparent !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid rgba(0,0,0,0.1) !important;
+    padding: 32px 24px 20px 24px !important;
+    margin-bottom: 0px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 0 !important;
+}
+.sdal-logo {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.sdal-logo span {
+    font-weight: 700 !important;
+    font-size: 20px !important;
+    color: var(--app-dark) !important;
+    letter-spacing: -0.03em !important;
+    margin-top: 16px !important;
+    margin-left: 0 !important;
+    text-align: center !important;
+}
+.sdal-img {
+    width: 80px !important;
+    height: 80px !important;
+    border-radius: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    display: block !important;
 }
 
-h3, h2, h1 {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 16px;
-    letter-spacing: -0.02em;
-    background: linear-gradient(135deg, #34d399, #059669); /* Elegant Emerald Gradient */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline-block;
+/* Body */
+.sdal-body {
+    padding: 24px !important;
+    border-radius: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    box-shadow: none !important;
 }
 
-/* Beautiful Inputs */
+/* Typography */
+h1, h2, h3, h4 {
+    color: var(--app-dark) !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02em !important;
+}
+
+/* High-contrast strict inputs */
 input, textarea, select {
-    width: 100%;
-    padding: 10px 14px;
-    background: rgba(30, 41, 59, 0.7);
-    color: #f8fafc;
-    border: 1px solid rgba(148, 163, 184, 0.2);
-    border-radius: 8px;
-    margin-bottom: 12px;
-    font-size: 13px;
-    outline: none;
-    backdrop-filter: blur(8px);
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--app-canvas) !important;
+    border: 1px solid var(--app-dark) !important;
+    color: var(--app-dark) !important;
+    border-radius: 0 !important;
+    padding: 14px 16px !important;
+    font-size: 14px !important;
+    transition: all 0.15s ease !important;
+    box-shadow: none !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
 }
-
 input:focus, textarea:focus, select:focus {
-    border-color: #10b981;
-    background: rgba(15, 23, 42, 0.9);
-    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+    border: 2px solid var(--app-dark) !important;
+    outline: none !important;
+    background: #ffffff !important;
+    padding: 13px 15px !important; /* adjust for border width */
 }
 
-/* Premium Buttons with Micro-animations */
-button {
-    width: 100%;
-    padding: 10px 16px;
-    background: linear-gradient(135deg, #10b981, #059669);
-    color: #ffffff;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 13px;
-    cursor: pointer;
-    margin-bottom: 12px;
-    box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2), 0 2px 4px -2px rgba(16, 185, 129, 0.1);
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
+/* Monoline Action Buttons */
+button, .sdal-btn {
+    background: var(--app-dark) !important;
+    color: var(--app-canvas) !important;
+    border: none !important;
+    border-radius: 0 !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    padding: 16px 20px !important;
+    box-shadow: none !important;
+    transition: all 0.2s ease !important;
+    letter-spacing: -0.01em !important;
+    cursor: pointer !important;
+    width: 100% !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+}
+button:hover, .sdal-btn:hover {
+    background: var(--app-accent) !important;
+    transform: translateY(-1px) !important;
 }
 
-button:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 12px -2px rgba(16, 185, 129, 0.3);
-    background: linear-gradient(135deg, #34d399, #10b981);
+/* Checkboxes & Toggles */
+.option-row, .setting-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+}
+input[type="checkbox"] {
+    width: 18px !important;
+    height: 18px !important;
+    accent-color: var(--app-dark) !important;
+    border: 1px solid var(--app-dark) !important;
+    border-radius: 0 !important;
+    -webkit-appearance: none;
+    background-color: var(--app-canvas);
+    cursor: pointer !important;
+}
+input[type="checkbox"]:checked {
+    background-color: var(--app-dark);
 }
 
-button:active {
-    transform: translateY(1px);
-    box-shadow: 0 2px 4px -1px rgba(16, 185, 129, 0.2);
+/* Promo boxes */
+a[href*="sporlyworks.com"] {
+    color: var(--app-accent) !important;
+    font-weight: bold !important;
+}
+div[style*="var(--cream)"] {
+    background: transparent !important;
+    border: 1px solid rgba(0,0,0,0.1) !important;
+    border-radius: 0 !important;
+    margin: 0 24px 24px 24px !important;
+    padding: 16px !important;
 }
 
-/* Glassy Output/Pre blocks */
-pre {
-    padding: 12px;
-    background: rgba(15, 23, 42, 0.6);
-    color: #cbd5e1;
-    border-radius: 8px;
-    border: 1px solid rgba(148, 163, 184, 0.1);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    white-space: pre-wrap;
-    word-break: break-all;
-    backdrop-filter: blur(4px);
-    margin-bottom: 12px;
-}
-
-/* SporlyWorks Cross-Promotion & Feedback Polish */
 .ma-footer {
-    text-align: center;
-    padding: 12px 0 4px;
-    border-top: 1px solid rgba(148, 163, 184, 0.1);
-    margin-top: 16px;
-    font-size: 11px;
-    color: #64748b;
+    background: transparent !important;
+    border-top: 1px solid rgba(0,0,0,0.1) !important;
+    color: var(--app-dark) !important;
+    padding: 16px !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    opacity: 0.7 !important;
 }
-
-.ma-footer a {
-    color: #10b981;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.ma-footer a:hover {
-    color: #34d399;
-    text-decoration: underline;
-}
-
-#sporlyworks-promo {
-    margin-top: 16px;
-    padding: 16px;
-    background: linear-gradient(145deg, rgba(16, 185, 129, 0.05), rgba(5, 150, 105, 0.1));
-    border-radius: 12px;
-    text-align: center;
-    border: 1px solid rgba(16, 185, 129, 0.2);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
-}
-
-#sporlyworks-promo p { margin: 0 0 6px 0; font-size: 12px; color: #94a3b8; }
-#sporlyworks-promo strong { color: #10b981; font-weight: 700; }
-#sporlyworks-promo a {
-    color: #34d399;
-    font-weight: 600;
-    text-decoration: none;
-    font-size: 12px;
-    display: inline-block;
-    padding: 4px 8px;
-    border-radius: 4px;
-    background: rgba(16, 185, 129, 0.1);
-    transition: background 0.2s ease, transform 0.2s ease;
-}
-
-#sporlyworks-promo a:hover {
-    background: rgba(16, 185, 129, 0.2);
-    transform: translateY(-1px);
-}
-
-#ma-feedback {
-    margin-top: 12px;
-    padding: 12px;
-    background: rgba(30, 41, 59, 0.5);
-    border-radius: 8px;
-    text-align: center;
-    border: 1px solid rgba(148, 163, 184, 0.1);
-}
-
-#ma-feedback a { color: #10b981; text-decoration: none; font-weight: 500; transition: color 0.15s; }
-#ma-feedback a:hover { color: #34d399; }
-</style></head><body>
+.sdal-footer { display: none !important; }
+</style>
+</head><body>
 <h3>HTTP Status Checker</h3>
 <input id="url" placeholder="https://example.com"/><button id="check">Check Status</button><div id="output"></div>
 <script src="popup.js"></script>

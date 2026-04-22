@@ -1,60 +1,46 @@
 import os
-import glob
-from PIL import Image
+import shutil
+import subprocess
 
-output_base = "/Users/davidmahler/Desktop/microAssets/sporlyworks_icons"
-source_dir = "/Users/davidmahler/.gemini/antigravity/brain/fa2ef7d1-abd9-4d09-a47d-7b470dcc5fbc/"
-
-images = {
-    "privacy-scanner": "privacy_scanner_*.png",
-    "qr-code-generator": "qr_code_generator_*.png",
-    "quick-note-taker": "quick_note_taker_*.png",
-    "quick-notepad": "quick_notepad_*.png",
-    "reading-mode": "reading_mode_*.png",
-    "reading-time-badge": "reading_time_badge_*.png",
-    "reddit-redirect": "reddit_redirect_*.png",
-    "regex-tester": "regex_tester_*.png",
-    "responsive-viewer": "responsive_viewer_*.png",
-    "robots-viewer": "robots_viewer_*.png",
-    "screenshot-capture": "screenshot_capture_*.png",
-    "seo-content-pro": "seo_content_pro_*.png",
-    "site-speed-analyzer": "site_speed_analyzer_*.png",
-    "sponsor-skipper": "sponsor_skipper_*.png",
-    "tab-groups-saver": "tab_groups_saver_*.png",
-    "tab-suspender": "tab_suspender_*.png",
-    "text-case-converter": "text_case_converter_*.png",
-    "time-tracker": "time_tracker_*.png",
-    "timestamp-converter": "timestamp_converter_*.png",
-    "url-encoder-decoder": "url_encoder_decoder_*.png",
+BATCH = {
+    "carbon-footprint-checker": "concept_carbonfootprint_1776115200009_1776115329402.png",
+    "calculator-pro": "concept_calculator_1776115200008_1776115317704.png",
+    "cache-clearer": "concept_cacheclear_1776115200007_1776115304149.png",
+    "b64-image-encoder": "concept_b64image_1776115200006_1776115290463.png",
+    "auto-refresh": "concept_autorefresh_1776115200005_1776115276436.png",
+    "api-tester-pro": "concept_apitester_1776115200004_1776115263107.png",
+    "amazon-wide-mode": "concept_amazonwide_1776115200003_1776115247851.png",
+    "amazon-fake-review-skimmer": "concept_amazonreview_1776115200002_1776115233408.png",
+    "ai-content-bouncer": "concept_bouncer_1776115200001_1776115219272.png",
+    "ad-blocker-pro": "concept_adblock_1776115200000_1776115202942.png"
 }
 
-def strip_white_bg(img_path, out_path):
-    try:
-        img = Image.open(img_path).convert("RGBA")
-        data = img.getdata()
-        new_data = []
-        for item in data:
-            if item[0] > 235 and item[1] > 235 and item[2] > 235:
-                new_data.append((255, 255, 255, 0))
-            else:
-                new_data.append(item)
-        img.putdata(new_data)
-        
-        os.makedirs(os.path.dirname(out_path), exist_ok=True)
-        img.save(out_path, "PNG")
-        print(f"Saved: {out_path}")
-    except Exception as e:
-        print(f"Error processing {img_path}: {e}")
+BRAIN_DIR = "/Users/davidmahler/.gemini/antigravity/brain/58f00244-3665-46fe-a8cf-782f3c9eb69a"
+BASE_DIR = "/Users/davidmahler/Desktop/microAssets"
 
-for folder, pattern in images.items():
-    matches = glob.glob(os.path.join(source_dir, pattern))
-    if matches:
-        img_file = matches[0]
-        # Save to base extension folder
-        out1 = os.path.join(output_base, folder, "icon.png")
-        strip_white_bg(img_file, out1)
-        
-        # Save to firefox sibling if we want
-        out2 = os.path.join(output_base, f"{folder}-firefox", "icon.png")
-        strip_white_bg(img_file, out2)
+for ext_name, filename in BATCH.items():
+    source_img = os.path.join(BRAIN_DIR, filename)
+    target_icon_dir = os.path.join(BASE_DIR, ext_name, "icons")
+    
+    if not os.path.exists(target_icon_dir):
+        os.makedirs(target_icon_dir, exist_ok=True)
 
+    # Copy raw image to icon.png
+    target_img = os.path.join(target_icon_dir, "icon.png")
+    shutil.copy(source_img, target_img)
+    print(f"Copied icon for {ext_name}")
+
+    # Crop and resize the image properly (since it's a 1024x1024 generated image, crop to the center logo)
+    print(f"Running crop for {ext_name}...")
+    subprocess.run(["python3", "crop_icons.py", ext_name], cwd=BASE_DIR, check=True)
+
+    # Inject the Boutique UI
+    print(f"Injecting Boutique UI for {ext_name}...")
+    subprocess.run(["python3", "inject_boutique_ui.py", ext_name], cwd=BASE_DIR, check=True)
+
+# Update manifest and generate the resized icons
+ext_args = list(BATCH.keys())
+print("Rebuilding icons arrays...")
+subprocess.run(["python3", "update_manifest_icons.py"] + ext_args, cwd=BASE_DIR, check=True)
+
+print("Batch 5 injection complete. Ready for screenshots.")

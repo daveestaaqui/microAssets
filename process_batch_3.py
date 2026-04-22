@@ -1,59 +1,47 @@
 import os
-import glob
-from PIL import Image
+import shutil
+import subprocess
 
-output_base = "/Users/davidmahler/Desktop/microAssets/sporlyworks_icons"
-source_dir = "/Users/davidmahler/.gemini/antigravity/brain/fa2ef7d1-abd9-4d09-a47d-7b470dcc5fbc/"
-
-images = {
-    "css-minifier": "css_minifier_*.png",
-    "dark-mode-everywhere": "dark_mode_everywhere_*.png",
-    "diff-checker": "diff_checker_*.png",
-    "diff-viewer": "diff_viewer_*.png",
-    "dom-editor-pro": "dom_editor_pro_*.png",
-    "email-template-builder": "email_template_bldr_*.png",
-    "favicon-grabber": "favicon_grabber_*.png",
-    "font-identifier": "font_identifier_*.png",
-    "form-filler-pro": "form_filler_pro_*.png",
-    "gdocs-focus-mode": "gdocs_focus_mode_*.png",
-    "github-line-numbers": "github_line_numbers_*.png",
-    "github-quick-stats": "github_quick_stats_*.png",
-    "google-dark-search": "google_dark_search_*.png",
-    "hash-generator": "hash_generator_*.png",
-    "html-table-extractor": "html_table_extract_*.png",
-    "http-headers": "http_headers_*.png",
-    "http-status-checker": "http_status_check_*.png",
-    "instagram-clean-feed": "instagram_clean_*.png",
-    "invoice-extractor": "invoice_extractor_*.png",
+BATCH = {
+    "password-generator": "sample_password_1776114644431.png",
+    "dom-editor-pro": "sample_dom_1776114659870.png",
+    "favicon-grabber": "sample_favicon_1776114671422.png",
+    "css-minifier": "sample_cssmin_1776114685333.png",
+    "tab-groups-saver": "sample_tabgroups_1776114697167.png",
+    "email-template-builder": "sample_email_1776114710357.png",
+    "font-identifier": "sample_font_1776114722254.png",
+    "seo-content-pro": "sample_seo_1776114733937.png",
+    "youtube-pip": "sample_pip_1776114750081.png",
+    "color-picker": "sample_colorpicker_1776114760775.png"
 }
 
-def strip_white_bg(img_path, out_path):
-    try:
-        img = Image.open(img_path).convert("RGBA")
-        data = img.getdata()
-        new_data = []
-        for item in data:
-            if item[0] > 235 and item[1] > 235 and item[2] > 235:
-                new_data.append((255, 255, 255, 0))
-            else:
-                new_data.append(item)
-        img.putdata(new_data)
-        
-        os.makedirs(os.path.dirname(out_path), exist_ok=True)
-        img.save(out_path, "PNG")
-        print(f"Saved: {out_path}")
-    except Exception as e:
-        print(f"Error processing {img_path}: {e}")
+BRAIN_DIR = "/Users/davidmahler/.gemini/antigravity/brain/58f00244-3665-46fe-a8cf-782f3c9eb69a"
+BASE_DIR = "/Users/davidmahler/Desktop/microAssets"
 
-for folder, pattern in images.items():
-    matches = glob.glob(os.path.join(source_dir, pattern))
-    if matches:
-        img_file = matches[0]
-        # Save to base extension folder
-        out1 = os.path.join(output_base, folder, "icon.png")
-        strip_white_bg(img_file, out1)
-        
-        # Save to firefox sibling if we want
-        out2 = os.path.join(output_base, f"{folder}-firefox", "icon.png")
-        strip_white_bg(img_file, out2)
+for ext_name, filename in BATCH.items():
+    source_img = os.path.join(BRAIN_DIR, filename)
+    target_icon_dir = os.path.join(BASE_DIR, ext_name, "icons")
+    
+    if not os.path.exists(target_icon_dir):
+        print(f"Skipping {ext_name}, icon dir not found")
+        continue
 
+    # Copy raw image to icon.png
+    target_img = os.path.join(target_icon_dir, "icon.png")
+    shutil.copy(source_img, target_img)
+    print(f"Copied icon for {ext_name}")
+
+    # Crop and resize the image properly (since it's a 1024x1024 generated image, crop to the center logo)
+    print(f"Running crop for {ext_name}...")
+    subprocess.run(["python3", "crop_icons.py", ext_name], cwd=BASE_DIR, check=True)
+
+    # Inject the Boutique UI
+    print(f"Injecting Boutique UI for {ext_name}...")
+    subprocess.run(["python3", "inject_boutique_ui.py", ext_name], cwd=BASE_DIR, check=True)
+
+# Update manifest and generate the resized icons
+ext_args = list(BATCH.keys())
+print("Rebuilding icons arrays...")
+subprocess.run(["python3", "update_manifest_icons.py"] + ext_args, cwd=BASE_DIR, check=True)
+
+print("Batch 3 injection complete. Ready for screenshots.")

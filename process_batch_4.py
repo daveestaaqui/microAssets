@@ -1,60 +1,46 @@
 import os
-import glob
-from PIL import Image
+import shutil
+import subprocess
 
-output_base = "/Users/davidmahler/Desktop/microAssets/sporlyworks_icons"
-source_dir = "/Users/davidmahler/.gemini/antigravity/brain/fa2ef7d1-abd9-4d09-a47d-7b470dcc5fbc/"
-
-images = {
-    "jira-declutter": "jira_declutter_*.png",
-    "json-csv-converter": "json_csv_converter_*.png",
-    "json-formatter": "json_formatter_*.png",
-    "json-path-finder": "json_path_finder_*.png",
-    "jwt-decoder": "jwt_decoder_*.png",
-    "link-checker": "link_checker_*.png",
-    "linkedin-hide-feed": "linkedin_hide_feed_*.png",
-    "llm-privacy-scrub": "llm_privacy_scrub_*.png",
-    "lorem-ipsum-generator": "lorem_ipsum_gen_*.png",
-    "markdown-preview": "markdown_preview_*.png",
-    "meet-zoom-automute": "meet_zoom_automute_*.png",
-    "meta-tag-editor": "meta_tag_editor_*.png",
-    "microassets-master-suite": "microassets_master_*.png",
-    "network-monitor-pro": "network_monitor_pro_*.png",
-    "network-speed-test": "network_speed_test_*.png",
-    "og-previewer": "og_previewer_*.png",
-    "page-ruler": "page_ruler_*.png",
-    "page-seo-analyzer": "page_seo_analyzer_*.png",
-    "password-generator": "password_generator_*.png",
-    "pomodoro-anywhere": "pomodoro_anywhere_*.png",
+BATCH = {
+    "base64-encoder": "sample_base64_1776115100843.png",
+    "network-speed-test": "sample_networkspeed_1776115088964.png",
+    "pomodoro-anywhere": "sample_pomodoro_1776115072823.png",
+    "robots-viewer": "sample_robots_1776115060754.png",
+    "bookmark-manager": "sample_bookmark_1776115046793.png",
+    "site-speed-analyzer": "sample_sitespeed_1776115035606.png",
+    "whois-lookup": "sample_whois_1776115021740.png",
+    "reading-time-badge": "sample_readingtime_1776115007848.png",
+    "diff-checker": "sample_diffchecker_1776114995506.png",
+    "html-table-extractor": "sample_htmltable_1776114982426.png"
 }
 
-def strip_white_bg(img_path, out_path):
-    try:
-        img = Image.open(img_path).convert("RGBA")
-        data = img.getdata()
-        new_data = []
-        for item in data:
-            if item[0] > 235 and item[1] > 235 and item[2] > 235:
-                new_data.append((255, 255, 255, 0))
-            else:
-                new_data.append(item)
-        img.putdata(new_data)
-        
-        os.makedirs(os.path.dirname(out_path), exist_ok=True)
-        img.save(out_path, "PNG")
-        print(f"Saved: {out_path}")
-    except Exception as e:
-        print(f"Error processing {img_path}: {e}")
+BRAIN_DIR = "/Users/davidmahler/.gemini/antigravity/brain/58f00244-3665-46fe-a8cf-782f3c9eb69a"
+BASE_DIR = "/Users/davidmahler/Desktop/microAssets"
 
-for folder, pattern in images.items():
-    matches = glob.glob(os.path.join(source_dir, pattern))
-    if matches:
-        img_file = matches[0]
-        # Save to base extension folder
-        out1 = os.path.join(output_base, folder, "icon.png")
-        strip_white_bg(img_file, out1)
-        
-        # Save to firefox sibling if we want
-        out2 = os.path.join(output_base, f"{folder}-firefox", "icon.png")
-        strip_white_bg(img_file, out2)
+for ext_name, filename in BATCH.items():
+    source_img = os.path.join(BRAIN_DIR, filename)
+    target_icon_dir = os.path.join(BASE_DIR, ext_name, "icons")
+    
+    if not os.path.exists(target_icon_dir):
+        os.makedirs(target_icon_dir, exist_ok=True)
 
+    # Copy raw image to icon.png
+    target_img = os.path.join(target_icon_dir, "icon.png")
+    shutil.copy(source_img, target_img)
+    print(f"Copied icon for {ext_name}")
+
+    # Crop and resize the image properly (since it's a 1024x1024 generated image, crop to the center logo)
+    print(f"Running crop for {ext_name}...")
+    subprocess.run(["python3", "crop_icons.py", ext_name], cwd=BASE_DIR, check=True)
+
+    # Inject the Boutique UI
+    print(f"Injecting Boutique UI for {ext_name}...")
+    subprocess.run(["python3", "inject_boutique_ui.py", ext_name], cwd=BASE_DIR, check=True)
+
+# Update manifest and generate the resized icons
+ext_args = list(BATCH.keys())
+print("Rebuilding icons arrays...")
+subprocess.run(["python3", "update_manifest_icons.py"] + ext_args, cwd=BASE_DIR, check=True)
+
+print("Batch 4 injection complete. Ready for screenshots.")

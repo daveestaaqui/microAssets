@@ -14,6 +14,9 @@ Agents:
   6. FinanceAgent       — Stripe revenue monitoring, refund detection
   7. SecurityAgent      — Credential rotation tracking, dependency audit
   8. CustomerSuccessAgent — KV support ticket monitoring
+  9. CWSWaveAgent        — Chrome Web Store wave management
+  10. DesignAgent        — UI/UX design leadership
+  11. QCAgent            — Quality Control Department (Asset health & performance)
 """
 
 import os
@@ -142,6 +145,79 @@ LEGAL: All claims must be truthful. No competitor disparagement."""
 
         logging.info(f"✅ Wrote blog post: {output_path}")
         return True
+
+    elif task == "generate_go_to_market":
+        prompt = f"""You are the Chief Marketing Officer for SporlyWorks.
+Create a detailed go-to-market (GTM) strategy document for the 'SporlyWorks Pro Suite'.
+
+The Pro Suite bundles premium features across the top 14 flagship browser extensions
+into a single subscription. Target audience: power users, freelancers, agencies, and
+B2B customers who rely on browser tools daily.
+
+Include:
+1. Value proposition (one sentence)
+2. Target persona profiles (3 personas)
+3. Pricing strategy (monthly + annual tiers)
+4. Launch timeline (4 weeks)
+5. Channel strategy (CWS listing, landing page, email drip, Reddit, Product Hunt)
+6. Key metrics to track post-launch
+7. Competitive positioning vs. free alternatives
+
+LEGAL: Comply with CAN-SPAM, GDPR/CCPA. All claims must be truthful.
+Return as clean JSON."""
+
+        try:
+            content = _call_llm(prompt, api_key, max_tokens=4000)
+            output_dir = os.path.join(REPO_ROOT, "marketing", "pro_suite")
+            os.makedirs(output_dir, exist_ok=True)
+            output_path = os.path.join(output_dir, "go_to_market_strategy.json")
+            with open(output_path, "w", encoding="utf-8") as f:
+                f.write(content)
+            logging.info(f"✅ Pro Suite GTM strategy written: {output_path}")
+            return True
+        except Exception as e:
+            logging.error(f"GTM generation failed: {e}")
+            return False
+
+    elif task == "generate_store_listings":
+        # Generate Google Play Store listings for pilot Android apps
+        apps = payload.get("apps", [
+            "sporlyworks-notes", "sporlyworks-timer", "sporlyworks-calculator",
+            "sporlyworks-converter", "sporlyworks-weather"
+        ])
+        output_dir = os.path.join(REPO_ROOT, "marketing", "playstore_listings")
+        os.makedirs(output_dir, exist_ok=True)
+        success_count = 0
+        for app_name in apps:
+            prompt = f"""Write a Google Play Store listing for the app '{app_name}' by SporlyWorks.
+Include:
+- Title (max 30 chars)
+- Short description (max 80 chars)
+- Full description (max 4000 chars, use formatting)
+- 5 keywords/tags
+- Category suggestion
+
+The app is part of the SporlyWorks ecosystem — premium, privacy-first, minimalist design.
+Return as clean JSON with keys: title, short_description, full_description, keywords, category."""
+            try:
+                listing = _call_llm(prompt, api_key, max_tokens=2000)
+                output_path = os.path.join(output_dir, f"{app_name}_listing.json")
+                with open(output_path, "w", encoding="utf-8") as f:
+                    f.write(listing)
+                success_count += 1
+                logging.info(f"  ✅ Store listing: {app_name}")
+            except Exception as e:
+                logging.error(f"  ❌ Store listing failed for {app_name}: {e}")
+
+        logging.info(f"✅ PlayStore listings: {success_count}/{len(apps)} generated")
+        return success_count > 0
+
+    elif task == "resume_blocked_projects":
+        # Orchestrate: run both GTM and store listings
+        logging.info("Resuming blocked projects: Pro Suite GTM + PlayStore listings")
+        gtm_ok = handle_marketing_agent({"task": "generate_go_to_market"}, api_key)
+        store_ok = handle_marketing_agent({"task": "generate_store_listings"}, api_key)
+        return gtm_ok or store_ok
 
     logging.warning(f"Unknown marketing task: {task}")
     return False
@@ -304,7 +380,7 @@ def handle_infrastructure_agent(payload, api_key):
                 logging.error(f"  ❌ {name}: HTTP {check['http_code']} — {check['error']}")
         return all_healthy
 
-    if task == "cloudflare_kv_read":
+    elif task == "cloudflare_kv_read":
         cf_token = os.environ.get("CLOUDFLARE_API_TOKEN")
         cf_acc = os.environ.get("CLOUDFLARE_ACCOUNT_ID")
         if not cf_token or not cf_acc:
@@ -313,7 +389,59 @@ def handle_infrastructure_agent(payload, api_key):
         logging.info("Cloudflare KV read capability confirmed (credentials present).")
         return True
 
-    logging.info(f"Infrastructure task '{task}' acknowledged.")
+    elif task == "implement_iac_containers" or "project_bedrock" in task:
+        # Generate Infrastructure-as-Code files for Project Bedrock
+        output_dir = os.path.join(REPO_ROOT, "_infrastructure", "bedrock")
+        os.makedirs(output_dir, exist_ok=True)
+        
+        dockerfile = """FROM python:3.9-slim
+
+# Install system dependencies including Node.js and npm for QA auditing
+RUN apt-get update && apt-get install -y curl gnupg git \\
+ && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \\
+ && apt-get install -y nodejs \\
+ && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Install Python dependencies
+COPY _scripts/requirements.txt ./_scripts/
+# We assume requirements.txt exists; if not, we install known bare minimums
+RUN pip install --no-cache-dir requests gunicorn stripe || echo "Basic packages installed"
+
+# Copy enterprise codebase
+COPY . .
+
+# Default command: run the board coordinator daemon
+CMD ["python", "_scripts/sporlyworks_board_coordinator.py"]
+"""
+        docker_compose = """version: '3.8'
+
+services:
+  board_coordinator:
+    build: 
+      context: ../..
+      dockerfile: _infrastructure/bedrock/Dockerfile
+    environment:
+      - CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN:-}
+      - CLOUDFLARE_ACCOUNT_ID=${CLOUDFLARE_ACCOUNT_ID:-}
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY:-}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - CEO_INBOX_SECRET=${CEO_INBOX_SECRET:-}
+    volumes:
+      - ../..:/app
+    restart: unless-stopped
+"""
+
+        with open(os.path.join(output_dir, "Dockerfile"), "w") as f:
+            f.write(dockerfile)
+        with open(os.path.join(output_dir, "docker-compose.yml"), "w") as f:
+            f.write(docker_compose)
+
+        logging.info(f"✅ Project Bedrock IaC files generated in {output_dir}")
+        return True
+
+    logging.info(f"Infrastructure task '{task}' acknowledged. No specific automated action performed.")
     return True
 
 
@@ -752,6 +880,27 @@ Return ONLY valid JSON."""
     return handle_design_agent({"task": "brand_audit"}, api_key)
 
 
+# ── 11. Quality Control Agent ───────────────────────────────────────────
+
+def handle_qc_agent(payload, api_key):
+    """Immune system: autonomous health audits for landing pages and assets."""
+    task = payload.get("task", "full_scan")
+    logging.info(f"QCAgent: {task}")
+
+    import sporlyworks_qa_audit
+    agent = sporlyworks_qa_audit.QualityControlAgent()
+    report = agent.run_full_scan()
+    
+    # Check if there are critical findings
+    criticals = [f for f in report.get("findings", []) if f.get("severity") == "CRITICAL"]
+    if criticals:
+        logging.error(f"  ❌ QC Scan failed with {len(criticals)} CRITICAL findings!")
+        return False
+    
+    logging.info(f"  ✅ QC Scan passed with {len(report.get('findings', []))} non-critical findings.")
+    return True
+
+
 # ── Master Router ────────────────────────────────────────────────────────
 
 def route_payload(dispatch, api_key):
@@ -770,6 +919,7 @@ def route_payload(dispatch, api_key):
         "CustomerSuccessAgent": handle_customer_success_agent,
         "CWSWaveAgent": handle_cws_wave_agent,
         "DesignAgent": handle_design_agent,
+        "QCAgent": handle_qc_agent,
     }
 
     handler = handlers.get(target)

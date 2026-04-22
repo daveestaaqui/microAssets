@@ -1,47 +1,46 @@
 import os
-import glob
-from PIL import Image
+import shutil
+import subprocess
 
-output_base = "/Users/davidmahler/Desktop/microAssets/sporlyworks_icons"
-source_dir = "/Users/davidmahler/.gemini/antigravity/brain/fa2ef7d1-abd9-4d09-a47d-7b470dcc5fbc/"
-
-images = {
-    "url-shortener": "url_shortener_*.png",
-    "user-agent-switcher": "user_agent_switcher_*.png",
-    "wayback-machine-quick": "wayback_machine_quick_*.png",
-    "wcag-auditor": "wcag_auditor_*.png",
-    "website-monitor-pro": "website_monitor_pro_*.png",
-    "whois-lookup": "whois_lookup_*.png",
-    "word-counter": "word_counter_*.png",
+BATCH = {
+    "css-grid-generator": "concept_cssgrid_1776115400010_1776115681618.png",
+    "css-gradient-generator": "concept_cssgrad_1776115400009_1776115666702.png",
+    "css-flexbox-generator": "concept_cssflex_1776115400008_1776115653085.png",
+    "css-box-shadow": "concept_cssbox_1776115400007_1776115640958.png",
+    "crm-data-extractor": "concept_crm_1776115400006_1776115626633.png",
+    "copy-as-markdown": "concept_copymd_1776115400005_1776115614221.png",
+    "cookie-banner-rejector": "concept_cookiebanner_1776115400004_1776115601797.png",
+    "contract-highlighter": "concept_contract_1776115400003_1776115591233.png",
+    "code-snippet-manager": "concept_codesnippet_1776115400002_1776115578326.png",
+    "clipboard-history": "concept_clipboard_1776115400001_1776115565442.png"
 }
 
-def strip_white_bg(img_path, out_path):
-    try:
-        img = Image.open(img_path).convert("RGBA")
-        data = img.getdata()
-        new_data = []
-        for item in data:
-            if item[0] > 235 and item[1] > 235 and item[2] > 235:
-                new_data.append((255, 255, 255, 0))
-            else:
-                new_data.append(item)
-        img.putdata(new_data)
-        
-        os.makedirs(os.path.dirname(out_path), exist_ok=True)
-        img.save(out_path, "PNG")
-        print(f"Saved: {out_path}")
-    except Exception as e:
-        print(f"Error processing {img_path}: {e}")
+BRAIN_DIR = "/Users/davidmahler/.gemini/antigravity/brain/58f00244-3665-46fe-a8cf-782f3c9eb69a"
+BASE_DIR = "/Users/davidmahler/Desktop/microAssets"
 
-for folder, pattern in images.items():
-    matches = glob.glob(os.path.join(source_dir, pattern))
-    if matches:
-        img_file = matches[0]
-        # Save to base extension folder
-        out1 = os.path.join(output_base, folder, "icon.png")
-        strip_white_bg(img_file, out1)
-        
-        # Save to firefox sibling if we want
-        out2 = os.path.join(output_base, f"{folder}-firefox", "icon.png")
-        strip_white_bg(img_file, out2)
+for ext_name, filename in BATCH.items():
+    source_img = os.path.join(BRAIN_DIR, filename)
+    target_icon_dir = os.path.join(BASE_DIR, ext_name, "icons")
+    
+    if not os.path.exists(target_icon_dir):
+        os.makedirs(target_icon_dir, exist_ok=True)
 
+    # Copy raw image to icon.png
+    target_img = os.path.join(target_icon_dir, "icon.png")
+    shutil.copy(source_img, target_img)
+    print(f"Copied icon for {ext_name}")
+
+    # Crop and resize the image properly (since it's a 1024x1024 generated image, crop to the center logo)
+    print(f"Running crop for {ext_name}...")
+    subprocess.run(["python3", "crop_icons.py", ext_name], cwd=BASE_DIR, check=True)
+
+    # Inject the Boutique UI
+    print(f"Injecting Boutique UI for {ext_name}...")
+    subprocess.run(["python3", "inject_boutique_ui.py", ext_name], cwd=BASE_DIR, check=True)
+
+# Update manifest and generate the resized icons
+ext_args = list(BATCH.keys())
+print("Rebuilding icons arrays...")
+subprocess.run(["python3", "update_manifest_icons.py"] + ext_args, cwd=BASE_DIR, check=True)
+
+print("Batch 6 injection complete. Ready for screenshots.")

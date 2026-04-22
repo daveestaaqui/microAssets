@@ -3,18 +3,18 @@
   "name": "OmniSuite Dev Toolkit",
   "version": "1.2.1",
   "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
   },
   "description": "All 5 premium B2B tools in one extension. WCAG Auditing, Privacy Scanning, Contract Highlighting, Invoice & Time.",
   "homepage_url": "https://sporlyworks.com",
   "action": {
     "default_popup": "popup/index.html",
     "default_icon": {
-      "16": "icons/icon16.png",
-      "48": "icons/icon48.png",
-      "128": "icons/icon128.png"
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
     }
   },
   "permissions": [

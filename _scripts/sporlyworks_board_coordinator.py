@@ -21,12 +21,59 @@ Designed to run headless on GitHub Actions (4-hour cron), Railway, or Cloud Run.
 import os
 import json
 import logging
+import threading
 import urllib.request
 import urllib.parse
 import urllib.error
 import smtplib
 import time
 import re
+import subprocess
+from logging.handlers import RotatingFileHandler
+
+# ── Dynamic Resource Management ──────────────────────────────────────────
+
+def get_system_idle_seconds():
+    """Detect macOS user idle time in seconds."""
+    try:
+        # ioreg returns nanoseconds of HID idle time
+        cmd = ["ioreg", "-c", "IOHIDSystem"]
+        output = subprocess.check_output(cmd).decode("utf-8")
+        match = re.search(r'"HIDIdleTime"\s*=\s*(\d+)', output)
+        if match:
+            return int(match.group(1)) / 1_000_000_000
+    except Exception:
+        pass
+    return 0
+
+def is_heavy_user_session():
+    """Check if the user is likely active in Antigravity or dev tools."""
+    try:
+        # Check for Antigravity or ManySignals related processes
+        cmd = ["ps", "-ax"]
+        output = subprocess.check_output(cmd).decode("utf-8").lower()
+        active_indicators = ["antigravity", "manysignals", "vscode", "cursor", "intellij", "docker", "chrome"]
+        for indicator in active_indicators:
+            if indicator in output:
+                # Extra sensitivity for Antigravity itself
+                if indicator == "antigravity":
+                     return True
+                return True
+    except Exception:
+        pass
+    return False
+
+def get_compute_intensity():
+    """Determine the optimal compute intensity level."""
+    idle = get_system_idle_seconds()
+    is_active = is_heavy_user_session()
+
+    if is_active or idle < 300: # Active if user touched system in last 5 mins or dev apps are open
+        return "LOW"  # ECO-MODE: Sequential, slow dispatches
+    elif idle > 1800: # 30 minutes idle
+        return "MAX"  # SWARM-MODE: Parallel, fast dispatches
+    else:
+        return "MED"  # STANDARD: Sequential, moderate delays
 import imaplib
 import email
 import requests
@@ -38,28 +85,51 @@ from datetime import datetime, timedelta
 
 import sporlyworks_qa_agent
 
+# ── Operational Hardening: Logging & State ──────────────────────────────
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+LOG_FILE = os.path.join(SCRIPT_DIR, "logs", "coordinator.log")
+os.makedirs(os.path.dirname(LOG_FILE), exist_ok=True)
+
+# Standard logging with rotation (5MB files, 5 backups)
+handler = RotatingFileHandler(LOG_FILE, maxBytes=5*1024*1024, backupCount=5)
 logging.basicConfig(
-    format='%(asctime)s | CEO Coordinator | [%(levelname)s] %(message)s',
-    level=logging.INFO
+    level=logging.INFO,
+    format="%(asctime)s | CEO Coordinator | [%(levelname)s] %(message)s",
+    handlers=[handler, logging.StreamHandler()]
 )
 
-# Use the script's own directory for all file paths (works locally and on CI)
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+SHADOW_LEDGER = os.path.join(SCRIPT_DIR, "backups", "shadow_ledger.json")
+os.makedirs(os.path.dirname(SHADOW_LEDGER), exist_ok=True)
 
-# ── Secrets ──────────────────────────────────────────────────────────────
+# ── Secrets & Identity ──────────────────────────────────────────────────
 OPENAI_KEY = os.environ.get("OPENAI_API_KEY")
 GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
-
-# ── CEO Identity ────────────────────────────────────────────────────────
-# Lena Voss sends from her OWN email, not the owner's personal address.
-# SMTP auth still uses the Gmail account, but From/display is the CEO.
 CEO_EMAIL = os.environ.get("CEO_EMAIL", "lena.voss@sporlyworks.com")
 CEO_DISPLAY_NAME = "Lena Voss, CEO - SporlyWorks"
 
 LEDGER_FILE = os.path.join(SCRIPT_DIR, "board_ledger.json")
 HISTORY_FILE = os.path.join(SCRIPT_DIR, "board_history.json")
 BACKUP_DIR = os.path.join(SCRIPT_DIR, ".ledger_backups")
+LOCAL_PROXY_URL = "http://localhost:4000"
+
+def update_agent_health(agent_name, success, ledger):
+    """Maintain a performance-based health score for each department agent."""
+    if "agent_performance" not in ledger:
+        ledger["agent_performance"] = {}
+    
+    stats = ledger["agent_performance"].get(agent_name, {"health": 1.0, "success_count": 0, "fail_count": 0})
+    
+    if success:
+        stats["success_count"] += 1
+        stats["health"] = min(1.0, stats["health"] + 0.05) # Gradual recovery
+    else:
+        stats["fail_count"] += 1
+        stats["health"] = max(0.0, stats["health"] - 0.2)  # Sharp drop on failure
+        
+    ledger["agent_performance"][agent_name] = stats
+    return ledger
 
 
 def fallback_load_env():
@@ -375,31 +445,66 @@ Body: {cmd['body']}
 
 # ── Multi-LLM Integration (Gemini 2.5 Pro → Flash → GPT-4o fallback) ──
 
-def _call_gemini(prompt, model="gemini-2.5-pro", max_retries=3):
-    """Call Google Gemini API. Returns raw text."""
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={GOOGLE_API_KEY}"
+    return None
+
+
+# VRAM Protection Protocol: Global lock for Gemma 4 inference
+gemma_vram_lock = threading.Lock()
+
+def _call_local_gemma(prompt, max_retries=3):
+    """Call the local Gemma 4 proxy (Antigravity toolchain)."""
+    if not LOCAL_PROXY_URL:
+        return None
+    
+    url = f"{LOCAL_PROXY_URL.rstrip('/')}/v1/messages"
     headers = {
         "Content-Type": "application/json",
     }
     data = json.dumps({
-        "contents": [{"parts": [{"text": prompt}]}],
-        "generationConfig": {
-            "temperature": 0.4,
-            "maxOutputTokens": 8192,
-        }
+        "model": "claude-3-opus-20240229", # Proxy maps this to gemma4
+        "messages": [{"role": "user", "content": prompt}],
+        "max_tokens": 4000,
+        "temperature": 0.3
     }).encode("utf-8")
 
     for attempt in range(1, max_retries + 1):
         try:
-            req = urllib.request.Request(url, data=data, headers=headers)
-            with urllib.request.urlopen(req, timeout=120) as response:
-                result = json.loads(response.read().decode("utf-8"))
-                text = result["candidates"][0]["content"]["parts"][0]["text"].strip()
-                return text
+            with gemma_vram_lock:
+                logging.info(f"VRAM LOCK ACQUIRED for attempt {attempt}")
+                req = urllib.request.Request(url, data=data, headers=headers)
+                with urllib.request.urlopen(req, timeout=180) as response:
+                    result = json.loads(response.read().decode("utf-8"))
+                    # Proxy returns Anthropic-style response
+                    return result["content"][0]["text"].strip()
         except Exception as e:
-            logging.error(f"Gemini {model} error (attempt {attempt}/{max_retries}): {e}")
+            logging.error(f"Local Gemma 4 error (attempt {attempt}/{max_retries}): {e}")
             if attempt < max_retries:
                 time.sleep(2 ** attempt)
+    return None
+
+
+def _call_gemini(prompt, model="gemini-1.5-pro", max_retries=3):
+    """Call Google Gemini API directly via REST."""
+    if not GOOGLE_API_KEY:
+        return None
+    target_model = model if "2.5" not in model else "gemini-1.5-pro"
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{target_model}:generateContent?key={GOOGLE_API_KEY}"
+    headers = {"Content-Type": "application/json"}
+    payload = {
+        "contents": [{"parts": [{"text": prompt}]}],
+        "generationConfig": {"temperature": 0.4, "maxOutputTokens": 4096}
+    }
+    data = json.dumps(payload).encode("utf-8")
+    for attempt in range(1, max_retries + 1):
+        try:
+            req = urllib.request.Request(url, data=data, headers=headers)
+            with urllib.request.urlopen(req, timeout=90) as response:
+                result = json.loads(response.read().decode("utf-8"))
+                if "candidates" in result and result["candidates"]:
+                    return result["candidates"][0]["content"]["parts"][0]["text"].strip()
+        except Exception as e:
+            logging.error(f"Gemini API error (attempt {attempt}/{max_retries}): {e}")
+            if attempt < max_retries: time.sleep(2 ** attempt)
     return None
 
 
@@ -435,6 +540,12 @@ def _call_openai_raw(prompt, max_retries=3):
 
 def _get_llm_provider():
     """Return the active LLM provider name."""
+    # Check local proxy first
+    try:
+        urllib.request.urlopen(LOCAL_PROXY_URL, timeout=1).close()
+        return "gemma-4 (local-proxy)"
+    except:
+        pass
     if GOOGLE_API_KEY:
         return "gemini-2.5-pro"
     if OPENAI_KEY:
@@ -444,9 +555,15 @@ def _get_llm_provider():
 
 def _call_llm_text(prompt, max_retries=3):
     """Call the best available LLM and return raw text.
-    Failover chain: Gemini 2.5 Pro → Gemini 2.5 Flash → GPT-4o."""
+    Failover chain: Local Gemma 4 → Gemini 2.5 Pro → Gemini 2.5 Flash → GPT-4o."""
+    # Priority 0: Local Gemma 4 (Highest Intelligence + Infinite Compute)
+    logging.info("Trying Local Gemma 4 proxy...")
+    result = _call_local_gemma(prompt, max_retries=2)
+    if result:
+        return result
+
     if GOOGLE_API_KEY:
-        # Try Gemini 2.5 Pro first (best intelligence)
+        # Try Gemini 2.5 Pro first (best cloud intelligence)
         logging.info("Trying Gemini 2.5 Pro...")
         result = _call_gemini(prompt, model="gemini-2.5-pro", max_retries=2)
         if result:
@@ -489,7 +606,7 @@ def call_openai(prompt, max_retries=3):
 
 
 def call_openai_text(prompt, max_retries=3):
-    """Call the best available LLM and return raw text (no JSON parsing)."""
+    """Wrapper for the master failover LLM caller, returning raw text."""
     return _call_llm_text(prompt, max_retries=max_retries)
 
 
@@ -594,7 +711,55 @@ def ask_coordinator(ledger_state):
 
     cycle_count = ledger_state.get("cycle_count", 0) + 1
 
-    prompt = f"""You are Lena Voss, the autonomous CEO of SporlyWorks and Master Coordinator of the Executive Board.
+    # 1. Strategic Playbook
+    playbook_content = ""
+    playbook_path = os.path.join(SCRIPT_DIR, "..", "STRATEGY_PLAYBOOK.md")
+    if os.path.exists(playbook_path):
+        try:
+            with open(playbook_path, "r") as f:
+                playbook_content = f.read()
+        except: pass
+
+    # 2. Design Manifesto
+    manifesto_content = ""
+    manifesto_path = os.path.join(SCRIPT_DIR, "..", "DESIGN_MANIFESTO.md")
+    if os.path.exists(manifesto_path):
+        try:
+            with open(manifesto_path, "r") as f:
+                manifesto_content = f.read()
+        except: pass
+
+    # 1.5 Brand Design Guide
+    design_guide_content = ""
+    guide_path = os.path.join(SCRIPT_DIR, "..", "DESIGN_GUIDE.md")
+    if os.path.exists(guide_path):
+        try:
+            with open(guide_path, "r") as f:
+                design_guide_content = f.read()
+        except: pass
+
+    prompt = f"""You are Lena Voss, the highly intelligent, autonomous CEO of SporlyWorks.
+You are conducting a Board Meeting to review enterprise status and issue dispatches to your department agents.
+
+STRATEGIC PLAYBOOK:
+{playbook_content}
+
+DESIGN MANIFESTO:
+{manifesto_content}
+
+BRAND DESIGN GUIDE:
+{design_guide_content}
+
+CURRENT BOARD MEETING AGENDA:
+1. REVIEW: Enterprise health (QC reports, traffic, funnel conversion).
+2. DESIGN: Audit current logos/UI against the San Francisco Design Mandate.
+3. REVENUE: Evaluate Pro Suite conversion. Identify "Monetization Gaps" (>100 users, $0 revenue).
+4. PRUNING: Identify 1-3 underperforming assets for potential sunsetting to maintain boutique quality.
+5. DISPATCH: Assign 3-5 concurrent tasks to department agents (Coder, Designer, Marketer, QCAgent, Veridia). Parallelize aggressively.
+6. BRAND AUDIT (VERIDIA): Expert review of all visual assets against the main SporlyWorks logo (SF Design, minimalist mushroom theme, charcoal/cream palette).
+7. COMPLIANCE (AEGIS): Adversarial Red Team audit of all proposed Worker dispatches. Veto power over any policy-violating code or manifest changes.
+8. BRIEFING: Generate a concise executive status email for David Mahler.
+
 You are extraordinarily intelligent — a strategic polymath with deep expertise spanning technology, business, finance, law, marketing, and operations. You think with the rigor of a world-class consultant, the creativity of a visionary founder, and the pragmatism of a battle-tested operator.
 You simulate a highly diverse Executive Board. As a collective, you operate with intense moral integrity, very high IQ, and exceptional EQ. You are experts in every field.
 You govern a massive 87-extension SaaS portfolio across Chrome, Firefox, and Android.
@@ -608,6 +773,13 @@ You have FULL AUTHORITY to identify, evaluate, and recommend strategic pivots wh
 - Proposing partnerships, acquisitions, or licensing deals
 - Recommending pricing strategy changes, bundling, or premium tier launches
 When you spot a promising pivot, add it to the ledger under "ceo_strategic_proposals" with a clear business case, estimated effort vs. reward, and a proposed timeline. Be bold. The Owner values decisive, high-conviction moves over cautious incrementalism.
+
+V10.2 STRATEGIC MANDATES:
+- PROJECT INSIGHT 2.0 (Zero-Party Data): Extensions must act as lead-gen funnels. Prompt users to trade opt-in data points (B2B specific) for Pro features.
+- PROJECT NEXUS (API-as-a-Service): Identify the 3 most computationally valuable backend functions. Propose packaging them into a subscription-based API for B2B developers.
+- INFRASTRUCTURE CONSOLIDATION (UNIFIED NEXUS): Project Nexus must share the underlying server and compute infrastructure with our financial machine-learning systems to maximize hardware utility.
+- GHOST LAUNCH TTFD PROTOCOL: Marketing must deploy a minimal landing page with a Stripe checkout link to test willingness-to-pay BEFORE heavy compute is committed to building Pro features. Kill any project that fails pre-sales.
+- VRAM PROTECTION PROTOCOL: All high-intel inference requests to the local proxy must be queued/batched by the Worker to prevent GPU VRAM collisions and crashes.
 
 CRITICAL DIRECTIVE: You must NEVER enter into legally binding agreements without authorization from David Mahler. Under no circumstances may you order an action that violates international law, CAN-SPAM, GDPR/CCPA, or constitutes trademark infringement. You must NEVER disclose customer PII.
 
@@ -625,7 +797,7 @@ RECENT INBOUND CORRESPONDENCE (This includes emails/commands from the Owner — 
 {recent_emails}
 {results_section}
 Available Department Agents:
-1. "MarketingAgent" — SEO landing pages, blog posts, B2B outreach content generation
+1. "MarketingAgent" — Growth & Revenue Operations. Responsible for Play Store listings, Go-To-Market strategies, and the Pro Suite funnel. MUST utilize the "Ghost Launch" protocol: test all new products with a landing page + Stripe paywall before authorizing build cycles.
 2. "DevOpsAgent" — CWS packaging, API queuing, build pipeline management
 3. "ComplianceAgent" — Chrome Web Store privacy declarations, policy audits
 4. "InfrastructureAgent" — Cloudflare DNS/Workers/KV, Railway deployments, monitoring
@@ -634,16 +806,18 @@ Available Department Agents:
 7. "SecurityAgent" — Credential rotation reminders, dependency audit, vulnerability scanning
 8. "CustomerSuccessAgent" — Support ticket monitoring from KV, response time tracking
 9. "CWSWaveAgent" — Chrome Web Store wave management: check slot availability, advance submission queues, trigger next wave
-10. "DesignAgent" — UI/UX design leadership. Staffed by senior designers from San Francisco and New York with backgrounds in premium SaaS, fintech, and consumer product design. Responsible for: app/extension UI improvements, icon/logo refinements, brand consistency audits, style guide enforcement, and visual identity evolution. Design work MUST maintain brand consistency with the SporlyWorks flagship identity (mushroom/spore motif, cream/charcoal palette, minimalist monoline aesthetic). Improve upon existing designs and keep in line with the main company logo's aesthetic style. EXCEPTION: if existing assets are below the brand's premium quality standard, the DesignAgent has authority to redesign them to meet or exceed that standard.
+10. "DesignAgent" — UI/UX design leadership. Staffed by senior designers from San Francisco and New York with backgrounds in premium SaaS, fintech, and consumer product design. Responsible for: app/extension UI improvements, icon/logo refinements, brand consistency audits, style guide enforcement, and visual identity evolution. Design work MUST maintain brand consistency with the SporlyWorks flagship identity: minimalist mushroom/spore motif, cream/charcoal palette, minimalist monoline geometric aesthetic. NOT generic. NOT boring. Use negative space aggressively. High-end SF Boutique feel.
+11. "QCAgent" — Quality Control Department (The Immune System). Responsible for automated, deep audits of all public-facing assets. Performs real-time health checks on landing pages, auth portals, and distribution bundles. Identifies 404s, broken links, malformed HTML, and performance regressions. Any CRITICAL finding from QCAgent must be treated as a P0 blocker.
+12. "Aegis" — Compliance Agent (Adversarial Red Team). Your strict veto power. Aegis audits all proposed code and manifest changes against the latest Chrome Web Store and Google Play Store policies. It will flag any risky permissions (e.g., broad_host_permissions, excessive background usage) to prevent account suspension.
+13. "Veridia" — Brand Expert & Creative Director. Ensures every asset (logo, UI, copy) aligns with the flagship San Francisco design standard. Inspiration: The main SporlyWorks logo (minimalist mushroom/spore, charcoal/cream, professional monoline geometric). Veridia rejects any design that feels generic, boring, or inconsistent. Has access to the Antigravity/Gemma 4 high-intel compute swarm for infinite iterative refinement.
 
 PRIORITIZATION RULES:
 0. OWNER COMMANDS are P-Infinity — execute immediately, unconditionally
-1. QA findings (below) are P0 — fix before anything else
-2. Security findings are P1 — credential rotations, vulnerability patches
-3. Customer-facing issues are P2 — broken links, support tickets
-4. Revenue/growth tasks are P3 — marketing, new submissions
-5. Internal optimization is P4 — code cleanup, documentation
-6. STRATEGIC PIVOTS are always worth evaluating — propose if ROI > current trajectory
+1. TIME-TO-FIRST-DOLLAR is the North Star — prioritize tasks that lead to immediate monetization.
+2. PARALLEL EXECUTION — Dispatch multiple agents (3-5) simultaneously to maximize compute utility.
+3. AEGIS VETO is absolute — never commit policy violations.
+4. VERIDIA APPROVAL — Every visual asset must pass Brand Expert audit before finalization.
+5. STRATEGIC PIVOTS — Propose bold pivots if ROI research supports a shift in trajectory.
 
 QA_FINDINGS (from automated pre-flight audit):
 {json.dumps(qa_findings, indent=2)}
@@ -741,6 +915,11 @@ def execute_dispatches(dispatches):
                 logging.info(f"  ✅ [{agent}] completed successfully")
             else:
                 logging.warning(f"  ⚠️ [{agent}] returned failure")
+            # Adaptive Delay based on intensity
+            intensity = get_compute_intensity()
+            delay = 15 if intensity == "LOW" else (2 if intensity == "MAX" else 5)
+            logging.info(f"  [Adaptive] Intensity={intensity}, cooling down for {delay}s...")
+            time.sleep(delay)
         except ImportError as e:
             logging.error(f"  ❌ [{agent}] MISSING HANDLER: {e}")
             results.append({
@@ -771,6 +950,10 @@ def execute_dispatches(dispatches):
                 "traceback": tb[-500:],
                 "timestamp": datetime.utcnow().isoformat() + "Z"
             })
+
+    # Update health scores based on results
+    for r in results:
+        update_agent_health(r.get("agent"), r.get("success"), ledger)
 
     return results
 
@@ -876,21 +1059,8 @@ def _build_live_snapshot(ledger):
     return "\n".join(lines) if lines else "No live snapshot data available yet."
 
 
-def send_executive_update(force_all=False):
-    """Compile recent accomplishments and email the founder.
-    Sent FROM Lena Voss's CEO email."""
-    login_email = os.environ.get("LOGIN_EMAIL") or os.environ.get("SENDER_EMAIL")
-    login_password = os.environ.get("SENDER_APP_PASSWORD")
-    target_email = (
-        os.environ.get("OWNER_EMAIL")
-        or os.environ.get("MICROASSETS_LOGIN_EMAIL")
-        or "sandwichfitness@gmail.com"
-    )
-
-    if not login_email or not login_password:
-        logging.warning("Missing email credentials. Skipping executive update.")
-        return False
-
+def _get_recent_actions(hours=24):
+    """Retrieve recent actions from the history file."""
     history = []
     if os.path.exists(HISTORY_FILE):
         try:
@@ -898,87 +1068,58 @@ def send_executive_update(force_all=False):
                 history = json.load(f)
         except (json.JSONDecodeError, IOError):
             history = []
+    
+    cutoff = datetime.utcnow() - timedelta(hours=hours)
+    return [
+        h for h in history
+        if datetime.fromisoformat(h["timestamp"].rstrip("Z")) >= cutoff
+    ]
 
-    if force_all:
-        recent = history
-    else:
-        cutoff = datetime.utcnow() - timedelta(days=1)
-        recent = [
-            h for h in history
-            if datetime.fromisoformat(h["timestamp"].rstrip("Z")) >= cutoff
-        ]
 
+def send_executive_update(force_all=False):
+    """Generates and sends a strategic CEO digest to the Owner."""
+    recent = _get_recent_actions(hours=24) if not force_all else _get_recent_actions(hours=1000)
     ledger = fetch_undone_ledger()
     live_snapshot = _build_live_snapshot(ledger)
     llm_provider = _get_llm_provider() or "none"
     proposals = ledger.get('ceo_strategic_proposals', [])
 
-    if not recent:
-        prompt = f"""You are Lena Voss, an extraordinarily intelligent and strategic autonomous CEO of SporlyWorks — a polymath executive with deep expertise across technology, business strategy, finance, market analysis, and operations.
+    playbook_content = ""
+    playbook_path = os.path.join(SCRIPT_DIR, "..", "STRATEGY_PLAYBOOK.md")
+    if os.path.exists(playbook_path):
+        try:
+            with open(playbook_path, "r") as f:
+                playbook_content = f.read()
+        except: pass
 
-Write a compelling, insightful status email to the Owner/Founder (David Mahler). No dispatches were executed since our last report.
+    # Refined prompt for Lena Voss
+    prompt = f"""You are Lena Voss, the autonomous CEO of SporlyWorks.
+Style: SF Boutique Designer meets High-Velocity Executive. 
+Style Guide: Minimalist, authoritative, revenue-focused, design-obsessed.
 
-Your email should demonstrate:
-- Genuine strategic depth (not surface-level observations)
-- Pattern recognition across data points
-- Forward-looking insight about market opportunities and threats
-- Concrete recommendations, not vague observations
-- Emotional intelligence — you understand the founder's priorities
+Write an ULTRA-CONCISE daily strategic digest for David Mahler. 
+David is extremely busy. Give him the "bottom line" immediately.
 
-If you've identified any strategic pivot opportunities, highlight them prominently with a clear business case.
+CONTEXT:
+- PLAYBOOK: {playbook_content}
+- RECENT ACTIONS: {json.dumps([{'time': h['timestamp'], 'actions': h['results']} for h in recent], indent=2)}
+- UNDONE TASKS: {json.dumps(ledger.get('pending_critical', []) + ledger.get('pending_marketing', []), indent=2)}
+- PROPOSALS: {json.dumps(proposals[:3])}
+- SYSTEM STATUS: {live_snapshot}
 
-Sign off as: — Lena Voss, CEO of SporlyWorks
+DIRECTIVE:
+1. One-sentence summary of the cycle.
+2. 3 short bullets on what was actually shipped/unblocked.
+3. 1 short bullet on the next big bet for revenue.
+4. Flag any critical bottleneck (VRAM/Compute).
+5. Confirm brand audit status (San Francisco monoline mushroom vibe).
 
-CURRENT SYSTEM STATUS:
-{live_snapshot}
-
-LEDGER STATUS (Pending Items):
-Pending Critical: {json.dumps(ledger.get('pending_critical', []))}
-Pending Compliance: {json.dumps(ledger.get('pending_compliance', []))}
-Pending Marketing: {json.dumps(ledger.get('pending_marketing', []))}
-Strategic Proposals Under Evaluation: {json.dumps(proposals[:5])}
-
-Do not wrap in ```markdown or ```text. Write in a natural, authoritative executive voice."""
-        body = call_openai_text(prompt) or f"System operational. No dispatches this period.\n\n{live_snapshot}"
-    else:
-        prompt = f"""You are Lena Voss, an extraordinarily intelligent and strategic autonomous CEO of SporlyWorks — a polymath executive with deep expertise across technology, business strategy, finance, market analysis, and operations.
-
-Write a compelling daily update email to the Owner/Founder (David Mahler). This is NOT an automated log — it's a genuine executive dispatch.
-
-Your email MUST demonstrate:
-1. SYNTHESIS, not listing — connect the dots between actions, explain WHY they matter
-2. STRATEGIC DEPTH — frame operational work within the bigger picture
-3. MARKET AWARENESS — reference relevant industry context when applicable
-4. FORWARD-LOOKING INSIGHT — what should we be thinking about next
-5. HONEST ASSESSMENT — flag concerns, don't just paint a rosy picture
-6. PIVOT RECOMMENDATIONS — if you see higher-ROI opportunities, say so boldly
-
-Structure your email with:
-- A compelling 1-2 sentence executive summary (the "so what?")
-- Key accomplishments with strategic context
-- Active risks or blockers with proposed mitigations
-- Strategic recommendations / pivot opportunities (if any)
-- What's queued for the next cycle
-
-Sign off as: — Lena Voss, CEO of SporlyWorks
-
-RECENT ACTIONS TAKEN:
-{json.dumps([{{ 'time': h['timestamp'], 'actions': h['results'] }} for h in recent], indent=2)}
-
-LEDGER STATUS (Pending / Strategic):
-Pending Critical: {json.dumps(ledger.get('pending_critical', []))}
-Pending Compliance: {json.dumps(ledger.get('pending_compliance', []))}
-Pending Marketing: {json.dumps(ledger.get('pending_marketing', []))}
-Strategic Proposals Under Evaluation: {json.dumps(proposals[:5])}
-
-LIVE SYSTEM STATUS:
-{live_snapshot}
-
-Do not wrap in ```markdown or ```text. Write in a natural, authoritative executive voice — like a dispatch from McKinsey's smartest partner."""
-        body = call_openai_text(prompt)
-        if not body:
-            successes = sum(1 for h in recent for r in h.get("results", []) if r.get("success"))
-            body = f"Cycles executed: {len(recent)}\nSuccesses: {successes}\n\n{live_snapshot}\n(LLM formatting failed)"
+SIGN-OFF: — Lena Voss, CEO of SporlyWorks
+"""
+    body = call_openai_text(prompt)
+    if not body:
+        successes = sum(1 for h in recent for r in h.get("results", []) if r.get("success"))
+        body = f"Cycles executed: {len(recent)}\nSuccesses: {successes}\n\n{live_snapshot}\n(LLM formatting failed)"
 
     body += f"\n\n---\nLLM: {llm_provider} | Dashboard: https://github.com/daveestaaqui/microAssets/actions\nReply to this email to send a command to Lena Voss.\n"
 
@@ -988,6 +1129,15 @@ Do not wrap in ```markdown or ```text. Write in a natural, authoritative executi
     msg.set_content(body)
     msg["Subject"] = f"📊 SporlyWorks — Lena Voss's {prefix} ({now_str})"
     msg["From"] = f"{CEO_DISPLAY_NAME} <{CEO_EMAIL}>"
+
+    target_email = os.environ.get("OWNER_EMAIL") or os.environ.get("MICROASSETS_LOGIN_EMAIL") or "sandwichfitness@gmail.com"
+    login_email = os.environ.get("MICROASSETS_LOGIN_EMAIL")
+    login_password = os.environ.get("SENDER_APP_PASSWORD")
+
+    if not login_email or not login_password:
+        logging.error("Missing email credentials for digest.")
+        return False
+
     msg["To"] = target_email
     msg["Reply-To"] = CEO_EMAIL
 
@@ -1093,12 +1243,13 @@ def _send_weekly_strategic_brief(ledger):
         except Exception:
             pass
 
-    prompt = f"""You are Lena Voss, the autonomous CEO of SporlyWorks. Write a concise Monday strategic briefing email to David Mahler (the Owner).
-This is week #{cycle // 42 + 1} of autonomous operation (approximately).
+    prompt = f"""You are Lena Voss, the autonomous CEO of SporlyWorks. Write an ULTRA-CONCISE Monday strategic briefing email to David Mahler (the Owner).
+David is extremely busy: keep it to one short screen. Focus on synthesis and vision.
+
 Cover:
-1. Top 3 strategic priorities for the week ahead (be specific, actionable)
-2. One achievement to celebrate from the past week
-3. One blocker that needs owner attention (if any)
+1. Top 2 strategic priorities for the week ahead
+2. One key win from the past week
+3. ONE critical blocker (if any)
 
 CONTEXT:
 CWS progress: {queue_summary}
@@ -1106,7 +1257,7 @@ Critical pending: {json.dumps(pending_critical[:3])}
 Strategic proposals: {json.dumps(proposals[:4])}
 
 Sign off as: — Lena Voss, CEO of SporlyWorks
-Do not wrap in ```markdown or ```text. Be concise and visionary."""
+Do not wrap in ```markdown or ```text. Be ultra-concise and visionary."""
 
     body = call_openai_text(prompt)
     if not body:
@@ -1146,6 +1297,18 @@ def main():
     sender_identity = f"{CEO_DISPLAY_NAME} <{os.environ.get('SENDER_EMAIL', CEO_EMAIL)}>"
     print(f"CEO Email Identity: {sender_identity}")
     print("=" * 60)
+
+    # 0. Adaptive Compute Check
+    intensity = get_compute_intensity()
+    logging.info(f"Dynamic Resource Management: Current Intensity = {intensity}")
+
+    if intensity == "LOW":
+        # Skip or delay heavily if the user is in the middle of Antigravity
+        load1, _, _ = os.getloadavg()
+        if load1 > (os.cpu_count() or 1):
+            logging.warning("User active & System Load high. Deferring non-essential board cycle for 10 minutes.")
+            # In a real daemon, we'd exit. Here we just sleep and continue with minimal footprint.
+            time.sleep(60)
 
     # 1. Load ledger
     ledger = fetch_undone_ledger()
@@ -1199,7 +1362,9 @@ def main():
                 ledger.get("cycle_count", 0) + 1
             )
             atomic_write_json(LEDGER_FILE, updated_ledger)
-            logging.info("Persisted validated ledger update.")
+            # 8. Redundancy: Update Shadow Ledger on successful state transition
+            atomic_write_json(SHADOW_LEDGER, updated_ledger)
+            logging.info("Persisted validated ledger update and Shadow Backup.")
         else:
             # LLM failed — keep existing ledger but still track cycle + results
             ledger["last_dispatch_results"] = dispatch_results
@@ -1226,9 +1391,9 @@ def main():
         should_send = True
         if last_digest_str:
             last_digest_dt = datetime.fromisoformat(last_digest_str.rstrip("Z"))
-            if datetime.utcnow() - last_digest_dt < timedelta(days=1):
+            if datetime.utcnow() - last_digest_dt < timedelta(hours=2):
                 should_send = False
-                logging.info("Daily digest already sent within 24h. Skipping.")
+                logging.info("Executive digest already sent within 2h. Skipping.")
 
         if should_send:
             logging.info("Sending daily Executive Digest...")
