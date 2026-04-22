@@ -129,7 +129,7 @@
   },
   "gitignore_warning": "The _*/** rule in .gitignore blocks all files inside _-prefixed directories. Tracked files were force-added before this rule existed. Any NEW file in _scripts/ must use: git add -f _scripts/<filename>",
   "qa_last_report": {
-    "audit_timestamp": "2026-04-22T22:46:51.027097Z",
+    "audit_timestamp": "2026-04-22T23:44:34.426492Z",
     "qa_version": "8.0",
     "status": "FAIL",
     "portfolio": {
@@ -176,7 +176,7 @@
       "timestamp": "2026-04-22T10:00:51.470410Z"
     }
   ],
-  "cycle_count": 135,
+  "cycle_count": 136,
   "last_digest_sent": "2026-04-21T17:01:59.649025Z",
   "last_weekly_brief_sent": "2026-04-20T02:37:34.063859Z",
   "owner_commands_received": [
