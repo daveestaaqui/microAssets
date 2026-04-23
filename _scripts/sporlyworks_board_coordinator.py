@@ -1,3 +1,4 @@
+import sys
 #!/usr/bin/env python3
 """
 SporlyWorks Autonomous Board Coordinator v11.0
@@ -52,7 +53,7 @@ def is_heavy_user_session():
         # Check for Antigravity or ManySignals related processes
         cmd = ["ps", "-ax"]
         output = subprocess.check_output(cmd).decode("utf-8").lower()
-        active_indicators = ["antigravity", "manysignals", "vscode", "cursor", "intellij", "docker", "chrome"]
+        active_indicators = ["antigravity", "manysignals", "vscode", "cursor", "intellij"]
         for indicator in active_indicators:
             if indicator in output:
                 # Extra sensitivity for Antigravity itself
@@ -68,9 +69,9 @@ def get_compute_intensity():
     idle = get_system_idle_seconds()
     is_active = is_heavy_user_session()
 
-    if is_active or idle < 300: # Active if user touched system in last 5 mins or dev apps are open
+    if is_active or idle < 600: # Active if user touched system in last 5 mins or dev apps are open
         return "LOW"  # ECO-MODE: Sequential, slow dispatches
-    elif idle > 1800: # 30 minutes idle
+    elif idle > 3600: # 30 minutes idle
         return "MAX"  # SWARM-MODE: Parallel, fast dispatches
     else:
         return "MED"  # STANDARD: Sequential, moderate delays
@@ -223,7 +224,7 @@ def fetch_recent_emails():
         logging.warning("CEO_INBOX_URL/CEO_INBOX_SECRET not set. Falling back to IMAP.")
         return _fetch_recent_emails_imap()
 
-    owner_indicators = ["sandwichfitness", "david", "davidmahler"]
+    owner_indicators = ["davidmahler", "sandwichfitness@gmail.com"]
     has_owner_command = False
     raw_owner_commands = []
 
@@ -256,7 +257,8 @@ def fetch_recent_emails():
             inbound_str += f"\\n--- EMAIL ---\\nFrom: {from_}\\nSubject: {subject}\\nBody: {cleaned_body}\\n"
 
             from_lower = from_.lower()
-            if any(ind in from_lower for ind in owner_indicators):
+            # Avoid CEO self-feedback loop
+            if any(ind in from_lower for ind in owner_indicators) and "sporlyworks.com" not in from_lower and "lena" not in from_lower:
                 subject_lower = subject.lower()
                 is_our_digest = "lena voss" in subject_lower or "sporlyworks ceo board" in subject_lower
                 if not is_our_digest and body.strip():
@@ -296,7 +298,7 @@ def _fetch_recent_emails_imap():
     if not login_email or not login_password:
         return "IMAP credentials missing. Cannot fetch correspondence.", False, []
 
-    owner_indicators = ["sandwichfitness", "david", "davidmahler"]
+    owner_indicators = ["davidmahler", "sandwichfitness@gmail.com"]
     has_owner_command = False
     raw_owner_commands = []
 
@@ -349,7 +351,8 @@ def _fetch_recent_emails_imap():
                     inbound_str += f"\\n--- EMAIL ---\\nFrom: {from_}\\nSubject: {subject}\\nBody: {cleaned_body}\\n"
 
                     from_lower = from_.lower()
-                    if any(ind in from_lower for ind in owner_indicators):
+                    # Avoid CEO self-feedback loop
+                    if any(ind in from_lower for ind in owner_indicators) and "sporlyworks.com" not in from_lower and "lena" not in from_lower:
                         subject_lower = subject.lower()
                         is_our_digest = "lena voss" in subject_lower or "sporlyworks ceo board" in subject_lower
                         if not is_our_digest and body.strip():
@@ -1289,6 +1292,12 @@ Do not wrap in ```markdown or ```text. Be ultra-concise and visionary."""
 def main():
     cycle_start = time.time()
     fallback_load_env()
+
+    # Antigravity Safety Switch
+    if is_heavy_user_session():
+        print("!!! ANTIGRAVITY DETECTED — CEO ENTERING HIBERNATION !!!")
+        logging.info("Antigravity session detected. Board meeting postponed to avoid CPU collision.")
+        sys.exit(0)
 
     print("=" * 60)
     print("SPORLYWORKS CEO COORDINATOR v11.0 — Lena Voss")
