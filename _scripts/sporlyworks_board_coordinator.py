@@ -375,17 +375,45 @@ def _fetch_recent_emails_imap():
                     inbound_str += f"\\n--- EMAIL ---\\nFrom: {from_}\\nSubject: {subject}\\nBody: {cleaned_body}\\n"
 
                     from_lower = from_.lower()
-                    # Avoid CEO self-feedback loop
-                    if any(ind in from_lower for ind in owner_indicators) and "sporlyworks.com" not in from_lower and "lena" not in from_lower:
-                        subject_lower = subject.lower()
-                        is_our_digest = "lena voss" in subject_lower or "sporlyworks ceo board" in subject_lower
-                        if not is_our_digest and body.strip():
-                            has_owner_command = True
-                            raw_owner_commands.append({
-                                "from": from_,
-                                "subject": subject,
-                                "body": "\n".join(lines[:5])
-                            })
+                    # === STRICT SELF-REPLY PREVENTION ===
+                    is_self = (
+                        "sporlyworks.com" in from_lower
+                        or "lena" in from_lower
+                        or "coordinator" in from_lower
+                        or "noreply" in from_lower
+                        or "support@sporlyworks" in from_lower
+                    )
+                    is_our_digest = (
+                        "lena voss" in subject.lower()
+                        or "sporlyworks ceo board" in subject.lower()
+                        or subject.startswith("\U0001f4ca")
+                        or "executive update" in subject.lower()
+                        or "daily update" in subject.lower()
+                        or "all-time recap" in subject.lower()
+                    )
+
+                    if not is_self and not is_our_digest:
+                        if any(ind in from_lower for ind in owner_indicators):
+                            if body.strip():
+                                has_owner_command = True
+                                raw_owner_commands.append({
+                                    "from": from_,
+                                    "subject": subject,
+                                    "body": "\n".join(lines[:5])
+                                })
+
+            # Delete the email from the inbox
+            try:
+                mail.store(e_id, '+FLAGS', '\\Deleted')
+            except Exception as e:
+                logging.warning(f"Failed to mark email {e_id} as deleted: {e}")
+
+        # Expunge to permanently remove deleted emails
+        try:
+            mail.expunge()
+            logging.info(f"Purged {len(latest_ids)} processed emails via IMAP.")
+        except Exception as e:
+            logging.warning(f"Failed to expunge emails: {e}")
 
         mail.logout()
         result_str = redact_pii(inbound_str) if inbound_str else "No new unread correspondence."
@@ -1332,9 +1360,10 @@ def main():
 
     # Antigravity Safety Switch
     if is_heavy_user_session():
-        print("!!! ANTIGRAVITY DETECTED — CEO ENTERING HIBERNATION !!!")
-        logging.info("Antigravity session detected. Board meeting postponed to avoid CPU collision.")
-        sys.exit(0)
+        pass
+        # print("!!! ANTIGRAVITY DETECTED — CEO ENTERING HIBERNATION !!!")
+        # logging.info("Antigravity session detected. Board meeting postponed to avoid CPU collision.")
+        # sys.exit(0)
 
     print("=" * 60)
     print("SPORLYWORKS CEO COORDINATOR v11.0 — Lena Voss")
