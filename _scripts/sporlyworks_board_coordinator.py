@@ -961,7 +961,7 @@ def validate_updated_ledger(original, updated):
 import sporlyworks_sub_agents
 
 
-def execute_dispatches(dispatches):
+def execute_dispatches(dispatches, ledger):
     """Execute all dispatches and track results."""
     results = []
     for dispatch in dispatches:
@@ -1360,10 +1360,9 @@ def main():
 
     # Antigravity Safety Switch
     if is_heavy_user_session():
-        pass
-        # print("!!! ANTIGRAVITY DETECTED — CEO ENTERING HIBERNATION !!!")
-        # logging.info("Antigravity session detected. Board meeting postponed to avoid CPU collision.")
-        # sys.exit(0)
+        print("!!! ANTIGRAVITY DETECTED — CEO ENTERING HIBERNATION !!!")
+        logging.info("Antigravity session detected. Board meeting postponed to avoid CPU collision.")
+        sys.exit(0)
 
     print("=" * 60)
     print("SPORLYWORKS CEO COORDINATOR v11.0 — Lena Voss")
@@ -1419,7 +1418,7 @@ def main():
 
         # 5. Execute dispatches with result tracking
         dispatches = decisions.get("dispatches", [])
-        dispatch_results = execute_dispatches(dispatches)
+        dispatch_results = execute_dispatches(dispatches, live_ledger)
 
         # 6. Log accomplishments
         log_accomplishment(rationale, dispatches, dispatch_results)
