@@ -257,12 +257,34 @@ def fetch_recent_emails():
             inbound_str += f"\\n--- EMAIL ---\\nFrom: {from_}\\nSubject: {subject}\\nBody: {cleaned_body}\\n"
 
             from_lower = from_.lower()
-            # Avoid CEO self-feedback loop - STRICT FILTERING
-            is_self = "sporlyworks.com" in from_lower or "lena" in from_lower or "coordinator" in from_lower
-            if any(ind in from_lower for ind in owner_indicators) and not is_self:
-                subject_lower = subject.lower()
-                is_our_digest = "lena voss" in subject_lower or "sporlyworks ceo board" in subject_lower
-                if not is_our_digest and body.strip():
+            subject_lower = subject.lower()
+
+            # === STRICT SELF-REPLY PREVENTION ===
+            # Block ANY email that originated from the CEO or coordinator system
+            is_self = (
+                "sporlyworks.com" in from_lower
+                or "lena" in from_lower
+                or "coordinator" in from_lower
+                or "noreply" in from_lower
+                or "support@sporlyworks" in from_lower
+            )
+            # Block any digest-formatted subject (our own output)
+            is_our_digest = (
+                "lena voss" in subject_lower
+                or "sporlyworks ceo board" in subject_lower
+                or subject.startswith("\U0001f4ca")
+                or "executive update" in subject_lower
+                or "daily update" in subject_lower
+                or "all-time recap" in subject_lower
+            )
+
+            if is_self or is_our_digest:
+                logging.info(f"Skipping self/digest email from {from_}: {subject}")
+                read_ids.append(em.get("id"))  # Still mark for deletion
+                continue
+
+            if any(ind in from_lower for ind in owner_indicators):
+                if body.strip():
                     has_owner_command = True
                     raw_owner_commands.append({
                         "from": from_,
@@ -401,12 +423,23 @@ Active departments: {', '.join(depts.keys())}
             ledger_context = "Ledger data unavailable."
 
     for cmd in owner_commands:
+        # === GUARD: Never reply to our own digest emails ===
+        subj_lower = cmd['subject'].lower()
+        if any(sig in subj_lower for sig in [
+            "lena voss", "sporlyworks ceo", "executive update",
+            "daily update", "all-time recap",
+        ]) or cmd['subject'].startswith("\U0001f4ca"):
+            logging.info(f"Skipping self-echo reply for: {cmd['subject']}")
+            continue
+
         try:
             prompt = f"""You are Lena Voss, CEO of SporlyWorks. You are writing a direct email reply to David Mahler, the founder and owner.
 
 David is your boss — the founder. Respond to him directly, substantively, and personally. No corporate speak. No "I'll prioritize this in the next cycle." Give him a real answer RIGHT NOW with specifics.
 
 Be concise but thorough. If he asks for an update, give him the actual status of everything. If he gives an instruction, confirm exactly what you'll do. If he asks a question, answer it.
+
+You are a real person responding to your boss. Be warm, professional, and action-oriented. If David asks you to do something, say "Done" or "On it" and explain what you did. Never say you'll "look into it" — either do it or explain why you can't.
 
 Sign off as Lena.
 
@@ -429,7 +462,7 @@ Body: {cmd['body']}
                     f"— Lena"
                 )
 
-            # Send the real reply
+            # Send the real reply with anti-loop header
             msg = EmailMessage()
             msg.set_content(reply_text)
             re_prefix = "" if cmd['subject'].lower().startswith("re:") else "Re: "
@@ -437,6 +470,7 @@ Body: {cmd['body']}
             msg["From"] = f"{CEO_DISPLAY_NAME} <{CEO_EMAIL}>"
             msg["To"] = owner_email
             msg["Reply-To"] = CEO_EMAIL
+            msg["X-SporlyWorks-CEO-Outbound"] = "true"  # Anti-loop marker
             server = smtplib.SMTP("smtp.gmail.com", 587)
             server.starttls()
             server.login(login_email, login_password)
@@ -1145,6 +1179,7 @@ SIGN-OFF: — Lena Voss, CEO of SporlyWorks
 
     msg["To"] = target_email
     msg["Reply-To"] = CEO_EMAIL
+    msg["X-SporlyWorks-CEO-Outbound"] = "true"  # Anti-loop marker
 
     try:
         server = smtplib.SMTP("smtp.gmail.com", 587)
