@@ -257,8 +257,9 @@ def fetch_recent_emails():
             inbound_str += f"\\n--- EMAIL ---\\nFrom: {from_}\\nSubject: {subject}\\nBody: {cleaned_body}\\n"
 
             from_lower = from_.lower()
-            # Avoid CEO self-feedback loop
-            if any(ind in from_lower for ind in owner_indicators) and "sporlyworks.com" not in from_lower and "lena" not in from_lower:
+            # Avoid CEO self-feedback loop - STRICT FILTERING
+            is_self = "sporlyworks.com" in from_lower or "lena" in from_lower or "coordinator" in from_lower
+            if any(ind in from_lower for ind in owner_indicators) and not is_self:
                 subject_lower = subject.lower()
                 is_our_digest = "lena voss" in subject_lower or "sporlyworks ceo board" in subject_lower
                 if not is_our_digest and body.strip():
@@ -271,17 +272,18 @@ def fetch_recent_emails():
 
             read_ids.append(em.get("id"))
 
-        # Mark all fetched emails as read
+        # DELETE all fetched emails to maintain zero-saturation
         if read_ids:
             try:
                 requests.post(
-                    f"{inbox_url.rstrip('/')}/mark-read",
+                    f"{inbox_url.rstrip('/')}/delete",
                     headers={"X-Inbox-Secret": inbox_secret, "Content-Type": "application/json"},
                     json={"ids": read_ids},
                     timeout=10,
                 )
+                logging.info(f"Purged {len(read_ids)} processed emails from CEO inbox.")
             except Exception as e:
-                logging.warning(f"Failed to mark CEO emails as read: {e}")
+                logging.warning(f"Failed to purge CEO emails: {e}")
 
         result_str = redact_pii(inbound_str) if inbound_str else "No new unread correspondence."
         return result_str, has_owner_command, raw_owner_commands
@@ -1400,9 +1402,10 @@ def main():
         should_send = True
         if last_digest_str:
             last_digest_dt = datetime.fromisoformat(last_digest_str.rstrip("Z"))
-            if datetime.utcnow() - last_digest_dt < timedelta(hours=2):
+            # STRICT: 24-hour frequency cap for executive digests
+            if datetime.utcnow() - last_digest_dt < timedelta(hours=24):
                 should_send = False
-                logging.info("Executive digest already sent within 2h. Skipping.")
+                logging.info("Executive digest already sent within 24h. Skipping.")
 
         if should_send:
             logging.info("Sending daily Executive Digest...")
