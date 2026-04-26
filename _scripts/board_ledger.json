@@ -252,7 +252,7 @@
   },
   "gitignore_warning": "The _*/** rule in .gitignore blocks all files inside _-prefixed directories. Tracked files were force-added before this rule existed. Any NEW file in _scripts/ must use: git add -f _scripts/<filename>",
   "qa_last_report": {
-    "audit_timestamp": "2026-04-23T18:00:03.350909Z",
+    "audit_timestamp": "2026-04-24T17:22:25.034871Z",
     "qa_version": "8.0",
     "status": "WARN",
     "portfolio": {
@@ -263,7 +263,7 @@
       "mv3_count": 87
     },
     "findings": [
-      "AUDIT_ERROR: npm audit failed: [Errno 2] No such file or directory: 'npm'"
+      "VULNERABILITY_FOUND: _android/css-grid-generator has 0 critical, 3 high vulnerabilities."
     ],
     "checks_run": [
       "portfolio_integrity",
@@ -279,8 +279,8 @@
     ]
   },
   "last_dispatch_results": [],
-  "cycle_count": 61,
-  "last_digest_sent": "2026-04-23T16:03:55.676068Z",
+  "cycle_count": 63,
+  "last_digest_sent": "2026-04-24T17:09:26.036051Z",
   "last_weekly_brief_sent": "2026-04-13T01:45:19.099353Z",
   "owner_commands_received": [
     "OWNER COMMAND [Cycle 30]: Request for logo and new app/extension design samples for review.",

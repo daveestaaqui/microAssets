@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SaaS Stack Auditor - SporlyWorks</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="nav-logo">SporlyWorks</a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/roi-calculator.html">ROI Calculator</a>
+      <a href="/stack-auditor.html">Stack Auditor</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>SaaS Stack Auditor</h1>
+    <p>Audit and optimize your SaaS technology stack</p>
+  </section>
+
+  <main class="grid">
+    <div class="card">
+      <h2>SaaS Stack Auditor</h2>
+      <div class="calculator">
+        <h3 style="margin-bottom: 1rem;">Common B2B Expenses Checklist</h3>
+        <form id="stackForm" onsubmit="calculateEfficiencyDebt(event)">
+          <div class="input-group">
+            <label for="crmCost">CRM (e.g., HubSpot, Salesforce)</label>
+            <input type="number" id="crmCost" placeholder="$0" min="0" step="1">
+          </div>
+          <div class="input-group">
+            <label for="emailCost">Email Marketing (e.g., Mailchimp, Klaviyo)</label>
+            <input type="number" id="emailCost" placeholder="$0" min="0" step="1">
+          </div>
+          <div class="input-group">
+            <label for="hostingCost">Web Hosting</label>
+            <input type="number" id="hostingCost" placeholder="$0" min="0" step="1">
+          </div>
+          <div class="input-group">
+            <label for="aiToolsCost">AI Tools</label>
+            <input type="number" id="aiToolsCost" placeholder="$0" min="0" step="1">
+          </div>
+          <div class="input-group">
+            <label for="projectMgmtCost">Project Management (e.g., Asana, Jira)</label>
+            <input type="number" id="projectMgmtCost" placeholder="$0" min="0" step="1">
+          </div>
+          <div class="input-group">
+            <label for="designCost">Design Tools (e.g., Figma, Canva)</label>
+            <input type="number" id="designCost" placeholder="$0" min="0" step="1">
+          </div>
+          <input type="button" value="Audit Stack">
+        </form>
+        <div id="results" style="display:none;">
+          <div class="result-item">
+            <span class="label">Monthly Efficiency Debt:</span>
+            <span id="efficiencyDebt" class="value">$0</span>
+          </div>
+          <div class="annual-label" style="margin-top: 0.5rem;">
+            <span class="label">Annual Efficiency Debt:</span>
+            <span id="annualEfficiencyDebt" class="value">$0</span>
+          </div>
+        </div>
+        <div class="monetization" id="monetization" style="display:none;">
+          <h3 style="margin-bottom: 1rem;">Recommended Partners</h3>
+          <div class="monetization-grid">
+            <a href="https://www.buildium.com/affiliates/" target="_blank" class="monetization-card">
+              <h4>Buildium</h4>
+              <p class="monetization-desc">25% Recurring + $10/Lead</p>
+            </a>
+            <a href="https://www.semrush.com/lp/affiliate-program/" target="_blank" class="monetization-card">
+              <h4>Semrush</h4>
+              <p class="monetization-desc">$200/Sale</p>
+            </a>
+            <a href="https://www.notion.so/affiliates" target="_blank" class="monetization-card">
+              <h4>Notion</h4>
+              <p class="monetization-desc">50% Recurring</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>
+    function calculateEfficiencyDebt(event) {
+      event.preventDefault();
+      
+      const crmCost = parseFloat(document.getElementById('crmCost').value) || 0;
+      const emailCost = parseFloat(document.getElementById('emailCost').value) || 0;
+      const hostingCost = parseFloat(document.getElementById('hostingCost').value) || 0;
+      const aiToolsCost = parseFloat(document.getElementById('aiToolsCost').value) || 0;
+      const projectMgmtCost = parseFloat(document.getElementById('projectMgmtCost').value) || 0;
+      const designCost = parseFloat(document.getElementById('designCost').value) || 0;
+      
+      const totalMonthly = crmCost + emailCost + hostingCost + aiToolsCost + projectMgmtCost + designCost;
+      const annualTotal = totalMonthly * 12;
+      
+      document.getElementById('efficiencyDebt').textContent = '$' + totalMonthly.toLocaleString();
+      document.getElementById('annualEfficiencyDebt').textContent = '$' + annualTotal.toLocaleString();
+      
+      document.getElementById('results').style.display = 'block';
+      document.getElementById('monetization').style.display = 'flex';
+    }
+  </script>
+</body>
+</html>

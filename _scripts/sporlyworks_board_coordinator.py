@@ -82,7 +82,7 @@ import tempfile
 import shutil
 from email.header import decode_header
 from email.message import EmailMessage
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 import sporlyworks_qa_agent
 
@@ -184,7 +184,7 @@ def backup_ledger():
     if not os.path.exists(LEDGER_FILE):
         return
     os.makedirs(BACKUP_DIR, exist_ok=True)
-    timestamp = datetime.utcnow().strftime("%Y%m%dT%H%M%SZ")
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     backup_path = os.path.join(BACKUP_DIR, f"ledger_{timestamp}.json")
     shutil.copy2(LEDGER_FILE, backup_path)
 
@@ -276,6 +276,7 @@ def fetch_recent_emails():
                 or "executive update" in subject_lower
                 or "daily update" in subject_lower
                 or "all-time recap" in subject_lower
+                or "[ceo bot]" in subject_lower
             )
 
             if is_self or is_our_digest:
@@ -390,6 +391,7 @@ def _fetch_recent_emails_imap():
                         or "executive update" in subject.lower()
                         or "daily update" in subject.lower()
                         or "all-time recap" in subject.lower()
+                        or "[ceo bot]" in subject.lower()
                     )
 
                     if not is_self and not is_our_digest:
@@ -494,7 +496,7 @@ Body: {cmd['body']}
             msg = EmailMessage()
             msg.set_content(reply_text)
             re_prefix = "" if cmd['subject'].lower().startswith("re:") else "Re: "
-            msg["Subject"] = f"{re_prefix}{cmd['subject']}"
+            msg["Subject"] = f"[CEO Bot] {re_prefix}{cmd['subject']}"
             msg["From"] = f"{CEO_DISPLAY_NAME} <{CEO_EMAIL}>"
             msg["To"] = owner_email
             msg["Reply-To"] = CEO_EMAIL
@@ -625,7 +627,8 @@ def _call_llm_text(prompt, max_retries=3):
     Failover chain: Local Gemma 4 → Gemini 2.5 Pro → Gemini 2.5 Flash → GPT-4o."""
     # Priority 0: Local Gemma 4 (Highest Intelligence + Infinite Compute)
     logging.info("Trying Local Gemma 4 proxy...")
-    result = _call_local_gemma(prompt, max_retries=2)
+    # result = _call_local_gemma(prompt, max_retries=2)
+    result = None # Disabled to save local VRAM
     if result:
         return result
 
@@ -855,9 +858,6 @@ OWNER COMMAND OVERRIDE: If "RECENT INBOUND CORRESPONDENCE" below contains a mess
 CURRENT LEDGER SUMMARY (compact digest — full ledger provided via updated_ledger output):
 {ledger_summary(ledger_state)}
 
-FULL LEDGER FOR OUTPUT (use this to build your updated_ledger — preserve ALL keys):
-{json.dumps(ledger_state, indent=2)}
-
 {cws_snapshot}
 
 RECENT INBOUND CORRESPONDENCE (This includes emails/commands from the Owner — owner email is sandwichfitness):
@@ -896,12 +896,12 @@ THINKING APPROACH:
 - Consider second-order effects of every dispatch
 - If the current strategy feels stale, propose a bold pivot with conviction
 
-IMPORTANT: Your 'updated_ledger' MUST preserve all existing ledger structure and keys. You may add items, update statuses, and mark tasks complete, but do NOT remove structural keys or historical data. The ledger is institutional memory. DO NOT use "..." or truncate the json. You must output a valid JSON document in its entirety. Always increment "cycle_count" by 1.
+IMPORTANT: You will use a 'ledger_updates' object to patch the existing ledger. Only include the specific keys and values you wish to insert or update. Do NOT return the entire ledger. The system will deep-merge your updates into the existing institutional memory. Always ensure you are pushing progress forward.
 
 Return FORMAT MUST BE EXACT VALID JSON:
 {{
   "board_rationale": "Explanation of why this action drives the most value.",
-  "updated_ledger": {{"insert_full": "updated ledger here, maintaining all previous schema and values"}},
+  "ledger_updates": {{"cycle_count": cycle_count, "ceo_strategic_proposals": [{{"proposal_name": "New Pivot", "status": "Proposed"}}]}},
   "dispatches": [
     {{
       "target_agent": "CWSWaveAgent",
@@ -942,18 +942,30 @@ def restore_from_backup():
         return json.load(f)
 
 
-def validate_updated_ledger(original, updated):
-    """Validate that the LLM didn't destroy the ledger structure."""
-    if not isinstance(updated, dict):
-        logging.error("LLM returned non-dict ledger. Rejecting.")
+def validate_updated_ledger(original, updates):
+    """Validate that the LLM returned a valid updates dictionary."""
+    if not isinstance(updates, dict):
+        logging.error("LLM returned non-dict ledger_updates. Rejecting.")
         return False
-    # Must preserve critical structural keys
-    required_keys = ["infrastructure_status", "departments", "distribution"]
-    for key in required_keys:
-        if key in original and key not in updated:
-            logging.warning(f"LLM dropped required key '{key}' — merging from original.")
-            updated[key] = original[key]
     return True
+
+def deep_merge(target, source):
+    """Deep merge source dictionary into target dictionary."""
+    for key, value in source.items():
+        if isinstance(value, dict) and key in target and isinstance(target[key], dict):
+            deep_merge(target[key], value)
+        elif isinstance(value, list) and key in target and isinstance(target[key], list):
+            # For lists, we append or overwrite depending on complexity. 
+            # Simple approach: extend the list for specific known keys or just overwrite.
+            if key in ["ceo_strategic_proposals", "last_dispatch_results", "owner_commands_received", "pending_critical"]:
+                # To prevent infinite growth, we keep the last N items or just overwrite
+                # For safety, let's just overwrite lists if the LLM provided a new one
+                target[key] = value
+            else:
+                target[key] = value
+        else:
+            target[key] = value
+    return target
 
 
 # ── Dispatch Execution ──────────────────────────────────────────────────
@@ -976,7 +988,7 @@ def execute_dispatches(dispatches, ledger):
                 "summary": summary,
                 "success": bool(success),
                 "error": None if success else f"{agent} handler returned False (check agent logs for task-specific details)",
-                "timestamp": datetime.utcnow().isoformat() + "Z"
+                "timestamp": datetime.now(timezone.utc).isoformat() + "Z"
             })
             if success:
                 logging.info(f"  ✅ [{agent}] completed successfully")
@@ -994,7 +1006,7 @@ def execute_dispatches(dispatches, ledger):
                 "summary": summary,
                 "success": False,
                 "error": f"MISSING_HANDLER: {agent} is not implemented in sporlyworks_sub_agents.py — {e}",
-                "timestamp": datetime.utcnow().isoformat() + "Z"
+                "timestamp": datetime.now(timezone.utc).isoformat() + "Z"
             })
         except (ConnectionError, TimeoutError, urllib.error.URLError) as e:
             logging.error(f"  ❌ [{agent}] NETWORK ERROR: {e}")
@@ -1003,7 +1015,7 @@ def execute_dispatches(dispatches, ledger):
                 "summary": summary,
                 "success": False,
                 "error": f"NETWORK_ERROR: External API/service unreachable — {e}",
-                "timestamp": datetime.utcnow().isoformat() + "Z"
+                "timestamp": datetime.now(timezone.utc).isoformat() + "Z"
             })
         except Exception as e:
             import traceback
@@ -1015,7 +1027,7 @@ def execute_dispatches(dispatches, ledger):
                 "success": False,
                 "error": f"CRASH: {type(e).__name__}: {str(e)[:200]}",
                 "traceback": tb[-500:],
-                "timestamp": datetime.utcnow().isoformat() + "Z"
+                "timestamp": datetime.now(timezone.utc).isoformat() + "Z"
             })
 
     # Update health scores based on results
@@ -1038,7 +1050,7 @@ def log_accomplishment(board_rationale, dispatches, dispatch_results):
             history = []
 
     history.append({
-        "timestamp": datetime.utcnow().isoformat() + "Z",
+        "timestamp": datetime.now(timezone.utc).isoformat() + "Z",
         "rationale": board_rationale,
         "actions_taken": [d.get("action_summary") for d in dispatches],
         "results": dispatch_results
@@ -1136,7 +1148,7 @@ def _get_recent_actions(hours=24):
         except (json.JSONDecodeError, IOError):
             history = []
     
-    cutoff = datetime.utcnow() - timedelta(hours=hours)
+    cutoff = datetime.now(timezone.utc) - timedelta(hours=hours)
     return [
         h for h in history
         if datetime.fromisoformat(h["timestamp"].rstrip("Z")) >= cutoff
@@ -1190,11 +1202,11 @@ SIGN-OFF: — Lena Voss, CEO of SporlyWorks
 
     body += f"\n\n---\nLLM: {llm_provider} | Dashboard: https://github.com/daveestaaqui/microAssets/actions\nReply to this email to send a command to Lena Voss.\n"
 
-    now_str = datetime.utcnow().strftime('%b %d, %H:%M UTC')
+    now_str = datetime.now(timezone.utc).strftime('%b %d, %H:%M UTC')
     prefix = "All-Time Recap" if force_all else "Daily Update"
     msg = EmailMessage()
     msg.set_content(body)
-    msg["Subject"] = f"📊 SporlyWorks — Lena Voss's {prefix} ({now_str})"
+    msg["Subject"] = f"[CEO Bot] 📊 SporlyWorks — Lena Voss's {prefix} ({now_str})"
     msg["From"] = f"{CEO_DISPLAY_NAME} <{CEO_EMAIL}>"
 
     target_email = os.environ.get("OWNER_EMAIL") or os.environ.get("MICROASSETS_LOGIN_EMAIL") or "sandwichfitness@gmail.com"
@@ -1225,7 +1237,7 @@ SIGN-OFF: — Lena Voss, CEO of SporlyWorks
 
 def _write_status_md(ledger):
     """Write a human-readable STATUS.md to the repo root each cycle."""
-    now = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     cycle = ledger.get("cycle_count", 0)
     qa = ledger.get("qa_last_report", {})
     qa_status = qa.get("status", "UNKNOWN")
@@ -1258,7 +1270,7 @@ def _write_status_md(ledger):
 
     md = f"""# 🏢 SporlyWorks — Board Status
 
-> Last updated: **{now}** | Cycle \#{cycle} | CEO: Lena Voss
+> Last updated: **{now}** | Cycle #{cycle} | CEO: Lena Voss
 
 ## 📊 Live Snapshot
 
@@ -1333,7 +1345,7 @@ Do not wrap in ```markdown or ```text. Be ultra-concise and visionary."""
 
     body += "\n\n---\nReply to this email to send Lena Voss a directive.\n"
 
-    now_str = datetime.utcnow().strftime("%b %d, %Y")
+    now_str = datetime.now(timezone.utc).strftime("%b %d, %Y")
     msg = EmailMessage()
     msg.set_content(body)
     msg["Subject"] = f"📈 SporlyWorks Weekly Strategy — Lena Voss ({now_str})"
@@ -1366,7 +1378,7 @@ def main():
 
     print("=" * 60)
     print("SPORLYWORKS CEO COORDINATOR v11.0 — Lena Voss")
-    print(f"Cycle Start: {datetime.utcnow().isoformat()}Z")
+    print(f"Cycle Start: {datetime.now(timezone.utc).isoformat()}Z")
     print(f"LLM Provider: {_get_llm_provider() or 'NONE — set GOOGLE_API_KEY or OPENAI_API_KEY'}")
     sender_identity = f"{CEO_DISPLAY_NAME} <{os.environ.get('SENDER_EMAIL', CEO_EMAIL)}>"
     print(f"CEO Email Identity: {sender_identity}")
@@ -1423,22 +1435,23 @@ def main():
         # 6. Log accomplishments
         log_accomplishment(rationale, dispatches, dispatch_results)
 
-        # 7. Validate and persist the updated ledger
-        updated_ledger = decisions.get("updated_ledger")
-        if updated_ledger and validate_updated_ledger(ledger, updated_ledger):
+        # 7. Validate and merge the updated ledger deltas
+        ledger_updates = decisions.get("ledger_updates")
+        if ledger_updates and validate_updated_ledger(ledger, ledger_updates):
+            logging.info("Deep merging ledger updates into main ledger...")
+            deep_merge(ledger, ledger_updates)
+            
             # Inject dispatch results for next cycle
-            updated_ledger["last_dispatch_results"] = dispatch_results
-            # Preserve QA report (LLM might have dropped it)
-            updated_ledger["qa_last_report"] = qa_report
-            # Always persist cycle_count even if LLM forgot to increment it
-            updated_ledger["cycle_count"] = max(
-                updated_ledger.get("cycle_count", 0),
-                ledger.get("cycle_count", 0) + 1
-            )
-            atomic_write_json(LEDGER_FILE, updated_ledger)
+            ledger["last_dispatch_results"] = dispatch_results
+            # Preserve QA report
+            ledger["qa_last_report"] = qa_report
+            # Always persist cycle_count
+            ledger["cycle_count"] = ledger.get("cycle_count", 0) + 1
+            
+            atomic_write_json(LEDGER_FILE, ledger)
             # 8. Redundancy: Update Shadow Ledger on successful state transition
-            atomic_write_json(SHADOW_LEDGER, updated_ledger)
-            logging.info("Persisted validated ledger update and Shadow Backup.")
+            atomic_write_json(SHADOW_LEDGER, ledger)
+            logging.info("Persisted merged ledger and Shadow Backup.")
         else:
             # LLM failed — keep existing ledger but still track cycle + results
             ledger["last_dispatch_results"] = dispatch_results
@@ -1466,7 +1479,7 @@ def main():
         if last_digest_str:
             last_digest_dt = datetime.fromisoformat(last_digest_str.rstrip("Z"))
             # STRICT: 24-hour frequency cap for executive digests
-            if datetime.utcnow() - last_digest_dt < timedelta(hours=24):
+            if datetime.now(timezone.utc) - last_digest_dt < timedelta(hours=24):
                 should_send = False
                 logging.info("Executive digest already sent within 24h. Skipping.")
 
@@ -1474,7 +1487,7 @@ def main():
             logging.info("Sending daily Executive Digest...")
             sent = send_executive_update()
             if sent:
-                live_ledger["last_digest_sent"] = datetime.utcnow().isoformat() + "Z"
+                live_ledger["last_digest_sent"] = datetime.now(timezone.utc).isoformat() + "Z"
                 atomic_write_json(LEDGER_FILE, live_ledger)
                 if os.path.exists(HISTORY_FILE):
                     with open(HISTORY_FILE, "r") as f:
@@ -1487,16 +1500,16 @@ def main():
     try:
         live_ledger = fetch_undone_ledger()
         last_weekly_str = live_ledger.get("last_weekly_brief_sent", "")
-        is_monday = datetime.utcnow().weekday() == 0  # 0 = Monday
+        is_monday = datetime.now(timezone.utc).weekday() == 0  # 0 = Monday
         should_send_weekly = is_monday
         if should_send_weekly and last_weekly_str:
             last_weekly_dt = datetime.fromisoformat(last_weekly_str.rstrip("Z"))
-            if datetime.utcnow() - last_weekly_dt < timedelta(days=6):
+            if datetime.now(timezone.utc) - last_weekly_dt < timedelta(days=6):
                 should_send_weekly = False
         if should_send_weekly:
             logging.info("Monday detected. Sending weekly strategic brief...")
             _send_weekly_strategic_brief(live_ledger)
-            live_ledger["last_weekly_brief_sent"] = datetime.utcnow().isoformat() + "Z"
+            live_ledger["last_weekly_brief_sent"] = datetime.now(timezone.utc).isoformat() + "Z"
             atomic_write_json(LEDGER_FILE, live_ledger)
     except Exception as e:
         logging.error(f"Weekly brief error: {e}")

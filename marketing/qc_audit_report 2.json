@@ -1,0 +1,28 @@
+{
+  "status": "DEGRADED",
+  "timestamp": "2026-04-21T23:16:59.694901",
+  "checks_run": 8,
+  "findings": [
+    {
+      "severity": "CRITICAL",
+      "target": "Authentication Portal",
+      "url": "https://sporlyworks.com/auth.html",
+      "issue": "HTTP 404 detected.",
+      "timestamp": "2026-04-21T23:16:59.478377"
+    },
+    {
+      "severity": "CRITICAL",
+      "target": "User Dashboard",
+      "url": "https://sporlyworks.com/dashboard.html",
+      "issue": "HTTP 404 detected.",
+      "timestamp": "2026-04-21T23:16:59.557277"
+    },
+    {
+      "severity": "CRITICAL",
+      "target": "Pricing Page",
+      "url": "https://sporlyworks.com/pricing.html",
+      "issue": "HTTP 404 detected.",
+      "timestamp": "2026-04-21T23:16:59.694705"
+    }
+  ]
+}

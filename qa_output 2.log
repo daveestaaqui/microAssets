@@ -1,0 +1,39 @@
+2026-04-22 18:32:23,611 | QA Agent | [INFO] Starting full QA audit (v8.0)...
+/Users/davidmahler/Desktop/microAssets/_scripts/sporlyworks_qa_agent.py:357: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  "audit_timestamp": datetime.utcnow().isoformat() + "Z",
+2026-04-22 18:32:23,612 | QA Agent | [INFO] Checking portfolio integrity...
+2026-04-22 18:32:23,634 | QA Agent | [INFO] Checking landing page...
+2026-04-22 18:32:58,950 | QA Agent | [INFO] Checking GitHub releases...
+2026-04-22 18:32:59,244 | QA Agent | [INFO] Checking infrastructure health...
+2026-04-22 18:32:59,401 | QA Agent | [INFO] Checking GitHub Actions status...
+2026-04-22 18:32:59,402 | QA Agent | [INFO] Checking performance profiling...
+2026-04-22 18:32:59,496 | QA Agent | [INFO] Checking dependency vulnerabilities...
+2026-04-22 18:33:00,041 | QA Agent | [INFO] Checking landing page accessibility...
+2026-04-22 18:33:00,042 | QA Agent | [INFO] QA Audit complete: WARN — 1 finding(s) across 10 checks
+{
+  "audit_timestamp": "2026-04-22T22:32:23.612412Z",
+  "qa_version": "8.0",
+  "status": "WARN",
+  "portfolio": {
+    "chrome_extensions": 87,
+    "firefox_extensions": 85,
+    "android_apps": 86,
+    "mv2_count": 0,
+    "mv3_count": 87
+  },
+  "findings": [
+    "VULNERABILITY_FOUND: _android/css-grid-generator has 0 critical, 3 high vulnerabilities."
+  ],
+  "checks_run": [
+    "portfolio_integrity",
+    "landing_page_links",
+    "landing_page_consistency",
+    "download_binaries",
+    "github_release",
+    "infrastructure_health",
+    "workflow_status",
+    "performance_profiling",
+    "vulnerability_audit",
+    "accessibility_scan"
+  ]
+}
