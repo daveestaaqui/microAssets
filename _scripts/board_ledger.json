@@ -252,18 +252,23 @@
   },
   "gitignore_warning": "The _*/** rule in .gitignore blocks all files inside _-prefixed directories. Tracked files were force-added before this rule existed. Any NEW file in _scripts/ must use: git add -f _scripts/<filename>",
   "qa_last_report": {
-    "audit_timestamp": "2026-04-24T17:22:25.034871Z",
+    "audit_timestamp": "2026-04-26T23:06:37.621129Z",
     "qa_version": "8.0",
-    "status": "WARN",
+    "status": "FAIL",
     "portfolio": {
-      "chrome_extensions": 87,
-      "firefox_extensions": 85,
-      "android_apps": 86,
+      "chrome_extensions": 0,
+      "firefox_extensions": 0,
+      "android_apps": 0,
       "mv2_count": 0,
-      "mv3_count": 87
+      "mv3_count": 0
     },
     "findings": [
-      "VULNERABILITY_FOUND: _android/css-grid-generator has 0 critical, 3 high vulnerabilities."
+      "MISSING_FILE: _landing_page/index.html",
+      "MISSING_FILE: _landing_page/download.html",
+      "MISSING_FILE: _landing_page/style.css",
+      "MISSING_FILE: _landing_page/favicon.ico",
+      "MISSING_BINARY: binaries/SporlyWorks_OmniSuite_Complete.zip — download link will 404",
+      "MISSING_BINARY: binaries/SporlyWorks_Firefox_Extensions.zip — download link will 404"
     ],
     "checks_run": [
       "portfolio_integrity",
@@ -279,7 +284,7 @@
     ]
   },
   "last_dispatch_results": [],
-  "cycle_count": 63,
+  "cycle_count": 64,
   "last_digest_sent": "2026-04-24T17:09:26.036051Z",
   "last_weekly_brief_sent": "2026-04-13T01:45:19.099353Z",
   "owner_commands_received": [
