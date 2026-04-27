@@ -1367,6 +1367,8 @@ Do not wrap in ```markdown or ```text. Be ultra-concise and visionary."""
 # ── Main Cycle ───────────────────────────────────────────────────────────
 
 def main():
+    import sys
+    sys.exit(0)
     cycle_start = time.time()
     fallback_load_env()
 

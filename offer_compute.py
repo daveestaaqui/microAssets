@@ -1,4 +1,6 @@
 import smtplib
+import sys
+sys.exit(0)
 from email.message import EmailMessage
 
 sender_email = "sandwichfitness@gmail.com"

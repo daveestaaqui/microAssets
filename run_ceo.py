@@ -1,4 +1,5 @@
 import sys
+sys.exit(0)
 import os
 sys.path.append(os.path.join(os.getcwd(), '_scripts'))
 from sporlyworks_board_coordinator import fetch_recent_emails, send_owner_reply, fallback_load_env
