@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Management Automation ROI Calculation Formula & Labor Savings 2026</title>
+  <meta name="description" content="Calculate property management maintenance cost benchmarks per unit and discover your automation ROI formula.">
+  <style>
+    :root {
+      --forest: #0B8E65;
+      --parchment: #FDFBF7;
+      --charcoal: #1A1A1A;
+      --white: #FFFFFF;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background-color: var(--parchment);
+      color: var(--charcoal);
+      line-height: 1.6;
+      padding: 2rem;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      text-align: center;
+      color: var(--forest);
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+    
+    .calculator-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .input-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--charcoal);
+    }
+    
+    input[type="number"] {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: var(--parchment);
+      color: var(--charcoal);
+      transition: border-color 0.2s;
+    }
+    
+    input[type="number"]:focus {
+      outline: none;
+      border-color: var(--forest);
+    }
+    
+    button {
+      width: 100%;
+      padding: 1rem;
+      background: var(--forest);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    button:hover {
+      background: #0a7a55;
+    }
+    
+    .results-section {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 2px solid #e0e0e0;
+      display: none;
+    }
+    
+    .results-section.active {
+      display: block;
+    }
+    
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem;
+      background: var(--parchment);
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+    }
+    
+    .result-item.highlight {
+      background: #e8f5e9;
+      border-left: 4px solid var(--forest);
+    }
+    
+    .result-label {
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+    
+    .result-value {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--forest);
+    }
+    
+    .affiliate-reveal {
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, var(--forest), #1a5c40);
+      border-radius: 12px;
+      color: var(--white);
+      box-shadow: 0 4px 12px rgba(11, 142, 101, 0.3);
+    }
+    
+    .affiliate-reveal.visible {
+      display: flex;
+    }
+    
+    .affiliate-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+    
+    .affiliate-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .affiliate-btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: var(--white);
+      color: var(--forest);
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      text-align: center;
+      transition: transform 0.2s;
+      flex: 1;
+      min-width: 200px;
+    }
+    
+    .affiliate-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .disclaimer {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #f5f5f5;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Property Management Automation ROI Calculator</h1>
+    
+    <div class="calculator-card">
+      <div class="input-group">
+        <label for="portfolioUnits">Total Portfolio Units</label>
+        <input type="number" id="portfolioUnits" placeholder="Enter total number of units" min="1">
+      </div>
+      
+      <div class="input-group">
+        <label for="avgMonthlyRent">Average Monthly Rent ($)</label>
+        <input type="number" id="avgMonthlyRent" placeholder="Enter average monthly rent" min="0">
+      </div>
+      
+      <div class="input-group">
+        <label for="hourlyLaborRate">Hourly Labor Rate ($)</label>
+        <input type="number" id="hourlyLaborRate" placeholder="Enter hourly labor rate" min="0" step="0.01">
+      </div>
+      
+      <div class="input-group">
+        <label for="manualHoursWeek">Hours Spent on Manual Admin Tasks/Week</label>
+        <input type="number" id="manualHoursWeek" placeholder="Enter weekly manual hours" min="0" step="0.5">
+      </div>
+      
+      <button onclick="calculatePropTechROI()">Calculate ROI</button>
+      
+      <div class="results-section" id="resultsSection">
+        <div class="result-item">
+          <span class="result-label">Total Annual Labor Cost</span>
+          <span class="result-value" id="annualLaborCost">$0</span>
+        </div>
+        <div class="result-item highlight">
+          <span class="result-label">Net Benefit of Automation</span>
+          <span class="result-value" id="netBenefit">$0</span>
+        </div>
+      </div>
+      
+      <div class="affiliate-reveal" id="affiliate-reveal">
+        <p class="affiliate-text">Stop sacrificing your profit margins to manual administration. Automate your portfolio today and reclaim your time with <strong>Buildium (Earn 25% recurring ROI)</strong> or TenantCloud.</p>
+        <div class="affiliate-links">
+          <a href="https://buildium.com" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Get Started with Buildium</a>
+          <a href="https://tenantcloud.com" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Explore TenantCloud</a>
+        </div>
+      </div>
+      
+      <div class="disclaimer">
+        <strong>Calculation Methodology:</strong><br>
+        Annual Labor Cost = (Manual Hours/Week × 52 weeks) × Hourly Labor Rate<br>
+        Estimated Automated Savings = Annual Labor Cost × 70%<br>
+        Net Benefit = Estimated Savings - $1,800 (Base Software Cost)
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    function calculatePropTechROI() {
+      const portfolioUnits = parseFloat(document.getElementById('portfolioUnits').value) || 0;
+      const avgMonthlyRent = parseFloat(document.getElementById('avgMonthlyRent').value) || 0;
+      const hourlyLaborRate = parseFloat(document.getElementById('hourlyLaborRate').value) || 0;
+      const manualHoursWeek = parseFloat(document.getElementById('manualHoursWeek').value) || 0;
+      
+      const annualLaborCost = manualHoursWeek * 52 * hourlyLaborRate;
+      const totalAnnualRentRevenue = portfolioUnits * avgMonthlyRent * 12;
+      const estimatedAutomatedSavings = annualLaborCost * 0.70;
+      const netBenefit = estimatedAutomatedSavings - 1800;
+      
+      document.getElementById('annualLaborCost').textContent = 
+        '$' + annualLaborCost.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      document.getElementById('netBenefit').textContent = 
+        '$' + netBenefit.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      
+      document.getElementById('resultsSection').classList.add('active');
+      document.getElementById('affiliate-reveal').classList.add('visible');
+    }
+    
+    // Allow Enter key to trigger calculation
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+      input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          calculatePropTechROI();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

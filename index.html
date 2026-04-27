@@ -3,51 +3,167 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="SporlyWorks: Premier B2B Software & AI Automation Micro-Tool Hub. Premium Chrome extensions for enterprise productivity, including ROI calculators, SaaS stack auditors, and AI workload estimators.">
-  <meta name="keywords" content="B2B software, Chrome extensions, AI automation, enterprise productivity, ROI calculator, SaaS auditor, AI workload estimator, business tools, time tracking">
-  <meta name="author" content="SporlyWorks">
-  <meta property="og:title" content="SporlyWorks: Premier B2B Software & AI Automation Micro-Tool Hub">
-  <meta property="og:description" content="Premium Chrome extensions for enterprise productivity, including ROI calculators, SaaS stack auditors, and AI workload estimators.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://sporlyworks.com/">
-  <meta property="og:image" content="https://sporlyworks.com/og-hero.jpg">
-  <meta property="og:site_name" content="SporlyWorks">
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:title" content="SporlyWorks: Premier B2B Software & AI Automation Micro-Tool Hub">
-  <meta property="twitter:description" content="Premium Chrome extensions for enterprise productivity, including ROI calculators, SaaS stack auditors, and AI workload estimators.">
-  <meta property="twitter:image" content="https://sporlyworks.com/og-hero.jpg">
-  <title>SporlyWorks: Premier B2B Software & AI Automation Micro-Tool Hub</title>
-  <link rel="stylesheet" href="style.css">
+  <title>SporlyWorks: B2B Automation & ROI Calculators</title>
+  <meta name="description" content="SporlyWorks - A collection of B2B automation calculators for property management, AI SDR labor savings, and wholesale assignment ROI.">
+  <style>
+    :root {
+      --forest: #0B8E65;
+      --parchment: #FDFBF7;
+      --charcoal: #1A1A1A;
+      --white: #FFFFFF;
+      --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      --hover-shadow: 0 12px 40px rgba(11, 142, 101, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background-color: var(--parchment);
+      color: var(--charcoal);
+      line-height: 1.6;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: var(--forest);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    header p {
+      font-size: 1.125rem;
+      color: #555;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .tool-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: var(--card-shadow);
+      transition: all 0.3s ease;
+      border: 1px solid #eee;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--hover-shadow);
+      border-color: var(--forest);
+    }
+
+    .tool-card h2 {
+      color: var(--forest);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .tool-card p {
+      color: #666;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .tool-card a {
+      display: inline-block;
+      padding: 1rem 1.5rem;
+      background: var(--forest);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .tool-card a:hover {
+      background: #0a7a55;
+      transform: translateY(-2px);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: #e8f5e9;
+      color: var(--forest);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid #eee;
+      color: #888;
+      font-size: 0.875rem;
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      
+      .tools-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-  <nav class="nav">
-    <a href="/" class="nav-logo">SporlyWorks</a>
-    <div class="nav-links">
-      <a href="/">Home</a>
-      <a href="/roi-calculator.html">ROI Calculator</a>
-      <a href="/stack-auditor.html">Stack Auditor</a>
-      <a href="/ai-estimator.html">AI Workload Estimator</a>
+  <div class="container">
+    <header>
+      <h1>SporlyWorks</h1>
+      <p>B2B Automation & ROI Calculators</p>
+    </header>
+
+    <div class="tools-grid">
+      <article class="tool-card">
+        <span class="badge">Property Management</span>
+        <h2>PropTech ROI Calculator</h2>
+        <p>Calculate property management automation labor savings and discover your ROI formula for 2026 industry benchmarks.</p>
+        <a href="proptech-roi-calculator.html">Launch Calculator →</a>
+      </article>
+
+      <article class="tool-card">
+        <span class="badge">AI Sales Development</span>
+        <h2>AI SDR Labor Savings Calculator</h2>
+        <p>Determine your AI SDR cost per meeting and compare human labor savings with our SMB AI automation calculator.</p>
+        <a href="ai-sdr-labor-savings-calculator.html">Launch Calculator →</a>
+      </article>
+
+      <article class="tool-card">
+        <span class="badge">Wholesale Real Estate</span>
+        <h2>Wholesale Assignment Fee Calculator</h2>
+        <p>Calculate wholesale real estate assignment fee margins and inbound lead generation ROI with 2026 industry benchmarks.</p>
+        <a href="wholesale-assignment-fee-calculator.html">Launch Calculator →</a>
+      </article>
     </div>
-  </nav>
 
-  <section class="hero">
-    <h1>SporlyWorks: Premier B2B Software & AI Automation Micro-Tool Hub</h1>
-    <p>Premium B2B Chrome Extensions for Enterprise Productivity</p>
-  </section>
-
-  <main class="grid">
-    <a href="/roi-calculator.html" class="card">
-      <h2>B2B Software ROI Calculator</h2>
-      <p class="description">Calculate return on investment for B2B software purchases</p>
-    </a>
-    <a href="/stack-auditor.html" class="card">
-      <h2>SaaS Stack Auditor</h2>
-      <p class="description">Audit and optimize your SaaS technology stack</p>
-    </a>
-    <a href="/ai-estimator.html" class="card">
-      <h2>AI Agent Workload Estimator</h2>
-      <p class="description">Calculate time wasted on routine tasks and financial drain</p>
-    </a>
-  </main>
+    <footer>
+      <p>&copy; 2026 SporlyWorks. All rights reserved.</p>
+    </footer>
+  </div>
 </body>
 </html>
