@@ -23,7 +23,7 @@ for root, dirs, files in os.walk(directory):
                 <img src="{prefix}logo-64.png" alt="SporlyWorks" style="height: 52px; width: auto; object-fit: contain;">
                 <div style="display: flex; flex-direction: column; justify-content: center; transform: translateY(2px);">
                     <span style="font-family: 'DM Serif Display', serif; font-size: 28px; font-weight: 400; color: var(--forest-deep); line-height: 1;">SporlyWorks</span>
-                    <span style="font-family: 'DM Serif Display', serif; font-size: 14px; font-weight: 400; color: var(--forest-light); letter-spacing: 0.2px; margin-top: 1px;">Cultivating Intelligent Workflows.</span>
+                    <span style="font-family: 'DM Serif Display', serif; font-size: 14px; font-weight: 400; color: var(--forest-light); letter-spacing: 0.2px; margin-top: 1px;">Engineering Automation</span>
                 </div>
             </a>'''
 

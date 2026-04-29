@@ -27,7 +27,7 @@ def create_brand_assets():
     name_w = draw.textlength("SporlyWorks", font=font_main)
     draw.text(((w - name_w)//2, 350), "SporlyWorks", font=font_main, fill=text_color)
     
-    slogan = "cultivating intelligent workflows."
+    slogan = "Engineering Automation"
     slogan_w = draw.textlength(slogan, font=font_sub)
     draw.text(((w - slogan_w)//2, 480), slogan, font=font_sub, fill=(80, 80, 80, 255))
     
