@@ -20,7 +20,7 @@
     }
     
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
       background-color: var(--parchment);
       color: var(--charcoal);
       line-height: 1.6;
@@ -183,6 +183,7 @@
       color: #666;
     }
   </style>
+  <script>/* POSTHOG SNIPPET GOES HERE */</script>
 </head>
 <body>
   <div class="container">
@@ -225,8 +226,8 @@
       <div class="affiliate-reveal" id="affiliate-reveal">
         <p class="affiliate-text">Stop sacrificing your profit margins to manual administration. Automate your portfolio today and reclaim your time with <strong>Buildium (Earn 25% recurring ROI)</strong> or TenantCloud.</p>
         <div class="affiliate-links">
-          <a href="https://buildium.com" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Get Started with Buildium</a>
-          <a href="https://tenantcloud.com" target="_blank" rel="noopener noreferrer" class="affiliate-btn">Explore TenantCloud</a>
+          <a href="https://buildium.com" target="_blank" rel="noopener noreferrer" class="affiliate-btn" onclick="if(typeof posthog !== 'undefined') posthog.capture('Affiliate_Link_Clicked', { destination: this.href })">Get Started with Buildium</a>
+          <a href="https://tenantcloud.com" target="_blank" rel="noopener noreferrer" class="affiliate-btn" onclick="if(typeof posthog !== 'undefined') posthog.capture('Affiliate_Link_Clicked', { destination: this.href })">Explore TenantCloud</a>
         </div>
       </div>
       
@@ -258,6 +259,10 @@
       
       document.getElementById('resultsSection').classList.add('active');
       document.getElementById('affiliate-reveal').classList.add('visible');
+
+      if (typeof posthog !== 'undefined') {
+        posthog.capture('Calculation_Executed', { tool: document.title });
+      }
     }
     
     // Allow Enter key to trigger calculation

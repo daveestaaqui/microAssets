@@ -27,10 +27,6 @@ def create_brand_assets():
     name_w = draw.textlength("SporlyWorks", font=font_main)
     draw.text(((w - name_w)//2, 350), "SporlyWorks", font=font_main, fill=text_color)
     
-    slogan = "Engineering Automation"
-    slogan_w = draw.textlength(slogan, font=font_sub)
-    draw.text(((w - slogan_w)//2, 480), slogan, font=font_sub, fill=(80, 80, 80, 255))
-    
     img.save("_landing_page/unified-logo.png", "PNG")
     
     # Nav Logo (logo-nav.png) - Massive & Transparent
@@ -43,35 +39,19 @@ def create_brand_assets():
         nav_img.save("_landing_page/logo-nav.png", "PNG")
 
 def update_code():
-    # HTML - Set height to 120 and add a cache-buster
+    # Only keep cache buster for the landing page
     h_path = "_landing_page/index.html"
+    if not os.path.exists(h_path): return
     with open(h_path, "r") as f:
         html = f.read()
     
-    # Use a dynamic cache buster for images
     import time
     buster = str(int(time.time()))
     html = re.sub(r'logo-nav.png\?v=\d+', f'logo-nav.png?v={buster}', html)
     html = re.sub(r'unified-logo.png\?v=\d+', f'unified-logo.png?v={buster}', html)
     
-    # Force the height in HTML
-    html = re.sub(r'img src="logo-nav.png[^"]+" alt="SporlyWorks S Logo" height="\d+"', 
-                  f'img src="logo-nav.png?v={buster}" alt="SporlyWorks S Logo" height="150"', html)
-    
     with open(h_path, "w") as f:
         f.write(html)
-
-    # CSS - Strip all transparency-breaking filters
-    c_path = "_landing_page/style.css"
-    with open(c_path, "r") as f:
-        css = f.read()
-    
-    css = re.sub(r'mix-blend-mode: [^;]+;', '', css)
-    css = re.sub(r'filter: [^;]+;', '', css)
-    css += "\n.nav-logo img { height: 150px !important; width: auto !important; background: transparent !important; }\n"
-    
-    with open(c_path, "w") as f:
-        f.write(css)
 
 if __name__ == "__main__":
     create_brand_assets()

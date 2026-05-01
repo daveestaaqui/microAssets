@@ -1,106 +1,482 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="B2B Software ROI Calculator - Calculate return on investment for your B2B software purchases. Track time saved, annual savings, and ROI. Powered by SporlyWorks AI automation tools.">
-  <meta name="keywords" content="ROI calculator, B2B software ROI, time savings calculator, business productivity, software investment, return on investment, business analytics">
-  <meta name="author" content="SporlyWorks">
-  <meta property="og:title" content="B2B Software ROI Calculator - SporlyWorks">
-  <meta property="og:description" content="Calculate return on investment for your B2B software purchases. Track time saved, annual savings, and ROI.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://sporlyworks.com/roi-calculator.html">
-  <meta property="og:image" content="https://sporlyworks.com/og-roi-calculator.jpg">
-  <meta property="og:site_name" content="SporlyWorks">
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:title" content="B2B Software ROI Calculator - SporlyWorks">
-  <meta property="twitter:description" content="Calculate return on investment for your B2B software purchases. Track time saved, annual savings, and ROI.">
-  <meta property="twitter:image" content="https://sporlyworks.com/og-roi-calculator.jpg">
-  <title>B2B Software ROI Calculator - SporlyWorks</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <nav class="nav">
-    <a href="/" class="nav-logo">SporlyWorks</a>
-    <div class="nav-links">
-      <a href="/">Home</a>
-      <a href="/roi-calculator.html">ROI Calculator</a>
-      <a href="/stack-auditor.html">Stack Auditor</a>
-    </div>
-  </nav>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ROI Calculator - MicroAssets</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/config.js"></script>
+    <style>
+      :root {
+        --spores-purple: #a855f7;
+        --spores-dark-purple: #7c3aed;
+        --spores-light-purple: #d8b4fe;
+        --spores-black: #1e1b4b;
+        --spores-white: #ffffff;
+        --spores-gray: #f3f4f6;
+        --spores-border: #e5e7eb;
+      }
 
-  <section class="hero">
-    <h1>B2B Software ROI Calculator</h1>
-    <p>Calculate the return on investment for your B2B software purchases</p>
-  </section>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-  <main class="grid">
-    <div class="card">
-      <h2>ROI Calculator</h2>
-      <div class="calculator">
-        <div class="input-group">
-          <label for="weeklyHours">Weekly Hours Saved (hours/week)</label>
-          <input type="number" id="weeklyHours" value="5" min="0" step="0.5">
-        </div>
-        <div class="input-group">
-          <label for="hourlyWage">Hourly Wage ($/hour)</label>
-          <input type="number" id="hourlyWage" value="50" min="0" step="1">
-        </div>
-        <div class="input-group">
-          <label for="monthlyCost">Monthly Software Cost ($)</label>
-          <input type="number" id="monthlyCost" value="100" min="0" step="1">
-        </div>
-        <button onclick="calculateROI()">Calculate ROI</button>
-        <div id="results" style="display:none;">
-          <div class="result-item">
-            <span class="label">Annual Savings:</span>
-            <span id="annualSavings" class="value">$0</span>
-          </div>
-          <div class="result-item">
-            <span class="label">Time Recovery:</span>
-            <span id="timeRecovery" class="value">0 hours</span>
-          </div>
-          <div class="roi-percent">
-            ROI: <span id="roiPercent" class="value">0%</span>
-          </div>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .calculator-container {
+        background: var(--spores-white);
+        border-radius: 20px;
+        padding: 40px;
+        max-width: 500px;
+        width: 100%;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+
+      .calculator-header {
+        text-align: center;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid var(--spores-border);
+      }
+
+      .calculator-header h1 {
+        font-size: 28px;
+        color: var(--spores-black);
+        margin-bottom: 8px;
+      }
+
+      .calculator-header p {
+        color: #6b7280;
+        font-size: 14px;
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+      }
+
+      label {
+        display: block;
+        font-weight: 600;
+        color: var(--spores-black);
+        margin-bottom: 8px;
+        font-size: 14px;
+      }
+
+      input[type="number"] {
+        width: 100%;
+        padding: 15px;
+        border: 2px solid var(--spores-border);
+        border-radius: 12px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        background: var(--spores-white);
+      }
+
+      input[type="number"]:focus {
+        outline: none;
+        border-color: var(--spores-purple);
+        box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.1);
+      }
+
+      .radio-group {
+        display: flex;
+        gap: 15px;
+        margin-top: 10px;
+      }
+
+      .radio-option {
+        flex: 1;
+        padding: 12px 15px;
+        border: 2px solid var(--spores-border);
+        border-radius: 10px;
+        cursor: pointer;
+        text-align: center;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        background: var(--spores-white);
+      }
+
+      .radio-option:hover {
+        border-color: var(--spores-light-purple);
+      }
+
+      .radio-option input[type="radio"] {
+        display: none;
+      }
+
+      .radio-option:checked {
+        background: var(--spores-purple);
+        color: white;
+        border-color: var(--spores-purple);
+      }
+
+      .radio-option:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      button.calculate-btn {
+        width: 100%;
+        padding: 18px;
+        background: linear-gradient(135deg, var(--spores-purple), var(--spores-dark-purple));
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+      }
+
+      button.calculate-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(124, 58, 237, 0.4);
+      }
+
+      button.calculate-btn:active {
+        transform: translateY(0);
+      }
+
+      .result-section {
+        margin-top: 30px;
+        padding-top: 25px;
+        border-top: 2px solid var(--spores-border);
+        display: none;
+      }
+
+      .result-section.show {
+        display: block;
+        animation: fadeIn 0.5s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .roi-display {
+        text-align: center;
+        padding: 25px;
+        background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+        border-radius: 15px;
+        margin-bottom: 20px;
+      }
+
+      .roi-label {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #6b7280;
+        margin-bottom: 5px;
+      }
+
+      .roi-value {
+        font-size: 42px;
+        font-weight: 700;
+        color: var(--spores-purple);
+      }
+
+      .roi-subtext {
+        font-size: 14px;
+        color: #6b7280;
+        margin-top: 8px;
+      }
+
+      .breakdown-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .breakdown-card {
+        background: var(--spores-gray);
+        padding: 18px;
+        border-radius: 12px;
+        text-align: center;
+      }
+
+      .breakdown-card h4 {
+        font-size: 12px;
+        text-transform: uppercase;
+        color: #6b7280;
+        margin-bottom: 8px;
+      }
+
+      .breakdown-card .amount {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--spores-black);
+      }
+
+      .breakdown-card .amount.positive {
+        color: #10b981;
+      }
+
+      .breakdown-card .amount.negative {
+        color: #ef4444;
+      }
+
+      .affiliate-promo {
+        background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+        border: 2px dashed var(--spores-border);
+        border-radius: 12px;
+        padding: 18px;
+        text-align: center;
+      }
+
+      .affiliate-promo h4 {
+        font-size: 14px;
+        color: var(--spores-purple);
+        margin-bottom: 8px;
+      }
+
+      .affiliate-promo p {
+        font-size: 12px;
+        color: #6b7280;
+        margin-bottom: 15px;
+      }
+
+      .affiliate-promo a {
+        display: inline-block;
+        background: linear-gradient(135deg, var(--spores-purple), var(--spores-dark-purple));
+        color: white;
+        text-decoration: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.3s ease;
+      }
+
+      .affiliate-promo a:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(124, 58, 237, 0.3);
+      }
+
+      .error-message {
+        background: #fef2f2;
+        border: 1px solid #ef4444;
+        color: #ef4444;
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 15px;
+        font-size: 14px;
+        display: none;
+        text-align: center;
+      }
+
+      .error-message.show {
+        display: block;
+      }
+
+      @media (max-width: 600px) {
+        .calculator-container {
+          padding: 25px;
+        }
+
+        .calculator-header h1 {
+          font-size: 24px;
+        }
+
+        .roi-value {
+          font-size: 36px;
+        }
+
+        .breakdown-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+    <script>/* POSTHOG SNIPPET GOES HERE */</script>
+  </head>
+  <body>
+    <div class="calculator-container">
+      <div class="calculator-header">
+        <h1>📊 ROI Calculator</h1>
+        <p>Calculate your investment return on any project</p>
+      </div>
+
+      <div class="form-group">
+        <label>Initial Investment ($)</label>
+        <input type="number" id="investment" placeholder="Enter initial investment amount" />
+      </div>
+
+      <div class="form-group">
+        <label>Expected Revenue ($)</label>
+        <input type="number" id="revenue" placeholder="Enter expected revenue" />
+      </div>
+
+      <div class="form-group">
+        <label>Timeline</label>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="timeline" value="3" checked />
+            3 Months
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="timeline" value="6" />
+            6 Months
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="timeline" value="12" />
+            12 Months
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="timeline" value="24" />
+            24 Months
+          </label>
         </div>
       </div>
-      <div class="monetization" id="monetization" style="display:none;">
-        <h3 style="margin-bottom: 1rem;">Recommended Partners</h3>
-        <div class="monetization-grid">
-          <a href="https://www.hubspot.com/partners/affiliates" target="_blank" class="monetization-card">
-            <h4>HubSpot</h4>
-            <p class="monetization-desc">30% Recurring</p>
-          </a>
-          <a href="https://www.shopify.com/affiliates" target="_blank" class="monetization-card">
-            <h4>Shopify</h4>
-            <p class="monetization-desc">$150/Sale</p>
-          </a>
-          <a href="https://www.jotform.com/affiliate-program/" target="_blank" class="monetization-card">
-            <h4>Jotform</h4>
-            <p class="monetization-desc">30% Recurring</p>
+
+      <button class="calculate-btn" id="calculateBtn">Calculate ROI</button>
+
+      <div class="error-message" id="errorMessage"></div>
+
+      <div class="result-section" id="resultSection">
+        <div class="roi-display">
+          <div class="roi-label">Net Profit</div>
+          <div class="roi-value" id="netProfit">-</div>
+          <div class="roi-subtext">
+            <span id="roiPercentage">-</span> ROI in <span id="timeline">3</span> months
+          </div>
+        </div>
+
+        <div class="breakdown-grid">
+          <div class="breakdown-card">
+            <h4>Total Revenue</h4>
+            <div class="amount" id="totalRevenue">-</div>
+          </div>
+          <div class="breakdown-card">
+            <h4>Total Expenses</h4>
+            <div class="amount" id="totalExpenses">-</div>
+          </div>
+          <div class="breakdown-card">
+            <h4>Profit Margin</h4>
+            <div class="amount" id="profitMargin">-</div>
+          </div>
+          <div class="breakdown-card">
+            <h4>Break-even Time</h4>
+            <div class="amount" id="breakEvenTime">-</div>
+          </div>
+        </div>
+
+        <div class="affiliate-promo">
+          <h4>Ready to Get Started?</h4>
+          <p>Launch your business today with microAssets and see real results.</p>
+          <a href="https://sponsorlink.app/go" 
+             onclick="if(typeof posthog !== 'undefined') posthog.capture('Affiliate_Link_Clicked', { destination: this.href })">
+            Launch Now
           </a>
         </div>
       </div>
     </div>
-  </main>
-  <script>
-    function calculateROI() {
-      const weeklyHours = parseFloat(document.getElementById('weeklyHours').value) || 0;
-      const hourlyWage = parseFloat(document.getElementById('hourlyWage').value) || 0;
-      const monthlyCost = parseFloat(document.getElementById('monthlyCost').value) || 0;
-      
-      const annualSavings = weeklyHours * hourlyWage * 52;
-      const timeRecovery = annualSavings / hourlyWage;
-      const roiPercent = ((annualSavings - (monthlyCost * 12)) / (monthlyCost * 12) * 100).toFixed(1);
-      
-      document.getElementById('annualSavings').textContent = '$' + annualSavings.toLocaleString();
-      document.getElementById('timeRecovery').textContent = timeRecovery.toLocaleString() + ' hours';
-      document.getElementById('roiPercent').textContent = roiPercent + '%';
-      
-      document.getElementById('results').style.display = 'block';
-      document.getElementById('monetization').style.display = 'flex';
-    }
-  </script>
-</body>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const investmentInput = document.getElementById('investment');
+        const revenueInput = document.getElementById('revenue');
+        const calculateBtn = document.getElementById('calculateBtn');
+        const resultSection = document.getElementById('resultSection');
+        const errorMessage = document.getElementById('errorMessage');
+
+        let currentTimeline = 3;
+        let currentInvestment = 0;
+
+        function calculateROI() {
+          const investment = parseFloat(investmentInput.value);
+          const revenue = parseFloat(revenueInput.value);
+          const timelineOptions = document.getElementsByName('timeline');
+          let timeline = 3;
+
+          for (const option of timelineOptions) {
+            if (option.checked) {
+              timeline = parseInt(option.value);
+              break;
+            }
+          }
+
+          if (isNaN(investment) || isNaN(revenue) || investment <= 0 || revenue <= 0) {
+            errorMessage.textContent = 'Please enter valid investment and revenue amounts';
+            errorMessage.classList.add('show');
+            resultSection.classList.remove('show');
+            return;
+          }
+
+          if (revenue <= investment) {
+            errorMessage.textContent = 'Expected revenue must be greater than initial investment';
+            errorMessage.classList.add('show');
+            resultSection.classList.remove('show');
+            return;
+          }
+
+          errorMessage.classList.remove('show');
+          resultSection.classList.add('show');
+
+          const expenses = investment * 0.35;
+          const netProfit = revenue - investment - expenses;
+          const roiPercentage = ((netProfit / investment) * 100).toFixed(1);
+          const totalRevenue = revenue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+          const profitMargin = ((netProfit / revenue) * 100).toFixed(1);
+          const breakEvenTime = Math.round((investment / (revenue - investment)) * timeline);
+
+          currentTimeline = timeline;
+          currentInvestment = investment;
+
+          document.getElementById('netProfit').textContent = '$' + netProfit.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+          document.getElementById('roiPercentage').textContent = roiPercentage + '%';
+          document.getElementById('timeline').textContent = timeline;
+          document.getElementById('totalRevenue').textContent = totalRevenue;
+          document.getElementById('totalExpenses').textContent = '$' + expenses.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+          document.getElementById('profitMargin').textContent = profitMargin + '%';
+          document.getElementById('breakEvenTime').textContent = breakEvenTime + ' months';
+
+          if (typeof posthog !== 'undefined') {
+            posthog.capture('Calculation_Executed', { tool: document.title });
+          }
+        }
+
+        calculateBtn.addEventListener('click', calculateROI);
+
+        investmentInput.addEventListener('input', () => {
+          if (investmentInput.value && revenueInput.value) {
+            calculateROI();
+          }
+        });
+
+        revenueInput.addEventListener('input', () => {
+          if (investmentInput.value && revenueInput.value) {
+            calculateROI();
+          }
+        });
+
+        document.addEventListener('change', (e) => {
+          if (e.target && e.target.name === 'timeline') {
+            currentTimeline = parseInt(e.target.value);
+            if (investmentInput.value && revenueInput.value) {
+              calculateROI();
+            }
+          }
+        });
+      });
+    </script>
+  </body>
 </html>

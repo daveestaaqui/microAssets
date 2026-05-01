@@ -1,15 +1,14 @@
-# 🏢 SporlyWorks — Board Status
+# 🏢 SporlyWorks — Board Status (DECOMMISSIONED)
 
-> Last updated: **2026-04-24 17:24 UTC** | Cycle \#63 | CEO: Lena Voss
+> Last updated: **2026-05-01** | **ALL AUTONOMOUS SERVICES PERMANENTLY DISABLED**
 
 ## 📊 Live Snapshot
 
 | Metric | Value |
 |---|---|
-| QA Status | WARN (1 finding(s)) |
-| Extensions in Portfolio | 87 Chrome |
-| CWS Queue | 0 approved / 20 pending / 67 not submitted / 0 slots free |
-| Last Daily Digest | 2026-04-24T17:09:26.036051Z |
+| Status | DECOMMISSIONED |
+| Board | INACTIVE |
+| CEO | Lena Voss (DORMANT) |
 
 ## 🛠️ Last Cycle Dispatches
 
