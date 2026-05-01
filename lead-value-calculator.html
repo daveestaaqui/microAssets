@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lead Value & CPL Calculator - MicroAssets</title>
+  <meta name="description" content="Calculate your maximum allowable cost per lead and customer lifetime value.">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/config.js"></script>
+  <style>
+    :root {
+      --primary: #7c3aed;
+      --primary-dark: #6d28d9;
+      --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --text: #1f2937;
+      --text-light: #6b7280;
+      --border: #e5e7eb;
+      --success: #10b981;
+      --card-bg: #ffffff;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-gradient);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .calculator-container {
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 48px;
+      max-width: 540px;
+      width: 100%;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+    }
+    .header { text-align: center; margin-bottom: 36px; }
+    .header h1 { font-size: 32px; color: var(--text); margin-bottom: 10px; }
+    .header p { color: var(--text-light); font-size: 15px; }
+    .input-group { margin-bottom: 24px; }
+    label { display: block; font-weight: 600; color: var(--text); margin-bottom: 8px; font-size: 14px; }
+    input[type="number"] {
+      width: 100%; padding: 16px; border: 2px solid var(--border);
+      border-radius: 14px; font-size: 16px; transition: all 0.3s ease;
+    }
+    input[type="number"]:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1); }
+    button.calculate-btn {
+      width: 100%; padding: 18px; background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white; border: none; border-radius: 14px; font-size: 18px; font-weight: 600;
+      cursor: pointer; transition: all 0.3s ease; margin-top: 10px;
+    }
+    button.calculate-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3); }
+    .results { margin-top: 32px; padding-top: 28px; border-top: 2px solid var(--border); display: none; }
+    .results.show { display: block; animation: fadeIn 0.5s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    .savings-card {
+      background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+      border-radius: 16px; padding: 28px; text-align: center; margin-bottom: 24px;
+    }
+    .savings-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); margin-bottom: 8px; }
+    .savings-amount { font-size: 48px; font-weight: 700; color: var(--primary); margin-bottom: 12px; }
+    .breakdown-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+    .breakdown-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 20px; text-align: center; }
+    .breakdown-item h4 { font-size: 12px; text-transform: uppercase; color: var(--text-light); margin-bottom: 8px; }
+    .breakdown-item .value { font-size: 22px; font-weight: 600; color: var(--text); }
+    .affiliate-promo { background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%); border: 2px dashed var(--border); border-radius: 16px; padding: 24px; text-align: center; }
+    .affiliate-promo h4 { font-size: 15px; color: var(--primary); margin-bottom: 10px; }
+    .affiliate-promo p { font-size: 13px; color: var(--text-light); margin-bottom: 20px; }
+    .affiliate-promo a {
+      display: inline-block; background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white; text-decoration: none; padding: 14px 28px; border-radius: 10px; font-weight: 600; font-size: 15px; transition: all 0.3s ease;
+    }
+    .affiliate-promo a:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(124, 58, 237, 0.3); }
+    .error-message { background: #fef2f2; border: 1px solid #ef4444; color: #ef4444; padding: 16px; border-radius: 12px; margin-top: 16px; display: none; text-align: center; }
+    .error-message.show { display: block; }
+  </style>
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister opt_in_capturing opt_out_capturing has_opted_out_capturing opt_in_capturing has_opted_in_capturing clear_opt_in_out_capturing get_session_id get_session_replay_url get_distinct_id get_property get_session_property identify alias people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove group group.set group.set_once group.unset group.remove group.remove group.delete group.delete updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys onSessionId".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_SPORLYWORKS_POSTHOG_KEY_GOES_HERE', {
+        api_host: 'https://us.i.posthog.com',
+        person_profiles: 'identified_only'
+    });
+  </script>
+</head>
+<body>
+  <div class="calculator-container">
+    <div class="header">
+      <h1>🎯 Lead Value Calculator</h1>
+      <p>Determine your maximum allowable cost per lead</p>
+    </div>
+
+    <div class="input-group">
+      <label>Average Deal Size ($)</label>
+      <input type="number" id="dealSize" placeholder="e.g. 5000" min="0">
+    </div>
+
+    <div class="input-group">
+      <label>Gross Margin (%)</label>
+      <input type="number" id="grossMargin" placeholder="e.g. 70" min="0" max="100">
+    </div>
+
+    <div class="input-group">
+      <label>Lead-to-Customer Conversion Rate (%)</label>
+      <input type="number" id="conversionRate" placeholder="e.g. 5" min="0" max="100" step="0.1">
+    </div>
+
+    <button class="calculate-btn" id="calculateBtn">Calculate Value</button>
+
+    <div class="error-message" id="errorMessage"></div>
+
+    <div class="results" id="results">
+      <div class="savings-card">
+        <div class="savings-label">Max Allowable Cost Per Lead</div>
+        <div class="savings-amount" id="maxCpl">$0</div>
+        <div class="savings-label">Target CPL (30% Safety Margin)</div>
+        <div style="font-size: 24px; font-weight: 600; color: var(--success);" id="targetCpl">$0</div>
+      </div>
+
+      <div class="breakdown-grid">
+        <div class="breakdown-item">
+          <h4>Net Value Per Customer</h4>
+          <div class="value" id="netCustomerValue">$0</div>
+        </div>
+        <div class="breakdown-item">
+          <h4>Leads Needed Per Deal</h4>
+          <div class="value" id="leadsPerDeal">0</div>
+        </div>
+      </div>
+
+      <div class="affiliate-promo">
+        <h4>Need More High-Quality Leads?</h4>
+        <p>HubSpot CRM helps you track, nurture, and close leads faster.</p>
+        <a href="https://www.hubspot.com/partners/affiliates" id="hubspotLink"
+           onclick="if(typeof posthog !== 'undefined') posthog.capture('Affiliate_Link_Clicked', { destination: this.href, tool: 'Lead Value Calculator' })">
+          Get HubSpot Free
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Dynamic Affiliate Link Assignment
+      if (typeof SPORLY_CONFIG !== 'undefined' && SPORLY_CONFIG.HUBSPOT_LINK) {
+        document.getElementById('hubspotLink').href = SPORLY_CONFIG.HUBSPOT_LINK;
+      }
+
+      const dealSizeInput = document.getElementById('dealSize');
+      const grossMarginInput = document.getElementById('grossMargin');
+      const conversionRateInput = document.getElementById('conversionRate');
+      const calculateBtn = document.getElementById('calculateBtn');
+      const results = document.getElementById('results');
+      const errorMessage = document.getElementById('errorMessage');
+
+      function calculateValues() {
+        const dealSize = parseFloat(dealSizeInput.value) || 0;
+        const grossMargin = parseFloat(grossMarginInput.value) || 0;
+        const conversionRate = parseFloat(conversionRateInput.value) || 0;
+
+        if (dealSize <= 0 || grossMargin <= 0 || conversionRate <= 0) {
+          errorMessage.textContent = 'Please enter valid numbers greater than zero.';
+          errorMessage.classList.add('show');
+          results.classList.remove('show');
+          return;
+        }
+        if (grossMargin > 100 || conversionRate > 100) {
+          errorMessage.textContent = 'Percentages cannot exceed 100%.';
+          errorMessage.classList.add('show');
+          results.classList.remove('show');
+          return;
+        }
+
+        errorMessage.classList.remove('show');
+        results.classList.add('show');
+
+        // Calculations
+        const netCustomerValue = dealSize * (grossMargin / 100);
+        const leadsPerDeal = 1 / (conversionRate / 100);
+        const maxCpl = netCustomerValue * (conversionRate / 100);
+        const targetCpl = maxCpl * 0.70; // 30% margin of safety
+
+        // Update UI
+        document.getElementById('maxCpl').textContent = formatCurrency(maxCpl);
+        document.getElementById('targetCpl').textContent = formatCurrency(targetCpl);
+        document.getElementById('netCustomerValue').textContent = formatCurrency(netCustomerValue);
+        document.getElementById('leadsPerDeal').textContent = leadsPerDeal.toFixed(1);
+
+        // Tracking
+        if (typeof posthog !== 'undefined') {
+          posthog.capture('Calculation_Executed', { 
+            tool: document.title,
+            maxCpl: maxCpl,
+            targetCpl: targetCpl
+          });
+        }
+      }
+
+      calculateBtn.addEventListener('click', calculateValues);
+
+      [dealSizeInput, grossMarginInput, conversionRateInput].forEach(input => {
+        input.addEventListener('input', () => {
+          if (dealSizeInput.value && grossMarginInput.value && conversionRateInput.value) {
+            calculateValues();
+          }
+        });
+      });
+    });
+
+    function formatCurrency(amount) {
+      return '$' + amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+  </script>
+</body>
+</html>
