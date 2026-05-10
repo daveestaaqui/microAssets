@@ -1,7 +1,7 @@
 import os
 import requests
 
-GITHUB_TOKEN = "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"
+GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 REPO = "daveestaaqui/micro-assets-landing-page"
 TAG = "v1.0.0"
 
