@@ -4,21 +4,21 @@
    ═══════════════════════════════════════════════ */
 
 :root {
-    --bg-base: #0a0a0a;
-    --bg-surface: #141414;
-    --bg-surface-elevated: #1a1a1a;
+    --bg-base: #FAFAFA;
+    --bg-surface: #FFFFFF;
+    --bg-surface-elevated: #FFFFFF;
     
     --green: #0b4a2e;
     --green-light: #1b8a5a;
     --green-dark: #052a1a;
     
     --gold: #d4af37;
-    --gold-light: #f3e5ab;
+    --gold-light: #b59218;
     --gold-dark: #aa8c2c;
     
-    --text-primary: #f9f8f4;
-    --text-secondary: #a3a3a3;
-    --text-muted: #666666;
+    --text-primary: #1d1d1f;
+    --text-secondary: #515154;
+    --text-muted: #86868b;
     
     --accent: var(--green-light);
     
@@ -27,13 +27,13 @@
     --radius-lg: 32px;
     --radius-pill: 9999px;
     
-    --glass-bg: rgba(30, 30, 30, 0.4);
-    --glass-border: rgba(255, 255, 255, 0.08);
-    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(0, 0, 0, 0.06);
+    --glass-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
     
-    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.2);
-    --shadow-hover: 0 12px 32px rgba(27, 138, 90, 0.2), 0 4px 12px rgba(0, 0, 0, 0.3);
-    --shadow-glow: 0 0 60px rgba(27, 138, 90, 0.15);
+    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.03);
+    --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
+    --shadow-glow: 0 0 60px rgba(27, 138, 90, 0.08);
     
     --transition-smooth: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -53,7 +53,7 @@ body {
     overflow-x: hidden;
 }
 
-h1, h2, h3 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; color: var(--gold-light); }
+h1, h2, h3 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; color: var(--green-dark); }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
 
 /* ═══ REVEAL ANIMATIONS ═══ */
@@ -72,7 +72,7 @@ nav {
     transition: all 0.5s var(--transition-smooth);
 }
 nav.scrolled {
-    background: rgba(10, 10, 10, 0.85);
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--glass-border);
@@ -138,7 +138,7 @@ nav.scrolled {
     box-shadow: 0 4px 16px rgba(27, 138, 90, 0.2);
     transition: all 0.4s var(--transition-smooth);
 }
-.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(27, 138, 90, 0.4); }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(27, 138, 90, 0.3); }
 
 .btn-secondary {
     display: inline-flex; align-items: center; gap: 10px;
@@ -153,7 +153,7 @@ nav.scrolled {
 /* ═══ PRODUCT GRID (GLASSMORPHISM) ═══ */
 .products-section { padding: 80px 0 120px; background: var(--bg-surface); position: relative; }
 .section-header { text-align: center; margin-bottom: 60px; }
-.section-title { font-size: 42px; color: var(--gold-light); letter-spacing: -1px; margin-bottom: 16px; }
+.section-title { font-size: 42px; color: var(--green-dark); letter-spacing: -1px; margin-bottom: 16px; }
 .section-subtitle { color: var(--text-secondary); font-size: 18px; max-width: 600px; margin: 0 auto; }
 
 .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-bottom: 80px; }
@@ -169,10 +169,10 @@ nav.scrolled {
     box-shadow: var(--glass-shadow);
 }
 .product-card:hover { 
-    border-color: rgba(27, 138, 90, 0.4); 
+    border-color: rgba(27, 138, 90, 0.2); 
     box-shadow: var(--shadow-hover); 
     transform: translateY(-8px); 
-    background: rgba(40, 40, 40, 0.5);
+    background: #FFFFFF;
 }
 .product-img {
     width: 100%; height: 260px; object-fit: cover;
@@ -182,7 +182,7 @@ nav.scrolled {
     padding: 32px 24px;
     display: flex; flex-direction: column; flex-grow: 1;
 }
-.product-title { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--gold-light); line-height: 1.2; margin-bottom: 12px; }
+.product-title { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--green-dark); line-height: 1.2; margin-bottom: 12px; }
 .product-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 24px; flex-grow: 1; }
 
 .btn-card {
