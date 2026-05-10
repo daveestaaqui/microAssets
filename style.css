@@ -83,7 +83,7 @@ nav.scrolled {
     display: flex; align-items: center; justify-content: space-between;
 }
 .nav-logo { display: flex; align-items: center; text-decoration: none; }
-.nav-logo img { flex-shrink: 0; max-height: 48px; object-fit: contain; }
+.nav-logo img { flex-shrink: 0; max-height: 80px; object-fit: contain; }
 .company-name { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--gold); margin-left: 12px; line-height: 1; }
 .nav-links { display: flex; gap: 32px; align-items: center; }
 .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 15px; font-weight: 500; transition: color 0.3s ease; }
