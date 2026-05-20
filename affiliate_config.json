@@ -1,0 +1,52 @@
+{
+  "partners": {
+    "myyco": {
+      "name": "MYYCO",
+      "tagline": "Premium Liquid Cultures",
+      "affiliate_id": "YOUR_MYYCO_ID",
+      "base_url": "https://www.myyco.com",
+      "affiliate_url_template": "https://www.myyco.com/?ref={affiliate_id}",
+      "category": "genetics",
+      "description": "Lab-tested isolated liquid cultures. 100% sterile, densely packed with vigorous mycelium for rapid inoculation.",
+      "image": "assets/real_images/myyco_syringe.jpg",
+      "features": ["Lab-Tested Sterility", "Rapid Colonization", "Isolated Genetics"],
+      "price_range": "$15–$30"
+    },
+    "magicbag": {
+      "name": "Magic Bag",
+      "tagline": "All-In-One Mushroom Grow Bags",
+      "affiliate_id": "YOUR_MAGICBAG_ID",
+      "base_url": "https://www.magicbag.co",
+      "affiliate_url_template": "https://www.magicbag.co/?ref={affiliate_id}",
+      "category": "cultivation",
+      "description": "Pre-sterilized grain + compost in a single bag with injection port and micron filter. Just inoculate and wait.",
+      "image": "assets/real_images/magicbag.png",
+      "features": ["Pre-Sterilized", "Injection Port", "0.2μm Filter Patch"],
+      "price_range": "$20–$35"
+    },
+    "real_mushrooms": {
+      "name": "Real Mushrooms",
+      "tagline": "Organic Functional Mushroom Extracts",
+      "affiliate_id": "YOUR_REALMUSHROOMS_ID",
+      "base_url": "https://www.realmushrooms.com",
+      "affiliate_url_template": "https://www.realmushrooms.com/?ref={affiliate_id}",
+      "category": "supplements",
+      "description": "100% organic fruiting body extracts with verified beta-glucan profiles. No fillers, no grains, no mycelium on grain.",
+      "image": "assets/real_images/real_mushrooms.png",
+      "features": ["100% Fruiting Body", "Verified Beta-Glucans", "USDA Organic"],
+      "price_range": "$25–$40"
+    },
+    "seed": {
+      "name": "Seed Probiotics",
+      "tagline": "DS-01® Daily Synbiotic",
+      "affiliate_id": "YOUR_SEED_ID",
+      "base_url": "https://seed.com",
+      "affiliate_url_template": "https://seed.com/daily-synbiotic?ref={affiliate_id}",
+      "category": "probiotics",
+      "description": "24-strain broad-spectrum probiotic + prebiotic. Clinically studied for digestive, skin, heart, and immune health.",
+      "image": "assets/real_images/seed_ds01.png",
+      "features": ["24 Probiotic Strains", "Prebiotic Capsule", "Clinically Studied"],
+      "price_range": "$49.99/mo"
+    }
+  }
+}
