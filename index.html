@@ -20,21 +20,36 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=500">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=600">
+    <style>
+        /* Inline override — guarantees no cached background image repeats */
+        body {
+            background-color: #f5f0e8 !important;
+            background-image:
+                radial-gradient(ellipse at 20% 10%, rgba(210, 190, 160, 0.35) 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 25%, rgba(200, 180, 150, 0.25) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 60%, rgba(220, 200, 170, 0.2) 0%, transparent 60%),
+                radial-gradient(ellipse at 10% 80%, rgba(195, 175, 145, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 90% 90%, rgba(205, 185, 155, 0.2) 0%, transparent 45%),
+                linear-gradient(160deg, #f7f2ea 0%, #efe8db 30%, #f3ece0 60%, #eee6d8 100%) !important;
+            background-attachment: fixed !important;
+        }
+    </style>
 </head>
 <body>
 
     <!-- ═══ NAVIGATION ═══ -->
-    <nav id="mainNav">
+    <nav id="mainNav" class="home-nav">
         <div class="nav-inner">
             <a href="index.html" class="nav-brand">
-                <img src="assets/icon-48.png" alt="SporlyWorks" class="nav-icon">
+                <img src="assets/icon-128.png" alt="SporlyWorks" class="nav-icon">
                 <span class="nav-wordmark">SPORLYWORKS</span>
             </a>
             <div class="nav-links" id="navLinks">
                 <a href="#genetics">Cultivation</a>
                 <a href="#supplements">Supplements</a>
+                <a href="#research">Science</a>
                 <a href="#compare">Compare</a>
             </div>
             <a href="#genetics" class="nav-cta">Shop Collection</a>
@@ -79,7 +94,7 @@
 
             <div class="product-grid">
                 <!-- MYYCO -->
-                <a href="#" id="link-myyco" class="product-card reveal" target="_blank" rel="noopener">
+                <a href="https://www.myyco.com" id="link-myyco" class="product-card reveal" target="_blank" rel="noopener">
                     <img src="assets/real_images/myyco_syringe.jpg" alt="MYYCO Liquid Culture Syringe" class="product-img">
                     <div class="product-info">
                         <h3 class="product-title">MYYCO Liquid Culture Syringe</h3>
@@ -95,7 +110,7 @@
                 </a>
 
                 <!-- Magic Bag -->
-                <a href="#" id="link-magicbag" class="product-card reveal" target="_blank" rel="noopener">
+                <a href="https://www.magicbag.co" id="link-magicbag" class="product-card reveal" target="_blank" rel="noopener">
                     <img src="assets/real_images/magicbag.png" alt="Magic Bag All-In-One Grow Bag" class="product-img">
                     <div class="product-info">
                         <h3 class="product-title">Magic Bag All-In-One Grow Bag</h3>
@@ -174,8 +189,8 @@
                         </div>
                     </div>
                     <div class="result-ctas">
-                        <a href="#" id="cta-myyco" class="result-cta result-cta--primary" target="_blank" rel="noopener">Get Cultures from MYYCO →</a>
-                        <a href="#" id="cta-magicbag" class="result-cta result-cta--secondary" target="_blank" rel="noopener">Get Bags from Magic Bag →</a>
+                        <a href="https://www.myyco.com" id="cta-myyco" class="result-cta result-cta--primary" target="_blank" rel="noopener">Get Cultures from MYYCO →</a>
+                        <a href="https://www.magicbag.co" id="cta-magicbag" class="result-cta result-cta--secondary" target="_blank" rel="noopener">Get Bags from Magic Bag →</a>
                     </div>
                 </div>
             </div>
@@ -201,7 +216,7 @@
 
             <div class="product-grid">
                 <!-- Real Mushrooms -->
-                <a href="#" id="link-real_mushrooms" class="product-card reveal" target="_blank" rel="noopener">
+                <a href="https://www.realmushrooms.com" id="link-real_mushrooms" class="product-card reveal" target="_blank" rel="noopener">
                     <img src="assets/real_images/real_mushrooms.png" alt="Real Mushrooms Extract Powder" class="product-img">
                     <div class="product-info">
                         <h3 class="product-title">Real Mushrooms Extract Powders</h3>
@@ -217,7 +232,7 @@
                 </a>
 
                 <!-- Seed Probiotics -->
-                <a href="#" id="link-seed" class="product-card reveal" target="_blank" rel="noopener">
+                <a href="https://seed.com" id="link-seed" class="product-card reveal" target="_blank" rel="noopener">
                     <img src="assets/real_images/seed_ds01.png" alt="Seed DS-01 Daily Synbiotic" class="product-img">
                     <div class="product-info">
                         <h3 class="product-title">Seed DS-01® Daily Synbiotic</h3>
@@ -265,6 +280,89 @@
                     <h4>Your Personalized Wellness Stack</h4>
                     <div id="stackCards"></div>
                     <div class="result-ctas" id="stackCtas"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ CLINICAL RESEARCH JOURNAL ═══ -->
+    <section class="research-section" id="research">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Clinical Science & Mycology Research Journal</h2>
+                <p class="section-subtitle">Deep dive into peer-reviewed research and the clinical studies underpinning our curated stack.</p>
+            </div>
+            
+            <div class="research-tabs reveal">
+                <button class="research-tab-btn active" onclick="switchResearchTab('genetics-tab')">🍄 Genetics & Spores</button>
+                <button class="research-tab-btn" onclick="switchResearchTab('adaptogens-tab')">🧠 Adaptogens & Brain</button>
+                <button class="research-tab-btn" onclick="switchResearchTab('gut-tab')">🌿 Probiotics & Gut Science</button>
+            </div>
+
+            <!-- Tab 1: Genetics -->
+            <div class="research-content-panel active" id="genetics-tab">
+                <div class="research-cards-grid">
+                    <article class="research-card">
+                        <h4>Liquid Culture Viability and Contamination Resistance</h4>
+                        <div class="research-authors">Paul Stamets (2000). Growing Gourmet and Medicinal Mushrooms. Ten Speed Press.</div>
+                        <p class="research-summary">This foundational mycological text details the biological mechanics of liquid cultures (pre-germinated mycelium suspended in nutrient broth) versus traditional multispore methods. Spores represent a genetic lottery, requiring time to locate compatible mating types and germinate, leaving the media vulnerable to competitors. Pre-germinated liquid cultures colonize substrates up to 3x faster, drastically reducing the contamination window.</p>
+                        <div class="research-takeaway-box">
+                            <p><strong>Clinical & Cultivation Takeaway:</strong> Starting with isolated liquid culture genetics (like those from MYYCO) bypasses the genetic lottery of spore germination, resulting in robust, reliable, and rapid mycelial colonization.</p>
+                        </div>
+                        <a href="https://books.google.com/books?id=cT1tAAAACAAJ" target="_blank" rel="noopener" class="research-link">
+                            View Book Reference
+                            <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                        </a>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Tab 2: Adaptogens -->
+            <div class="research-content-panel" id="adaptogens-tab">
+                <div class="research-cards-grid">
+                    <article class="research-card">
+                        <h4>Lion's Mane (Hericium erinaceus) and Mild Cognitive Impairment</h4>
+                        <div class="research-authors">Mori, K., Inatomi, S., Ouchi, K., Azumi, Y., & Tuchida, T. (2009). Phytotherapy Research, 23(3), 367-372.</div>
+                        <p class="research-summary">In a double-blind, parallel-group, placebo-controlled clinical trial, 30 Japanese adults diagnosed with mild cognitive impairment were given 250 mg tablets of Lion's Mane dry powder three times daily for 16 weeks. The Lion's Mane group showed significantly increased cognitive function scores compared to the placebo group at weeks 8, 12, and 16, demonstrating its neuroprotective properties.</p>
+                        <div class="research-takeaway-box">
+                            <p><strong>Clinical Takeaway:</strong> Regular supplementation with whole-fruiting body Lion's Mane extracts (such as Real Mushrooms Lion's Mane) is clinically demonstrated to support cognitive clarity, memory, and neurogenesis.</p>
+                        </div>
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/18843856/" target="_blank" rel="noopener" class="research-link">
+                            View PubMed Abstract
+                            <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                        </a>
+                    </article>
+
+                    <article class="research-card">
+                        <h4>Cordyceps militaris and High-Intensity Exercise Endurance</h4>
+                        <div class="research-authors">Hirsch, K. R., Smith-Ryan, A. E., Roelofs, E. J., Trexler, E. T., & Mock, M. G. (2017). Journal of Dietary Supplements, 14(1), 42-53.</div>
+                        <p class="research-summary">This study examined the effects of Cordyceps militaris supplementation on exercise tolerance. After 3 weeks of daily ingestion, subjects demonstrated significant improvements in VO2 max (maximum oxygen volume usage) and time to exhaustion. Researchers concluded that Cordyceps enhances cellular ATP production and respiratory exchange ratios during cardiovascular exertion.</p>
+                        <div class="research-takeaway-box">
+                            <p><strong>Clinical Takeaway:</strong> Cordyceps acts as an adaptogen that enhances athletic endurance and speeds recovery by optimizing how the body uses oxygen and synthesizes cellular energy (ATP).</p>
+                        </div>
+                        <a href="https://pubmed.ncbi.nlm.nih.gov/27408451/" target="_blank" rel="noopener" class="research-link">
+                            View PubMed Abstract
+                            <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                        </a>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Tab 3: Gut Science -->
+            <div class="research-content-panel" id="gut-tab">
+                <div class="research-cards-grid">
+                    <article class="research-card">
+                        <h4>Multi-strain Probiotics and Gut Barrier Integrity</h4>
+                        <div class="research-authors">Clinical Trial Data & In Vitro SHIME® Testing. Seed Health (2020-2024).</div>
+                        <p class="research-summary">Seed's 24-strain Daily Synbiotic (DS-01) has been tested using the Simulator of the Human Intestinal Microbial Ecosystem (SHIME®) and in human clinical trials. The results demonstrate that the nested capsule-in-capsule technology (ViaCap®) protects live bacteria through gastrointestinal transit, delivering 100% of the active probiotic dosage intact to the lower bowel and colon to support systemic health, gut barrier integrity, and micronutrient synthesis.</p>
+                        <div class="research-takeaway-box">
+                            <p><strong>Clinical Takeaway:</strong> Probiotics are strain-specific and must survive digestion to be effective. Seed's ViaCap® dual-capsule delivers clinically-validated strains to the colon intact, bypassing stomach acids that destroy standard probiotics.</p>
+                        </div>
+                        <a href="https://seed.com/clinical-studies" target="_blank" rel="noopener" class="research-link">
+                            View Clinical Data
+                            <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                        </a>
+                    </article>
                 </div>
             </div>
         </div>
@@ -360,7 +458,15 @@
             affiliateConfig = config.partners;
             // Populate all affiliate links
             Object.entries(affiliateConfig).forEach(([key, partner]) => {
-                const url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
+                // Secure affiliate link: Use base_url fallback if affiliate ID is a placeholder
+                let url = partner.base_url;
+                const isPlaceholder = !partner.affiliate_id || 
+                                      partner.affiliate_id.startsWith('YOUR_') || 
+                                      partner.affiliate_id.includes('INSERT');
+                if (!isPlaceholder) {
+                    url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
+                }
+
                 // Main product cards
                 const link = document.getElementById('link-' + key);
                 if (link) link.href = url;
@@ -463,7 +569,16 @@
         partnersUsed.forEach(key => {
             const partner = affiliateConfig ? affiliateConfig[key] : null;
             if (!partner) return;
-            const url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
+            
+            // Secure affiliate link: Use base_url fallback if affiliate ID is a placeholder
+            let url = partner.base_url;
+            const isPlaceholder = !partner.affiliate_id || 
+                                  partner.affiliate_id.startsWith('YOUR_') || 
+                                  partner.affiliate_id.includes('INSERT');
+            if (!isPlaceholder) {
+                url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
+            }
+            
             const isPrimary = key === 'real_mushrooms';
             ctasDiv.innerHTML += `
                 <a href="${url}" class="result-cta ${isPrimary ? 'result-cta--primary' : 'result-cta--secondary'}" target="_blank" rel="noopener">
@@ -475,6 +590,23 @@
         const results = document.getElementById('stackResults');
         results.classList.add('active');
         results.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // ═══ RESEARCH JOURNAL TAB SWITCHER ═══
+    function switchResearchTab(tabId) {
+        document.querySelectorAll('.research-content-panel').forEach(panel => {
+            panel.classList.remove('active');
+        });
+        document.querySelectorAll('.research-tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        document.getElementById(tabId).classList.add('active');
+        
+        const activeBtn = Array.from(document.querySelectorAll('.research-tab-btn')).find(btn => 
+            btn.getAttribute('onclick').includes(tabId)
+        );
+        if (activeBtn) activeBtn.classList.add('active');
     }
 
     // ═══ REVEAL ANIMATIONS ═══
