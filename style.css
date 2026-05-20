@@ -171,7 +171,7 @@ nav.scrolled {
 .hero {
     position: relative; min-height: 92vh;
     display: flex; align-items: center; justify-content: center;
-    text-align: center; padding: 140px 24px 80px;
+    text-align: center; padding: 100px 24px 80px;
     overflow: hidden;
 }
 .hero::before {
@@ -185,7 +185,7 @@ nav.scrolled {
 
 .hero-brand {
     display: flex; flex-direction: column; align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     position: relative;
 }
 .hero-brand::after {
@@ -194,17 +194,17 @@ nav.scrolled {
     top: 15%;
     left: 50%;
     transform: translate(-50%, -15%);
-    width: 280px;
-    height: 280px;
+    width: 340px;
+    height: 340px;
     background: radial-gradient(circle, rgba(27, 138, 90, 0.12) 0%, rgba(196, 151, 59, 0.08) 50%, transparent 70%);
     z-index: -1;
     filter: blur(20px);
     pointer-events: none;
 }
 .hero-icon {
-    width: 300px; height: 300px; object-fit: contain;
+    width: 360px; height: 360px; object-fit: contain;
     filter: drop-shadow(0 12px 40px rgba(44, 36, 24, 0.18));
-    margin-bottom: 12px;
+    margin-bottom: 4px;
 }
 .hero-title-lockup {
     text-align: center;
