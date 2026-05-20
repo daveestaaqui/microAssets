@@ -105,14 +105,12 @@ nav.scrolled {
     max-width: 1200px; margin: 0 auto; padding: 0 32px;
     display: flex; align-items: center; justify-content: space-between;
 }
-.nav-brand { display: flex; align-items: center; text-decoration: none; gap: 14px; }
+.nav-brand { display: flex; align-items: center; text-decoration: none; gap: 16px; }
 .nav-icon {
-    flex-shrink: 0; height: 36px; width: 36px; object-fit: contain;
-    transition: transform 0.4s var(--transition-smooth);
+    flex-shrink: 0; height: 48px; width: 48px; object-fit: contain;
 }
-.nav-brand:hover .nav-icon { transform: rotate(-8deg) scale(1.05); }
 .nav-wordmark {
-    font-family: 'DM Serif Display', serif; font-size: 20px;
+    font-family: 'DM Serif Display', serif; font-size: 26px;
     color: var(--earth); letter-spacing: 3px; font-weight: 400;
 }
 .nav-links { display: flex; gap: 28px; align-items: center; }
@@ -152,9 +150,8 @@ nav.scrolled {
     margin-bottom: 40px;
 }
 .hero-icon {
-    width: 220px; height: 220px; object-fit: contain;
+    width: 300px; height: 300px; object-fit: contain;
     filter: drop-shadow(0 12px 40px rgba(44, 36, 24, 0.18));
-    animation: floating 6s ease-in-out infinite;
     margin-bottom: 32px;
 }
 .hero-title-lockup {
@@ -440,7 +437,7 @@ footer {
 @media (max-width: 600px) {
     .nav-links, .nav-cta { display: none; }
     .hero { padding: 120px 20px 60px; min-height: 80vh; }
-    .hero-icon { width: 160px; height: 160px; margin-bottom: 24px; }
+    .hero-icon { width: 220px; height: 220px; margin-bottom: 24px; }
     .hero-title { letter-spacing: 4px; }
     .hero-tagline { font-size: 12px; letter-spacing: 2px; }
     .section-title { font-size: 32px; }
