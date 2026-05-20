@@ -56,7 +56,7 @@ body {
     background-color: var(--bg-parchment);
     background-image: url('assets/parchment-tile.jpg');
     background-repeat: repeat;
-    background-size: 512px 512px;
+    background-size: 256px 256px;
     -webkit-font-smoothing: antialiased;
     line-height: 1.6;
     overflow-x: hidden;
