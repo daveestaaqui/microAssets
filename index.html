@@ -21,12 +21,13 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=600">
+    <link rel="stylesheet" href="style.css?v=601">
     <style>
-        /* Inline override — guarantees no cached background image repeats */
+        /* Inline override — seamless textured parchment */
         body {
             background-color: #f5f0e8 !important;
             background-image:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E"),
                 radial-gradient(ellipse at 20% 10%, rgba(210, 190, 160, 0.35) 0%, transparent 55%),
                 radial-gradient(ellipse at 80% 25%, rgba(200, 180, 150, 0.25) 0%, transparent 50%),
                 radial-gradient(ellipse at 50% 60%, rgba(220, 200, 170, 0.2) 0%, transparent 60%),
@@ -135,19 +136,22 @@
                     <div class="tool-field">
                         <label for="species">Mushroom Species</label>
                         <select id="species">
-                            <option value="oyster">Oyster (Pleurotus)</option>
-                            <option value="shiitake">Shiitake (Lentinula)</option>
+                            <option value="oyster">Oyster (Blue / Pink / Golden)</option>
                             <option value="lions_mane">Lion's Mane (Hericium)</option>
+                            <option value="shiitake">Shiitake (Lentinula)</option>
+                            <option value="king_oyster">King Oyster (Pleurotus eryngii)</option>
                             <option value="reishi">Reishi (Ganoderma)</option>
-                            <option value="maitake">Maitake (Grifola)</option>
+                            <option value="turkey_tail">Turkey Tail (Trametes)</option>
+                            <option value="cordyceps">Cordyceps (Militaris)</option>
+                            <option value="chestnut">Chestnut (Pholiota)</option>
                         </select>
                     </div>
                     <div class="tool-field">
-                        <label for="bagSize">Bag Size</label>
+                        <label for="bagSize">Magic Bag All-In-One Size</label>
                         <select id="bagSize">
-                            <option value="3">3 lb All-In-One</option>
-                            <option value="5" selected>5 lb All-In-One</option>
-                            <option value="10">10 lb Bulk Substrate</option>
+                            <option value="2">2 lb All-In-One</option>
+                            <option value="4" selected>4 lb All-In-One</option>
+                            <option value="6">6 lb All-In-One</option>
                         </select>
                     </div>
                 </div>
@@ -479,11 +483,14 @@
 
     // ═══ YIELD ESTIMATOR ═══
     const speciesData = {
-        oyster:      { yieldPct: 0.25, daysToPin: 14, daysToHarvest: 21, name: 'Oyster' },
-        shiitake:    { yieldPct: 0.15, daysToPin: 21, daysToHarvest: 35, name: 'Shiitake' },
-        lions_mane:  { yieldPct: 0.18, daysToPin: 18, daysToHarvest: 28, name: "Lion's Mane" },
-        reishi:      { yieldPct: 0.10, daysToPin: 30, daysToHarvest: 60, name: 'Reishi' },
-        maitake:     { yieldPct: 0.12, daysToPin: 25, daysToHarvest: 45, name: 'Maitake' }
+        oyster:       { yieldPct: 0.25, daysToPin: 14, daysToHarvest: 21, name: 'Oyster' },
+        lions_mane:   { yieldPct: 0.18, daysToPin: 18, daysToHarvest: 28, name: "Lion's Mane" },
+        shiitake:     { yieldPct: 0.15, daysToPin: 21, daysToHarvest: 35, name: 'Shiitake' },
+        king_oyster:  { yieldPct: 0.14, daysToPin: 20, daysToHarvest: 35, name: 'King Oyster' },
+        reishi:       { yieldPct: 0.10, daysToPin: 30, daysToHarvest: 60, name: 'Reishi' },
+        turkey_tail:  { yieldPct: 0.12, daysToPin: 28, daysToHarvest: 50, name: 'Turkey Tail' },
+        cordyceps:    { yieldPct: 0.08, daysToPin: 25, daysToHarvest: 45, name: 'Cordyceps' },
+        chestnut:     { yieldPct: 0.20, daysToPin: 16, daysToHarvest: 25, name: 'Chestnut' }
     };
 
     function calculateYield() {
@@ -495,8 +502,9 @@
 
         const yieldPerBagPerFlush = bagLbs * data.yieldPct;
         const totalYield = (yieldPerBagPerFlush * numBags * flushes).toFixed(1);
+        // MYYCO liquid culture syringe ~$20, Magic Bag All-In-One: 2lb ~$18, 4lb ~$25, 6lb ~$32
         const syringeCost = 20;
-        const bagCost = bagLbs <= 3 ? 22 : bagLbs <= 5 ? 28 : 40;
+        const bagCost = bagLbs <= 2 ? 18 : bagLbs <= 4 ? 25 : 32;
         const totalCost = syringeCost + (bagCost * numBags);
         const costPerLb = (totalCost / totalYield).toFixed(2);
 
