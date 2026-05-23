@@ -304,6 +304,15 @@ nav.scrolled .nav-wordmark {
 }
 .product-card:hover .btn-card { background: var(--green-light); color: #fff; border-color: var(--green-light); }
 
+.product-grid--single {
+    display: flex;
+    justify-content: center;
+}
+.product-grid--single .product-card {
+    max-width: 620px;
+    width: 100%;
+}
+
 /* ═══ GLASS PANELS ═══ */
 .glass-panel {
     background: rgba(255, 255, 255, 0.6);
@@ -374,6 +383,7 @@ nav.scrolled .nav-wordmark {
 .tool-results h4 { font-size: 18px; color: var(--green-dark); margin-bottom: 20px; text-align: center; }
 
 .result-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.result-grid--double { grid-template-columns: repeat(2, 1fr); }
 .result-stat { text-align: center; }
 .result-stat .value { font-size: 28px; font-weight: 700; color: var(--green-light); line-height: 1; }
 .result-stat .label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); margin-top: 6px; }

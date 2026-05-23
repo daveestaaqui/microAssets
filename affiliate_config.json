@@ -1,26 +1,15 @@
 {
   "partners": {
-    "myyco": {
-      "name": "MYYCO",
-      "tagline": "Premium Liquid Cultures",
-      "affiliate_id": "YOUR_MYYCO_ID",
-      "base_url": "https://www.myyco.com",
-      "affiliate_url_template": "https://www.myyco.com/?ref={affiliate_id}",
-      "category": "genetics",
-      "description": "Lab-tested isolated liquid cultures. 100% sterile, densely packed with vigorous mycelium for rapid inoculation.",
-      "image": "assets/real_images/myyco_syringe.jpg",
-      "features": ["Lab-Tested Sterility", "Rapid Colonization", "Isolated Genetics"]
-    },
-    "magicbag": {
-      "name": "Magic Bag",
-      "tagline": "All-In-One Mushroom Grow Bags",
-      "affiliate_id": "YOUR_MAGICBAG_ID",
-      "base_url": "https://www.magicbag.co",
-      "affiliate_url_template": "https://www.magicbag.co/?ref={affiliate_id}",
+    "north_spore": {
+      "name": "North Spore",
+      "tagline": "Ready-to-Grow Gourmet Kits",
+      "affiliate_id": "YOUR_NORTH_SPORE_ID",
+      "base_url": "https://northspore.com",
+      "affiliate_url_template": "https://northspore.com/?aff={affiliate_id}",
       "category": "cultivation",
-      "description": "Pre-sterilized grain + compost in a single bag with injection port and micron filter. Just inoculate and wait.",
-      "image": "assets/real_images/magicbag.png",
-      "features": ["Pre-Sterilized", "Injection Port", "0.2μm Filter Patch"]
+      "description": "Pre-inoculated, fully colonized mushroom grow kits. Simply cut a slit, spray with water, and harvest fresh gourmet mushrooms in 10-14 days.",
+      "image": "assets/illustrations/northspore.png",
+      "features": ["Ready-to-Grow Block", "Harvest in 14 Days", "100% Guaranteed to Grow"]
     },
     "real_mushrooms": {
       "name": "Real Mushrooms",
