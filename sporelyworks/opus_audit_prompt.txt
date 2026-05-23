@@ -1,0 +1,222 @@
+================================================================================
+OPUS AUDIT REPORT — SporelyWorks Static Affiliate Hub
+================================================================================
+Generated: 2026-05-03 17:32:00 EDT
+Auditor: Claude Opus 4 (Thinking)
+Status: REMEDIATED — ALL CRITICAL ISSUES FIXED
+
+================================================================================
+SECTION 1: HALLUCINATIONS FOUND & CORRECTED
+================================================================================
+
+PREVIOUS AUDIT REPORT (opus_audit_prompt.txt):
+  - The previous "audit" was itself hallucinated by Qwen 9b.
+  - It fabricated commission rates that contradicted both the source code
+    and the ground truth parameters.
+  - It claimed "0 hallucinated content removed" despite containing 5
+    fabricated commission percentages.
+  - Status: ENTIRE REPORT REPLACED ✓
+
+HALLUCINATED COMMISSION RATES CORRECTED:
+  ┌────────────────────────┬──────────────┬──────────────┬──────────┐
+  │ Partner                │ Qwen Claimed │ Ground Truth │ Status   │
+  ├────────────────────────┼──────────────┼──────────────┼──────────┤
+  │ Magic Bag              │ 20%          │ 10%          │ FIXED ✓  │
+  │ MYYCO                  │ 25%          │ 10%          │ FIXED ✓  │
+  │ Avalon Magic Plants    │ 15%          │ 10.5%        │ FIXED ✓  │
+  │ Real Mushrooms         │ 30%          │ 8-10%        │ FIXED ✓  │
+  │ Om Mushrooms           │ 25%          │ 8-10%        │ FIXED ✓  │
+  └────────────────────────┴──────────────┴──────────────┴──────────┘
+  Note: Rates above were in the old audit text only. The JS code had
+  Real Mushrooms at 8-12% (also wrong) — corrected to 8-10%.
+
+HALLUCINATED CLAIMS REMOVED:
+  - MYYCO legal notice referenced "medicinal" mushroom species.
+    Changed to "culinary and gourmet" — no medicinal claims permitted.
+  - Status: FIXED ✓
+
+HALLUCINATED BACKEND REFERENCES:
+  - Comment "In production, these would be populated via API or CMS"
+    suggested server-side infrastructure. Removed entirely.
+  - Dead injectConversionFunnels() function contained no-op logic.
+    Removed to eliminate confusion.
+  - Status: FIXED ✓
+
+================================================================================
+SECTION 2: COMPLIANCE & LEGAL VERIFICATION
+================================================================================
+
+AVALON MAGIC PLANTS — MICROSCOPY DISCLAIMER:
+  - Previous: "for microscopy and educational purposes only"
+  - Corrected: "strictly for microscopy and taxonomy purposes only.
+    These products must NOT be used for planting, growing, or
+    cultivation of any kind."
+  - Keyword "taxonomy" added per specification.
+  - Status: COMPLIANT ✓
+
+DIETARY SUPPLEMENT DISCLAIMER (Om / Real Mushrooms):
+  - Added FDA preamble: "These statements have not been evaluated by
+    the Food and Drug Administration."
+  - Maintained: "not intended to diagnose, treat, cure, or prevent
+    any disease."
+  - Added: "Consult your healthcare provider before use."
+  - Status: COMPLIANT ✓
+
+CULTIVATION DISCLAIMER (Magic Bag / MYYCO):
+  - States "legal culinary and gourmet mushroom species only"
+  - Removes any reference to "medicinal" species.
+  - Includes user responsibility for local/state/federal compliance.
+  - Status: COMPLIANT ✓
+
+AFFILIATE DISCLOSURE:
+  - Top-of-page compliance banner (always visible, cannot be missed).
+  - Full affiliate disclosure in footer disclaimers.
+  - Status: COMPLIANT ✓
+
+DISCLAIMER VISIBILITY:
+  - Previous: 0.8rem text at 0.7 opacity in dark footer — functionally
+    invisible to users.
+  - Corrected: 0.85rem text at 0.88 opacity, gold-highlighted strong
+    tags, dark surface background with border, structured into
+    individual disclaimer blocks.
+  - Added: Compliance banner fixed at top of every page.
+  - Status: COMPLIANT ✓
+
+================================================================================
+SECTION 3: ARCHITECTURE VERIFICATION
+================================================================================
+
+STATIC CHECK:
+  - Backend/database: NONE
+  - Server-side scripts: NONE
+  - API calls: NONE
+  - Technologies: Pure HTML5, CSS3, Vanilla JavaScript (ES6+)
+  - Status: 100% STATIC ✓
+
+CONTENT FEED DOM STRUCTURE:
+  - Partner cards container: #content-feed
+    └ data-inject-target="partner-cards"
+    └ data-feed-type="affiliate-partners" (on parent section)
+  - SEO article feed: #seo-content-feed
+    └ data-inject-target="seo-articles"
+    └ data-feed-type="seo-articles" (on parent section)
+  - Article template documented in HTML comments for automation scripts
+  - Status: AUTOMATION-READY ✓
+
+SEMANTIC HTML:
+  - Single <h1> per page (hero title)
+  - Proper heading hierarchy: h1 → h2 → h3
+  - <article> elements for partner cards
+  - <section> elements with descriptive IDs
+  - <nav> with aria-label
+  - <noscript> fallback
+  - Status: PASS ✓
+
+================================================================================
+SECTION 4: BRANDING VERIFICATION
+================================================================================
+
+TAGLINE:
+  - Required: "Engineering Automation"
+  - Found: Hero section (.tagline) and SVG logo subtext
+  - Status: PASS ✓
+
+LOGO:
+  - Required: Green and gold SVG featuring three mushrooms
+  - Implemented: Three mushrooms using <path> elements for caps
+    and <rect> elements with rounded corners for stems
+  - Cap gradient: #4CAF50 → #2E7D32
+  - Stem gradient: #FFD54F → #FFC107
+  - viewBox expanded to 340x70 to prevent text overflow
+  - Logo text "SporelyWorks" rendered in Inter Bold at 26px
+  - Tagline "ENGINEERING AUTOMATION" in gold below logo text
+  - Status: PASS ✓
+
+FAVICON:
+  - Inline SVG favicon using mushroom motif (green cap, gold stem)
+  - Status: PASS ✓
+
+================================================================================
+SECTION 5: APPROVED AFFILIATE PARTNERS (VERIFIED)
+================================================================================
+
+MAGIC BAG (Grow Kits):
+  - Commission: 10% ← VERIFIED AGAINST GROUND TRUTH
+  - Link: [INSERT_MAGIC_BAG_LINK]
+  - Legal: Culinary species, lawful cultivation
+  - Status: ACTIVE ✓
+
+MYYCO (Liquid Cultures):
+  - Commission: 10% ← VERIFIED AGAINST GROUND TRUTH
+  - Link: [INSERT_MYYCO_LINK]
+  - Legal: Culinary and gourmet species (NO medicinal claims)
+  - Status: ACTIVE ✓
+
+AVALON MAGIC PLANTS (Spores & Kits):
+  - Commission: 10.5% ← VERIFIED AGAINST GROUND TRUTH
+  - Link: [INSERT_AVALON_LINK]
+  - Legal: Microscopy and taxonomy ONLY
+  - Status: ACTIVE ✓
+
+OM MUSHROOMS (Dietary Supplements):
+  - Commission: 8-10% ← VERIFIED AGAINST GROUND TRUTH
+  - Link: [INSERT_OM_MUSHROOMS_LINK]
+  - Legal: FDA disclaimer present, dietary supplement only
+  - Status: ACTIVE ✓
+
+REAL MUSHROOMS (Dietary Supplements):
+  - Commission: 8-10% ← VERIFIED (was hallucinated as 8-12%)
+  - Link: [INSERT_REAL_MUSHROOMS_LINK]
+  - Legal: FDA disclaimer present, dietary supplement only
+  - Status: ACTIVE ✓
+
+TOTAL APPROVED PARTNERS: 5/5
+HALLUCINATED PARTNERS REMOVED: 0
+FABRICATED URLS FOUND: 0
+ALL LINKS USE BRACKETED PLACEHOLDERS: ✓
+
+================================================================================
+SECTION 6: UI/UX IMPROVEMENTS
+================================================================================
+
+CHANGES MADE:
+  1. Google Fonts (Inter) integrated for premium typography
+  2. Glassmorphic header with backdrop-filter blur
+  3. Card entrance animations via IntersectionObserver
+  4. Hero section with radial gradient overlays and fade-in animation
+  5. Commission displayed as styled pill badges
+  6. Legal notices styled with gold left-border accent
+  7. Responsive design: hamburger nav at 768px, optimized at 480px
+  8. SEO meta description added
+  9. Inline SVG favicon
+  10. Mobile navigation toggle with aria attributes
+
+================================================================================
+SECTION 7: REMEDIATION SUMMARY
+================================================================================
+
+CRITICAL FIXES:
+  [✓] 5 fabricated commission rates in audit report — corrected
+  [✓] 1 wrong commission rate in JS code (8-12% → 8-10%)
+  [✓] "Medicinal" claim in MYYCO legal notice — removed
+  [✓] Missing "taxonomy" in Avalon disclaimer — added
+  [✓] Missing FDA preamble on supplement disclaimers — added
+  [✓] Invisible footer disclaimers — made prominent
+  [✓] Dead injectConversionFunnels() code — removed
+  [✓] Backend-suggesting comments — removed
+  [✓] Crude SVG logo (ellipses) — replaced with proper mushroom paths
+  [✓] Logo text clipping (viewBox too small) — expanded to 340x70
+  [✓] Missing compliance banner — added at top of page
+  [✓] Missing SEO article feed section — added with automation hooks
+  [✓] Missing meta description — added
+  [✓] Missing favicon — added
+
+TOTAL ISSUES FOUND: 14
+TOTAL ISSUES FIXED: 14
+REMAINING ISSUES: 0
+
+STATUS: READY FOR DEPLOYMENT
+
+================================================================================
+END OF AUDIT REPORT
+================================================================================

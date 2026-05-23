@@ -114,3 +114,131 @@ Traceback (most recent call last):
   File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 2, in <module>
     import os, sys, json, requests, time, subprocess
 ModuleNotFoundError: No module named 'requests'
+Traceback (most recent call last):
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 2, in <module>
+    import os, sys, json, requests, time, subprocess
+ModuleNotFoundError: No module named 'requests'
+Traceback (most recent call last):
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 2, in <module>
+    import os, sys, json, requests, time, subprocess
+ModuleNotFoundError: No module named 'requests'
+Traceback (most recent call last):
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 2, in <module>
+    import os, sys, json, requests, time, subprocess
+ModuleNotFoundError: No module named 'requests'
+Traceback (most recent call last):
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 2, in <module>
+    import os, sys, json, requests, time, subprocess
+ModuleNotFoundError: No module named 'requests'
+Traceback (most recent call last):
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 2, in <module>
+    import os, sys, json, requests, time, subprocess
+ModuleNotFoundError: No module named 'requests'
+Traceback (most recent call last):
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 2, in <module>
+    import os, sys, json, requests, time, subprocess
+ModuleNotFoundError: No module named 'requests'
+Traceback (most recent call last):
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 2, in <module>
+    import os, sys, json, requests, time, subprocess
+ModuleNotFoundError: No module named 'requests'
+Traceback (most recent call last):
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 2, in <module>
+    import os, sys, json, requests, time, subprocess
+ModuleNotFoundError: No module named 'requests'
+Traceback (most recent call last):
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 2, in <module>
+    import os, sys, json, requests, time, subprocess
+ModuleNotFoundError: No module named 'requests'
+Traceback (most recent call last):
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 2, in <module>
+    import os, sys, json, requests, time, subprocess
+ModuleNotFoundError: No module named 'requests'
+Traceback (most recent call last):
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 2, in <module>
+    import os, sys, json, requests, time, subprocess
+ModuleNotFoundError: No module named 'requests'
+Traceback (most recent call last):
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 2, in <module>
+    import os, sys, json, requests, time, subprocess
+ModuleNotFoundError: No module named 'requests'
+Traceback (most recent call last):
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 100, in <module>
+    main()
+    ~~~~^^
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 45, in main
+    with open(zip_path, "rb") as zf:
+         ~~~~^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/davidmahler/Desktop/microAssets/_builds/chrome_zips/ai-content-bouncer.zip'
+Traceback (most recent call last):
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 100, in <module>
+    main()
+    ~~~~^^
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 45, in main
+    with open(zip_path, "rb") as zf:
+         ~~~~^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/davidmahler/Desktop/microAssets/_builds/chrome_zips/ai-content-bouncer.zip'
+Traceback (most recent call last):
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 100, in <module>
+    main()
+    ~~~~^^
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 45, in main
+    with open(zip_path, "rb") as zf:
+         ~~~~^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/davidmahler/Desktop/microAssets/_builds/chrome_zips/ai-content-bouncer.zip'
+Traceback (most recent call last):
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 100, in <module>
+    main()
+    ~~~~^^
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 45, in main
+    with open(zip_path, "rb") as zf:
+         ~~~~^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/davidmahler/Desktop/microAssets/_builds/chrome_zips/ai-content-bouncer.zip'
+Traceback (most recent call last):
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 100, in <module>
+    main()
+    ~~~~^^
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 45, in main
+    with open(zip_path, "rb") as zf:
+         ~~~~^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/davidmahler/Desktop/microAssets/_builds/chrome_zips/ai-content-bouncer.zip'
+Traceback (most recent call last):
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 100, in <module>
+    main()
+    ~~~~^^
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 45, in main
+    with open(zip_path, "rb") as zf:
+         ~~~~^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/davidmahler/Desktop/microAssets/_builds/chrome_zips/ai-content-bouncer.zip'
+Traceback (most recent call last):
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 100, in <module>
+    main()
+    ~~~~^^
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 45, in main
+    with open(zip_path, "rb") as zf:
+         ~~~~^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/davidmahler/Desktop/microAssets/_builds/chrome_zips/ai-content-bouncer.zip'
+Traceback (most recent call last):
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 100, in <module>
+    main()
+    ~~~~^^
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 45, in main
+    with open(zip_path, "rb") as zf:
+         ~~~~^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/davidmahler/Desktop/microAssets/_builds/chrome_zips/ai-content-bouncer.zip'
+Traceback (most recent call last):
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 100, in <module>
+    main()
+    ~~~~^^
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 45, in main
+    with open(zip_path, "rb") as zf:
+         ~~~~^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/davidmahler/Desktop/microAssets/_builds/chrome_zips/ai-content-bouncer.zip'
+Traceback (most recent call last):
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 100, in <module>
+    main()
+    ~~~~^^
+  File "/Users/davidmahler/Desktop/microAssets/_scripts/core/cws_launch_trigger.py", line 45, in main
+    with open(zip_path, "rb") as zf:
+         ~~~~^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/davidmahler/Desktop/microAssets/_builds/chrome_zips/ai-content-bouncer.zip'

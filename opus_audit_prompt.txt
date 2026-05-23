@@ -1,0 +1,199 @@
+# OPUS AUDIT PROMPT - SporelyWorks Affiliate Hub
+
+## INSTRUCTIONS FOR CLAUDE OPUS
+
+You are tasked with reviewing the SporelyWorks affiliate marketing hub for full compliance, affiliate link accuracy, and architectural readiness for automated content scaling.
+
+---
+
+## AUDIT TASKS
+
+### 1. COMPLIANCE LANGUAGE VERIFICATION
+
+Review all HTML/CSS/JS files for the following compliance requirements:
+
+#### Legal Dietary Supplements (Om Mushrooms)
+- [ ] Verify disclaimer states products are "legal dietary supplements"
+- [ ] Confirm language includes "NOT intended to diagnose, treat, cure, or prevent disease"
+- [ ] Ensure proper medical disclaimers are present
+
+#### Culinary Cultivation Products (Magic Bag)
+- [ ] Confirm language distinguishes cultivation from other uses
+- [ ] Verify disclaimer about compliance with local/state/federal laws
+- [ ] Ensure products are identified as "legal culinary mushroom species"
+
+#### Microscopy-Only Spores (Avalon Magic Plants)
+- [ ] Verify clear statement that spores are "for microscopy and educational purposes only"
+- [ ] Confirm explicit language: "NOT for planting, growing, or any purpose other than microscopic examination"
+- [ ] Ensure educational purpose disclaimer is present
+
+#### Affiliate Disclosures
+- [ ] Verify affiliate program participation statement is present
+- [ ] Confirm disclosure about earning commissions from qualifying purchases
+- [ ] Ensure links use `target="_blank"` with `rel="noopener noreferrer"` for security
+
+### 2. AFFILIATE LINK VERIFICATION
+
+Check all link placeholders for correct format:
+
+| Partner | Expected Placeholder | Current Link |
+|---------|---------------------|---------------|
+| Magic Bag | `[INSERT_MAGIC_BAG_LINK]` | ✅ |
+| MYYCO | `[INSERT_MYYCO_LINK]` | ✅ |
+| Avalon Magic Plants | `[INSERT_AVALON_LINK]` | ✅ |
+| Om Mushrooms | `[INSERT_OM_MUSHROOMS_LINK]` | ✅ |
+
+#### Commission Rates Verification
+- [ ] Magic Bag: 10% commission displayed
+- [ ] MYYCO: 10% commission displayed
+- [ ] Avalon Magic Plants: 10.5% commission displayed
+- [ ] Om Mushrooms: 8-10% commission displayed
+
+### 3. BRANDING COMPLIANCE
+
+Verify logo and tagline implementation:
+
+#### Logo Requirements
+- [ ] Green color scheme (#2E7D32, #4CAF50)
+- [ ] Gold accent colors (#FFC107, #FFD54F)
+- [ ] Three mushroom design present
+- [ ] SVG implementation for scalability
+
+#### Tagline Verification
+- [ ] "Engineering Automation" tagline present
+- [ ] Located in hero section below main heading
+
+### 4. ARCHITECTURE FOR AUTOMATED SCALING
+
+Verify the content feed section supports programmatic SEO:
+
+#### Content Feed Module
+- [ ] `#content-feed` container exists with proper class structure
+- [ ] JavaScript can inject HTML content dynamically
+- [ ] Grid layout uses `repeat(auto-fit, minmax(300px, 1fr))` for responsive scaling
+- [ ] Placeholder data structure supports easy replacement with API/CMS data
+
+#### Scalability Considerations
+- [ ] Affiliate partners array is modular and easily extensible
+- [ ] Template strings use clean interpolation for safe injection
+- [ ] CSS grid handles varying content lengths gracefully
+
+### 5. AFFILIATE DATA ACCURACY
+
+Review approved affiliate data against task specifications:
+
+| Partner | Product Category | Commission |
+|---------|-----------------|------------|
+| Magic Bag | Grow Kits | 10% |
+| MYYCO | Liquid Cultures | 10% |
+| Avalon Magic Plants | Spores & Kits | 10.5% |
+| Om Mushrooms | Legal Dietary Supplements | 8-10% |
+
+#### NO HALLUCINATION CHECK
+- [ ] ZERO made-up product features
+- [ ] ZERO fabricated affiliate terms
+- [ ] ZERO invented affiliate URLs
+- [ ] All descriptions are generic placeholder text
+- [ ] Commission rates match approved data exactly
+
+### 6. UI/UX REVIEW
+
+Assess design quality and user experience:
+
+#### Visual Design
+- [ ] Clean, modern aesthetic
+- [ ] Trustworthy color scheme (green = nature, gold = premium)
+- [ ] Consistent spacing and typography
+- [ ] Mobile-responsive layout
+
+#### Conversion Optimization
+- [ ] Hero section clearly communicates value proposition
+- [ ] Product cards have clear CTAs
+- [ ] Legal notices are prominent but not overwhelming
+- [ ] Footer disclaimers are comprehensive
+
+### 7. TECHNICAL REVIEW
+
+Verify code quality and best practices:
+
+#### HTML
+- [ ] Valid HTML5 structure
+- [ ] Proper semantic tags (header, main, section, footer)
+- [ ] Accessibility attributes (aria-label, alt text)
+- [ ] Meta tags and viewport configuration
+
+#### CSS
+- [ ] CSS custom properties for theme colors
+- [ ] Responsive design with media queries
+- [ ] Shadow and hover effects for engagement
+- [ ] No external dependencies
+
+#### JavaScript
+- [ ] Event listeners properly scoped
+- [ ] No console errors after initialization
+- [ ] Smooth scrolling for anchor links
+- [ ] Defer or async script loading (check implementation)
+
+### 8. OUTPUT DELIVERABLES
+
+After completing the audit, generate:
+
+#### audit_report.txt
+```
+=== SPORELYWORKS AUDIT REPORT ===
+
+COMPLIANCE STATUS: [PASS/FAIL]
+AFFILIATE LINK STATUS: [READY/PENDING]
+BRANDING STATUS: [COMPLETE/INCOMPLETE]
+ARCHITECTURE STATUS: [SCALABLE/NEEDS-REFACTORING]
+
+=== DETAILED FINDINGS ===
+
+[Include specific findings and recommendations]
+
+=== REQUIRED CHANGES ===
+
+[List any fixes needed before deployment]
+
+=== SIGN-OFF ===
+
+Status: [APPROVED/PENDING-FIXES]
+```
+
+---
+
+## EXECUTION COMMANDS
+
+```bash
+# Review all files
+cd sporelyworks
+cat index.html
+cat css/style.css
+cat js/main.js
+
+# Generate audit report
+# (Paste your findings into audit_report.txt)
+```
+
+---
+
+## CRITICAL FAILURE CONDITIONS
+
+The audit will FAIL if:
+1. Any affiliate link contains a real/active URL instead of placeholder
+2. Commission rates deviate from approved data
+3. Missing compliance language for any product category
+4. Logo uses wrong colors (no green/gold theme)
+5. Tagline differs from "Engineering Automation"
+
+---
+
+## CONTACT INFORMATION PLACEHOLDER
+
+Email placeholder: `[INSERT_CONTACT_EMAIL]`
+
+This must remain as placeholder until actual contact info is provided by affiliate managers.
+
+---
+
+**END OF AUDIT PROMPT**
