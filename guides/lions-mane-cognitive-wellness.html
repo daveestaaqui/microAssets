@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title} — SporlyWorks Mycology & Wellness Guides</title>
+    <meta name="description" content="{description}">
+    <meta name="keywords" content="{keywords}">
+    <link rel="canonical" href="https://sporlyworks.com/guides/{slug}.html">
+    <link rel="icon" type="image/x-icon" href="{favicon}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{style_path}">
+    <style>
+        .guide-body {
+            max-width: 800px;
+            margin: 120px auto 80px;
+            padding: 0 24px;
+        }
+        .guide-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .guide-title {
+            font-size: 42px;
+            color: var(--green-dark);
+            margin-bottom: 16px;
+            font-family: 'DM Serif Display', Georgia, serif;
+        }
+        .guide-meta {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .guide-intro {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 32px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 32px;
+        }
+        .guide-content h2 {
+            font-size: 28px;
+            color: var(--green);
+            margin: 40px 0 16px;
+            font-family: 'DM Serif Display', Georgia, serif;
+        }
+        .guide-content p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+        }
+        .guide-content ul, .guide-content ol {
+            margin-left: 24px;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+        .guide-content li {
+            margin-bottom: 8px;
+        }
+        .guide-takeaway {
+            background: var(--bg-surface-elevated);
+            border-left: 4px solid var(--gold);
+            padding: 24px;
+            border-radius: var(--radius-sm);
+            margin: 32px 0;
+            box-shadow: var(--shadow-soft);
+        }
+        .guide-takeaway p {
+            margin: 0;
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--green-light);
+            font-weight: 600;
+            margin-bottom: 24px;
+            transition: transform 0.2s;
+        }
+        .back-link:hover {
+            transform: translateX(-4px);
+        }
+        .partner-cta-box {
+            background: linear-gradient(135deg, var(--green-dark), #03150e);
+            color: var(--text-on-dark);
+            padding: 40px;
+            border-radius: var(--radius-md);
+            margin-top: 48px;
+            text-align: center;
+            border: 1px solid var(--gold-dark);
+        }
+        .partner-cta-box h3 {
+            color: var(--gold-light);
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+        .partner-cta-box p {
+            color: var(--text-on-dark);
+            opacity: 0.85;
+            font-size: 15px;
+            max-width: 600px;
+            margin: 0 auto 24px;
+        }
+        .partner-cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            color: #000;
+            padding: 12px 32px;
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+        .partner-cta-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 20px rgba(196, 151, 59, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav id="mainNav" class="scrolled">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-brand">
+                <img src="../assets/icon-128.png" alt="SporlyWorks" class="nav-icon" style="height:60px; width:60px;">
+                <span class="nav-wordmark" style="font-size:24px;">SPORLYWORKS</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html#genetics">Cultivation</a>
+                <a href="../index.html#supplements">Supplements</a>
+                <a href="../index.html#research">Science</a>
+            </div>
+            <a href="../index.html#genetics" class="nav-cta" style="background:linear-gradient(135deg, var(--green-light), var(--green)); color:white; padding:10px 24px; border-radius:99px; text-decoration:none; font-weight:600;">Shop Collection</a>
+        </div>
+    </nav>
+
+    <!-- ═══ MAIN CONTENT ═══ -->
+    <main class="guide-body">
+        <a href="../index.html" class="back-link">← Return to Hub</a>
+        <article class="guide-card">
+            <header class="guide-header">
+                <div class="guide-meta">Category: Supplements · Technical Guide</div>
+                <h1 class="guide-title">The Scientific Case for Lion's Mane in Cognitive Wellness</h1>
+            </header>
+            
+            <p class="guide-intro">Hericium erinaceus, commonly known as Lion's Mane, is a culinary and medicinal mushroom with unique neurological properties. Emerging research points to its ability to stimulate Nerve Growth Factor (NGF) and actively support memory and focus.</p>
+            
+            <div class="guide-content">
+                
+            <h2>What is Nerve Growth Factor (NGF)?</h2>
+            <p>Nerve Growth Factor is a small secreted protein that is essential for the growth, maintenance, and survival of certain neurons. As we age, or due to chronic oxidative stress, our natural production of NGF decreases, leading to cognitive fatigue, memory lapses, and slower neural connectivity.</p>
+            <p>Traditional remedies and synthetic supplements often fail to cross the blood-brain barrier. However, Lion's Mane contains two families of active compounds—hericenones (found in the fruiting body) and erinacines (found in the mycelium)—that are small enough to pass the blood-brain barrier and directly stimulate NGF synthesis.</p>
+
+            <h2>Whole Fruiting Body vs. Mycelium on Grain</h2>
+            <p>When selecting a supplement, purity is paramount. Many mass-market brands grow mushroom mycelium on grains (such as oats or rice) and grind the entire substrate into powder. This results in a product that is up to 70% starch and only 30% active compounds.</p>
+            <p>For therapeutic effects, clinical studies rely on whole-fruiting body extracts. The fruiting body contains the highest concentration of beta-glucans—polysaccharides that interact directly with the immune and nervous systems to yield tangible health improvements.</p>
+
+            <h2>How to Incorporate Lion's Mane Into Your Daily Stack</h2>
+            <p>For optimal results, consume 1,000 mg of organic Lion's Mane extract powder daily. It is soluble in hot water, making it a perfect addition to morning coffee, tea, or protein smoothies. Most users report increased focus, mental clarity, and improved recall after 2–3 weeks of consistent daily usage.</p>
+        
+            </div>
+
+            <div class="guide-takeaway">
+                <p><strong>Clinical & Mycology Note:</strong> Always look for certified organic, 100% fruiting body extracts with verified beta-glucan levels to ensure you are receiving the active ingredients necessary for neurogenesis.</p>
+            </div>
+
+            <div class="partner-cta-box">
+                <h3>Ready to Take the Next Step?</h3>
+                <p>Get the highest-purity, USDA Organic Lion's Mane extract powder directly from our trusted scientific partner, Real Mushrooms.</p>
+                <a href="https://www.realmushrooms.com" id="cta-real_mushrooms" class="partner-cta-btn" target="_blank" rel="noopener">Shop Lion's Mane Extract at Real Mushrooms →</a>
+            </div>
+        </article>
+    </main>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer style="padding: 80px 24px 40px; background: var(--green-dark); color: var(--text-on-dark); border-top: 1px solid var(--glass-border); text-align: center; margin-top: 80px;">
+        <div class="container">
+            <a href="../index.html" style="display:inline-flex; align-items:center; gap:12px; text-decoration:none; font-family:'DM Serif Display',serif; color:var(--gold-light); font-size:24px; margin-bottom:24px;">
+                <img src="../assets/icon-128.png" alt="SporlyWorks" style="height:32px; width:32px;">
+                <span style="color:var(--gold-light); letter-spacing:3px;">SPORLYWORKS</span>
+            </a>
+            <div style="display:flex; justify-content:center; gap:32px; margin-bottom:32px;">
+                <a href="../index.html#genetics" style="color:var(--text-on-dark); text-decoration:none; opacity:0.8;">Cultivation</a>
+                <a href="../index.html#supplements" style="color:var(--text-on-dark); text-decoration:none; opacity:0.8;">Supplements</a>
+                <a href="../privacy.html" style="color:var(--text-on-dark); text-decoration:none; opacity:0.8;">Privacy Policy</a>
+            </div>
+            <p style="color:var(--text-on-dark); opacity:0.6; font-size:12px; max-width:600px; margin:0 auto 12px;">Affiliate Disclosure: We may earn a referral commission when you make a purchase through our partner links at no additional cost to you.</p>
+            <p style="color:var(--text-on-dark); opacity:0.6; font-size:11px;">&copy; 2026 SporlyWorks. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+    // Load affiliate config dynamically for this deep page
+    fetch('../affiliate_config.json')
+        .then(r => r.json())
+        .then(config => {
+            const partner = config.partners['real_mushrooms'];
+            if (partner) {
+                let url = partner.base_url;
+                const isPlaceholder = !partner.affiliate_id || 
+                                      partner.affiliate_id.startsWith('YOUR_') || 
+                                      partner.affiliate_id.includes('INSERT');
+                if (!isPlaceholder) {
+                    url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
+                }
+                const btn = document.getElementById('cta-real_mushrooms');
+                if (btn) btn.href = url;
+            }
+        })
+        .catch(() => console.log('Config fetch skipped - using static default'));
+    </script>
+</body>
+</html>
