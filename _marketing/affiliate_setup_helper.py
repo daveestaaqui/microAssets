@@ -53,10 +53,10 @@ def run_wizard():
     if current_rm and not current_rm.startswith("YOUR_"):
         print(f"✅ Real Mushrooms is already configured with ID: {current_rm}\n")
     else:
-        print("We will open the ShareASale publisher sign-up page.")
-        print("After signing up, search for 'Real Mushrooms' (ID: 122485) and join.")
-        input("👉 Press Enter to open the ShareASale sign-up page in Chrome...")
-        webbrowser.open("https://www.shareasale.com/join/122485")
+        print("We will open the Awin global publisher sign-up page (which Awin migrated ShareASale into).")
+        print("After signing up, search the directory for 'Real Mushrooms' and join.")
+        input("👉 Press Enter to open the Awin sign-up page in Chrome...")
+        webbrowser.open("https://www.awin.com/us/publishers")
         
         while True:
             rm_id = input("\nEnter your Real Mushrooms Affiliate ID (numeric, e.g., 1234567) or 'skip': ").strip()
