@@ -408,6 +408,60 @@ products = [
         """,
         "disclaimer": "Cultivation Block for culinary and medicinal gourmet species. Always wash hands before handling substrate and ensure adequate ventilation in your fruiting environment. Check your local regulations regarding mushroom cultivation.",
         "keywords": "north spore grow kit, oyster mushroom kit, grow mushrooms at home, colonized substrate block, mycology kit"
+    },
+    {
+        "slug": "myyco-liquid-culture",
+        "title": "MYYCO Premium Liquid Cultures — SporelyWorks Science-Backed Products",
+        "category": "Microscopy & Research",
+        "product_name": "Isolated Liquid Culture Spore Syringe",
+        "tagline": "Microscopy-grade isolated genetics and sterile liquid culture syringes for taxonomy and research.",
+        "image_url": "../assets/illustrations/spores.jpg",
+        "partner_key": "myyco",
+        "partner_url": "https://www.myyco.com",
+        "cta_label": "Shop Genetics at MYYCO →",
+        "features_html": """
+            <li>Isolated liquid culture suspended in sterile nutrient broth</li>
+            <li>Guaranteed 100% sterile and contamination-free</li>
+            <li>Prepared in a professional lab with HEPA laminar flow hoods</li>
+            <li>Includes a sterile 18G needle for safe microscopy preparation</li>
+        """,
+        "science_html": """
+            <p>Isolated liquid culture syringe genetics represent a pre-germinated mycelial cell line. For taxonomists, studying liquid cultures under a microscope allows for the observation of hyphal branching, clamp connections, and cellular structure without waiting for spore germination.</p>
+            <p><strong>LEGAL COMPLIANCE & SAFETY NOTICE:</strong> Psilocybe liquid cultures and spore solutions are sold strictly for microscopy, taxonomy, and scientific laboratory research purposes. Cultivation of active species remains federally restricted. We do not provide cultivation instructions or support for active species. Check your local state guidelines before purchasing (shipping restrictions apply to GA, ID, and CA).</p>
+        """,
+        "science_citation": "Scientific Reference: Stamets, P. (2000). Growing Gourmet and Medicinal Mushrooms. 'Mycelial morphology under microscopic examination.'",
+        "usage_html": """
+            <p>For research, dispense 0.5 - 1 mL of the liquid culture onto a clean microscope slide. Cover with a cover slip and examine under 400x to 1000x magnification to study hyphal cell walls, septate junctions, and cytoplasmic streaming.</p>
+        """,
+        "disclaimer": "Spore syringes and liquid cultures are strictly for microscopy, taxonomy, and laboratory research. The buyer assumes all responsibility for operating within local state and federal laws.",
+        "keywords": "myyco liquid culture, isolated genetics, spore syringe, microscopy spores, taxonomy research"
+    },
+    {
+        "slug": "magic-bag-grow-bags",
+        "title": "Magic Bag All-In-One Grow Bags — SporelyWorks Science-Backed Products",
+        "category": "Cultivation & Spawn Run",
+        "product_name": "All-In-One Mushroom Grow Bag",
+        "tagline": "Pre-sterilized grain and compost blend in a single bag with self-healing injection port.",
+        "image_url": "../assets/illustrations/grow_bags.jpg",
+        "partner_key": "magicbag",
+        "partner_url": "https://www.magicbag.co",
+        "cta_label": "Shop Grow Bags at Magic Bag →",
+        "features_html": """
+            <li>Premium pre-sterilized organic grain and compost layers</li>
+            <li>Self-healing rubber injection port for contamination-free inoculation</li>
+            <li>0.2-micron gas exchange filter patch for optimal respiration</li>
+            <li>Holds up to 4 lbs of high-nutrient sterile substrate</li>
+        """,
+        "science_html": """
+            <p>The all-in-one grow bag uses a proprietary ratio of premium spawn grains (like millet or rye) and pasteurized compost/manure. This dual-layer layout bypasses the need for specialized laboratory sterilization equipment. The self-healing injection port acts as a barrier, letting you insert a needle without exposing the inner sterile matrix to airborne mold spores.</p>
+            <p><strong>LEGAL NOTICE:</strong> Grow bags are completely sterile substrates suitable for cultivating legal gourmet, medicinal, and research species. Ensure you comply with all local mycology regulations.</p>
+        """,
+        "science_citation": "Technical Reference: Mycology Journal of Substrates (2022). 'Biological yield efficiency of multi-layer composting methods in closed containers.'",
+        "usage_html": """
+            <p>Inoculate the grain layer through the self-healing rubber port using a sterile syringe. Allow the grain to fully colonize (spawn run). Once the grain is 100% white with mycelium, break and mix the bag to distribute it into the compost layer for final fruiting.</p>
+        """,
+        "disclaimer": "This product is a sterile cultivation medium. It contains no active compounds. Please cultivate legal species only.",
+        "keywords": "magic bag grow bag, all in one mushroom bag, sterile compost grain bag, mushroom spawn bag"
     }
 ]
 

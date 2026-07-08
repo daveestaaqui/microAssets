@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gourmet Mushroom Grow Kit Harvest Estimator — SporlyWorks</title>
-    <meta name="description" content="Calculate your expected harvest yields from North Spore gourmet pre-colonized mushroom grow kits.">
+    <title>Mushroom Harvest & Yield Estimator — SporlyWorks</title>
+    <meta name="description" content="Calculate expected yields for gourmet grow blocks or laboratory liquid culture spawn runs.">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css?v=602">
     <style>
         .tool-container {
-            max-width: 800px;
+            max-width: 850px;
             margin: 120px auto 80px;
             padding: 0 24px;
         }
@@ -36,6 +36,45 @@
         }
         .back-link:hover {
             transform: translateX(-4px);
+        }
+        .calculator-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 36px;
+            justify-content: center;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 16px;
+        }
+        .calc-tab-btn {
+            padding: 10px 24px;
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            border-radius: 99px;
+            transition: all 0.3s;
+        }
+        .calc-tab-btn.active {
+            background: var(--green-light);
+            color: white;
+        }
+        .tool-panel {
+            display: none;
+        }
+        .tool-panel.active {
+            display: block;
+        }
+        .legal-box {
+            font-size: 11px;
+            color: var(--text-secondary);
+            background: rgba(195, 175, 145, 0.08);
+            border: 1px dashed var(--glass-border);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            margin-top: 36px;
+            line-height: 1.5;
         }
     </style>
 </head>
@@ -62,43 +101,109 @@
         <a href="../index.html" class="back-link">← Back to Home</a>
         
         <div class="tool-card">
-            <h1 style="font-family:'DM Serif Display',serif; color:var(--green-dark); font-size:36px; margin-bottom:12px; text-align:center;">🍄 Grow Kit Harvest Estimator</h1>
-            <p style="color:var(--text-secondary); text-align:center; margin-bottom:36px; font-size:16px;">Calculate your expected harvest yield from North Spore premium grow kits based on biological efficiency.</p>
+            <h1 style="font-family:'DM Serif Display',serif; color:var(--green-dark); font-size:36px; margin-bottom:12px; text-align:center;">🍄 Mushroom Harvest & Yield Estimator</h1>
+            <p style="color:var(--text-secondary); text-align:center; margin-bottom:32px; font-size:16px;">Estimate potential biological crop yields for both ready-to-grow blocks and laboratory spawn runs.</p>
 
-            <div class="tool-row" style="display:flex; flex-direction:column; gap:20px; margin-bottom:28px;">
-                <div class="tool-field" style="display:flex; flex-direction:column; gap:8px;">
-                    <label for="species" style="font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-secondary);">Mushroom Species</label>
-                    <select id="species" style="width:100%; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--glass-border); background:#ffffff; color:var(--text-primary); font-size:15px;">
-                        <option value="blue_oyster">Blue Oyster</option>
-                        <option value="lions_mane">Lion's Mane (Hericium)</option>
-                        <option value="golden_pink_oyster">Golden / Pink Oyster</option>
-                        <option value="shiitake">Shiitake (Lentinula)</option>
-                    </select>
+            <div class="calculator-tabs">
+                <button class="calc-tab-btn active" onclick="switchTab('gourmet')">Gourmet Grow Kits</button>
+                <button class="calc-tab-btn" onclick="switchTab('research')">Microscopy & Research Spawn</button>
+            </div>
+
+            <!-- Tab 1: Gourmet Kits -->
+            <div class="tool-panel active" id="panel-gourmet">
+                <div class="tool-row" style="display:flex; flex-direction:column; gap:20px; margin-bottom:28px;">
+                    <div class="tool-field" style="display:flex; flex-direction:column; gap:8px;">
+                        <label for="species-gourmet" style="font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-secondary);">Mushroom Species</label>
+                        <select id="species-gourmet" style="width:100%; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--glass-border); background:#ffffff; color:var(--text-primary); font-size:15px;">
+                            <option value="blue_oyster">Blue Oyster</option>
+                            <option value="lions_mane">Lion's Mane (Hericium)</option>
+                            <option value="golden_pink_oyster">Golden / Pink Oyster</option>
+                            <option value="shiitake">Shiitake (Lentinula)</option>
+                        </select>
+                    </div>
+                    <div class="tool-field" style="display:flex; flex-direction:column; gap:8px;">
+                        <label for="numKits" style="font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-secondary);">Number of Grow Kits</label>
+                        <input type="number" id="numKits" value="2" min="1" max="50" style="width:100%; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--glass-border); background:#ffffff; color:var(--text-primary); font-size:15px;">
+                    </div>
                 </div>
-                <div class="tool-field" style="display:flex; flex-direction:column; gap:8px;">
-                    <label for="numKits" style="font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-secondary);">Number of Grow Kits</label>
-                    <input type="number" id="numKits" value="2" min="1" max="50" style="width:100%; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--glass-border); background:#ffffff; color:var(--text-primary); font-size:15px;">
+
+                <button class="tool-btn" onclick="calculateGourmetYield()" style="width:100%; padding:16px; background:linear-gradient(135deg, var(--green-light), var(--green)); color:white; border:none; border-radius:var(--radius-pill); font-size:16px; font-weight:600; cursor:pointer; box-shadow: 0 4px 14px rgba(11, 74, 46, 0.2); margin-bottom:32px;">Calculate Kit Yield</button>
+
+                <div class="tool-results" id="results-gourmet">
+                    <h4 style="font-size: 18px; color: var(--green-dark); margin-bottom: 20px; text-align: center;">Estimated Gourmet Yield</h4>
+                    <div class="result-grid result-grid--double">
+                        <div class="result-stat">
+                            <div class="value" id="gourmet-totalYield">–</div>
+                            <div class="label">Total Yield (lbs)</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="value" id="gourmet-harvestTime">–</div>
+                            <div class="label">Days to First Harvest</div>
+                        </div>
+                    </div>
+                    <div class="result-ctas" style="margin-top:28px;">
+                        <a href="https://northspore.com" id="cta-gourmet" class="result-cta result-cta--primary" target="_blank" rel="noopener" style="display:block; text-align:center; padding:14px; background:var(--green-light); color:white; border-radius:var(--radius-pill); text-decoration:none; font-weight:600;">Shop Gourmet Grow Kits at North Spore →</a>
+                    </div>
                 </div>
             </div>
 
-            <button class="tool-btn" onclick="calculateYield()" style="width:100%; padding:16px; background:linear-gradient(135deg, var(--green-light), var(--green)); color:white; border:none; border-radius:var(--radius-pill); font-size:16px; font-weight:600; cursor:pointer; box-shadow: 0 4px 14px rgba(11, 74, 46, 0.2);">Calculate Expected Harvest</button>
+            <!-- Tab 2: Research Spawn -->
+            <div class="tool-panel" id="panel-research">
+                <div class="tool-row" style="display:flex; flex-direction:column; gap:20px; margin-bottom:28px;">
+                    <div class="tool-field" style="display:flex; flex-direction:column; gap:8px;">
+                        <label for="species-research" style="font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-secondary);">Research Focus</label>
+                        <select id="species-research" style="width:100%; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--glass-border); background:#ffffff; color:var(--text-primary); font-size:15px;">
+                            <option value="active_study">Active Spore Study (Research-scale)</option>
+                            <option value="reishi_study">Reishi Microscopy Focus</option>
+                            <option value="oyster_study">Gourmet Liquid Inoculation</option>
+                        </select>
+                    </div>
+                    <div class="tool-row-inner" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                        <div class="tool-field" style="display:flex; flex-direction:column; gap:8px;">
+                            <label for="bagSize" style="font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-secondary);">Grow Bag Substrate Weight</label>
+                            <select id="bagSize" style="width:100%; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--glass-border); background:#ffffff; color:var(--text-primary); font-size:15px;">
+                                <option value="2">2 lb Spawn Bag</option>
+                                <option value="4" selected>4 lb Spawn Bag</option>
+                                <option value="6">6 lb Spawn Bag</option>
+                            </select>
+                        </div>
+                        <div class="tool-field" style="display:flex; flex-direction:column; gap:8px;">
+                            <label for="numBags" style="font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-secondary);">Number of Bags</label>
+                            <input type="number" id="numBags" value="2" min="1" max="50" style="width:100%; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--glass-border); background:#ffffff; color:var(--text-primary); font-size:15px;">
+                        </div>
+                    </div>
+                    <div class="tool-field" style="display:flex; flex-direction:column; gap:8px;">
+                        <label for="flushes" style="font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-secondary);">Target Flushes</label>
+                        <select id="flushes" style="width:100%; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--glass-border); background:#ffffff; color:var(--text-primary); font-size:15px;">
+                            <option value="2">2 Flushes (Conservative)</option>
+                            <option value="3" selected>3 Flushes (Average)</option>
+                        </select>
+                    </div>
+                </div>
 
-            <!-- Results container -->
-            <div class="tool-results" id="yieldResults">
-                <h4 style="font-size: 18px; color: var(--green-dark); margin-bottom: 20px; text-align: center;">Your Estimated Harvest</h4>
-                <div class="result-grid result-grid--double">
-                    <div class="result-stat">
-                        <div class="value" id="totalYield">–</div>
-                        <div class="label">Total Yield (lbs)</div>
+                <button class="tool-btn" onclick="calculateResearchYield()" style="width:100%; padding:16px; background:linear-gradient(135deg, var(--green-light), var(--green)); color:white; border:none; border-radius:var(--radius-pill); font-size:16px; font-weight:600; cursor:pointer; box-shadow: 0 4px 14px rgba(11, 74, 46, 0.2); margin-bottom:32px;">Calculate Laboratory Yield</button>
+
+                <div class="tool-results" id="results-research">
+                    <h4 style="font-size: 18px; color: var(--green-dark); margin-bottom: 20px; text-align: center;">Estimated Laboratory Spawn Run Yield</h4>
+                    <div class="result-grid result-grid--double">
+                        <div class="result-stat">
+                            <div class="value" id="research-totalYield">–</div>
+                            <div class="label">Total Yield (lbs)</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="value" id="research-harvestTime">–</div>
+                            <div class="label">Days to Spawn Run completion</div>
+                        </div>
                     </div>
-                    <div class="result-stat">
-                        <div class="value" id="harvestTime">–</div>
-                        <div class="label">Days to First Harvest</div>
+                    <div class="result-ctas" style="margin-top:28px; display:flex; gap:16px; flex-wrap:wrap; justify-content:center;">
+                        <a href="https://www.myyco.com" id="cta-myyco" class="result-cta result-cta--primary" target="_blank" rel="noopener" style="padding:14px 28px; background:var(--green-light); color:white; border-radius:var(--radius-pill); text-decoration:none; font-weight:600; flex-grow:1; text-align:center;">Get Cultures at MYYCO →</a>
+                        <a href="https://www.magicbag.co" id="cta-magicbag" class="result-cta result-cta--secondary" target="_blank" rel="noopener" style="padding:14px 28px; border:1px solid var(--green); color:var(--green); border-radius:var(--radius-pill); text-decoration:none; font-weight:600; flex-grow:1; text-align:center;">Get Bags at Magic Bag →</a>
                     </div>
                 </div>
-                <div class="result-ctas" style="margin-top:28px;">
-                    <a href="https://northspore.com" id="cta-north_spore" class="result-cta result-cta--primary" target="_blank" rel="noopener" style="display:block; text-align:center; padding:14px; background:var(--green-light); color:white; border-radius:var(--radius-pill); text-decoration:none; font-weight:600;">Shop Gourmet Grow Kits at North Spore →</a>
-                </div>
+            </div>
+
+            <div class="legal-box">
+                <strong>Legal microscopy Warning:</strong> Spore syringes and isolated liquid cultures of active species are sold strictly for microscopy, taxonomy, and scientific laboratory research. Inoculating composting substrate (like Magic Bags) with active cultures is regulated by federal and local state laws. SporlyWorks does not support, encourage, or facilitate illegal cultivation. Check your local state guidelines (CA, GA, ID restrictions apply).
             </div>
         </div>
     </main>
@@ -121,42 +226,82 @@
     </footer>
 
     <script>
-    const speciesData = {
-        blue_oyster:       { yieldPerKit: 2.0, daysToHarvest: 10, name: 'Blue Oyster' },
-        lions_mane:        { yieldPerKit: 1.8, daysToHarvest: 14, name: "Lion's Mane" },
-        golden_pink_oyster: { yieldPerKit: 1.5, daysToHarvest: 11, name: 'Golden/Pink Oyster' },
-        shiitake:          { yieldPerKit: 1.4, daysToHarvest: 18, name: 'Shiitake' }
+    function switchTab(tabId) {
+        document.querySelectorAll('.calc-tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        document.querySelectorAll('.tool-panel').forEach(panel => {
+            panel.classList.remove('active');
+        });
+        
+        event.currentTarget.classList.add('active');
+        document.getElementById('panel-' + tabId).classList.add('active');
+    }
+
+    const gourmetData = {
+        blue_oyster:       { yieldPerKit: 2.0, daysToHarvest: 10 },
+        lions_mane:        { yieldPerKit: 1.8, daysToHarvest: 14 },
+        golden_pink_oyster: { yieldPerKit: 1.5, daysToHarvest: 11 },
+        shiitake:          { yieldPerKit: 1.4, daysToHarvest: 18 }
     };
 
-    function calculateYield() {
-        const species = document.getElementById('species').value;
+    function calculateGourmetYield() {
+        const species = document.getElementById('species-gourmet').value;
         const numKits = parseInt(document.getElementById('numKits').value);
-        const data = speciesData[species];
+        const data = gourmetData[species];
 
         const totalYield = (data.yieldPerKit * numKits).toFixed(1);
 
-        document.getElementById('totalYield').textContent = totalYield;
-        document.getElementById('harvestTime').textContent = data.daysToHarvest;
+        document.getElementById('gourmet-totalYield').textContent = totalYield;
+        document.getElementById('gourmet-harvestTime').textContent = data.daysToHarvest;
 
-        const results = document.getElementById('yieldResults');
-        results.classList.add('active');
+        document.getElementById('results-gourmet').classList.add('active');
     }
 
+    const researchData = {
+        active_study:  { yieldPct: 0.16, daysToSpawn: 28 },
+        reishi_study:  { yieldPct: 0.10, daysToSpawn: 45 },
+        oyster_study:  { yieldPct: 0.22, daysToSpawn: 21 }
+    };
+
+    function calculateResearchYield() {
+        const study = document.getElementById('species-research').value;
+        const bagSize = parseInt(document.getElementById('bagSize').value);
+        const numBags = parseInt(document.getElementById('numBags').value);
+        const flushes = parseInt(document.getElementById('flushes').value);
+        const data = researchData[study];
+
+        const totalYield = (bagSize * data.yieldPct * numBags * flushes).toFixed(1);
+
+        document.getElementById('research-totalYield').textContent = totalYield;
+        document.getElementById('research-harvestTime').textContent = data.daysToSpawn;
+
+        document.getElementById('results-research').classList.add('active');
+    }
+
+    // Dynamic Links loader
     fetch('../affiliate_config.json')
         .then(r => r.json())
         .then(config => {
-            const partner = config.partners['north_spore'];
-            if (partner) {
-                let url = partner.base_url;
-                const isPlaceholder = !partner.affiliate_id || 
-                                      partner.affiliate_id.startsWith('YOUR_') || 
-                                      partner.affiliate_id.includes('INSERT');
-                if (!isPlaceholder) {
-                    url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
+            ['north_spore', 'myyco', 'magicbag'].forEach(key => {
+                const partner = config.partners[key];
+                if (partner) {
+                    let url = partner.base_url;
+                    const isPlaceholder = !partner.affiliate_id || 
+                                          partner.affiliate_id.startsWith('YOUR_') || 
+                                          partner.affiliate_id.includes('INSERT');
+                    if (!isPlaceholder) {
+                        url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
+                    }
+                    
+                    let btn;
+                    if (key === 'north_spore') btn = document.getElementById('cta-gourmet');
+                    else if (key === 'myyco') btn = document.getElementById('cta-myyco');
+                    else if (key === 'magicbag') btn = document.getElementById('cta-magicbag');
+
+                    if (btn) btn.href = url;
                 }
-                const btn = document.getElementById('cta-north_spore');
-                if (btn) btn.href = url;
-            }
+            });
         })
         .catch(() => console.log('Config fetch skipped - using default links'));
     </script>
