@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gourmet Mushroom Grow Kit Harvest Estimator — SporlyWorks</title>
+    <meta name="description" content="Calculate your expected harvest yields from North Spore gourmet pre-colonized mushroom grow kits.">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=602">
+    <style>
+        .tool-container {
+            max-width: 800px;
+            margin: 120px auto 80px;
+            padding: 0 24px;
+        }
+        .tool-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            box-shadow: var(--glass-shadow);
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--green-light);
+            font-weight: 600;
+            margin-bottom: 32px;
+            transition: transform 0.2s;
+        }
+        .back-link:hover {
+            transform: translateX(-4px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav id="mainNav" class="scrolled">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-brand">
+                <img src="../assets/icon-128.png" alt="SporlyWorks" class="nav-icon" style="height:60px; width:60px;">
+                <span class="nav-wordmark" style="font-size:24px;">SPORLYWORKS</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html#products">Products</a>
+                <a href="wellness-stack-builder.html">Stack Builder</a>
+                <a href="../index.html#research">Science</a>
+            </div>
+            <a href="../index.html#products" class="nav-cta" style="background:linear-gradient(135deg, var(--green-light), var(--green)); color:white; padding:10px 24px; border-radius:99px; text-decoration:none; font-weight:600;">Shop Collection</a>
+        </div>
+    </nav>
+
+    <!-- ═══ TOOL WRAPPER ═══ -->
+    <main class="tool-container">
+        <a href="../index.html" class="back-link">← Back to Home</a>
+        
+        <div class="tool-card">
+            <h1 style="font-family:'DM Serif Display',serif; color:var(--green-dark); font-size:36px; margin-bottom:12px; text-align:center;">🍄 Grow Kit Harvest Estimator</h1>
+            <p style="color:var(--text-secondary); text-align:center; margin-bottom:36px; font-size:16px;">Calculate your expected harvest yield from North Spore premium grow kits based on biological efficiency.</p>
+
+            <div class="tool-row" style="display:flex; flex-direction:column; gap:20px; margin-bottom:28px;">
+                <div class="tool-field" style="display:flex; flex-direction:column; gap:8px;">
+                    <label for="species" style="font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-secondary);">Mushroom Species</label>
+                    <select id="species" style="width:100%; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--glass-border); background:#ffffff; color:var(--text-primary); font-size:15px;">
+                        <option value="blue_oyster">Blue Oyster</option>
+                        <option value="lions_mane">Lion's Mane (Hericium)</option>
+                        <option value="golden_pink_oyster">Golden / Pink Oyster</option>
+                        <option value="shiitake">Shiitake (Lentinula)</option>
+                    </select>
+                </div>
+                <div class="tool-field" style="display:flex; flex-direction:column; gap:8px;">
+                    <label for="numKits" style="font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-secondary);">Number of Grow Kits</label>
+                    <input type="number" id="numKits" value="2" min="1" max="50" style="width:100%; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--glass-border); background:#ffffff; color:var(--text-primary); font-size:15px;">
+                </div>
+            </div>
+
+            <button class="tool-btn" onclick="calculateYield()" style="width:100%; padding:16px; background:linear-gradient(135deg, var(--green-light), var(--green)); color:white; border:none; border-radius:var(--radius-pill); font-size:16px; font-weight:600; cursor:pointer; box-shadow: 0 4px 14px rgba(11, 74, 46, 0.2);">Calculate Expected Harvest</button>
+
+            <!-- Results container -->
+            <div class="tool-results" id="yieldResults">
+                <h4 style="font-size: 18px; color: var(--green-dark); margin-bottom: 20px; text-align: center;">Your Estimated Harvest</h4>
+                <div class="result-grid result-grid--double">
+                    <div class="result-stat">
+                        <div class="value" id="totalYield">–</div>
+                        <div class="label">Total Yield (lbs)</div>
+                    </div>
+                    <div class="result-stat">
+                        <div class="value" id="harvestTime">–</div>
+                        <div class="label">Days to First Harvest</div>
+                    </div>
+                </div>
+                <div class="result-ctas" style="margin-top:28px;">
+                    <a href="https://northspore.com" id="cta-north_spore" class="result-cta result-cta--primary" target="_blank" rel="noopener" style="display:block; text-align:center; padding:14px; background:var(--green-light); color:white; border-radius:var(--radius-pill); text-decoration:none; font-weight:600;">Shop Gourmet Grow Kits at North Spore →</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer style="padding: 80px 24px 40px; background: var(--green-dark); color: var(--text-on-dark); border-top: 1px solid var(--glass-border); text-align: center; margin-top: 80px;">
+        <div class="container">
+            <a href="../index.html" style="display:inline-flex; align-items:center; gap:12px; text-decoration:none; font-family:'DM Serif Display',serif; color:var(--gold-light); font-size:24px; margin-bottom:24px;">
+                <img src="../assets/icon-128.png" alt="SporlyWorks" style="height:32px; width:32px;">
+                <span style="color:var(--gold-light); letter-spacing:3px;">SPORLYWORKS</span>
+            </a>
+            <div style="display:flex; justify-content:center; gap:32px; margin-bottom:32px;">
+                <a href="../index.html#products" style="color:var(--text-on-dark); text-decoration:none; opacity:0.8;">Products</a>
+                <a href="wellness-stack-builder.html" style="color:var(--text-on-dark); text-decoration:none; opacity:0.8;">Stack Builder</a>
+                <a href="../privacy.html" style="color:var(--text-on-dark); text-decoration:none; opacity:0.8;">Privacy Policy</a>
+            </div>
+            <p style="color:var(--text-on-dark); opacity:0.6; font-size:12px; max-width:600px; margin:0 auto 12px;">Affiliate Disclosure: We may earn a referral commission when you make a purchase through our partner links at no additional cost to you.</p>
+            <p style="color:var(--text-on-dark); opacity:0.6; font-size:11px;">&copy; 2026 SporlyWorks. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+    const speciesData = {
+        blue_oyster:       { yieldPerKit: 2.0, daysToHarvest: 10, name: 'Blue Oyster' },
+        lions_mane:        { yieldPerKit: 1.8, daysToHarvest: 14, name: "Lion's Mane" },
+        golden_pink_oyster: { yieldPerKit: 1.5, daysToHarvest: 11, name: 'Golden/Pink Oyster' },
+        shiitake:          { yieldPerKit: 1.4, daysToHarvest: 18, name: 'Shiitake' }
+    };
+
+    function calculateYield() {
+        const species = document.getElementById('species').value;
+        const numKits = parseInt(document.getElementById('numKits').value);
+        const data = speciesData[species];
+
+        const totalYield = (data.yieldPerKit * numKits).toFixed(1);
+
+        document.getElementById('totalYield').textContent = totalYield;
+        document.getElementById('harvestTime').textContent = data.daysToHarvest;
+
+        const results = document.getElementById('yieldResults');
+        results.classList.add('active');
+    }
+
+    fetch('../affiliate_config.json')
+        .then(r => r.json())
+        .then(config => {
+            const partner = config.partners['north_spore'];
+            if (partner) {
+                let url = partner.base_url;
+                const isPlaceholder = !partner.affiliate_id || 
+                                      partner.affiliate_id.startsWith('YOUR_') || 
+                                      partner.affiliate_id.includes('INSERT');
+                if (!isPlaceholder) {
+                    url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
+                }
+                const btn = document.getElementById('cta-north_spore');
+                if (btn) btn.href = url;
+            }
+        })
+        .catch(() => console.log('Config fetch skipped - using default links'));
+    </script>
+</body>
+</html>

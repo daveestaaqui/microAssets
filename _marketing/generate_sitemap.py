@@ -43,6 +43,13 @@ def generate_sitemap():
             if f.endswith(".html"):
                 xml_content.append(f"  <url>\n    <loc>{BASE_URL}/products/{f}</loc>\n    <lastmod>{today}</lastmod>\n    <priority>0.9</priority>\n  </url>")
                 
+    # 5. Add tools from the tools/ folder
+    tools_dir = BASE_DIR / "tools"
+    if tools_dir.exists():
+        for f in os.listdir(tools_dir):
+            if f.endswith(".html"):
+                xml_content.append(f"  <url>\n    <loc>{BASE_URL}/tools/{f}</loc>\n    <lastmod>{today}</lastmod>\n    <priority>0.8</priority>\n  </url>")
+                
     xml_content.append("</urlset>")
     
     sitemap_path = BASE_DIR / "sitemap.xml"

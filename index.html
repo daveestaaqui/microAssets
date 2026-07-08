@@ -36,10 +36,10 @@
             <div class="nav-links" id="navLinks">
                 <a href="#genetics">Cultivation</a>
                 <a href="#supplements">Supplements</a>
+                <a href="#tools">Tools</a>
                 <a href="#research">Science</a>
-                <a href="#compare">Compare</a>
             </div>
-            <a href="#genetics" class="nav-cta">Shop Collection</a>
+            <a href="#tools" class="nav-cta">Explore Tools</a>
         </div>
     </nav>
 
@@ -96,46 +96,7 @@
                 </a>
             </div>
 
-            <!-- ═══ YIELD ESTIMATOR MICRO-TOOL ═══ -->
-            <div class="tool-section reveal" id="yield-estimator">
-                <h3 class="tool-title">🍄 Grow Kit Harvest Estimator</h3>
-                <p class="tool-subtitle">Calculate your expected harvest from North Spore premium grow kits</p>
 
-                <div class="tool-row">
-                    <div class="tool-field">
-                        <label for="species">Mushroom Species</label>
-                        <select id="species">
-                            <option value="blue_oyster">Blue Oyster</option>
-                            <option value="lions_mane">Lion's Mane (Hericium)</option>
-                            <option value="golden_pink_oyster">Golden / Pink Oyster</option>
-                            <option value="shiitake">Shiitake (Lentinula)</option>
-                        </select>
-                    </div>
-                    <div class="tool-field">
-                        <label for="numKits">Number of Grow Kits</label>
-                        <input type="number" id="numKits" value="2" min="1" max="50">
-                    </div>
-                </div>
-
-                <button class="tool-btn" onclick="calculateYield()">Calculate Estimated Yield</button>
-
-                <div class="tool-results" id="yieldResults">
-                    <h4>Your Estimated Harvest</h4>
-                    <div class="result-grid result-grid--double">
-                        <div class="result-stat">
-                            <div class="value" id="totalYield">–</div>
-                            <div class="label">Total Yield (lbs)</div>
-                        </div>
-                        <div class="result-stat">
-                            <div class="value" id="harvestTime">–</div>
-                            <div class="label">Days to First Harvest</div>
-                        </div>
-                    </div>
-                    <div class="result-ctas">
-                        <a href="https://northspore.com" id="cta-north_spore" class="result-cta result-cta--primary" target="_blank" rel="noopener">Shop Grow Kits at North Spore →</a>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -218,39 +179,46 @@
                 </a>
             </div>
 
-            <!-- ═══ WELLNESS STACK BUILDER MICRO-TOOL ═══ -->
-            <div class="tool-section reveal" id="stack-builder">
-                <h3 class="tool-title">✨ Daily Wellness Stack Builder</h3>
-                <p class="tool-subtitle">Select your health goals — we'll recommend the right products</p>
+        </div>
+    </section>
 
-                <div class="goal-grid" id="goalGrid">
-                    <div class="goal-chip" data-goal="focus" onclick="toggleGoal(this)">
-                        <span class="icon">🧠</span> Focus
+    <!-- ═══ INTERACTIVE MYCOLOGY TOOLS ═══ -->
+    <section class="products-section" id="tools" style="background: var(--bg-surface-elevated); border-top: 1px solid var(--glass-border); padding: 80px 0;">
+        <div class="container">
+            <div class="section-header reveal" style="text-align: center; margin-bottom: 48px;">
+                <h2 class="section-title">Interactive Mycology Tools</h2>
+                <p class="section-subtitle">Utilize our evidence-based calculator engines and stack planners to optimize your cultivation and wellness stack.</p>
+            </div>
+            <div class="product-grid">
+                <!-- Yield Estimator Card -->
+                <a href="tools/yield-estimator.html" class="product-card reveal">
+                    <img src="assets/illustrations/grow_kits.jpg" alt="Mushroom Yield Estimator" class="product-img" loading="lazy">
+                    <div class="product-info">
+                        <h3 class="product-title">Grow Kit Harvest Estimator</h3>
+                        <p class="product-desc">Calculate your expected edible crop yield from pre-colonized sawdust blocks based on biological efficiency ratios and species parameters.</p>
+                        <div class="product-features">
+                            <span class="product-feature">Yield Calculator</span>
+                            <span class="product-feature">Biological Efficiency</span>
+                            <span class="product-feature">Snappy & Precise</span>
+                        </div>
+                        <span class="btn-card">Launch Estimator →</span>
                     </div>
-                    <div class="goal-chip" data-goal="immunity" onclick="toggleGoal(this)">
-                        <span class="icon">🛡️</span> Immunity
-                    </div>
-                    <div class="goal-chip" data-goal="energy" onclick="toggleGoal(this)">
-                        <span class="icon">⚡</span> Energy
-                    </div>
-                    <div class="goal-chip" data-goal="gut" onclick="toggleGoal(this)">
-                        <span class="icon">🌿</span> Gut Health
-                    </div>
-                    <div class="goal-chip" data-goal="stress" onclick="toggleGoal(this)">
-                        <span class="icon">😌</span> Stress Relief
-                    </div>
-                    <div class="goal-chip" data-goal="sleep" onclick="toggleGoal(this)">
-                        <span class="icon">😴</span> Sleep
-                    </div>
-                </div>
+                </a>
 
-                <button class="tool-btn" onclick="buildStack()">Build My Stack</button>
-
-                <div class="tool-results" id="stackResults">
-                    <h4>Your Personalized Wellness Stack</h4>
-                    <div id="stackCards"></div>
-                    <div class="result-ctas" id="stackCtas"></div>
-                </div>
+                <!-- Stack Builder Card -->
+                <a href="tools/wellness-stack-builder.html" class="product-card reveal">
+                    <img src="assets/illustrations/synbiotics.jpg" alt="Daily Wellness Stack Builder" class="product-img" loading="lazy">
+                    <div class="product-info">
+                        <h3 class="product-title">Daily Wellness Stack Builder</h3>
+                        <p class="product-desc">Planners designed to match your cognitive focus, immune support, cardiovascular stamina, and digestive health targets with clinical formulations.</p>
+                        <div class="product-features">
+                            <span class="product-feature">Stack Planner</span>
+                            <span class="product-feature">Supplement Advisory</span>
+                            <span class="product-feature">Tailored Recommendations</span>
+                        </div>
+                        <span class="btn-card">Launch Stack Builder →</span>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
@@ -338,51 +306,7 @@
         </div>
     </section>
 
-    <!-- ═══ COMPARISON TABLE ═══ -->
-    <section class="comparison-section" id="compare">
-        <div class="container">
-            <div class="section-header reveal">
-                <h2 class="section-title">Partner Comparison</h2>
-                <p class="section-subtitle">Side-by-side breakdown of our curated partner stack.</p>
-            </div>
-            <div class="comparison-table-wrap reveal">
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th>Partner</th>
-                            <th>Category</th>
-                            <th>Key Differentiator</th>
-                            <th>Lab Tested</th>
-                            <th>Organic</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="partner-name">North Spore</td>
-                            <td>Grow Kits</td>
-                            <td>Pre-inoculated, harvest in 10-14 days</td>
-                            <td class="check">✓</td>
-                            <td class="check">✓</td>
-                        </tr>
-                        <tr>
-                            <td class="partner-name">Real Mushrooms</td>
-                            <td>Extracts</td>
-                            <td>100% fruiting body, verified beta-glucans</td>
-                            <td class="check">✓</td>
-                            <td class="check">✓</td>
-                        </tr>
-                        <tr>
-                            <td class="partner-name">Seed</td>
-                            <td>Probiotics</td>
-                            <td>24-strain synbiotic, prebiotic capsule</td>
-                            <td class="check">✓</td>
-                            <td>—</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
+
 
     <!-- ═══ FOOTER ═══ -->
     <footer>
@@ -394,7 +318,7 @@
             <div class="footer-nav">
                 <a href="#genetics">Cultivation</a>
                 <a href="#supplements">Supplements</a>
-                <a href="#compare">Compare</a>
+                <a href="#tools">Tools</a>
                 <a href="guides/lions-mane-cognitive-wellness.html">Lion's Mane Guide</a>
                 <a href="guides/grow-kit-biological-efficiency.html">Yield Guide</a>
                 <a href="guides/ds01-synbiotic-gut-science.html">Gut Health Guide</a>
@@ -438,106 +362,7 @@
         })
         .catch(() => console.log('Affiliate config not loaded — using fallback links'));
 
-    // ═══ GROW KIT HARVEST ESTIMATOR ═══
-    const speciesData = {
-        blue_oyster:       { yieldPerKit: 2.0, daysToHarvest: 10, name: 'Blue Oyster' },
-        lions_mane:        { yieldPerKit: 1.8, daysToHarvest: 14, name: "Lion's Mane" },
-        golden_pink_oyster: { yieldPerKit: 1.5, daysToHarvest: 11, name: 'Golden/Pink Oyster' },
-        shiitake:          { yieldPerKit: 1.4, daysToHarvest: 18, name: 'Shiitake' }
-    };
 
-    function calculateYield() {
-        const species = document.getElementById('species').value;
-        const numKits = parseInt(document.getElementById('numKits').value);
-        const data = speciesData[species];
-
-        const totalYield = (data.yieldPerKit * numKits).toFixed(1);
-
-        document.getElementById('totalYield').textContent = totalYield;
-        document.getElementById('harvestTime').textContent = data.daysToHarvest;
-
-        const results = document.getElementById('yieldResults');
-        results.classList.add('active');
-    }
-
-    // ═══ WELLNESS STACK BUILDER ═══
-    const selectedGoals = new Set();
-
-    function toggleGoal(el) {
-        const goal = el.dataset.goal;
-        if (selectedGoals.has(goal)) {
-            selectedGoals.delete(goal);
-            el.classList.remove('selected');
-        } else {
-            selectedGoals.add(goal);
-            el.classList.add('selected');
-        }
-    }
-
-    const stackRecommendations = {
-        focus:    { partner: 'real_mushrooms', product: "Lion's Mane Extract", reason: 'Supports NGF production & cognitive clarity' },
-        immunity: { partner: 'real_mushrooms', product: 'Turkey Tail / Chaga Extract', reason: 'Rich in beta-glucans for immune modulation' },
-        energy:   { partner: 'real_mushrooms', product: 'Cordyceps Extract', reason: 'Supports ATP production & oxygen utilization' },
-        gut:      { partner: 'seed', product: 'DS-01® Daily Synbiotic', reason: '24-strain probiotic for gut microbiome balance' },
-        stress:   { partner: 'real_mushrooms', product: 'Reishi Extract', reason: 'Adaptogenic support for stress resilience' },
-        sleep:    { partner: 'real_mushrooms', product: 'Reishi Extract (PM)', reason: 'Promotes calm & supports sleep quality' }
-    };
-
-    function buildStack() {
-        if (selectedGoals.size === 0) return;
-        const cardsDiv = document.getElementById('stackCards');
-        const ctasDiv = document.getElementById('stackCtas');
-        cardsDiv.innerHTML = '';
-        ctasDiv.innerHTML = '';
-
-        const partnersUsed = new Set();
-        const seen = new Set();
-
-        selectedGoals.forEach(goal => {
-            const rec = stackRecommendations[goal];
-            const key = rec.partner + ':' + rec.product;
-            if (seen.has(key)) return;
-            seen.add(key);
-            partnersUsed.add(rec.partner);
-
-            const partner = affiliateConfig ? affiliateConfig[rec.partner] : null;
-            const img = partner ? partner.image : '';
-
-            cardsDiv.innerHTML += `
-                <div class="stack-card">
-                    <img src="${img}" alt="${rec.product}">
-                    <div class="stack-card-info">
-                        <h5>${rec.product}</h5>
-                        <p>${rec.reason}</p>
-                    </div>
-                </div>
-            `;
-        });
-
-        partnersUsed.forEach(key => {
-            const partner = affiliateConfig ? affiliateConfig[key] : null;
-            if (!partner) return;
-            
-            // Secure affiliate link: Use base_url fallback if affiliate ID is a placeholder
-            let url = partner.base_url;
-            const isPlaceholder = !partner.affiliate_id || 
-                                  partner.affiliate_id.startsWith('YOUR_') || 
-                                  partner.affiliate_id.includes('INSERT');
-            if (!isPlaceholder) {
-                url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
-            }
-            
-            const isPrimary = key === 'real_mushrooms';
-            ctasDiv.innerHTML += `
-                <a href="${url}" class="result-cta ${isPrimary ? 'result-cta--primary' : 'result-cta--secondary'}" target="_blank" rel="noopener">
-                    Shop ${partner.name} →
-                </a>
-            `;
-        });
-
-        const results = document.getElementById('stackResults');
-        results.classList.add('active');
-    }
 
     // ═══ RESEARCH JOURNAL TAB SWITCHER ═══
     function switchResearchTab(tabId) {
