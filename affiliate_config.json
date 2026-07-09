@@ -3,9 +3,9 @@
     "north_spore": {
       "name": "North Spore",
       "tagline": "Ready-to-Grow Gourmet Kits",
-      "affiliate_id": "YOUR_NORTH_SPORE_ID",
+      "affiliate_id": "2977527",
       "base_url": "https://northspore.com",
-      "affiliate_url_template": "https://northspore.com/?aff={affiliate_id}",
+      "affiliate_url_template": "https://www.awin1.com/cread.php?awinmid=34891&awinaffid={affiliate_id}&ued=https%3A%2F%2Fnorthspore.com%2F",
       "category": "cultivation",
       "description": "Pre-inoculated, fully colonized mushroom grow kits. Simply cut a slit, spray with water, and harvest fresh gourmet mushrooms in 10-14 days.",
       "image": "assets/illustrations/grow_kits.jpg",
@@ -36,9 +36,9 @@
     "real_mushrooms": {
       "name": "Real Mushrooms",
       "tagline": "Organic Functional Mushroom Extracts",
-      "affiliate_id": "YOUR_REALMUSHROOMS_ID",
+      "affiliate_id": "2977527",
       "base_url": "https://www.realmushrooms.com",
-      "affiliate_url_template": "https://www.realmushrooms.com/?ref={affiliate_id}",
+      "affiliate_url_template": "https://www.awin1.com/cread.php?awinmid=46685&awinaffid={affiliate_id}&ued=https%3A%2F%2Fwww.realmushrooms.com%2F",
       "category": "supplements",
       "description": "100% organic fruiting body extracts with verified beta-glucan profiles. No fillers, no grains, no mycelium on grain.",
       "image": "assets/illustrations/supplements.jpg",
