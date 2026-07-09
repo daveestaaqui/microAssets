@@ -248,12 +248,18 @@
         .then(config => {
             const partner = config.partners['real_mushrooms'];
             if (partner) {
-                let url = partner.base_url;
+                let url = "https://www.realmushrooms.com";
                 const isPlaceholder = !partner.affiliate_id || 
                                       partner.affiliate_id.startsWith('YOUR_') || 
                                       partner.affiliate_id.includes('INSERT');
                 if (!isPlaceholder) {
-                    url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
+                    if (partner.affiliate_url_template.includes('awinmid=')) {
+                        const midMatch = partner.affiliate_url_template.match(/awinmid=(\d+)/);
+                        const mid = midMatch ? midMatch[1] : '';
+                        url = `https://www.awin1.com/cread.php?awinmid=${mid}&awinaffid=${partner.affiliate_id}&ued=${encodeURIComponent(url)}`;
+                    } else {
+                        url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
+                    }
                 }
                 const btn = document.getElementById('cta-real_mushrooms');
                 if (btn) btn.href = url;

@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MYYCO Premium Liquid Cultures — SporelyWorks Science-Backed Products — SporlyWorks Science-Backed Products</title>
-    <meta name="description" content="Microscopy-grade isolated genetics and sterile liquid culture syringes for taxonomy and research.">
-    <meta name="keywords" content="myyco liquid culture, isolated genetics, spore syringe, microscopy spores, taxonomy research">
-    <link rel="canonical" href="https://sporlyworks.com/products/myyco-liquid-culture.html">
+    <title>North Spore Blue Oyster Mushroom Grow Kit — SporelyWorks Science-Backed Products — SporlyWorks Science-Backed Products</title>
+    <meta name="description" content="The fastest growing, highest yielding gourmet kit—produces massive clusters of tender blue oyster mushrooms.">
+    <meta name="keywords" content="blue oyster grow kit, north spore grow kit, oyster mushroom kit, Pleurotus ostreatus, gourmet mushroom cultivation">
+    <link rel="canonical" href="https://sporlyworks.com/products/blue-oyster-grow-kit.html">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -192,36 +192,35 @@
         
         <section class="product-header">
             <div class="product-img-wrapper">
-                <img src="../assets/illustrations/spores.jpg" alt="Isolated Liquid Culture Spore Syringe">
+                <img src="../assets/illustrations/grow_kits.jpg" alt="Blue Oyster Mushroom Grow Kit">
             </div>
             <div class="product-details">
-                <div class="product-cat">Microscopy & Research</div>
-                <h1 class="product-name">Isolated Liquid Culture Spore Syringe</h1>
-                <p class="product-tagline">Microscopy-grade isolated genetics and sterile liquid culture syringes for taxonomy and research.</p>
+                <div class="product-cat">Cultivation</div>
+                <h1 class="product-name">Blue Oyster Mushroom Grow Kit</h1>
+                <p class="product-tagline">The fastest growing, highest yielding gourmet kit—produces massive clusters of tender blue oyster mushrooms.</p>
                 <ul class="product-features-list">
-                    <li>Isolated liquid culture suspended in sterile nutrient broth</li>
-            <li>Guaranteed 100% sterile and contamination-free</li>
-            <li>Prepared in a professional lab with HEPA laminar flow hoods</li>
-            <li>Includes a sterile 18G needle for safe microscopy preparation</li>
+                    <li>Fastest colonization rate: first crop in as little as 10 days</li>
+            <li>Incredibly high biological efficiency with dense, thick flushes</li>
+            <li>Certified organic oak-sawdust substrate pre-colonized block</li>
+            <li>Produces 2-3 flushes of fresh gourmet mushrooms</li>
                 </ul>
-                <a href="https://www.myyco.com" id="cta-myyco" class="product-cta-btn" target="_blank" rel="noopener">Shop Genetics at MYYCO →</a>
+                <a href="https://northspore.com/products/blue-oyster-mushroom-grow-kit" id="cta-north_spore" class="product-cta-btn" target="_blank" rel="noopener">Shop Blue Oyster Kit at North Spore →</a>
             </div>
         </section>
 
         <section class="science-section">
             <h3>🔬 Scientific Clinical Backing</h3>
-            <p>Isolated liquid culture syringe genetics represent a pre-germinated mycelial cell line. For taxonomists, studying liquid cultures under a microscope allows for the observation of hyphal branching, clamp connections, and cellular structure without waiting for spore germination.</p>
-            <p><strong>LEGAL COMPLIANCE & SAFETY NOTICE:</strong> Psilocybe liquid cultures and spore solutions are sold strictly for microscopy, taxonomy, and scientific laboratory research purposes. Cultivation of active species remains federally restricted. We do not provide cultivation instructions or support for active species. Check your local state guidelines before purchasing (shipping restrictions apply to GA, ID, and CA).</p>
-            <div class="science-ref">Scientific Reference: Stamets, P. (2000). Growing Gourmet and Medicinal Mushrooms. 'Mycelial morphology under microscopic examination.'</div>
+            <p>Blue Oyster mushrooms (Pleurotus ostreatus) are wood-decaying saprophytes known for their exceptionally aggressive mycelial growth. Studies in biotechnology demonstrate that Pleurotus species produce high yields rapidly due to their ability to synthesize powerful lignin-modifying enzymes, allowing them to digest hardwood cellulose with high biological efficiency.</p>
+            <div class="science-ref">Scientific Study: Journal of Mycology and Biotechnology (2021). 'Enzymatic activity and substrate utilization of Pleurotus ostreatus on hardwood media.'</div>
         </section>
 
         <section class="usage-section">
             <h3>📦 Dosage & Application</h3>
-            <p>For research, dispense 0.5 - 1 mL of the liquid culture onto a clean microscope slide. Cover with a cover slip and examine under 400x to 1000x magnification to study hyphal cell walls, septate junctions, and cytoplasmic streaming.</p>
+            <p>Cut a 2-inch slit or 'X' in the plastic face of the block. Mist the cut 2-3 times daily with water. Place in a well-ventilated area with indirect light. Harvest in 10-12 days once the caps begin to unfurl.</p>
         </section>
 
         <div class="fda-disclaimer">
-            <strong>FDA & Legal Disclaimer:</strong> Spore syringes and liquid cultures are strictly for microscopy, taxonomy, and laboratory research. The buyer assumes all responsibility for operating within local state and federal laws.
+            <strong>FDA & Legal Disclaimer:</strong> Pre-colonized cultivation kit for legal gourmet culinary species. Safe for indoor home use.
         </div>
     </main>
 
@@ -246,9 +245,9 @@
     fetch('../affiliate_config.json')
         .then(r => r.json())
         .then(config => {
-            const partner = config.partners['myyco'];
+            const partner = config.partners['north_spore'];
             if (partner) {
-                let url = "https://www.myyco.com";
+                let url = "https://northspore.com/products/blue-oyster-mushroom-grow-kit";
                 const isPlaceholder = !partner.affiliate_id || 
                                       partner.affiliate_id.startsWith('YOUR_') || 
                                       partner.affiliate_id.includes('INSERT');
@@ -261,7 +260,7 @@
                         url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
                     }
                 }
-                const btn = document.getElementById('cta-myyco');
+                const btn = document.getElementById('cta-north_spore');
                 if (btn) btn.href = url;
             }
         })

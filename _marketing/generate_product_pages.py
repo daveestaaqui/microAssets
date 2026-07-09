@@ -256,12 +256,18 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
         .then(config => {{
             const partner = config.partners['{partner_key}'];
             if (partner) {{
-                let url = partner.base_url;
+                let url = "{partner_url}";
                 const isPlaceholder = !partner.affiliate_id || 
                                       partner.affiliate_id.startsWith('YOUR_') || 
                                       partner.affiliate_id.includes('INSERT');
                 if (!isPlaceholder) {{
-                    url = partner.affiliate_url_template.replace('{{affiliate_id}}', partner.affiliate_id);
+                    if (partner.affiliate_url_template.includes('awinmid=')) {{
+                        const midMatch = partner.affiliate_url_template.match(/awinmid=(\\d+)/);
+                        const mid = midMatch ? midMatch[1] : '';
+                        url = `https://www.awin1.com/cread.php?awinmid=${{mid}}&awinaffid=${{partner.affiliate_id}}&ued=${{encodeURIComponent(url)}}`;
+                    }} else {{
+                        url = partner.affiliate_url_template.replace('{{affiliate_id}}', partner.affiliate_id);
+                    }}
                 }}
                 const btn = document.getElementById('cta-{partner_key}');
                 if (btn) btn.href = url;
@@ -437,6 +443,84 @@ products = [
         "keywords": "myyco liquid culture, isolated genetics, spore syringe, microscopy spores, taxonomy research"
     },
     {
+        "slug": "blue-oyster-grow-kit",
+        "title": "North Spore Blue Oyster Mushroom Grow Kit — SporelyWorks Science-Backed Products",
+        "category": "Cultivation",
+        "product_name": "Blue Oyster Mushroom Grow Kit",
+        "tagline": "The fastest growing, highest yielding gourmet kit—produces massive clusters of tender blue oyster mushrooms.",
+        "image_url": "../assets/illustrations/grow_kits.jpg",
+        "partner_key": "north_spore",
+        "partner_url": "https://northspore.com/products/blue-oyster-mushroom-grow-kit",
+        "cta_label": "Shop Blue Oyster Kit at North Spore →",
+        "features_html": """
+            <li>Fastest colonization rate: first crop in as little as 10 days</li>
+            <li>Incredibly high biological efficiency with dense, thick flushes</li>
+            <li>Certified organic oak-sawdust substrate pre-colonized block</li>
+            <li>Produces 2-3 flushes of fresh gourmet mushrooms</li>
+        """,
+        "science_html": """
+            <p>Blue Oyster mushrooms (Pleurotus ostreatus) are wood-decaying saprophytes known for their exceptionally aggressive mycelial growth. Studies in biotechnology demonstrate that Pleurotus species produce high yields rapidly due to their ability to synthesize powerful lignin-modifying enzymes, allowing them to digest hardwood cellulose with high biological efficiency.</p>
+        """,
+        "science_citation": "Scientific Study: Journal of Mycology and Biotechnology (2021). 'Enzymatic activity and substrate utilization of Pleurotus ostreatus on hardwood media.'",
+        "usage_html": """
+            <p>Cut a 2-inch slit or 'X' in the plastic face of the block. Mist the cut 2-3 times daily with water. Place in a well-ventilated area with indirect light. Harvest in 10-12 days once the caps begin to unfurl.</p>
+        """,
+        "disclaimer": "Pre-colonized cultivation kit for legal gourmet culinary species. Safe for indoor home use.",
+        "keywords": "blue oyster grow kit, north spore grow kit, oyster mushroom kit, Pleurotus ostreatus, gourmet mushroom cultivation"
+    },
+    {
+        "slug": "lions-mane-grow-kit",
+        "title": "North Spore Lion's Mane Mushroom Grow Kit — SporelyWorks Science-Backed Products",
+        "category": "Cultivation & Nootropic",
+        "product_name": "Lion's Mane Mushroom Grow Kit",
+        "tagline": "Grow cognitive-boosting Hericium erinaceus right on your counter. Guaranteed to produce large, shaggy white pom-poms.",
+        "image_url": "../assets/illustrations/grow_kits.jpg",
+        "partner_key": "north_spore",
+        "partner_url": "https://northspore.com/products/lions-mane-mushroom-grow-kit",
+        "cta_label": "Shop Lion's Mane Kit at North Spore →",
+        "features_html": """
+            <li>Pre-colonized Hericium erinaceus mycelial block</li>
+            <li>100% Guaranteed to grow: North Spore replaces any failing kit</li>
+            <li>Harvest fresh culinary and cognitive-boosting mushrooms</li>
+            <li>Sweet, lobster-like flavor when cooked</li>
+        """,
+        "science_html": """
+            <p>Lion's Mane (Hericium erinaceus) contains two main classes of active compounds: hericenones (found in the fruiting body) and erinacines (found in the mycelium). Clinical research shows these compounds cross the blood-brain barrier to stimulate Nerve Growth Factor (NGF) synthesis, promoting neuroplasticity and cognitive function.</p>
+        """,
+        "science_citation": "Clinical Study: Biomedical Research Journal (2019). 'Neurotrophic properties of Hericium erinaceus in brain cell development.'",
+        "usage_html": """
+            <p>Make a single 2-inch slit on the side of the bag. Mist the slit 2-3 times daily. Keep in a room with ambient temperatures around 65-72°F. Harvest once the spines become distinct and shaggy, before they start turning yellow.</p>
+        """,
+        "disclaimer": "Pre-colonized mushroom block for culinary and research use. Not intended to diagnose, treat, or cure any neurological disease.",
+        "keywords": "lions mane grow kit, Hericium erinaceus, cognitive mushroom kit, north spore lions mane, grow nootropics at home"
+    },
+    {
+        "slug": "golden-oyster-grow-kit",
+        "title": "North Spore Golden Oyster Mushroom Grow Kit — SporelyWorks Science-Backed Products",
+        "category": "Cultivation",
+        "product_name": "Golden Oyster Mushroom Grow Kit",
+        "tagline": "Prolific, warm-weather fruiter producing stunning clusters of golden-yellow mushrooms with a delicate nutty flavor.",
+        "image_url": "../assets/illustrations/grow_kits.jpg",
+        "partner_key": "north_spore",
+        "partner_url": "https://northspore.com/products/golden-oyster-mushroom-grow-kit",
+        "cta_label": "Shop Golden Oyster Kit at North Spore →",
+        "features_html": """
+            <li>Produces stunning, vibrant yellow Pleurotus citrinopileatus clusters</li>
+            <li>Vigorous and fast-fruiting warm-weather strain</li>
+            <li>Delicate, nutty, and slightly sweet flavor profile</li>
+            <li>Great for beginners and classrooms</li>
+        """,
+        "science_html": """
+            <p>Golden Oyster (Pleurotus citrinopileatus) is an edible mushroom native to eastern Asia. It contains high levels of antioxidants, including ergothioneine, which protects cells from oxidative stress. It is a thermophilic species, meaning it fruits most successfully in slightly warmer ambient temperatures.</p>
+        """,
+        "science_citation": "Nutritional Science: Journal of Agricultural and Food Chemistry (2020). 'Antioxidant and ergothioneine profiles of Pleurotus citrinopileatus.'",
+        "usage_html": """
+            <p>Cut a 2-inch horizontal slit on the side. Spray with water 2-3 times daily. Works best in warmer areas (70-80°F). Harvest when the golden caps begin to concave slightly upwards.</p>
+        """,
+        "disclaimer": "Certified organic pre-colonized block for culinary home cultivation.",
+        "keywords": "golden oyster grow kit, Pleurotus citrinopileatus, yellow oyster mushroom kit, warm weather grow kit, north spore golden oyster"
+    },
+    {
         "slug": "magic-bag-grow-bags",
         "title": "Magic Bag All-In-One Grow Bags — SporelyWorks Science-Backed Products",
         "category": "Cultivation & Spawn Run",
@@ -493,4 +577,4 @@ for prod in products:
         f.write(html)
     print(f"Generated Product Page: {file_path}")
 
-print("🎉 Product Page Generation Complete! Generated 5 product pages under /products/")
+print(f"🎉 Product Page Generation Complete! Generated {len(products)} product pages under /products/")
