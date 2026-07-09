@@ -111,7 +111,7 @@ nav.scrolled {
 }
 .nav-brand { display: flex; align-items: center; text-decoration: none; gap: 12px; }
 .nav-icon {
-    flex-shrink: 0; height: 88px; width: 88px; object-fit: contain;
+    flex-shrink: 0; height: 120px; width: 120px; object-fit: contain;
     transition: all 0.4s var(--transition-smooth);
 }
 .nav-brand:hover .nav-icon {
@@ -123,8 +123,8 @@ nav.scrolled {
     transition: all 0.4s var(--transition-smooth);
 }
 nav.scrolled .nav-icon {
-    height: 68px;
-    width: 68px;
+    height: 90px;
+    width: 90px;
 }
 nav.scrolled .nav-wordmark {
     font-size: 24px;

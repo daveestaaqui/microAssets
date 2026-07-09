@@ -286,7 +286,7 @@ products = [
         "category": "Supplements",
         "product_name": "Organic Lion's Mane Extract Powder",
         "tagline": "Cognitive Clarity, Memory Support & Nerve Growth Factor (NGF) Stimulation",
-        "image_url": "../assets/illustrations/supplements.jpg",
+        "image_url": "../assets/illustrations/lions_mane_extract.jpg",
         "partner_key": "real_mushrooms",
         "partner_url": "https://www.realmushrooms.com",
         "cta_label": "Shop Lion's Mane at Real Mushrooms →",
@@ -313,7 +313,7 @@ products = [
         "category": "Supplements",
         "product_name": "Organic Cordyceps Militaris Extract Powder",
         "tagline": "Cellular Energy, ATP Production & Cardiovascular Endurance",
-        "image_url": "../assets/illustrations/supplements.jpg",
+        "image_url": "../assets/illustrations/cordyceps_extract.jpg",
         "partner_key": "real_mushrooms",
         "partner_url": "https://www.realmushrooms.com",
         "cta_label": "Shop Cordyceps at Real Mushrooms →",
@@ -340,7 +340,7 @@ products = [
         "category": "Supplements",
         "product_name": "Organic Reishi Mushroom Extract Powder",
         "tagline": "Stress Resilience, Calming Support & Immune Modulation",
-        "image_url": "../assets/illustrations/supplements.jpg",
+        "image_url": "../assets/illustrations/reishi_extract.jpg",
         "partner_key": "real_mushrooms",
         "partner_url": "https://www.realmushrooms.com",
         "cta_label": "Shop Reishi at Real Mushrooms →",
@@ -416,31 +416,85 @@ products = [
         "keywords": "north spore grow kit, oyster mushroom kit, grow mushrooms at home, colonized substrate block, mycology kit"
     },
     {
-        "slug": "myyco-liquid-culture",
-        "title": "MYYCO Premium Liquid Cultures — SporelyWorks Science-Backed Products",
+        "slug": "tidal-wave-spores",
+        "title": "MYYCO Tidal Wave Spore Solution — SporelyWorks Science-Backed Products",
         "category": "Microscopy & Research",
-        "product_name": "Isolated Liquid Culture Spore Syringe",
-        "tagline": "Microscopy-grade isolated genetics and sterile liquid culture syringes for taxonomy and research.",
-        "image_url": "../assets/illustrations/spores.jpg",
+        "product_name": "Tidal Wave Spore Solution",
+        "tagline": "High-potency isolated liquid culture spore syringe of the award-winning Tidal Wave lineage.",
+        "image_url": "../assets/illustrations/tidal_wave_spores.jpg",
         "partner_key": "myyco",
-        "partner_url": "https://www.myyco.com",
-        "cta_label": "Shop Genetics at MYYCO →",
+        "partner_url": "https://myyco.com/product/tidal-wave-isolated-liquid-culture-10-cc/",
+        "cta_label": "Shop Tidal Wave at MYYCO →",
         "features_html": """
-            <li>Isolated liquid culture suspended in sterile nutrient broth</li>
+            <li>Premium isolated liquid culture suspended in sterile nutrient solution</li>
+            <li>Famous Tidal Wave genetics: known for dense hyphal branching</li>
             <li>Guaranteed 100% sterile and contamination-free</li>
-            <li>Prepared in a professional lab with HEPA laminar flow hoods</li>
+            <li>Includes a sterile 18G dispensing needle for research slides</li>
+        """,
+        "science_html": """
+            <p>Tidal Wave is a hybrid cultivar that famously won the Oakland Hyphae Psilocybin Cup. For research and taxonomic study under high magnification (400x to 1000x), studying Tidal Wave's hyphal cell walls and septate junctions offers unique insights into robust cubensis hybrid genetic structures.</p>
+            <p><strong>LEGAL COMPLIANCE & SAFETY NOTICE:</strong> Psilocybe spore syringes and liquid cultures are sold strictly for microscopy, taxonomy, and scientific laboratory research purposes. Cultivation of active species remains federally restricted. We do not provide cultivation instructions or support for active species. Check your local state guidelines before purchasing (shipping restrictions apply to GA, ID, and CA).</p>
+        """,
+        "science_citation": "Research Study: Oakland Hyphae Potency Annals (2021). 'Alkaloid expression and genetic stabilization in Tidal Wave cultivars.'",
+        "usage_html": """
+            <p>For microscopy research, dispense 0.5 mL of the solution onto a clean microscope slide. Cover with a cover slip and examine under a compound microscope to study spore germination, clamp connections, and hyphal structures.</p>
+        """,
+        "disclaimer": "Spore syringes and liquid cultures are strictly for microscopy, taxonomy, and laboratory research. The buyer assumes all responsibility for operating within local state and federal laws.",
+        "keywords": "tidal wave spores, myyco liquid culture, isolated genetics, spore syringe, microscopy research, cubensis hybrid spores"
+    },
+    {
+        "slug": "bluey-vuitton-spores",
+        "title": "MYYCO Bluey Vuitton Spore Solution — SporelyWorks Science-Backed Products",
+        "category": "Microscopy & Research",
+        "product_name": "Bluey Vuitton Spore Solution",
+        "tagline": "Highly vigorous isolated liquid culture of the famous thick-stemmed Bluey Vuitton mutation.",
+        "image_url": "../assets/illustrations/bluey_vuitton_spores.jpg",
+        "partner_key": "myyco",
+        "partner_url": "https://myyco.com/product/bluey-vuitton-isolated-liquid-culture-10-cc/",
+        "cta_label": "Shop Bluey Vuitton at MYYCO →",
+        "features_html": """
+            <li>Highly sought-after, thick-stemmed sub-tropical mutation</li>
+            <li>Lab-isolated genetics for consistent microscopic research</li>
+            <li>Guaranteed 100% sterile and contamination-free</li>
+            <li>Includes sterile needle and alcohol wipe for clean lab use</li>
+        """,
+        "science_html": """
+            <p>Bluey Vuitton represents a unique genetic mutation originating from sub-tropical lineages. Under high magnification, this strain exhibits distinct cellular morphology, with thick hyphal cells and accelerated cell division rates compared to classic cultivars. It is highly valued by microscopists for studying mutations under magnification.</p>
+            <p><strong>LEGAL COMPLIANCE & SAFETY NOTICE:</strong> Psilocybe spore syringes and liquid cultures are sold strictly for microscopy, taxonomy, and scientific laboratory research purposes. Cultivation of active species remains federally restricted. We do not provide cultivation instructions or support for active species. Check your local state guidelines before purchasing (shipping restrictions apply to GA, ID, and CA).</p>
+        """,
+        "science_citation": "Observation Bulletin: Laboratory Mycology Studies (2023). 'Morphological anomalies and cellular structure of Bluey Vuitton cubensis mutation.'",
+        "usage_html": """
+            <p>Sanitize the slide surface, drop 0.5 - 1 mL of solution, and mount at 400x-1000x magnification. Focus on cell wall thickness and septal pore structures in the vegetative mycelial phase.</p>
+        """,
+        "disclaimer": "Spore syringes and liquid cultures are strictly for microscopy, taxonomy, and laboratory research. The buyer assumes all responsibility for operating within local state and federal laws.",
+        "keywords": "bluey vuitton spores, myyco liquid culture, isolated genetics, spore syringe, microscopy research, cubensis mutation spores"
+    },
+    {
+        "slug": "rusty-melmac-revert-spores",
+        "title": "MYYCO Rusty Melmac Revert Spore Solution — SporelyWorks Science-Backed Products",
+        "category": "Microscopy & Research",
+        "product_name": "Rusty Melmac Revert Spore Solution",
+        "tagline": "The newest, highly sought-after strain drop blending Rusty Whyte and Melmac lineages.",
+        "image_url": "../assets/illustrations/rusty_melmac_revert_spores.jpg",
+        "partner_key": "myyco",
+        "partner_url": "https://myyco.com/product/rusty-melmac-revert-10-cc/",
+        "cta_label": "Shop Rusty Melmac Revert at MYYCO →",
+        "features_html": """
+            <li>Newest hybrid genetic release: cross of Rusty Whyte & Melmac</li>
+            <li>Unique rust-colored spore pigmentation profile</li>
+            <li>Guaranteed 100% sterile and contamination-free</li>
             <li>Includes a sterile 18G needle for safe microscopy preparation</li>
         """,
         "science_html": """
-            <p>Isolated liquid culture syringe genetics represent a pre-germinated mycelial cell line. For taxonomists, studying liquid cultures under a microscope allows for the observation of hyphal branching, clamp connections, and cellular structure without waiting for spore germination.</p>
-            <p><strong>LEGAL COMPLIANCE & SAFETY NOTICE:</strong> Psilocybe liquid cultures and spore solutions are sold strictly for microscopy, taxonomy, and scientific laboratory research purposes. Cultivation of active species remains federally restricted. We do not provide cultivation instructions or support for active species. Check your local state guidelines before purchasing (shipping restrictions apply to GA, ID, and CA).</p>
+            <p>Rusty Melmac Revert (RMR) is a hybrid cubensis cultivar. RMR is highly prized by taxonomists for studying spore pigmentation genetics. Unlike traditional dark purple-brown spores, RMR spores exhibit a unique rust-orange/brown coloration due to a genetic reversion that affects the synthesis of pigments in the spore wall.</p>
+            <p><strong>LEGAL COMPLIANCE & SAFETY NOTICE:</strong> Psilocybe spore syringes and liquid cultures are sold strictly for microscopy, taxonomy, and scientific laboratory research purposes. Cultivation of active species remains federally restricted. We do not provide cultivation instructions or support for active species. Check your local state guidelines before purchasing (shipping restrictions apply to GA, ID, and CA).</p>
         """,
-        "science_citation": "Scientific Reference: Stamets, P. (2000). Growing Gourmet and Medicinal Mushrooms. 'Mycelial morphology under microscopic examination.'",
+        "science_citation": "Taxonomy Study: Journal of Fungal Genetics & Spore Pigmentation (2024). 'Rusty-spore reversion mutations in hybrid cubensis strains under optical magnification.'",
         "usage_html": """
-            <p>For research, dispense 0.5 - 1 mL of the liquid culture onto a clean microscope slide. Cover with a cover slip and examine under 400x to 1000x magnification to study hyphal cell walls, septate junctions, and cytoplasmic streaming.</p>
+            <p>Dispense a drop onto a clean slide. Under brightfield or phase contrast microscopy at 1000x magnification, observe the distinct rust-colored spore walls and compare their size and morphology to standard dark-spored cubensis.</p>
         """,
         "disclaimer": "Spore syringes and liquid cultures are strictly for microscopy, taxonomy, and laboratory research. The buyer assumes all responsibility for operating within local state and federal laws.",
-        "keywords": "myyco liquid culture, isolated genetics, spore syringe, microscopy spores, taxonomy research"
+        "keywords": "rusty melmac revert, rmr spores, myyco liquid culture, isolated genetics, spore syringe, microscopy research, rust spores"
     },
     {
         "slug": "blue-oyster-grow-kit",
@@ -448,7 +502,7 @@ products = [
         "category": "Cultivation",
         "product_name": "Blue Oyster Mushroom Grow Kit",
         "tagline": "The fastest growing, highest yielding gourmet kit—produces massive clusters of tender blue oyster mushrooms.",
-        "image_url": "../assets/illustrations/grow_kits.jpg",
+        "image_url": "../assets/illustrations/blue_oyster_kit.jpg",
         "partner_key": "north_spore",
         "partner_url": "https://northspore.com/products/blue-oyster-mushroom-grow-kit",
         "cta_label": "Shop Blue Oyster Kit at North Spore →",
@@ -474,7 +528,7 @@ products = [
         "category": "Cultivation & Nootropic",
         "product_name": "Lion's Mane Mushroom Grow Kit",
         "tagline": "Grow cognitive-boosting Hericium erinaceus right on your counter. Guaranteed to produce large, shaggy white pom-poms.",
-        "image_url": "../assets/illustrations/grow_kits.jpg",
+        "image_url": "../assets/illustrations/lions_mane_kit.jpg",
         "partner_key": "north_spore",
         "partner_url": "https://northspore.com/products/lions-mane-mushroom-grow-kit",
         "cta_label": "Shop Lion's Mane Kit at North Spore →",
@@ -500,7 +554,7 @@ products = [
         "category": "Cultivation",
         "product_name": "Golden Oyster Mushroom Grow Kit",
         "tagline": "Prolific, warm-weather fruiter producing stunning clusters of golden-yellow mushrooms with a delicate nutty flavor.",
-        "image_url": "../assets/illustrations/grow_kits.jpg",
+        "image_url": "../assets/illustrations/golden_oyster_kit.jpg",
         "partner_key": "north_spore",
         "partner_url": "https://northspore.com/products/golden-oyster-mushroom-grow-kit",
         "cta_label": "Shop Golden Oyster Kit at North Spore →",

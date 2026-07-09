@@ -14,9 +14,9 @@
     "myyco": {
       "name": "MYYCO",
       "tagline": "Premium Liquid Cultures",
-      "affiliate_id": "YOUR_MYYCO_ID",
-      "base_url": "https://www.myyco.com",
-      "affiliate_url_template": "https://www.myyco.com/?ref={affiliate_id}",
+      "affiliate_id": "SporlyWorks",
+      "base_url": "https://myyco.com/shop-microscopy-liquid-culture/",
+      "affiliate_url_template": "https://myyco.com/shop-microscopy-liquid-culture/?ref={affiliate_id}",
       "category": "microscopy",
       "description": "Lab-tested isolated liquid cultures and spore syringes. 100% sterile, densely packed with vigorous mycelium for scientific study and taxonomy.",
       "image": "assets/illustrations/spores.jpg",
