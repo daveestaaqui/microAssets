@@ -6,7 +6,7 @@ BASE_DIR = "/Users/davidmahler/Desktop/microAssets"
 PRODUCTS_DIR = os.path.join(BASE_DIR, "products")
 os.makedirs(PRODUCTS_DIR, exist_ok=True)
 
-STYLE_PATH = "../style.css?v=602"
+STYLE_PATH = "../style.css?v=700"
 FAVICON_PATH = "../assets/favicon.ico"
 NAV_ICON = "../assets/icon-128.png"
 
