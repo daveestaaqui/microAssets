@@ -126,7 +126,7 @@ nav.scrolled .nav-inner {
     transition: all 0.4s ease;
 }
 .nav-icon {
-    flex-shrink: 0; height: 180px; width: auto; object-fit: contain;
+    flex-shrink: 0; height: 200px; width: auto; object-fit: contain;
     transition: all 0.4s var(--transition-smooth);
 }
 .nav-brand:hover .nav-icon {
@@ -138,7 +138,7 @@ nav.scrolled .nav-inner {
     transition: all 0.4s var(--transition-smooth);
 }
 nav.scrolled .nav-icon {
-    height: 100px;
+    height: 110px;
 }
 nav.scrolled .nav-wordmark {
     font-size: 24px;
@@ -202,14 +202,14 @@ nav.scrolled .nav-wordmark {
         gap: 10px;
     }
     .nav-icon {
-        height: 130px;
+        height: 140px;
     }
     .nav-wordmark {
         font-size: 26px;
         letter-spacing: 3px;
     }
     nav.scrolled .nav-icon {
-        height: 85px;
+        height: 95px;
     }
     nav.scrolled .nav-wordmark {
         font-size: 20px;
@@ -234,14 +234,14 @@ nav.scrolled .nav-wordmark {
         gap: 8px;
     }
     .nav-icon {
-        height: 80px;
+        height: 110px;
     }
     .nav-wordmark {
         font-size: 20px;
         letter-spacing: 2px;
     }
     nav.scrolled .nav-icon {
-        height: 50px;
+        height: 70px;
     }
     nav.scrolled .nav-wordmark {
         font-size: 16px;
@@ -603,7 +603,17 @@ footer {
     .result-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 768px) {
-    .nav-menu-row { display: none; }
+    .nav-menu-row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px 12px;
+        width: 100%;
+    }
+    .nav-cta {
+        display: none;
+    }
     .hero { padding: 120px 20px 60px; min-height: 80vh; }
     .hero-icon { width: 280px; height: 280px; margin-bottom: -24px; }
     .hero-title { letter-spacing: 4px; }
