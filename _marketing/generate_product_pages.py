@@ -6,7 +6,7 @@ BASE_DIR = "/Users/davidmahler/Desktop/microAssets"
 PRODUCTS_DIR = os.path.join(BASE_DIR, "products")
 os.makedirs(PRODUCTS_DIR, exist_ok=True)
 
-STYLE_PATH = "../style.css?v=700"
+STYLE_PATH = "../style.css?v=801"
 FAVICON_PATH = "../assets/favicon.ico"
 NAV_ICON = "../assets/logo-nav.png"
 
@@ -187,17 +187,19 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
         <div class="nav-inner">
             <a href="../index.html" class="nav-brand">
                 <img src="{nav_icon}" alt="SporlyWorks" class="nav-icon">
-                <span class="nav-wordmark" style="font-size:24px;">SPORLYWORKS</span>
+                <span class="nav-wordmark">SPORLYWORKS</span>
             </a>
-            <div class="nav-links">
-                <a href="../index.html#products">Products</a>
-                <a href="../tools/yield-estimator.html">Yield Estimator</a>
-                <a href="../tools/wellness-stack-builder.html">Stack Builder</a>
-                <a href="../tools/diagnostics.html">Diagnostics</a>
-                <a href="../tools/substrate-calculator.html">Substrate Calculator</a>
-                <a href="../blog/index.html">Blog</a>
+            <div class="nav-menu-row">
+                <div class="nav-links">
+                    <a href="../index.html#products">Products</a>
+                    <a href="../tools/yield-estimator.html">Yield Estimator</a>
+                    <a href="../tools/wellness-stack-builder.html">Stack Builder</a>
+                    <a href="../tools/diagnostics.html">Diagnostics</a>
+                    <a href="../tools/substrate-calculator.html">Substrate Calculator</a>
+                    <a href="../blog/index.html">Blog</a>
+                </div>
+                <a href="../index.html#products" class="nav-cta" style="background:linear-gradient(135deg, var(--green-light), var(--green)); color:white; padding:10px 24px; border-radius:99px; text-decoration:none; font-weight:600;">Shop Collection</a>
             </div>
-            <a href="../index.html#products" class="nav-cta" style="background:linear-gradient(135deg, var(--green-light), var(--green)); color:white; padding:10px 24px; border-radius:99px; text-decoration:none; font-weight:600;">Shop Collection</a>
         </div>
     </nav>
 
