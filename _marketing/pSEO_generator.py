@@ -8,9 +8,9 @@ GUIDES_DIR = os.path.join(BASE_DIR, "guides")
 os.makedirs(GUIDES_DIR, exist_ok=True)
 
 # Define templates and common assets
-STYLE_PATH = "../style.css?v=602"
+STYLE_PATH = "../style.css?v=801"
 FAVICON_PATH = "../assets/favicon.ico"
-NAV_ICON = "../assets/icon-128.png"
+NAV_ICON = "../assets/logo-nav.png?v=801"
 
 PAGE_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
@@ -147,15 +147,17 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
     <nav id="mainNav" class="scrolled">
         <div class="nav-inner">
             <a href="../index.html" class="nav-brand">
-                <img src="{nav_icon}" alt="SporlyWorks" class="nav-icon" style="height:60px; width:60px;">
-                <span class="nav-wordmark" style="font-size:24px;">SPORLYWORKS</span>
+                <img src="{nav_icon}" alt="SporlyWorks" class="nav-icon">
+                <span class="nav-wordmark">SPORLYWORKS</span>
             </a>
-            <div class="nav-links">
-                <a href="../index.html#genetics">Cultivation</a>
-                <a href="../index.html#supplements">Supplements</a>
-                <a href="../index.html#research">Science</a>
+            <div class="nav-menu-row">
+                <div class="nav-links">
+                    <a href="../index.html#genetics">Cultivation</a>
+                    <a href="../index.html#supplements">Supplements</a>
+                    <a href="../index.html#research">Science</a>
+                </div>
+                <a href="../index.html#genetics" class="nav-cta" style="background:linear-gradient(135deg, var(--green-light), var(--green)); color:white; padding:10px 24px; border-radius:99px; text-decoration:none; font-weight:600;">Shop Collection</a>
             </div>
-            <a href="../index.html#genetics" class="nav-cta" style="background:linear-gradient(135deg, var(--green-light), var(--green)); color:white; padding:10px 24px; border-radius:99px; text-decoration:none; font-weight:600;">Shop Collection</a>
         </div>
     </nav>
 
@@ -209,16 +211,33 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
         .then(r => r.json())
         .then(config => {{
             const partner = config.partners['{partner_key}'];
-            if (partner) {{
-                let url = partner.base_url;
+            const btn = document.getElementById('cta-{partner_key}');
+            if (partner && btn) {{
                 const isPlaceholder = !partner.affiliate_id || 
                                       partner.affiliate_id.startsWith('YOUR_') || 
                                       partner.affiliate_id.includes('INSERT');
-                if (!isPlaceholder) {{
-                    url = partner.affiliate_url_template.replace('{{affiliate_id}}', partner.affiliate_id);
+                if (isPlaceholder) {{
+                    btn.href = 'javascript:void(0)';
+                    btn.innerHTML = 'Partner Program Pending';
+                    btn.style.pointerEvents = 'none';
+                    btn.style.opacity = '0.6';
+                    btn.style.background = '#888888';
+                    btn.style.borderColor = '#888888';
+                    btn.style.color = '#ffffff';
+                    btn.style.cursor = 'default';
+                    btn.style.boxShadow = 'none';
+                    btn.style.transform = 'none';
+                }} else {{
+                    let url = "{partner_url}";
+                    if (partner.affiliate_url_template.includes('awinmid=')) {{
+                        const midMatch = partner.affiliate_url_template.match(/awinmid=(\\d+)/);
+                        const mid = midMatch ? midMatch[1] : '';
+                        url = `https://www.awin1.com/cread.php?awinmid=${{mid}}&awinaffid=${{partner.affiliate_id}}&ued=${{encodeURIComponent(url)}}`;
+                    }} else {{
+                        url = partner.affiliate_url_template.replace('{{affiliate_id}}', partner.affiliate_id);
+                    }}
+                    btn.href = url;
                 }}
-                const btn = document.getElementById('cta-{partner_key}');
-                if (btn) btn.href = url;
             }}
         }})
         .catch(() => console.log('Config fetch skipped - using static default'));

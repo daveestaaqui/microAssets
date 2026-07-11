@@ -260,12 +260,24 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
         .then(r => r.json())
         .then(config => {{
             const partner = config.partners['{partner_key}'];
-            if (partner) {{
-                let url = "{partner_url}";
+            const btn = document.getElementById('cta-{partner_key}');
+            if (partner && btn) {{
                 const isPlaceholder = !partner.affiliate_id || 
                                       partner.affiliate_id.startsWith('YOUR_') || 
                                       partner.affiliate_id.includes('INSERT');
-                if (!isPlaceholder) {{
+                if (isPlaceholder) {{
+                    btn.href = 'javascript:void(0)';
+                    btn.innerHTML = 'Partner Program Pending';
+                    btn.style.pointerEvents = 'none';
+                    btn.style.opacity = '0.6';
+                    btn.style.background = '#888888';
+                    btn.style.borderColor = '#888888';
+                    btn.style.color = '#ffffff';
+                    btn.style.cursor = 'default';
+                    btn.style.boxShadow = 'none';
+                    btn.style.transform = 'none';
+                }} else {{
+                    let url = "{partner_url}";
                     if (partner.affiliate_url_template.includes('awinmid=')) {{
                         const midMatch = partner.affiliate_url_template.match(/awinmid=(\\d+)/);
                         const mid = midMatch ? midMatch[1] : '';
@@ -273,9 +285,8 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
                     }} else {{
                         url = partner.affiliate_url_template.replace('{{affiliate_id}}', partner.affiliate_id);
                     }}
+                    btn.href = url;
                 }}
-                const btn = document.getElementById('cta-{partner_key}');
-                if (btn) btn.href = url;
             }}
         }})
         .catch(() => console.log('Config fetch skipped - using default links'));

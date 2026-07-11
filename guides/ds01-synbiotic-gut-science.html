@@ -133,15 +133,17 @@
     <nav id="mainNav" class="scrolled">
         <div class="nav-inner">
             <a href="../index.html" class="nav-brand">
-                <img src="../assets/icon-128.png" alt="SporlyWorks" class="nav-icon" style="height:60px; width:60px;">
-                <span class="nav-wordmark" style="font-size:24px;">SPORLYWORKS</span>
+                <img src="../assets/logo-nav.png?v=801" alt="SporlyWorks" class="nav-icon">
+                <span class="nav-wordmark">SPORLYWORKS</span>
             </a>
-            <div class="nav-links">
-                <a href="../index.html#genetics">Cultivation</a>
-                <a href="../index.html#supplements">Supplements</a>
-                <a href="../index.html#research">Science</a>
+            <div class="nav-menu-row">
+                <div class="nav-links">
+                    <a href="../index.html#genetics">Cultivation</a>
+                    <a href="../index.html#supplements">Supplements</a>
+                    <a href="../index.html#research">Science</a>
+                </div>
+                <a href="../index.html#genetics" class="nav-cta" style="background:linear-gradient(135deg, var(--green-light), var(--green)); color:white; padding:10px 24px; border-radius:99px; text-decoration:none; font-weight:600;">Shop Collection</a>
             </div>
-            <a href="../index.html#genetics" class="nav-cta" style="background:linear-gradient(135deg, var(--green-light), var(--green)); color:white; padding:10px 24px; border-radius:99px; text-decoration:none; font-weight:600;">Shop Collection</a>
         </div>
     </nav>
 
@@ -187,7 +189,7 @@
     <footer style="padding: 80px 24px 40px; background: var(--green-dark); color: var(--text-on-dark); border-top: 1px solid var(--glass-border); text-align: center; margin-top: 80px;">
         <div class="container">
             <a href="../index.html" style="display:inline-flex; align-items:center; gap:12px; text-decoration:none; font-family:'DM Serif Display',serif; color:var(--gold-light); font-size:24px; margin-bottom:24px;">
-                <img src="../assets/icon-128.png" alt="SporlyWorks" style="height:32px; width:32px;">
+                <img src="../assets/logo-nav.png?v=801" alt="SporlyWorks" style="height:32px; width:32px;">
                 <span style="color:var(--gold-light); letter-spacing:3px;">SPORLYWORKS</span>
             </a>
             <div style="display:flex; justify-content:center; gap:32px; margin-bottom:32px;">
@@ -206,16 +208,33 @@
         .then(r => r.json())
         .then(config => {
             const partner = config.partners['seed'];
-            if (partner) {
-                let url = partner.base_url;
+            const btn = document.getElementById('cta-seed');
+            if (partner && btn) {
                 const isPlaceholder = !partner.affiliate_id || 
                                       partner.affiliate_id.startsWith('YOUR_') || 
                                       partner.affiliate_id.includes('INSERT');
-                if (!isPlaceholder) {
-                    url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
+                if (isPlaceholder) {
+                    btn.href = 'javascript:void(0)';
+                    btn.innerHTML = 'Partner Program Pending';
+                    btn.style.pointerEvents = 'none';
+                    btn.style.opacity = '0.6';
+                    btn.style.background = '#888888';
+                    btn.style.borderColor = '#888888';
+                    btn.style.color = '#ffffff';
+                    btn.style.cursor = 'default';
+                    btn.style.boxShadow = 'none';
+                    btn.style.transform = 'none';
+                } else {
+                    let url = "https://seed.com";
+                    if (partner.affiliate_url_template.includes('awinmid=')) {
+                        const midMatch = partner.affiliate_url_template.match(/awinmid=(\d+)/);
+                        const mid = midMatch ? midMatch[1] : '';
+                        url = `https://www.awin1.com/cread.php?awinmid=${mid}&awinaffid=${partner.affiliate_id}&ued=${encodeURIComponent(url)}`;
+                    } else {
+                        url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
+                    }
+                    btn.href = url;
                 }
-                const btn = document.getElementById('cta-seed');
-                if (btn) btn.href = url;
             }
         })
         .catch(() => console.log('Config fetch skipped - using static default'));

@@ -192,20 +192,25 @@
             const partner = affiliateConfig ? affiliateConfig[key] : null;
             if (!partner) return;
             
-            let url = partner.base_url;
             const isPlaceholder = !partner.affiliate_id || 
                                   partner.affiliate_id.startsWith('YOUR_') || 
                                   partner.affiliate_id.includes('INSERT');
-            if (!isPlaceholder) {
-                url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
-            }
             
             const isPrimary = key === 'real_mushrooms';
-            ctasDiv.innerHTML += `
-                <a href="${url}" class="result-cta ${isPrimary ? 'result-cta--primary' : 'result-cta--secondary'}" target="_blank" rel="noopener" style="padding:14px 28px; text-decoration:none; border-radius:var(--radius-pill); font-weight:600; font-size:15px; background:${isPrimary ? 'var(--green-light)' : 'transparent'}; color:${isPrimary ? 'white' : 'var(--green)'}; border:${isPrimary ? 'none' : '1px solid var(--green)'}; min-width:180px; text-align:center;">
-                    Shop ${partner.name} →
-                </a>
-            `;
+            if (isPlaceholder) {
+                ctasDiv.innerHTML += `
+                    <a href="javascript:void(0)" class="result-cta" style="padding:14px 28px; text-decoration:none; border-radius:var(--radius-pill); font-weight:600; font-size:15px; background:#888888; color:#ffffff; border:1px solid #888888; min-width:180px; text-align:center; pointer-events:none; opacity:0.6; cursor:default; box-shadow:none; transform:none;">
+                        ${partner.name} Pending
+                    </a>
+                `;
+            } else {
+                const url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
+                ctasDiv.innerHTML += `
+                    <a href="${url}" class="result-cta ${isPrimary ? 'result-cta--primary' : 'result-cta--secondary'}" target="_blank" rel="noopener" style="padding:14px 28px; text-decoration:none; border-radius:var(--radius-pill); font-weight:600; font-size:15px; background:${isPrimary ? 'var(--green-light)' : 'transparent'}; color:${isPrimary ? 'white' : 'var(--green)'}; border:${isPrimary ? 'none' : '1px solid var(--green)'}; min-width:180px; text-align:center;">
+                        Shop ${partner.name} →
+                    </a>
+                `;
+            }
         });
 
         const results = document.getElementById('stackResults');

@@ -291,20 +291,32 @@
             ['north_spore', 'myyco', 'magicbag'].forEach(key => {
                 const partner = config.partners[key];
                 if (partner) {
-                    let url = partner.base_url;
                     const isPlaceholder = !partner.affiliate_id || 
                                           partner.affiliate_id.startsWith('YOUR_') || 
                                           partner.affiliate_id.includes('INSERT');
-                    if (!isPlaceholder) {
-                        url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
-                    }
                     
                     let btn;
                     if (key === 'north_spore') btn = document.getElementById('cta-gourmet');
                     else if (key === 'myyco') btn = document.getElementById('cta-myyco');
                     else if (key === 'magicbag') btn = document.getElementById('cta-magicbag');
 
-                    if (btn) btn.href = url;
+                    if (btn) {
+                        if (isPlaceholder) {
+                            btn.href = 'javascript:void(0)';
+                            btn.innerHTML = 'Partner Program Pending';
+                            btn.style.pointerEvents = 'none';
+                            btn.style.opacity = '0.6';
+                            btn.style.background = '#888888';
+                            btn.style.borderColor = '#888888';
+                            btn.style.color = '#ffffff';
+                            btn.style.cursor = 'default';
+                            btn.style.boxShadow = 'none';
+                            btn.style.transform = 'none';
+                        } else {
+                            const url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
+                            btn.href = url;
+                        }
+                    }
                 }
             });
         })
