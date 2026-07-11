@@ -109,19 +109,19 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
     <style>
         .blog-container {{
             max-width: 800px;
-            margin: 140px auto 80px;
+            margin: 220px auto 60px;
             padding: 0 24px;
         }}
         .blog-header-section {{
-            margin-bottom: 40px;
+            margin-bottom: 28px;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 24px;
+            padding-bottom: 18px;
         }}
         .blog-title {{
             font-family: 'Cormorant Garamond', Georgia, serif;
             font-size: 42px;
             color: var(--green-dark);
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             line-height: 1.25;
             font-weight: 700;
         }}
@@ -143,20 +143,20 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
             color: var(--text-secondary);
         }}
         .blog-body p {{
-            margin-bottom: 24px;
+            margin-bottom: 16px;
         }}
         .blog-body h2 {{
             font-family: 'Cormorant Garamond', Georgia, serif;
             font-size: 28px;
             color: var(--green-dark);
-            margin: 40px 0 20px;
+            margin: 28px 0 12px;
             font-weight: 700;
         }}
         .blog-body h3 {{
             font-family: 'Cormorant Garamond', Georgia, serif;
             font-size: 22px;
             color: var(--green-dark);
-            margin: 32px 0 16px;
+            margin: 22px 0 10px;
             font-weight: 700;
         }}
         .blog-quote {{
@@ -165,14 +165,14 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
             font-style: italic;
             border-left: 4px solid var(--gold-light);
             padding-left: 20px;
-            margin: 32px 0;
+            margin: 20px 0;
             color: var(--text-muted);
         }}
         .blog-divider {{
             border: 0;
             height: 1px;
             background: var(--border-color);
-            margin: 40px 0;
+            margin: 24px 0;
         }}
         .blog-footer-cta {{
             background: rgba(245, 240, 232, 0.4);
@@ -292,7 +292,7 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
     <style>
         .blog-index-container {{
             max-width: 1000px;
-            margin: 140px auto 80px;
+            margin: 220px auto 60px;
             padding: 0 24px;
         }}
         .blog-index-header {{

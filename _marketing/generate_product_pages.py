@@ -26,7 +26,7 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
     <style>
         .product-page-body {{
             max-width: 1000px;
-            margin: 120px auto 80px;
+            margin: 220px auto 60px;
             padding: 0 24px;
         }}
         .product-header {{
