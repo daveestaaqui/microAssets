@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mushroom Cultivation Diagnostic Tool — SporlyWorks</title>
+    <meta name="description" content="Is it mold or healthy mycelium? Troubleshoot your mushroom grow kits, spawn bags, and substrates with our interactive diagnostic assistant.">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=700">
+    <style>
+        .diag-container {
+            max-width: 800px;
+            margin: 140px auto 80px;
+            padding: 0 24px;
+        }
+        .diag-card {
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            box-shadow: 0 12px 48px rgba(44, 36, 24, 0.04);
+            transition: all 0.4s var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+        .diag-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, var(--green-dark), var(--gold-light));
+        }
+        .step-progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 32px;
+            position: relative;
+        }
+        .step-progress::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 0; right: 0; height: 2px;
+            background: var(--border-color);
+            z-index: 1;
+            transform: translateY(-50%);
+        }
+        .progress-bar-fill {
+            position: absolute;
+            top: 50%; left: 0; height: 2px;
+            background: var(--green-dark);
+            z-index: 2;
+            transform: translateY(-50%);
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+        .progress-dot {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            background: var(--bg-surface-elevated);
+            border: 2px solid var(--border-color);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Cinzel', serif; font-weight: 700; font-size: 12px;
+            position: relative; z-index: 3;
+            transition: all 0.3s ease;
+        }
+        .progress-dot.active {
+            border-color: var(--green-dark);
+            background: var(--green-dark);
+            color: var(--text-on-dark);
+        }
+        .progress-dot.completed {
+            border-color: var(--green-dark);
+            background: var(--green-light);
+            color: var(--text-on-dark);
+        }
+        .diag-question {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            color: var(--green-dark);
+            margin-bottom: 24px;
+            line-height: 1.4;
+        }
+        .diag-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .diag-option {
+            background: rgba(253, 251, 247, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 20px 24px;
+            cursor: pointer;
+            transition: all 0.3s var(--transition-smooth);
+            display: flex; align-items: center; gap: 16px;
+            text-align: left;
+        }
+        .diag-option:hover {
+            border-color: var(--green-dark);
+            background: rgba(245, 240, 232, 0.5);
+            transform: translateY(-2px);
+        }
+        .diag-option.selected {
+            border-color: var(--green-dark);
+            background: rgba(43, 76, 56, 0.05);
+            box-shadow: 0 4px 12px rgba(43, 76, 56, 0.08);
+        }
+        .radio-circle {
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        .diag-option.selected .radio-circle {
+            border-color: var(--green-dark);
+            background: var(--green-dark);
+        }
+        .diag-option.selected .radio-circle::after {
+            content: '';
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--text-on-dark);
+        }
+        .diag-option-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        .diag-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .btn-diag {
+            padding: 12px 28px;
+            border-radius: var(--radius-sm);
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s var(--transition-smooth);
+            border: none;
+            letter-spacing: 1px;
+        }
+        .btn-diag-back {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+        }
+        .btn-diag-back:hover {
+            color: var(--text-dark);
+            border-color: var(--text-dark);
+        }
+        .btn-diag-next {
+            background: var(--green-dark);
+            color: var(--text-on-dark);
+            box-shadow: 0 4px 12px rgba(43, 76, 56, 0.15);
+        }
+        .btn-diag-next:hover {
+            background: #1e3527;
+            transform: translateY(-2px);
+        }
+        .btn-diag-next:disabled {
+            background: var(--border-color);
+            color: var(--text-muted);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        .diag-result {
+            display: none;
+            animation: fadeIn 0.6s ease;
+        }
+        .result-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 28px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .severity-badge {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .severity-normal { background: #e2f0d9; color: #385723; }
+        .severity-concern { background: #fff2cc; color: #7f6000; }
+        .severity-fatal { background: #fce4d6; color: #c65911; }
+        .result-title {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            color: var(--green-dark);
+            font-weight: 700;
+        }
+        .result-content p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 19px;
+            line-height: 1.6;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+        .remediation-box {
+            background: rgba(245, 240, 232, 0.4);
+            border-left: 4px solid var(--gold-light);
+            padding: 24px;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin-bottom: 32px;
+        }
+        .remediation-box h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            color: var(--green-dark);
+            margin-bottom: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .remediation-box ul {
+            padding-left: 20px;
+            margin-bottom: 0;
+        }
+        .remediation-box li {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+        .recommendation-panel {
+            border: 1px solid var(--glass-border);
+            background: linear-gradient(135deg, rgba(253, 251, 247, 0.8), rgba(245, 240, 232, 0.4));
+            border-radius: var(--radius-md);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            md-flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+        @media (min-width: 600px) {
+            .recommendation-panel {
+                flex-direction: row;
+            }
+        }
+        .rec-text h5 {
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            color: var(--green-dark);
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+        .rec-text p {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 0;
+        }
+        .btn-rec {
+            background: var(--green-dark);
+            color: var(--text-on-dark);
+            padding: 10px 20px;
+            border-radius: var(--radius-sm);
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        .btn-rec:hover {
+            background: #1e3527;
+            transform: translateY(-2px);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav id="mainNav" class="scrolled">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-brand">
+                <img src="../assets/icon-128.png" alt="SporlyWorks" class="nav-icon" style="height:90px; width:90px;">
+                <span class="nav-wordmark" style="font-size:24px;">SPORLYWORKS</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html#products">Products</a>
+                <a href="yield-estimator.html">Yield Estimator</a>
+                <a href="wellness-stack-builder.html">Stack Builder</a>
+                <a href="diagnostics.html" class="active">Diagnostics</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ INTERACTIVE DIAGNOSTIC WIZARD ═══ -->
+    <main class="diag-container">
+        <div class="diag-card">
+            
+            <!-- Progress Tracker -->
+            <div class="step-progress" id="progressContainer">
+                <div class="progress-bar-fill" id="progressBarFill"></div>
+                <div class="progress-dot active" data-step="1">1</div>
+                <div class="progress-dot" data-step="2">2</div>
+                <div class="progress-dot" data-step="3">3</div>
+            </div>
+
+            <!-- Quiz Screens -->
+            <div id="quizFlow">
+                <!-- Step 1: Environment -->
+                <div class="quiz-step" data-step="1">
+                    <h2 class="diag-question">Step 1: Select your cultivation substrate or environment</h2>
+                    <div class="diag-options">
+                        <div class="diag-option" data-value="bag">
+                            <div class="radio-circle"></div>
+                            <span class="diag-option-text">Spawn Bag / Grain Bag / Substrate Run (Sterile Inoculation Phase)</span>
+                        </div>
+                        <div class="diag-option" data-value="block">
+                            <div class="radio-circle"></div>
+                            <span class="diag-option-text">Fruiting Block / Sawdust Block / Grow Kit (Fruiting Phase)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: visual symptoms -->
+                <div class="quiz-step" data-step="2" style="display: none;">
+                    <h2 class="diag-question">Step 2: Describe the visual symptom or color profile</h2>
+                    <div class="diag-options" id="symptomOptions">
+                        <!-- Dynamic options based on Step 1 selection -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Diagnosis results -->
+            <div class="diag-result" id="diagResult">
+                <div class="result-header">
+                    <span class="severity-badge" id="severityBadge"></span>
+                    <h2 class="result-title" id="resultTitle"></h2>
+                </div>
+                <div class="result-content" id="resultContent">
+                    <!-- Dynamic analysis HTML -->
+                </div>
+            </div>
+
+            <!-- Nav Controls -->
+            <div class="diag-actions" id="diagActions">
+                <button class="btn-diag btn-diag-back" id="btnBack" disabled>Back</button>
+                <button class="btn-diag btn-diag-next" id="btnNext" disabled>Next</button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer style="background:var(--green-dark); color:var(--text-on-dark); padding:60px 0; text-align:center;">
+        <div class="container">
+            <a href="../index.html" style="display:inline-flex; align-items:center; gap:12px; text-decoration:none; margin-bottom:24px;">
+                <img src="../assets/icon-128.png" alt="SporlyWorks" style="height:32px; width:32px;">
+                <span style="color:var(--gold-light); letter-spacing:3px;">SPORLYWORKS</span>
+            </a>
+            <p style="color:var(--text-on-dark); opacity:0.6; font-size:12px; max-width:600px; margin:0 auto 12px;">Diagnostic Disclaimer: This assistant provides educational assessments based on common mycology growth profiles. Users assume responsibility for verifying sterility before opening or distributing cultures.</p>
+            <p style="color:var(--text-on-dark); opacity:0.6; font-size:11px;">&copy; 2026 SporlyWorks. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const diagnosticsData = {
+            bag: [
+                {
+                    text: "Bright green powdery patches appearing on grains or compost",
+                    title: "Trichoderma (Green Mold)",
+                    severity: "fatal",
+                    desc: "Trichoderma harzianum is a highly aggressive parasite of mushroom mycelium. It spreads via microscopically small spores and turns green once sporulating. In a spawn bag, this is a terminal condition.",
+                    remediation: [
+                        "Do not open the bag under any circumstances. Opening it will release millions of spores that will contaminate your future workspace.",
+                        "Isolate the bag from your growing space immediately.",
+                        "Dispose of the sealed bag in an outdoor trash receptacle."
+                    ],
+                    rec: {
+                        text: "Start fresh with sterile gear",
+                        desc: "Get a replacement Magic Bag with a self-healing injection port to minimize contamination risks.",
+                        url: "../products/magic-bag-grow-bags.html",
+                        btn: "Get Magic Bag →"
+                    }
+                },
+                {
+                    text: "Fluffy, gray-white hair-like growth spreading extremely fast with tiny black dots at the tips",
+                    title: "Cobweb Mold / Pin Mold",
+                    severity: "concern",
+                    desc: "Commonly caused by Hypomyces rosellus or Mucor species. This mold grows much faster than healthy mushroom mycelium, covering the substrate in a thin, whispy gray blanket within 24-48 hours.",
+                    remediation: [
+                        "Confirm if the growth is cobweb by applying a few drops of 3% hydrogen peroxide (H2O2) via injection port. Cobweb mold melts instantly upon contact, while healthy mycelium is unaffected.",
+                        "If in a sealed bag, do not open it. If it covers more than 10% of the bag, the run is likely lost.",
+                        "Ensure your ambient temperature is kept below 78°F, as high heat accelerates mold."
+                    ],
+                    rec: {
+                        text: "Ensure clean genetics next run",
+                        desc: "Use lab-tested, sterile MYYCO isolated liquid cultures to reduce wild spore contaminants.",
+                        url: "../products/tidal-wave-spores.html",
+                        btn: "Shop MYYCO Spores →"
+                    }
+                },
+                {
+                    text: "Amber/yellowish droplets or localized yellow discoloration on strong white mycelium",
+                    title: "Mycelial Metabolites (\"Myco-Piss\")",
+                    severity: "normal",
+                    desc: "This is a normal physiological response. As mushroom mycelium grows, it secretes yellow/amber organic compounds (metabolites) to fight off minor bacterial pressure or as a byproduct of digesting dense grains. It is healthy.",
+                    remediation: [
+                        "No action needed. Monitor the bag to ensure it continues to colonize with bright white growth.",
+                        "If you see excess moisture, ensure you are keeping the bag at a stable temperature of 68-75°F.",
+                        "Once the bag is 100% colonized, proceed with bulk spawn mix as scheduled."
+                    ],
+                    rec: {
+                        text: "Yield Estimator",
+                        desc: "Your spawn is healthy! Estimate your potential harvest yields using our calculator.",
+                        url: "yield-estimator.html",
+                        btn: "Calculate Yield →"
+                    }
+                },
+                {
+                    text: "Grains looking wet, dark, slimy, or smelling of rotten apples/sour vinegar",
+                    title: "Bacillus / Wet Rot (Sour Rot)",
+                    severity: "fatal",
+                    desc: "Bacillus species form endospores that can survive heat sterilization. The grains remain uncolonized, look greasy or sticky against the plastic, and emit a strong fermenting or putrid odor.",
+                    remediation: [
+                        "This bag cannot be saved. The bacterial colonization blocks mycelial growth.",
+                        "Do not open the bag to inspect, as it contains anaerobic bacteria.",
+                        "Discard the bag safely."
+                    ],
+                    rec: {
+                        text: "Start fresh with sterile gear",
+                        desc: "Try a new pre-sterilized all-in-one grow bag with a clean port.",
+                        url: "../products/magic-bag-grow-bags.html",
+                        btn: "Get Magic Bag →"
+                    }
+                }
+            ],
+            block: [
+                {
+                    text: "Vibrant yellow or green growth appearing along the slash or slits of the block",
+                    title: "Trichoderma Contamination",
+                    severity: "concern",
+                    desc: "Trichoderma can colonize gourmet grow kits if the ambient environment has excessive stagnant humidity without adequate fresh air exchange (FAE). Green mold on a fruiting block can sometimes be managed if caught early.",
+                    remediation: [
+                        "Isolate the block from other kits immediately.",
+                        "If the spot is small, you can carefully spray the green area with 3% hydrogen peroxide, or cut away the contaminated section outdoors.",
+                        "Increase fresh air exchange (FAE) and make sure you do not spray water directly onto the block slits."
+                    ],
+                    rec: {
+                        text: "Shop Guaranteed Kits",
+                        desc: "Get a guaranteed-to-fruit North Spore Golden Oyster Grow Kit.",
+                        url: "../products/golden-oyster-grow-kit.html",
+                        btn: "Get Golden Oyster Kit →"
+                    }
+                },
+                {
+                    text: "Mycelium turning slightly blue/green where you sprayed or touched it",
+                    title: "Mycelial Bruising",
+                    severity: "normal",
+                    desc: "This is a normal mechanical reaction. Mushroom mycelium (especially Oyster and active species) bruises a distinct blue/gray color when touched, sprayed directly with high-pressure mist, or exposed to dry air currents. It is not mold.",
+                    remediation: [
+                        "Avoid spraying water directly onto the exposed mycelium block. Instead, mist the inside of your humidity tent or the surrounding air.",
+                        "Ensure the block is not placed directly in front of a drafty fan or heat vent.",
+                        "The blue tint should fade in 24-48 hours as the mycelium recovers."
+                    ],
+                    rec: {
+                        text: "Fruiting Guide",
+                        desc: "Keep misting correctly! Check your specific kit instructions to ensure a perfect flush.",
+                        url: "../products/blue-oyster-grow-kit.html",
+                        btn: "View Grow Guides →"
+                    }
+                },
+                {
+                    text: "Pins (baby mushrooms) drying up, turning brown, and stopping growth",
+                    title: "Aborted Pins (Dry Air)",
+                    severity: "concern",
+                    desc: "Known as 'aborting', this happens when the relative humidity drops below 80% during the early pinhead stage. The baby mushrooms run out of moisture and stop growing to conserve block water.",
+                    remediation: [
+                        "Harvest the aborted pins immediately (they are safe to consume or dry).",
+                        "Increase misting frequency to 3-4 times daily, or place a loose plastic bag tent over the kit to lock in moisture.",
+                        "Ensure the slits remain humid but never let standing water pool around the base of the block."
+                    ],
+                    rec: {
+                        text: "Shop Pro Kits",
+                        desc: "Grow shaggy, robust Lion's Mane blocks that tolerate indoor ambient air well.",
+                        url: "../products/lions-mane-grow-kit.html",
+                        btn: "Get Lion's Mane Kit →"
+                    }
+                }
+            ]
+        };
+
+        let currentStep = 1;
+        let selectedEnv = '';
+        let selectedSymptomIndex = null;
+
+        const progressContainer = document.getElementById('progressContainer');
+        const progressBarFill = document.getElementById('progressBarFill');
+        const symptomOptions = document.getElementById('symptomOptions');
+        const quizFlow = document.getElementById('quizFlow');
+        const diagResult = document.getElementById('diagResult');
+        const btnBack = document.getElementById('btnBack');
+        const btnNext = document.getElementById('btnNext');
+        const diagActions = document.getElementById('diagActions');
+
+        // Setup Event Listeners on Step 1 Option Cards
+        document.querySelectorAll('.quiz-step[data-step="1"] .diag-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.quiz-step[data-step="1"] .diag-option').forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedEnv = this.getAttribute('data-value');
+                btnNext.disabled = false;
+            });
+        });
+
+        btnNext.addEventListener('click', () => {
+            if (currentStep === 1) {
+                // Populate Step 2 Options
+                symptomOptions.innerHTML = '';
+                diagnosticsData[selectedEnv].forEach((symptom, idx) => {
+                    const div = document.createElement('div');
+                    div.className = 'diag-option';
+                    div.innerHTML = `
+                        <div class="radio-circle"></div>
+                        <span class="diag-option-text">${symptom.text}</span>
+                    `;
+                    div.addEventListener('click', function() {
+                        document.querySelectorAll('.quiz-step[data-step="2"] .diag-option').forEach(o => o.classList.remove('selected'));
+                        this.classList.add('selected');
+                        selectedSymptomIndex = idx;
+                        btnNext.disabled = false;
+                    });
+                    symptomOptions.appendChild(div);
+                });
+
+                // Transition to Step 2
+                document.querySelector('.quiz-step[data-step="1"]').style.display = 'none';
+                document.querySelector('.quiz-step[data-step="2"]').style.display = 'block';
+                currentStep = 2;
+                btnBack.disabled = false;
+                btnNext.disabled = selectedSymptomIndex === null;
+                updateProgress();
+            } else if (currentStep === 2) {
+                // Display Results (Step 3)
+                quizFlow.style.display = 'none';
+                diagResult.style.display = 'block';
+                
+                const data = diagnosticsData[selectedEnv][selectedSymptomIndex];
+                
+                // Set Severity
+                const badge = document.getElementById('severityBadge');
+                badge.innerText = data.severity;
+                badge.className = 'severity-badge';
+                if (data.severity === 'normal') badge.classList.add('severity-normal');
+                else if (data.severity === 'concern') badge.classList.add('severity-concern');
+                else badge.classList.add('severity-fatal');
+
+                document.getElementById('resultTitle').innerText = data.title;
+                
+                // Build Content HTML
+                let contentHTML = `<p>${data.desc}</p>`;
+                contentHTML += `
+                    <div class="remediation-box">
+                        <h4>Remediation Protocols:</h4>
+                        <ul>
+                            ${data.remediation.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+                contentHTML += `
+                    <div class="recommendation-panel">
+                        <div class="rec-text">
+                            <h5>${data.rec.text}</h5>
+                            <p>${data.rec.desc}</p>
+                        </div>
+                        <a href="${data.rec.url}" class="btn-rec">${data.rec.btn}</a>
+                    </div>
+                `;
+                document.getElementById('resultContent').innerHTML = contentHTML;
+
+                currentStep = 3;
+                btnNext.innerText = 'Start Over';
+                updateProgress();
+            } else if (currentStep === 3) {
+                // Restart
+                resetWizard();
+            }
+        });
+
+        btnBack.addEventListener('click', () => {
+            if (currentStep === 2) {
+                document.querySelector('.quiz-step[data-step="2"]').style.display = 'none';
+                document.querySelector('.quiz-step[data-step="1"]').style.display = 'block';
+                currentStep = 1;
+                btnBack.disabled = true;
+                btnNext.disabled = false;
+                updateProgress();
+            }
+        });
+
+        function updateProgress() {
+            // Update dots
+            document.querySelectorAll('.progress-dot').forEach(dot => {
+                const step = parseInt(dot.getAttribute('data-step'));
+                dot.className = 'progress-dot';
+                if (step === currentStep) dot.classList.add('active');
+                else if (step < currentStep) dot.classList.add('completed');
+            });
+            // Update line
+            if (currentStep === 1) {
+                progressBarFill.style.width = '0%';
+            } else if (currentStep === 2) {
+                progressBarFill.style.width = '50%';
+            } else {
+                progressBarFill.style.width = '100%';
+            }
+        }
+
+        function resetWizard() {
+            currentStep = 1;
+            selectedEnv = '';
+            selectedSymptomIndex = null;
+            document.querySelectorAll('.quiz-step[data-step="1"] .diag-option').forEach(o => o.classList.remove('selected'));
+            document.querySelector('.quiz-step[data-step="1"]').style.display = 'block';
+            document.querySelector('.quiz-step[data-step="2"]').style.display = 'none';
+            quizFlow.style.display = 'block';
+            diagResult.style.display = 'none';
+            btnBack.disabled = true;
+            btnNext.disabled = true;
+            btnNext.innerText = 'Next';
+            updateProgress();
+        }
+    </script>
+</body>
+</html>

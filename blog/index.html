@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SporlyWorks Blog — Science-Backed Mycology & Functional Nutrition</title>
+    <meta name="description" content="Explore peer-reviewed articles and grow logs from the SporlyWorks science board. Discover neurogenesis, survivability, and cultivation guides.">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=700">
+    <style>
+        .blog-index-container {
+            max-width: 1000px;
+            margin: 140px auto 80px;
+            padding: 0 24px;
+        }
+        .blog-index-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .blog-index-title {
+            font-family: 'Cinzel', serif;
+            font-size: 40px;
+            color: var(--green-dark);
+            margin-bottom: 16px;
+        }
+        .blog-index-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+        @media (min-width: 768px) {
+            .blog-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .blog-card {
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.4s var(--transition-smooth);
+            text-decoration: none;
+            color: inherit;
+        }
+        .blog-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--green-dark);
+            box-shadow: 0 12px 32px rgba(44, 36, 24, 0.05);
+        }
+        .card-top {
+            margin-bottom: 24px;
+        }
+        .card-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .card-title {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            color: var(--green-dark);
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        .card-summary {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 17px;
+            line-height: 1.5;
+            color: var(--text-dark);
+        }
+        .card-read-more {
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gold-dark);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav id="mainNav" class="scrolled">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-brand">
+                <img src="../assets/icon-128.png" alt="SporlyWorks" class="nav-icon" style="height:90px; width:90px;">
+                <span class="nav-wordmark" style="font-size:24px;">SPORLYWORKS</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html#products">Products</a>
+                <a href="../tools/yield-estimator.html">Yield Estimator</a>
+                <a href="../tools/wellness-stack-builder.html">Stack Builder</a>
+                <a href="index.html" class="active">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ BLOG INDEX ═══ -->
+    <main class="blog-index-container">
+        <header class="blog-index-header">
+            <h1 class="blog-index-title">Scientific Library</h1>
+            <p class="blog-index-subtitle">Vetted clinical analyses, grow diagnostics, and formulation studies</p>
+        </header>
+
+        <div class="blog-grid">
+            
+        <a href="identifying-grow-contamination.html" class="blog-card">
+            <div class="card-top">
+                <span class="card-meta">2026-07-11</span>
+                <h3 class="card-title">The Cultivator's Guide to Mold: Trichoderma vs. Cobweb</h3>
+                <p class="card-summary">A practical guide for home mushroom growers to distinguish between healthy mycelium, normal blue bruising, green mold, and cobweb infestations.</p>
+            </div>
+            <span class="card-read-more">Read Research Paper →</span>
+        </a>
+        
+        <a href="lions-mane-neurogenesis.html" class="blog-card">
+            <div class="card-top">
+                <span class="card-meta">2026-07-11</span>
+                <h3 class="card-title">Beyond NGF: The Direct Mechanism of Hericenones in Cognitive Plasticity</h3>
+                <p class="card-summary">Explore the bio-chemical mechanisms behind Hericium erinaceus, how its active compounds cross the blood-brain barrier, and what clinical research shows about Nerve Growth Factor (NGF) stimulation.</p>
+            </div>
+            <span class="card-read-more">Read Research Paper →</span>
+        </a>
+        
+        <a href="synbiotics-absorption.html" class="blog-card">
+            <div class="card-top">
+                <span class="card-meta">2026-07-11</span>
+                <h3 class="card-title">Why 90% of Probiotics Fail: The Physics of Gastric Acid Survivability</h3>
+                <p class="card-summary">An analytical dive into gut microbiome survival dynamics, exploring the biochemical barriers of stomach acid and the physical engineering of dual-capsule delivery systems.</p>
+            </div>
+            <span class="card-read-more">Read Research Paper →</span>
+        </a>
+        
+        </div>
+    </main>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer style="background:var(--green-dark); color:var(--text-on-dark); padding:60px 0; text-align:center;">
+        <div class="container">
+            <a href="../index.html" style="display:inline-flex; align-items:center; gap:12px; text-decoration:none; margin-bottom:24px;">
+                <img src="../assets/icon-128.png" alt="SporlyWorks" style="height:32px; width:32px;">
+                <span style="color:var(--gold-light); letter-spacing:3px;">SPORLYWORKS</span>
+            </a>
+            <p style="color:var(--text-on-dark); opacity:0.6; font-size:12px; max-width:600px; margin:0 auto 12px;">Affiliate Disclosure: We may earn a referral commission when you purchase through our links at no additional cost to you.</p>
+            <p style="color:var(--text-on-dark); opacity:0.6; font-size:11px;">&copy; 2026 SporlyWorks. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

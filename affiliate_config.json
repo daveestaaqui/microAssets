@@ -25,7 +25,7 @@
     "magicbag": {
       "name": "Magic Bag",
       "tagline": "All-In-One Grow Bags",
-      "affiliate_id": "YOUR_MAGICBAG_ID",
+      "affiliate_id": "Sporlyworks",
       "base_url": "https://www.magicbag.co",
       "affiliate_url_template": "https://www.magicbag.co/?ref={affiliate_id}",
       "category": "cultivation",

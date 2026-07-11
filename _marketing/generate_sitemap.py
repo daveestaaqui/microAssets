@@ -49,6 +49,13 @@ def generate_sitemap():
         for f in os.listdir(tools_dir):
             if f.endswith(".html"):
                 xml_content.append(f"  <url>\n    <loc>{BASE_URL}/tools/{f}</loc>\n    <lastmod>{today}</lastmod>\n    <priority>0.8</priority>\n  </url>")
+
+    # 6. Add blog pages from the blog/ folder
+    blog_dir = BASE_DIR / "blog"
+    if blog_dir.exists():
+        for f in os.listdir(blog_dir):
+            if f.endswith(".html"):
+                xml_content.append(f"  <url>\n    <loc>{BASE_URL}/blog/{f}</loc>\n    <lastmod>{today}</lastmod>\n    <priority>0.9</priority>\n  </url>")
                 
     xml_content.append("</urlset>")
     

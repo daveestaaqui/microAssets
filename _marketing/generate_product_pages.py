@@ -186,15 +186,17 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
     <nav id="mainNav" class="scrolled">
         <div class="nav-inner">
             <a href="../index.html" class="nav-brand">
-                <img src="{nav_icon}" alt="SporlyWorks" class="nav-icon" style="height:60px; width:60px;">
+                <img src="{nav_icon}" alt="SporlyWorks" class="nav-icon" style="height:90px; width:90px;">
                 <span class="nav-wordmark" style="font-size:24px;">SPORLYWORKS</span>
             </a>
             <div class="nav-links">
-                <a href="../index.html#genetics">Cultivation</a>
-                <a href="../index.html#supplements">Supplements</a>
-                <a href="../index.html#research">Science</a>
+                <a href="../index.html#products">Products</a>
+                <a href="../tools/yield-estimator.html">Yield Estimator</a>
+                <a href="../tools/wellness-stack-builder.html">Stack Builder</a>
+                <a href="../tools/diagnostics.html">Diagnostics</a>
+                <a href="../blog/index.html">Blog</a>
             </div>
-            <a href="../index.html#genetics" class="nav-cta" style="background:linear-gradient(135deg, var(--green-light), var(--green)); color:white; padding:10px 24px; border-radius:99px; text-decoration:none; font-weight:600;">Shop Collection</a>
+            <a href="../index.html#products" class="nav-cta" style="background:linear-gradient(135deg, var(--green-light), var(--green)); color:white; padding:10px 24px; border-radius:99px; text-decoration:none; font-weight:600;">Shop Collection</a>
         </div>
     </nav>
 
