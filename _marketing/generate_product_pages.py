@@ -8,7 +8,7 @@ os.makedirs(PRODUCTS_DIR, exist_ok=True)
 
 STYLE_PATH = "../style.css?v=700"
 FAVICON_PATH = "../assets/favicon.ico"
-NAV_ICON = "../assets/icon-128.png"
+NAV_ICON = "../assets/icon-512.png"
 
 PRODUCT_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
