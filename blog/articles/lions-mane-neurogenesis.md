@@ -1,7 +1,7 @@
 ---
 title: "Beyond NGF: The Direct Mechanism of Hericenones in Cognitive Plasticity"
 date: "2026-07-11"
-author: "David Mahler"
+author: "SporlyWorks Editorial"
 summary: "Explore the bio-chemical mechanisms behind Hericium erinaceus, how its active compounds cross the blood-brain barrier, and what clinical research shows about Nerve Growth Factor (NGF) stimulation."
 keywords: "lions mane NGF, Hericium erinaceus clinical study, nootropic science"
 ---

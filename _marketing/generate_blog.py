@@ -118,11 +118,12 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
             padding-bottom: 24px;
         }}
         .blog-title {{
-            font-family: 'Cinzel', serif;
-            font-size: 36px;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 42px;
             color: var(--green-dark);
             margin-bottom: 16px;
-            line-height: 1.3;
+            line-height: 1.25;
+            font-weight: 700;
         }}
         .blog-meta {{
             font-family: 'Inter', sans-serif;
@@ -136,27 +137,31 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
             color: var(--green-dark);
         }}
         .blog-body {{
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 20px;
-            line-height: 1.7;
-            color: var(--text-dark);
+            font-family: 'Inter', sans-serif;
+            font-size: 17px;
+            line-height: 1.85;
+            color: var(--text-secondary);
         }}
         .blog-body p {{
             margin-bottom: 24px;
         }}
         .blog-body h2 {{
-            font-family: 'Cinzel', serif;
-            font-size: 24px;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 28px;
             color: var(--green-dark);
             margin: 40px 0 20px;
+            font-weight: 700;
         }}
         .blog-body h3 {{
-            font-family: 'Cinzel', serif;
-            font-size: 20px;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 22px;
             color: var(--green-dark);
             margin: 32px 0 16px;
+            font-weight: 700;
         }}
         .blog-quote {{
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 22px;
             font-style: italic;
             border-left: 4px solid var(--gold-light);
             padding-left: 20px;

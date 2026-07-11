@@ -1,7 +1,7 @@
 ---
 title: "The Cultivator's Guide to Mold: Trichoderma vs. Cobweb"
 date: "2026-07-11"
-author: "David Mahler"
+author: "SporlyWorks Editorial"
 summary: "A practical guide for home mushroom growers to distinguish between healthy mycelium, normal blue bruising, green mold, and cobweb infestations."
 keywords: "mushroom contamination, trichoderma green mold, cobweb mold, healthy mycelium bruising"
 ---

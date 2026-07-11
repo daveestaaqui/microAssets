@@ -1,7 +1,7 @@
 ---
 title: "Why 90% of Probiotics Fail: The Physics of Gastric Acid Survivability"
 date: "2026-07-11"
-author: "David Mahler"
+author: "SporlyWorks Editorial"
 summary: "An analytical dive into gut microbiome survival dynamics, exploring the biochemical barriers of stomach acid and the physical engineering of dual-capsule delivery systems."
 keywords: "probiotics stomach acid, synbiotics capsule, Seed DS-01 probiotic survivability"
 ---
