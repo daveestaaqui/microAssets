@@ -186,7 +186,7 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
     <nav id="mainNav" class="scrolled">
         <div class="nav-inner">
             <a href="../index.html" class="nav-brand">
-                <img src="{nav_icon}" alt="SporlyWorks" class="nav-icon" style="height:90px; width:90px;">
+                <img src="{nav_icon}" alt="SporlyWorks" class="nav-icon">
                 <span class="nav-wordmark" style="font-size:24px;">SPORLYWORKS</span>
             </a>
             <div class="nav-links">
