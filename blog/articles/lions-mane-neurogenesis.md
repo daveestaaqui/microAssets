@@ -49,7 +49,7 @@ In a landmark double-blind, placebo-controlled clinical trial, researchers admin
 
 This indicates that the neuroplastic benefits of functional mushrooms require sustained, daily intake to maintain structural adaptation.
 
-> **Clinical Reference:** Mori, K., et al. (2009). *Improving effects of the mushroom Yamabushitake (Hericium erinaceus) on mild cognitive impairment: a double-blind, placebo-controlled trial.* Phytotherapy Research, 23(3), 367-372.
+> **Clinical Reference:** Mori, K., et al. (2009). [*Improving effects of the mushroom Yamabushitake (Hericium erinaceus) on mild cognitive impairment: a double-blind, placebo-controlled trial.*](https://pubmed.ncbi.nlm.nih.gov/18844328/) Phytotherapy Research, 23(3), 367-372.
 
 ---
 

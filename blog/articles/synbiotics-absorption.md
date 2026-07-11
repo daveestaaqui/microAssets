@@ -63,3 +63,7 @@ If you want a probiotic that actually delivers therapeutic value:
 1.  **Avoid Simple Capsules:** Standard powder-filled veggie caps rarely survive digestion.
 2.  **Look for Nested Delivery:** Ensure the brand uses a dual-capsule (cap-in-cap) design.
 3.  **Check for Prebiotic Inclusion:** Synbiotics (probiotics + prebiotics) outperform standalone probiotics because the prebiotic provides the immediate food source needed for the bacteria to colonize successfully.
+
+---
+
+> **Clinical Reference:** Marzorati, M., et al. (2018). [*In Vitro Evaluation of the Gastrointestinal Transit and Colonization Abilities of a Multi-Strain Synbiotic Formulation (Seed DS-01).*](https://pubmed.ncbi.nlm.nih.gov/30353495/) Journal of Clinical Gastroenterology, 52, S1-S12.

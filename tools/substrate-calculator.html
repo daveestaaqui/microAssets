@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulk Substrate & Field Capacity Calculator — SporlyWorks</title>
+    <meta name="description" content="Achieve perfect field capacity for your mushroom bulk substrates. Calculate precise water, coco coir, vermiculite, and gypsum ratios for any monotub size.">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=700">
+    <style>
+        .calc-container {
+            max-width: 900px;
+            margin: 140px auto 80px;
+            padding: 0 24px;
+        }
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+        @media (min-width: 768px) {
+            .calc-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .calc-card {
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            box-shadow: 0 12px 48px rgba(44, 36, 24, 0.03);
+        }
+        .calc-title {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            color: var(--green-dark);
+            margin-bottom: 24px;
+            font-weight: 700;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-label {
+            display: block;
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--green-dark);
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+        .form-select, .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            background: rgba(253, 251, 247, 0.6);
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        .form-select:focus, .form-input:focus {
+            border-color: var(--green-dark);
+            background: #ffffff;
+            outline: none;
+        }
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .form-range {
+            flex-grow: 1;
+            accent-color: var(--green-dark);
+        }
+        .slider-value {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: var(--text-dark);
+            min-width: 50px;
+            text-align: right;
+        }
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px dashed var(--border-color);
+        }
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        .result-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            color: var(--text-muted);
+        }
+        .result-val {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--green-dark);
+        }
+        .protocol-box {
+            background: rgba(245, 240, 232, 0.4);
+            border-left: 4px solid var(--gold-light);
+            padding: 20px;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin-top: 24px;
+        }
+        .protocol-box h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            color: var(--green-dark);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+        .protocol-box ol {
+            padding-left: 18px;
+            margin: 0;
+        }
+        .protocol-box li {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+        .rec-cta-box {
+            border: 1px solid var(--glass-border);
+            background: linear-gradient(135deg, rgba(253, 251, 247, 0.8), rgba(245, 240, 232, 0.4));
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin-top: 24px;
+            text-align: center;
+        }
+        .rec-cta-title {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            color: var(--green-dark);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .rec-cta-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+        .btn-rec-cta {
+            display: inline-block;
+            background: var(--green-dark);
+            color: var(--text-on-dark);
+            padding: 10px 20px;
+            border-radius: var(--radius-sm);
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .btn-rec-cta:hover {
+            background: #1e3527;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav id="mainNav" class="scrolled">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-brand">
+                <img src="../assets/logo-nav.png" alt="SporlyWorks" class="nav-icon">
+                <span class="nav-wordmark" style="font-size:24px;">SPORLYWORKS</span>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html#products">Products</a>
+                <a href="yield-estimator.html">Yield Estimator</a>
+                <a href="wellness-stack-builder.html">Stack Builder</a>
+                <a href="diagnostics.html">Diagnostics</a>
+                <a href="../blog/index.html">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ SUBSTRATE CALCULATOR ═══ -->
+    <main class="calc-container">
+        <div class="calc-grid">
+            
+            <!-- Inputs Card -->
+            <div class="calc-card">
+                <h2 class="calc-title">Monotub Parameters</h2>
+                
+                <div class="form-group">
+                    <label class="form-label" for="tubSize">Select Monotub Size</label>
+                    <select class="form-select" id="tubSize">
+                        <option value="6">6 Quart (Shoebox / Small Tub)</option>
+                        <option value="16">16 Quart (Medium Tub)</option>
+                        <option value="32">32 Quart (Mid-Size Tub)</option>
+                        <option value="54" selected>54 Quart (Standard Tub)</option>
+                        <option value="66">66 Quart (Large Monotub)</option>
+                        <option value="custom">Custom Dimensions...</option>
+                    </select>
+                </div>
+
+                <!-- Custom Dimensions Form (Hidden by default) -->
+                <div id="customDims" style="display: none;">
+                    <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <div>
+                            <label class="form-label" for="tubLength">Length (inches)</label>
+                            <input type="number" class="form-input" id="tubLength" value="22" min="5" max="100">
+                        </div>
+                        <div>
+                            <label class="form-label" for="tubWidth">Width (inches)</label>
+                            <input type="number" class="form-input" id="tubWidth" value="15" min="5" max="100">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="subDepth">Substrate Depth (inches)</label>
+                    <div class="slider-container">
+                        <input type="range" class="form-range" id="subDepth" min="2.0" max="5.0" step="0.5" value="3.0">
+                        <span class="slider-value" id="subDepthVal">3.0"</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="spawnRatio">Spawn to Substrate Ratio</label>
+                    <select class="form-select" id="spawnRatio">
+                        <option value="1">1:1 (High nutrient speed)</option>
+                        <option value="2" selected>1:2 (Optimal balance)</option>
+                        <option value="3">1:3 (Standard economic)</option>
+                        <option value="4">1:4 (Low nutrient run)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Results Card -->
+            <div class="calc-card">
+                <h2 class="calc-title">CVG & Spawn Recipe (Field Capacity)</h2>
+                
+                <div class="result-item">
+                    <span class="result-label">Total Substrate + Spawn Volume:</span>
+                    <span class="result-val" id="resTotalVol">--</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Coco Coir (Dry Weight):</span>
+                    <span class="result-val" id="resCoir">--</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Vermiculite (Dry Volume):</span>
+                    <span class="result-val" id="resVerm">--</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Gypsum (Dry Weight):</span>
+                    <span class="result-val" id="resGypsum">--</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Water Needed (Boiling):</span>
+                    <span class="result-val" id="resWater">--</span>
+                </div>
+                <div class="result-item" style="border-top: 1px dashed var(--border-color); margin-top: 10px; padding-top: 14px;">
+                    <span class="result-label" style="font-weight: 600; color: var(--green-dark);">Recommended Grain Spawn:</span>
+                    <span class="result-val" id="resSpawn" style="color: var(--gold-dark);">--</span>
+                </div>
+
+                <div class="protocol-box">
+                    <h4>Bucket Tek Pasteurization Steps:</h4>
+                    <ol>
+                        <li>Place dry Coir and Gypsum into a clean, 5-gallon bucket.</li>
+                        <li>Pour in Vermiculite, stir to distribute.</li>
+                        <li>Pour the boiling water directly over the dry mix.</li>
+                        <li>Seal the lid immediately and let sit for 6 hours until cooled to room temp.</li>
+                    </ol>
+                </div>
+
+                <div class="rec-cta-box">
+                    <h5 class="rec-cta-title">Bypass Substrate Prep & Sterile Risks</h5>
+                    <p class="rec-cta-text">Get pre-sterilized, hydrated compost and grain grow bags ready to inoculate.</p>
+                    <a href="../products/magic-bag-grow-bags.html" class="btn-rec-cta">Get All-In-One Magic Bags →</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer style="background:var(--green-dark); color:var(--text-on-dark); padding:60px 0; text-align:center;">
+        <div class="container">
+            <a href="../index.html" style="display:inline-flex; align-items:center; gap:12px; text-decoration:none; margin-bottom:24px;">
+                <img src="../assets/logo-nav.png" alt="SporlyWorks" style="height:32px; width:32px;">
+                <span style="color:var(--gold-light); letter-spacing:3px;">SPORLYWORKS</span>
+            </a>
+            <p style="color:var(--text-on-dark); opacity:0.6; font-size:12px; max-width:600px; margin:0 auto 12px;">Calculation Disclaimer: Moisture and density variables may require minor hand-squeeze adjustments to achieve exact field capacity (one drop of water when squeezed).</p>
+            <p style="color:var(--text-on-dark); opacity:0.6; font-size:11px;">&copy; 2026 SporlyWorks. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const tubVolumeMap = {
+            "6": { length: 12, width: 7.5 },
+            "16": { length: 16.5, width: 11.5 },
+            "32": { length: 18.5, width: 14.0 },
+            "54": { length: 22.0, width: 15.5 },
+            "66": { length: 24.0, width: 16.0 }
+        };
+
+        const tubSizeSelect = document.getElementById('tubSize');
+        const customDims = document.getElementById('customDims');
+        const subDepthInput = document.getElementById('subDepth');
+        const subDepthVal = document.getElementById('subDepthVal');
+        const spawnRatioSelect = document.getElementById('spawnRatio');
+
+        const inputs = [tubSizeSelect, subDepthInput, spawnRatioSelect, document.getElementById('tubLength'), document.getElementById('tubWidth')];
+
+        inputs.forEach(el => el.addEventListener('input', calculateCVG));
+
+        tubSizeSelect.addEventListener('change', function() {
+            if (this.value === 'custom') {
+                customDims.style.display = 'block';
+            } else {
+                customDims.style.display = 'none';
+            }
+            calculateCVG();
+        });
+
+        function calculateCVG() {
+            const size = tubSizeSelect.value;
+            let length, width;
+
+            if (size === 'custom') {
+                length = parseFloat(document.getElementById('tubLength').value) || 0;
+                width = parseFloat(document.getElementById('tubWidth').value) || 0;
+            } else {
+                length = tubVolumeMap[size].length;
+                width = tubVolumeMap[size].width;
+            }
+
+            const depth = parseFloat(subDepthInput.value);
+            subDepthVal.innerText = depth.toFixed(1) + '"';
+            const spawnRatio = parseInt(spawnRatioSelect.value);
+
+            // Volume calculation in cubic inches
+            const volumeCubicInches = length * width * depth;
+            
+            // Convert to Liters (1 cubic inch = 0.0163871 Liters)
+            const volumeLiters = volumeCubicInches * 0.0163871;
+            
+            // Total substrate volume in Quarts (1 Liter = 1.05669 Quarts)
+            const volumeQuarts = volumeLiters * 1.05669;
+
+            // Spawn calculation based on ratio (total parts = 1 spawn + spawnRatio substrate)
+            const totalParts = 1 + spawnRatio;
+            const spawnVolumeQuarts = volumeQuarts / totalParts;
+            const substrateVolumeQuarts = volumeQuarts - spawnVolumeQuarts;
+
+            // Standard recipe yields approx 8 Quarts of substrate from:
+            // - 650g Coir
+            // - 200g Vermiculite (~2 Liters)
+            // - 100g Gypsum (~0.5 cup)
+            // - 3.5 Liters Water
+            const ratioMultiplier = substrateVolumeQuarts / 8.0;
+
+            // Ingredient amounts
+            const coirGrams = Math.round(650 * ratioMultiplier);
+            const vermiculiteLiters = (2.0 * ratioMultiplier).toFixed(1);
+            const gypsumGrams = Math.round(100 * ratioMultiplier);
+            const waterLiters = (3.5 * ratioMultiplier).toFixed(2);
+
+            // Output formatting
+            document.getElementById('resTotalVol').innerText = `${volumeQuarts.toFixed(1)} Quarts (${volumeLiters.toFixed(1)} L)`;
+            document.getElementById('resCoir').innerText = `${coirGrams}g (${(coirGrams/650).toFixed(1)} standard brick)`;
+            document.getElementById('resVerm').innerText = `${vermiculiteLiters} Liters (~${Math.round(vermiculiteLiters * 4.2)} cups)`;
+            document.getElementById('resGypsum').innerText = `${gypsumGrams}g (~${Math.round(gypsumGrams / 15)} tbsp)`;
+            document.getElementById('resWater').innerText = `${waterLiters} L (${Math.round(waterLiters * 4.2)} cups / ${(waterLiters * 1.05).toFixed(1)} Qt)`;
+            
+            // Recommended Spawn Jars / bags (standard unit is 1 quart jar or 3 lb bag = approx 1.5 - 2 quarts)
+            document.getElementById('resSpawn').innerText = `${spawnVolumeQuarts.toFixed(1)} Quarts (~${Math.ceil(spawnVolumeQuarts)} Jar${Math.ceil(spawnVolumeQuarts) > 1 ? 's' : ''})`;
+        }
+
+        // Run on initial load
+        calculateCVG();
+    </script>
+</body>
+</html>

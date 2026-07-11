@@ -222,7 +222,7 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
     <nav id="mainNav" class="scrolled">
         <div class="nav-inner">
             <a href="../index.html" class="nav-brand">
-                <img src="../assets/icon-128.png" alt="SporlyWorks" class="nav-icon">
+                <img src="{nav_icon}" alt="SporlyWorks" class="nav-icon">
                 <span class="nav-wordmark" style="font-size:24px;">SPORLYWORKS</span>
             </a>
             <div class="nav-links">
@@ -230,6 +230,7 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
                 <a href="../tools/yield-estimator.html">Yield Estimator</a>
                 <a href="../tools/wellness-stack-builder.html">Stack Builder</a>
                 <a href="../tools/diagnostics.html">Diagnostics</a>
+                <a href="../tools/substrate-calculator.html">Substrate Calculator</a>
                 <a href="index.html" class="active">Blog</a>
             </div>
         </div>
@@ -379,7 +380,7 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
     <nav id="mainNav" class="scrolled">
         <div class="nav-inner">
             <a href="../index.html" class="nav-brand">
-                <img src="../assets/icon-128.png" alt="SporlyWorks" class="nav-icon">
+                <img src="{nav_icon}" alt="SporlyWorks" class="nav-icon">
                 <span class="nav-wordmark" style="font-size:24px;">SPORLYWORKS</span>
             </a>
             <div class="nav-links">
@@ -387,6 +388,7 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
                 <a href="../tools/yield-estimator.html">Yield Estimator</a>
                 <a href="../tools/wellness-stack-builder.html">Stack Builder</a>
                 <a href="../tools/diagnostics.html">Diagnostics</a>
+                <a href="../tools/substrate-calculator.html">Substrate Calculator</a>
                 <a href="index.html" class="active">Blog</a>
             </div>
         </div>
@@ -480,6 +482,7 @@ def generate_blog():
                 slug=slug,
                 favicon=FAVICON_PATH,
                 style_path=STYLE_PATH,
+                nav_icon=NAV_ICON,
                 author=author,
                 date=date,
                 body=body_html,
@@ -517,6 +520,7 @@ def generate_blog():
         
     index_html = INDEX_TEMPLATE.format(
         style_path=STYLE_PATH,
+        nav_icon=NAV_ICON,
         cards=cards_html
     )
     
