@@ -123,20 +123,21 @@
 </head>
 <body>
 
-    <!-- ═══ NAVIGATION ═══ -->
-    <nav id="mainNav" class="scrolled">
+    <nav id="mainNav">
         <div class="nav-inner">
             <a href="../index.html" class="nav-brand">
                 <img src="../assets/logo-nav.png?v=902" alt="SporlyWorks" class="nav-icon">
-                <span class="nav-wordmark" style="font-size:24px;">SPORLYWORKS</span>
+                <span class="nav-wordmark">SPORLYWORKS</span>
             </a>
-            <div class="nav-links">
-                <a href="../index.html#products">Products</a>
-                <a href="../tools/yield-estimator.html">Yield Estimator</a>
-                <a href="../tools/wellness-stack-builder.html">Stack Builder</a>
-                <a href="../tools/diagnostics.html">Diagnostics</a>
-                <a href="../tools/substrate-calculator.html">Substrate Calculator</a>
-                <a href="index.html" class="active">Blog</a>
+            <div class="nav-menu-row">
+                <div class="nav-links">
+                    <a href="../index.html#products">Products</a>
+                    <a href="../tools/yield-estimator.html">Yield Estimator</a>
+                    <a href="../tools/wellness-stack-builder.html">Stack Builder</a>
+                    <a href="../tools/diagnostics.html">Diagnostics</a>
+                    <a href="../tools/substrate-calculator.html">Substrate Calculator</a>
+                    <a href="index.html" class="active">Blog</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -234,7 +235,10 @@
             <p style="color:var(--text-on-dark); opacity:0.6; font-size:12px; max-width:600px; margin:0 auto 12px;">Affiliate Disclosure: We may earn a referral commission when you purchase through our links at no additional cost to you.</p>
             <p style="color:var(--text-on-dark); opacity:0.6; font-size:11px;">&copy; 2026 SporlyWorks. All rights reserved.</p>
         </div>
-    </footer>
-
+    <script>
+    window.addEventListener('scroll', () => {
+        document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 40);
+    });
+    </script>
 </body>
 </html>
