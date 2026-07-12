@@ -104,7 +104,7 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
     <link rel="canonical" href="https://sporlyworks.com/blog/{slug}.html">
     <link rel="icon" type="image/x-icon" href="{favicon}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{style_path}">
     <style>
         .blog-container {{
@@ -264,14 +264,43 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
     </main>
 
     <!-- ═══ FOOTER ═══ -->
-    <footer style="background:var(--green-dark); color:var(--text-on-dark); padding:60px 0; text-align:center;">
-        <div class="container">
-            <a href="../index.html" style="display:inline-flex; align-items:center; gap:12px; text-decoration:none; margin-bottom:24px;">
-                <img src="{nav_icon}" alt="SporlyWorks" style="height:32px; width:32px;">
-                <span style="color:var(--gold-light); letter-spacing:3px;">SPORLYWORKS</span>
-            </a>
-            <p style="color:var(--text-on-dark); opacity:0.6; font-size:12px; max-width:600px; margin:0 auto 12px;">Affiliate Disclosure: We may earn a referral commission when you purchase through our links at no additional cost to you.</p>
-            <p style="color:var(--text-on-dark); opacity:0.6; font-size:11px;">&copy; 2026 SporlyWorks. All rights reserved.</p>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3 class="footer-logo">SPORLYWORKS</h3>
+                <p class="footer-tagline">Botanical precision meets functional wellness. Bringing clinical-grade adaptogens and certified organic genetics to home laboratories.</p>
+            </div>
+            
+            <div class="footer-links-grid">
+                <div class="footer-column">
+                    <h4>Collections</h4>
+                    <a href="../products.html">Browse Products</a>
+                    <a href="../products/myyco-liquid-culture.html">Liquid Cultures</a>
+                    <a href="../products/seed-ds01.html">Daily Synbiotic</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Mycology Engines</h4>
+                    <a href="../tools/yield-estimator.html">Yield Estimator</a>
+                    <a href="../tools/wellness-stack-builder.html">Stack Builder</a>
+                    <a href="../tools/diagnostics.html">Contamination Diagnostics</a>
+                    <a href="../tools/substrate-calculator.html">Substrate Calculator</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <a href="../blog/index.html">Mycology Science Blog</a>
+                    <a href="../sitemap.xml">Sitemap</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p>&copy; 2026 SporlyWorks. All rights reserved.</p>
+                <div class="footer-legal-links">
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <a href="../terms.html">Terms of Service</a>
+                </div>
+            </div>
         </div>
     </footer>
 </body>
@@ -288,7 +317,7 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
     <meta name="description" content="Explore peer-reviewed articles and grow logs from the SporlyWorks science board. Discover neurogenesis, survivability, and cultivation guides.">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{style_path}">
     <style>
         .blog-index-container {{
@@ -409,14 +438,43 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
     </main>
 
     <!-- ═══ FOOTER ═══ -->
-    <footer style="background:var(--green-dark); color:var(--text-on-dark); padding:60px 0; text-align:center;">
-        <div class="container">
-            <a href="../index.html" style="display:inline-flex; align-items:center; gap:12px; text-decoration:none; margin-bottom:24px;">
-                <img src="{nav_icon}" alt="SporlyWorks" style="height:32px; width:32px;">
-                <span style="color:var(--gold-light); letter-spacing:3px;">SPORLYWORKS</span>
-            </a>
-            <p style="color:var(--text-on-dark); opacity:0.6; font-size:12px; max-width:600px; margin:0 auto 12px;">Affiliate Disclosure: We may earn a referral commission when you purchase through our links at no additional cost to you.</p>
-            <p style="color:var(--text-on-dark); opacity:0.6; font-size:11px;">&copy; 2026 SporlyWorks. All rights reserved.</p>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3 class="footer-logo">SPORLYWORKS</h3>
+                <p class="footer-tagline">Botanical precision meets functional wellness. Bringing clinical-grade adaptogens and certified organic genetics to home laboratories.</p>
+            </div>
+            
+            <div class="footer-links-grid">
+                <div class="footer-column">
+                    <h4>Collections</h4>
+                    <a href="../products.html">Browse Products</a>
+                    <a href="../products/myyco-liquid-culture.html">Liquid Cultures</a>
+                    <a href="../products/seed-ds01.html">Daily Synbiotic</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Mycology Engines</h4>
+                    <a href="../tools/yield-estimator.html">Yield Estimator</a>
+                    <a href="../tools/wellness-stack-builder.html">Stack Builder</a>
+                    <a href="../tools/diagnostics.html">Contamination Diagnostics</a>
+                    <a href="../tools/substrate-calculator.html">Substrate Calculator</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <a href="../blog/index.html">Mycology Science Blog</a>
+                    <a href="../sitemap.xml">Sitemap</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p>&copy; 2026 SporlyWorks. All rights reserved.</p>
+                <div class="footer-legal-links">
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <a href="../terms.html">Terms of Service</a>
+                </div>
+            </div>
         </div>
     </footer>
 </body>
