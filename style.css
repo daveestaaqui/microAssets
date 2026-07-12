@@ -112,11 +112,30 @@ nav {
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    gap: 8px;
-    transition: all 0.4s ease;
+    gap: 0px;
+    transition: all 0.5s var(--transition-smooth);
+}
+/* Homepage initial state: collapse and hide logo brand */
+.home-nav .nav-brand {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-20px);
+    overflow: hidden;
+    pointer-events: none;
+    margin-bottom: 0;
+}
+/* Homepage scrolled state & subpages state: expand logo brand */
+.home-nav.scrolled .nav-brand,
+nav:not(.home-nav) .nav-brand {
+    max-height: 160px;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    margin-bottom: 6px;
 }
 .nav-icon {
     flex-shrink: 0; height: 110px; width: auto; object-fit: contain;
+    margin-bottom: -10px;
     transition: all 0.4s var(--transition-smooth);
 }
 .nav-brand:hover .nav-icon {
@@ -246,6 +265,34 @@ nav {
     display: flex; flex-direction: column; align-items: center;
     margin-bottom: 12px;
     position: relative;
+    width: 100%;
+}
+.hero-intro-logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0px;
+}
+.hero-intro-logo {
+    height: 180px;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: -15px;
+    filter: drop-shadow(0 12px 30px rgba(27, 138, 90, 0.12));
+    transition: transform 0.4s var(--transition-smooth);
+}
+.hero-intro-logo:hover {
+    transform: scale(1.03);
+}
+.hero-intro-wordmark {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(40px, 6vw, 60px);
+    font-weight: 700;
+    color: var(--green-dark);
+    letter-spacing: 6px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    line-height: 1.1;
 }
 .hero-brand::after {
     content: '';

@@ -21,16 +21,16 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=904">
+    <link rel="stylesheet" href="style.css?v=905">
 
 </head>
 <body>
 
     <!-- ═══ NAVIGATION ═══ -->
-    <nav id="mainNav" class="scrolled">
+    <nav id="mainNav" class="home-nav">
         <div class="nav-inner">
             <a href="index.html" class="nav-brand">
-                <img src="assets/logo-nav.png?v=904" alt="SporlyWorks" class="nav-icon">
+                <img src="assets/logo-nav.png?v=905" alt="SporlyWorks" class="nav-icon">
                 <span class="nav-wordmark">SPORLYWORKS</span>
             </a>
             <div class="nav-menu-row">
@@ -50,6 +50,10 @@
     <section class="hero" id="hero">
         <div class="hero-content reveal">
             <div class="hero-brand">
+                <div class="hero-intro-logo-wrapper">
+                    <img src="assets/logo-nav.png?v=905" alt="SporlyWorks" class="hero-intro-logo">
+                </div>
+                <h1 class="hero-intro-wordmark">SPORLYWORKS</h1>
                 <div class="hero-title-lockup">
                     <p class="hero-tagline">Mycology · Cultivation · Wellness</p>
                 </div>
@@ -559,6 +563,21 @@
         });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ═══ NAVIGATION TRANSITIONS ═══
+    const nav = document.getElementById('mainNav');
+    
+    // Add scrolled class when scrolling down past 120px
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 120);
+    });
+    
+    // Instantly transition header when clicking any homepage link
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', () => {
+            nav.classList.add('scrolled');
+        });
+    });
     </script>
 </body>
 </html>
