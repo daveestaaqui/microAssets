@@ -289,10 +289,11 @@ nav:not(.home-nav) .nav-brand {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    margin-bottom: 24px;
+    gap: 8px;
+    margin-bottom: 32px;
     position: relative;
     width: 100%;
+    text-align: center;
 }
 .hero-intro-logo {
     height: 100px;
