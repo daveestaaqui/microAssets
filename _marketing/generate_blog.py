@@ -218,7 +218,7 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
 </head>
 <body>
 
-    <nav id="mainNav">
+    <nav id="mainNav" class="scrolled">
         <div class="nav-inner">
             <a href="../index.html" class="nav-brand">
                 <img src="{nav_icon}" alt="SporlyWorks" class="nav-icon">
@@ -272,11 +272,6 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
             <p style="color:var(--text-on-dark); opacity:0.6; font-size:12px; max-width:600px; margin:0 auto 12px;">Affiliate Disclosure: We may earn a referral commission when you purchase through our links at no additional cost to you.</p>
             <p style="color:var(--text-on-dark); opacity:0.6; font-size:11px;">&copy; 2026 SporlyWorks. All rights reserved.</p>
         </div>
-    <script>
-    window.addEventListener('scroll', () => {{
-        document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 40);
-    }});
-    </script>
 </body>
 </html>
 """
@@ -380,7 +375,7 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
 </head>
 <body>
 
-    <nav id="mainNav">
+    <nav id="mainNav" class="scrolled">
         <div class="nav-inner">
             <a href="../index.html" class="nav-brand">
                 <img src="{nav_icon}" alt="SporlyWorks" class="nav-icon">
@@ -421,11 +416,6 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
             <p style="color:var(--text-on-dark); opacity:0.6; font-size:12px; max-width:600px; margin:0 auto 12px;">Affiliate Disclosure: We may earn a referral commission when you purchase through our links at no additional cost to you.</p>
             <p style="color:var(--text-on-dark); opacity:0.6; font-size:11px;">&copy; 2026 SporlyWorks. All rights reserved.</p>
         </div>
-    <script>
-    window.addEventListener('scroll', () => {{
-        document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 40);
-    }});
-    </script>
 </body>
 </html>
 """

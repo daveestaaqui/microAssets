@@ -183,7 +183,7 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
 <body>
 
     <!-- ═══ NAVIGATION ═══ -->
-    <nav id="mainNav">
+    <nav id="mainNav" class="scrolled">
         <div class="nav-inner">
             <a href="../index.html" class="nav-brand">
                 <img src="{nav_icon}" alt="SporlyWorks" class="nav-icon">
@@ -290,10 +290,6 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
             }}
         }})
         .catch(() => console.log('Config fetch skipped - using default links'));
-
-    window.addEventListener('scroll', () => {{
-        document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 40);
-    }});
     </script>
 </body>
 </html>
