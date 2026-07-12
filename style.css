@@ -127,15 +127,18 @@ nav {
 /* Homepage scrolled state & subpages state: expand logo brand */
 .home-nav.scrolled .nav-brand,
 nav:not(.home-nav) .nav-brand {
-    max-height: 70px;
+    max-height: 80px;
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
     margin-bottom: 4px;
 }
 .nav-icon {
-    flex-shrink: 0; height: 55px; width: auto; object-fit: contain;
+    flex-shrink: 0; height: 70px; width: auto; object-fit: contain;
     transition: all 0.4s var(--transition-smooth);
+}
+.home-nav.scrolled .nav-icon {
+    height: 55px;
 }
 .nav-brand:hover .nav-icon {
     transform: scale(1.02);
@@ -204,7 +207,10 @@ nav:not(.home-nav) .nav-brand {
         gap: 10px;
     }
     .nav-icon {
-        height: 95px;
+        height: 55px;
+    }
+    .home-nav.scrolled .nav-icon {
+        height: 45px;
     }
     .nav-wordmark {
         font-size: 20px;
@@ -230,7 +236,10 @@ nav:not(.home-nav) .nav-brand {
         gap: 8px;
     }
     .nav-icon {
-        height: 70px;
+        height: 45px;
+    }
+    .home-nav.scrolled .nav-icon {
+        height: 35px;
     }
     .nav-wordmark {
         font-size: 16px;
