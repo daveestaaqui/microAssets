@@ -75,6 +75,7 @@
             <div class="collections-preview-grid">
                 <!-- Cultivation Collection -->
                 <div class="collection-preview-card reveal">
+                    <img src="assets/illustrations/grow_kits.jpg?v=908" alt="Mushroom Cultivation" class="collection-preview-img" style="width: 100%; height: 220px; object-fit: cover; border-radius: var(--radius-md); margin-bottom: 24px; border: 1px solid var(--border-color);">
                     <div class="collection-preview-info">
                         <span class="collection-tag">Cultivation</span>
                         <h3>Spore Genetics & Grow Kits</h3>
@@ -85,6 +86,7 @@
 
                 <!-- Supplements Collection -->
                 <div class="collection-preview-card reveal">
+                    <img src="assets/illustrations/supplements.jpg?v=908" alt="Functional Supplements" class="collection-preview-img" style="width: 100%; height: 220px; object-fit: cover; border-radius: var(--radius-md); margin-bottom: 24px; border: 1px solid var(--border-color);">
                     <div class="collection-preview-info">
                         <span class="collection-tag">Wellness</span>
                         <h3>Functional Adaptogens</h3>
@@ -300,28 +302,45 @@
 
 
     <!-- ═══ FOOTER ═══ -->
-    <footer>
-        <div class="container">
-            <a href="index.html" class="footer-brand">
-                <img src="assets/icon-64.png" alt="SporlyWorks" class="footer-icon" loading="lazy">
-                <span class="footer-wordmark">SPORLYWORKS</span>
-            </a>
-            <div class="footer-nav">
-                <a href="#genetics">Cultivation</a>
-                <a href="#supplements">Supplements</a>
-                <a href="#tools">Tools</a>
-                <a href="tools/yield-estimator.html">Yield Estimator</a>
-                <a href="tools/wellness-stack-builder.html">Stack Builder</a>
-                <a href="tools/diagnostics.html">Diagnostics</a>
-                <a href="tools/substrate-calculator.html">Substrate Calculator</a>
-                <a href="blog/index.html">Research Blog</a>
-                <a href="privacy.html">Privacy</a>
-                <a href="terms.html">Terms</a>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3 class="footer-logo">SPORLYWORKS</h3>
+                <p class="footer-tagline">Botanical precision meets functional wellness. Bringing clinical-grade adaptogens and certified organic genetics to home laboratories.</p>
+                <div class="social-links" style="display: flex; gap: 16px; margin-top: 24px;">
+                    <a href="https://instagram.com/sporlyworks" target="_blank" rel="noopener noreferrer" style="color: var(--text-muted); hover: color: var(--gold); transition: color 0.3s;">Instagram</a>
+                </div>
             </div>
-            <div class="footer-bottom">
-                <p>Affiliate Disclosure: SporlyWorks may earn a commission on qualifying purchases through partner links at no additional cost to you.</p>
-                <p>Cultivation laws vary by jurisdiction. Always ensure you are operating within the legal boundaries of your local laws.</p>
-                <p style="margin-top: 12px;">&copy; 2026 SporlyWorks. All rights reserved.</p>
+            
+            <div class="footer-links-grid">
+                <div class="footer-column">
+                    <h4>Collections</h4>
+                    <a href="products.html">Browse Products</a>
+                    <a href="products/myyco-liquid-culture.html">Liquid Cultures</a>
+                    <a href="products/seed-ds01.html">Daily Synbiotic</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Mycology Engines</h4>
+                    <a href="tools/yield-estimator.html">Yield Estimator</a>
+                    <a href="tools/wellness-stack-builder.html">Stack Builder</a>
+                    <a href="tools/diagnostics.html">Contamination Diagnostics</a>
+                    <a href="tools/substrate-calculator.html">Substrate Calculator</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <a href="blog/index.html">Mycology Science Blog</a>
+                    <a href="sitemap.xml">Sitemap</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p>&copy; 2026 SporlyWorks. All rights reserved. Built using clinical validation standards.</p>
+                <div class="footer-legal-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>

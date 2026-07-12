@@ -271,10 +271,10 @@ nav:not(.home-nav) .nav-brand {
 
 .hero-brand {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 16px;
+    gap: 12px;
     margin-bottom: 24px;
     position: relative;
     width: 100%;

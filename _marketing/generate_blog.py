@@ -246,6 +246,7 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
                     <span class="blog-author">By {author}</span>
                     <span class="blog-date">{date}</span>
                 </div>
+                {hero_image_tag}
             </header>
             
             <div class="blog-body">
@@ -266,12 +267,13 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
     <footer style="background:var(--green-dark); color:var(--text-on-dark); padding:60px 0; text-align:center;">
         <div class="container">
             <a href="../index.html" style="display:inline-flex; align-items:center; gap:12px; text-decoration:none; margin-bottom:24px;">
-                <img src="../assets/icon-128.png" alt="SporlyWorks" style="height:32px; width:32px;">
+                <img src="{nav_icon}" alt="SporlyWorks" style="height:32px; width:32px;">
                 <span style="color:var(--gold-light); letter-spacing:3px;">SPORLYWORKS</span>
             </a>
             <p style="color:var(--text-on-dark); opacity:0.6; font-size:12px; max-width:600px; margin:0 auto 12px;">Affiliate Disclosure: We may earn a referral commission when you purchase through our links at no additional cost to you.</p>
             <p style="color:var(--text-on-dark); opacity:0.6; font-size:11px;">&copy; 2026 SporlyWorks. All rights reserved.</p>
         </div>
+    </footer>
 </body>
 </html>
 """
@@ -410,12 +412,13 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
     <footer style="background:var(--green-dark); color:var(--text-on-dark); padding:60px 0; text-align:center;">
         <div class="container">
             <a href="../index.html" style="display:inline-flex; align-items:center; gap:12px; text-decoration:none; margin-bottom:24px;">
-                <img src="../assets/icon-128.png" alt="SporlyWorks" style="height:32px; width:32px;">
+                <img src="{nav_icon}" alt="SporlyWorks" style="height:32px; width:32px;">
                 <span style="color:var(--gold-light); letter-spacing:3px;">SPORLYWORKS</span>
             </a>
             <p style="color:var(--text-on-dark); opacity:0.6; font-size:12px; max-width:600px; margin:0 auto 12px;">Affiliate Disclosure: We may earn a referral commission when you purchase through our links at no additional cost to you.</p>
             <p style="color:var(--text-on-dark); opacity:0.6; font-size:11px;">&copy; 2026 SporlyWorks. All rights reserved.</p>
         </div>
+    </footer>
 </body>
 </html>
 """
@@ -469,6 +472,15 @@ def generate_blog():
                 cta_url = "../products/seed-ds01.html"
                 cta_btn = "Get Seed DS-01 →"
 
+            # Determine matching illustration for article
+            hero_image = "../assets/illustrations/spores.jpg"
+            if "lions" in slug.lower() or "neurogenesis" in slug.lower():
+                hero_image = "../assets/illustrations/lions_mane_extract.jpg"
+            elif "synbiotics" in slug.lower() or "gut" in slug.lower():
+                hero_image = "../assets/illustrations/synbiotics.jpg"
+            
+            hero_image_tag = f'<img src="{hero_image}" alt="{title}" class="blog-hero-img" style="width:100%; max-height:400px; object-fit:cover; border-radius:var(--radius-lg); margin-top:24px; border:1px solid var(--border-color);">'
+
             # Parse MD to HTML
             body_html = parse_markdown(body_md)
 
@@ -483,6 +495,7 @@ def generate_blog():
                 nav_icon=NAV_ICON,
                 author=author,
                 date=date,
+                hero_image_tag=hero_image_tag,
                 body=body_html,
                 cta_desc=cta_desc,
                 cta_url=cta_url,

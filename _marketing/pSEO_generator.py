@@ -170,6 +170,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
             <header class="guide-header">
                 <div class="guide-meta">Category: {category} · Technical Guide</div>
                 <h1 class="guide-title">{heading}</h1>
+                {hero_image_tag}
             </header>
             
             <p class="guide-intro">{intro}</p>
@@ -334,6 +335,17 @@ guides = [
 
 # Generate each guide file
 for guide in guides:
+    # Determine matching illustration for guide
+    hero_image = "../assets/illustrations/spores.jpg"
+    if "lions-mane" in guide["slug"]:
+        hero_image = "../assets/illustrations/lions_mane_kit.jpg"
+    elif "grow-kit" in guide["slug"]:
+        hero_image = "../assets/illustrations/grow_kits.jpg"
+    elif "ds01" in guide["slug"]:
+        hero_image = "../assets/illustrations/synbiotics.jpg"
+        
+    hero_image_tag = f'<img src="{hero_image}" alt="{guide["title"]}" class="guide-hero-img" style="width:100%; max-height:400px; object-fit:cover; border-radius:var(--radius-lg); margin-top:24px; border:1px solid var(--border-color);">'
+
     html = PAGE_TEMPLATE.format(
         title=guide["title"],
         description=guide["intro"],
@@ -344,6 +356,7 @@ for guide in guides:
         nav_icon=NAV_ICON,
         category=guide["category"],
         heading=guide["heading"],
+        hero_image_tag=hero_image_tag,
         intro=guide["intro"],
         content=guide["content"],
         takeaway=guide["takeaway"],

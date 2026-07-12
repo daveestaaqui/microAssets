@@ -8,24 +8,28 @@
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=602">
+    <link rel="stylesheet" href="style.css?v=908">
 
 </head>
 <body class="legal-page">
 
     <!-- ═══ NAVIGATION ═══ -->
-    <nav id="mainNav" class="subpage-nav scrolled">
+    <nav id="mainNav" class="scrolled">
         <div class="nav-inner">
             <a href="index.html" class="nav-brand">
-                <img src="assets/icon-128.png" alt="SporlyWorks" class="nav-icon">
+                <img src="assets/logo-nav.png?v=908" alt="SporlyWorks" class="nav-icon">
                 <span class="nav-wordmark">SPORLYWORKS</span>
             </a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="index.html#genetics">Cultivation</a>
-                <a href="index.html#supplements">Supplements</a>
+            <div class="nav-menu-row">
+                <div class="nav-links" id="navLinks">
+                    <a href="products.html">Products</a>
+                    <a href="tools/yield-estimator.html">Yield Estimator</a>
+                    <a href="tools/wellness-stack-builder.html">Stack Builder</a>
+                    <a href="tools/diagnostics.html">Diagnostics</a>
+                    <a href="tools/substrate-calculator.html">Substrate Calculator</a>
+                    <a href="blog/index.html">Blog</a>
+                </div>
             </div>
-            <a href="index.html#genetics" class="nav-cta">Shop Collection</a>
         </div>
     </nav>
 
@@ -70,21 +74,45 @@
     </main>
 
     <!-- ═══ FOOTER ═══ -->
-    <footer>
-        <div class="container">
-            <a href="index.html" class="footer-brand">
-                <img src="assets/icon-64.png" alt="SporlyWorks" class="footer-icon">
-                <span class="footer-wordmark">SPORLYWORKS</span>
-            </a>
-            <div class="footer-nav">
-                <a href="index.html">Home</a>
-                <a href="privacy.html">Privacy</a>
-                <a href="terms.html">Terms</a>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3 class="footer-logo">SPORLYWORKS</h3>
+                <p class="footer-tagline">Botanical precision meets functional wellness. Bringing clinical-grade adaptogens and certified organic genetics to home laboratories.</p>
+                <div class="social-links" style="display: flex; gap: 16px; margin-top: 24px;">
+                    <a href="https://instagram.com/sporlyworks" target="_blank" rel="noopener noreferrer" style="color: var(--text-muted); hover: color: var(--gold); transition: color 0.3s;">Instagram</a>
+                </div>
             </div>
-            <div class="footer-bottom">
-                <p>Affiliate Disclosure: SporlyWorks may earn a commission on qualifying purchases through partner links at no additional cost to you.</p>
-                <p>Cultivation laws vary by jurisdiction. Always ensure you are operating within the legal boundaries of your local laws.</p>
-                <p style="margin-top: 12px;">&copy; 2026 SporlyWorks. All rights reserved.</p>
+            
+            <div class="footer-links-grid">
+                <div class="footer-column">
+                    <h4>Collections</h4>
+                    <a href="products.html">Browse Products</a>
+                    <a href="products/myyco-liquid-culture.html">Liquid Cultures</a>
+                    <a href="products/seed-ds01.html">Daily Synbiotic</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Mycology Engines</h4>
+                    <a href="tools/yield-estimator.html">Yield Estimator</a>
+                    <a href="tools/wellness-stack-builder.html">Stack Builder</a>
+                    <a href="tools/diagnostics.html">Contamination Diagnostics</a>
+                    <a href="tools/substrate-calculator.html">Substrate Calculator</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <a href="blog/index.html">Mycology Science Blog</a>
+                    <a href="sitemap.xml">Sitemap</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p>&copy; 2026 SporlyWorks. All rights reserved. Built using clinical validation standards.</p>
+                <div class="footer-legal-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
             </div>
         </div>
     </footer>
