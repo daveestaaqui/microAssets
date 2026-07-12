@@ -198,7 +198,6 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
                     <a href="../tools/substrate-calculator.html">Substrate Calculator</a>
                     <a href="../blog/index.html">Blog</a>
                 </div>
-                <a href="../index.html#products" class="nav-cta" style="background:linear-gradient(135deg, var(--green-light), var(--green)); color:white; padding:10px 24px; border-radius:99px; text-decoration:none; font-weight:600;">Shop Collection</a>
             </div>
         </div>
     </nav>

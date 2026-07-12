@@ -92,17 +92,9 @@ h1, h2, h3 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; 
 /* ═══ NAVIGATION ═══ */
 nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    padding: 16px 0 12px;
-    background: var(--bg-surface);
-    transition: all 0.5s var(--transition-smooth);
-    border-bottom: 1px solid var(--border-color);
-}
-nav.scrolled {
-    background: rgba(245, 240, 232, 0.95);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--glass-border);
     padding: 8px 0;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-color);
     box-shadow: 0 8px 32px rgba(44, 36, 24, 0.05);
 }
 .nav-inner {
@@ -110,10 +102,6 @@ nav.scrolled {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
-    transition: all 0.5s var(--transition-smooth);
-}
-nav.scrolled .nav-inner {
     gap: 8px;
 }
 .nav-brand {
@@ -128,22 +116,16 @@ nav.scrolled .nav-inner {
     transition: all 0.4s ease;
 }
 .nav-icon {
-    flex-shrink: 0; height: 200px; width: auto; object-fit: contain;
+    flex-shrink: 0; height: 110px; width: auto; object-fit: contain;
     transition: all 0.4s var(--transition-smooth);
 }
 .nav-brand:hover .nav-icon {
     transform: scale(1.02);
 }
 .nav-wordmark {
-    font-family: 'Cormorant Garamond', Georgia, serif; font-size: 34px;
+    font-family: 'Cormorant Garamond', Georgia, serif; font-size: 24px;
     color: var(--green-dark); letter-spacing: 4px; font-weight: 700;
     transition: all 0.4s var(--transition-smooth);
-}
-nav.scrolled .nav-icon {
-    height: 110px;
-}
-nav.scrolled .nav-wordmark {
-    font-size: 24px;
 }
 .nav-menu-row {
     display: flex;
@@ -204,17 +186,11 @@ nav.scrolled .nav-wordmark {
         gap: 10px;
     }
     .nav-icon {
-        height: 140px;
-    }
-    .nav-wordmark {
-        font-size: 26px;
-        letter-spacing: 3px;
-    }
-    nav.scrolled .nav-icon {
         height: 95px;
     }
-    nav.scrolled .nav-wordmark {
+    .nav-wordmark {
         font-size: 20px;
+        letter-spacing: 3px;
     }
     .nav-links {
         gap: 12px;
@@ -236,17 +212,11 @@ nav.scrolled .nav-wordmark {
         gap: 8px;
     }
     .nav-icon {
-        height: 110px;
-    }
-    .nav-wordmark {
-        font-size: 20px;
-        letter-spacing: 2px;
-    }
-    nav.scrolled .nav-icon {
         height: 70px;
     }
-    nav.scrolled .nav-wordmark {
+    .nav-wordmark {
         font-size: 16px;
+        letter-spacing: 2px;
     }
     .nav-links {
         gap: 10px;

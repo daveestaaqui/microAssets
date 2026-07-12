@@ -152,11 +152,13 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
             </a>
             <div class="nav-menu-row">
                 <div class="nav-links">
-                    <a href="../index.html#genetics">Cultivation</a>
-                    <a href="../index.html#supplements">Supplements</a>
-                    <a href="../index.html#research">Science</a>
+                    <a href="../index.html#products">Products</a>
+                    <a href="../tools/yield-estimator.html">Yield Estimator</a>
+                    <a href="../tools/wellness-stack-builder.html">Stack Builder</a>
+                    <a href="../tools/diagnostics.html">Diagnostics</a>
+                    <a href="../tools/substrate-calculator.html">Substrate Calculator</a>
+                    <a href="../blog/index.html">Blog</a>
                 </div>
-                <a href="../index.html#genetics" class="nav-cta" style="background:linear-gradient(135deg, var(--green-light), var(--green)); color:white; padding:10px 24px; border-radius:99px; text-decoration:none; font-weight:600;">Shop Collection</a>
             </div>
         </div>
     </nav>

@@ -27,7 +27,7 @@
 <body>
 
     <!-- ═══ NAVIGATION ═══ -->
-    <nav id="mainNav" class="home-nav">
+    <nav id="mainNav" class="scrolled">
         <div class="nav-inner">
             <a href="index.html" class="nav-brand">
                 <img src="assets/logo-nav.png?v=904" alt="SporlyWorks" class="nav-icon">
@@ -35,12 +35,13 @@
             </a>
             <div class="nav-menu-row">
                 <div class="nav-links" id="navLinks">
-                    <a href="#genetics">Cultivation</a>
-                    <a href="#supplements">Supplements</a>
-                    <a href="#tools">Tools</a>
+                    <a href="#products">Products</a>
+                    <a href="tools/yield-estimator.html">Yield Estimator</a>
+                    <a href="tools/wellness-stack-builder.html">Stack Builder</a>
+                    <a href="tools/diagnostics.html">Diagnostics</a>
+                    <a href="tools/substrate-calculator.html">Substrate Calculator</a>
                     <a href="blog/index.html">Blog</a>
                 </div>
-                <a href="#tools" class="nav-cta">Explore Tools</a>
             </div>
         </div>
     </nav>
@@ -558,11 +559,6 @@
         });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // ═══ NAVBAR SCROLL ═══
-    window.addEventListener('scroll', () => {
-        document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 40);
-    });
     </script>
 </body>
 </html>
