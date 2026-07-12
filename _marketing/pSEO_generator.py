@@ -8,9 +8,9 @@ GUIDES_DIR = os.path.join(BASE_DIR, "guides")
 os.makedirs(GUIDES_DIR, exist_ok=True)
 
 # Define templates and common assets
-STYLE_PATH = "../style.css?v=906"
+STYLE_PATH = "../style.css?v=907"
 FAVICON_PATH = "../assets/favicon.ico"
-NAV_ICON = "../assets/logo-nav.png?v=906"
+NAV_ICON = "../assets/logo-nav.png?v=907"
 
 PAGE_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">

@@ -248,7 +248,7 @@ nav:not(.home-nav) .nav-brand {
 .hero {
     position: relative; min-height: 92vh;
     display: flex; align-items: center; justify-content: center;
-    text-align: center; padding: 220px 24px 80px;
+    text-align: center; padding: 125px 24px 80px;
     overflow: hidden;
 }
 .hero::before {

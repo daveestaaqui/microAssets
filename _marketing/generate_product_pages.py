@@ -6,9 +6,9 @@ BASE_DIR = "/Users/davidmahler/Desktop/microAssets"
 PRODUCTS_DIR = os.path.join(BASE_DIR, "products")
 os.makedirs(PRODUCTS_DIR, exist_ok=True)
 
-STYLE_PATH = "../style.css?v=906"
+STYLE_PATH = "../style.css?v=907"
 FAVICON_PATH = "../assets/favicon.ico"
-NAV_ICON = "../assets/logo-nav.png?v=906"
+NAV_ICON = "../assets/logo-nav.png?v=907"
 
 PRODUCT_TEMPLATE = """<!DOCTYPE html>
 <html lang="en">
@@ -26,7 +26,7 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
     <style>
         .product-page-body {{
             max-width: 1000px;
-            margin: 220px auto 60px;
+            margin: 125px auto 60px;
             padding: 0 24px;
         }}
         .product-header {{

@@ -9,9 +9,9 @@ OUTPUT_DIR = os.path.join(BASE_DIR, "blog")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # Cache-busting stylesheet parameter
-STYLE_PATH = "../style.css?v=906"
+STYLE_PATH = "../style.css?v=907"
 FAVICON_PATH = "../assets/favicon.ico"
-NAV_ICON = "../assets/logo-nav.png?v=906"
+NAV_ICON = "../assets/logo-nav.png?v=907"
 
 # Basic Markdown-to-HTML parser (Zero-dependency)
 def parse_markdown(md_text):
@@ -109,7 +109,7 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
     <style>
         .blog-container {{
             max-width: 800px;
-            margin: 220px auto 60px;
+            margin: 125px auto 60px;
             padding: 0 24px;
         }}
         .blog-header-section {{
@@ -291,7 +291,7 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
     <style>
         .blog-index-container {{
             max-width: 1000px;
-            margin: 220px auto 60px;
+            margin: 125px auto 60px;
             padding: 0 24px;
         }}
         .blog-index-header {{
