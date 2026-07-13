@@ -9,7 +9,7 @@ OUTPUT_DIR = os.path.join(BASE_DIR, "blog")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # Cache-busting stylesheet parameter
-STYLE_PATH = "../style.css?v=909"
+STYLE_PATH = "../style.css?v=910"
 FAVICON_PATH = "../assets/favicon.ico"
 NAV_ICON = "../assets/logo-nav.png?v=908"
 
@@ -303,6 +303,7 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
             </div>
         </div>
     </footer>
+<script src="../assets/page-transitions.js"></script>
 </body>
 </html>
 """
@@ -477,6 +478,7 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
             </div>
         </div>
     </footer>
+<script src="../assets/page-transitions.js"></script>
 </body>
 </html>
 """

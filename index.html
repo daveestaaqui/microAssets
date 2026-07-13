@@ -21,7 +21,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=909">
+    <link rel="stylesheet" href="style.css?v=910">
 
 </head>
 <body>
@@ -418,6 +418,40 @@
             nav.classList.add('scrolled');
         });
     });
+    // ═══ SMOOTH PAGE TRANSITIONS ═══
+    (function() {
+        // Create transition overlay
+        const overlay = document.createElement('div');
+        overlay.className = 'page-transition-overlay';
+        document.body.appendChild(overlay);
+
+        // Fade in on page load (remove any lingering overlay)
+        window.addEventListener('pageshow', () => {
+            overlay.classList.remove('active');
+        });
+
+        // Intercept internal link clicks for smooth exit
+        document.addEventListener('click', (e) => {
+            const link = e.target.closest('a[href]');
+            if (!link) return;
+            const href = link.getAttribute('href');
+            
+            // Skip anchors, external links, mailto, tel, javascript
+            if (!href || href.startsWith('#') || href.startsWith('mailto:') || 
+                href.startsWith('tel:') || href.startsWith('javascript:') ||
+                link.target === '_blank' || link.hasAttribute('download')) return;
+            
+            // Skip external links
+            try {
+                const url = new URL(href, window.location.origin);
+                if (url.origin !== window.location.origin) return;
+            } catch(err) { return; }
+
+            e.preventDefault();
+            overlay.classList.add('active');
+            setTimeout(() => { window.location.href = href; }, 200);
+        });
+    })();
     </script>
 </body>
 </html>

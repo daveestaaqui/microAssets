@@ -8,7 +8,7 @@
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=909">
+    <link rel="stylesheet" href="../style.css?v=910">
     <style>
         .tool-container {
             max-width: 850px;
@@ -152,24 +152,22 @@
                 </div>
             </div>
 
-            <!-- Tab 2: Research Spawn -->
+            <!-- Tab 2: Research Spawn (All-In-One Bags) -->
             <div class="tool-panel" id="panel-research">
                 <div class="tool-row" style="display:flex; flex-direction:column; gap:20px; margin-bottom:28px;">
                     <div class="tool-field" style="display:flex; flex-direction:column; gap:8px;">
-                        <label for="species-research" style="font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-secondary);">Research Focus</label>
+                        <label for="species-research" style="font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-secondary);">Inoculation Method</label>
                         <select id="species-research" style="width:100%; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--glass-border); background:#ffffff; color:var(--text-primary); font-size:15px;">
-                            <option value="active_study">Active Spore Study (Research-scale)</option>
-                            <option value="reishi_study">Reishi Microscopy Focus</option>
-                            <option value="oyster_study">Gourmet Liquid Inoculation</option>
+                            <option value="liquid_culture">Liquid Culture (LC) — Recommended</option>
+                            <option value="spore_syringe">Multi-Spore Syringe (MSS)</option>
                         </select>
                     </div>
                     <div class="tool-row-inner" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
                         <div class="tool-field" style="display:flex; flex-direction:column; gap:8px;">
-                            <label for="bagSize" style="font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-secondary);">Grow Bag Substrate Weight</label>
+                            <label for="bagSize" style="font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-secondary);">Bag Size</label>
                             <select id="bagSize" style="width:100%; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--glass-border); background:#ffffff; color:var(--text-primary); font-size:15px;">
-                                <option value="2">2 lb Spawn Bag</option>
-                                <option value="4" selected>4 lb Spawn Bag</option>
-                                <option value="6">6 lb Spawn Bag</option>
+                                <option value="3" selected>3 lb All-In-One Bag (Standard Magic Bag)</option>
+                                <option value="5">5 lb All-In-One Bag (Large)</option>
                             </select>
                         </div>
                         <div class="tool-field" style="display:flex; flex-direction:column; gap:8px;">
@@ -178,31 +176,58 @@
                         </div>
                     </div>
                     <div class="tool-field" style="display:flex; flex-direction:column; gap:8px;">
-                        <label for="flushes" style="font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-secondary);">Target Flushes</label>
+                        <label for="flushes" style="font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-secondary);">Expected Flushes</label>
                         <select id="flushes" style="width:100%; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--glass-border); background:#ffffff; color:var(--text-primary); font-size:15px;">
                             <option value="2">2 Flushes (Conservative)</option>
                             <option value="3" selected>3 Flushes (Average)</option>
+                            <option value="5">5 Flushes (Optimistic Max)</option>
                         </select>
                     </div>
                 </div>
 
-                <button class="tool-btn" onclick="calculateResearchYield()" style="width:100%; padding:16px; background:linear-gradient(135deg, var(--green-light), var(--green)); color:white; border:none; border-radius:var(--radius-pill); font-size:16px; font-weight:600; cursor:pointer; box-shadow: 0 4px 14px rgba(11, 74, 46, 0.2); margin-bottom:32px;">Calculate Laboratory Yield</button>
+                <button class="tool-btn" onclick="calculateResearchYield()" style="width:100%; padding:16px; background:linear-gradient(135deg, var(--green-light), var(--green)); color:white; border:none; border-radius:var(--radius-pill); font-size:16px; font-weight:600; cursor:pointer; box-shadow: 0 4px 14px rgba(11, 74, 46, 0.2); margin-bottom:32px;">Calculate Estimated Yield</button>
 
                 <div class="tool-results" id="results-research">
-                    <h4 style="font-size: 18px; color: var(--green-dark); margin-bottom: 20px; text-align: center;">Estimated Laboratory Spawn Run Yield</h4>
+                    <h4 style="font-size: 18px; color: var(--green-dark); margin-bottom: 20px; text-align: center;">Estimated All-In-One Bag Yield</h4>
                     <div class="result-grid result-grid--double">
                         <div class="result-stat">
                             <div class="value" id="research-totalYield">–</div>
-                            <div class="label">Total Yield (lbs)</div>
+                            <div class="label">Total Dried Yield (oz)</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="value" id="research-freshYield">–</div>
+                            <div class="label">Fresh Equivalent (lbs)</div>
                         </div>
                         <div class="result-stat">
                             <div class="value" id="research-harvestTime">–</div>
-                            <div class="label">Days to Spawn Run completion</div>
+                            <div class="label">Estimated Total Grow Time</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="value" id="research-injection">–</div>
+                            <div class="label">Recommended Injection</div>
                         </div>
                     </div>
+
+                    <!-- Cultivation Tips aligned with magicbag.co -->
+                    <div style="margin-top:28px; background: rgba(245, 240, 232, 0.4); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 24px;">
+                        <h5 style="font-family:'DM Serif Display',serif; color:var(--green-dark); font-size:16px; margin-bottom:14px;">Cultivation Guide (via <a href="https://magicbag.co/#how-to-use" target="_blank" rel="noopener" style="color:var(--green-light); text-decoration:underline;">Magic Bag</a>)</h5>
+                        <ol style="padding-left:18px; margin:0; font-size:14px; color:var(--text-secondary); line-height:1.8;">
+                            <li><strong>Inject 3–5 cc</strong> of liquid culture or spores through the self-healing injection port. <a href="https://www.myyco.com" target="_blank" rel="noopener" style="color:var(--green-light);">MYYCO.com</a> is recommended for LC (use code "magicbag" for 5% off).</li>
+                            <li><strong>Store in a warm, dark place</strong> (72–78°F / 22–26°C). No light is needed during colonization.</li>
+                            <li><strong>Shake at 20–30% colonization</strong> — once the white mycelium covers roughly ¼ of the visible grain, give the bag a firm shake to redistribute and accelerate growth.</li>
+                            <li><strong>Wait for full colonization.</strong> The bag should turn completely white. This takes 3–6 weeks depending on genetics and temperature.</li>
+                            <li><strong>Initiate fruiting:</strong> Cut the bag open, give it fresh air and indirect light. Pin the top loosely with the included paper clip. Mist the inside walls a few times a day.</li>
+                            <li><strong>Harvest</strong> right before the cap separates from the stem. Expect <strong>2–5 flushes</strong> over 1–2 additional weeks.</li>
+                        </ol>
+                        <p style="font-size:12px; color:var(--text-muted); margin-top:14px; margin-bottom:0;">
+                            Source: <a href="https://magicbag.co/#faq" target="_blank" rel="noopener" style="color:var(--green-light);">Magic Bag FAQ</a> · 
+                            LC recommended over spores per <a href="https://magicbag.co/#faq" target="_blank" rel="noopener" style="color:var(--green-light);">MagicBag.co</a> (faster colonization, more contamination-resistant, isolated genetics).
+                        </p>
+                    </div>
+
                     <div class="result-ctas" style="margin-top:28px; display:flex; gap:16px; flex-wrap:wrap; justify-content:center;">
-                        <a href="https://www.myyco.com" id="cta-myyco" class="result-cta result-cta--primary" target="_blank" rel="noopener" style="padding:14px 28px; background:var(--green-light); color:white; border-radius:var(--radius-pill); text-decoration:none; font-weight:600; flex-grow:1; text-align:center;">Get Cultures at MYYCO →</a>
-                        <a href="https://www.magicbag.co" id="cta-magicbag" class="result-cta result-cta--secondary" target="_blank" rel="noopener" style="padding:14px 28px; border:1px solid var(--green); color:var(--green); border-radius:var(--radius-pill); text-decoration:none; font-weight:600; flex-grow:1; text-align:center;">Get Bags at Magic Bag →</a>
+                        <a href="https://www.myyco.com" id="cta-myyco" class="result-cta result-cta--primary" target="_blank" rel="noopener" style="padding:14px 28px; background:var(--green-light); color:white; border-radius:var(--radius-pill); text-decoration:none; font-weight:600; flex-grow:1; text-align:center;">Get Liquid Cultures at MYYCO →</a>
+                        <a href="https://www.magicbag.co" id="cta-magicbag" class="result-cta result-cta--secondary" target="_blank" rel="noopener" style="padding:14px 28px; border:1px solid var(--green); color:var(--green); border-radius:var(--radius-pill); text-decoration:none; font-weight:600; flex-grow:1; text-align:center;">Get All-In-One Bags at Magic Bag →</a>
                     </div>
                 </div>
             </div>
@@ -287,23 +312,30 @@
         document.getElementById('results-gourmet').classList.add('active');
     }
 
+    // Magic Bag yield data (per magicbag.co FAQ)
+    // Standard 3lb bag: ~2-3 oz dried per full run (all flushes)
+    // That's ~0.7-1.0 oz dried per flush for 3 flushes avg
     const researchData = {
-        active_study:  { yieldPct: 0.16, daysToSpawn: 28 },
-        reishi_study:  { yieldPct: 0.10, daysToSpawn: 45 },
-        oyster_study:  { yieldPct: 0.22, daysToSpawn: 21 }
+        liquid_culture:  { ozPerFlushPer3lb: 0.85, weeksMin: 8, weeksMax: 10, injection: '3–5 cc' },
+        spore_syringe:   { ozPerFlushPer3lb: 0.70, weeksMin: 10, weeksMax: 14, injection: '3–5 cc' }
     };
 
     function calculateResearchYield() {
-        const study = document.getElementById('species-research').value;
-        const bagSize = parseInt(document.getElementById('bagSize').value);
+        const method = document.getElementById('species-research').value;
+        const bagLbs = parseInt(document.getElementById('bagSize').value);
         const numBags = parseInt(document.getElementById('numBags').value);
         const flushes = parseInt(document.getElementById('flushes').value);
-        const data = researchData[study];
+        const data = researchData[method];
 
-        const totalYield = (bagSize * data.yieldPct * numBags * flushes).toFixed(1);
+        // Scale yield: 3lb bag is baseline, 5lb bag produces ~1.67x
+        const bagMultiplier = bagLbs / 3;
+        const totalDriedOz = (data.ozPerFlushPer3lb * bagMultiplier * numBags * flushes).toFixed(1);
+        const totalFreshLbs = (totalDriedOz / 16 * 10).toFixed(1); // ~10:1 fresh:dried ratio
 
-        document.getElementById('research-totalYield').textContent = totalYield;
-        document.getElementById('research-harvestTime').textContent = data.daysToSpawn;
+        document.getElementById('research-totalYield').textContent = totalDriedOz + ' oz';
+        document.getElementById('research-freshYield').textContent = totalFreshLbs + ' lbs';
+        document.getElementById('research-harvestTime').textContent = data.weeksMin + '–' + data.weeksMax + ' weeks';
+        document.getElementById('research-injection').textContent = data.injection + ' per bag';
 
         document.getElementById('results-research').classList.add('active');
     }
@@ -346,5 +378,6 @@
         })
         .catch(() => console.log('Config fetch skipped - using default links'));
     </script>
+<script src="../assets/page-transitions.js"></script>
 </body>
 </html>

@@ -6,7 +6,7 @@ BASE_DIR = "/Users/davidmahler/Desktop/microAssets"
 PRODUCTS_DIR = os.path.join(BASE_DIR, "products")
 os.makedirs(PRODUCTS_DIR, exist_ok=True)
 
-STYLE_PATH = "../style.css?v=909"
+STYLE_PATH = "../style.css?v=910"
 FAVICON_PATH = "../assets/favicon.ico"
 NAV_ICON = "../assets/logo-nav.png?v=908"
 
@@ -314,6 +314,7 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
         }})
         .catch(() => console.log('Config fetch skipped - using default links'));
     </script>
+<script src="../assets/page-transitions.js"></script>
 </body>
 </html>
 """

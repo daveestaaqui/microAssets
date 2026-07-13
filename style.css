@@ -95,6 +95,46 @@ h1, h2, h3 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; 
     50% { box-shadow: 0 0 40px rgba(27, 138, 90, 0.3); }
 }
 
+/* ═══ VIEW TRANSITIONS ═══ */
+@view-transition {
+    navigation: auto;
+}
+::view-transition-old(root) {
+    animation: 280ms ease-out both fade-out;
+}
+::view-transition-new(root) {
+    animation: 280ms ease-in 80ms both fade-in;
+}
+::view-transition-old(brand-logo) {
+    animation: 350ms cubic-bezier(0.4, 0, 0.2, 1) both fade-out;
+}
+::view-transition-new(brand-logo) {
+    animation: 350ms cubic-bezier(0.4, 0, 0.2, 1) both fade-in;
+}
+@keyframes fade-out {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+@keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* ═══ PAGE TRANSITION OVERLAY ═══ */
+.page-transition-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 9999;
+    pointer-events: none;
+    background: var(--bg-surface);
+    opacity: 0;
+    transition: opacity 200ms ease;
+}
+.page-transition-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
 /* ═══ NAVIGATION ═══ */
 nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
@@ -142,6 +182,7 @@ nav:not(.home-nav) .nav-brand {
 .nav-icon {
     flex-shrink: 0; height: 77px; width: auto; object-fit: contain;
     transition: all 0.4s var(--transition-smooth);
+    view-transition-name: brand-logo;
 }
 .home-nav.scrolled .nav-icon {
     height: 61px;
@@ -296,11 +337,12 @@ nav:not(.home-nav) .nav-brand {
     text-align: center;
 }
 .hero-intro-logo {
-    height: 100px;
+    height: 160px;
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 12px 30px rgba(27, 138, 90, 0.12));
     transition: transform 0.4s var(--transition-smooth);
+    view-transition-name: brand-logo;
 }
 .hero-intro-logo:hover {
     transform: scale(1.03);
@@ -351,11 +393,12 @@ nav:not(.home-nav) .nav-brand {
 }
 .hero-tagline {
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 18px; font-weight: 500; font-style: normal;
-    color: var(--text-muted);
-    letter-spacing: 4px;
-    text-transform: uppercase;
+    font-size: 20px; font-weight: 600; font-style: italic;
+    color: var(--text-secondary);
+    letter-spacing: 3px;
+    text-transform: none;
     margin-bottom: 20px;
+    opacity: 0.85;
 }
 
 .hero-subtitle {
