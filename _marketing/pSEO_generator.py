@@ -91,19 +91,6 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
             color: var(--text-secondary);
             line-height: 1.6;
         }}
-        .back-link {{
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            color: var(--green-light);
-            font-weight: 600;
-            margin-bottom: 24px;
-            transition: transform 0.2s;
-        }}
-        .back-link:hover {{
-            transform: translateX(-4px);
-        }}
         .partner-cta-box {{
             background: linear-gradient(135deg, var(--green-dark), #03150e);
             color: var(--text-on-dark);
@@ -165,7 +152,6 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
 
     <!-- ═══ MAIN CONTENT ═══ -->
     <main class="guide-body">
-        <a href="../index.html" class="back-link">← Return to Hub</a>
         <article class="guide-card">
             <header class="guide-header">
                 <div class="guide-meta">Category: {category} · Technical Guide</div>

@@ -135,13 +135,13 @@ h1, h2, h3 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; 
     pointer-events: all;
 }
 
-/* ═══ NAVIGATION ═══ */
 nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    padding: 8px 0;
+    padding: 12px 0;
     background: var(--bg-surface);
     border-top: 1px solid var(--border-color);
     box-shadow: 0 8px 32px rgba(44, 36, 24, 0.05);
+    transition: padding 0.4s var(--transition-smooth);
 }
 .nav-inner {
     max-width: 1200px; margin: 0 auto; padding: 0 32px;
@@ -149,6 +149,15 @@ nav {
     flex-direction: column;
     align-items: center;
     gap: 8px;
+    transition: all 0.4s var(--transition-smooth);
+}
+/* Horizontal layout on scrolled/subpages */
+nav:not(.home-nav) .nav-inner,
+.home-nav.scrolled .nav-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
 }
 .nav-brand {
     width: 100%;
@@ -158,8 +167,15 @@ nav {
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    gap: 12px;
+    gap: 14px;
     transition: all 0.5s var(--transition-smooth);
+}
+nav:not(.home-nav) .nav-brand,
+.home-nav.scrolled .nav-brand {
+    width: auto;
+    margin: 0;
+    justify-content: flex-start;
+    flex-shrink: 0;
 }
 /* Homepage initial state: collapse and hide logo brand */
 .home-nav .nav-brand {
@@ -177,23 +193,32 @@ nav:not(.home-nav) .nav-brand {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
-    margin-bottom: 4px;
+    margin-bottom: 0;
 }
 .nav-icon {
-    flex-shrink: 0; height: 77px; width: auto; object-fit: contain;
+    flex-shrink: 0;
+    height: 52px;
+    width: auto;
+    object-fit: contain;
     transition: all 0.4s var(--transition-smooth);
     view-transition-name: brand-logo;
 }
-.home-nav.scrolled .nav-icon {
-    height: 61px;
-}
 .nav-brand:hover .nav-icon {
-    transform: scale(1.02);
+    transform: scale(1.04);
 }
 .nav-wordmark {
-    font-family: 'Cormorant Garamond', Georgia, serif; font-size: 24px;
-    color: var(--green-dark); letter-spacing: 4px; font-weight: 700;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 26px;
+    color: var(--green-dark);
+    letter-spacing: 4px;
+    font-weight: 700;
     transition: all 0.4s var(--transition-smooth);
+    text-transform: uppercase;
+}
+nav:not(.home-nav) .nav-wordmark,
+.home-nav.scrolled .nav-wordmark {
+    font-size: 32px;
+    letter-spacing: 5px;
 }
 .nav-menu-row {
     display: flex;
@@ -202,6 +227,12 @@ nav:not(.home-nav) .nav-brand {
     gap: 28px;
     width: 100%;
     flex-wrap: wrap;
+    transition: all 0.4s var(--transition-smooth);
+}
+nav:not(.home-nav) .nav-menu-row,
+.home-nav.scrolled .nav-menu-row {
+    width: auto;
+    justify-content: flex-end;
 }
 .nav-links { 
     display: flex; 

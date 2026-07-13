@@ -155,19 +155,6 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
             color: var(--text-primary);
             margin-bottom: 24px;
         }}
-        .back-link {{
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            color: var(--green-light);
-            font-weight: 600;
-            margin-bottom: 32px;
-            transition: transform 0.2s;
-        }}
-        .back-link:hover {{
-            transform: translateX(-4px);
-        }}
         .fda-disclaimer {{
             font-size: 12px;
             color: var(--text-muted);
@@ -204,7 +191,6 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
 
     <!-- ═══ MAIN CONTENT ═══ -->
     <main class="product-page-body">
-        <a href="../index.html" class="back-link">← Back to Home</a>
         
         <section class="product-header">
             <div class="product-img-wrapper">

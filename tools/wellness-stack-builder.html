@@ -24,18 +24,30 @@
             padding: 48px;
             box-shadow: var(--glass-shadow);
         }
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            color: var(--green-light);
+        .goal-chip {
+            padding: 20px 16px;
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-sm);
+            background: #ffffff;
+            text-align: center;
+            cursor: pointer;
             font-weight: 600;
-            margin-bottom: 32px;
-            transition: transform 0.2s;
+            transition: all 0.3s ease;
         }
-        .back-link:hover {
-            transform: translateX(-4px);
+        .goal-chip svg {
+            width: 28px;
+            height: 28px;
+            display: block;
+            margin: 0 auto 8px;
+            fill: none;
+            stroke: var(--text-secondary);
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: all 0.3s ease;
+        }
+        .goal-chip.selected svg {
+            stroke: var(--green);
         }
     </style>
 </head>
@@ -63,7 +75,6 @@
 
     <!-- ═══ TOOL WRAPPER ═══ -->
     <main class="tool-container">
-        <a href="../index.html" class="back-link">← Back to Home</a>
         
         <div class="tool-card">
             <img src="../assets/illustrations/supplements.jpg" alt="Daily Wellness Stack" style="width: 100%; height: 220px; object-fit: cover; border-radius: var(--radius-md); margin-bottom: 28px; border: 1px solid var(--border-color);">
@@ -71,23 +82,44 @@
             <p style="color:var(--text-secondary); text-align:center; margin-bottom:36px; font-size:16px;">Select your health goals and bio-hacking targets to generate your personalized wellness stack.</p>
 
             <div class="goal-grid" id="goalGrid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:16px; margin-bottom:32px;">
-                <div class="goal-chip" data-goal="focus" onclick="toggleGoal(this)" style="padding:16px; border:1px solid var(--glass-border); border-radius:var(--radius-sm); background:#ffffff; text-align:center; cursor:pointer; font-weight:600; transition:all 0.3s;">
-                    <span class="icon" style="font-size:20px; display:block; margin-bottom:6px;">🧠</span> Focus & Memory
+                <div class="goal-chip" data-goal="focus" onclick="toggleGoal(this)">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1 0-4.12 2.5 2.5 0 0 1 0-4.12A2.5 2.5 0 0 1 9.5 2Z"/>
+                        <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 0-4.12 2.5 2.5 0 0 0 0-4.12A2.5 2.5 0 0 0 14.5 2Z"/>
+                        <path d="M12 12h.01M9.5 8.5h.01M14.5 8.5h.01M9.5 15.5h.01M14.5 15.5h.01"/>
+                    </svg>
+                    Focus & Memory
                 </div>
-                <div class="goal-chip" data-goal="immunity" onclick="toggleGoal(this)" style="padding:16px; border:1px solid var(--glass-border); border-radius:var(--radius-sm); background:#ffffff; text-align:center; cursor:pointer; font-weight:600; transition:all 0.3s;">
-                    <span class="icon" style="font-size:20px; display:block; margin-bottom:6px;">🛡️</span> Immune Support
+                <div class="goal-chip" data-goal="immunity" onclick="toggleGoal(this)">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    Immune Support
                 </div>
-                <div class="goal-chip" data-goal="energy" onclick="toggleGoal(this)" style="padding:16px; border:1px solid var(--glass-border); border-radius:var(--radius-sm); background:#ffffff; text-align:center; cursor:pointer; font-weight:600; transition:all 0.3s;">
-                    <span class="icon" style="font-size:20px; display:block; margin-bottom:6px;">⚡</span> Energy & Stamina
+                <div class="goal-chip" data-goal="energy" onclick="toggleGoal(this)">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                    </svg>
+                    Energy & Stamina
                 </div>
-                <div class="goal-chip" data-goal="gut" onclick="toggleGoal(this)" style="padding:16px; border:1px solid var(--glass-border); border-radius:var(--radius-sm); background:#ffffff; text-align:center; cursor:pointer; font-weight:600; transition:all 0.3s;">
-                    <span class="icon" style="font-size:20px; display:block; margin-bottom:6px;">🌿</span> Digestive Health
+                <div class="goal-chip" data-goal="gut" onclick="toggleGoal(this)">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12S6.48 2 12 2z"/>
+                        <path d="M12 22V12M12 12c2 0 4-1 4-3s-2-3-4-3M12 16c-2 0-4-1-4-3s2-3 4-3"/>
+                    </svg>
+                    Digestive Health
                 </div>
-                <div class="goal-chip" data-goal="stress" onclick="toggleGoal(this)" style="padding:16px; border:1px solid var(--glass-border); border-radius:var(--radius-sm); background:#ffffff; text-align:center; cursor:pointer; font-weight:600; transition:all 0.3s;">
-                    <span class="icon" style="font-size:20px; display:block; margin-bottom:6px;">😌</span> Stress Resilience
+                <div class="goal-chip" data-goal="stress" onclick="toggleGoal(this)">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 3v18M3 12h18M6 8a4 4 0 0 1 12 0c0 4-12 4-12 8a4 4 0 0 0 12 0"/>
+                    </svg>
+                    Stress Resilience
                 </div>
-                <div class="goal-chip" data-goal="sleep" onclick="toggleGoal(this)" style="padding:16px; border:1px solid var(--glass-border); border-radius:var(--radius-sm); background:#ffffff; text-align:center; cursor:pointer; font-weight:600; transition:all 0.3s;">
-                    <span class="icon" style="font-size:20px; display:block; margin-bottom:6px;">😴</span> Deep Restful Sleep
+                <div class="goal-chip" data-goal="sleep" onclick="toggleGoal(this)">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a7 7 0 1 1-7.54-7.54C13.08 3.04 12.54 3 12 3z"/>
+                    </svg>
+                    Deep Restful Sleep
                 </div>
             </div>
 
@@ -199,7 +231,16 @@
             partnersUsed.add(rec.partner);
 
             const partner = affiliateConfig ? affiliateConfig[rec.partner] : null;
-            const img = partner ? (rec.partner === 'seed' ? '../assets/illustrations/synbiotics.jpg' : '../assets/illustrations/supplements.jpg') : '';
+            
+            const imageMapping = {
+                focus: '../assets/illustrations/lions_mane_extract.jpg',
+                immunity: '../assets/illustrations/reishi_extract.jpg',
+                energy: '../assets/illustrations/cordyceps_extract.jpg',
+                gut: '../assets/illustrations/synbiotics.jpg',
+                stress: '../assets/illustrations/reishi_extract.jpg',
+                sleep: '../assets/illustrations/reishi_extract.jpg'
+            };
+            const img = imageMapping[goal] || '../assets/illustrations/supplements.jpg';
 
             cardsDiv.innerHTML += `
                 <div class="stack-card" style="display:flex; align-items:center; gap:20px; padding:20px; background:#ffffff; border-radius:var(--radius-sm); border:1px solid var(--glass-border);">
