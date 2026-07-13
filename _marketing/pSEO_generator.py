@@ -355,7 +355,7 @@ for guide in guides:
     elif "ds01" in guide["slug"]:
         hero_image = "../assets/illustrations/synbiotics.jpg"
         
-    hero_image_tag = f'<img src="{hero_image}?v=911" alt="{guide["title"]}" class="guide-hero-img" style="width:100%; height:320px; object-fit:cover; border-radius:var(--radius-lg); margin-top:24px; border:1px solid var(--border-color);">'
+    hero_image_tag = f'<img src="{hero_image}?v=912" alt="{guide["title"]}" class="guide-hero-img" style="width:100%; height:320px; object-fit:cover; border-radius:var(--radius-lg); margin-top:24px; border:1px solid var(--border-color);">'
 
     html = PAGE_TEMPLATE.format(
         title=guide["title"],
