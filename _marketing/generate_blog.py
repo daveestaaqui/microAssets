@@ -539,7 +539,7 @@ def generate_blog():
             elif "synbiotics" in slug.lower() or "gut" in slug.lower():
                 hero_image = "../assets/illustrations/synbiotics.jpg"
             
-            hero_image_tag = f'<img src="{hero_image}" alt="{title}" class="blog-hero-img" style="width:100%; max-height:400px; object-fit:cover; border-radius:var(--radius-lg); margin-top:24px; border:1px solid var(--border-color);">'
+            hero_image_tag = f'<img src="{hero_image}" alt="{title}" class="blog-hero-img" style="width:100%; height:320px; object-fit:contain; background:var(--bg-surface-elevated); padding:16px; border-radius:var(--radius-lg); margin-top:24px; border:1px solid var(--border-color);">'
 
             # Parse MD to HTML
             body_html = parse_markdown(body_md)
