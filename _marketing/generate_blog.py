@@ -104,7 +104,7 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
     <link rel="canonical" href="https://sporlyworks.com/blog/{slug}.html">
     <link rel="icon" type="image/x-icon" href="{favicon}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{style_path}">
     <style>
         .blog-container {{
@@ -126,7 +126,7 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
             font-weight: 700;
         }}
         .blog-meta {{
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 14px;
             color: var(--text-muted);
             display: flex;
@@ -137,8 +137,8 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
             color: var(--green-dark);
         }}
         .blog-body {{
-            font-family: 'Inter', sans-serif;
-            font-size: 17px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 18px;
             line-height: 1.85;
             color: var(--text-secondary);
         }}
@@ -193,7 +193,7 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
             margin-bottom: 8px;
         }}
         .blog-footer-cta p {{
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 14px;
             color: var(--text-muted);
             max-width: 500px;
@@ -318,7 +318,7 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
     <meta name="description" content="Explore peer-reviewed articles and grow logs from the SporlyWorks science board. Discover neurogenesis, survivability, and cultivation guides.">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{style_path}">
     <style>
         .blog-index-container {{
@@ -373,7 +373,7 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
             margin-bottom: 24px;
         }}
         .card-meta {{
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-size: 12px;
             color: var(--text-muted);
             text-transform: uppercase;
