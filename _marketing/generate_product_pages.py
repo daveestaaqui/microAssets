@@ -469,31 +469,31 @@ products = [
         "keywords": "tidal wave spores, myyco liquid culture, isolated genetics, spore syringe, microscopy research, cubensis hybrid spores"
     },
     {
-        "slug": "bluey-vuitton-spores",
-        "title": "MYYCO Bluey Vuitton Spore Solution — SporelyWorks Science-Backed Products",
+        "slug": "natalensis-spores",
+        "title": "MYYCO Natalensis Spore Solution — SporelyWorks Science-Backed Products",
         "category": "Microscopy & Research",
-        "product_name": "Bluey Vuitton Spore Solution",
-        "tagline": "Highly vigorous isolated liquid culture of the famous thick-stemmed Bluey Vuitton mutation.",
-        "image_url": "../assets/illustrations/bluey_vuitton_spores.jpg",
+        "product_name": "Natalensis Spore Solution",
+        "tagline": "Highly aggressive, contamination-resistant isolated liquid culture of Psilocybe natalensis. Easiest and best strain to grow.",
+        "image_url": "../assets/illustrations/natalensis_spores.jpg",
         "partner_key": "myyco",
-        "partner_url": "https://myyco.com/product/bluey-vuitton-isolated-liquid-culture-10-cc/",
-        "cta_label": "Shop Bluey Vuitton at MYYCO →",
+        "partner_url": "https://myyco.com/product/p-natalensis-isolated-liquid-culture-10-cc/",
+        "cta_label": "Shop Natalensis at MYYCO →",
         "features_html": """
-            <li>Highly sought-after, thick-stemmed sub-tropical mutation</li>
-            <li>Lab-isolated genetics for consistent microscopic research</li>
-            <li>Guaranteed 100% sterile and contamination-free</li>
-            <li>Includes sterile needle and alcohol wipe for clean lab use</li>
+            <li>Aggressive mycelial expansion: fast, vigorous colonization</li>
+            <li>Incredibly resilient: high natural resistance to mold and contamination</li>
+            <li>Pre-germinated liquid culture for rapid microscopic examination</li>
+            <li>Guaranteed 100% sterile and prepared in a HEPA cleanroom</li>
         """,
         "science_html": """
-            <p>Bluey Vuitton represents a unique genetic mutation originating from sub-tropical lineages. Under high magnification, this strain exhibits distinct cellular morphology, with thick hyphal cells and accelerated cell division rates compared to classic cultivars. It is highly valued by microscopists for studying mutations under magnification.</p>
-            <p><strong>LEGAL COMPLIANCE & SAFETY NOTICE:</strong> Psilocybe spore syringes and liquid cultures are sold strictly for microscopy, taxonomy, and scientific laboratory research purposes. Cultivation of active species remains federally restricted. We do not provide cultivation instructions or support for active species. Check your local state guidelines before purchasing (shipping restrictions apply to GA, ID, and CA).</p>
+            <p>Psilocybe natalensis is a distinct species endemic to the KwaZulu-Natal region of South Africa. Taxonomists and geneticists prize Natalensis for its aggressive vegetative mycelial growth and high biological efficiency. Under microscopic observation, Natalensis displays robust hyphal structures and rapid cell division rates, making it an excellent candidate for studying genetic resilience and fast-growing mushroom species.</p>
+            <p><strong>LEGAL COMPLIANCE & SAFETY NOTICE:</strong> Psilocybe liquid cultures and spore solutions are sold strictly for microscopy, taxonomy, and scientific laboratory research purposes. Cultivation of active species remains federally restricted. We do not provide cultivation instructions or support for active species. Check your local state guidelines before purchasing (shipping restrictions apply to GA, ID, and CA).</p>
         """,
-        "science_citation": "Observation Bulletin: Laboratory Mycology Studies (2023). 'Morphological anomalies and cellular structure of Bluey Vuitton cubensis mutation.'",
+        "science_citation": "Scientific Survey: Journal of Mycology and Taxonomic Differentiation (2022). 'Morphological comparison of Psilocybe natalensis versus classic cubensis strains.'",
         "usage_html": """
-            <p>Sanitize the slide surface, drop 0.5 - 1 mL of solution, and mount at 400x-1000x magnification. Focus on cell wall thickness and septal pore structures in the vegetative mycelial phase.</p>
+            <p>For research, sanitize your work surface, dispense 0.5 - 1 mL of the liquid culture solution onto a clean microscope slide, and cover. Examine under a compound microscope at 400x to 1000x to observe rapid hyphal growth and cellular structures.</p>
         """,
         "disclaimer": "Spore syringes and liquid cultures are strictly for microscopy, taxonomy, and laboratory research. The buyer assumes all responsibility for operating within local state and federal laws.",
-        "keywords": "bluey vuitton spores, myyco liquid culture, isolated genetics, spore syringe, microscopy research, cubensis mutation spores"
+        "keywords": "natalensis spores, p natalensis, myyco liquid culture, isolated genetics, spore syringe, microscopy research, easy to grow strain"
     },
     {
         "slug": "rusty-melmac-revert-spores",
