@@ -46,13 +46,13 @@ document.addEventListener('DOMContentLoaded', function () {
       link: '[INSERT_OM_MUSHROOMS_LINK]'
     },
     {
-      id: 'real-mushrooms',
-      name: 'Real Mushrooms',
+      id: 'freshcap',
+      name: 'FreshCap',
       category: 'Functional Supplements',
       // commission: '8-10%' — internal only, not shown
-      description: 'Science-backed mushroom extract supplements made from whole fruiting bodies with verified beta-glucan content.',
+      description: 'Science-backed mushroom extract supplements made from 100% organic fruiting bodies with verified active compound profiles.',
       legalNotice: 'These statements have not been evaluated by the FDA. Not intended to diagnose, treat, cure, or prevent any disease.',
-      link: '[INSERT_REAL_MUSHROOMS_LINK]'
+      link: '[INSERT_FRESHCAP_LINK]'
     }
   ];
 

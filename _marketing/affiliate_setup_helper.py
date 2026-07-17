@@ -47,28 +47,28 @@ def run_wizard():
     partners = config.get("partners", {})
     updated = False
 
-    # 1. Real Mushrooms (ShareASale)
-    print("--- STEP 1: Real Mushrooms (15% Cash Commission) ---")
-    current_rm = partners.get("real_mushrooms", {}).get("affiliate_id", "")
-    if current_rm and not current_rm.startswith("YOUR_"):
-        print(f"✅ Real Mushrooms is already configured with ID: {current_rm}\n")
+    # 1. FreshCap (15% Cash Commission)
+    print("--- STEP 1: FreshCap (15% Cash Commission) ---")
+    current_fc = partners.get("freshcap", {}).get("affiliate_id", "")
+    if current_fc and not current_fc.startswith("YOUR_"):
+        print(f"✅ FreshCap is already configured with ID: {current_fc}\n")
     else:
-        print("We will open the Awin global publisher sign-up page (which Awin migrated ShareASale into).")
-        print("After signing up, search the directory for 'Real Mushrooms' and join.")
-        input("👉 Press Enter to open the Awin sign-up page in Chrome...")
-        webbrowser.open("https://www.awin.com/us/publishers")
+        print("We will open the FreshCap partner program application page.")
+        print("After signing up and getting approved, you will receive a custom referral ID.")
+        input("👉 Press Enter to open the FreshCap affiliate signup page in Chrome...")
+        webbrowser.open("https://freshcap.com/pages/affiliates")
         
         while True:
-            rm_id = input("\nEnter your Real Mushrooms Affiliate ID (numeric, e.g., 1234567) or 'skip': ").strip()
-            if rm_id.lower() == 'skip':
+            fc_id = input("\nEnter your FreshCap Affiliate ID (e.g., 'sporlyworks' or alphanumeric code) or 'skip': ").strip()
+            if fc_id.lower() == 'skip':
                 break
-            if rm_id.isdigit():
-                partners["real_mushrooms"]["affiliate_id"] = rm_id
+            if fc_id:
+                partners["freshcap"]["affiliate_id"] = fc_id
                 updated = True
-                print("✅ Real Mushrooms ID saved.")
+                print("✅ FreshCap ID saved.")
                 break
             else:
-                print("❌ Invalid input. Please enter numbers only.")
+                print("❌ Invalid input. Please enter a valid ID.")
         print()
 
     # 2. Seed Probiotics

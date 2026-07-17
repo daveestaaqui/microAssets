@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real Mushrooms Cordyceps Extract Powder — SporlyWorks Science-Backed Products</title>
+    <title>FreshCap Organic Cordyceps Powder — SporlyWorks Science-Backed Products</title>
     <meta name="description" content="Cellular Energy, ATP Production & Cardiovascular Endurance">
-    <meta name="keywords" content="cordyceps powder, energy supplement, ATP oxygen endurance, real mushrooms cordyceps, adaptogen energy">
+    <meta name="keywords" content="cordyceps powder, energy supplement, ATP oxygen endurance, freshcap cordyceps, adaptogen energy">
     <link rel="canonical" href="https://sporlyworks.com/products/cordyceps-extract.html">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -194,7 +194,7 @@
             <li>Verified Beta-glucans (>20%) and Cordycepin (>0.3%)</li>
             <li>No added grain, starch, mycelium, or fillers</li>
                 </ul>
-                <a href="https://www.realmushrooms.com" id="cta-real_mushrooms" class="product-cta-btn" target="_blank" rel="noopener">Shop Cordyceps at Real Mushrooms →</a>
+                <a href="https://freshcap.com" id="cta-freshcap" class="product-cta-btn" target="_blank" rel="noopener">Shop Cordyceps at FreshCap →</a>
             </div>
         </section>
 
@@ -260,8 +260,8 @@
     fetch('../affiliate_config.json')
         .then(r => r.json())
         .then(config => {
-            const partner = config.partners['real_mushrooms'];
-            const btn = document.getElementById('cta-real_mushrooms');
+            const partner = config.partners['freshcap'];
+            const btn = document.getElementById('cta-freshcap');
             if (partner && btn) {
                 const isPlaceholder = !partner.affiliate_id || 
                                       partner.affiliate_id.startsWith('YOUR_') || 
@@ -278,7 +278,7 @@
                     btn.style.boxShadow = 'none';
                     btn.style.transform = 'none';
                 } else {
-                    let url = "https://www.realmushrooms.com";
+                    let url = "https://freshcap.com";
                     if (partner.affiliate_url_template.includes('awinmid=')) {
                         const midMatch = partner.affiliate_url_template.match(/awinmid=(\d+)/);
                         const mid = midMatch ? midMatch[1] : '';

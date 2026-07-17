@@ -168,8 +168,8 @@
 
             <div class="partner-cta-box">
                 <h3>Ready to Take the Next Step?</h3>
-                <p>Get the highest-purity, USDA Organic Lion's Mane extract powder directly from our trusted scientific partner, Real Mushrooms.</p>
-                <a href="https://www.realmushrooms.com" id="cta-real_mushrooms" class="partner-cta-btn" target="_blank" rel="noopener">Shop Lion's Mane Extract at Real Mushrooms →</a>
+                <p>Get the highest-purity, USDA Organic Lion's Mane extract powder directly from our trusted scientific partner, FreshCap.</p>
+                <a href="https://freshcap.com" id="cta-freshcap" class="partner-cta-btn" target="_blank" rel="noopener">Shop Lion's Mane Extract at FreshCap →</a>
             </div>
         </article>
     </main>
@@ -220,8 +220,8 @@
     fetch('../affiliate_config.json')
         .then(r => r.json())
         .then(config => {
-            const partner = config.partners['real_mushrooms'];
-            const btn = document.getElementById('cta-real_mushrooms');
+            const partner = config.partners['freshcap'];
+            const btn = document.getElementById('cta-freshcap');
             if (partner && btn) {
                 const isPlaceholder = !partner.affiliate_id || 
                                       partner.affiliate_id.startsWith('YOUR_') || 
@@ -238,7 +238,7 @@
                     btn.style.boxShadow = 'none';
                     btn.style.transform = 'none';
                 } else {
-                    let url = "https://www.realmushrooms.com";
+                    let url = "https://freshcap.com";
                     if (partner.affiliate_url_template.includes('awinmid=')) {
                         const midMatch = partner.affiliate_url_template.match(/awinmid=(\d+)/);
                         const mid = midMatch ? midMatch[1] : '';

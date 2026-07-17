@@ -281,10 +281,10 @@ guides = [
             <p>For optimal results, consume 1,000 mg of organic Lion's Mane extract powder daily. It is soluble in hot water, making it a perfect addition to morning coffee, tea, or protein smoothies. Most users report increased focus, mental clarity, and improved recall after 2–3 weeks of consistent daily usage.</p>
         """,
         "takeaway": "Always look for certified organic, 100% fruiting body extracts with verified beta-glucan levels to ensure you are receiving the active ingredients necessary for neurogenesis.",
-        "partner_key": "real_mushrooms",
-        "partner_url": "https://www.realmushrooms.com",
-        "cta_text": "Get the highest-purity, USDA Organic Lion's Mane extract powder directly from our trusted scientific partner, Real Mushrooms.",
-        "partner_cta": "Shop Lion's Mane Extract at Real Mushrooms →",
+        "partner_key": "freshcap",
+        "partner_url": "https://freshcap.com",
+        "cta_text": "Get the highest-purity, USDA Organic Lion's Mane extract powder directly from our trusted scientific partner, FreshCap.",
+        "partner_cta": "Shop Lion's Mane Extract at FreshCap →",
         "keywords": "lions mane supplement, neurogenesis NGF, organic mushroom extract, brain health supplements, focus memory"
     },
     {

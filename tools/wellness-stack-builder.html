@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily Wellness Stack Builder — SporlyWorks</title>
-    <meta name="description" content="Build your customized science-backed daily wellness supplement stack with Real Mushrooms and Seed Synbiotics.">
+    <meta name="description" content="Build your customized science-backed daily wellness supplement stack with FreshCap and Seed Synbiotics.">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -205,12 +205,12 @@
     }
 
     const stackRecommendations = {
-        focus:    { partner: 'real_mushrooms', product: "Lion's Mane Extract Powder", reason: 'Stimulates Nerve Growth Factor (NGF) to improve focus, memory, and cognitive health.' },
-        immunity: { partner: 'real_mushrooms', product: 'Reishi Extract Powder', reason: 'Polysaccharides and beta-glucans help modulate immune response and support immune cell health.' },
-        energy:   { partner: 'real_mushrooms', product: 'Cordyceps Extract Powder', reason: 'Enhances cellular ATP synthesis and optimizes oxygen consumption for sustained physical energy.' },
+        focus:    { partner: 'freshcap', product: "Lion's Mane Extract Powder", reason: 'Stimulates Nerve Growth Factor (NGF) to improve focus, memory, and cognitive health.' },
+        immunity: { partner: 'freshcap', product: 'Reishi Extract Powder', reason: 'Polysaccharides and beta-glucans help modulate immune response and support immune cell health.' },
+        energy:   { partner: 'freshcap', product: 'Cordyceps Extract Powder', reason: 'Enhances cellular ATP synthesis and optimizes oxygen consumption for sustained physical energy.' },
         gut:      { partner: 'seed', product: 'DS-01® Daily Synbiotic', reason: '24-strain probiotic designed to survive digestive transit and colonize the lower tract for gut biome balance.' },
-        stress:   { partner: 'real_mushrooms', product: 'Reishi Extract Powder', reason: 'Adaptogenic compounds calm the nervous system and build resilience to physical and mental stress.' },
-        sleep:    { partner: 'real_mushrooms', product: 'Reishi Extract Powder (PM)', reason: 'Triterpenes interact with GABA pathways in the brain to support relaxation and deep sleep.' }
+        stress:   { partner: 'freshcap', product: 'Reishi Extract Powder', reason: 'Adaptogenic compounds calm the nervous system and build resilience to physical and mental stress.' },
+        sleep:    { partner: 'freshcap', product: 'Reishi Extract Powder (PM)', reason: 'Triterpenes interact with GABA pathways in the brain to support relaxation and deep sleep.' }
     };
 
     function buildStack() {
@@ -261,7 +261,7 @@
                                   partner.affiliate_id.startsWith('YOUR_') || 
                                   partner.affiliate_id.includes('INSERT');
             
-            const isPrimary = key === 'real_mushrooms';
+            const isPrimary = key === 'freshcap';
             if (isPlaceholder) {
                 ctasDiv.innerHTML += `
                     <a href="javascript:void(0)" class="result-cta" style="padding:14px 28px; text-decoration:none; border-radius:var(--radius-pill); font-weight:600; font-size:15px; background:#888888; color:#ffffff; border:1px solid #888888; min-width:180px; text-align:center; pointer-events:none; opacity:0.6; cursor:default; box-shadow:none; transform:none;">

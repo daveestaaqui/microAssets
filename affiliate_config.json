@@ -33,14 +33,14 @@
       "image": "assets/illustrations/grow_bags.jpg",
       "features": ["Pre-Sterilized", "Self-Healing Port", "0.2μm Filter Patch"]
     },
-    "real_mushrooms": {
-      "name": "Real Mushrooms",
-      "tagline": "Organic Functional Mushroom Extracts",
-      "affiliate_id": "YOUR_REAL_MUSHROOMS_ID",
-      "base_url": "https://www.realmushrooms.com",
-      "affiliate_url_template": "https://www.realmushrooms.com/?ref={affiliate_id}",
+    "freshcap": {
+      "name": "FreshCap",
+      "tagline": "Organic Fruiting Body Extracts",
+      "affiliate_id": "YOUR_FRESHCAP_ID",
+      "base_url": "https://freshcap.com",
+      "affiliate_url_template": "https://freshcap.com/?ref={affiliate_id}",
       "category": "supplements",
-      "description": "100% organic fruiting body extracts with verified beta-glucan profiles. No fillers, no grains, no mycelium on grain.",
+      "description": "100% organic, water-extracted mushroom fruiting bodies. No starch, grains, or mycelium fillers.",
       "image": "assets/illustrations/supplements.jpg",
       "features": ["100% Fruiting Body", "Verified Beta-Glucans", "USDA Organic"]
     },

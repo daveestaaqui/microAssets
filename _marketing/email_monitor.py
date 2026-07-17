@@ -43,11 +43,11 @@ def check_and_update_affiliates():
 
     # Define search terms and regex patterns for partners
     partner_rules = {
-        "real_mushrooms": {
-            "search_sender": "awin",
-            "keywords": ["Real Mushrooms", "approved", "affiliate", "shareasale"],
-            "regex": r"(?:ref=|u=|awinaffid=|affid=|affiliateId=)(\d{4,10})",
-            "config_key": "real_mushrooms"
+        "freshcap": {
+            "search_sender": "freshcap",
+            "keywords": ["FreshCap", "approved", "partner", "affiliate"],
+            "regex": r"(?:ref=)([a-zA-Z0-9_\-]+)",
+            "config_key": "freshcap"
         },
         "seed": {
             "search_sender": "seed.com",

@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real Mushrooms Reishi Extract Powder — SporlyWorks Science-Backed Products</title>
+    <title>FreshCap Organic Reishi Powder — SporlyWorks Science-Backed Products</title>
     <meta name="description" content="Stress Resilience, Calming Support & Immune Modulation">
-    <meta name="keywords" content="reishi powder, stress adaptogen, calm sleep supplement, real mushrooms reishi, organic ganoderma extract">
+    <meta name="keywords" content="reishi powder, stress adaptogen, calm sleep supplement, freshcap reishi, organic ganoderma extract">
     <link rel="canonical" href="https://sporlyworks.com/products/reishi-extract.html">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -194,7 +194,7 @@
             <li>Verified Beta-glucans (>15%) and Triterpenes (>4%)</li>
             <li>Certified organic, USDA organic, gluten-free, vegan</li>
                 </ul>
-                <a href="https://www.realmushrooms.com" id="cta-real_mushrooms" class="product-cta-btn" target="_blank" rel="noopener">Shop Reishi at Real Mushrooms →</a>
+                <a href="https://freshcap.com" id="cta-freshcap" class="product-cta-btn" target="_blank" rel="noopener">Shop Reishi at FreshCap →</a>
             </div>
         </section>
 
@@ -260,8 +260,8 @@
     fetch('../affiliate_config.json')
         .then(r => r.json())
         .then(config => {
-            const partner = config.partners['real_mushrooms'];
-            const btn = document.getElementById('cta-real_mushrooms');
+            const partner = config.partners['freshcap'];
+            const btn = document.getElementById('cta-freshcap');
             if (partner && btn) {
                 const isPlaceholder = !partner.affiliate_id || 
                                       partner.affiliate_id.startsWith('YOUR_') || 
@@ -278,7 +278,7 @@
                     btn.style.boxShadow = 'none';
                     btn.style.transform = 'none';
                 } else {
-                    let url = "https://www.realmushrooms.com";
+                    let url = "https://freshcap.com";
                     if (partner.affiliate_url_template.includes('awinmid=')) {
                         const midMatch = partner.affiliate_url_template.match(/awinmid=(\d+)/);
                         const mid = midMatch ? midMatch[1] : '';

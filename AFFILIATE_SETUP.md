@@ -23,11 +23,11 @@
 - **Cookie**: 30 days
 - **Config key**: `magicbag` → `affiliate_id`
 
-### 3. Real Mushrooms — Organic Extracts
-- **Apply**: [realmushrooms.com/affiliate-program](https://www.realmushrooms.com/affiliate-program/) or via ShareASale
-- **Commission**: 15-25% per sale
-- **Cookie**: 90 days
-- **Config key**: `real_mushrooms` → `affiliate_id`
+### 3. FreshCap — Organic Extracts
+- **Apply**: [freshcap.com/pages/affiliates](https://freshcap.com/pages/affiliates)
+- **Commission**: 10-20% per sale
+- **Cookie**: 30 days
+- **Config key**: `freshcap` → `affiliate_id`
 
 ### 4. Seed Probiotics — DS-01® Daily Synbiotic
 - **Apply**: [seed.com/refer](https://seed.com/refer) or email partnerships@seed.com

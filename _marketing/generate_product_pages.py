@@ -308,14 +308,14 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
 products = [
     {
         "slug": "lions-mane-extract",
-        "title": "Real Mushrooms Lion's Mane Extract Powder",
+        "title": "FreshCap Organic Lion's Mane Powder",
         "category": "Supplements",
         "product_name": "Organic Lion's Mane Extract Powder",
         "tagline": "Cognitive Clarity, Memory Support & Nerve Growth Factor (NGF) Stimulation",
         "image_url": "../assets/illustrations/lions_mane_extract.jpg",
-        "partner_key": "real_mushrooms",
-        "partner_url": "https://www.realmushrooms.com",
-        "cta_label": "Shop Lion's Mane at Real Mushrooms →",
+        "partner_key": "freshcap",
+        "partner_url": "https://freshcap.com",
+        "cta_label": "Shop Lion's Mane at FreshCap →",
         "features_html": """
             <li>100% Organic Lion's Mane Mushroom (Hericium erinaceus)</li>
             <li>Hot-water extracted from 100% organic fruiting bodies</li>
@@ -331,18 +331,18 @@ products = [
             <p>Take 1,000 mg (approx. 1/2 teaspoon) daily. Easily dissolves into hot water, morning coffee, herbal teas, or protein shakes. For maximum bioavailability, consume alongside a fat source or warm liquid.</p>
         """,
         "disclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Regular health check-ups and consulting a medical professional are recommended before starting any new supplement.",
-        "keywords": "lions mane powder, organic mushroom extract, NGF brain supplement, cognitive health, real mushrooms lions mane"
+        "keywords": "lions mane powder, organic mushroom extract, NGF brain supplement, cognitive health, freshcap lions mane"
     },
     {
         "slug": "cordyceps-extract",
-        "title": "Real Mushrooms Cordyceps Extract Powder",
+        "title": "FreshCap Organic Cordyceps Powder",
         "category": "Supplements",
         "product_name": "Organic Cordyceps Militaris Extract Powder",
         "tagline": "Cellular Energy, ATP Production & Cardiovascular Endurance",
         "image_url": "../assets/illustrations/cordyceps_extract.jpg",
-        "partner_key": "real_mushrooms",
-        "partner_url": "https://www.realmushrooms.com",
-        "cta_label": "Shop Cordyceps at Real Mushrooms →",
+        "partner_key": "freshcap",
+        "partner_url": "https://freshcap.com",
+        "cta_label": "Shop Cordyceps at FreshCap →",
         "features_html": """
             <li>100% Organic Cordyceps Militaris Mushroom</li>
             <li>Hot-water extracted from 100% organic fruiting bodies</li>
@@ -358,18 +358,18 @@ products = [
             <p>Take 1,000 mg (approx. 1/2 teaspoon) daily. Cordyceps has a mildly sweet, earthy taste that pairs perfectly with pre-workout beverages, green smoothies, or black tea. Best taken in the morning or early afternoon for sustained daily energy.</p>
         """,
         "disclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Consult your physician if you are pregnant, nursing, or taking blood thinners.",
-        "keywords": "cordyceps powder, energy supplement, ATP oxygen endurance, real mushrooms cordyceps, adaptogen energy"
+        "keywords": "cordyceps powder, energy supplement, ATP oxygen endurance, freshcap cordyceps, adaptogen energy"
     },
     {
         "slug": "reishi-extract",
-        "title": "Real Mushrooms Reishi Extract Powder",
+        "title": "FreshCap Organic Reishi Powder",
         "category": "Supplements",
         "product_name": "Organic Reishi Mushroom Extract Powder",
         "tagline": "Stress Resilience, Calming Support & Immune Modulation",
         "image_url": "../assets/illustrations/reishi_extract.jpg",
-        "partner_key": "real_mushrooms",
-        "partner_url": "https://www.realmushrooms.com",
-        "cta_label": "Shop Reishi at Real Mushrooms →",
+        "partner_key": "freshcap",
+        "partner_url": "https://freshcap.com",
+        "cta_label": "Shop Reishi at FreshCap →",
         "features_html": """
             <li>100% Organic Red Reishi Mushroom (Ganoderma lingzhi)</li>
             <li>Dual-extracted (water + alcohol) to isolate both water-soluble beta-glucans and fat-soluble triterpenes</li>
@@ -385,7 +385,7 @@ products = [
             <p>Take 1,000 mg (approx. 1/2 teaspoon) daily. Reishi is naturally bitter due to the therapeutic triterpenes. We recommend mixing it into dark cocoa, coffee, warm nut milks, or capping it to bypass the bitter flavor profiles. Best consumed in the evening.</p>
         """,
         "disclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Please consult with your physician before combining with immune-suppressants.",
-        "keywords": "reishi powder, stress adaptogen, calm sleep supplement, real mushrooms reishi, organic ganoderma extract"
+        "keywords": "reishi powder, stress adaptogen, calm sleep supplement, freshcap reishi, organic ganoderma extract"
     },
     {
         "slug": "seed-ds01",
