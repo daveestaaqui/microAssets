@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Mycology & Adaptogen Finder — SporlyWorks</title>
+    <meta name="description" content="Discover your personalized mycology, cultivation, and adaptogenic mushroom stack in under 60 seconds.">
+    <meta name="keywords" content="mycology finder, mushroom product quiz, personalized adaptogen stack, grow kit recommendation, spore finder">
+    <link rel="canonical" href="https://sporlyworks.com/tools/mycology-finder.html">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css?v=1020">
+    <style>
+        .quiz-container {
+            max-width: 800px;
+            margin: 130px auto 80px;
+            padding: 0 24px;
+        }
+        .quiz-card {
+            background: rgba(255, 255, 255, 0.88);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            padding: 48px 40px;
+            box-shadow: var(--shadow-medium);
+            backdrop-filter: blur(12px);
+        }
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .quiz-header h1 {
+            font-size: 38px;
+            color: var(--green-dark);
+            margin-bottom: 12px;
+        }
+        .quiz-header p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .progress-bar-wrap {
+            width: 100%;
+            height: 8px;
+            background: rgba(27, 138, 90, 0.1);
+            border-radius: 4px;
+            margin-bottom: 36px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            width: 25%;
+            background: linear-gradient(90deg, var(--green-light), var(--gold));
+            transition: width 0.4s ease;
+        }
+        .quiz-step {
+            display: none;
+        }
+        .quiz-step.active {
+            display: block;
+            animation: revealUp 0.4s ease;
+        }
+        .question-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--green-dark);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .option-btn {
+            background: #ffffff;
+            border: 2px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 20px 24px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .option-btn:hover {
+            border-color: var(--green-light);
+            background: rgba(27, 138, 90, 0.03);
+            transform: translateY(-2px);
+        }
+        .option-btn.selected {
+            border-color: var(--green);
+            background: rgba(27, 138, 90, 0.08);
+            box-shadow: 0 4px 14px rgba(11, 74, 46, 0.15);
+        }
+        .option-title {
+            font-weight: 700;
+            font-size: 17px;
+            color: var(--green-dark);
+        }
+        .option-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        .quiz-nav-btns {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 32px;
+        }
+        .btn-quiz-prev {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 12px 28px;
+            border-radius: var(--radius-pill);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .btn-quiz-next {
+            background: var(--green);
+            color: #ffffff;
+            border: none;
+            padding: 14px 36px;
+            border-radius: var(--radius-pill);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(11, 74, 46, 0.2);
+            transition: all 0.3s ease;
+        }
+        .btn-quiz-next:hover {
+            background: var(--green-dark);
+            transform: translateY(-2px);
+        }
+        .results-box {
+            display: none;
+            text-align: center;
+        }
+        .results-box.active {
+            display: block;
+            animation: revealUp 0.5s ease;
+        }
+        .recommendation-card {
+            background: #ffffff;
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            margin-bottom: 24px;
+            text-align: left;
+            box-shadow: var(--shadow-soft);
+        }
+        .rec-tag {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gold-dark);
+            margin-bottom: 6px;
+        }
+        .rec-name {
+            font-family: 'DM Serif Display', serif;
+            font-size: 24px;
+            color: var(--green-dark);
+            margin-bottom: 10px;
+        }
+        .rec-desc {
+            font-size: 15.5px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+        .rec-cta {
+            display: inline-block;
+            background: var(--green-light);
+            color: #ffffff;
+            padding: 12px 28px;
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            transition: background 0.3s;
+        }
+        .rec-cta:hover {
+            background: var(--green-dark);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav id="mainNav" class="scrolled">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-brand">
+                <img src="../assets/logo-nav.png?v=908" alt="SporlyWorks" class="nav-icon">
+                <span class="nav-wordmark">SPORLYWORKS</span>
+            </a>
+            <div class="nav-menu-row">
+                <div class="nav-links">
+                    <a href="../products.html">Products</a>
+                    <a href="mycology-finder.html" class="active">Finder Quiz</a>
+                    <a href="yield-estimator.html">Yield Estimator</a>
+                    <a href="wellness-stack-builder.html">Stack Builder</a>
+                    <a href="diagnostics.html">Diagnostics</a>
+                    <a href="../blog/index.html">Blog</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="quiz-container">
+        <div class="quiz-card">
+            <div class="quiz-header">
+                <h1>Interactive Mycology Finder</h1>
+                <p>Answer 3 quick questions to discover your ideal cultivation kit, clinical adaptogen stack, or research genetics solution.</p>
+            </div>
+
+            <div class="progress-bar-wrap">
+                <div class="progress-bar-fill" id="progressFill"></div>
+            </div>
+
+            <!-- Question 1 -->
+            <div class="quiz-step active" id="step1">
+                <h2 class="question-title">What is your primary goal?</h2>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="selectOption(1, 'gourmet')">
+                        <span class="option-title">🍄 Harvest Fresh Gourmet Mushrooms</span>
+                        <span class="option-desc">Grow fresh Lion's Mane or Oyster mushrooms in your kitchen in 10-14 days.</span>
+                    </button>
+                    <button class="option-btn" onclick="selectOption(1, 'cognition')">
+                        <span class="option-title">🧠 Cognitive Focus & Daily Stamina</span>
+                        <span class="option-desc">Enhance memory, mental clarity, ATP cellular energy, and stress resilience.</span>
+                    </button>
+                    <button class="option-btn" onclick="selectOption(1, 'research')">
+                        <span class="option-title">🔬 Lab Research & Microscopy</span>
+                        <span class="option-desc">Study taxonomy, high biological efficiency genetics, or sterile spawn run prep.</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="quiz-step" id="step2">
+                <h2 class="question-title">What is your mycology experience level?</h2>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="selectOption(2, 'beginner')">
+                        <span class="option-title">🌱 Beginner / First-Time</span>
+                        <span class="option-desc">Prefer guaranteed, fool-proof solutions that require zero lab gear.</span>
+                    </button>
+                    <button class="option-btn" onclick="selectOption(2, 'intermediate')">
+                        <span class="option-title">🌿 Intermediate</span>
+                        <span class="option-desc">Familiar with sterile injection ports, substrate ratios, or daily extract powder dosing.</span>
+                    </button>
+                    <button class="option-btn" onclick="selectOption(2, 'advanced')">
+                        <span class="option-title">🧫 Advanced Lab Practitioner</span>
+                        <span class="option-desc">Experienced with liquid culture isolation, agar work, and monotub fruiting setups.</span>
+                    </button>
+                </div>
+                <div class="quiz-nav-btns">
+                    <button class="btn-quiz-prev" onclick="prevStep(1)">← Back</button>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="quiz-step" id="step3">
+                <h2 class="question-title">What format do you prefer?</h2>
+                <div class="options-grid">
+                    <button class="option-btn" onclick="selectOption(3, 'kit')">
+                        <span class="option-title">📦 Ready-to-Fruit Block</span>
+                        <span class="option-desc">Mist-and-grow organic sawdust fruiting kit.</span>
+                    </button>
+                    <button class="option-btn" onclick="selectOption(3, 'powder')">
+                        <span class="option-title">☕ Organic Powder Extract</span>
+                        <span class="option-desc">Hot-water extracted organic fruiting body powder for daily drinks.</span>
+                    </button>
+                    <button class="option-btn" onclick="selectOption(3, 'spore')">
+                        <span class="option-title">🧪 Isolated Liquid Culture Syringe</span>
+                        <span class="option-desc">10 cc sterile syringe for microscopy or grain inoculation.</span>
+                    </button>
+                </div>
+                <div class="quiz-nav-btns">
+                    <button class="btn-quiz-prev" onclick="prevStep(2)">← Back</button>
+                    <button class="btn-quiz-next" onclick="calculateResults()">See Recommendations →</button>
+                </div>
+            </div>
+
+            <!-- Results Step -->
+            <div class="results-box" id="resultsBox">
+                <h2 style="font-family:'DM Serif Display', serif; font-size:32px; color:var(--green-dark); margin-bottom:12px;">Your Recommended Stack</h2>
+                <p style="font-size:17px; color:var(--text-secondary); margin-bottom:32px;">Based on your inputs, we matched you with these top-tier, science-backed solutions:</p>
+
+                <div id="recommendationsList"></div>
+
+                <div style="margin-top:32px; text-align:center;">
+                    <button class="btn-quiz-prev" onclick="resetQuiz()">🔄 Retake Quiz</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">SPORLYWORKS</div>
+                <p class="footer-tagline">Clinical adaptogens, sterile mycology genetics, and bio-fermented synbiotics for cognitive performance and home cultivation.</p>
+            </div>
+            <div class="footer-links-grid">
+                <div class="footer-column">
+                    <h4>Products</h4>
+                    <a href="../products/lions-mane-extract.html">Lion's Mane Extract</a>
+                    <a href="../products/natalensis-spores.html">Natalensis Spores</a>
+                    <a href="../products/magic-bag-grow-bags.html">Magic Bag Grow Bags</a>
+                    <a href="../products/seed-ds01.html">Seed DS-01 Synbiotic</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Interactive Tools</h4>
+                    <a href="mycology-finder.html">Mycology Finder Quiz</a>
+                    <a href="yield-estimator.html">Yield Estimator</a>
+                    <a href="wellness-stack-builder.html">Stack Builder</a>
+                    <a href="diagnostics.html">Diagnostics Guide</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <a href="../blog/index.html">Research Journal</a>
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <a href="../terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    const userAnswers = {};
+
+    function selectOption(step, value) {
+        userAnswers['step' + step] = value;
+        const currentStep = document.getElementById('step' + step);
+        const btns = currentStep.querySelectorAll('.option-btn');
+        btns.forEach(b => b.classList.remove('selected'));
+        event.currentTarget.classList.add('selected');
+
+        if (step === 1) {
+            nextStep(2);
+        } else if (step === 2) {
+            nextStep(3);
+        }
+    }
+
+    function nextStep(stepNum) {
+        document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+        document.getElementById('step' + stepNum).classList.add('active');
+        document.getElementById('progressFill').style.width = (stepNum * 33) + '%';
+    }
+
+    function prevStep(stepNum) {
+        document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+        document.getElementById('step' + stepNum).classList.add('active');
+        document.getElementById('progressFill').style.width = (stepNum * 33) + '%';
+    }
+
+    function calculateResults() {
+        document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+        document.getElementById('progressFill').style.width = '100%';
+        document.getElementById('resultsBox').classList.add('active');
+
+        const recs = [];
+
+        if (userAnswers.step1 === 'gourmet' || userAnswers.step3 === 'kit') {
+            recs.push({
+                tag: 'Top Gourmet Grow Kit Choice',
+                name: "North Spore Lion's Mane Grow Kit",
+                desc: 'Pre-colonized organic sawdust block guaranteed to produce large pom-pom clusters in 10-14 days.',
+                link: '../products/lions-mane-grow-kit.html',
+                cta: 'Shop Lion\'s Mane Kit →'
+            });
+            recs.push({
+                tag: 'Substrate & Spawn Helper',
+                name: 'Magic Bag All-In-One Grow Bag',
+                desc: 'Pre-sterilized grain and compost bag with self-healing injection port for custom cultivation.',
+                link: '../products/magic-bag-grow-bags.html',
+                cta: 'Shop Magic Bag →'
+            });
+        } else if (userAnswers.step1 === 'cognition' || userAnswers.step3 === 'powder') {
+            recs.push({
+                tag: 'Clinical Nootropic Supplement',
+                name: "FreshCap Organic Lion's Mane Extract",
+                desc: '100% organic fruiting body extract (>25% beta-glucans) clinically backed to stimulate Nerve Growth Factor (NGF).',
+                link: '../products/lions-mane-extract.html',
+                cta: 'Shop Lion\'s Mane Extract →'
+            });
+            recs.push({
+                tag: 'Systemic Gut & Absorption Partner',
+                name: 'Seed DS-01® Daily Synbiotic',
+                desc: '24 clinically studied probiotic strains delivering 53.6B AFU directly to the colon via nested ViaCap® technology.',
+                link: '../products/seed-ds01.html',
+                cta: 'Shop DS-01 Synbiotic →'
+            });
+        } else {
+            recs.push({
+                tag: 'Isolated Genetics Specialist',
+                name: 'MYYCO Psilocybe Natalensis Spores',
+                desc: 'Vigorous, mold-resistant isolated liquid culture syringe endemic to Natal, South Africa. High biological efficiency.',
+                link: '../products/natalensis-spores.html',
+                cta: 'Shop Natalensis Spores →'
+            });
+            recs.push({
+                tag: 'Sterile Substrate Essential',
+                name: 'Magic Bag All-In-One Grow Bags',
+                desc: 'Pre-sterilized 6 lb capacity grain and compost bag with self-healing injection port.',
+                link: '../products/magic-bag-grow-bags.html',
+                cta: 'Shop All-In-One Bags →'
+            });
+        }
+
+        const html = recs.map(r => `
+            <div class="recommendation-card">
+                <div class="rec-tag">${r.tag}</div>
+                <div class="rec-name">${r.name}</div>
+                <div class="rec-desc">${r.desc}</div>
+                <a href="${r.link}" class="rec-cta">${r.cta}</a>
+            </div>
+        `).join('');
+
+        document.getElementById('recommendationsList').innerHTML = html;
+    }
+
+    function resetQuiz() {
+        document.getElementById('resultsBox').classList.remove('active');
+        document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+        document.getElementById('step1').classList.add('active');
+        document.getElementById('progressFill').style.width = '25%';
+    }
+    </script>
+</body>
+</html>

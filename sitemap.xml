@@ -76,6 +76,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://sporlyworks.com/tools/mycology-finder.html</loc>
+    <lastmod>2026-07-27</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://sporlyworks.com/tools/wellness-stack-builder.html</loc>
     <lastmod>2026-07-27</lastmod>
     <priority>0.8</priority>
@@ -104,6 +109,11 @@
     <loc>https://sporlyworks.com/blog/rss.xml</loc>
     <lastmod>2026-07-27</lastmod>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://sporlyworks.com/blog/beta-glucan-extraction-methods.html</loc>
+    <lastmod>2026-07-27</lastmod>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://sporlyworks.com/blog/cordyceps-atp-cellular-energy.html</loc>
@@ -136,7 +146,17 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://sporlyworks.com/blog/cordyceps-vs-pre-workout.html</loc>
+    <lastmod>2026-07-27</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://sporlyworks.com/blog/identifying-grow-contamination.html</loc>
+    <lastmod>2026-07-27</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://sporlyworks.com/blog/all-in-one-grow-bag-guide.html</loc>
     <lastmod>2026-07-27</lastmod>
     <priority>0.6</priority>
   </url>
@@ -166,7 +186,17 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://sporlyworks.com/guides/spore-syringe-vs-liquid-culture-guide.html</loc>
+    <lastmod>2026-07-27</lastmod>
+    <priority>0.75</priority>
+  </url>
+  <url>
     <loc>https://sporlyworks.com/guides/lions-mane-cognitive-wellness.html</loc>
+    <lastmod>2026-07-27</lastmod>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>https://sporlyworks.com/guides/all-in-one-grow-bag-yield-guide.html</loc>
     <lastmod>2026-07-27</lastmod>
     <priority>0.75</priority>
   </url>

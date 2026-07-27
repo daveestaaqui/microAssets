@@ -195,6 +195,7 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
             <div class="nav-menu-row">
                 <div class="nav-links">
                     <a href="../products.html" class="active">Products</a>
+                    <a href="../tools/mycology-finder.html">Finder Quiz</a>
                     <a href="../tools/yield-estimator.html">Yield Estimator</a>
                     <a href="../tools/wellness-stack-builder.html">Stack Builder</a>
                     <a href="../tools/diagnostics.html">Diagnostics</a>

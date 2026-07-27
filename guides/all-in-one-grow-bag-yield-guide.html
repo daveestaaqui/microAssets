@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title} — SporlyWorks Mycology & Wellness Guides</title>
+    <meta name="description" content="{description}">
+    <meta name="keywords" content="{keywords}">
+    <link rel="canonical" href="https://sporlyworks.com/guides/{slug}.html">
+    <link rel="icon" type="image/x-icon" href="{favicon}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{style_path}">
+    <style>
+        .guide-body {
+            max-width: 800px;
+            margin: 120px auto 80px;
+            padding: 0 24px;
+        }
+        .guide-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .guide-title {
+            font-size: 42px;
+            color: var(--green-dark);
+            margin-bottom: 16px;
+            font-family: 'DM Serif Display', Georgia, serif;
+        }
+        .guide-meta {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .guide-intro {
+            font-size: 20px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 32px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 32px;
+        }
+        .guide-content h2 {
+            font-size: 32px;
+            color: var(--green);
+            margin: 44px 0 18px;
+            font-family: 'DM Serif Display', Georgia, serif;
+        }
+        .guide-content p {
+            font-size: 18.5px;
+            line-height: 1.85;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+        }
+        .guide-content ul, .guide-content ol {
+            margin-left: 24px;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+        .guide-content li {
+            font-size: 18px;
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+        .guide-takeaway {
+            background: var(--bg-surface-elevated);
+            border-left: 4px solid var(--gold);
+            padding: 28px;
+            border-radius: var(--radius-sm);
+            margin: 36px 0;
+            box-shadow: var(--shadow-soft);
+        }
+        .guide-takeaway p {
+            margin: 0;
+            font-size: 17px;
+            line-height: 1.7;
+            color: var(--text-primary);
+        }
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .partner-cta-box {
+            background: linear-gradient(135deg, var(--green-dark), #03150e);
+            color: var(--text-on-dark);
+            padding: 40px;
+            border-radius: var(--radius-md);
+            margin-top: 48px;
+            text-align: center;
+            border: 1px solid var(--gold-dark);
+        }
+        .partner-cta-box h3 {
+            color: var(--gold-light);
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+        .partner-cta-box p {
+            color: var(--text-on-dark);
+            opacity: 0.85;
+            font-size: 15px;
+            max-width: 600px;
+            margin: 0 auto 24px;
+        }
+        .partner-cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            color: #000;
+            padding: 12px 32px;
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+        .partner-cta-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 20px rgba(196, 151, 59, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav id="mainNav" class="scrolled">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-brand">
+                <img src="../assets/logo-nav.png?v=908" alt="SporlyWorks" class="nav-icon">
+                <span class="nav-wordmark">SPORLYWORKS</span>
+            </a>
+            <div class="nav-menu-row">
+                <div class="nav-links">
+                    <a href="../products.html">Products</a>
+                    <a href="../tools/yield-estimator.html">Yield Estimator</a>
+                    <a href="../tools/wellness-stack-builder.html">Stack Builder</a>
+                    <a href="../tools/diagnostics.html">Diagnostics</a>
+                    <a href="../tools/substrate-calculator.html">Substrate Calculator</a>
+                    <a href="../blog/index.html" class="active">Blog</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ MAIN CONTENT ═══ -->
+    <main class="guide-body">
+        <article class="guide-card">
+            <header class="guide-header">
+                <div class="guide-meta">Category: Cultivation & Spawn Run · Technical Guide</div>
+                <h1 class="guide-title">Dual-Layer Grain Substrate Ratios, Injection Ports & Break-and-Shake Tek</h1>
+                <img src="../assets/illustrations/spores.jpg?v=912" alt="All-In-One Mushroom Grow Bags: Sterilization & Harvest Optimization" class="guide-hero-img" style="width:100%; height:320px; object-fit:cover; border-radius:var(--radius-lg); margin-top:24px; border:1px solid var(--border-color);">
+            </header>
+            
+            <p class="guide-intro">All-in-one grow bags have revolutionized modern home mycology by combining pre-sterilized grain spawn and pasteurized substrate into a single sealed bag.</p>
+            
+            <div class="guide-content">
+                
+            <h2>The Science of Dual-Layer Substrates</h2>
+            <p>All-in-one grow bags utilize a layered matrix. The bottom layer consists of nutrient-dense grain (such as millet, rye, or oats) designed for rapid mycelial expansion. The top layer consists of a pasteurized compost or bulk substrate blend (coir, vermiculite, composted manure) designed to hold water and fuel fruiting body development.</p>
+            <p>The self-healing rubber injection port allows sterile syringe needle insertion without exposing the inner contents to open air, while a 0.2-micron hydrophobic filter patch permits essential gas exchange during spawn run.</p>
+
+            <h2>Mastering the 'Break and Shake'</h2>
+            <p>Once the initial inoculation takes hold and colonizes approximately 20-30% of the lower grain layer, performing a thorough 'break and shake' accelerates colonization exponentially. Distributing the colonized grain kernels throughout the compost layer creates thousands of active inoculation points, reducing total colonization time by over two weeks.</p>
+        
+            </div>
+
+            <div class="guide-takeaway">
+                <p><strong>Clinical & Mycology Note:</strong> Using high-capacity sterile all-in-one bags (like Magic Bag) eliminates the cost of pressure cookers and cleanrooms while ensuring high biological yields.</p>
+            </div>
+
+            <div class="partner-cta-box">
+                <h3>Ready to Take the Next Step?</h3>
+                <p>Shop Magic Bag's high-capacity pre-sterilized all-in-one grow bags with self-healing injection ports.</p>
+                <a href="https://www.magicbag.co" id="cta-magicbag" class="partner-cta-btn" target="_blank" rel="noopener">Shop All-In-One Bags at Magic Bag →</a>
+            </div>
+        </article>
+    </main>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3 class="footer-logo">SPORLYWORKS</h3>
+                <p class="footer-tagline">Botanical precision meets functional wellness. Bringing clinical-grade adaptogens and certified organic genetics to home laboratories.</p>
+            </div>
+            
+            <div class="footer-links-grid">
+                <div class="footer-column">
+                    <h4>Collections</h4>
+                    <a href="../products.html">Browse Products</a>
+                    <a href="../products/myyco-liquid-culture.html">Liquid Cultures</a>
+                    <a href="../products/seed-ds01.html">Daily Synbiotic</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Mycology Engines</h4>
+                    <a href="../tools/yield-estimator.html">Yield Estimator</a>
+                    <a href="../tools/wellness-stack-builder.html">Stack Builder</a>
+                    <a href="../tools/diagnostics.html">Contamination Diagnostics</a>
+                    <a href="../tools/substrate-calculator.html">Substrate Calculator</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <a href="../blog/index.html">Mycology Science Blog</a>
+                    <a href="../sitemap.xml">Sitemap</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <p>&copy; 2026 SporlyWorks. All rights reserved.</p>
+                <div class="footer-legal-links">
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <a href="../terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // Load affiliate config dynamically for this deep page
+    fetch('../affiliate_config.json')
+        .then(r => r.json())
+        .then(config => {
+            const partner = config.partners['magicbag'];
+            const btn = document.getElementById('cta-magicbag');
+            if (partner && btn) {
+                const isPlaceholder = !partner.affiliate_id || 
+                                      partner.affiliate_id.startsWith('YOUR_') || 
+                                      partner.affiliate_id.includes('INSERT');
+                if (isPlaceholder) {
+                    btn.href = 'javascript:void(0)';
+                    btn.innerHTML = 'Partner Program Pending';
+                    btn.style.pointerEvents = 'none';
+                    btn.style.opacity = '0.6';
+                    btn.style.background = '#888888';
+                    btn.style.borderColor = '#888888';
+                    btn.style.color = '#ffffff';
+                    btn.style.cursor = 'default';
+                    btn.style.boxShadow = 'none';
+                    btn.style.transform = 'none';
+                } else {
+                    let url = "https://www.magicbag.co";
+                    if (partner.affiliate_url_template.includes('awinmid=')) {
+                        const midMatch = partner.affiliate_url_template.match(/awinmid=(\d+)/);
+                        const mid = midMatch ? midMatch[1] : '';
+                        url = `https://www.awin1.com/cread.php?awinmid=${mid}&awinaffid=${partner.affiliate_id}&ued=${encodeURIComponent(url)}`;
+                    } else {
+                        url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
+                    }
+                    btn.href = url;
+                }
+            }
+        })
+        .catch(() => console.log('Config fetch skipped - using static default'));
+    </script>
+<script src="../assets/page-transitions.js"></script>
+</body>
+</html>

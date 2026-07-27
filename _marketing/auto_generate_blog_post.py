@@ -726,8 +726,8 @@ def auto_generate():
     today = datetime.datetime.now().strftime("%Y-%m-%d")
     existing_files = set(os.listdir(ARTICLES_DIR))
     
-    # Initial launch target: 12 articles live immediately, then drip 1 per weekly run
-    target_count = 12 if len(existing_files) < 12 or "--all" in sys.argv else len(existing_files) + 1
+    # Initial launch target: 15 articles live immediately, then drip 1 per weekly run
+    target_count = 15 if len(existing_files) < 15 or "--all" in sys.argv else len(existing_files) + 1
 
     generated_count = 0
     for art in ARTICLE_RESERVOIR:
