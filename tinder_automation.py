@@ -13,6 +13,7 @@ from PIL import Image
 from PIL.ImageChops import convert_to_profile
 import requests
 from io import BytesIO
+import re
 from playwright.sync_api import sync_playwright, Page, Locator
 from bs4 import BeautifulSoup
 import urllib.parse
@@ -37,6 +38,9 @@ CONFIG = {
     'image_quality_threshold': 0.7,  # Minimum image quality score
     'face_detection_enabled': True,  # Enable face detection
     'analysis_interval': 5,  # Analyze every N images
+    
+    # Gender filter settings
+    'gender_filter': 'female',  # 'female' (women only), 'male' (men only), or 'all'
     
     # Logging
     'log_accepted': True,
@@ -137,12 +141,10 @@ class TinderBot:
         Try to detect age references in bio text.
         Simple keyword-based detection.
         """
-        age_keywords = ['18', '20', '25', '30', '35', '40', '45', '50', 
-                       'young', 'teen', 'senior', 'middle-aged']
-        
-        for keyword in age_keywords:
+        elderly_keywords = ['senior', 'middle-aged', 'elderly', 'retired', 'grandma', 'grandpa']
+        for keyword in elderly_keywords:
             if keyword in bio_text.lower():
-                return True
+                return False
         return True
     
     def _check_health_indicators(self, bio_text):
@@ -163,8 +165,106 @@ class TinderBot:
             if keyword in bio_lower:
                 return True
         return True
+
+    def _check_gender_indicators(self, bio_text, name=None):
+        """
+        Check if the profile belongs to a woman.
+        Rejects male profiles based on names and bio keywords/pronouns.
+        """
+        bio_lower = bio_text.lower() if bio_text else ""
+        
+        # Common male names to reject
+        male_names = {
+            'liam', 'noah', 'oliver', 'james', 'elijah', 'william', 'henry', 'lucas', 'benjamin', 'theodore',
+            'mateo', 'levi', 'sebastian', 'daniel', 'jack', 'wyatt', 'alexander', 'owen', 'asher', 'samuel',
+            'ethan', 'leo', 'jackson', 'mason', 'ezra', 'john', 'hudson', 'luca', 'aidan', 'aiden', 'muhammad',
+            'david', 'joseph', 'luke', 'julian', 'grayson', 'maverick', 'gabriel', 'logan', 'carter',
+            'matthew', 'charles', 'thomas', 'caleb', 'jayden', 'hunter', 'isaac', 'anthony', 'dylan', 'robert',
+            'michael', 'jonathan', 'andrew', 'christian', 'christopher', 'ryan', 'nathan', 'brian', 'jason', 'kevin'
+        }
+        
+        # Common female names to look for
+        female_names = {
+            'olivia', 'emma', 'charlotte', 'amelia', 'sophia', 'isabella', 'ava', 'mia', 'evelyn', 'harper',
+            'luna', 'camila', 'gianna', 'elizabeth', 'eleanor', 'ella', 'abigail', 'sofia', 'avery', 'scarlett',
+            'emily', 'aria', 'penelope', 'chloe', 'layla', 'mila', 'nora', 'hazel', 'madison', 'ellie',
+            'lily', 'nova', 'isla', 'grace', 'zoey', 'violet', 'aurora', 'avah', 'rose', 'stella',
+            'leah', 'paisley', 'audrey', 'savannah', 'brooklyn', 'bella', 'claire', 'skylar', 'lucy', 'paislee',
+            'sarah', 'victoria', 'natalie', 'zoe', 'lillian', 'hannah', 'maya', 'aubrey', 'eliana', 'adeline',
+            'elena', 'eva', 'ariana', 'naomi', 'alice', 'sadie', 'hailey', 'emilia', 'autumn', 'quinn',
+            'piper', 'ruby', 'serenity', 'brielle', 'willow', 'everly', 'cora', 'kaylee', 'lydia', 'aubree',
+            'arianna', 'peyton', 'melanie', 'isabelle', 'julia', 'valentina', 'clara', 'vivian', 'reagan',
+            'mackenzie', 'madeline', 'katherine', 'anna', 'samantha', 'caroline', 'genesis', 'aaliyah', 'kennedy',
+            'kinsley', 'allison', 'alexa', 'gabriella', 'adelyn', 'delilah', 'madelyn', 'sophie', 'kylie', 'josephine'
+        }
+        
+        if name:
+            name_lower = name.strip().lower()
+            if name_lower in male_names:
+                return False, "Male name detected"
+            if name_lower in female_names:
+                return True, "Female name matched"
+                
+        # Pronouns/indicators check
+        male_indicators = [r'\bhe/him\b', r'\bguy\b', r'\bman\b', r'\bmale\b', r'\bboy\b', r'\bhusband\b', r'\bfather\b', r'\bdad\b']
+        female_indicators = [r'\bshe/her\b', r'\bgirl\b', r'\bwoman\b', r'\bfemale\b', r'\blady\b', r'\bwife\b', r'\bmother\b', r'\bmom\b']
+        
+        # Check male indicators first
+        for ind in male_indicators:
+            if re.search(ind, bio_lower):
+                return False, "Male pronoun/indicator detected in bio"
+                
+        # Check female indicators
+        for ind in female_indicators:
+            if re.search(ind, bio_lower):
+                return True, "Female pronoun/indicator matched in bio"
+                
+        return True, "No male indicators found"
+
+    def _extract_profile_info(self, profile_element):
+        """Extract name and bio text from the profile element."""
+        name = ""
+        bio = ""
+        try:
+            # Look for name element inside the profile container
+            name_selectors = [
+                'h1[itemprop="name"]',
+                '[itemprop="name"]',
+                'h1',
+                '.profile-card__name',
+                '[data-testid="profile-card-name"]',
+                '.Fz\\(\\$xl\\)'
+            ]
+            for selector in name_selectors:
+                el = profile_element.locator(selector).first
+                if el.count() > 0:
+                    text = el.text_content()
+                    if text:
+                        # Tinder names are sometimes followed by age or comma, e.g. "Emma, 24"
+                        name = text.split(',')[0].strip()
+                        break
+                        
+            # Look for bio element
+            bio_selectors = [
+                '[data-testid="profile-bio"]',
+                '.profile-bio',
+                '.profile-card__bio',
+                '.BreakWord',
+                '.P\\(12px\\)'
+            ]
+            for selector in bio_selectors:
+                el = profile_element.locator(selector).first
+                if el.count() > 0:
+                    text = el.text_content()
+                    if text:
+                        bio = text.strip()
+                        break
+        except Exception as e:
+            if self.config.get('log_debug'):
+                print(f"Error extracting profile info: {e}")
+        return name, bio
     
-    def _evaluate_profile(self, image_data, bio_text=None):
+    def _evaluate_profile(self, image_data, bio_text=None, name=None):
         """
         Evaluate a profile based on the specified criteria.
         Returns: 'accepted', 'rejected', or 'review'
@@ -175,12 +275,30 @@ class TinderBot:
             'confidence': 1.0,
         }
         
+        # Check gender preference (women only)
+        if self.config.get('gender_filter') == 'female':
+            is_female, gender_msg = self._check_gender_indicators(bio_text, name)
+            if not is_female:
+                result['decision'] = 'rejected'
+                result['reason'] = gender_msg
+                result['confidence'] = 0.95
+                return result
+        elif self.config.get('gender_filter') == 'male':
+            is_female, gender_msg = self._check_gender_indicators(bio_text, name)
+            if is_female:
+                result['decision'] = 'rejected'
+                result['reason'] = "Male preference filter, but female detected"
+                result['confidence'] = 0.95
+                return result
+                
         # Check image quality
-        quality_ok, quality_msg = self._analyze_image_quality(image_data)
-        if quality_ok is False:
-            result['decision'] = 'rejected'
-            result['reason'] = quality_msg
-            result['confidence'] = 0.95
+        if image_data:
+            quality_ok, quality_msg = self._analyze_image_quality(image_data)
+            if quality_ok is False:
+                result['decision'] = 'rejected'
+                result['reason'] = quality_msg
+                result['confidence'] = 0.95
+                return result
         
         # Check bio for age indicators
         if bio_text:
@@ -437,20 +555,25 @@ class TinderBot:
                     profiles = self._load_profiles()
                     for profile in profiles:
                         try:
+                            # Extract profile name and bio
+                            name, bio = self._extract_profile_info(profile)
+                            display_name = name if name else f"Profile {swipe_count}"
+                            
                             # Get profile image for analysis
                             image_element = profile.locator('img, picture, .profile-image')
                             
                             if image_element.count() > 0:
-                                # In a real implementation, we'd capture the image
-                                # and analyze it. Here we simulate the process.
+                                # Evaluate profile with gender and bio criteria
+                                # image_data is passed as None to skip image quality checks 
+                                # but we pass the actual extracted name and bio
+                                eval_result = self._evaluate_profile(None, bio, name)
                                 
-                                # Simple heuristic: random accept/reject with bias
-                                # In real use, image analysis would inform decision
-                                
-                                if random.random() > 0.4:  # 60% accept rate as default
-                                    self._handle_swipe(profile, 'like', f"Profile {swipe_count}")
+                                if eval_result['decision'] == 'accepted':
+                                    self._handle_swipe(profile, 'like', display_name)
                                 else:
-                                    self._handle_swipe(profile, 'pass', f"Profile {swipe_count}")
+                                    reason = eval_result.get('reason', 'Failed criteria')
+                                    print(f"Skipping profile {display_name} - Reason: {reason}")
+                                    self._handle_swipe(profile, 'pass', display_name)
                                     
                         except Exception as e:
                             print(f"  Error processing profile: {e}")
