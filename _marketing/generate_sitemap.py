@@ -52,6 +52,12 @@ def generate_sitemap():
         for f in blog_dir.glob("*.html"):
             if f.name != "index.html":
                 add_url(xml_content, f"blog/{f.name}", "0.6", f)
+
+    # Guides (Programmatic SEO)
+    guides_dir = BASE_DIR / "guides"
+    if guides_dir.exists():
+        for f in guides_dir.glob("*.html"):
+            add_url(xml_content, f"guides/{f.name}", "0.75", f)
                 
     xml_content.append("</urlset>")
     
