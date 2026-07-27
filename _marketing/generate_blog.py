@@ -119,15 +119,15 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
         }}
         .blog-title {{
             font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 42px;
+            font-size: 46px;
             color: var(--green-dark);
-            margin-bottom: 12px;
-            line-height: 1.25;
+            margin-bottom: 16px;
+            line-height: 1.2;
             font-weight: 700;
         }}
         .blog-meta {{
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 14px;
+            font-size: 15px;
             color: var(--text-muted);
             display: flex;
             gap: 20px;
@@ -138,25 +138,25 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
         }}
         .blog-body {{
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 18px;
+            font-size: 19px;
             line-height: 1.85;
-            color: var(--text-secondary);
+            color: var(--text-primary);
         }}
         .blog-body p {{
-            margin-bottom: 16px;
+            margin-bottom: 22px;
         }}
         .blog-body h2 {{
             font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 28px;
+            font-size: 32px;
             color: var(--green-dark);
-            margin: 28px 0 12px;
+            margin: 36px 0 16px;
             font-weight: 700;
         }}
         .blog-body h3 {{
             font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: 22px;
+            font-size: 24px;
             color: var(--green-dark);
-            margin: 22px 0 10px;
+            margin: 28px 0 12px;
             font-weight: 700;
         }}
         .blog-quote {{

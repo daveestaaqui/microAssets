@@ -49,7 +49,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
             text-transform: uppercase;
         }}
         .guide-intro {{
-            font-size: 18px;
+            font-size: 20px;
             line-height: 1.8;
             color: var(--text-secondary);
             font-style: italic;
@@ -58,14 +58,14 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
             padding-bottom: 32px;
         }}
         .guide-content h2 {{
-            font-size: 28px;
+            font-size: 32px;
             color: var(--green);
-            margin: 40px 0 16px;
+            margin: 44px 0 18px;
             font-family: 'DM Serif Display', Georgia, serif;
         }}
         .guide-content p {{
-            font-size: 16px;
-            line-height: 1.7;
+            font-size: 18.5px;
+            line-height: 1.85;
             color: var(--text-primary);
             margin-bottom: 24px;
         }}
@@ -75,19 +75,24 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
             color: var(--text-primary);
         }}
         .guide-content li {{
-            margin-bottom: 8px;
+            font-size: 18px;
+            margin-bottom: 10px;
+            line-height: 1.7;
         }}
         .guide-takeaway {{
             background: var(--bg-surface-elevated);
             border-left: 4px solid var(--gold);
-            padding: 24px;
+            padding: 28px;
             border-radius: var(--radius-sm);
-            margin: 32px 0;
+            margin: 36px 0;
             box-shadow: var(--shadow-soft);
         }}
         .guide-takeaway p {{
             margin: 0;
-            font-size: 15px;
+            font-size: 17px;
+            line-height: 1.7;
+            color: var(--text-primary);
+        }}
             color: var(--text-secondary);
             line-height: 1.6;
         }}

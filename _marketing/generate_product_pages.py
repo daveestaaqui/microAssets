@@ -62,52 +62,54 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
         }}
         .product-cat {{
             color: var(--gold-dark);
-            font-size: 14px;
+            font-size: 15px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-            margin-bottom: 8px;
+            letter-spacing: 2.5px;
+            font-weight: 700;
+            margin-bottom: 10px;
         }}
         .product-name {{
-            font-size: 38px;
+            font-size: 42px;
             color: var(--green-dark);
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             line-height: 1.2;
             font-family: 'DM Serif Display', Georgia, serif;
         }}
         .product-tagline {{
-            font-size: 18px;
+            font-size: 20px;
             color: var(--text-secondary);
             font-style: italic;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
+            line-height: 1.6;
         }}
         .product-features-list {{
-            margin-bottom: 32px;
+            margin-bottom: 36px;
             list-style: none;
             padding: 0;
         }}
         .product-features-list li {{
-            margin-bottom: 12px;
-            font-size: 15px;
+            margin-bottom: 14px;
+            font-size: 17px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             color: var(--text-primary);
         }}
         .product-features-list li::before {{
             content: '✓';
             color: var(--green-light);
             font-weight: 800;
+            font-size: 18px;
         }}
         .product-cta-btn {{
             display: inline-block;
             background: linear-gradient(135deg, var(--green-light), var(--green));
             color: white;
-            padding: 14px 36px;
+            padding: 16px 40px;
             border-radius: var(--radius-pill);
             text-decoration: none;
             font-weight: 700;
-            font-size: 16px;
+            font-size: 17px;
             transition: all 0.3s;
             box-shadow: 0 4px 14px rgba(11, 74, 46, 0.2);
         }}
@@ -117,7 +119,7 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
         }}
         .science-section {{
             background: var(--bg-surface-elevated);
-            padding: 40px;
+            padding: 44px;
             border-radius: var(--radius-md);
             border: 1px solid var(--glass-border);
             margin-bottom: 48px;
@@ -125,33 +127,33 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
         }}
         .science-section h3 {{
             color: var(--green);
-            font-size: 24px;
-            margin-bottom: 16px;
+            font-size: 26px;
+            margin-bottom: 18px;
             font-family: 'DM Serif Display', Georgia, serif;
         }}
         .science-section p {{
-            font-size: 15px;
-            line-height: 1.7;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
+            font-size: 17.5px;
+            line-height: 1.8;
+            color: var(--text-primary);
+            margin-bottom: 18px;
         }}
         .science-ref {{
-            font-size: 12px;
+            font-size: 13.5px;
             color: var(--text-muted);
             font-style: italic;
             border-top: 1px solid var(--glass-border);
-            padding-top: 12px;
-            margin-top: 16px;
+            padding-top: 14px;
+            margin-top: 18px;
         }}
         .usage-section h3 {{
             color: var(--green-dark);
-            font-size: 24px;
-            margin-bottom: 16px;
+            font-size: 26px;
+            margin-bottom: 18px;
             font-family: 'DM Serif Display', Georgia, serif;
         }}
         .usage-section p {{
-            font-size: 15px;
-            line-height: 1.7;
+            font-size: 17.5px;
+            line-height: 1.8;
             color: var(--text-primary);
             margin-bottom: 24px;
         }}
