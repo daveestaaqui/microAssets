@@ -232,7 +232,7 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
         </section>
 
         <div class="fda-disclaimer">
-            <strong>FDA & Legal Disclaimer:</strong> {disclaimer}
+            <strong>FDA & FTC Affiliate Disclosure:</strong> SporlyWorks earns an affiliate commission on qualifying purchases made through partner links at no extra cost to you. {disclaimer}
         </div>
     </main>
 

@@ -726,8 +726,13 @@ def auto_generate():
     today = datetime.datetime.now().strftime("%Y-%m-%d")
     existing_files = set(os.listdir(ARTICLES_DIR))
     
+    # Initial launch target: 12 articles live immediately, then drip 1 per weekly run
+    target_count = 12 if len(existing_files) < 12 or "--all" in sys.argv else len(existing_files) + 1
+
     generated_count = 0
     for art in ARTICLE_RESERVOIR:
+        if len(existing_files) >= target_count and "--all" not in sys.argv:
+            break
         filename = f"{art['slug']}.md"
         if filename not in existing_files:
             file_path = os.path.join(ARTICLES_DIR, filename)
@@ -735,9 +740,9 @@ def auto_generate():
             with open(file_path, "w", encoding="utf-8") as f:
                 f.write(formatted_content)
             print(f"🎉 Generated New Research Article: {file_path}")
+            existing_files.add(filename)
             generated_count += 1
-            break  # Generate 1 new article per scheduled run to maintain steady publishing flow
-            
+
     if generated_count == 0:
         print("All reservoir articles are currently published. Blog is up to date!")
         

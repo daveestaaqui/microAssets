@@ -270,6 +270,9 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
                     <span class="blog-author">By {author}</span>
                     <span class="blog-date">{date}</span>
                 </div>
+                <div class="affiliate-disclosure-banner" style="background: rgba(245, 240, 232, 0.6); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 12px 16px; margin: 16px 0 20px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; color: var(--text-muted); line-height: 1.5;">
+                    <strong>⚖️ FTC Affiliate Disclosure:</strong> SporlyWorks is a science-first publication. When you purchase through affiliate links on our site, we may earn a commission at no additional cost to you. All recommendations are independently researched and vetted. <a href="../privacy.html" style="color: var(--green-dark); text-decoration: underline;">Read Full Policy</a>.
+                </div>
                 {hero_image_tag}
             </header>
             

@@ -5,8 +5,15 @@
     <link>https://sporlyworks.com/blog/</link>
     <description>Peer-reviewed functional mushroom research, liquid culture guides, and clinical adaptogen studies.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 27 Jul 2026 15:09:08 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 27 Jul 2026 15:19:30 GMT</lastBuildDate>
     <atom:link href="https://sporlyworks.com/blog/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bypassing Gastric Breakdown: The Physics and Biochemistry of ViaCap® Dual-Capsule Delivery</title>
+      <link>https://sporlyworks.com/blog/viacap-microencapsulation-gut-transit.html</link>
+      <guid>https://sporlyworks.com/blog/viacap-microencapsulation-gut-transit.html</guid>
+      <description>Explore how Seed DS-01® utilizes outer-capsule shield technology to ensure 100% survival of 24 probiotic strains through stomach acid and bile salts.</description>
+      <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Why 90% of Probiotics Fail: The Physics of Gastric Acid Survivability</title>
       <link>https://sporlyworks.com/blog/synbiotics-absorption.html</link>
@@ -15,10 +22,31 @@
       <pubDate>Sat, 11 Jul 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title>Ganoderic Acids and GABAergic Signaling: How Reishi Triterpenes Modulate Sleep Architecture</title>
+      <link>https://sporlyworks.com/blog/reishi-triterpenes-sleep-architecture.html</link>
+      <guid>https://sporlyworks.com/blog/reishi-triterpenes-sleep-architecture.html</guid>
+      <description>An in-depth review of Ganoderma lucidum triterpenoids, central nervous system relaxation, and slow-wave delta sleep enhancement.</description>
+      <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Psilocybe natalensis vs. Cubensis: Comparative Analysis of Hyphal Growth Rates &amp; Biological Efficiency</title>
       <link>https://sporlyworks.com/blog/psilocybe-natalensis-genetics.html</link>
       <guid>https://sporlyworks.com/blog/psilocybe-natalensis-genetics.html</guid>
       <description>Examine the cellular genetics, contamination resistance, and rapid vegetative mycelial growth of Psilocybe natalensis under laboratory conditions.</description>
+      <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Monotub Tek: Complete Beginner's Guide to Bulk Substrate Cultivation</title>
+      <link>https://sporlyworks.com/blog/monotub-tek-beginners-guide.html</link>
+      <guid>https://sporlyworks.com/blog/monotub-tek-beginners-guide.html</guid>
+      <description>Master the Monotub Tek with this comprehensive guide covering bulk substrate preparation, pasteurization, and ideal fruiting conditions for maximum yields.</description>
+      <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Liquid Culture vs. Spore Syringe: Growth Speed, Contamination Rates &amp; Best Use Cases</title>
+      <link>https://sporlyworks.com/blog/liquid-culture-vs-spore-syringe.html</link>
+      <guid>https://sporlyworks.com/blog/liquid-culture-vs-spore-syringe.html</guid>
+      <description>Compare the benefits of liquid cultures and spore syringes, analyzing colonization speeds, genetic consistency, and contamination risks.</description>
       <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
@@ -34,6 +62,34 @@
       <guid>https://sporlyworks.com/blog/identifying-grow-contamination.html</guid>
       <description>A practical guide for home mushroom growers to distinguish between healthy mycelium, normal blue bruising, green mold, and cobweb infestations.</description>
       <pubDate>Sat, 11 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Grain Spawn Prep: Pressure Cooking, Moisture Content, and Sterilization Science</title>
+      <link>https://sporlyworks.com/blog/grain-spawn-preparation-sterilization.html</link>
+      <guid>https://sporlyworks.com/blog/grain-spawn-preparation-sterilization.html</guid>
+      <description>A deep dive into preparing perfect grain spawn, balancing moisture content, and the physics of pressure sterilization.</description>
+      <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Dialing In Fruiting Conditions: FAE, Humidity, Temperature &amp; Light Cycles</title>
+      <link>https://sporlyworks.com/blog/fruiting-conditions-fae-humidity.html</link>
+      <guid>https://sporlyworks.com/blog/fruiting-conditions-fae-humidity.html</guid>
+      <description>Optimize your grow space by mastering the delicate balance of Fresh Air Exchange, relative humidity, and temperature triggers.</description>
+      <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Cordycepin and Cellular ATP Synthesis: The Biochemistry of Metabolic Performance</title>
+      <link>https://sporlyworks.com/blog/cordyceps-atp-cellular-energy.html</link>
+      <guid>https://sporlyworks.com/blog/cordyceps-atp-cellular-energy.html</guid>
+      <description>Discover how Cordyceps militaris elevates adenosine triphosphate (ATP) production, enhances cellular oxygen uptake, and supports endurance performance.</description>
+      <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Agar Transfers and Genetic Isolation: A Lab Techniques Primer</title>
+      <link>https://sporlyworks.com/blog/agar-work-isolating-genetics.html</link>
+      <guid>https://sporlyworks.com/blog/agar-work-isolating-genetics.html</guid>
+      <description>Learn the essential agar techniques for cloning mushrooms, isolating robust genetics, and ensuring contaminant-free mycelial growth.</description>
+      <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
     </item>
   </channel>
 </rss>
