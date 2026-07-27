@@ -165,6 +165,7 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
             border: 1px solid var(--glass-border);
             margin-top: 60px;
         }}
+    </style>
     <script type="application/ld+json">
     {{
       "@context": "https://schema.org",

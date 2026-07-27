@@ -214,6 +214,7 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
             background: #1e3527;
             transform: translateY(-2px);
         }}
+    </style>
     <script type="application/ld+json">
     {{
       "@context": "https://schema.org",
