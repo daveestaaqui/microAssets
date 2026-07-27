@@ -649,19 +649,13 @@ products = [
 ]
 
 for prod in products:
-    # Check for hardcoded affiliate IDs
     final_partner_url = prod["partner_url"]
     if prod["partner_key"] == "myyco":
-        final_partner_url = f"https://myyco.com/?ref=SporlyWorks&url={final_partner_url}"
+        sep = "&" if "?" in prod["partner_url"] else "?"
+        final_partner_url = f"{prod['partner_url']}{sep}ref=SporlyWorks"
     elif prod["partner_key"] == "magicbag":
-        final_partner_url = f"https://www.magicbag.co/?ref=Sporlyworks&url={final_partner_url}"
-    # Wait, actually the template is:
-    # "https://myyco.com/?ref={affiliate_id}"
-    # If the partner_key is myyco, the affiliate id is 'SporlyWorks'. We can just use the provided product's partner_url, let's just make it the final link directly.
-    if prod["partner_key"] == "myyco":
-        final_partner_url = f"https://myyco.com/?ref=SporlyWorks"
-    elif prod["partner_key"] == "magicbag":
-        final_partner_url = f"https://magicbag.co/?ref=Sporlyworks"
+        sep = "&" if "?" in prod["partner_url"] else "?"
+        final_partner_url = f"{prod['partner_url']}{sep}ref=Sporlyworks"
     
     html = PRODUCT_TEMPLATE.format(
         title=prod["title"],
