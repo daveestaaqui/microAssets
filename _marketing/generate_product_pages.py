@@ -404,15 +404,15 @@ products = [
             <li>Free from gluten, dairy, soy, corn, binders, or preservatives</li>
         """,
         "science_html": """
-            <p>Seed's DS-01® is validated using in vitro SHIME® (Simulator of the Human Intestinal Microbial Ecosystem) digestive testing. Results confirm that the nested dual-capsule preserves the live bacteria through the harsh acidic environment of the stomach and duodenum, delivering 100% of the active dose to the lower bowel and colon.</p>
-            <p>Strains in DS-01 are clinically shown to support gastrointestinal function, intestinal barrier integrity, skin health, heart health, and natural folate synthesis.</p>
+            <p>Seed's DS-01® Daily Synbiotic is validated through in vitro SHIME® (Simulator of the Human Intestinal Microbial Ecosystem) digestive modeling. The proprietary <strong>ViaCap® 2-in-1 nested capsule technology</strong> protects live bacterial strains against 100% of gastric acid and bile salts, delivering 53.6 Billion AFU directly to the colon where microbial absorption occurs.</p>
+            <p>Formulated with 24 bio-fermented, human-derived probiotic strains, DS-01® is clinically demonstrated to support gastrointestinal motility, gut barrier defense, dermatological resilience, cardiovascular homeostasis, and endogenous folate synthesis. #SeedPartner</p>
         """,
-        "science_citation": "Clinical & Lab Reference: Seed Health Scientific Advisory Board (2020-2025). Clinical trials and SHIME simulation outputs for the ViaCap multi-chamber capsule.",
+        "science_citation": "Clinical & Lab Reference: Seed Health Scientific Advisory Board (2020-2026). SHIME® GI simulation models and human double-blind clinical trials for DS-01® ViaCap® delivery.",
         "usage_html": """
             <p>Take 2 capsules daily, preferably all at once on an empty stomach to limit exposure to digestive enzymes. Start with 1 capsule daily for the first 3 days to allow your gut microbiome to adjust, then increase to the full 2-capsule daily dose.</p>
         """,
-        "disclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Store in a cool, dry place. No refrigeration required.",
-        "keywords": "seed probiotic, ds01 synbiotic, gut microbiome health, gut barrier integrity, dual capsule probiotic"
+        "disclaimer": "#SeedPartner Disclosure: These statements have not been evaluated by the Food and Drug Administration. Seed products are not intended to diagnose, treat, cure, or prevent any disease. Store in a cool, dry place. No refrigeration required.",
+        "keywords": "seed probiotic, ds01 synbiotic, gut microbiome health, gut barrier integrity, dual capsule probiotic, seed partner"
     },
     {
         "slug": "gourmet-grow-kits",
