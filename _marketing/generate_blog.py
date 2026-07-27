@@ -600,5 +600,11 @@ def generate_blog():
         f.write(index_html)
     print(f"Generated Blog Index: {index_out}")
 
+    try:
+        from generate_rss import generate_rss
+        generate_rss()
+    except Exception as e:
+        print(f"RSS generation notice: {e}")
+
 if __name__ == "__main__":
     generate_blog()

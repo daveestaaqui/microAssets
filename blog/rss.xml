@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>SporlyWorks — Science-Backed Mycology &amp; Adaptogens</title>
+    <link>https://sporlyworks.com/blog/</link>
+    <description>Peer-reviewed functional mushroom research, liquid culture guides, and clinical adaptogen studies.</description>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 27 Jul 2026 14:52:54 GMT</lastBuildDate>
+    <atom:link href="https://sporlyworks.com/blog/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Why 90% of Probiotics Fail: The Physics of Gastric Acid Survivability</title>
+      <link>https://sporlyworks.com/blog/synbiotics-absorption.html</link>
+      <guid>https://sporlyworks.com/blog/synbiotics-absorption.html</guid>
+      <description>An analytical dive into gut microbiome survival dynamics, exploring the biochemical barriers of stomach acid and the physical engineering of dual-capsule delivery systems.</description>
+      <pubDate>Sat, 11 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Psilocybe natalensis vs. Cubensis: Comparative Analysis of Hyphal Growth Rates &amp; Biological Efficiency</title>
+      <link>https://sporlyworks.com/blog/psilocybe-natalensis-genetics.html</link>
+      <guid>https://sporlyworks.com/blog/psilocybe-natalensis-genetics.html</guid>
+      <description>Examine the cellular genetics, contamination resistance, and rapid vegetative mycelial growth of Psilocybe natalensis under laboratory conditions.</description>
+      <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Beyond NGF: The Direct Mechanism of Hericenones in Cognitive Plasticity</title>
+      <link>https://sporlyworks.com/blog/lions-mane-neurogenesis.html</link>
+      <guid>https://sporlyworks.com/blog/lions-mane-neurogenesis.html</guid>
+      <description>Explore the bio-chemical mechanisms behind Hericium erinaceus, how its active compounds cross the blood-brain barrier, and what clinical research shows about Nerve Growth Factor (NGF) stimulation.</description>
+      <pubDate>Sat, 11 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>The Cultivator's Guide to Mold: Trichoderma vs. Cobweb</title>
+      <link>https://sporlyworks.com/blog/identifying-grow-contamination.html</link>
+      <guid>https://sporlyworks.com/blog/identifying-grow-contamination.html</guid>
+      <description>A practical guide for home mushroom growers to distinguish between healthy mycelium, normal blue bruising, green mold, and cobweb infestations.</description>
+      <pubDate>Sat, 11 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>
