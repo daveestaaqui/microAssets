@@ -35,10 +35,14 @@ jobs:
       - name: Rebuild Blog & RSS Feed
         run: |
           python3 _marketing/generate_blog.py
+          python3 _marketing/generate_rss.py
+
+      - name: Generate Pinterest Pin Drafts
+        run: |
+          python3 _marketing/generate_pinterest_pins.py
 
       - name: Ping Search Engine Indexing Endpoints
         run: |
-          curl -s "https://www.google.com/ping?sitemap=https://sporlyworks.com/sitemap.xml" || true
           curl -s "https://www.bing.com/ping?sitemap=https://sporlyworks.com/sitemap.xml" || true
 
       - name: Commit and Push Promotion Assets

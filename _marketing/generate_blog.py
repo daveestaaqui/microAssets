@@ -214,7 +214,31 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
             background: #1e3527;
             transform: translateY(-2px);
         }}
-    </style>
+    <script type="application/ld+json">
+    {{
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "{title}",
+      "datePublished": "{date}",
+      "author": {{
+        "@type": "Person",
+        "name": "SporlyWorks"
+      }},
+      "publisher": {{
+        "@type": "Organization",
+        "name": "SporlyWorks"
+      }},
+      "description": "{description}",
+      "url": "https://sporlyworks.com/blog/{slug}.html"
+    }}
+    </script>
+    <meta property="og:title" content="{title}">
+    <meta property="og:description" content="{description}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://sporlyworks.com/blog/{slug}.html">
+    <meta property="og:site_name" content="SporlyWorks">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{title}">
 </head>
 <body>
 
@@ -251,6 +275,12 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
             
             <div class="blog-body">
                 {body}
+            </div>
+
+            <div style="background:rgba(245,240,232,0.5);border:1px solid var(--border-color);border-radius:var(--radius-md);padding:24px;margin:40px 0;text-align:center;">
+                <p style="font-family:'Cinzel',serif;font-size:15px;color:var(--green-dark);margin-bottom:12px;">Get More Research Like This</p>
+                <p style="font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--text-muted);margin-bottom:16px;font-style:italic;">Subscribe to the SporlyWorks newsletter for weekly mycology science and grow tips.</p>
+                <a href="../index.html#newsletter" style="display:inline-block;padding:10px 20px;background:var(--green-dark);color:var(--text-on-dark);border-radius:var(--radius-sm);font-family:'Cinzel',serif;font-size:12px;font-weight:700;text-decoration:none;">Subscribe →</a>
             </div>
 
             <footer class="blog-footer-cta">
@@ -518,12 +548,20 @@ def generate_blog():
             cta_desc = "Optimize your biological absorption with verified organic functional supplements."
             cta_url = "../products/lions-mane-extract.html"
             cta_btn = "Shop Lion's Mane Extract →"
-            
             if "lions" in keywords.lower():
                 cta_desc = "Grow premium Hericium erinaceus right at home. Fully colonized and 100% guaranteed."
                 cta_url = "../products/lions-mane-grow-kit.html"
                 cta_btn = "Shop Lion's Mane Kit →"
-            elif "contamination" in keywords.lower() or "grow" in keywords.lower():
+            elif any(k in keywords.lower() for k in ["cordyceps", "atp", "energy"]):
+                cta_url = "../products/cordyceps-extract.html"
+                cta_btn = "Shop Cordyceps Extract →"
+            elif any(k in keywords.lower() for k in ["reishi", "sleep", "gaba"]):
+                cta_url = "../products/reishi-extract.html"
+                cta_btn = "Shop Reishi Extract →"
+            elif any(k in keywords.lower() for k in ["natalensis", "liquid culture", "spore"]):
+                cta_url = "../products/natalensis-spores.html"
+                cta_btn = "Shop Natalensis Spores →"
+            elif any(k in keywords.lower() for k in ["grow bag", "substrate", "monotub", "contamination", "grow"]):
                 cta_desc = "Start your cultivation with our professional, pre-sterilized all-in-one bags."
                 cta_url = "../products/magic-bag-grow-bags.html"
                 cta_btn = "Get Magic Bags →"

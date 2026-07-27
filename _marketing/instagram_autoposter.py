@@ -16,8 +16,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DRAFTS_DIR = os.path.join(BASE_DIR, "_marketing", "instagram_drafts")
 STATE_PATH = os.path.join(BASE_DIR, "_marketing", "instagram_state.json")
 
-GMAIL_USER = "sandwichfitness@gmail.com"
-GMAIL_PASS = "nxgfaiebqpmobhkp"
+GMAIL_USER = os.environ.get("GMAIL_USER", "")
+GMAIL_PASS = os.environ.get("GMAIL_PASS", "")
 
 def load_state():
     if os.path.exists(STATE_PATH):

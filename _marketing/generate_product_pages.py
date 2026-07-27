@@ -165,7 +165,20 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
             border: 1px solid var(--glass-border);
             margin-top: 60px;
         }}
-    </style>
+    <script type="application/ld+json">
+    {{
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "{product_name}",
+      "description": "{tagline}",
+      "image": "{image_url}",
+      "url": "https://sporlyworks.com/products/{slug}.html"
+    }}
+    </script>
+    <meta property="og:title" content="{title}">
+    <meta property="og:description" content="{tagline}">
+    <meta property="og:type" content="product">
+    <meta property="og:site_name" content="SporlyWorks">
 </head>
 <body>
 
@@ -274,6 +287,12 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
                 const isPlaceholder = !partner.affiliate_id || 
                                       partner.affiliate_id.startsWith('YOUR_') || 
                                       partner.affiliate_id.includes('INSERT');
+                
+                // For partners with hardcoded IDs, URL is already rendered correctly by Python
+                if (partner.affiliate_id === 'SporlyWorks' || partner.affiliate_id === 'Sporlyworks') {{
+                    return; // Already set by template
+                }}
+
                 if (isPlaceholder) {{
                     btn.href = 'javascript:void(0)';
                     btn.innerHTML = 'Partner Program Pending';
@@ -630,6 +649,20 @@ products = [
 ]
 
 for prod in products:
+    # Check for hardcoded affiliate IDs
+    final_partner_url = prod["partner_url"]
+    if prod["partner_key"] == "myyco":
+        final_partner_url = f"https://myyco.com/?ref=SporlyWorks&url={final_partner_url}"
+    elif prod["partner_key"] == "magicbag":
+        final_partner_url = f"https://www.magicbag.co/?ref=Sporlyworks&url={final_partner_url}"
+    # Wait, actually the template is:
+    # "https://myyco.com/?ref={affiliate_id}"
+    # If the partner_key is myyco, the affiliate id is 'SporlyWorks'. We can just use the provided product's partner_url, let's just make it the final link directly.
+    if prod["partner_key"] == "myyco":
+        final_partner_url = f"https://myyco.com/?ref=SporlyWorks"
+    elif prod["partner_key"] == "magicbag":
+        final_partner_url = f"https://magicbag.co/?ref=Sporlyworks"
+    
     html = PRODUCT_TEMPLATE.format(
         title=prod["title"],
         description=prod["tagline"],
@@ -643,7 +676,7 @@ for prod in products:
         product_name=prod["product_name"],
         tagline=prod["tagline"],
         features_html=prod["features_html"].strip(),
-        partner_url=prod["partner_url"],
+        partner_url=final_partner_url,
         partner_key=prod["partner_key"],
         cta_label=prod["cta_label"],
         science_html=prod["science_html"].strip(),

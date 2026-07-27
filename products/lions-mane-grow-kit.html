@@ -153,7 +153,20 @@
             border: 1px solid var(--glass-border);
             margin-top: 60px;
         }
-    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Lion's Mane Mushroom Grow Kit",
+      "description": "Grow cognitive-boosting Hericium erinaceus right on your counter. Guaranteed to produce large, shaggy white pom-poms.",
+      "image": "../assets/illustrations/lions_mane_kit.jpg",
+      "url": "https://sporlyworks.com/products/lions-mane-grow-kit.html"
+    }
+    </script>
+    <meta property="og:title" content="North Spore Lion's Mane Mushroom Grow Kit — SporelyWorks Science-Backed Products">
+    <meta property="og:description" content="Grow cognitive-boosting Hericium erinaceus right on your counter. Guaranteed to produce large, shaggy white pom-poms.">
+    <meta property="og:type" content="product">
+    <meta property="og:site_name" content="SporlyWorks">
 </head>
 <body>
 
@@ -265,6 +278,12 @@
                 const isPlaceholder = !partner.affiliate_id || 
                                       partner.affiliate_id.startsWith('YOUR_') || 
                                       partner.affiliate_id.includes('INSERT');
+                
+                // For partners with hardcoded IDs, URL is already rendered correctly by Python
+                if (partner.affiliate_id === 'SporlyWorks' || partner.affiliate_id === 'Sporlyworks') {
+                    return; // Already set by template
+                }
+
                 if (isPlaceholder) {
                     btn.href = 'javascript:void(0)';
                     btn.innerHTML = 'Partner Program Pending';

@@ -153,7 +153,20 @@
             border: 1px solid var(--glass-border);
             margin-top: 60px;
         }
-    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Organic Cordyceps Militaris Extract Powder",
+      "description": "Cellular Energy, ATP Production & Cardiovascular Endurance",
+      "image": "../assets/illustrations/cordyceps_extract.jpg",
+      "url": "https://sporlyworks.com/products/cordyceps-extract.html"
+    }
+    </script>
+    <meta property="og:title" content="FreshCap Organic Cordyceps Powder">
+    <meta property="og:description" content="Cellular Energy, ATP Production & Cardiovascular Endurance">
+    <meta property="og:type" content="product">
+    <meta property="og:site_name" content="SporlyWorks">
 </head>
 <body>
 
@@ -266,6 +279,12 @@
                 const isPlaceholder = !partner.affiliate_id || 
                                       partner.affiliate_id.startsWith('YOUR_') || 
                                       partner.affiliate_id.includes('INSERT');
+                
+                // For partners with hardcoded IDs, URL is already rendered correctly by Python
+                if (partner.affiliate_id === 'SporlyWorks' || partner.affiliate_id === 'Sporlyworks') {
+                    return; // Already set by template
+                }
+
                 if (isPlaceholder) {
                     btn.href = 'javascript:void(0)';
                     btn.innerHTML = 'Partner Program Pending';

@@ -1,61 +1,57 @@
 #!/usr/bin/env python3
 import os
-from pathlib import Path
 import datetime
+from pathlib import Path
 
 BASE_DIR = Path("/Users/davidmahler/Desktop/microAssets")
 BASE_URL = "https://sporlyworks.com"
 
+def get_lastmod(filepath):
+    mtime = os.path.getmtime(filepath)
+    return datetime.datetime.fromtimestamp(mtime).strftime('%Y-%m-%d')
+
+def is_excluded(filepath):
+    name = filepath.name.lower()
+    return any(x in name for x in ['dummy', 'test', 'dashboard'])
+
+def add_url(xml_content, url_path, priority, filepath):
+    if is_excluded(filepath):
+        return
+    lastmod = get_lastmod(filepath)
+    xml_content.append(f"  <url>\n    <loc>{BASE_URL}/{url_path}</loc>\n    <lastmod>{lastmod}</lastmod>\n    <priority>{priority}</priority>\n  </url>")
+
 def generate_sitemap():
     print("=" * 60)
-    # Generate XML Sitemap for sporlyworks.com mycology affiliate site
-    print("  🗺️ Generating Mycology & Wellness XML Sitemap")
+    print("  🗺️ Generating Auto-Scanning Mycology XML Sitemap")
     print("=" * 60)
-    
-    today = datetime.datetime.utcnow().strftime('%Y-%m-%d')
     
     xml_content = ['<?xml version="1.0" encoding="UTF-8"?>']
     xml_content.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
     
-    # 1. Add Index Hub (1.0 priority)
-    xml_content.append(f"  <url>\n    <loc>{BASE_URL}/index.html</loc>\n    <lastmod>{today}</lastmod>\n    <priority>1.0</priority>\n  </url>")
+    # Root files
+    add_url(xml_content, "index.html", "1.0", BASE_DIR / "index.html")
+    add_url(xml_content, "products.html", "0.9", BASE_DIR / "products.html")
     
-    # 2. Add root static pages (privacy, terms, etc.)
-    for f in os.listdir(BASE_DIR):
-        if f.endswith(".html") and f != "index.html":
-            # Determine priority
-            prio = "0.7"
-            if f in ["privacy.html", "terms.html"]:
-                prio = "0.3"
-            xml_content.append(f"  <url>\n    <loc>{BASE_URL}/{f}</loc>\n    <lastmod>{today}</lastmod>\n    <priority>{prio}</priority>\n  </url>")
-            
-    # 3. Add guides from the guides/ folder
-    guides_dir = BASE_DIR / "guides"
-    if guides_dir.exists():
-        for f in os.listdir(guides_dir):
-            if f.endswith(".html"):
-                xml_content.append(f"  <url>\n    <loc>{BASE_URL}/guides/{f}</loc>\n    <lastmod>{today}</lastmod>\n    <priority>0.9</priority>\n  </url>")
-                
-    # 4. Add products from the products/ folder
+    # Products
     products_dir = BASE_DIR / "products"
     if products_dir.exists():
-        for f in os.listdir(products_dir):
-            if f.endswith(".html"):
-                xml_content.append(f"  <url>\n    <loc>{BASE_URL}/products/{f}</loc>\n    <lastmod>{today}</lastmod>\n    <priority>0.9</priority>\n  </url>")
-                
-    # 5. Add tools from the tools/ folder
+        for f in products_dir.glob("*.html"):
+            add_url(xml_content, f"products/{f.name}", "0.8", f)
+            
+    # Tools
     tools_dir = BASE_DIR / "tools"
     if tools_dir.exists():
-        for f in os.listdir(tools_dir):
-            if f.endswith(".html"):
-                xml_content.append(f"  <url>\n    <loc>{BASE_URL}/tools/{f}</loc>\n    <lastmod>{today}</lastmod>\n    <priority>0.8</priority>\n  </url>")
-
-    # 6. Add blog pages from the blog/ folder
+        for f in tools_dir.glob("*.html"):
+            add_url(xml_content, f"tools/{f.name}", "0.8", f)
+            
+    # Blog
     blog_dir = BASE_DIR / "blog"
     if blog_dir.exists():
-        for f in os.listdir(blog_dir):
-            if f.endswith(".html"):
-                xml_content.append(f"  <url>\n    <loc>{BASE_URL}/blog/{f}</loc>\n    <lastmod>{today}</lastmod>\n    <priority>0.9</priority>\n  </url>")
+        add_url(xml_content, "blog/index.html", "0.7", blog_dir / "index.html")
+        add_url(xml_content, "blog/rss.xml", "0.7", blog_dir / "rss.xml")
+        for f in blog_dir.glob("*.html"):
+            if f.name != "index.html":
+                add_url(xml_content, f"blog/{f.name}", "0.6", f)
                 
     xml_content.append("</urlset>")
     

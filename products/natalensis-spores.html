@@ -153,7 +153,20 @@
             border: 1px solid var(--glass-border);
             margin-top: 60px;
         }
-    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Natalensis Spore Solution",
+      "description": "Highly aggressive, contamination-resistant isolated liquid culture of Psilocybe natalensis. Easiest and best strain to grow.",
+      "image": "../assets/illustrations/natalensis_spores.jpg",
+      "url": "https://sporlyworks.com/products/natalensis-spores.html"
+    }
+    </script>
+    <meta property="og:title" content="MYYCO Natalensis Spore Solution — SporelyWorks Science-Backed Products">
+    <meta property="og:description" content="Highly aggressive, contamination-resistant isolated liquid culture of Psilocybe natalensis. Easiest and best strain to grow.">
+    <meta property="og:type" content="product">
+    <meta property="og:site_name" content="SporlyWorks">
 </head>
 <body>
 
@@ -194,7 +207,7 @@
             <li>Pre-germinated liquid culture for rapid microscopic examination</li>
             <li>Guaranteed 100% sterile and prepared in a HEPA cleanroom</li>
                 </ul>
-                <a href="https://myyco.com/product/p-natalensis-isolated-liquid-culture-10-cc/" id="cta-myyco" class="product-cta-btn" target="_blank" rel="noopener">Shop Natalensis at MYYCO →</a>
+                <a href="https://myyco.com/?ref=SporlyWorks" id="cta-myyco" class="product-cta-btn" target="_blank" rel="noopener">Shop Natalensis at MYYCO →</a>
             </div>
         </section>
 
@@ -266,6 +279,12 @@
                 const isPlaceholder = !partner.affiliate_id || 
                                       partner.affiliate_id.startsWith('YOUR_') || 
                                       partner.affiliate_id.includes('INSERT');
+                
+                // For partners with hardcoded IDs, URL is already rendered correctly by Python
+                if (partner.affiliate_id === 'SporlyWorks' || partner.affiliate_id === 'Sporlyworks') {
+                    return; // Already set by template
+                }
+
                 if (isPlaceholder) {
                     btn.href = 'javascript:void(0)';
                     btn.innerHTML = 'Partner Program Pending';
@@ -278,7 +297,7 @@
                     btn.style.boxShadow = 'none';
                     btn.style.transform = 'none';
                 } else {
-                    let url = "https://myyco.com/product/p-natalensis-isolated-liquid-culture-10-cc/";
+                    let url = "https://myyco.com/?ref=SporlyWorks";
                     if (partner.affiliate_url_template.includes('awinmid=')) {
                         const midMatch = partner.affiliate_url_template.match(/awinmid=(\d+)/);
                         const mid = midMatch ? midMatch[1] : '';

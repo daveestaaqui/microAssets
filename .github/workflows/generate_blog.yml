@@ -26,6 +26,8 @@ jobs:
       - name: Run Auto Blog Generator
         run: |
           python3 _marketing/auto_generate_blog_post.py
+          python3 _marketing/generate_sitemap.py
+          python3 _marketing/generate_rss.py
 
       - name: Commit and Push New Content
         run: |
