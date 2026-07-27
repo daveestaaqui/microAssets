@@ -634,7 +634,7 @@ products = [
             <li>Premium pre-sterilized organic grain and compost layers</li>
             <li>Self-healing rubber injection port for contamination-free inoculation</li>
             <li>0.2-micron gas exchange filter patch for optimal respiration</li>
-            <li>Holds up to 4 lbs of high-nutrient sterile substrate</li>
+            <li>Available in capacity sizes up to 6 lbs of high-nutrient sterile substrate</li>
         """,
         "science_html": """
             <p>The all-in-one grow bag uses a proprietary ratio of premium spawn grains (like millet or rye) and pasteurized compost/manure. This dual-layer layout bypasses the need for specialized laboratory sterilization equipment. The self-healing injection port acts as a barrier, letting you insert a needle without exposing the inner sterile matrix to airborne mold spores.</p>
