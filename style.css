@@ -470,8 +470,30 @@ nav:not(.home-nav) .nav-menu-row,
     backdrop-filter: blur(4px);
 }
 .section-header { text-align: center; margin-bottom: 56px; }
-.section-title { font-size: 38px; color: var(--green-dark); letter-spacing: -0.8px; margin-bottom: 14px; line-height: 1.15; }
-.section-subtitle { color: var(--text-secondary); font-size: 18px; max-width: 620px; margin: 0 auto; line-height: 1.7; }
+.section-title { font-size: 38px; color: var(--green-dark); letter-spacing: -0.8px; margin-bottom: 14px; line-height: 1.15; text-align: center; }
+.section-subtitle { color: var(--text-secondary); font-size: 19px; max-width: 680px; margin: 0 auto; line-height: 1.75; text-align: center; }
+
+.products-group-header {
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+.products-group-header h2 {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 36px;
+    color: var(--green-dark);
+    margin-bottom: 12px;
+    text-align: center;
+    line-height: 1.2;
+}
+.products-group-header p {
+    color: var(--text-secondary);
+    font-size: 18px;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.75;
+    text-align: center;
+}
 
 /* ═══ PRODUCT GRID ═══ */
 .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 32px; align-items: stretch; }
