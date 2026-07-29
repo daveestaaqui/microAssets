@@ -150,51 +150,57 @@ nav {
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 1000;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.96);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--glass-border);
-    box-shadow: 0 4px 20px rgba(44, 36, 24, 0.05);
+    border-bottom: 1px solid rgba(92, 61, 46, 0.12);
+    box-shadow: 0 4px 24px rgba(44, 36, 24, 0.06);
     padding: 16px 24px 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 12px;
 }
-.header-logo-centered {
+.internal-logo-block, .header-logo-centered {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
-.header-brand-link {
-    display: flex;
+.internal-brand-link, .header-brand-link {
+    display: inline-flex;
+    flex-direction: row;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    gap: 14px;
     text-decoration: none;
     transition: transform 0.3s ease;
 }
-.header-brand-link:hover {
+.internal-brand-link:hover, .header-brand-link:hover {
     transform: scale(1.03);
 }
-.header-logo-img {
-    height: 36px;
+.internal-logo-img, .header-logo-img {
+    height: 52px;
     width: auto;
     object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(11, 74, 46, 0.15));
 }
-.header-wordmark {
+.internal-logo-wordmark, .header-wordmark {
     font-family: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 700;
     color: var(--green-dark);
     letter-spacing: 5px;
     text-transform: uppercase;
 }
-.header-nav-centered {
+.internal-nav-bar, .header-nav-centered {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+    border-top: 1px solid rgba(92, 61, 46, 0.08);
+    padding-top: 10px;
 }
 .nav-links-row {
     display: flex;
