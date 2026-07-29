@@ -243,28 +243,27 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
 </head>
 <body>
 
-    <nav id="mainNav" class="scrolled">
-        <div class="nav-inner">
-            <a href="../index.html" class="nav-brand">
-                <img src="{nav_icon}" alt="SporlyWorks" class="nav-icon">
-                <span class="nav-wordmark">SPORLYWORKS</span>
+    <!-- ═══ CENTERED HEADER & NAVBAR ═══ -->
+    <header class="internal-header">
+        <div class="header-logo-centered">
+            <a href="../index.html" class="header-brand-link">
+                <img src="{nav_icon}" alt="SporlyWorks" class="header-logo-img">
+                <span class="header-wordmark">SPORLYWORKS</span>
             </a>
-            <div class="nav-menu-row">
-                <div class="nav-links">
-                    <a href="../products.html">Products</a>
-                    <a href="../tools/mycology-finder.html">Finder Quiz</a>
-                    <a href="../tools/yield-estimator.html">Yield Estimator</a>
-                    <a href="../tools/wellness-stack-builder.html">Stack Builder</a>
-                    <a href="../tools/diagnostics.html">Diagnostics</a>
-                    <a href="../tools/substrate-calculator.html">Substrate Calculator</a>
-                    <a href="index.html" class="active">Blog</a>
-                </div>
-            </div>
         </div>
-    </nav>
+        <nav class="header-nav-centered">
+            <div class="nav-links-row">
+                <a href="../index.html">Home</a>
+                <a href="../products.html">Shop Products</a>
+                <a href="../tools/mycology-finder.html">Finder Quiz</a>
+                <a href="../tools/yield-estimator.html">Yield Calculator</a>
+                <a href="index.html" class="active">Research Blog</a>
+            </div>
+        </nav>
+    </header>
 
     <!-- ═══ ARTICLE CONTENT ═══ -->
-    <main class="blog-container">
+    <main class="blog-container" style="margin-top: 155px;">
         <article class="blog-post">
             <header class="blog-header-section">
                 <h1 class="blog-title">{title}</h1>
@@ -442,30 +441,30 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
 </head>
 <body>
 
-    <nav id="mainNav" class="scrolled">
-        <div class="nav-inner">
-            <a href="../index.html" class="nav-brand">
-                <img src="{nav_icon}" alt="SporlyWorks" class="nav-icon">
-                <span class="nav-wordmark">SPORLYWORKS</span>
+    <!-- ═══ CENTERED HEADER & NAVBAR ═══ -->
+    <header class="internal-header">
+        <div class="header-logo-centered">
+            <a href="../index.html" class="header-brand-link">
+                <img src="{nav_icon}" alt="SporlyWorks" class="header-logo-img">
+                <span class="header-wordmark">SPORLYWORKS</span>
             </a>
-            <div class="nav-menu-row">
-                <div class="nav-links">
-                    <a href="../products.html">Products</a>
-                    <a href="../tools/yield-estimator.html">Yield Estimator</a>
-                    <a href="../tools/wellness-stack-builder.html">Stack Builder</a>
-                    <a href="../tools/diagnostics.html">Diagnostics</a>
-                    <a href="../tools/substrate-calculator.html">Substrate Calculator</a>
-                    <a href="index.html" class="active">Blog</a>
-                </div>
-            </div>
         </div>
-    </nav>
+        <nav class="header-nav-centered">
+            <div class="nav-links-row">
+                <a href="../index.html">Home</a>
+                <a href="../products.html">Shop Products</a>
+                <a href="../tools/mycology-finder.html">Finder Quiz</a>
+                <a href="../tools/yield-estimator.html">Yield Calculator</a>
+                <a href="index.html" class="active">Research Blog</a>
+            </div>
+        </nav>
+    </header>
 
     <!-- ═══ BLOG INDEX ═══ -->
-    <main class="blog-index-container">
+    <main class="blog-index-container" style="margin-top: 155px;">
         <header class="blog-index-header">
-            <h1 class="blog-index-title">Scientific Library</h1>
-            <p class="blog-index-subtitle">Vetted clinical analyses, grow diagnostics, and formulation studies</p>
+            <h1 class="blog-index-title">Research & Education Blog</h1>
+            <p class="blog-index-subtitle">Easy-to-understand cultivation guides, mushroom health studies, and grow tips</p>
         </header>
 
         <div class="blog-grid">

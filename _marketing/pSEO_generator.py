@@ -135,28 +135,27 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
 </head>
 <body>
 
-    <!-- ═══ NAVIGATION ═══ -->
-    <nav id="mainNav" class="scrolled">
-        <div class="nav-inner">
-            <a href="../index.html" class="nav-brand">
-                <img src="{nav_icon}" alt="SporlyWorks" class="nav-icon">
-                <span class="nav-wordmark">SPORLYWORKS</span>
+    <!-- ═══ CENTERED HEADER & NAVBAR ═══ -->
+    <header class="internal-header">
+        <div class="header-logo-centered">
+            <a href="../index.html" class="header-brand-link">
+                <img src="{nav_icon}" alt="SporlyWorks" class="header-logo-img">
+                <span class="header-wordmark">SPORLYWORKS</span>
             </a>
-            <div class="nav-menu-row">
-                <div class="nav-links">
-                    <a href="../products.html">Products</a>
-                    <a href="../tools/yield-estimator.html">Yield Estimator</a>
-                    <a href="../tools/wellness-stack-builder.html">Stack Builder</a>
-                    <a href="../tools/diagnostics.html">Diagnostics</a>
-                    <a href="../tools/substrate-calculator.html">Substrate Calculator</a>
-                    <a href="../blog/index.html" class="active">Blog</a>
-                </div>
-            </div>
         </div>
-    </nav>
+        <nav class="header-nav-centered">
+            <div class="nav-links-row">
+                <a href="../index.html">Home</a>
+                <a href="../products.html">Shop Products</a>
+                <a href="../tools/mycology-finder.html">Finder Quiz</a>
+                <a href="../tools/yield-estimator.html">Yield Calculator</a>
+                <a href="../blog/index.html">Research Blog</a>
+            </div>
+        </nav>
+    </header>
 
     <!-- ═══ MAIN CONTENT ═══ -->
-    <main class="guide-body">
+    <main class="guide-body" style="margin-top: 155px;">
         <article class="guide-card">
             <header class="guide-header">
                 <div class="guide-meta">Category: {category} · Technical Guide</div>

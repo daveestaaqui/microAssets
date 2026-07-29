@@ -10,7 +10,7 @@
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=1060">
+    <link rel="stylesheet" href="../style.css?v=1070">
     <style>
         .quiz-container {
             max-width: 800px;
@@ -192,27 +192,26 @@
 </head>
 <body>
 
-    <!-- ═══ NAVIGATION ═══ -->
-    <nav id="mainNav" class="scrolled">
-        <div class="nav-inner">
-            <a href="../index.html" class="nav-brand">
-                <img src="../assets/logo-nav.png?v=908" alt="SporlyWorks" class="nav-icon">
-                <span class="nav-wordmark">SPORLYWORKS</span>
+    <!-- ═══ CENTERED HEADER & NAVBAR ═══ -->
+    <header class="internal-header">
+        <div class="header-logo-centered">
+            <a href="../index.html" class="header-brand-link">
+                <img src="../assets/logo-nav.png?v=908" alt="SporlyWorks" class="header-logo-img">
+                <span class="header-wordmark">SPORLYWORKS</span>
             </a>
-            <div class="nav-menu-row">
-                <div class="nav-links">
-                    <a href="../products.html">Products</a>
-                    <a href="mycology-finder.html" class="active">Finder Quiz</a>
-                    <a href="yield-estimator.html">Yield Estimator</a>
-                    <a href="wellness-stack-builder.html">Stack Builder</a>
-                    <a href="diagnostics.html">Diagnostics</a>
-                    <a href="../blog/index.html">Blog</a>
-                </div>
-            </div>
         </div>
-    </nav>
+        <nav class="header-nav-centered">
+            <div class="nav-links-row">
+                <a href="../index.html">Home</a>
+                <a href="../products.html">Shop Products</a>
+                <a href="mycology-finder.html" class="active">Finder Quiz</a>
+                <a href="yield-estimator.html">Yield Calculator</a>
+                <a href="../blog/index.html">Research Blog</a>
+            </div>
+        </nav>
+    </header>
 
-    <main class="quiz-container">
+    <main class="quiz-container" style="margin-top: 155px;">
         <div class="quiz-card">
             <div class="quiz-header">
                 <h1>Interactive Mycology Finder</h1>

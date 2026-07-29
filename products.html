@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=1060">
+    <link rel="stylesheet" href="style.css?v=1070">
     <style>
         .products-page-container {
             max-width: 1200px;
@@ -39,46 +39,44 @@
 </head>
 <body>
 
-    <!-- ═══ NAVIGATION ═══ -->
-    <nav id="mainNav" class="scrolled">
-        <div class="nav-inner">
-            <a href="index.html" class="nav-brand">
-                <img src="assets/logo-nav.png?v=960" alt="SporlyWorks" class="nav-icon">
-                <span class="nav-wordmark">SPORLYWORKS</span>
+    <!-- ═══ CENTERED HEADER & NAVBAR ═══ -->
+    <header class="internal-header">
+        <div class="header-logo-centered">
+            <a href="index.html" class="header-brand-link">
+                <img src="assets/logo-nav.png?v=960" alt="SporlyWorks" class="header-logo-img">
+                <span class="header-wordmark">SPORLYWORKS</span>
             </a>
-            <div class="nav-menu-row">
-                <div class="nav-links" id="navLinks">
-                    <a href="products.html" class="active">Products</a>
-                    <a href="tools/mycology-finder.html">Finder Quiz</a>
-                    <a href="tools/yield-estimator.html">Yield Estimator</a>
-                    <a href="tools/wellness-stack-builder.html">Stack Builder</a>
-                    <a href="tools/diagnostics.html">Diagnostics</a>
-                    <a href="tools/substrate-calculator.html">Substrate Calculator</a>
-                    <a href="blog/index.html">Blog</a>
-                </div>
-            </div>
         </div>
-    </nav>
+        <nav class="header-nav-centered">
+            <div class="nav-links-row">
+                <a href="index.html">Home</a>
+                <a href="products.html" class="active">Shop Products</a>
+                <a href="tools/mycology-finder.html">Finder Quiz</a>
+                <a href="tools/yield-estimator.html">Yield Calculator</a>
+                <a href="blog/index.html">Research Blog</a>
+            </div>
+        </nav>
+    </header>
 
     <!-- ═══ MAIN CONTENT ═══ -->
-    <main class="products-page-container">
+    <main class="products-page-container" style="margin-top: 155px;">
         
         <div class="collections-hero-card" style="text-align: center; margin-bottom: 50px; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(92, 61, 46, 0.12); border-radius: var(--radius-lg); padding: 44px 36px; box-shadow: 0 8px 32px rgba(44, 36, 24, 0.06); max-width: 900px; margin-left: auto; margin-right: auto;">
-            <h1 style="font-family: 'DM Serif Display', Georgia, serif; font-size: 46px; color: var(--green-dark); margin-bottom: 16px; font-weight: 400; letter-spacing: -0.5px;">Our Collections</h1>
+            <h1 style="font-family: 'DM Serif Display', Georgia, serif; font-size: 46px; color: var(--green-dark); margin-bottom: 16px; font-weight: 400; letter-spacing: -0.5px;">Our Products & Cultivation Collection</h1>
             <div style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; background: rgba(27, 138, 90, 0.06); border: 1px solid rgba(27, 138, 90, 0.15); border-radius: var(--radius-pill); padding: 12px 28px;">
-                <span style="color: var(--green-dark); font-size: 17px; font-weight: 700;">Taxonomy-Verified Genetics</span>
+                <span style="color: var(--green-dark); font-size: 17px; font-weight: 700;">Certified Spore Genetics</span>
                 <span style="color: var(--gold-dark); font-weight: 800;">•</span>
-                <span style="color: var(--green-dark); font-size: 17px; font-weight: 700;">Premium Cultivation Substrates</span>
+                <span style="color: var(--green-dark); font-size: 17px; font-weight: 700;">Organic Grow Kits</span>
                 <span style="color: var(--gold-dark); font-weight: 800;">•</span>
-                <span style="color: var(--green-dark); font-size: 17px; font-weight: 700;">Science-Backed Daily Supplements</span>
+                <span style="color: var(--green-dark); font-size: 17px; font-weight: 700;">Daily Health Extracts</span>
             </div>
         </div>
 
         <!-- ═══ CULTIVATION & RESEARCH ═══ -->
         <section>
             <div class="products-group-header" style="text-align: center; margin: 60px auto 40px; max-width: 800px;">
-                <h2 style="text-align: center; margin-bottom: 12px;">Mushroom Cultivation & Microscopy Research</h2>
-                <p style="text-align: center; margin: 0 auto; max-width: 700px; font-size: 18px; line-height: 1.75; color: var(--text-secondary);">Fool-proof gourmet grow blocks for home kitchens, alongside sterile substrate and isolated genetics for scientific study.</p>
+                <h2 style="text-align: center; margin-bottom: 12px;">Organic Grow Kits & Spore Syringes</h2>
+                <p style="text-align: center; margin: 0 auto; max-width: 700px; font-size: 18px; line-height: 1.75; color: var(--text-secondary);">Easy-to-use fruiting kits for home kitchens, alongside sterile substrate and liquid culture spore syringes.</p>
             </div>
 
             <div class="glass-panel" style="margin-bottom: 40px;">
@@ -199,11 +197,11 @@
             </div>
         </section>
 
-        <!-- ═══ FUNCTIONAL SUPPLEMENTS ═══ -->
+        <!-- ═══ DAILY SUPPLEMENTS & EXTRACTS ═══ -->
         <section>
             <div class="products-group-header" style="text-align: center; margin: 60px auto 40px; max-width: 800px;">
-                <h2 style="text-align: center; margin-bottom: 12px;">Functional Supplements</h2>
-                <p style="text-align: center; margin: 0 auto; max-width: 700px; font-size: 18px; line-height: 1.75; color: var(--text-secondary);">Science-backed adaptogens and wellness formulations for cognitive function, immunity, and gut health.</p>
+                <h2 style="text-align: center; margin-bottom: 12px;">Daily Mushroom Extracts & Probiotics</h2>
+                <p style="text-align: center; margin: 0 auto; max-width: 700px; font-size: 18px; line-height: 1.75; color: var(--text-secondary);">Science-backed mushroom extracts and daily probiotics for focus, energy, and gut health.</p>
             </div>
 
             <div class="glass-panel" style="margin-bottom: 40px;">
