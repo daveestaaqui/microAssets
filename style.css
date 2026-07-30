@@ -136,7 +136,7 @@ h1, h2, h3 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; 
     pointer-events: all;
 }
 
-nav {
+nav.home-nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
     padding: 12px 0;
     background: var(--bg-surface);
@@ -155,7 +155,7 @@ nav {
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid rgba(92, 61, 46, 0.12);
     box-shadow: 0 4px 24px rgba(44, 36, 24, 0.06);
-    padding: 16px 24px 12px;
+    padding: 18px 24px 14px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -194,13 +194,21 @@ nav {
     letter-spacing: 5px;
     text-transform: uppercase;
 }
-.internal-nav-bar, .header-nav-centered {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    border-top: 1px solid rgba(92, 61, 46, 0.08);
-    padding-top: 10px;
+.internal-header nav, .internal-nav-bar, .header-nav-centered {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    z-index: auto !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border-top: 1px solid rgba(92, 61, 46, 0.12);
+    padding: 10px 0 0 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
 }
 .nav-links-row {
     display: flex;
