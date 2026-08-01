@@ -9,7 +9,7 @@ AVATAR_JPG = os.path.join(BASE_DIR, "assets", "instagram_avatar.jpg")
 def generate_avatar():
     canvas_size = (1080, 1080)
     
-    # Load exact website navigation logo
+    # Load website logo-nav.png
     if os.path.exists(LOGO_PATH):
         try:
             logo = Image.open(LOGO_PATH).convert("RGBA")
@@ -30,7 +30,7 @@ def generate_avatar():
                 
             w, h = logo.size
             aspect = w / h
-            target_h = 760
+            target_h = 700
             target_w = int(target_h * aspect)
             
             logo_resized = logo.resize((target_w, target_h), Image.Resampling.LANCZOS)
@@ -43,7 +43,7 @@ def generate_avatar():
             final_avatar = canvas.convert("RGB")
             final_avatar.save(AVATAR_PNG, "PNG")
             final_avatar.save(AVATAR_JPG, "JPEG", quality=100)
-            print("✅ Successfully generated authentic website logo avatar.")
+            print("✅ Successfully generated authentic website logo avatar with zero cutoff.")
             return
         except Exception as e:
             print(f"Error generating avatar: {e}")
