@@ -91,11 +91,17 @@ def draw_post(title, quote, source, output_name):
     if os.path.exists(LOGO_PATH):
         try:
             logo_img = Image.open(LOGO_PATH).convert("RGBA")
+            import numpy as np
+            arr = np.array(logo_img)
+            black_pixels = (arr[:,:,0] < 35) & (arr[:,:,1] < 35) & (arr[:,:,2] < 35)
+            arr[black_pixels, 3] = 0
+            cleaned_logo = Image.fromarray(arr)
+            
             # Resize to 90x90
-            logo_img = logo_img.resize((90, 90), Image.Resampling.LANCZOS)
+            logo_scaled = cleaned_logo.resize((90, 90), Image.Resampling.LANCZOS)
             # Paste logo centered at top (Y=70)
             logo_x = (width - 90) // 2
-            img.paste(logo_img, (logo_x, 70), logo_img)
+            img.paste(logo_scaled, (logo_x, 70), logo_scaled)
             logo_placed = True
         except Exception as e:
             print(f"⚠️ Error pasting logo: {e}")

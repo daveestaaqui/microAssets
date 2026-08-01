@@ -30,6 +30,7 @@ jobs:
 
       - name: Generate Social Media Post Drafts
         run: |
+          python3 _marketing/generate_instagram_avatar.py
           python3 _marketing/generate_instagram_posts.py
 
       - name: Rebuild Blog & RSS Feed
