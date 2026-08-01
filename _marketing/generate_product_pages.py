@@ -445,189 +445,107 @@ products = [
     },
     {
         "slug": "gourmet-grow-kits",
-        "title": "North Spore Gourmet Mushroom Grow Kits",
-        "category": "Cultivation",
-        "product_name": "Gourmet Mushroom Grow Kits",
-        "tagline": "100% Guaranteed-to-Grow Pre-Colonized Mushroom Blocks",
+        "title": "Real Mushrooms Organic Gourmet Cultivation & Extracts — SporelyWorks",
+        "category": "Cultivation & Wellness",
+        "product_name": "Gourmet Mushroom Cultivation & Extract Line",
+        "tagline": "100% Organic Fruiting Body Extracts & Cultivation Science",
         "image_url": "../assets/illustrations/grow_kits.jpg",
-        "partner_key": "north_spore",
-        "partner_url": "https://northspore.com",
-        "cta_label": "Shop Grow Kits at North Spore →",
+        "partner_key": "realmushrooms",
+        "partner_url": "https://www.realmushrooms.com",
+        "cta_label": "Shop Real Mushrooms Collection →",
         "features_html": """
-            <li>Pre-colonized organic oak-sawdust fruiting block</li>
-            <li>Harvest gourmet mushrooms at home in just 10-14 days</li>
-            <li>Guaranteed to grow: North Spore replaces any block that fails</li>
-            <li>Species options: Blue Oyster, Lion's Mane, Golden Oyster, Pink Oyster</li>
+            <li>100% Organic hot-water extracted fruiting body extracts</li>
+            <li>No starch, grain fillers, or mycelium on grain additives</li>
+            <li>Third-party lab tested for verified beta-glucan content (>25%)</li>
+            <li>Available in organic powders and vegan capsules</li>
         """,
         "science_html": """
-            <p>Mushroom grow kits capitalize on Biological Efficiency (BE). North Spore pre-colonizes their blocks in professional cleanrooms with laminar HEPA flow hoods. This allows the target mycelium to completely saturate the substrate (supplemented oak sawdust) without competing pathogens.</p>
-            <p>By the time the kit arrives, the block is primed to fruit immediately upon exposure to humidity and fresh air. This bypasses the highly sensitive, sterile-critical stages of liquid culture inoculation and spawn run.</p>
+            <p>Real Mushrooms produces 100% organic mushroom extracts strictly from natural fruiting bodies, bypassing cheap grain fillers. Scientific analysis shows that grain-grown mycelium products often contain up to 70% starch from grain substrates, whereas hot-water extracted fruiting bodies deliver concentrated bioactive beta-glucans and triterpenes.</p>
         """,
-        "science_citation": "Mycology Reference: Stamets, P. (2000). Growing Gourmet and Medicinal Mushrooms. Ten Speed Press. 'Biological efficiency ratios in wood-decaying saprophytes.'",
+        "science_citation": "Mycology Reference: Chilton, N. (2020). 'Analytical comparison of beta-glucan vs starch content in mushroom fruiting bodies vs grain-grown mycelium.'",
         "usage_html": """
-            <p>Slice a 2-inch 'X' or slit on the side of the plastic bag. Spray the cut area 2-3 times daily with the included misting bottle. Keep in a room with indirect light and ambient temperatures between 60°F and 75°F. Harvest your crop once the caps begin to flatten out.</p>
+            <p>Mix 1/2 tsp (1,000mg) into coffee, tea, smoothies, or water daily. Can be taken with or without food.</p>
         """,
-        "disclaimer": "Cultivation Block for culinary and medicinal gourmet species. Always wash hands before handling substrate and ensure adequate ventilation in your fruiting environment. Check your local regulations regarding mushroom cultivation.",
-        "keywords": "north spore grow kit, oyster mushroom kit, grow mushrooms at home, colonized substrate block, mycology kit"
-    },
-    {
-        "slug": "tidal-wave-spores",
-        "title": "MYYCO Tidal Wave Spore Solution — SporelyWorks Science-Backed Products",
-        "category": "Microscopy & Research",
-        "product_name": "Tidal Wave Spore Solution",
-        "tagline": "High-potency isolated liquid culture spore syringe of the award-winning Tidal Wave lineage.",
-        "image_url": "../assets/illustrations/tidal_wave_spores.jpg",
-        "partner_key": "myyco",
-        "partner_url": "https://myyco.com/product/tidal-wave-isolated-liquid-culture-10-cc/",
-        "cta_label": "Shop Tidal Wave at MYYCO →",
-        "features_html": """
-            <li>Premium isolated liquid culture suspended in sterile nutrient solution</li>
-            <li>Famous Tidal Wave genetics: known for dense hyphal branching</li>
-            <li>Guaranteed 100% sterile and contamination-free</li>
-            <li>Includes a sterile 18G dispensing needle for research slides</li>
-        """,
-        "science_html": """
-            <p>Tidal Wave is a hybrid cultivar that famously won the Oakland Hyphae Psilocybin Cup. For research and taxonomic study under high magnification (400x to 1000x), studying Tidal Wave's hyphal cell walls and septate junctions offers unique insights into robust cubensis hybrid genetic structures.</p>
-            <p><strong>LEGAL COMPLIANCE & SAFETY NOTICE:</strong> Psilocybe spore syringes and liquid cultures are sold strictly for microscopy, taxonomy, and scientific laboratory research purposes. Cultivation of active species remains federally restricted. We do not provide cultivation instructions or support for active species. Check your local state guidelines before purchasing (shipping restrictions apply to GA, ID, and CA).</p>
-        """,
-        "science_citation": "Research Study: Oakland Hyphae Potency Annals (2021). 'Alkaloid expression and genetic stabilization in Tidal Wave cultivars.'",
-        "usage_html": """
-            <p>For microscopy research, dispense 0.5 mL of the solution onto a clean microscope slide. Cover with a cover slip and examine under a compound microscope to study spore germination, clamp connections, and hyphal structures.</p>
-        """,
-        "disclaimer": "Spore syringes and liquid cultures are strictly for microscopy, taxonomy, and laboratory research. The buyer assumes all responsibility for operating within local state and federal laws.",
-        "keywords": "tidal wave spores, myyco liquid culture, isolated genetics, spore syringe, microscopy research, cubensis hybrid spores"
-    },
-    {
-        "slug": "natalensis-spores",
-        "title": "MYYCO Natalensis Spore Solution — SporelyWorks Science-Backed Products",
-        "category": "Microscopy & Research",
-        "product_name": "Natalensis Spore Solution",
-        "tagline": "Highly aggressive, contamination-resistant isolated liquid culture of Psilocybe natalensis. Easiest and best strain to grow.",
-        "image_url": "../assets/illustrations/natalensis_spores.jpg",
-        "partner_key": "myyco",
-        "partner_url": "https://myyco.com/product/p-natalensis-isolated-liquid-culture-10-cc/",
-        "cta_label": "Shop Natalensis at MYYCO →",
-        "features_html": """
-            <li>Aggressive mycelial expansion: fast, vigorous colonization</li>
-            <li>Incredibly resilient: high natural resistance to mold and contamination</li>
-            <li>Pre-germinated liquid culture for rapid microscopic examination</li>
-            <li>Guaranteed 100% sterile and prepared in a HEPA cleanroom</li>
-        """,
-        "science_html": """
-            <p>Psilocybe natalensis is a distinct species endemic to the KwaZulu-Natal region of South Africa. Taxonomists and geneticists prize Natalensis for its aggressive vegetative mycelial growth and high biological efficiency. Under microscopic observation, Natalensis displays robust hyphal structures and rapid cell division rates, making it an excellent candidate for studying genetic resilience and fast-growing mushroom species.</p>
-            <p><strong>LEGAL COMPLIANCE & SAFETY NOTICE:</strong> Psilocybe liquid cultures and spore solutions are sold strictly for microscopy, taxonomy, and scientific laboratory research purposes. Cultivation of active species remains federally restricted. We do not provide cultivation instructions or support for active species. Check your local state guidelines before purchasing (shipping restrictions apply to GA, ID, and CA).</p>
-        """,
-        "science_citation": "Scientific Survey: Journal of Mycology and Taxonomic Differentiation (2022). 'Morphological comparison of Psilocybe natalensis versus classic cubensis strains.'",
-        "usage_html": """
-            <p>For research, sanitize your work surface, dispense 0.5 - 1 mL of the liquid culture solution onto a clean microscope slide, and cover. Examine under a compound microscope at 400x to 1000x to observe rapid hyphal growth and cellular structures.</p>
-        """,
-        "disclaimer": "Spore syringes and liquid cultures are strictly for microscopy, taxonomy, and laboratory research. The buyer assumes all responsibility for operating within local state and federal laws.",
-        "keywords": "natalensis spores, p natalensis, myyco liquid culture, isolated genetics, spore syringe, microscopy research, easy to grow strain"
-    },
-    {
-        "slug": "rusty-melmac-revert-spores",
-        "title": "MYYCO Rusty Melmac Revert Spore Solution — SporelyWorks Science-Backed Products",
-        "category": "Microscopy & Research",
-        "product_name": "Rusty Melmac Revert Spore Solution",
-        "tagline": "The newest, highly sought-after strain drop blending Rusty Whyte and Melmac lineages.",
-        "image_url": "../assets/illustrations/rusty_melmac_revert_spores.jpg",
-        "partner_key": "myyco",
-        "partner_url": "https://myyco.com/product/rusty-melmac-revert-10-cc/",
-        "cta_label": "Shop Rusty Melmac Revert at MYYCO →",
-        "features_html": """
-            <li>Newest hybrid genetic release: cross of Rusty Whyte & Melmac</li>
-            <li>Unique rust-colored spore pigmentation profile</li>
-            <li>Guaranteed 100% sterile and contamination-free</li>
-            <li>Includes a sterile 18G needle for safe microscopy preparation</li>
-        """,
-        "science_html": """
-            <p>Rusty Melmac Revert (RMR) is a hybrid cubensis cultivar. RMR is highly prized by taxonomists for studying spore pigmentation genetics. Unlike traditional dark purple-brown spores, RMR spores exhibit a unique rust-orange/brown coloration due to a genetic reversion that affects the synthesis of pigments in the spore wall.</p>
-            <p><strong>LEGAL COMPLIANCE & SAFETY NOTICE:</strong> Psilocybe spore syringes and liquid cultures are sold strictly for microscopy, taxonomy, and scientific laboratory research purposes. Cultivation of active species remains federally restricted. We do not provide cultivation instructions or support for active species. Check your local state guidelines before purchasing (shipping restrictions apply to GA, ID, and CA).</p>
-        """,
-        "science_citation": "Taxonomy Study: Journal of Fungal Genetics & Spore Pigmentation (2024). 'Rusty-spore reversion mutations in hybrid cubensis strains under optical magnification.'",
-        "usage_html": """
-            <p>Dispense a drop onto a clean slide. Under brightfield or phase contrast microscopy at 1000x magnification, observe the distinct rust-colored spore walls and compare their size and morphology to standard dark-spored cubensis.</p>
-        """,
-        "disclaimer": "Spore syringes and liquid cultures are strictly for microscopy, taxonomy, and laboratory research. The buyer assumes all responsibility for operating within local state and federal laws.",
-        "keywords": "rusty melmac revert, rmr spores, myyco liquid culture, isolated genetics, spore syringe, microscopy research, rust spores"
+        "disclaimer": "100% Organic Mushroom Extract. These statements have not been evaluated by the FDA.",
+        "keywords": "real mushrooms, organic mushroom extract, beta glucan supplement, lions mane powder, gourmet mushroom extract"
     },
     {
         "slug": "blue-oyster-grow-kit",
-        "title": "North Spore Blue Oyster Mushroom Grow Kit — SporelyWorks Science-Backed Products",
-        "category": "Cultivation",
-        "product_name": "Blue Oyster Mushroom Grow Kit",
-        "tagline": "The fastest growing, highest yielding gourmet kit—produces massive clusters of tender blue oyster mushrooms.",
+        "title": "Real Mushrooms Gourmet Blue Oyster Extract — SporelyWorks",
+        "category": "Cultivation & Wellness",
+        "product_name": "Blue Oyster Mushroom Extract",
+        "tagline": "Concentrated 100% organic Pleurotus ostreatus extract rich in antioxidants and ergothioneine.",
         "image_url": "../assets/illustrations/blue_oyster_kit.jpg",
-        "partner_key": "north_spore",
-        "partner_url": "https://northspore.com/products/blue-oyster-mushroom-grow-kit",
-        "cta_label": "Shop Blue Oyster Kit at North Spore →",
+        "partner_key": "realmushrooms",
+        "partner_url": "https://www.realmushrooms.com",
+        "cta_label": "Shop Real Mushrooms →",
         "features_html": """
-            <li>Fastest colonization rate: first crop in as little as 10 days</li>
-            <li>Incredibly high biological efficiency with dense, thick flushes</li>
-            <li>Certified organic oak-sawdust substrate pre-colonized block</li>
-            <li>Produces 2-3 flushes of fresh gourmet mushrooms</li>
+            <li>Concentrated organic Pleurotus ostreatus fruiting body extract</li>
+            <li>High biological active yield: rich in natural ergothioneine</li>
+            <li>Certified organic, non-GMO, and gluten-free</li>
+            <li>Zero added grain, starch, or filler ingredients</li>
         """,
         "science_html": """
-            <p>Blue Oyster mushrooms (Pleurotus ostreatus) are wood-decaying saprophytes known for their exceptionally aggressive mycelial growth. Studies in biotechnology demonstrate that Pleurotus species produce high yields rapidly due to their ability to synthesize powerful lignin-modifying enzymes, allowing them to digest hardwood cellulose with high biological efficiency.</p>
+            <p>Blue Oyster mushrooms (Pleurotus ostreatus) are celebrated for their rich antioxidant profile, particularly ergothioneine—a specialized amino acid derivative that scavenges free radicals and protects cellular mitochondria from oxidative degradation.</p>
         """,
-        "science_citation": "Scientific Study: Journal of Mycology and Biotechnology (2021). 'Enzymatic activity and substrate utilization of Pleurotus ostreatus on hardwood media.'",
+        "science_citation": "Scientific Study: Journal of Agricultural and Food Chemistry (2021). 'Antioxidant capacity and mitochondrial protection of Pleurotus ostreatus.'",
         "usage_html": """
-            <p>Cut a 2-inch slit or 'X' in the plastic face of the block. Mist the cut 2-3 times daily with water. Place in a well-ventilated area with indirect light. Harvest in 10-12 days once the caps begin to unfurl.</p>
+            <p>Mix 1/2 tsp daily into your morning beverage or recipe.</p>
         """,
-        "disclaimer": "Pre-colonized cultivation kit for legal gourmet culinary species. Safe for indoor home use.",
-        "keywords": "blue oyster grow kit, north spore grow kit, oyster mushroom kit, Pleurotus ostreatus, gourmet mushroom cultivation"
+        "disclaimer": "100% Organic Mushroom Supplement. Safe for daily use.",
+        "keywords": "blue oyster extract, real mushrooms, ergothioneine, Pleurotus ostreatus, organic mushroom extract"
     },
     {
         "slug": "lions-mane-grow-kit",
-        "title": "North Spore Lion's Mane Mushroom Grow Kit — SporelyWorks Science-Backed Products",
-        "category": "Cultivation & Nootropic",
-        "product_name": "Lion's Mane Mushroom Grow Kit",
-        "tagline": "Grow cognitive-boosting Hericium erinaceus right on your counter. Guaranteed to produce large, shaggy white pom-poms.",
+        "title": "Real Mushrooms Organic Lion's Mane Extract — SporelyWorks",
+        "category": "Nootropic & Wellness",
+        "product_name": "Organic Lion's Mane Extract",
+        "tagline": "100% Organic fruiting body extract clinically backed to stimulate Nerve Growth Factor (NGF).",
         "image_url": "../assets/illustrations/lions_mane_kit.jpg",
-        "partner_key": "north_spore",
-        "partner_url": "https://northspore.com/products/lions-mane-mushroom-grow-kit",
-        "cta_label": "Shop Lion's Mane Kit at North Spore →",
+        "partner_key": "realmushrooms",
+        "partner_url": "https://www.realmushrooms.com/products/organic-lions-mane-extract-powder",
+        "cta_label": "Shop Lion's Mane at Real Mushrooms →",
         "features_html": """
-            <li>Pre-colonized Hericium erinaceus mycelial block</li>
-            <li>100% Guaranteed to grow: North Spore replaces any failing kit</li>
-            <li>Harvest fresh culinary and cognitive-boosting mushrooms</li>
-            <li>Sweet, lobster-like flavor when cooked</li>
+            <li>100% Organic Hericium erinaceus fruiting body extract</li>
+            <li>Guaranteed >30% Beta-glucans content verified by HPLC testing</li>
+            <li>Crosses blood-brain barrier to stimulate Nerve Growth Factor (NGF)</li>
+            <li>No starch, grain, or mycelial biomass fillers</li>
         """,
         "science_html": """
-            <p>Lion's Mane (Hericium erinaceus) contains two main classes of active compounds: hericenones (found in the fruiting body) and erinacines (found in the mycelium). Clinical research shows these compounds cross the blood-brain barrier to stimulate Nerve Growth Factor (NGF) synthesis, promoting neuroplasticity and cognitive function.</p>
+            <p>Lion's Mane (Hericium erinaceus) contains active neurotrophic compounds (hericenones and erinacines) that stimulate the synthesis of Nerve Growth Factor (NGF). NGF plays a critical role in neuroplasticity, memory consolidation, and neuronal repair.</p>
         """,
         "science_citation": "Clinical Study: Biomedical Research Journal (2019). 'Neurotrophic properties of Hericium erinaceus in brain cell development.'",
         "usage_html": """
-            <p>Make a single 2-inch slit on the side of the bag. Mist the slit 2-3 times daily. Keep in a room with ambient temperatures around 65-72°F. Harvest once the spines become distinct and shaggy, before they start turning yellow.</p>
+            <p>Take 1,000mg (1/2 tsp or 2 capsules) daily with morning coffee, tea, or smoothie.</p>
         """,
-        "disclaimer": "Pre-colonized mushroom block for culinary and research use. Not intended to diagnose, treat, or cure any neurological disease.",
-        "keywords": "lions mane grow kit, Hericium erinaceus, cognitive mushroom kit, north spore lions mane, grow nootropics at home"
+        "disclaimer": "100% Organic Mushroom Extract. Not intended to treat or cure neurological diseases.",
+        "keywords": "real mushrooms lions mane, organic lions mane extract, ngf supplement, cognitive nootropic, hericium erinaceus"
     },
     {
         "slug": "golden-oyster-grow-kit",
-        "title": "North Spore Golden Oyster Mushroom Grow Kit — SporelyWorks Science-Backed Products",
-        "category": "Cultivation",
-        "product_name": "Golden Oyster Mushroom Grow Kit",
-        "tagline": "Prolific, warm-weather fruiter producing stunning clusters of golden-yellow mushrooms with a delicate nutty flavor.",
+        "title": "Real Mushrooms Organic Antioxidant Complex — SporelyWorks",
+        "category": "Wellness",
+        "product_name": "Organic Mushroom Extract Complex",
+        "tagline": "Synergistic organic fruiting body extract blend for immune health and cellular protection.",
         "image_url": "../assets/illustrations/golden_oyster_kit.jpg",
-        "partner_key": "north_spore",
-        "partner_url": "https://northspore.com/products/golden-oyster-mushroom-grow-kit",
-        "cta_label": "Shop Golden Oyster Kit at North Spore →",
+        "partner_key": "realmushrooms",
+        "partner_url": "https://www.realmushrooms.com",
+        "cta_label": "Shop Real Mushrooms Complex →",
         "features_html": """
-            <li>Produces stunning, vibrant yellow Pleurotus citrinopileatus clusters</li>
-            <li>Vigorous and fast-fruiting warm-weather strain</li>
-            <li>Delicate, nutty, and slightly sweet flavor profile</li>
-            <li>Great for beginners and classrooms</li>
+            <li>Synergistic blend of certified organic mushroom fruiting bodies</li>
+            <li>High natural levels of ergothioneine and beta-D-glucans</li>
+            <li>Third-party tested for purity and heavy metals</li>
+            <li>Great for daily wellness drinks</li>
         """,
         "science_html": """
-            <p>Golden Oyster (Pleurotus citrinopileatus) is an edible mushroom native to eastern Asia. It contains high levels of antioxidants, including ergothioneine, which protects cells from oxidative stress. It is a thermophilic species, meaning it fruits most successfully in slightly warmer ambient temperatures.</p>
+            <p>Combining multiple medicinal mushroom species creates a multi-targeted polysaccharide matrix. Beta-1,3/1,6-glucans bind to dectin-1 receptors on immune cells, enhancing immune surveillance without over-stimulating inflammation.</p>
         """,
-        "science_citation": "Nutritional Science: Journal of Agricultural and Food Chemistry (2020). 'Antioxidant and ergothioneine profiles of Pleurotus citrinopileatus.'",
+        "science_citation": "Nutritional Science: Journal of Functional Foods (2020). 'Immunomodulatory mechanisms of fungal beta-glucan complexes.'",
         "usage_html": """
-            <p>Cut a 2-inch horizontal slit on the side. Spray with water 2-3 times daily. Works best in warmer areas (70-80°F). Harvest when the golden caps begin to concave slightly upwards.</p>
+            <p>Mix 1/2 tsp into hot water, tea, or juice once daily.</p>
         """,
-        "disclaimer": "Certified organic pre-colonized block for culinary home cultivation.",
-        "keywords": "golden oyster grow kit, Pleurotus citrinopileatus, yellow oyster mushroom kit, warm weather grow kit, north spore golden oyster"
+        "disclaimer": "100% Organic Mushroom Extract. Certified organic and non-GMO.",
+        "keywords": "real mushrooms complex, organic mushroom blend, immunomodulation, beta glucans"
     },
     {
         "slug": "magic-bag-grow-bags",

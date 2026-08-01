@@ -2,8 +2,8 @@ name: Advanced Marketing & Website Promotion Engine
 
 on:
   schedule:
-    # Run every Wednesday & Friday at 14:00 UTC (10:00 AM EST)
-    - cron: '0 14 * * 3,5'
+    # Run DAILY at 14:00 UTC (10:00 AM EST)
+    - cron: '0 14 * * *'
   workflow_dispatch:
 
 permissions:
