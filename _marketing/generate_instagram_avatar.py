@@ -2,7 +2,7 @@ import os
 from PIL import Image
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-LOGO_PATH = os.path.join(BASE_DIR, "assets", "logo.png")
+LOGO_PATH = os.path.join(BASE_DIR, "assets", "logo-nav.png")
 AVATAR_PNG = os.path.join(BASE_DIR, "assets", "instagram_avatar.png")
 AVATAR_JPG = os.path.join(BASE_DIR, "assets", "instagram_avatar.jpg")
 

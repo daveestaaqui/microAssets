@@ -28,10 +28,27 @@ jobs:
           python -m pip install --upgrade pip
           pip install Pillow requests
 
-      - name: Generate Social Media Post Drafts
+      - name: Generate Social Media Post Drafts & Avatars
         run: |
           python3 _marketing/generate_instagram_avatar.py
           python3 _marketing/generate_instagram_posts.py
+
+      - name: Auto-Post to Instagram (If Credentials Configured)
+        env:
+          INSTAGRAM_USER: ${{ secrets.INSTAGRAM_USER }}
+          INSTAGRAM_PASS: ${{ secrets.INSTAGRAM_PASS }}
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          INSTAGRAM_ACCOUNT_ID: ${{ secrets.INSTAGRAM_ACCOUNT_ID }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_PASS: ${{ secrets.GMAIL_PASS }}
+        run: |
+          if [ -n "$INSTAGRAM_USER" ] && [ -n "$INSTAGRAM_PASS" ]; then
+            python3 _marketing/instagram_autoposter.py --username "$INSTAGRAM_USER" --password "$INSTAGRAM_PASS" || true
+          elif [ -n "$INSTAGRAM_ACCESS_TOKEN" ] && [ -n "$INSTAGRAM_ACCOUNT_ID" ]; then
+            python3 _marketing/instagram_autoposter.py --access-token "$INSTAGRAM_ACCESS_TOKEN" --account-id "$INSTAGRAM_ACCOUNT_ID" --public-url "https://sporlyworks.com/_marketing/instagram_drafts" || true
+          else
+            echo "ℹ️ Instagram credentials not set in GitHub Secrets yet. Skipping live auto-post (drafts compiled successfully)."
+          fi
 
       - name: Rebuild Blog & RSS Feed
         run: |
