@@ -650,14 +650,10 @@ products = [
     }
 ]
 
+from affiliate_config import build_affiliate_url
+
 for prod in products:
-    final_partner_url = prod["partner_url"]
-    if prod["partner_key"] == "myyco":
-        sep = "&" if "?" in prod["partner_url"] else "?"
-        final_partner_url = f"{prod['partner_url']}{sep}ref=SporlyWorks"
-    elif prod["partner_key"] == "magicbag":
-        sep = "&" if "?" in prod["partner_url"] else "?"
-        final_partner_url = f"{prod['partner_url']}{sep}ref=Sporlyworks"
+    final_partner_url = build_affiliate_url(prod["partner_key"], prod["partner_url"])
     
     html = PRODUCT_TEMPLATE.format(
         title=prod["title"],

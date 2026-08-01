@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
 import json
+from affiliate_config import build_affiliate_url
 
 # Define the guides directory
 BASE_DIR = "/Users/davidmahler/Desktop/microAssets"
@@ -393,6 +394,8 @@ guides = [
 
 # Generate each guide file
 for guide in guides:
+    final_partner_url = build_affiliate_url(guide["partner_key"], guide["partner_url"])
+    
     # Determine matching illustration for guide
     hero_image = "../assets/illustrations/spores.jpg"
     if "lions-mane" in guide["slug"]:
@@ -419,7 +422,7 @@ for guide in guides:
         content=guide["content"],
         takeaway=guide["takeaway"],
         partner_key=guide["partner_key"],
-        partner_url=guide["partner_url"],
+        partner_url=final_partner_url,
         cta_text=guide["cta_text"],
         partner_cta=guide["partner_cta"]
     )
