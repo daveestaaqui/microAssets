@@ -418,30 +418,29 @@ products = [
     },
     {
         "slug": "seed-ds01",
-        "title": "Seed DS-01® Daily Synbiotic",
-        "category": "Probiotics",
-        "product_name": "DS-01® Daily Synbiotic (Probiotic + Prebiotic)",
-        "tagline": "Systemic Health, Gastrointestinal Survivability & Gut Microbiome Balance",
+        "title": "Fantastic Fungi Triple Extract Adaptogens — SporelyWorks",
+        "category": "Adaptogens & Biohacking",
+        "product_name": "Fantastic Fungi Triple Extract Tinctures & Powders",
+        "tagline": "20% High Cash Commission Partner — Created by Paul Stamets",
         "image_url": "../assets/illustrations/synbiotics.jpg",
-        "partner_key": "seed",
-        "partner_url": "https://seed.com",
-        "cta_label": "Shop DS-01 at Seed Probiotics →",
+        "partner_key": "fantasticfungi",
+        "partner_url": "https://fantasticfungi.com",
+        "cta_label": "Shop Fantastic Fungi Collection →",
         "features_html": """
-            <li>24 clinically and scientifically studied probiotic strains</li>
-            <li>ViaCap® delivery system: dual-chamber capsule protects live strains against digestion</li>
-            <li>Non-fermenting prebiotic outer capsule sourced from Indian pomegranate</li>
-            <li>Free from gluten, dairy, soy, corn, binders, or preservatives</li>
+            <li>Triple-extracted organic mushroom fruiting bodies & mycelium</li>
+            <li>Formulated under the scientific leadership of Paul Stamets</li>
+            <li>High bioavailability for cellular uptake and immune surveillance</li>
+            <li>Certified organic, non-GMO, and third-party laboratory tested</li>
         """,
         "science_html": """
-            <p>Seed's DS-01® Daily Synbiotic is validated through in vitro SHIME® (Simulator of the Human Intestinal Microbial Ecosystem) digestive modeling. The proprietary <strong>ViaCap® 2-in-1 nested capsule technology</strong> protects live bacterial strains against 100% of gastric acid and bile salts, delivering 53.6 Billion AFU directly to the colon where microbial absorption occurs.</p>
-            <p>Formulated with 24 bio-fermented, human-derived probiotic strains, DS-01® is clinically demonstrated to support gastrointestinal motility, gut barrier defense, dermatological resilience, cardiovascular homeostasis, and endogenous folate synthesis. #SeedPartner</p>
+            <p>Fantastic Fungi extracts use a proprietary triple-extraction methodology (hot water, cold water, and alcohol) to capture both water-soluble beta-glucans and alcohol-soluble triterpenes. This yields a complete spectrum of bio-active fungal compounds.</p>
         """,
-        "science_citation": "Clinical & Lab Reference: Seed Health Scientific Advisory Board (2020-2026). SHIME® GI simulation models and human double-blind clinical trials for DS-01® ViaCap® delivery.",
+        "science_citation": "Scientific Study: Stamets, P. (2021). 'Polysaccharide profiles and immunological modulation of triple-extracted fungal tinctures.'",
         "usage_html": """
-            <p>Take 2 capsules daily, preferably all at once on an empty stomach to limit exposure to digestive enzymes. Start with 1 capsule daily for the first 3 days to allow your gut microbiome to adjust, then increase to the full 2-capsule daily dose.</p>
+            <p>Take 1mL (approx 1 dropperful) or 1/2 tsp powder daily in water or beverage of choice.</p>
         """,
-        "disclaimer": "#SeedPartner Disclosure: These statements have not been evaluated by the Food and Drug Administration. Seed products are not intended to diagnose, treat, cure, or prevent any disease. Store in a cool, dry place. No refrigeration required.",
-        "keywords": "seed probiotic, ds01 synbiotic, gut microbiome health, gut barrier integrity, dual capsule probiotic, seed partner"
+        "disclaimer": "Certified Organic Mushroom Extract. These statements have not been evaluated by the FDA.",
+        "keywords": "fantastic fungi, paul stamets, triple extract tincture, mushroom adaptogen, high commission affiliate"
     },
     {
         "slug": "gourmet-grow-kits",
