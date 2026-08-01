@@ -168,20 +168,28 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
             margin-top: 60px;
         }}
     </style>
+    <meta property="og:title" content="{title}">
+    <meta property="og:description" content="{tagline}">
+    <meta property="og:type" content="product">
+    <meta property="og:site_name" content="SporlyWorks">
     <script type="application/ld+json">
     {{
       "@context": "https://schema.org",
       "@type": "Product",
       "name": "{product_name}",
       "description": "{tagline}",
-      "image": "{image_url}",
-      "url": "https://sporlyworks.com/products/{slug}.html"
+      "image": "https://sporlyworks.com/{clean_image_url}",
+      "brand": {{
+        "@type": "Brand",
+        "name": "{brand}"
+      }},
+      "url": "https://sporlyworks.com/products/{slug}.html",
+      "offers": {{
+        "@type": "Offer",
+        "url": "{partner_url}"
+      }}
     }}
     </script>
-    <meta property="og:title" content="{title}">
-    <meta property="og:description" content="{tagline}">
-    <meta property="og:type" content="product">
-    <meta property="og:site_name" content="SporlyWorks">
 </head>
 <body>
 
@@ -652,8 +660,18 @@ products = [
 
 from affiliate_config import build_affiliate_url
 
+PARTNER_NAMES = {
+    "freshcap": "FreshCap",
+    "seed": "Seed",
+    "north_spore": "North Spore",
+    "myyco": "MYYCO",
+    "magicbag": "Magic Bag"
+}
+
 for prod in products:
     final_partner_url = build_affiliate_url(prod["partner_key"], prod["partner_url"])
+    clean_image_url = prod["image_url"].replace("../", "").lstrip("/")
+    brand_name = PARTNER_NAMES.get(prod["partner_key"], prod["partner_key"].replace("_", " ").title())
     
     html = PRODUCT_TEMPLATE.format(
         title=prod["title"],
@@ -664,6 +682,8 @@ for prod in products:
         style_path=STYLE_PATH,
         nav_icon=NAV_ICON,
         image_url=prod["image_url"],
+        clean_image_url=clean_image_url,
+        brand=brand_name,
         category=prod["category"],
         product_name=prod["product_name"],
         tagline=prod["tagline"],

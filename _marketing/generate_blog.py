@@ -218,18 +218,22 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
     <script type="application/ld+json">
     {{
       "@context": "https://schema.org",
-      "@type": "BlogPosting",
+      "@type": "Article",
       "headline": "{title}",
-      "datePublished": "{date}",
+      "description": "{description}",
       "author": {{
-        "@type": "Person",
+        "@type": "Organization",
         "name": "SporlyWorks"
       }},
       "publisher": {{
         "@type": "Organization",
-        "name": "SporlyWorks"
+        "name": "SporlyWorks",
+        "logo": {{
+          "@type": "ImageObject",
+          "url": "https://sporlyworks.com/assets/logo-nav.png"
+        }}
       }},
-      "description": "{description}",
+      "datePublished": "{date}",
       "url": "https://sporlyworks.com/blog/{slug}.html"
     }}
     </script>

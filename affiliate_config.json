@@ -3,13 +3,25 @@
     "north_spore": {
       "name": "North Spore",
       "tagline": "Ready-to-Grow Gourmet Kits",
-      "affiliate_id": "YOUR_NORTH_SPORE_ID",
+      "affiliate_id": "STORE_CREDIT_ONLY",
       "base_url": "https://northspore.com",
       "affiliate_url_template": "https://northspore.com/?ref={affiliate_id}",
       "category": "cultivation",
       "description": "Pre-inoculated, fully colonized mushroom grow kits. Simply cut a slit, spray with water, and harvest fresh gourmet mushrooms in 10-14 days.",
       "image": "assets/illustrations/grow_kits.jpg",
-      "features": ["Ready-to-Grow Block", "Harvest in 14 Days", "100% Guaranteed to Grow"]
+      "features": ["Ready-to-Grow Block", "Harvest in 14 Days", "100% Guaranteed to Grow"],
+      "note": "North Spore only offers store credit ($20 per referral), not cash commissions. Consider Real Mushrooms for cash affiliate earnings."
+    },
+    "realmushrooms": {
+      "name": "Real Mushrooms",
+      "tagline": "Organic Fruiting Body Extracts",
+      "affiliate_id": "YOUR_REALMUSHROOMS_ID",
+      "base_url": "https://www.realmushrooms.com",
+      "affiliate_url_template": "https://www.realmushrooms.com/?ref={affiliate_id}",
+      "category": "supplements",
+      "description": "100% organic mushroom extracts from fruiting bodies only. No grain fillers. Third-party verified beta-glucan content.",
+      "image": "assets/illustrations/supplements.jpg",
+      "features": ["100% Fruiting Body", "Third-Party Tested", "USDA Organic"]
     },
     "myyco": {
       "name": "MYYCO",

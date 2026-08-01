@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
+Disallow: /_marketing/
+Disallow: /b2b-marketing-hub/
+Disallow: /microassets-chrome-hub/
+Disallow: /omnisuite_platform/
+Disallow: /Design_Review_Dashboard
 
 Sitemap: https://sporlyworks.com/sitemap.xml

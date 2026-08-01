@@ -1,0 +1,139 @@
+name: SEO Authority Builder & Link Health Monitor
+
+on:
+  schedule:
+    # Run every Monday at 10:00 AM UTC (6:00 AM EST)
+    - cron: '0 10 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  seo-authority-builder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4 lxml Pillow
+
+      # ═══════════════════════════════════════════════════
+      # STEP 1: Ping Search Engines with Updated Sitemap
+      # ═══════════════════════════════════════════════════
+      - name: Regenerate Sitemap
+        run: python3 _marketing/generate_sitemap.py
+
+      - name: Ping Google via IndexNow
+        run: |
+          # IndexNow ping (Bing, Yandex, Seznam — Google monitors IndexNow too)
+          curl -s -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "host": "sporlyworks.com",
+              "key": "sporlyworks-indexnow-key",
+              "keyLocation": "https://sporlyworks.com/sporlyworks-indexnow-key.txt",
+              "urlList": [
+                "https://sporlyworks.com/",
+                "https://sporlyworks.com/products.html",
+                "https://sporlyworks.com/blog/index.html",
+                "https://sporlyworks.com/tools/mycology-finder.html",
+                "https://sporlyworks.com/tools/yield-estimator.html"
+              ]
+            }' || true
+
+      - name: Ping Bing Webmaster
+        run: |
+          curl -s "https://www.bing.com/ping?sitemap=https://sporlyworks.com/sitemap.xml" || true
+
+      # ═══════════════════════════════════════════════════
+      # STEP 2: Internal Broken Link Audit
+      # ═══════════════════════════════════════════════════
+      - name: Run Internal Link Audit
+        run: |
+          python3 -c "
+          import os, re, glob
+
+          base = os.getcwd()
+          html_files = glob.glob('**/*.html', recursive=True)
+
+          # Skip non-sporlyworks directories
+          skip_dirs = ['b2b-marketing-hub', 'microassets-chrome-hub', 'omnisuite_platform', '_marketing', 'node_modules']
+          html_files = [f for f in html_files if not any(f.startswith(d) for d in skip_dirs)]
+
+          broken = []
+          link_pattern = re.compile(r'href=[\"\\']([^\"\\'\#][^\"\\'>]*)[\"\\']', re.IGNORECASE)
+
+          for html_file in html_files:
+              with open(html_file, 'r', encoding='utf-8', errors='ignore') as f:
+                  content = f.read()
+
+              links = link_pattern.findall(content)
+              file_dir = os.path.dirname(html_file)
+
+              for link in links:
+                  # Skip external links, mailto, javascript, anchors
+                  if link.startswith(('http://', 'https://', 'mailto:', 'javascript:', 'tel:', '#', 'data:')):
+                      continue
+                  # Strip query params and anchors for file check
+                  clean_link = link.split('?')[0].split('#')[0]
+                  if not clean_link:
+                      continue
+
+                  target = os.path.normpath(os.path.join(file_dir, clean_link))
+                  if not os.path.exists(target):
+                      broken.append(f'  ⚠️  {html_file} → {link} (target: {target})')
+
+          report_path = '_marketing/link_audit_report.md'
+          with open(report_path, 'w') as f:
+              f.write('# Internal Link Audit Report\n')
+              f.write(f'_Generated: $(date -u +\"%Y-%m-%d %H:%M UTC\")_\n\n')
+              if broken:
+                  f.write(f'## ⚠️ {len(broken)} Broken Internal Links Found\n\n')
+                  for b in broken:
+                      f.write(b + '\n')
+              else:
+                  f.write('## ✅ No Broken Internal Links Found\n\n')
+                  f.write('All internal references resolve correctly.\n')
+
+          print(f'Link audit complete: {len(broken)} broken links found')
+          for b in broken[:20]:
+              print(b)
+          "
+
+      # ═══════════════════════════════════════════════════
+      # STEP 3: Generate Backlink Opportunity Drafts
+      # ═══════════════════════════════════════════════════
+      - name: Generate Link Building Content Drafts
+        run: python3 _marketing/link_builder.py
+
+      # ═══════════════════════════════════════════════════
+      # STEP 4: Rebuild Blog, RSS, and Product Pages
+      # ═══════════════════════════════════════════════════
+      - name: Rebuild Site Assets
+        run: |
+          python3 _marketing/generate_product_pages.py
+          python3 _marketing/generate_blog.py
+          python3 _marketing/generate_rss.py
+          python3 _marketing/pSEO_generator.py
+
+      # ═══════════════════════════════════════════════════
+      # STEP 5: Commit and Push
+      # ═══════════════════════════════════════════════════
+      - name: Commit and Push SEO Updates
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "SporlyWorks SEO Bot"
+          git add -A
+          git diff-index --quiet HEAD || git commit -m "chore(seo): weekly authority build — sitemap refresh, link audit, and content syndication drafts"
+          git push origin main
