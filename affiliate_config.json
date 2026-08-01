@@ -36,13 +36,16 @@
     "freshcap": {
       "name": "FreshCap",
       "tagline": "Organic Fruiting Body Extracts",
-      "affiliate_id": "YOUR_FRESHCAP_ID",
+      "affiliate_id": "IMPACT_ACCOUNT_7488636_PENDING",
+      "network": "impact.com",
+      "account_id": "7488636",
       "base_url": "https://freshcap.com",
       "affiliate_url_template": "https://freshcap.com/?ref={affiliate_id}",
       "category": "supplements",
       "description": "100% organic, water-extracted mushroom fruiting bodies. No starch, grains, or mycelium fillers.",
       "image": "assets/illustrations/supplements.jpg",
-      "features": ["100% Fruiting Body", "Verified Beta-Glucans", "USDA Organic"]
+      "features": ["100% Fruiting Body", "Verified Beta-Glucans", "USDA Organic"],
+      "status": "Application Submitted via Impact.com (Account ID: 7488636) - Pending ~72hr Review"
     },
     "seed": {
       "name": "Seed Probiotics",

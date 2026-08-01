@@ -44,22 +44,22 @@ def check_and_update_affiliates():
     # Define search terms and regex patterns for partners
     partner_rules = {
         "freshcap": {
-            "search_sender": "freshcap",
-            "keywords": ["FreshCap", "approved", "partner", "affiliate"],
-            "regex": r"(?:ref=)([a-zA-Z0-9_\-]+)",
+            "search_sender": "impact.com",
+            "keywords": ["freshcap", "impact.com", "approved", "partner", "application"],
+            "regex": r"(?:ref=|subId=|partner/)([a-zA-Z0-9_\-]+)",
             "config_key": "freshcap"
+        },
+        "realmushrooms": {
+            "search_sender": "realmushrooms.com",
+            "keywords": ["real mushrooms", "affiliate", "approved", "ref="],
+            "regex": r"(?:ref=|aff=)([a-zA-Z0-9_\-]+)",
+            "config_key": "realmushrooms"
         },
         "seed": {
             "search_sender": "seed.com",
-            "keywords": ["partner", "approved", "ref="],
+            "keywords": ["partner", "approved", "seeduniversity", "ref="],
             "regex": r"(?:ref=)([a-zA-Z0-9_\-]+)",
             "config_key": "seed"
-        },
-        "north_spore": {
-            "search_sender": "northspore.com",
-            "keywords": ["referral", "reward", "aff="],
-            "regex": r"(?:aff=)([a-zA-Z0-9_\-]+)",
-            "config_key": "north_spore"
         }
     }
 
