@@ -112,10 +112,12 @@ jobs:
           "
 
       # ═══════════════════════════════════════════════════
-      # STEP 3: Generate Backlink Opportunity Drafts
+      # STEP 3: Generate Backlink & Forum Q&A Engagement Drafts
       # ═══════════════════════════════════════════════════
-      - name: Generate Link Building Content Drafts
-        run: python3 _marketing/link_builder.py
+      - name: Generate Link Building & Forum Q&A Engagement Drafts
+        run: |
+          python3 _marketing/link_builder.py
+          python3 _marketing/forum_scanner.py
 
       # ═══════════════════════════════════════════════════
       # STEP 4: Rebuild Blog, RSS, and Product Pages
