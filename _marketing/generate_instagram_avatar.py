@@ -7,33 +7,48 @@ AVATAR_PNG = os.path.join(BASE_DIR, "assets", "instagram_avatar.png")
 AVATAR_JPG = os.path.join(BASE_DIR, "assets", "instagram_avatar.jpg")
 
 def generate_avatar():
-    bg_color = (252, 250, 246, 255) # Warm cream #FCFAF6 matching website
     canvas_size = (1080, 1080)
     
+    # Load exact website navigation logo
     if os.path.exists(LOGO_PATH):
         try:
-            img = Image.open(LOGO_PATH).convert("RGBA")
-            import numpy as np
-            arr = np.array(img)
-            # Remove black background pixels
-            black_pixels = (arr[:,:,0] < 35) & (arr[:,:,1] < 35) & (arr[:,:,2] < 35)
-            arr[black_pixels, 3] = 0
-            cleaned_logo = Image.fromarray(arr)
+            logo = Image.open(LOGO_PATH).convert("RGBA")
             
-            canvas = Image.new("RGBA", canvas_size, bg_color)
-            logo_scaled = cleaned_logo.resize((780, 780), Image.Resampling.LANCZOS)
-            offset = ((canvas_size[0] - 780) // 2, (canvas_size[1] - 780) // 2)
-            canvas.paste(logo_scaled, offset, logo_scaled)
+            # Load website parchment texture background
+            parchment_path = os.path.join(BASE_DIR, "assets", "parchment-tile.jpg")
+            if not os.path.exists(parchment_path):
+                parchment_path = os.path.join(BASE_DIR, "assets", "parchment-seamless.jpg")
+                
+            if os.path.exists(parchment_path):
+                tile = Image.open(parchment_path).convert("RGBA")
+                canvas = Image.new("RGBA", canvas_size)
+                for x in range(0, 1080, tile.width):
+                    for y in range(0, 1080, tile.height):
+                        canvas.paste(tile, (x, y))
+            else:
+                canvas = Image.new("RGBA", canvas_size, (252, 250, 246, 255)) # #FCFAF6
+                
+            w, h = logo.size
+            aspect = w / h
+            target_h = 760
+            target_w = int(target_h * aspect)
+            
+            logo_resized = logo.resize((target_w, target_h), Image.Resampling.LANCZOS)
+            offset_x = (canvas_size[0] - target_w) // 2
+            offset_y = (canvas_size[1] - target_h) // 2
+            
+            # Composite natively using logo's clean alpha channel
+            canvas.paste(logo_resized, (offset_x, offset_y), logo_resized)
             
             final_avatar = canvas.convert("RGB")
             final_avatar.save(AVATAR_PNG, "PNG")
             final_avatar.save(AVATAR_JPG, "JPEG", quality=100)
-            print("✅ Successfully generated Instagram avatar (zero black background!).")
+            print("✅ Successfully generated authentic website logo avatar.")
             return
         except Exception as e:
             print(f"Error generating avatar: {e}")
             
-    # Fallback solid
+    # Fallback
     canvas = Image.new("RGB", canvas_size, "#FCFAF6")
     canvas.save(AVATAR_JPG, "JPEG", quality=95)
 
