@@ -279,11 +279,12 @@ nav:not(.home-nav) .nav-brand,
 /* Homepage scrolled state & subpages state: expand logo brand */
 .home-nav.scrolled .nav-brand,
 nav:not(.home-nav) .nav-brand {
-    max-height: 90px;
+    max-height: 120px;
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
     margin-bottom: 0;
+    overflow: visible;
 }
 .nav-icon {
     flex-shrink: 0;
