@@ -72,156 +72,179 @@ def draw_post(title, quote, source, output_name):
     # Dimensions (1080x1080 Square Post)
     width, height = 1080, 1080
     
-    # Cream Background
-    img = Image.new("RGB", (width, height), "#FCFAF6")
+    # Load Parchment Background or Cream
+    parchment_path = os.path.join(BASE_DIR, "assets", "parchment-tile.jpg")
+    if os.path.exists(parchment_path):
+        tile = Image.open(parchment_path).convert("RGB")
+        img = Image.new("RGB", (width, height))
+        for x in range(0, width, tile.width):
+            for y in range(0, height, tile.height):
+                img.paste(tile, (x, y))
+    else:
+        img = Image.new("RGB", (width, height), "#FCFAF6")
+        
     draw = ImageDraw.Draw(img)
     
     # Colors
-    forest_green = "#1B8A5A"
-    deep_green = "#0D3321"
-    gold = "#C9A84C"
-    charcoal = "#2C3531"
+    forest_green = "#0B4A2E"
+    deep_green = "#143A27"
+    gold = "#C59B27"
+    earth_text = "#2C2418"
     
-    # 1. Outer Borders
-    draw.rectangle([20, 20, 1060, 1060], outline=forest_green, width=2)
-    draw.rectangle([35, 35, 1045, 1045], outline=gold, width=1)
+    # 1. Outer Elegant Borders
+    draw.rectangle([30, 30, 1050, 1050], outline=forest_green, width=2)
+    draw.rectangle([42, 42, 1038, 1038], outline=gold, width=1)
     
-    # 2. Paste Branded SporlyWorks Logo
+    # 2. Paste New Brand Logo (Native clean alpha channel, no pixel manipulation)
     logo_placed = False
-    if os.path.exists(LOGO_PATH):
+    logo_path = os.path.join(BASE_DIR, "assets", "logo-nav.png")
+    if os.path.exists(logo_path):
         try:
-            logo_img = Image.open(LOGO_PATH).convert("RGBA")
-            import numpy as np
-            arr = np.array(logo_img)
-            black_pixels = (arr[:,:,0] < 35) & (arr[:,:,1] < 35) & (arr[:,:,2] < 35)
-            arr[black_pixels, 3] = 0
-            cleaned_logo = Image.fromarray(arr)
-            
-            # Resize to 90x90
-            logo_scaled = cleaned_logo.resize((90, 90), Image.Resampling.LANCZOS)
-            # Paste logo centered at top (Y=70)
-            logo_x = (width - 90) // 2
-            img.paste(logo_scaled, (logo_x, 70), logo_scaled)
+            logo_img = Image.open(logo_path).convert("RGBA")
+            # Target height 140px for prominent clean brand header
+            w, h = logo_img.size
+            aspect = w / h
+            target_h = 140
+            target_w = int(target_h * aspect)
+            logo_scaled = logo_img.resize((target_w, target_h), Image.Resampling.LANCZOS)
+            logo_x = (width - target_w) // 2
+            img.paste(logo_scaled, (logo_x, 60), logo_scaled)
             logo_placed = True
         except Exception as e:
             print(f"⚠️ Error pasting logo: {e}")
             
-    # 3. Header Text under Logo
-    header_y = 195 if logo_placed else 100
-    header_font = get_font(FONT_SERIF_PATHS, 26)
-    draw.text((width // 2, header_y), "SPORLYWORKS", fill=gold, font=header_font, anchor="mm")
+    # 3. Small Category/Topic Label
+    header_y = 220 if logo_placed else 100
+    cat_font = get_font(FONT_SANS_PATHS, 18)
+    draw.text((width // 2, header_y), title.upper()[:45], fill=gold, font=cat_font, anchor="mm")
+    draw.line([(width // 2) - 90, header_y + 20, (width // 2) + 90, header_y + 20], fill=gold, width=1)
     
-    # Draw small botanical line decoration under header
-    draw.line([(width // 2) - 80, header_y + 25, (width // 2) + 80, header_y + 25], fill=gold, width=1)
+    # 4. Main Editorial Quote Text
+    quote_font = get_font(FONT_SERIF_PATHS, 40)
+    wrapped_lines = wrap_text(f"“{quote}”", quote_font, 840, draw)
     
-    # 4. Small Category/Title Label
-    cat_font = get_font(FONT_SANS_PATHS, 20)
-    draw.text((width // 2, header_y + 80), title.upper()[:40], fill=forest_green, font=cat_font, anchor="mm")
-    
-    # 5. Main Big Quote Text (Editorial style, much bigger text, shorter copy)
-    quote_font = get_font(FONT_SERIF_PATHS, 42)
-    wrapped_lines = wrap_text(f"“{quote}”", quote_font, 820, draw)
-    
-    # Calculate starting Y to center the block vertically in the remaining space
-    total_text_height = len(wrapped_lines) * 60
+    total_text_height = len(wrapped_lines) * 58
     content_center_y = 560
     start_y = content_center_y - (total_text_height // 2)
     
     for idx, line in enumerate(wrapped_lines):
-        line_y = start_y + (idx * 60)
-        draw.text((width // 2, line_y), line, fill=deep_green, font=quote_font, anchor="mm")
+        line_y = start_y + (idx * 58)
+        draw.text((width // 2, line_y), line, fill=earth_text, font=quote_font, anchor="mm")
         
-    # 6. Source citation at bottom of main content area
+    # 5. Citation
     source_font = get_font(FONT_SANS_PATHS, 20)
-    draw.text((width // 2, 850), f"Source: {source}", fill=gold, font=source_font, anchor="mm")
+    draw.text((width // 2, 860), f"Reference: {source}", fill=forest_green, font=source_font, anchor="mm")
     
-    # 7. Editorial Footer
-    footer_text = "BOTANICAL PRECISION × FUNCTIONAL WELLNESS"
+    # 6. Footer
+    footer_text = "SPORLYWORKS × MYCOLOGY & FUNCTIONAL WELLNESS"
     footer_font = get_font(FONT_SANS_PATHS, 16)
-    draw.text((width // 2, 1000), footer_text, fill=forest_green, font=footer_font, anchor="mm")
+    draw.text((width // 2, 1000), footer_text, fill=gold, font=footer_font, anchor="mm")
     
     # Save Image
     img_path = os.path.join(DRAFTS_DIR, f"{output_name}.jpg")
-    img.save(img_path, "JPEG", quality=95)
+    img.save(img_path, "JPEG", quality=98)
     print(f"Generated post image: {img_path}")
 
+# Authentic, human, non-AI post captions
 ENGAGING_TEMPLATES = {
     "lions-mane-neurogenesis": {
-        "hook": "🧠 Brain Fog Solved: How Lion’s Mane Literally Rewires Your Neural Pathways ✨",
-        "bullets": [
-            "🔬 Stimulates NGF (Nerve Growth Factor): Bio-active hericenones & erinacines cross the blood-brain barrier.",
-            "⚡ Boosts Neuroplasticity: Helps your brain forge new synaptic connections for sharper memory and deep focus.",
-            "☕ Zero Jitters: Clean cognitive clarity without the caffeine crash or afternoon brain drain."
-        ],
-        "pro_tip": "💡 Pro Tip: Take 1,000mg hot-water extract in your morning coffee or tea for maximum bioavailability.",
-        "cta": "📲 Want to build your ideal daily stack? Try our free Wellness Stack Builder at sporlyworks.com!"
+        "title": "Lion's Mane & Neural Regeneration: What the Research Shows",
+        "caption": """Lion’s Mane (Hericium erinaceus) isn't magic—it’s biochemistry.
+
+The mushroom contains two unique groups of active compounds: hericenones (found in the fruiting body) and erinacines (found in the mycelium).
+
+Research shows these small molecules can cross the blood-brain barrier. Once inside, they stimulate Nerve Growth Factor (NGF)—a primary protein responsible for maintaining cholinergic neurons and building new synaptic connections.
+
+What that means in practice:
+• Steady cognitive focus without caffeine crash
+• Support for long-term memory retention & neuroplasticity
+• Natural nerve growth stimulation
+
+If you take Lion's Mane, look for 100% organic hot-water extracted fruiting body powders with verified beta-glucan percentages (>25%), rather than products made from cheap grain fillers.
+
+Read our full biochemical breakdown and try our interactive Wellness Stack Builder at sporlyworks.com
+
+#mycology #lionsmane #nootropics #neurogenesis #functionalmushrooms #sporlyworks"""
     },
     "all-in-one-grow-bag-guide": {
-        "hook": "🍄 Stop Wasting Spawn: The Cleanroom Secret to 100% Contam-Free Grows 🧼",
-        "bullets": [
-            "🛡️ Dual-Layer Matrix: Pre-sterilized millet & compost layers let you bypass expensive pressure cookers.",
-            "💉 Self-Healing Ports: Inject liquid culture without exposing your sterile substrate to airborne mold.",
-            "💨 0.2µm Respiration Filter: Gives mycelium perfect oxygen flow while blocking 99.9% of bacteria."
-        ],
-        "pro_tip": "💡 Pro Tip: Mix (break & shake) when your bag hits 30% colonization to speed up fruiting by 2x!",
-        "cta": "📲 Calculate your exact yield potential with our free Mushroom Yield Estimator at sporlyworks.com!"
+        "title": "All-In-One Grow Bags: How to Avoid Contamination",
+        "caption": """If you’ve ever lost a mushroom grow to Trichoderma, you know how frustrating it is.
+
+The biggest point of failure in home mycology is during inoculation—exposing sterile grain or substrate to unsterile room air.
+
+All-in-one grow bags solve this with two built-in safety mechanisms:
+1. Self-healing injection ports that let you inject liquid culture without opening the bag.
+2. 0.2-micron filter patches that allow gas exchange while blocking mold spores and bacteria.
+
+Quick tip: When your bag hits about 30% colonization, break up the mycelium and shake the bag thoroughly. Mixing the colonized grain evenly into the substrate cuts your total fruiting time almost in half.
+
+Calculate your substrate ratios and yield potential with our free calculators at sporlyworks.com
+
+#mushroomgrowing #mycology #growbags #steriletechnique #homebiology #sporlyworks"""
     },
     "cordyceps-atp-cellular-energy": {
-        "hook": "⚡ Forget Pre-Workout Jitters: The Fungal Compound That Boosts Cellular ATP 🏃‍♂️",
-        "bullets": [
-            "🫁 Enhanced VO2 Max: Cordycepin & adenosine help your lungs utilize oxygen more efficiently.",
-            "🔋 Natural Cellular ATP: Powers your mitochondria directly for sustained stamina during intense training.",
-            "🧘 No Crash, No Jitters: Works with your cellular biology, not your central nervous system."
-        ],
-        "pro_tip": "💡 Pro Tip: Take 1,500mg Cordyceps militaris 45 minutes before athletic activity for peak endurance.",
-        "cta": "📲 Explore science-backed extract profiles at sporlyworks.com!"
+        "title": "Cordyceps & ATP Synthesis: Clean Endurance Science",
+        "caption": """Unlike pre-workout stimulants that spike your central nervous system, Cordyceps militaris works at the cellular level.
+
+Cordyceps contains cordycepin and adenosine—two nucleoside compounds that directly support ATP (adenosine triphosphate) synthesis in human cells.
+
+Key physiological benefits:
+• Increased oxygen uptake & VO2 kinetics
+• Natural cellular ATP energy production
+• Clean physical stamina without jitters or blood pressure spikes
+
+Taking 1,000mg to 1,500mg about 45 minutes before exercise supports aerobic stamina naturally.
+
+Read our full research breakdown at sporlyworks.com
+
+#cordyceps #endurance #cellularhealth #functionalmushrooms #vo2max #sporlyworks"""
     },
     "identifying-grow-contamination": {
-        "hook": "🛑 Spot Trichoderma Before It Ruins Your Harvest (Save Your Tub!) 🧼",
-        "bullets": [
-            "🟢 Emerald Green Spores: If bright white mycelium turns green within 24h, isolate the tub immediately!",
-            "💧 Myc Piss vs Mold: Light yellow liquid is just stress metabolites; green or black dust is active mold.",
-            "🚫 Do NOT open green tubs inside your grow room—airborne spores will ruin future grows!"
-        ],
-        "pro_tip": "💡 Pro Tip: Run all inoculation work inside a Still Air Box (SAB) sprayed with 70% isopropyl alcohol.",
-        "cta": "📲 Troubleshoot your grow instantly with our free Contamination Diagnostic Guide at sporlyworks.com!"
+        "title": "How to Spot Trichoderma Before It Spreads",
+        "caption": """The most common nightmare in cultivation is Trichoderma green mold.
+
+Here’s how to catch it early:
+• Dense, ultra-bright white growth that turns emerald green within 24 hours is Trichoderma sporulating.
+• Light yellow liquid droplets on mycelium are just secondary metabolites ('myc piss')—a normal stress response, not mold.
+
+Crucial rule: If you see green mold in a tub or bag, do NOT open it inside your grow space. Airborne spores will float across the room and contaminate future grows. Isolate the block immediately.
+
+Use our free visual Contamination Diagnostic Guide at sporlyworks.com/tools/diagnostics.html
+
+#mycology #growerrors #trichoderma #contamination #fungi #sporlyworks"""
     },
     "monotub-tek-beginners-guide": {
-        "hook": "📊 Perfect CVG Substrate Ratios for Massive Mushroom Flushes 🌾",
-        "bullets": [
-            "⚖️ The Holy Grail CVG Ratio: 650g Coir Brick + 2 Qt Vermiculite + 1 Cup Gypsum + 3.5L Boiling Water.",
-            "💦 Field Capacity Secret: Squeeze a handful of substrate—only a few drops of water should come out.",
-            "🌡️ Colonization Sweet Spot: Keep your ambient tub temp between 72°F – 78°F for aggressive growth."
-        ],
-        "pro_tip": "💡 Pro Tip: Never guess your water volume—too wet leads to sour rot; too dry leads to stalled pins.",
-        "cta": "📲 Calculate exact coir & water ratios for any tub size using our free Substrate Calculator at sporlyworks.com!"
+        "title": "The Standard CVG Substrate Formula",
+        "caption": """Field capacity is the single most important parameter when preparing bulk mushroom substrate.
+
+Too wet, and you risk sour rot. Too dry, and your mycelium stalls out before fruiting.
+
+Standard CVG Substrate Recipe:
+• 650g Coir Brick
+• 2 Quarts Vermiculite
+• 1 Cup Gypsum
+• 3.5 to 4.0 Liters Boiling Water
+
+Test field capacity: Take a handful of prepped substrate and squeeze hard. Only a few drops of water should squeeze out between your knuckles.
+
+Use our free interactive CVG Substrate Calculator at sporlyworks.com/tools/substrate-calculator.html
+
+#monotub #cvg #coir #substrateratio #mushroomcultivation #mycology #sporlyworks"""
     }
 }
 
 def generate_caption(title, keywords, slug, summary):
     custom = ENGAGING_TEMPLATES.get(slug)
     if custom:
-        hook = custom["hook"]
-        bullets_str = "\n".join(custom["bullets"])
-        pro_tip = custom["pro_tip"]
-        cta = custom["cta"]
-    else:
-        hook = f"🍄 {title} — Scientific Insight"
-        bullets_str = f"• {summary}\n• Science-backed, 100% verified mycology research.\n• Optimized for home laboratory performance."
-        pro_tip = "💡 Pro Tip: Track your ratios and dates to replicate successful flushes!"
-        cta = f"📲 Read the complete guide and access interactive tools at sporlyworks.com/blog/{slug}.html"
+        return custom["caption"]
         
     kw_tags = " ".join([f"#{k.strip().replace(' ', '').replace('-', '')}" for k in keywords.split(",") if k.strip()])
-    
-    caption = (
-        f"{hook}\n\n"
-        f"{bullets_str}\n\n"
-        f"{pro_tip}\n\n"
-        f"{cta}\n\n"
-        f"🔗 Link in bio: sporlyworks.com\n\n"
-        f"{kw_tags} #sporlyworks #mycology #functionalmushrooms #homegrown #nootropics"
+    return (
+        f"{title}\n\n"
+        f"{summary}\n\n"
+        f"Read the complete research breakdown and use our free mycology tools at sporlyworks.com/blog/{slug}.html\n\n"
+        f"{kw_tags} #sporlyworks #mycology #functionalmushrooms"
     )
-    return caption
 
 def main():
     if not os.path.exists(BLOG_DIR):
