@@ -22,6 +22,6 @@ Fungal and bacterial endospores are incredibly resilient. Boiling water (212°F 
 
 Sterilization requires maintaining this temperature for a minimum of 90 minutes. This thermal death time ensures the complete eradication of competitive organisms.
 
-For cultivators who wish to bypass this labor-intensive process, **North Spore grow kits** and pre-sterilized grain bags offer a guaranteed sterile starting point.
+For cultivators who wish to bypass this labor-intensive process, **Magic Bag grow kits** and pre-sterilized grain bags offer a guaranteed sterile starting point.
 
 > **Research Citation:** Russell, A. D. (1982). *The Destruction of Bacterial Spores*. Academic Press.

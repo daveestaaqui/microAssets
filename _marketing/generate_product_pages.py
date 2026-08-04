@@ -580,7 +580,7 @@ from affiliate_config import build_affiliate_url
 PARTNER_NAMES = {
     "freshcap": "FreshCap",
     "seed": "Seed",
-    "north_spore": "North Spore",
+    "north_spore": "Magic Bag",
     "myyco": "MYYCO",
     "magicbag": "Magic Bag"
 }

@@ -10,7 +10,7 @@
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=1195">
+    <link rel="stylesheet" href="../style.css?v=1200">
     <style>
         .quiz-container {
             max-width: 800px;
@@ -371,47 +371,47 @@
 
         if (userAnswers.step1 === 'gourmet' || userAnswers.step3 === 'kit') {
             recs.push({
-                tag: 'Top Gourmet Grow Kit Choice',
-                name: "North Spore Lion's Mane Grow Kit",
-                desc: 'Pre-colonized organic sawdust block guaranteed to produce large pom-pom clusters in 10-14 days.',
-                link: '../products/lions-mane-grow-kit.html',
-                cta: 'Shop Lion\'s Mane Kit →'
+                tag: 'Top Cultivation Choice',
+                name: 'Magic Bag All-In-One Mushroom Grow Bag',
+                desc: 'Pre-sterilized organic grain and substrate matrix with self-healing injection port and 0.2µm filter patch.',
+                link: 'https://www.magicbag.co/?ref=Sporlyworks',
+                cta: 'Shop Magic Bag Grow Bags →'
             });
             recs.push({
-                tag: 'Substrate & Spawn Helper',
-                name: 'Magic Bag All-In-One Grow Bag',
-                desc: 'Pre-sterilized grain and compost bag with self-healing injection port for custom cultivation.',
-                link: '../products/magic-bag-grow-bags.html',
-                cta: 'Shop Magic Bag →'
+                tag: 'Certified Liquid Genetics',
+                name: 'MYYCO Isolated Liquid Culture Syringes',
+                desc: '100% clean, laboratory-certified liquid culture genetics for rapid mycelial colonization.',
+                link: 'https://myyco.com/shop-microscopy-liquid-culture/?ref=SporlyWorks',
+                cta: 'Shop MYYCO Genetics →'
             });
         } else if (userAnswers.step1 === 'cognition' || userAnswers.step3 === 'powder') {
             recs.push({
-                tag: 'Clinical Nootropic Supplement',
-                name: "FreshCap Organic Lion's Mane Extract",
-                desc: '100% organic fruiting body extract (>25% beta-glucans) clinically backed to stimulate Nerve Growth Factor (NGF).',
-                link: '../products/lions-mane-extract.html',
-                cta: 'Shop Lion\'s Mane Extract →'
+                tag: 'Organic Fruiting Body Extracts',
+                name: 'Real Mushrooms Organic Extract Capsules',
+                desc: '100% organic fruiting body extract (>25% beta-glucans) clinically backed for cognitive focus and immune defense.',
+                link: 'https://www.realmushrooms.com',
+                cta: 'Shop Real Mushrooms Extracts →'
             });
             recs.push({
-                tag: 'Systemic Gut & Absorption Partner',
-                name: 'Seed DS-01® Daily Synbiotic',
-                desc: '24 clinically studied probiotic strains delivering 53.6B AFU directly to the colon via nested ViaCap® technology.',
-                link: '../products/seed-ds01.html',
-                cta: 'Shop DS-01 Synbiotic →'
+                tag: 'Home Lab Substrate Specialist',
+                name: 'Magic Bag All-In-One Substrate Bags',
+                desc: 'Sterile pre-mixed substrate bags engineered for maximum biological efficiency.',
+                link: 'https://www.magicbag.co/?ref=Sporlyworks',
+                cta: 'Shop Magic Bag Substrates →'
             });
         } else {
             recs.push({
                 tag: 'Isolated Genetics Specialist',
-                name: 'MYYCO Psilocybe Natalensis Spores',
-                desc: 'Vigorous, mold-resistant isolated liquid culture syringe endemic to Natal, South Africa. High biological efficiency.',
-                link: '../products/natalensis-spores.html',
-                cta: 'Shop Natalensis Spores →'
+                name: 'MYYCO Microscopy Liquid Culture',
+                desc: 'Vigorous, laboratory-certified liquid culture syringes for scientific study and rapid colonization.',
+                link: 'https://myyco.com/shop-microscopy-liquid-culture/?ref=SporlyWorks',
+                cta: 'Shop MYYCO Genetics →'
             });
             recs.push({
                 tag: 'Sterile Substrate Essential',
                 name: 'Magic Bag All-In-One Grow Bags',
                 desc: 'Pre-sterilized 6 lb capacity grain and compost bag with self-healing injection port.',
-                link: '../products/magic-bag-grow-bags.html',
+                link: 'https://www.magicbag.co/?ref=Sporlyworks',
                 cta: 'Shop All-In-One Bags →'
             });
         }

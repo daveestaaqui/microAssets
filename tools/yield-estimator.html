@@ -8,7 +8,7 @@
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=1195">
+    <link rel="stylesheet" href="../style.css?v=1200">
     <style>
         .tool-container {
             max-width: 850px;
@@ -331,18 +331,18 @@
     fetch('../affiliate_config.json')
         .then(r => r.json())
         .then(config => {
-            ['north_spore', 'myyco', 'magicbag'].forEach(key => {
+            ['magic_bag', 'myyco', 'realmushrooms'].forEach(key => {
                 const partner = config.partners[key];
+                let btn = null;
+                if (key === 'magic_bag') btn = document.getElementById('cta-gourmet');
+                if (key === 'myyco') btn = document.getElementById('cta-spores');
+                if (key === 'realmushrooms') btn = document.getElementById('cta-supplements');
+
                 if (partner) {
                     const isPlaceholder = !partner.affiliate_id || 
                                           partner.affiliate_id.startsWith('YOUR_') || 
                                           partner.affiliate_id.includes('INSERT');
                     
-                    let btn;
-                    if (key === 'north_spore') btn = document.getElementById('cta-gourmet');
-                    else if (key === 'myyco') btn = document.getElementById('cta-myyco');
-                    else if (key === 'magicbag') btn = document.getElementById('cta-magicbag');
-
                     if (btn) {
                         if (isPlaceholder) {
                             btn.href = 'javascript:void(0)';

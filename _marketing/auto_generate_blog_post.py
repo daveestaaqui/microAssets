@@ -317,7 +317,7 @@ Fungal and bacterial endospores are incredibly resilient. Boiling water (212°F 
 
 Sterilization requires maintaining this temperature for a minimum of 90 minutes. This thermal death time ensures the complete eradication of competitive organisms.
 
-For cultivators who wish to bypass this labor-intensive process, **North Spore grow kits** and pre-sterilized grain bags offer a guaranteed sterile starting point.
+For cultivators who wish to bypass this labor-intensive process, **Magic Bag grow kits** and pre-sterilized grain bags offer a guaranteed sterile starting point.
 
 > **Research Citation:** Russell, A. D. (1982). *The Destruction of Bacterial Spores*. Academic Press.
 """
@@ -715,7 +715,7 @@ Mushrooms are 90% water. The first flush extracts a massive amount of moisture f
 3. **Soak Time:** A standard rule is 1 hour of soaking per inch of substrate depth (typically 2-4 hours).
 4. **Drain:** Drain completely. Sitting water will cause bacterial wet rot.
 
-Return the tub to fruiting conditions. Using high-yield starter kits like **North Spore grow kits** ensures the substrate has the nutrient density required for 3 to 4 robust flushes.
+Return the tub to fruiting conditions. Using high-yield starter kits like **Magic Bag grow kits** ensures the substrate has the nutrient density required for 3 to 4 robust flushes.
 
 > **Research Citation:** Oei, P. (2003). *Mushroom Cultivation: Appropriate Technology for Mushroom Growers*. Backhuys Publishers.
 """
