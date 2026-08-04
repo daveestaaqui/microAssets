@@ -119,9 +119,9 @@ def post_via_official_api(image_url, caption, access_token, instagram_account_id
         print(f"❌ Graph API exception: {e}")
         return False
 
-def post_via_instagrapi(image_path, caption, username, password):
-    """Posts an image using the unofficial instagrapi client with auto-OTP solving."""
-    print("🚀 Attempting to post via Instagrapi client...")
+def post_via_instagrapi(image_path, caption, username, password, delete_media_id=None):
+    """Posts an image using the unofficial instagrapi client with auto-OTP solving and updates profile picture."""
+    print("🚀 Attempting to connect via Instagrapi client...")
     try:
         from instagrapi import Client
         cl = Client()
@@ -133,7 +133,26 @@ def post_via_instagrapi(image_path, caption, username, password):
         cl.login(username, password)
         print("✅ Login successful.")
         
-        # Post photo
+        # 1. Update Profile Picture if avatar image exists
+        avatar_path = os.path.join(BASE_DIR, "assets", "instagram_avatar.jpg")
+        if os.path.exists(avatar_path):
+            try:
+                print("🖼️ Updating Instagram profile picture to new logo...")
+                cl.change_profile_picture(avatar_path)
+                print("✅ Instagram profile picture updated successfully!")
+            except Exception as pe:
+                print(f"⚠️ Profile picture update notice: {pe}")
+
+        # 2. Delete specified media ID if requested
+        if delete_media_id:
+            try:
+                print(f"🗑️ Deleting previous post media ID: {delete_media_id}...")
+                cl.media_delete(delete_media_id)
+                print(f"✅ Successfully deleted media ID {delete_media_id}!")
+            except Exception as de:
+                print(f"⚠️ Media deletion notice: {de}")
+        
+        # 3. Post photo
         print("Uploading photo...")
         media = cl.photo_upload(image_path, caption)
         print(f"🎉 Post published successfully via Instagrapi! Media ID: {media.pk}")

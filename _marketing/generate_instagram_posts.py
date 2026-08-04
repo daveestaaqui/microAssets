@@ -145,9 +145,83 @@ def draw_post(title, quote, source, output_name):
     img.save(img_path, "JPEG", quality=95)
     print(f"Generated post image: {img_path}")
 
-def generate_caption(title, keywords, slug):
-    kw_tags = " ".join([f"#{k.strip().replace(' ', '')}" for k in keywords.split(",") if k.strip()])
-    return f"{title}\n\nRead the full article at sporlyworks.com/blog/{slug}\n\n{kw_tags} #sporlyworks"
+ENGAGING_TEMPLATES = {
+    "lions-mane-neurogenesis": {
+        "hook": "🧠 Brain Fog Solved: How Lion’s Mane Literally Rewires Your Neural Pathways ✨",
+        "bullets": [
+            "🔬 Stimulates NGF (Nerve Growth Factor): Bio-active hericenones & erinacines cross the blood-brain barrier.",
+            "⚡ Boosts Neuroplasticity: Helps your brain forge new synaptic connections for sharper memory and deep focus.",
+            "☕ Zero Jitters: Clean cognitive clarity without the caffeine crash or afternoon brain drain."
+        ],
+        "pro_tip": "💡 Pro Tip: Take 1,000mg hot-water extract in your morning coffee or tea for maximum bioavailability.",
+        "cta": "📲 Want to build your ideal daily stack? Try our free Wellness Stack Builder at sporlyworks.com!"
+    },
+    "all-in-one-grow-bag-guide": {
+        "hook": "🍄 Stop Wasting Spawn: The Cleanroom Secret to 100% Contam-Free Grows 🧼",
+        "bullets": [
+            "🛡️ Dual-Layer Matrix: Pre-sterilized millet & compost layers let you bypass expensive pressure cookers.",
+            "💉 Self-Healing Ports: Inject liquid culture without exposing your sterile substrate to airborne mold.",
+            "💨 0.2µm Respiration Filter: Gives mycelium perfect oxygen flow while blocking 99.9% of bacteria."
+        ],
+        "pro_tip": "💡 Pro Tip: Mix (break & shake) when your bag hits 30% colonization to speed up fruiting by 2x!",
+        "cta": "📲 Calculate your exact yield potential with our free Mushroom Yield Estimator at sporlyworks.com!"
+    },
+    "cordyceps-atp-cellular-energy": {
+        "hook": "⚡ Forget Pre-Workout Jitters: The Fungal Compound That Boosts Cellular ATP 🏃‍♂️",
+        "bullets": [
+            "🫁 Enhanced VO2 Max: Cordycepin & adenosine help your lungs utilize oxygen more efficiently.",
+            "🔋 Natural Cellular ATP: Powers your mitochondria directly for sustained stamina during intense training.",
+            "🧘 No Crash, No Jitters: Works with your cellular biology, not your central nervous system."
+        ],
+        "pro_tip": "💡 Pro Tip: Take 1,500mg Cordyceps militaris 45 minutes before athletic activity for peak endurance.",
+        "cta": "📲 Explore science-backed extract profiles at sporlyworks.com!"
+    },
+    "identifying-grow-contamination": {
+        "hook": "🛑 Spot Trichoderma Before It Ruins Your Harvest (Save Your Tub!) 🧼",
+        "bullets": [
+            "🟢 Emerald Green Spores: If bright white mycelium turns green within 24h, isolate the tub immediately!",
+            "💧 Myc Piss vs Mold: Light yellow liquid is just stress metabolites; green or black dust is active mold.",
+            "🚫 Do NOT open green tubs inside your grow room—airborne spores will ruin future grows!"
+        ],
+        "pro_tip": "💡 Pro Tip: Run all inoculation work inside a Still Air Box (SAB) sprayed with 70% isopropyl alcohol.",
+        "cta": "📲 Troubleshoot your grow instantly with our free Contamination Diagnostic Guide at sporlyworks.com!"
+    },
+    "monotub-tek-beginners-guide": {
+        "hook": "📊 Perfect CVG Substrate Ratios for Massive Mushroom Flushes 🌾",
+        "bullets": [
+            "⚖️ The Holy Grail CVG Ratio: 650g Coir Brick + 2 Qt Vermiculite + 1 Cup Gypsum + 3.5L Boiling Water.",
+            "💦 Field Capacity Secret: Squeeze a handful of substrate—only a few drops of water should come out.",
+            "🌡️ Colonization Sweet Spot: Keep your ambient tub temp between 72°F – 78°F for aggressive growth."
+        ],
+        "pro_tip": "💡 Pro Tip: Never guess your water volume—too wet leads to sour rot; too dry leads to stalled pins.",
+        "cta": "📲 Calculate exact coir & water ratios for any tub size using our free Substrate Calculator at sporlyworks.com!"
+    }
+}
+
+def generate_caption(title, keywords, slug, summary):
+    custom = ENGAGING_TEMPLATES.get(slug)
+    if custom:
+        hook = custom["hook"]
+        bullets_str = "\n".join(custom["bullets"])
+        pro_tip = custom["pro_tip"]
+        cta = custom["cta"]
+    else:
+        hook = f"🍄 {title} — Scientific Insight"
+        bullets_str = f"• {summary}\n• Science-backed, 100% verified mycology research.\n• Optimized for home laboratory performance."
+        pro_tip = "💡 Pro Tip: Track your ratios and dates to replicate successful flushes!"
+        cta = f"📲 Read the complete guide and access interactive tools at sporlyworks.com/blog/{slug}.html"
+        
+    kw_tags = " ".join([f"#{k.strip().replace(' ', '').replace('-', '')}" for k in keywords.split(",") if k.strip()])
+    
+    caption = (
+        f"{hook}\n\n"
+        f"{bullets_str}\n\n"
+        f"{pro_tip}\n\n"
+        f"{cta}\n\n"
+        f"🔗 Link in bio: sporlyworks.com\n\n"
+        f"{kw_tags} #sporlyworks #mycology #functionalmushrooms #homegrown #nootropics"
+    )
+    return caption
 
 def main():
     if not os.path.exists(BLOG_DIR):
@@ -163,7 +237,6 @@ def main():
         keywords = data.get("keywords", "wellness, adaptogens")
         
         if not summary:
-            # Skip if no summary
             continue
             
         draw_post(
@@ -173,7 +246,7 @@ def main():
             output_name=f"post_{slug}"
         )
         
-        caption = generate_caption(title, keywords, slug)
+        caption = generate_caption(title, keywords, slug, summary)
         cap_path = os.path.join(DRAFTS_DIR, f"post_{slug}.txt")
         with open(cap_path, "w", encoding="utf-8") as f:
             f.write(caption)
