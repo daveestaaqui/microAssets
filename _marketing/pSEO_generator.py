@@ -315,12 +315,13 @@ guides = [
                 <li><strong>Air Flow:</strong> Mushrooms breathe oxygen and release CO2. Ensure they are in a well-ventilated area so they don't grow long, leggy stems.</li>
             </ul>
         """,
-        "takeaway": "Starting with pre-colonized blocks (like North Spore kits) guarantees a robust first flush and lets you harvest gourmet Oyster or Lion's Mane mushrooms in just 10-14 days.",
-        "partner_key": "north_spore",
-        "partner_url": "https://northspore.com",
-        "cta_text": "Choose from Blue Oyster, Lion's Mane, and Golden Oyster grow kits, backed by a 100% grow guarantee from North Spore.",
-        "partner_cta": "Browse Grow Kits at North Spore →",
-        "keywords": "mushroom grow kit, biological efficiency mycology, oyster mushroom cultivation, home grow block, how to grow mushrooms"
+        "takeaway": "Starting with pre-sterilized all-in-one grow bags (like Magic Bag) guarantees a robust first flush and lets you harvest gourmet Oyster or Lion's Mane mushrooms in just 10-14 days.",
+        "product_name": "Magic Bag All-In-One Grow Bags",
+        "partner_key": "magic_bag",
+        "cta_text": "Pre-sterilized grain and compost substrate with self-healing injection port and 0.2µm filter patch.",
+        "partner_cta": "Shop All-In-One Grow Bags at Magic Bag →",
+        "partner_url": "https://www.magicbag.co",
+        "keywords": "grow kit, biological efficiency mycology, oyster mushroom cultivation, home grow block, how to grow mushrooms"
     },
     {
         "slug": "ds01-synbiotic-gut-science",

@@ -172,13 +172,13 @@
             </div>
 
             <div class="guide-takeaway">
-                <p><strong>Clinical & Mycology Note:</strong> Starting with pre-colonized blocks (like North Spore kits) guarantees a robust first flush and lets you harvest gourmet Oyster or Lion's Mane mushrooms in just 10-14 days.</p>
+                <p><strong>Clinical & Mycology Note:</strong> Starting with pre-sterilized all-in-one grow bags (like Magic Bag) guarantees a robust first flush and lets you harvest gourmet Oyster or Lion's Mane mushrooms in just 10-14 days.</p>
             </div>
 
             <div class="partner-cta-box">
                 <h3>Ready to Take the Next Step?</h3>
-                <p>Choose from Blue Oyster, Lion's Mane, and Golden Oyster grow kits, backed by a 100% grow guarantee from North Spore.</p>
-                <a href="https://northspore.com" id="cta-north_spore" class="partner-cta-btn" target="_blank" rel="noopener">Browse Grow Kits at North Spore →</a>
+                <p>Pre-sterilized grain and compost substrate with self-healing injection port and 0.2µm filter patch.</p>
+                <a href="https://www.magicbag.co" id="cta-magic_bag" class="partner-cta-btn" target="_blank" rel="noopener">Shop All-In-One Grow Bags at Magic Bag →</a>
             </div>
         </article>
     </main>
@@ -229,8 +229,8 @@
     fetch('../affiliate_config.json')
         .then(r => r.json())
         .then(config => {
-            const partner = config.partners['north_spore'];
-            const btn = document.getElementById('cta-north_spore');
+            const partner = config.partners['magic_bag'];
+            const btn = document.getElementById('cta-magic_bag');
             if (partner && btn) {
                 const isPlaceholder = !partner.affiliate_id || 
                                       partner.affiliate_id.startsWith('YOUR_') || 
@@ -247,7 +247,7 @@
                     btn.style.boxShadow = 'none';
                     btn.style.transform = 'none';
                 } else {
-                    let url = "https://northspore.com";
+                    let url = "https://www.magicbag.co";
                     if (partner.affiliate_url_template.includes('awinmid=')) {
                         const midMatch = partner.affiliate_url_template.match(/awinmid=(\d+)/);
                         const mid = midMatch ? midMatch[1] : '';

@@ -95,40 +95,44 @@ def draw_post(title, quote, source, output_name):
     draw.rectangle([30, 30, 1050, 1050], outline=forest_green, width=2)
     draw.rectangle([42, 42, 1038, 1038], outline=gold, width=1)
     
-    # 2. Paste New Brand Logo (Native clean alpha channel, no pixel manipulation)
+    # 2. Paste Clean Mushroom Emblem Logo (No embedded text in logo image)
     logo_placed = False
     logo_path = os.path.join(BASE_DIR, "assets", "logo-nav.png")
     if os.path.exists(logo_path):
         try:
             logo_img = Image.open(logo_path).convert("RGBA")
-            # Target height 140px for prominent clean brand header
+            # Target height 110px for clean elegant emblem header
             w, h = logo_img.size
             aspect = w / h
-            target_h = 140
+            target_h = 110
             target_w = int(target_h * aspect)
             logo_scaled = logo_img.resize((target_w, target_h), Image.Resampling.LANCZOS)
             logo_x = (width - target_w) // 2
-            img.paste(logo_scaled, (logo_x, 60), logo_scaled)
+            img.paste(logo_scaled, (logo_x, 50), logo_scaled)
             logo_placed = True
         except Exception as e:
             print(f"⚠️ Error pasting logo: {e}")
             
-    # 3. Small Category/Topic Label
-    header_y = 220 if logo_placed else 100
-    cat_font = get_font(FONT_SANS_PATHS, 18)
-    draw.text((width // 2, header_y), title.upper()[:45], fill=gold, font=cat_font, anchor="mm")
-    draw.line([(width // 2) - 90, header_y + 20, (width // 2) + 90, header_y + 20], fill=gold, width=1)
+    # 3. Header Wordmark & Category Title
+    header_y = 175 if logo_placed else 80
+    header_font = get_font(FONT_SERIF_PATHS, 24)
+    draw.text((width // 2, header_y), "SPORLYWORKS", fill=gold, font=header_font, anchor="mm")
+    
+    cat_y = header_y + 35
+    cat_font = get_font(FONT_SANS_PATHS, 16)
+    draw.text((width // 2, cat_y), title.upper()[:45], fill=forest_green, font=cat_font, anchor="mm")
+    draw.line([(width // 2) - 80, cat_y + 18, (width // 2) + 80, cat_y + 18], fill=gold, width=1)
     
     # 4. Main Editorial Quote Text
-    quote_font = get_font(FONT_SERIF_PATHS, 40)
+    quote_font = get_font(FONT_SERIF_PATHS, 38)
     wrapped_lines = wrap_text(f"“{quote}”", quote_font, 840, draw)
     
-    total_text_height = len(wrapped_lines) * 58
+    total_text_height = len(wrapped_lines) * 56
     content_center_y = 560
     start_y = content_center_y - (total_text_height // 2)
     
     for idx, line in enumerate(wrapped_lines):
-        line_y = start_y + (idx * 58)
+        line_y = start_y + (idx * 56)
         draw.text((width // 2, line_y), line, fill=earth_text, font=quote_font, anchor="mm")
         
     # 5. Citation

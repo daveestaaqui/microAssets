@@ -133,7 +133,7 @@ def post_via_instagrapi(image_path, caption, username, password, delete_media_id
         cl.login(username, password)
         print("✅ Login successful.")
         
-        # 1. Update Profile Picture if avatar image exists
+        # 1. Update Profile Picture & Biography
         avatar_path = os.path.join(BASE_DIR, "assets", "instagram_avatar.jpg")
         if os.path.exists(avatar_path):
             try:
@@ -142,6 +142,14 @@ def post_via_instagrapi(image_path, caption, username, password, delete_media_id
                 print("✅ Instagram profile picture updated successfully!")
             except Exception as pe:
                 print(f"⚠️ Profile picture update notice: {pe}")
+
+        try:
+            bio_text = "Botanical precision × functional mycology. Organic cultivation science, clinical adaptogenic extracts & sterile genetics. 🍄 sporlyworks.com"
+            print("📝 Updating Instagram channel biography...")
+            cl.set_account_biography(bio_text)
+            print("✅ Channel biography updated successfully!")
+        except Exception as be:
+            print(f"⚠️ Channel bio update notice: {be}")
 
         # 2. Delete specified media ID if requested
         if delete_media_id:
