@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real Mushrooms Organic Gourmet Cultivation & Extracts — SporelyWorks — SporlyWorks Science-Backed Products</title>
-    <meta name="description" content="100% Organic Fruiting Body Extracts & Cultivation Science">
-    <meta name="keywords" content="real mushrooms, organic mushroom extract, beta glucan supplement, lions mane powder, gourmet mushroom extract">
+    <title>Magic Bag Gourmet Mushroom Spawn & Substrate Bags — SporlyWorks — SporlyWorks Science-Backed Products</title>
+    <meta name="description" content="Pre-Sterilized Organic Grain & Compost Blend for Massive Gourmet Flushes">
+    <meta name="keywords" content="gourmet grow bag, all in one mushroom bag, sterile substrate, magic bag">
     <link rel="canonical" href="https://sporlyworks.com/products/gourmet-grow-kits.html">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=1200">
+    <link rel="stylesheet" href="../style.css?v=930">
     <style>
         .product-page-body {
             max-width: 1000px;
@@ -20,7 +20,6 @@
         .product-header {
             display: flex;
             flex-direction: column;
-            md-flex-direction: row;
             gap: 48px;
             margin-bottom: 60px;
             align-items: center;
@@ -86,102 +85,90 @@
         .product-features-list li::before {
             content: '✓';
             color: var(--green-light);
-            font-weight: 800;
-            font-size: 18px;
+            font-weight: bold;
         }
         .product-cta-btn {
             display: inline-block;
-            background: linear-gradient(135deg, var(--green-light), var(--green));
-            color: white;
-            padding: 16px 40px;
+            background: var(--green-dark);
+            color: #ffffff !important;
+            padding: 16px 36px;
             border-radius: var(--radius-pill);
             text-decoration: none;
             font-weight: 700;
-            font-size: 17px;
-            transition: all 0.3s;
-            box-shadow: 0 4px 14px rgba(11, 74, 46, 0.2);
+            font-size: 16px;
+            letter-spacing: 1px;
+            transition: all var(--transition-normal);
+            border: 1px solid var(--green-dark);
+            box-shadow: 0 4px 14px rgba(44, 53, 41, 0.2);
+            text-align: center;
         }
         .product-cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(11, 74, 46, 0.3);
-        }
-        .science-section {
             background: var(--bg-surface-elevated);
-            padding: 44px;
+            color: var(--green-dark) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(44, 53, 41, 0.25);
+        }
+        .product-section {
+            margin-bottom: 48px;
+            background: var(--bg-surface-elevated);
+            padding: 36px;
             border-radius: var(--radius-md);
             border: 1px solid var(--glass-border);
-            margin-bottom: 48px;
-            box-shadow: var(--shadow-soft);
         }
-        .science-section h3 {
-            color: var(--green);
+        .product-section h3 {
             font-size: 26px;
-            margin-bottom: 18px;
-            font-family: 'DM Serif Display', Georgia, serif;
-        }
-        .science-section p {
-            font-size: 17.5px;
-            line-height: 1.8;
-            color: var(--text-primary);
-            margin-bottom: 18px;
-        }
-        .science-ref {
-            font-size: 13.5px;
-            color: var(--text-muted);
-            font-style: italic;
-            border-top: 1px solid var(--glass-border);
-            padding-top: 14px;
-            margin-top: 18px;
-        }
-        .usage-section h3 {
             color: var(--green-dark);
-            font-size: 26px;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--gold-light);
+            padding-bottom: 8px;
             font-family: 'DM Serif Display', Georgia, serif;
         }
-        .usage-section p {
-            font-size: 17.5px;
+        .product-section p {
+            font-size: 17px;
             line-height: 1.8;
-            color: var(--text-primary);
-            margin-bottom: 24px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
         }
-        .fda-disclaimer {
-            font-size: 12px;
+        .product-citation {
+            font-size: 14px;
+            font-style: italic;
             color: var(--text-muted);
-            line-height: 1.5;
-            background: #ffffff;
-            padding: 16px;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--glass-border);
-            margin-top: 60px;
+            border-left: 3px solid var(--gold-dark);
+            padding-left: 16px;
+            margin-top: 24px;
+        }
+        .product-disclaimer {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 48px;
+            line-height: 1.6;
         }
     </style>
-    <meta property="og:title" content="Real Mushrooms Organic Gourmet Cultivation & Extracts — SporelyWorks">
-    <meta property="og:description" content="100% Organic Fruiting Body Extracts & Cultivation Science">
-    <meta property="og:type" content="product">
-    <meta property="og:site_name" content="SporlyWorks">
+    <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
     {
-      "@context": "https://schema.org",
+      "@context": "https://schema.org/",
       "@type": "Product",
-      "name": "Gourmet Mushroom Cultivation & Extract Line",
-      "description": "100% Organic Fruiting Body Extracts & Cultivation Science",
+      "name": "All-In-One Gourmet Mushroom Substrates",
       "image": "https://sporlyworks.com/assets/illustrations/grow_kits.jpg",
+      "description": "Pre-Sterilized Organic Grain & Compost Blend for Massive Gourmet Flushes",
       "brand": {
         "@type": "Brand",
-        "name": "Realmushrooms"
+        "name": "Magic Bag"
       },
-      "url": "https://sporlyworks.com/products/gourmet-grow-kits.html",
       "offers": {
         "@type": "Offer",
-        "url": "https://www.realmushrooms.com"
+        "url": "https://www.magicbag.co?ref=Sporlyworks",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
       }
     }
     </script>
 </head>
 <body>
 
-    <!-- ═══ CENTERED HEADER & NAVBAR ═══ -->
+    <!-- ═══ HEADER & NAVBAR ═══ -->
     <header class="internal-header">
         <div class="header-logo-centered">
             <a href="../index.html" class="header-brand-link">
@@ -200,41 +187,44 @@
         </nav>
     </header>
 
-    <!-- ═══ MAIN CONTENT ═══ -->
+    <!-- ═══ PRODUCT DETAIL CONTAINER ═══ -->
     <main class="product-page-body" style="margin-top: 155px;">
-        
+        <div class="affiliate-disclosure-banner" style="background: rgba(245, 240, 232, 0.6); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 12px 16px; margin-bottom: 30px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; color: var(--text-muted); line-height: 1.5;">
+            <strong>⚖️ FTC Affiliate Disclosure:</strong> SporlyWorks independently researches and vets all recommended products according to analytical science. When you purchase through links on this page, we may earn an affiliate commission at no extra cost to you.
+        </div>
+
         <section class="product-header">
             <div class="product-img-wrapper">
-                <img src="../assets/illustrations/grow_kits.jpg" alt="Gourmet Mushroom Cultivation & Extract Line">
+                <img src="../assets/illustrations/grow_kits.jpg" alt="Magic Bag Gourmet Mushroom Spawn & Substrate Bags — SporlyWorks" loading="lazy">
             </div>
             <div class="product-details">
-                <div class="product-cat">Cultivation & Wellness</div>
-                <h1 class="product-name">Gourmet Mushroom Cultivation & Extract Line</h1>
-                <p class="product-tagline">100% Organic Fruiting Body Extracts & Cultivation Science</p>
+                <div class="product-cat">Cultivation & Spawn Run</div>
+                <h1 class="product-name">All-In-One Gourmet Mushroom Substrates</h1>
+                <div class="product-tagline">Pre-Sterilized Organic Grain & Compost Blend for Massive Gourmet Flushes</div>
                 <ul class="product-features-list">
-                    <li>100% Organic hot-water extracted fruiting body extracts</li>
-            <li>No starch, grain fillers, or mycelium on grain additives</li>
-            <li>Third-party lab tested for verified beta-glucan content (>25%)</li>
-            <li>Available in organic powders and vegan capsules</li>
+                    <li>Pre-sterilized high-yield organic grains and balanced CVG compost blend</li>
+            <li>Self-healing injection port prevents airborne mold contamination</li>
+            <li>0.2-micron gas exchange filter for continuous mycelial respiration</li>
+            <li>Guaranteed 100% sterile upon delivery</li>
                 </ul>
-                <a href="https://www.realmushrooms.com" id="cta-realmushrooms" class="product-cta-btn" target="_blank" rel="noopener">Shop Real Mushrooms Collection →</a>
+                <a href="https://www.magicbag.co?ref=Sporlyworks" id="cta-magicbag" class="product-cta-btn" target="_blank" rel="noopener sponsored">Shop Magic Bag Gourmet Substrates →</a>
             </div>
         </section>
 
-        <section class="science-section">
-            <h3>🔬 Scientific Clinical Backing</h3>
-            <p>Real Mushrooms produces 100% organic mushroom extracts strictly from natural fruiting bodies, bypassing cheap grain fillers. Scientific analysis shows that grain-grown mycelium products often contain up to 70% starch from grain substrates, whereas hot-water extracted fruiting bodies deliver concentrated bioactive beta-glucans and triterpenes.</p>
-            <div class="science-ref">Mycology Reference: Chilton, N. (2020). 'Analytical comparison of beta-glucan vs starch content in mushroom fruiting bodies vs grain-grown mycelium.'</div>
+        <!-- ═══ SCIENTIFIC BREAKDOWN ═══ -->
+        <section class="product-section">
+            <h3>The Science & Mechanism of Action</h3>
+            <p>All-In-One grow bags eliminate the need for costly autoclaves and flow hoods by integrating sterile spawn grain and pasteurized bulk substrate in a single micro-filtered chamber. Inoculating through a self-healing port ensures a sterile spawn run and maximizes biological efficiency.</p>
+            <div class="product-citation">Cultivation Reference: Stamets, P. (2000). 'Growing Gourmet and Medicinal Mushrooms'. Ten Speed Press.</div>
         </section>
 
-        <section class="usage-section">
-            <h3>📦 Dosage & Application</h3>
-            <p>Mix 1/2 tsp (1,000mg) into coffee, tea, smoothies, or water daily. Can be taken with or without food.</p>
+        <!-- ═══ DOSAGE & PROTOCOL ═══ -->
+        <section class="product-section">
+            <h3>Optimal Protocol & Application</h3>
+            <p>Inoculate with 2.5 - 5 mL of liquid culture through the injection port. Once grain is colonized, mix thoroughly and fruit directly within the bag.</p>
         </section>
 
-        <div class="fda-disclaimer">
-            <strong>FDA & FTC Affiliate Disclosure:</strong> SporlyWorks earns an affiliate commission on qualifying purchases made through partner links at no extra cost to you. 100% Organic Mushroom Extract. These statements have not been evaluated by the FDA.
-        </div>
+        <p class="product-disclaimer">Sterile agricultural medium. Contains zero active or psychoactive compounds.</p>
     </main>
 
     <!-- ═══ FOOTER ═══ -->
@@ -282,43 +272,16 @@
     fetch('../affiliate_config.json')
         .then(r => r.json())
         .then(config => {
-            const partner = config.partners['realmushrooms'];
-            const btn = document.getElementById('cta-realmushrooms');
+            const partner = config.partners['magicbag'];
+            const btn = document.getElementById('cta-magicbag');
             if (partner && btn) {
-                const isPlaceholder = !partner.affiliate_id || 
-                                      partner.affiliate_id.startsWith('YOUR_') || 
-                                      partner.affiliate_id.includes('INSERT');
-                
-                // For partners with hardcoded IDs, URL is already rendered correctly by Python
-                if (partner.affiliate_id === 'SporlyWorks' || partner.affiliate_id === 'Sporlyworks') {
-                    return; // Already set by template
-                }
-
-                if (isPlaceholder) {
-                    btn.href = 'javascript:void(0)';
-                    btn.innerHTML = 'Partner Program Pending';
-                    btn.style.pointerEvents = 'none';
-                    btn.style.opacity = '0.6';
-                    btn.style.background = '#888888';
-                    btn.style.borderColor = '#888888';
-                    btn.style.color = '#ffffff';
-                    btn.style.cursor = 'default';
-                    btn.style.boxShadow = 'none';
-                    btn.style.transform = 'none';
-                } else {
-                    let url = "https://www.realmushrooms.com";
-                    if (partner.affiliate_url_template.includes('awinmid=')) {
-                        const midMatch = partner.affiliate_url_template.match(/awinmid=(\d+)/);
-                        const mid = midMatch ? midMatch[1] : '';
-                        url = `https://www.awin1.com/cread.php?awinmid=${mid}&awinaffid=${partner.affiliate_id}&ued=${encodeURIComponent(url)}`;
-                    } else {
-                        url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
-                    }
+                if (partner.affiliate_id && !partner.affiliate_id.startsWith('YOUR_') && !partner.affiliate_id.includes('PENDING')) {
+                    let url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
                     btn.href = url;
                 }
             }
         })
-        .catch(() => console.log('Config fetch skipped - using default links'));
+        .catch(() => console.log('Config fetch skipped - using active URLs'));
     </script>
 <script src="../assets/page-transitions.js"></script>
 </body>

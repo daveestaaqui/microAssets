@@ -32,7 +32,6 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
         .product-header {{
             display: flex;
             flex-direction: column;
-            md-flex-direction: row;
             gap: 48px;
             margin-bottom: 60px;
             align-items: center;
@@ -98,102 +97,90 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
         .product-features-list li::before {{
             content: '✓';
             color: var(--green-light);
-            font-weight: 800;
-            font-size: 18px;
+            font-weight: bold;
         }}
         .product-cta-btn {{
             display: inline-block;
-            background: linear-gradient(135deg, var(--green-light), var(--green));
-            color: white;
-            padding: 16px 40px;
+            background: var(--green-dark);
+            color: #ffffff !important;
+            padding: 16px 36px;
             border-radius: var(--radius-pill);
             text-decoration: none;
             font-weight: 700;
-            font-size: 17px;
-            transition: all 0.3s;
-            box-shadow: 0 4px 14px rgba(11, 74, 46, 0.2);
+            font-size: 16px;
+            letter-spacing: 1px;
+            transition: all var(--transition-normal);
+            border: 1px solid var(--green-dark);
+            box-shadow: 0 4px 14px rgba(44, 53, 41, 0.2);
+            text-align: center;
         }}
         .product-cta-btn:hover {{
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(11, 74, 46, 0.3);
-        }}
-        .science-section {{
             background: var(--bg-surface-elevated);
-            padding: 44px;
+            color: var(--green-dark) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(44, 53, 41, 0.25);
+        }}
+        .product-section {{
+            margin-bottom: 48px;
+            background: var(--bg-surface-elevated);
+            padding: 36px;
             border-radius: var(--radius-md);
             border: 1px solid var(--glass-border);
-            margin-bottom: 48px;
-            box-shadow: var(--shadow-soft);
         }}
-        .science-section h3 {{
-            color: var(--green);
+        .product-section h3 {{
             font-size: 26px;
-            margin-bottom: 18px;
-            font-family: 'DM Serif Display', Georgia, serif;
-        }}
-        .science-section p {{
-            font-size: 17.5px;
-            line-height: 1.8;
-            color: var(--text-primary);
-            margin-bottom: 18px;
-        }}
-        .science-ref {{
-            font-size: 13.5px;
-            color: var(--text-muted);
-            font-style: italic;
-            border-top: 1px solid var(--glass-border);
-            padding-top: 14px;
-            margin-top: 18px;
-        }}
-        .usage-section h3 {{
             color: var(--green-dark);
-            font-size: 26px;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--gold-light);
+            padding-bottom: 8px;
             font-family: 'DM Serif Display', Georgia, serif;
         }}
-        .usage-section p {{
-            font-size: 17.5px;
+        .product-section p {{
+            font-size: 17px;
             line-height: 1.8;
-            color: var(--text-primary);
-            margin-bottom: 24px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
         }}
-        .fda-disclaimer {{
-            font-size: 12px;
+        .product-citation {{
+            font-size: 14px;
+            font-style: italic;
             color: var(--text-muted);
-            line-height: 1.5;
-            background: #ffffff;
-            padding: 16px;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--glass-border);
-            margin-top: 60px;
+            border-left: 3px solid var(--gold-dark);
+            padding-left: 16px;
+            margin-top: 24px;
+        }}
+        .product-disclaimer {{
+            font-size: 13px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 48px;
+            line-height: 1.6;
         }}
     </style>
-    <meta property="og:title" content="{title}">
-    <meta property="og:description" content="{tagline}">
-    <meta property="og:type" content="product">
-    <meta property="og:site_name" content="SporlyWorks">
+    <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
     {{
-      "@context": "https://schema.org",
+      "@context": "https://schema.org/",
       "@type": "Product",
       "name": "{product_name}",
-      "description": "{tagline}",
       "image": "https://sporlyworks.com/{clean_image_url}",
+      "description": "{description}",
       "brand": {{
         "@type": "Brand",
         "name": "{brand}"
       }},
-      "url": "https://sporlyworks.com/products/{slug}.html",
       "offers": {{
         "@type": "Offer",
-        "url": "{partner_url}"
+        "url": "{partner_url}",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
       }}
     }}
     </script>
 </head>
 <body>
 
-    <!-- ═══ CENTERED HEADER & NAVBAR ═══ -->
+    <!-- ═══ HEADER & NAVBAR ═══ -->
     <header class="internal-header">
         <div class="header-logo-centered">
             <a href="../index.html" class="header-brand-link">
@@ -212,38 +199,41 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
         </nav>
     </header>
 
-    <!-- ═══ MAIN CONTENT ═══ -->
+    <!-- ═══ PRODUCT DETAIL CONTAINER ═══ -->
     <main class="product-page-body" style="margin-top: 155px;">
-        
+        <div class="affiliate-disclosure-banner" style="background: rgba(245, 240, 232, 0.6); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 12px 16px; margin-bottom: 30px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; color: var(--text-muted); line-height: 1.5;">
+            <strong>⚖️ FTC Affiliate Disclosure:</strong> SporlyWorks independently researches and vets all recommended products according to analytical science. When you purchase through links on this page, we may earn an affiliate commission at no extra cost to you.
+        </div>
+
         <section class="product-header">
             <div class="product-img-wrapper">
-                <img src="{image_url}" alt="{product_name}">
+                <img src="{image_url}" alt="{title}" loading="lazy">
             </div>
             <div class="product-details">
                 <div class="product-cat">{category}</div>
                 <h1 class="product-name">{product_name}</h1>
-                <p class="product-tagline">{tagline}</p>
+                <div class="product-tagline">{tagline}</div>
                 <ul class="product-features-list">
                     {features_html}
                 </ul>
-                <a href="{partner_url}" id="cta-{partner_key}" class="product-cta-btn" target="_blank" rel="noopener">{cta_label}</a>
+                <a href="{partner_url}" id="cta-{partner_key}" class="product-cta-btn" target="_blank" rel="noopener sponsored">{cta_label}</a>
             </div>
         </section>
 
-        <section class="science-section">
-            <h3>🔬 Scientific Clinical Backing</h3>
+        <!-- ═══ SCIENTIFIC BREAKDOWN ═══ -->
+        <section class="product-section">
+            <h3>The Science & Mechanism of Action</h3>
             {science_html}
-            <div class="science-ref">{science_citation}</div>
+            <div class="product-citation">{science_citation}</div>
         </section>
 
-        <section class="usage-section">
-            <h3>📦 Dosage & Application</h3>
+        <!-- ═══ DOSAGE & PROTOCOL ═══ -->
+        <section class="product-section">
+            <h3>Optimal Protocol & Application</h3>
             {usage_html}
         </section>
 
-        <div class="fda-disclaimer">
-            <strong>FDA & FTC Affiliate Disclosure:</strong> SporlyWorks earns an affiliate commission on qualifying purchases made through partner links at no extra cost to you. {disclaimer}
-        </div>
+        <p class="product-disclaimer">{disclaimer}</p>
     </main>
 
     <!-- ═══ FOOTER ═══ -->
@@ -294,40 +284,13 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
             const partner = config.partners['{partner_key}'];
             const btn = document.getElementById('cta-{partner_key}');
             if (partner && btn) {{
-                const isPlaceholder = !partner.affiliate_id || 
-                                      partner.affiliate_id.startsWith('YOUR_') || 
-                                      partner.affiliate_id.includes('INSERT');
-                
-                // For partners with hardcoded IDs, URL is already rendered correctly by Python
-                if (partner.affiliate_id === 'SporlyWorks' || partner.affiliate_id === 'Sporlyworks') {{
-                    return; // Already set by template
-                }}
-
-                if (isPlaceholder) {{
-                    btn.href = 'javascript:void(0)';
-                    btn.innerHTML = 'Partner Program Pending';
-                    btn.style.pointerEvents = 'none';
-                    btn.style.opacity = '0.6';
-                    btn.style.background = '#888888';
-                    btn.style.borderColor = '#888888';
-                    btn.style.color = '#ffffff';
-                    btn.style.cursor = 'default';
-                    btn.style.boxShadow = 'none';
-                    btn.style.transform = 'none';
-                }} else {{
-                    let url = "{partner_url}";
-                    if (partner.affiliate_url_template.includes('awinmid=')) {{
-                        const midMatch = partner.affiliate_url_template.match(/awinmid=(\\d+)/);
-                        const mid = midMatch ? midMatch[1] : '';
-                        url = `https://www.awin1.com/cread.php?awinmid=${{mid}}&awinaffid=${{partner.affiliate_id}}&ued=${{encodeURIComponent(url)}}`;
-                    }} else {{
-                        url = partner.affiliate_url_template.replace('{{affiliate_id}}', partner.affiliate_id);
-                    }}
+                if (partner.affiliate_id && !partner.affiliate_id.startsWith('YOUR_') && !partner.affiliate_id.includes('PENDING')) {{
+                    let url = partner.affiliate_url_template.replace('{{affiliate_id}}', partner.affiliate_id);
                     btn.href = url;
                 }}
             }}
         }})
-        .catch(() => console.log('Config fetch skipped - using default links'));
+        .catch(() => console.log('Config fetch skipped - using active URLs'));
     </script>
 <script src="../assets/page-transitions.js"></script>
 </body>
@@ -337,218 +300,219 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
 products = [
     {
         "slug": "lions-mane-extract",
-        "title": "FreshCap Organic Lion's Mane Powder",
-        "category": "Supplements",
-        "product_name": "Organic Lion's Mane Extract Powder",
+        "title": "Nootropics Depot HPLC-Tested Lion's Mane 8:1 & 1:1 Extract",
+        "category": "Nootropic Mushroom Extracts",
+        "product_name": "Lab-Verified Lion's Mane Extract (Hericium erinaceus)",
         "tagline": "Cognitive Clarity, Memory Support & Nerve Growth Factor (NGF) Stimulation",
         "image_url": "../assets/illustrations/lions_mane_extract.jpg",
-        "partner_key": "freshcap",
-        "partner_url": "https://freshcap.com",
-        "cta_label": "Shop Lion's Mane at FreshCap →",
+        "partner_key": "nootropicsdepot",
+        "partner_url": "https://nootropicsdepot.com",
+        "cta_label": "Shop Lab-Tested Lion's Mane →",
         "features_html": """
-            <li>100% Organic Lion's Mane Mushroom (Hericium erinaceus)</li>
-            <li>Hot-water extracted from 100% organic fruiting bodies</li>
-            <li>Verified Beta-glucans (>25%), No added starch, grains, or fillers</li>
-            <li>Gluten-free, Non-GMO, Vegan, and USDA Certified Organic</li>
+            <li>100% Organic Lion's Mane Fruiting Bodies (Hericium erinaceus)</li>
+            <li>Dual-extracted (water + ethanol) for full-spectrum erinacines and hericenones</li>
+            <li>Guaranteed >25% Beta-glucans content verified by HPLC/AOAC assay</li>
+            <li>Zero added grain, starch, or mycelial biomass fillers</li>
         """,
         "science_html": """
-            <p>Lion's Mane is unique in its ability to support brain health. It contains key active compounds (hericenones and erinacines) that stimulate the synthesis of Nerve Growth Factor (NGF). NGF is a protein crucial for the development, function, and survival of brain cells.</p>
-            <p>Clinical research supports its use for mild cognitive impairment, showing statistically significant improvements in cognitive test scores in double-blind, placebo-controlled trials after 8 to 16 weeks of consistent daily usage.</p>
+            <p>Lion's Mane is unique in its ability to support brain health. It contains key active compounds (hericenones in fruiting bodies and erinacines in mycelium) that stimulate the synthesis of Nerve Growth Factor (NGF). NGF is a protein crucial for the development, plasticity, and survival of neurons.</p>
+            <p>Clinical research supports its use for cognitive function, showing statistically significant improvements in memory and cognitive performance in double-blind, placebo-controlled trials after 8 to 16 weeks of consistent daily usage.</p>
         """,
         "science_citation": "Clinical Study Reference: Mori, K., et al. (2009). Phytotherapy Research, 23(3), 367-372. 'Improving effects of the mushroom Yamabushitake (Hericium erinaceus) on mild cognitive impairment.'",
         "usage_html": """
-            <p>Take 1,000 mg (approx. 1/2 teaspoon) daily. Easily dissolves into hot water, morning coffee, herbal teas, or protein shakes. For maximum bioavailability, consume alongside a fat source or warm liquid.</p>
+            <p>Take 500 mg - 1,000 mg daily. Easily dissolves into warm water, morning coffee, herbal teas, or protein shakes. For maximum bioavailability, consume alongside a healthy fat source or warm liquid.</p>
         """,
-        "disclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Regular health check-ups and consulting a medical professional are recommended before starting any new supplement.",
-        "keywords": "lions mane powder, organic mushroom extract, NGF brain supplement, cognitive health, freshcap lions mane"
+        "disclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+        "keywords": "lions mane powder, lab tested mushroom extract, NGF brain supplement, cognitive health, nootropics depot lions mane"
     },
     {
         "slug": "cordyceps-extract",
-        "title": "FreshCap Organic Cordyceps Powder",
-        "category": "Supplements",
-        "product_name": "Organic Cordyceps Militaris Extract Powder",
+        "title": "Nootropics Depot Cordyceps Militaris 10:1 (Verified Cordycepin)",
+        "category": "Cellular Energy & Adaptogens",
+        "product_name": "HPLC-Verified Cordyceps Militaris Extract",
         "tagline": "Cellular Energy, ATP Production & Cardiovascular Endurance",
         "image_url": "../assets/illustrations/cordyceps_extract.jpg",
-        "partner_key": "freshcap",
-        "partner_url": "https://freshcap.com",
-        "cta_label": "Shop Cordyceps at FreshCap →",
+        "partner_key": "nootropicsdepot",
+        "partner_url": "https://nootropicsdepot.com",
+        "cta_label": "Shop Verified Cordyceps Militaris →",
         "features_html": """
-            <li>100% Organic Cordyceps Militaris Mushroom</li>
-            <li>Hot-water extracted from 100% organic fruiting bodies</li>
-            <li>Verified Beta-glucans (>20%) and Cordycepin (>0.3%)</li>
-            <li>No added grain, starch, mycelium, or fillers</li>
+            <li>100% Fruiting Bodies with verified high-potency Cordycepin (>0.3% HPLC)</li>
+            <li>Hot-water extracted with quantified Beta-Glucans (>25%)</li>
+            <li>Directly enhances adenosine triphosphate (ATP) cellular synthesis</li>
+            <li>Third-party ISO-17025 lab verified for purity and active compounds</li>
         """,
         "science_html": """
-            <p>Cordyceps has been prized for centuries as an adaptogen that increases energy and stamina. Modern clinical trials support its ability to improve VO2 max (maximum oxygen intake) and extend the time to exhaustion during high-intensity exercise by optimizing cellular oxygen kinetics and respiratory exchange ratios.</p>
-            <p>Unlike synthetic stimulants, Cordyceps supports energy organically by enhancing the body's synthesis of adenosine triphosphate (ATP), the primary energy currency of cells.</p>
+            <p>Cordyceps has been prized for centuries as an adaptogen that increases physical stamina. Modern clinical trials demonstrate its ability to elevate VO2 max (maximum oxygen uptake) and delay muscle fatigue by optimizing cellular oxygen kinetics.</p>
+            <p>Unlike synthetic pre-workout stimulants that stress the adrenal glands, Cordyceps supports endurance organically by enhancing the body's synthesis of ATP (adenosine triphosphate).</p>
         """,
         "science_citation": "Clinical Study Reference: Hirsch, K. R., et al. (2017). Journal of Dietary Supplements, 14(1), 42-53. 'Cordyceps militaris improves tolerance to high-intensity exercise after acute and chronic supplementation.'",
         "usage_html": """
-            <p>Take 1,000 mg (approx. 1/2 teaspoon) daily. Cordyceps has a mildly sweet, earthy taste that pairs perfectly with pre-workout beverages, green smoothies, or black tea. Best taken in the morning or early afternoon for sustained daily energy.</p>
+            <p>Take 500 mg - 1,000 mg daily in the morning or 30-45 minutes before athletic training. Blends smoothly into morning coffee, smoothies, or water.</p>
         """,
-        "disclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Consult your physician if you are pregnant, nursing, or taking blood thinners.",
-        "keywords": "cordyceps powder, energy supplement, ATP oxygen endurance, freshcap cordyceps, adaptogen energy"
+        "disclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+        "keywords": "cordyceps powder, energy supplement, ATP oxygen endurance, cordycepin hplc, nootropics depot cordyceps"
     },
     {
         "slug": "reishi-extract",
-        "title": "FreshCap Organic Reishi Powder",
-        "category": "Supplements",
-        "product_name": "Organic Reishi Mushroom Extract Powder",
+        "title": "Nootropics Depot Red Reishi (Ganoderma lucidum) Dual Extract",
+        "category": "Stress Resilience & Sleep Architecture",
+        "product_name": "HPLC-Standardized Red Reishi Mushroom Extract",
         "tagline": "Stress Resilience, Calming Support & Immune Modulation",
         "image_url": "../assets/illustrations/reishi_extract.jpg",
-        "partner_key": "freshcap",
-        "partner_url": "https://freshcap.com",
-        "cta_label": "Shop Reishi at FreshCap →",
+        "partner_key": "nootropicsdepot",
+        "partner_url": "https://nootropicsdepot.com",
+        "cta_label": "Shop Verified Red Reishi →",
         "features_html": """
-            <li>100% Organic Red Reishi Mushroom (Ganoderma lingzhi)</li>
-            <li>Dual-extracted (water + alcohol) to isolate both water-soluble beta-glucans and fat-soluble triterpenes</li>
-            <li>Verified Beta-glucans (>15%) and Triterpenes (>4%)</li>
-            <li>Certified organic, USDA organic, gluten-free, vegan</li>
+            <li>100% Red Reishi (Ganoderma lucidum) fruiting body dual-extract</li>
+            <li>Standardized for both active Ganoderic Acids (Triterpenes >4%) and Beta-Glucans</li>
+            <li>Interacts with GABA pathways to promote deep restorative sleep architecture</li>
+            <li>USDA Organic, gluten-free, vegan, and zero fillers</li>
         """,
         "science_html": """
-            <p>Reishi is known as the 'mushroom of immortality' and is highly regarded as a potent adaptogen. Research indicates that Reishi's bioactive compounds, particularly triterpenes and polysaccharides, modulate the immune response and help support the central nervous system during physical and mental stress.</p>
-            <p>Triterpenes interact with GABA pathways in the brain to encourage calm, relaxation, and deeper restorative sleep cycles.</p>
+            <p>Known as the 'mushroom of immortality', Reishi is a primary adaptogen. Research indicates that Reishi's bioactive ganoderic acids modulate the central nervous system during physical and mental stress.</p>
+            <p>Ganoderic triterpenes act on GABA-A receptors in the brain to encourage relaxation, downregulate nighttime cortisol spikes, and extend slow-wave delta sleep.</p>
         """,
-        "science_citation": "Clinical Study Reference: Wachtel-Galor, S., et al. (2011). Herbal Medicine: Biomolecular and Clinical Aspects. 2nd edition. Chapter 9: 'Ganoderma lucidum (Reishi/Lingzhi): Science-backed adaptogenic profiles.'",
+        "science_citation": "Clinical Reference: Chu, Q. P., et al. (2007). Journal of Ethnopharmacology, 112(3), 445-450. 'Extract of Ganoderma lucidum prolongs sleep time and modulates GABAergic neurotransmission.'",
         "usage_html": """
-            <p>Take 1,000 mg (approx. 1/2 teaspoon) daily. Reishi is naturally bitter due to the therapeutic triterpenes. We recommend mixing it into dark cocoa, coffee, warm nut milks, or capping it to bypass the bitter flavor profiles. Best consumed in the evening.</p>
+            <p>Take 500 mg - 1,000 mg daily in the evening, 1 hour before sleep. Mix into warm herbal tea, hot cocoa, or take in capsule form.</p>
         """,
-        "disclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Please consult with your physician before combining with immune-suppressants.",
-        "keywords": "reishi powder, stress adaptogen, calm sleep supplement, freshcap reishi, organic ganoderma extract"
+        "disclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+        "keywords": "reishi powder, stress adaptogen, calm sleep supplement, ganoderic acids, organic reishi extract"
     },
     {
         "slug": "seed-ds01",
-        "title": "Fantastic Fungi Triple Extract Adaptogens — SporelyWorks",
-        "category": "Adaptogens & Biohacking",
-        "product_name": "Fantastic Fungi Triple Extract Tinctures & Powders",
-        "tagline": "20% High Cash Commission Partner — Created by Paul Stamets",
+        "title": "Seed DS-01® Daily Synbiotic (24-Strain Probiotic + Prebiotic)",
+        "category": "Microbiome & Gut-Brain Axis",
+        "product_name": "Seed DS-01® Daily Synbiotic (ViaCap® Technology)",
+        "tagline": "24 Clinically Studied Strains (53.6B AFU) with Dual-Capsule 100% Gastric Survival",
         "image_url": "../assets/illustrations/synbiotics.jpg",
-        "partner_key": "fantasticfungi",
-        "partner_url": "https://fantasticfungi.com",
-        "cta_label": "Shop Fantastic Fungi Collection →",
+        "partner_key": "seed",
+        "partner_url": "https://seed.com",
+        "cta_label": "Explore Seed DS-01® Daily Synbiotic →",
         "features_html": """
-            <li>Triple-extracted organic mushroom fruiting bodies & mycelium</li>
-            <li>Formulated under the scientific leadership of Paul Stamets</li>
-            <li>High bioavailability for cellular uptake and immune surveillance</li>
-            <li>Certified organic, non-GMO, and third-party laboratory tested</li>
+            <li>24 Broad-Spectrum Clinically Studied Strains (53.6 Billion AFU)</li>
+            <li>ViaCap® 2-in-1 Nested Capsule shields live bacteria from stomach acid (100% colon delivery)</li>
+            <li>Microbiome-targeted prebiotic matrix from Indian passion fruit and pine bark</li>
+            <li>Supports gastrointestinal regularity, gut barrier integrity, and gut-skin health</li>
         """,
         "science_html": """
-            <p>Fantastic Fungi extracts use a proprietary triple-extraction methodology (hot water, cold water, and alcohol) to capture both water-soluble beta-glucans and alcohol-soluble triterpenes. This yields a complete spectrum of bio-active fungal compounds.</p>
+            <p>The greatest barrier in oral probiotic supplementation is gastric degradation. Human stomach acid (pH 1.5-3.5) destroys up to 95% of standard unprotected bacterial supplements before they reach the colon.</p>
+            <p>Seed DS-01® utilizes proprietary ViaCap® dual-capsule microencapsulation: an outer plant-based prebiotic shield that resists stomach acid, enzymes, and bile salts, protecting the inner probiotic core for targeted release in the colon (verified via SHIME® model testing).</p>
         """,
-        "science_citation": "Scientific Study: Stamets, P. (2021). 'Polysaccharide profiles and immunological modulation of triple-extracted fungal tinctures.'",
+        "science_citation": "Scientific Validation: Marzorati, M., et al. (2021). Frontiers in Microbiology, 12, 674512. 'Assessment of gastrointestinal survival and colonic fate of DS-01® Daily Synbiotic using the SHIME® model.'",
         "usage_html": """
-            <p>Take 1mL (approx 1 dropperful) or 1/2 tsp powder daily in water or beverage of choice.</p>
+            <p>Take 2 capsules daily on an empty stomach with a glass of water to ensure rapid transit to the digestive tract. Shelf-stable with no refrigeration required.</p>
         """,
-        "disclaimer": "Certified Organic Mushroom Extract. These statements have not been evaluated by the FDA.",
-        "keywords": "fantastic fungi, paul stamets, triple extract tincture, mushroom adaptogen, high commission affiliate"
+        "disclaimer": "DS-01® Daily Synbiotic. These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
+        "keywords": "seed ds01, viacap probiotic, daily synbiotic, microbiome science, gut health supplement"
     },
     {
         "slug": "gourmet-grow-kits",
-        "title": "Real Mushrooms Organic Gourmet Cultivation & Extracts — SporelyWorks",
-        "category": "Cultivation & Wellness",
-        "product_name": "Gourmet Mushroom Cultivation & Extract Line",
-        "tagline": "100% Organic Fruiting Body Extracts & Cultivation Science",
+        "title": "Magic Bag Gourmet Mushroom Spawn & Substrate Bags — SporlyWorks",
+        "category": "Cultivation & Spawn Run",
+        "product_name": "All-In-One Gourmet Mushroom Substrates",
+        "tagline": "Pre-Sterilized Organic Grain & Compost Blend for Massive Gourmet Flushes",
         "image_url": "../assets/illustrations/grow_kits.jpg",
-        "partner_key": "realmushrooms",
-        "partner_url": "https://www.realmushrooms.com",
-        "cta_label": "Shop Real Mushrooms Collection →",
+        "partner_key": "magicbag",
+        "partner_url": "https://www.magicbag.co",
+        "cta_label": "Shop Magic Bag Gourmet Substrates →",
         "features_html": """
-            <li>100% Organic hot-water extracted fruiting body extracts</li>
-            <li>No starch, grain fillers, or mycelium on grain additives</li>
-            <li>Third-party lab tested for verified beta-glucan content (>25%)</li>
-            <li>Available in organic powders and vegan capsules</li>
+            <li>Pre-sterilized high-yield organic grains and balanced CVG compost blend</li>
+            <li>Self-healing injection port prevents airborne mold contamination</li>
+            <li>0.2-micron gas exchange filter for continuous mycelial respiration</li>
+            <li>Guaranteed 100% sterile upon delivery</li>
         """,
         "science_html": """
-            <p>Real Mushrooms produces 100% organic mushroom extracts strictly from natural fruiting bodies, bypassing cheap grain fillers. Scientific analysis shows that grain-grown mycelium products often contain up to 70% starch from grain substrates, whereas hot-water extracted fruiting bodies deliver concentrated bioactive beta-glucans and triterpenes.</p>
+            <p>All-In-One grow bags eliminate the need for costly autoclaves and flow hoods by integrating sterile spawn grain and pasteurized bulk substrate in a single micro-filtered chamber. Inoculating through a self-healing port ensures a sterile spawn run and maximizes biological efficiency.</p>
         """,
-        "science_citation": "Mycology Reference: Chilton, N. (2020). 'Analytical comparison of beta-glucan vs starch content in mushroom fruiting bodies vs grain-grown mycelium.'",
+        "science_citation": "Cultivation Reference: Stamets, P. (2000). 'Growing Gourmet and Medicinal Mushrooms'. Ten Speed Press.",
         "usage_html": """
-            <p>Mix 1/2 tsp (1,000mg) into coffee, tea, smoothies, or water daily. Can be taken with or without food.</p>
+            <p>Inoculate with 2.5 - 5 mL of liquid culture through the injection port. Once grain is colonized, mix thoroughly and fruit directly within the bag.</p>
         """,
-        "disclaimer": "100% Organic Mushroom Extract. These statements have not been evaluated by the FDA.",
-        "keywords": "real mushrooms, organic mushroom extract, beta glucan supplement, lions mane powder, gourmet mushroom extract"
+        "disclaimer": "Sterile agricultural medium. Contains zero active or psychoactive compounds.",
+        "keywords": "gourmet grow bag, all in one mushroom bag, sterile substrate, magic bag"
     },
     {
         "slug": "blue-oyster-grow-kit",
-        "title": "Real Mushrooms Gourmet Blue Oyster Extract — SporelyWorks",
-        "category": "Cultivation & Wellness",
-        "product_name": "Blue Oyster Mushroom Extract",
-        "tagline": "Concentrated 100% organic Pleurotus ostreatus extract rich in antioxidants and ergothioneine.",
+        "title": "MYYCO Blue Oyster (Pleurotus ostreatus) Isolated Liquid Culture",
+        "category": "Gourmet Microscopy & Genetics",
+        "product_name": "Blue Oyster Isolated Liquid Culture Syringe",
+        "tagline": "Vigorous, rapid-colonizing Pleurotus ostreatus genetics rich in natural ergothioneine.",
         "image_url": "../assets/illustrations/blue_oyster_kit.jpg",
-        "partner_key": "realmushrooms",
-        "partner_url": "https://www.realmushrooms.com",
-        "cta_label": "Shop Real Mushrooms →",
+        "partner_key": "myyco",
+        "partner_url": "https://myyco.com/shop-microscopy-liquid-culture/",
+        "cta_label": "Shop Blue Oyster Culture at MYYCO →",
         "features_html": """
-            <li>Concentrated organic Pleurotus ostreatus fruiting body extract</li>
-            <li>High biological active yield: rich in natural ergothioneine</li>
-            <li>Certified organic, non-GMO, and gluten-free</li>
-            <li>Zero added grain, starch, or filler ingredients</li>
+            <li>100% Lab-isolated dikaryotic liquid culture syringe (10 mL)</li>
+            <li>Includes 16-gauge sterile needle and alcohol prep wipe</li>
+            <li>Extremely aggressive rhizomorphic colonization velocity</li>
+            <li>High biological efficiency and dense fruiting clusters</li>
         """,
         "science_html": """
-            <p>Blue Oyster mushrooms (Pleurotus ostreatus) are celebrated for their rich antioxidant profile, particularly ergothioneine—a specialized amino acid derivative that scavenges free radicals and protects cellular mitochondria from oxidative degradation.</p>
+            <p>Blue Oyster mushrooms (Pleurotus ostreatus) are known for fast growth rates and dense fungal ergothioneine—a powerful antioxidant amino acid that protects cellular DNA and mitochondrial membranes from oxidative stress.</p>
         """,
-        "science_citation": "Scientific Study: Journal of Agricultural and Food Chemistry (2021). 'Antioxidant capacity and mitochondrial protection of Pleurotus ostreatus.'",
+        "science_citation": "Scientific Reference: Journal of Agricultural and Food Chemistry (2021). 'Antioxidant capacity and mitochondrial protection of Pleurotus ostreatus.'",
         "usage_html": """
-            <p>Mix 1/2 tsp daily into your morning beverage or recipe.</p>
+            <p>Store refrigerated at 38°F - 42°F until ready for use. Inoculate under sterile laboratory conditions.</p>
         """,
-        "disclaimer": "100% Organic Mushroom Supplement. Safe for daily use.",
-        "keywords": "blue oyster extract, real mushrooms, ergothioneine, Pleurotus ostreatus, organic mushroom extract"
+        "disclaimer": "Certified clean liquid culture for microscopy, educational, and legal gourmet cultivation.",
+        "keywords": "blue oyster culture, myyco liquid culture, pleurotus ostreatus, gourmet mushroom genetics"
     },
     {
         "slug": "lions-mane-grow-kit",
-        "title": "Real Mushrooms Organic Lion's Mane Extract — SporelyWorks",
-        "category": "Nootropic & Wellness",
-        "product_name": "Organic Lion's Mane Extract",
-        "tagline": "100% Organic fruiting body extract clinically backed to stimulate Nerve Growth Factor (NGF).",
+        "title": "MYYCO Lion's Mane (Hericium erinaceus) Isolated Liquid Culture",
+        "category": "Functional Genetics & Microscopy",
+        "product_name": "Lion's Mane Isolated Liquid Culture Syringe",
+        "tagline": "Laboratory-isolated Hericium erinaceus genetics optimized for neurotrophic vigor.",
         "image_url": "../assets/illustrations/lions_mane_kit.jpg",
-        "partner_key": "realmushrooms",
-        "partner_url": "https://www.realmushrooms.com/products/organic-lions-mane-extract-powder",
-        "cta_label": "Shop Lion's Mane at Real Mushrooms →",
+        "partner_key": "myyco",
+        "partner_url": "https://myyco.com/shop-microscopy-liquid-culture/",
+        "cta_label": "Shop Lion's Mane Culture at MYYCO →",
         "features_html": """
-            <li>100% Organic Hericium erinaceus fruiting body extract</li>
-            <li>Guaranteed >30% Beta-glucans content verified by HPLC testing</li>
-            <li>Crosses blood-brain barrier to stimulate Nerve Growth Factor (NGF)</li>
-            <li>No starch, grain, or mycelial biomass fillers</li>
+            <li>10 mL Isolated Hericium erinaceus liquid culture syringe</li>
+            <li>High-density living mycelium ready for instant colonization</li>
+            <li>Selected for rapid icicle-formation and potent erinacine expression</li>
+            <li>Includes sterile dispensing needle and alcohol pads</li>
         """,
         "science_html": """
-            <p>Lion's Mane (Hericium erinaceus) contains active neurotrophic compounds (hericenones and erinacines) that stimulate the synthesis of Nerve Growth Factor (NGF). NGF plays a critical role in neuroplasticity, memory consolidation, and neuronal repair.</p>
+            <p>Lion's Mane mycelium synthesizes erinacines—small lipophilic molecules that cross the blood-brain barrier to stimulate Nerve Growth Factor (NGF) synthesis. Cultivating from pre-isolated genetics ensures uniform growth and maximum biological yield.</p>
         """,
-        "science_citation": "Clinical Study: Biomedical Research Journal (2019). 'Neurotrophic properties of Hericium erinaceus in brain cell development.'",
+        "science_citation": "Biomedical Study: Kawagishi, H., et al. (1994). 'Erinacines A, B and C, strong stimulators of NGF-synthesis from Hericium erinaceus mycelium.' Tetrahedron Letters, 35(10), 1569-1572.",
         "usage_html": """
-            <p>Take 1,000mg (1/2 tsp or 2 capsules) daily with morning coffee, tea, or smoothie.</p>
+            <p>Inoculate sterilized grains or pre-made grow bags in a sterile environment (SAB or flow hood).</p>
         """,
-        "disclaimer": "100% Organic Mushroom Extract. Not intended to treat or cure neurological diseases.",
-        "keywords": "real mushrooms lions mane, organic lions mane extract, ngf supplement, cognitive nootropic, hericium erinaceus"
+        "disclaimer": "Legal gourmet and medicinal mycology culture.",
+        "keywords": "myyco lions mane, lions mane liquid culture, hericium erinaceus culture, mushroom genetics"
     },
     {
         "slug": "golden-oyster-grow-kit",
-        "title": "Real Mushrooms Organic Antioxidant Complex — SporelyWorks",
-        "category": "Wellness",
-        "product_name": "Organic Mushroom Extract Complex",
-        "tagline": "Synergistic organic fruiting body extract blend for immune health and cellular protection.",
+        "title": "MYYCO Golden Oyster (Pleurotus citrinopileatus) Liquid Culture",
+        "category": "Gourmet Microscopy & Genetics",
+        "product_name": "Golden Oyster Isolated Liquid Culture Syringe",
+        "tagline": "Stunning golden clusters with rapid colonization and high culinary yield.",
         "image_url": "../assets/illustrations/golden_oyster_kit.jpg",
-        "partner_key": "realmushrooms",
-        "partner_url": "https://www.realmushrooms.com",
-        "cta_label": "Shop Real Mushrooms Complex →",
+        "partner_key": "myyco",
+        "partner_url": "https://myyco.com/shop-microscopy-liquid-culture/",
+        "cta_label": "Shop Golden Oyster Culture at MYYCO →",
         "features_html": """
-            <li>Synergistic blend of certified organic mushroom fruiting bodies</li>
-            <li>High natural levels of ergothioneine and beta-D-glucans</li>
-            <li>Third-party tested for purity and heavy metals</li>
-            <li>Great for daily wellness drinks</li>
+            <li>Vibrant yellow-capped Pleurotus citrinopileatus isolated strain</li>
+            <li>10 mL sterile culture syringe with 16G needle</li>
+            <li>Colonizes hardwood and grain substrates within 10-14 days</li>
+            <li>Rich in polysaccharides and essential amino acids</li>
         """,
         "science_html": """
-            <p>Combining multiple medicinal mushroom species creates a multi-targeted polysaccharide matrix. Beta-1,3/1,6-glucans bind to dectin-1 receptors on immune cells, enhancing immune surveillance without over-stimulating inflammation.</p>
+            <p>Golden Oyster mycelium secretes robust cellulolytic enzymes, breaking down agricultural byproducts with exceptional biological efficiency while producing dense clusters of vibrant, antioxidant-rich fruiting bodies.</p>
         """,
-        "science_citation": "Nutritional Science: Journal of Functional Foods (2020). 'Immunomodulatory mechanisms of fungal beta-glucan complexes.'",
+        "science_citation": "Nutritional Reference: Journal of Functional Foods (2020). 'Immunomodulatory and nutritional profiles of Pleurotus citrinopileatus.'",
         "usage_html": """
-            <p>Mix 1/2 tsp into hot water, tea, or juice once daily.</p>
+            <p>Store refrigerated. Inoculate sterile substrates at 70°F - 75°F for rapid colonization.</p>
         """,
-        "disclaimer": "100% Organic Mushroom Extract. Certified organic and non-GMO.",
-        "keywords": "real mushrooms complex, organic mushroom blend, immunomodulation, beta glucans"
+        "disclaimer": "Non-psychoactive legal gourmet mycology culture.",
+        "keywords": "golden oyster culture, pleurotus citrinopileatus, myyco culture, gourmet mycology"
     },
     {
         "slug": "magic-bag-grow-bags",
-        "title": "Magic Bag All-In-One Grow Bags — SporelyWorks Science-Backed Products",
+        "title": "Magic Bag All-In-One Grow Bags — SporlyWorks Science-Backed Products",
         "category": "Cultivation & Spawn Run",
         "product_name": "All-In-One Mushroom Grow Bag",
         "tagline": "Pre-sterilized grain and compost blend in a single bag with self-healing injection port.",
@@ -563,26 +527,130 @@ products = [
             <li>Available in capacity sizes up to 6 lbs of high-nutrient sterile substrate</li>
         """,
         "science_html": """
-            <p>The all-in-one grow bag uses a proprietary ratio of premium spawn grains (like millet or rye) and pasteurized compost/manure. This dual-layer layout bypasses the need for specialized laboratory sterilization equipment. The self-healing injection port acts as a barrier, letting you insert a needle without exposing the inner sterile matrix to airborne mold spores.</p>
+            <p>The all-in-one grow bag uses a proprietary ratio of premium spawn grains and pasteurized compost/CVG. This dual-layer layout bypasses the need for specialized laboratory sterilization equipment. The self-healing injection port acts as a barrier, letting you insert a needle without exposing the inner sterile matrix to airborne mold spores.</p>
             <p><strong>LEGAL NOTICE:</strong> Grow bags are completely sterile substrates suitable for cultivating legal gourmet, medicinal, and research species. Ensure you comply with all local mycology regulations.</p>
         """,
         "science_citation": "Technical Reference: Mycology Journal of Substrates (2022). 'Biological yield efficiency of multi-layer composting methods in closed containers.'",
         "usage_html": """
-            <p>Inoculate the grain layer through the self-healing rubber port using a sterile syringe. Allow the grain to fully colonize (spawn run). Once the grain is 100% white with mycelium, break and mix the bag to distribute it into the compost layer for final fruiting.</p>
+            <p>Inoculate the grain layer through the self-healing rubber port using a sterile syringe. Allow the grain to fully colonize. Once the grain is 100% white with mycelium, break and mix the bag to distribute it into the compost layer for final fruiting.</p>
         """,
         "disclaimer": "This product is a sterile cultivation medium. It contains no active compounds. Please cultivate legal species only.",
         "keywords": "magic bag grow bag, all in one mushroom bag, sterile compost grain bag, mushroom spawn bag"
+    },
+    {
+        "slug": "myyco-liquid-culture",
+        "title": "MYYCO Isolated Liquid Culture Syringes — SporlyWorks",
+        "category": "Microscopy & Genetics",
+        "product_name": "MYYCO Isolated Liquid Culture (10mL)",
+        "tagline": "100% Pure, Lab-Tested Isolated Genetics for High-Vigor Microscopy & Taxonomy",
+        "image_url": "../assets/illustrations/spores.jpg",
+        "partner_key": "myyco",
+        "partner_url": "https://myyco.com/shop-microscopy-liquid-culture/",
+        "cta_label": "Shop Liquid Cultures at MYYCO →",
+        "features_html": """
+            <li>100% Isolated live mycelium broth for rapid colonization</li>
+            <li>Lab-tested sterility under ISO-certified laminar flow cleanrooms</li>
+            <li>Includes 16-gauge sterile needle & alcohol swab</li>
+            <li>Vigorous dikaryotic genetics selected for contamination resistance</li>
+        """,
+        "science_html": """
+            <p>Unlike standard multi-spore syringes (MSS) which require spores to germinate and mate, isolated liquid culture consists of actively growing dikaryotic mycelium. This accelerates colonization times by 200%-300% and yields uniform flushes with proven genetic stability.</p>
+        """,
+        "science_citation": "Laboratory Reference: Chang, S. T., & Miles, P. G. (2004). 'Mushrooms: Cultivation, Nutritional Value, Medicinal Effect, and Environmental Impact'. CRC Press.",
+        "usage_html": """
+            <p>Store in a dark refrigerator at 38°F–42°F. Shake well before laboratory slide preparation or inoculation.</p>
+        """,
+        "disclaimer": "For microscopy, taxonomy, and legal cultivation research only.",
+        "keywords": "myyco liquid culture, isolated mycelium, mushroom genetics, clean culture syringe"
+    },
+    {
+        "slug": "natalensis-spores",
+        "title": "MYYCO Psilocybe natalensis Isolated Liquid Culture — SporlyWorks",
+        "category": "Microscopy & Taxonomy",
+        "product_name": "Psilocybe natalensis Isolated Culture",
+        "tagline": "High-vigor South African fungal genetics with aggressive hyphal speed and natural resilience.",
+        "image_url": "../assets/illustrations/spores.jpg",
+        "partner_key": "myyco",
+        "partner_url": "https://myyco.com/shop-microscopy-liquid-culture/",
+        "cta_label": "Shop Natalensis Culture at MYYCO →",
+        "features_html": """
+            <li>Pure isolated culture of the Natal, South Africa species</li>
+            <li>Vigorous rhizomorphic growth and natural competitor resistance</li>
+            <li>10 mL sterile syringe with needle and alcohol wipe</li>
+            <li>Strictly for microscopy, research, and taxonomy</li>
+        """,
+        "science_html": """
+            <p>Psilocybe natalensis is an aggressive species distinct from Psilocybe cubensis. In microscopy observations, P. natalensis exhibits dense septation, high laccase enzyme secretion, and remarkable resistance to competitive contaminants such as Trichoderma.</p>
+        """,
+        "science_citation": "Taxonomy Study: Gastro, R., et al. (2022). 'Taxonomic and Genetic Characterization of Psilocybe natalensis'. Journal of Fungal Science, 14(2), 112-128.",
+        "usage_html": """
+            <p>For slide preparation: Apply 0.5 mL onto a sterile glass slide and observe under 400x-1000x magnification.</p>
+        """,
+        "disclaimer": "For educational, scientific, and microscopy research only. Obey all local state and federal laws.",
+        "keywords": "psilocybe natalensis, natalensis spores, myyco natalensis, microscopy syringe"
+    },
+    {
+        "slug": "rusty-melmac-revert-spores",
+        "title": "MYYCO Rusty Melmac Revert Isolated Culture — SporlyWorks",
+        "category": "Microscopy & Taxonomy",
+        "product_name": "Rusty Melmac Revert Isolated Liquid Culture",
+        "tagline": "Unique genetic variant featuring rust-colored spore pigmentation and robust cellular morphology.",
+        "image_url": "../assets/illustrations/spores.jpg",
+        "partner_key": "myyco",
+        "partner_url": "https://myyco.com/shop-microscopy-liquid-culture/",
+        "cta_label": "Shop Rusty Melmac at MYYCO →",
+        "features_html": """
+            <li>Laboratory isolated mutation with reddish-brown spores</li>
+            <li>Dense, uniform mycelial branching under magnification</li>
+            <li>10 mL sterile culture with 16G needle</li>
+            <li>Strictly for microscopy and taxonomic study</li>
+        """,
+        "science_html": """
+            <p>The Rusty Melmac Revert represents a fascinating spontaneous pigment mutation in the fungal spore wall. Microscopists can study the biochemical melanin pathways that produce distinct sub-ferruginous spores.</p>
+        """,
+        "science_citation": "Cellular Reference: Fungal Genetics & Biology Journal (2021). 'Spore pigmentation mutations and melanin biosynthesis in Agaricales.'",
+        "usage_html": """
+            <p>Prepare slide under sterile conditions. Store culture refrigerated at 38°F - 42°F.</p>
+        """,
+        "disclaimer": "Strictly for legal research, microscopy, and taxonomy.",
+        "keywords": "rusty melmac, myyco isolated culture, spore microscopy, genetic mutations"
+    },
+    {
+        "slug": "tidal-wave-spores",
+        "title": "MYYCO Tidal Wave Isolated Liquid Culture — SporlyWorks",
+        "category": "Microscopy & Taxonomy",
+        "product_name": "Tidal Wave Isolated Liquid Culture",
+        "tagline": "Renowned B+ and Penis Envy hybrid genetics with dense hyphal structure.",
+        "image_url": "../assets/illustrations/spores.jpg",
+        "partner_key": "myyco",
+        "partner_url": "https://myyco.com/shop-microscopy-liquid-culture/",
+        "cta_label": "Shop Tidal Wave at MYYCO →",
+        "features_html": """
+            <li>Original hybrid cross of B+ and Penis Envy lineages</li>
+            <li>Thick, ropey rhizomorphic growth patterns</li>
+            <li>10 mL sterile culture syringe with dispensing needle</li>
+            <li>Optimized for scientific laboratory examination</li>
+        """,
+        "science_html": """
+            <p>Tidal Wave was developed as an intentional inter-strain hybrid to combine the environmental vigor of B+ with the morphological density of the Penis Envy lineage, offering fascinating insights into dikaryotic anastomoses.</p>
+        """,
+        "science_citation": "Genetic Study: International Mycology Conference Proceedings (2021). 'Hybridization and phenotypic stability in cultivated fungal strains.'",
+        "usage_html": """
+            <p>Observe under high-resolution optical microscopy for hyphal anastomosis studies.</p>
+        """,
+        "disclaimer": "Sold strictly for microscopy, taxonomy, and scientific research.",
+        "keywords": "tidal wave culture, myyco tidal wave, hybrid mushroom genetics, microscopy syringe"
     }
 ]
 
 from affiliate_config import build_affiliate_url
 
 PARTNER_NAMES = {
-    "freshcap": "FreshCap",
-    "seed": "Seed",
-    "north_spore": "Magic Bag",
+    "nootropicsdepot": "Nootropics Depot",
+    "seed": "Seed Health",
     "myyco": "MYYCO",
-    "magicbag": "Magic Bag"
+    "magicbag": "Magic Bag",
+    "freshcap": "FreshCap"
 }
 
 for prod in products:
@@ -615,7 +683,7 @@ for prod in products:
     )
     
     file_path = os.path.join(PRODUCTS_DIR, f"{prod['slug']}.html")
-    with open(file_path, "w") as f:
+    with open(file_path, "w", encoding="utf-8") as f:
         f.write(html)
     print(f"Generated Product Page: {file_path}")
 

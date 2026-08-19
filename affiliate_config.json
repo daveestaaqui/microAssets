@@ -1,15 +1,15 @@
 {
   "partners": {
-    "realmushrooms": {
-      "name": "Real Mushrooms",
-      "tagline": "Organic Fruiting Body Extracts",
-      "affiliate_id": "YOUR_REALMUSHROOMS_ID",
-      "base_url": "https://www.realmushrooms.com",
-      "affiliate_url_template": "https://www.realmushrooms.com/?ref={affiliate_id}",
+    "nootropicsdepot": {
+      "name": "Nootropics Depot",
+      "tagline": "Lab-Verified Active Fungal Extracts (HPLC/HPTLC Tested)",
+      "affiliate_id": "",
+      "base_url": "https://nootropicsdepot.com",
+      "affiliate_url_template": "https://nootropicsdepot.com/?ref={affiliate_id}",
       "category": "supplements",
-      "description": "100% organic mushroom extracts from fruiting bodies only. No grain fillers. Third-party verified beta-glucan content.",
+      "description": "The gold standard in analytical mycology. 100% pure fruiting body extracts tested via HPLC, HPTLC, and AOAC beta-glucan assays with verified active compound percentages.",
       "image": "assets/illustrations/supplements.jpg",
-      "features": ["100% Fruiting Body", "Third-Party Tested", "USDA Organic"]
+      "features": ["HPLC/HPTLC Analytical Testing", "Verified Beta-Glucans & Cordycepin", "No Fillers, Grain, or Mycelium"]
     },
     "myyco": {
       "name": "MYYCO",
@@ -33,6 +33,17 @@
       "image": "assets/illustrations/grow_bags.jpg",
       "features": ["Pre-Sterilized", "Self-Healing Port", "0.2μm Filter Patch"]
     },
+    "seed": {
+      "name": "Seed Probiotics",
+      "tagline": "DS-01® Daily Synbiotic (ViaCap® Delivery)",
+      "affiliate_id": "",
+      "base_url": "https://seed.com",
+      "affiliate_url_template": "https://seed.com/?ref={affiliate_id}",
+      "category": "synbiotics",
+      "description": "24 clinically validated bacterial strains protected by outer prebiotic passion fruit shield for 100% survivability through human stomach acid.",
+      "image": "assets/illustrations/synbiotics.jpg",
+      "features": ["ViaCap® 2-in-1 Capsule", "53.6 Billion AFU", "100% Colon Delivery"]
+    },
     "freshcap": {
       "name": "FreshCap",
       "tagline": "Organic Fruiting Body Extracts",
@@ -45,18 +56,7 @@
       "description": "100% organic, water-extracted mushroom fruiting bodies. No starch, grains, or mycelium fillers.",
       "image": "assets/illustrations/supplements.jpg",
       "features": ["100% Fruiting Body", "Verified Beta-Glucans", "USDA Organic"],
-      "status": "Application Submitted via Impact.com (Account ID: 7488636) - Pending ~72hr Review"
-    },
-    "fantasticfungi": {
-      "name": "Fantastic Fungi",
-      "tagline": "Premium Adaptogen Extracts",
-      "affiliate_id": "YOUR_FANTASTICFUNGI_ID",
-      "base_url": "https://fantasticfungi.com",
-      "affiliate_url_template": "https://fantasticfungi.com/?ref={affiliate_id}",
-      "category": "supplements",
-      "description": "Premium triple-extracted mushroom tinctures and powders created by Paul Stamets. High-potency bio-available adaptogens.",
-      "image": "assets/illustrations/synbiotics.jpg",
-      "features": ["20% Cash Commission", "Paul Stamets Line", "Triple Extracted"]
+      "status": "Application Submitted via Impact.com (Account ID: 7488636)"
     }
   }
 }

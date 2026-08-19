@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real Mushrooms Gourmet Blue Oyster Extract — SporelyWorks — SporlyWorks Science-Backed Products</title>
-    <meta name="description" content="Concentrated 100% organic Pleurotus ostreatus extract rich in antioxidants and ergothioneine.">
-    <meta name="keywords" content="blue oyster extract, real mushrooms, ergothioneine, Pleurotus ostreatus, organic mushroom extract">
+    <title>MYYCO Blue Oyster (Pleurotus ostreatus) Isolated Liquid Culture — SporlyWorks Science-Backed Products</title>
+    <meta name="description" content="Vigorous, rapid-colonizing Pleurotus ostreatus genetics rich in natural ergothioneine.">
+    <meta name="keywords" content="blue oyster culture, myyco liquid culture, pleurotus ostreatus, gourmet mushroom genetics">
     <link rel="canonical" href="https://sporlyworks.com/products/blue-oyster-grow-kit.html">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=1200">
+    <link rel="stylesheet" href="../style.css?v=930">
     <style>
         .product-page-body {
             max-width: 1000px;
@@ -20,7 +20,6 @@
         .product-header {
             display: flex;
             flex-direction: column;
-            md-flex-direction: row;
             gap: 48px;
             margin-bottom: 60px;
             align-items: center;
@@ -86,102 +85,90 @@
         .product-features-list li::before {
             content: '✓';
             color: var(--green-light);
-            font-weight: 800;
-            font-size: 18px;
+            font-weight: bold;
         }
         .product-cta-btn {
             display: inline-block;
-            background: linear-gradient(135deg, var(--green-light), var(--green));
-            color: white;
-            padding: 16px 40px;
+            background: var(--green-dark);
+            color: #ffffff !important;
+            padding: 16px 36px;
             border-radius: var(--radius-pill);
             text-decoration: none;
             font-weight: 700;
-            font-size: 17px;
-            transition: all 0.3s;
-            box-shadow: 0 4px 14px rgba(11, 74, 46, 0.2);
+            font-size: 16px;
+            letter-spacing: 1px;
+            transition: all var(--transition-normal);
+            border: 1px solid var(--green-dark);
+            box-shadow: 0 4px 14px rgba(44, 53, 41, 0.2);
+            text-align: center;
         }
         .product-cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(11, 74, 46, 0.3);
-        }
-        .science-section {
             background: var(--bg-surface-elevated);
-            padding: 44px;
+            color: var(--green-dark) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(44, 53, 41, 0.25);
+        }
+        .product-section {
+            margin-bottom: 48px;
+            background: var(--bg-surface-elevated);
+            padding: 36px;
             border-radius: var(--radius-md);
             border: 1px solid var(--glass-border);
-            margin-bottom: 48px;
-            box-shadow: var(--shadow-soft);
         }
-        .science-section h3 {
-            color: var(--green);
+        .product-section h3 {
             font-size: 26px;
-            margin-bottom: 18px;
-            font-family: 'DM Serif Display', Georgia, serif;
-        }
-        .science-section p {
-            font-size: 17.5px;
-            line-height: 1.8;
-            color: var(--text-primary);
-            margin-bottom: 18px;
-        }
-        .science-ref {
-            font-size: 13.5px;
-            color: var(--text-muted);
-            font-style: italic;
-            border-top: 1px solid var(--glass-border);
-            padding-top: 14px;
-            margin-top: 18px;
-        }
-        .usage-section h3 {
             color: var(--green-dark);
-            font-size: 26px;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--gold-light);
+            padding-bottom: 8px;
             font-family: 'DM Serif Display', Georgia, serif;
         }
-        .usage-section p {
-            font-size: 17.5px;
+        .product-section p {
+            font-size: 17px;
             line-height: 1.8;
-            color: var(--text-primary);
-            margin-bottom: 24px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
         }
-        .fda-disclaimer {
-            font-size: 12px;
+        .product-citation {
+            font-size: 14px;
+            font-style: italic;
             color: var(--text-muted);
-            line-height: 1.5;
-            background: #ffffff;
-            padding: 16px;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--glass-border);
-            margin-top: 60px;
+            border-left: 3px solid var(--gold-dark);
+            padding-left: 16px;
+            margin-top: 24px;
+        }
+        .product-disclaimer {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 48px;
+            line-height: 1.6;
         }
     </style>
-    <meta property="og:title" content="Real Mushrooms Gourmet Blue Oyster Extract — SporelyWorks">
-    <meta property="og:description" content="Concentrated 100% organic Pleurotus ostreatus extract rich in antioxidants and ergothioneine.">
-    <meta property="og:type" content="product">
-    <meta property="og:site_name" content="SporlyWorks">
+    <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
     {
-      "@context": "https://schema.org",
+      "@context": "https://schema.org/",
       "@type": "Product",
-      "name": "Blue Oyster Mushroom Extract",
-      "description": "Concentrated 100% organic Pleurotus ostreatus extract rich in antioxidants and ergothioneine.",
+      "name": "Blue Oyster Isolated Liquid Culture Syringe",
       "image": "https://sporlyworks.com/assets/illustrations/blue_oyster_kit.jpg",
+      "description": "Vigorous, rapid-colonizing Pleurotus ostreatus genetics rich in natural ergothioneine.",
       "brand": {
         "@type": "Brand",
-        "name": "Realmushrooms"
+        "name": "MYYCO"
       },
-      "url": "https://sporlyworks.com/products/blue-oyster-grow-kit.html",
       "offers": {
         "@type": "Offer",
-        "url": "https://www.realmushrooms.com"
+        "url": "https://myyco.com/shop-microscopy-liquid-culture/?ref=SporlyWorks",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
       }
     }
     </script>
 </head>
 <body>
 
-    <!-- ═══ CENTERED HEADER & NAVBAR ═══ -->
+    <!-- ═══ HEADER & NAVBAR ═══ -->
     <header class="internal-header">
         <div class="header-logo-centered">
             <a href="../index.html" class="header-brand-link">
@@ -200,41 +187,44 @@
         </nav>
     </header>
 
-    <!-- ═══ MAIN CONTENT ═══ -->
+    <!-- ═══ PRODUCT DETAIL CONTAINER ═══ -->
     <main class="product-page-body" style="margin-top: 155px;">
-        
+        <div class="affiliate-disclosure-banner" style="background: rgba(245, 240, 232, 0.6); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 12px 16px; margin-bottom: 30px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; color: var(--text-muted); line-height: 1.5;">
+            <strong>⚖️ FTC Affiliate Disclosure:</strong> SporlyWorks independently researches and vets all recommended products according to analytical science. When you purchase through links on this page, we may earn an affiliate commission at no extra cost to you.
+        </div>
+
         <section class="product-header">
             <div class="product-img-wrapper">
-                <img src="../assets/illustrations/blue_oyster_kit.jpg" alt="Blue Oyster Mushroom Extract">
+                <img src="../assets/illustrations/blue_oyster_kit.jpg" alt="MYYCO Blue Oyster (Pleurotus ostreatus) Isolated Liquid Culture" loading="lazy">
             </div>
             <div class="product-details">
-                <div class="product-cat">Cultivation & Wellness</div>
-                <h1 class="product-name">Blue Oyster Mushroom Extract</h1>
-                <p class="product-tagline">Concentrated 100% organic Pleurotus ostreatus extract rich in antioxidants and ergothioneine.</p>
+                <div class="product-cat">Gourmet Microscopy & Genetics</div>
+                <h1 class="product-name">Blue Oyster Isolated Liquid Culture Syringe</h1>
+                <div class="product-tagline">Vigorous, rapid-colonizing Pleurotus ostreatus genetics rich in natural ergothioneine.</div>
                 <ul class="product-features-list">
-                    <li>Concentrated organic Pleurotus ostreatus fruiting body extract</li>
-            <li>High biological active yield: rich in natural ergothioneine</li>
-            <li>Certified organic, non-GMO, and gluten-free</li>
-            <li>Zero added grain, starch, or filler ingredients</li>
+                    <li>100% Lab-isolated dikaryotic liquid culture syringe (10 mL)</li>
+            <li>Includes 16-gauge sterile needle and alcohol prep wipe</li>
+            <li>Extremely aggressive rhizomorphic colonization velocity</li>
+            <li>High biological efficiency and dense fruiting clusters</li>
                 </ul>
-                <a href="https://www.realmushrooms.com" id="cta-realmushrooms" class="product-cta-btn" target="_blank" rel="noopener">Shop Real Mushrooms →</a>
+                <a href="https://myyco.com/shop-microscopy-liquid-culture/?ref=SporlyWorks" id="cta-myyco" class="product-cta-btn" target="_blank" rel="noopener sponsored">Shop Blue Oyster Culture at MYYCO →</a>
             </div>
         </section>
 
-        <section class="science-section">
-            <h3>🔬 Scientific Clinical Backing</h3>
-            <p>Blue Oyster mushrooms (Pleurotus ostreatus) are celebrated for their rich antioxidant profile, particularly ergothioneine—a specialized amino acid derivative that scavenges free radicals and protects cellular mitochondria from oxidative degradation.</p>
-            <div class="science-ref">Scientific Study: Journal of Agricultural and Food Chemistry (2021). 'Antioxidant capacity and mitochondrial protection of Pleurotus ostreatus.'</div>
+        <!-- ═══ SCIENTIFIC BREAKDOWN ═══ -->
+        <section class="product-section">
+            <h3>The Science & Mechanism of Action</h3>
+            <p>Blue Oyster mushrooms (Pleurotus ostreatus) are known for fast growth rates and dense fungal ergothioneine—a powerful antioxidant amino acid that protects cellular DNA and mitochondrial membranes from oxidative stress.</p>
+            <div class="product-citation">Scientific Reference: Journal of Agricultural and Food Chemistry (2021). 'Antioxidant capacity and mitochondrial protection of Pleurotus ostreatus.'</div>
         </section>
 
-        <section class="usage-section">
-            <h3>📦 Dosage & Application</h3>
-            <p>Mix 1/2 tsp daily into your morning beverage or recipe.</p>
+        <!-- ═══ DOSAGE & PROTOCOL ═══ -->
+        <section class="product-section">
+            <h3>Optimal Protocol & Application</h3>
+            <p>Store refrigerated at 38°F - 42°F until ready for use. Inoculate under sterile laboratory conditions.</p>
         </section>
 
-        <div class="fda-disclaimer">
-            <strong>FDA & FTC Affiliate Disclosure:</strong> SporlyWorks earns an affiliate commission on qualifying purchases made through partner links at no extra cost to you. 100% Organic Mushroom Supplement. Safe for daily use.
-        </div>
+        <p class="product-disclaimer">Certified clean liquid culture for microscopy, educational, and legal gourmet cultivation.</p>
     </main>
 
     <!-- ═══ FOOTER ═══ -->
@@ -282,43 +272,16 @@
     fetch('../affiliate_config.json')
         .then(r => r.json())
         .then(config => {
-            const partner = config.partners['realmushrooms'];
-            const btn = document.getElementById('cta-realmushrooms');
+            const partner = config.partners['myyco'];
+            const btn = document.getElementById('cta-myyco');
             if (partner && btn) {
-                const isPlaceholder = !partner.affiliate_id || 
-                                      partner.affiliate_id.startsWith('YOUR_') || 
-                                      partner.affiliate_id.includes('INSERT');
-                
-                // For partners with hardcoded IDs, URL is already rendered correctly by Python
-                if (partner.affiliate_id === 'SporlyWorks' || partner.affiliate_id === 'Sporlyworks') {
-                    return; // Already set by template
-                }
-
-                if (isPlaceholder) {
-                    btn.href = 'javascript:void(0)';
-                    btn.innerHTML = 'Partner Program Pending';
-                    btn.style.pointerEvents = 'none';
-                    btn.style.opacity = '0.6';
-                    btn.style.background = '#888888';
-                    btn.style.borderColor = '#888888';
-                    btn.style.color = '#ffffff';
-                    btn.style.cursor = 'default';
-                    btn.style.boxShadow = 'none';
-                    btn.style.transform = 'none';
-                } else {
-                    let url = "https://www.realmushrooms.com";
-                    if (partner.affiliate_url_template.includes('awinmid=')) {
-                        const midMatch = partner.affiliate_url_template.match(/awinmid=(\d+)/);
-                        const mid = midMatch ? midMatch[1] : '';
-                        url = `https://www.awin1.com/cread.php?awinmid=${mid}&awinaffid=${partner.affiliate_id}&ued=${encodeURIComponent(url)}`;
-                    } else {
-                        url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
-                    }
+                if (partner.affiliate_id && !partner.affiliate_id.startsWith('YOUR_') && !partner.affiliate_id.includes('PENDING')) {
+                    let url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
                     btn.href = url;
                 }
             }
         })
-        .catch(() => console.log('Config fetch skipped - using default links'));
+        .catch(() => console.log('Config fetch skipped - using active URLs'));
     </script>
 <script src="../assets/page-transitions.js"></script>
 </body>

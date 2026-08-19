@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MYYCO Premium Liquid Cultures — SporelyWorks Science-Backed Products — SporlyWorks Science-Backed Products</title>
-    <meta name="description" content="Microscopy-grade isolated genetics and sterile liquid culture syringes for taxonomy and research.">
-    <meta name="keywords" content="myyco liquid culture, isolated genetics, spore syringe, microscopy spores, taxonomy research">
+    <title>MYYCO Isolated Liquid Culture Syringes — SporlyWorks — SporlyWorks Science-Backed Products</title>
+    <meta name="description" content="100% Pure, Lab-Tested Isolated Genetics for High-Vigor Microscopy & Taxonomy">
+    <meta name="keywords" content="myyco liquid culture, isolated mycelium, mushroom genetics, clean culture syringe">
     <link rel="canonical" href="https://sporlyworks.com/products/myyco-liquid-culture.html">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css?v=1200">
+    <link rel="stylesheet" href="../style.css?v=930">
     <style>
         .product-page-body {
             max-width: 1000px;
@@ -20,7 +20,6 @@
         .product-header {
             display: flex;
             flex-direction: column;
-            md-flex-direction: row;
             gap: 48px;
             margin-bottom: 60px;
             align-items: center;
@@ -50,183 +49,182 @@
         }
         .product-cat {
             color: var(--gold-dark);
-            font-size: 14px;
+            font-size: 15px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-            margin-bottom: 8px;
+            letter-spacing: 2.5px;
+            font-weight: 700;
+            margin-bottom: 10px;
         }
         .product-name {
-            font-size: 38px;
+            font-size: 42px;
             color: var(--green-dark);
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             line-height: 1.2;
             font-family: 'DM Serif Display', Georgia, serif;
         }
         .product-tagline {
-            font-size: 18px;
+            font-size: 20px;
             color: var(--text-secondary);
             font-style: italic;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
+            line-height: 1.6;
         }
         .product-features-list {
-            margin-bottom: 32px;
+            margin-bottom: 36px;
             list-style: none;
             padding: 0;
         }
         .product-features-list li {
-            margin-bottom: 12px;
-            font-size: 15px;
+            margin-bottom: 14px;
+            font-size: 17px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             color: var(--text-primary);
         }
         .product-features-list li::before {
             content: '✓';
             color: var(--green-light);
-            font-weight: 800;
+            font-weight: bold;
         }
         .product-cta-btn {
             display: inline-block;
-            background: linear-gradient(135deg, var(--green-light), var(--green));
-            color: white;
-            padding: 14px 36px;
+            background: var(--green-dark);
+            color: #ffffff !important;
+            padding: 16px 36px;
             border-radius: var(--radius-pill);
             text-decoration: none;
             font-weight: 700;
             font-size: 16px;
-            transition: all 0.3s;
-            box-shadow: 0 4px 14px rgba(11, 74, 46, 0.2);
+            letter-spacing: 1px;
+            transition: all var(--transition-normal);
+            border: 1px solid var(--green-dark);
+            box-shadow: 0 4px 14px rgba(44, 53, 41, 0.2);
+            text-align: center;
         }
         .product-cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(11, 74, 46, 0.3);
-        }
-        .science-section {
             background: var(--bg-surface-elevated);
-            padding: 40px;
+            color: var(--green-dark) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(44, 53, 41, 0.25);
+        }
+        .product-section {
+            margin-bottom: 48px;
+            background: var(--bg-surface-elevated);
+            padding: 36px;
             border-radius: var(--radius-md);
             border: 1px solid var(--glass-border);
-            margin-bottom: 48px;
-            box-shadow: var(--shadow-soft);
         }
-        .science-section h3 {
-            color: var(--green);
-            font-size: 24px;
-            margin-bottom: 16px;
+        .product-section h3 {
+            font-size: 26px;
+            color: var(--green-dark);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--gold-light);
+            padding-bottom: 8px;
             font-family: 'DM Serif Display', Georgia, serif;
         }
-        .science-section p {
-            font-size: 15px;
-            line-height: 1.7;
+        .product-section p {
+            font-size: 17px;
+            line-height: 1.8;
             color: var(--text-secondary);
             margin-bottom: 16px;
         }
-        .science-ref {
-            font-size: 12px;
-            color: var(--text-muted);
+        .product-citation {
+            font-size: 14px;
             font-style: italic;
-            border-top: 1px solid var(--glass-border);
-            padding-top: 12px;
-            margin-top: 16px;
-        }
-        .usage-section h3 {
-            color: var(--green-dark);
-            font-size: 24px;
-            margin-bottom: 16px;
-            font-family: 'DM Serif Display', Georgia, serif;
-        }
-        .usage-section p {
-            font-size: 15px;
-            line-height: 1.7;
-            color: var(--text-primary);
-            margin-bottom: 24px;
-        }
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            color: var(--green-light);
-            font-weight: 600;
-            margin-bottom: 32px;
-            transition: transform 0.2s;
-        }
-        .back-link:hover {
-            transform: translateX(-4px);
-        }
-        .fda-disclaimer {
-            font-size: 12px;
             color: var(--text-muted);
-            line-height: 1.5;
-            background: #ffffff;
-            padding: 16px;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--glass-border);
-            margin-top: 60px;
+            border-left: 3px solid var(--gold-dark);
+            padding-left: 16px;
+            margin-top: 24px;
+        }
+        .product-disclaimer {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 48px;
+            line-height: 1.6;
         }
     </style>
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "MYYCO Isolated Liquid Culture (10mL)",
+      "image": "https://sporlyworks.com/assets/illustrations/spores.jpg",
+      "description": "100% Pure, Lab-Tested Isolated Genetics for High-Vigor Microscopy & Taxonomy",
+      "brand": {
+        "@type": "Brand",
+        "name": "MYYCO"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://myyco.com/shop-microscopy-liquid-culture/?ref=SporlyWorks",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>
 </head>
 <body>
 
-    <!-- ═══ NAVIGATION ═══ -->
-    <nav id="mainNav" class="scrolled">
-        <div class="nav-inner">
-            <a href="../index.html" class="nav-brand">
-                <img src="../assets/logo-nav.png?v=960" alt="SporlyWorks" class="nav-icon">
-                <span class="nav-wordmark">SPORLYWORKS</span>
+    <!-- ═══ HEADER & NAVBAR ═══ -->
+    <header class="internal-header">
+        <div class="header-logo-centered">
+            <a href="../index.html" class="header-brand-link">
+                <img src="../assets/logo-nav.png?v=908" alt="SporlyWorks" class="header-logo-img">
+                <span class="header-wordmark">SPORLYWORKS</span>
             </a>
-            <div class="nav-menu-row">
-                <div class="nav-links">
-                    <a href="../products.html" class="active">Products</a>
-                    <a href="../tools/yield-estimator.html">Yield Estimator</a>
-                    <a href="../tools/wellness-stack-builder.html">Stack Builder</a>
-                    <a href="../tools/diagnostics.html">Diagnostics</a>
-                    <a href="../tools/substrate-calculator.html">Substrate Calculator</a>
-                    <a href="../blog/index.html">Blog</a>
-                </div>
-            </div>
         </div>
-    </nav>
+        <nav class="header-nav-centered">
+            <div class="nav-links-row">
+                <a href="../index.html">Home</a>
+                <a href="../products.html" class="active">Shop Products</a>
+                <a href="../tools/mycology-finder.html">Finder Quiz</a>
+                <a href="../tools/yield-estimator.html">Yield Calculator</a>
+                <a href="../blog/index.html">Research Blog</a>
+            </div>
+        </nav>
+    </header>
 
-    <!-- ═══ MAIN CONTENT ═══ -->
-    <main class="product-page-body">
-        <a href="../index.html" class="back-link">← Back to Home</a>
-        
+    <!-- ═══ PRODUCT DETAIL CONTAINER ═══ -->
+    <main class="product-page-body" style="margin-top: 155px;">
+        <div class="affiliate-disclosure-banner" style="background: rgba(245, 240, 232, 0.6); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 12px 16px; margin-bottom: 30px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; color: var(--text-muted); line-height: 1.5;">
+            <strong>⚖️ FTC Affiliate Disclosure:</strong> SporlyWorks independently researches and vets all recommended products according to analytical science. When you purchase through links on this page, we may earn an affiliate commission at no extra cost to you.
+        </div>
+
         <section class="product-header">
             <div class="product-img-wrapper">
-                <img src="../assets/illustrations/spores.jpg?v=960" alt="Isolated Liquid Culture Spore Syringe">
+                <img src="../assets/illustrations/spores.jpg" alt="MYYCO Isolated Liquid Culture Syringes — SporlyWorks" loading="lazy">
             </div>
             <div class="product-details">
-                <div class="product-cat">Microscopy & Research</div>
-                <h1 class="product-name">Isolated Liquid Culture Spore Syringe</h1>
-                <p class="product-tagline">Microscopy-grade isolated genetics and sterile liquid culture syringes for taxonomy and research.</p>
+                <div class="product-cat">Microscopy & Genetics</div>
+                <h1 class="product-name">MYYCO Isolated Liquid Culture (10mL)</h1>
+                <div class="product-tagline">100% Pure, Lab-Tested Isolated Genetics for High-Vigor Microscopy & Taxonomy</div>
                 <ul class="product-features-list">
-                    <li>Isolated liquid culture suspended in sterile nutrient broth</li>
-            <li>Guaranteed 100% sterile and contamination-free</li>
-            <li>Prepared in a professional lab with HEPA laminar flow hoods</li>
-            <li>Includes a sterile 18G needle for safe microscopy preparation</li>
+                    <li>100% Isolated live mycelium broth for rapid colonization</li>
+            <li>Lab-tested sterility under ISO-certified laminar flow cleanrooms</li>
+            <li>Includes 16-gauge sterile needle & alcohol swab</li>
+            <li>Vigorous dikaryotic genetics selected for contamination resistance</li>
                 </ul>
-                <a href="https://www.myyco.com" id="cta-myyco" class="product-cta-btn" target="_blank" rel="noopener">Shop Genetics at MYYCO →</a>
+                <a href="https://myyco.com/shop-microscopy-liquid-culture/?ref=SporlyWorks" id="cta-myyco" class="product-cta-btn" target="_blank" rel="noopener sponsored">Shop Liquid Cultures at MYYCO →</a>
             </div>
         </section>
 
-        <section class="science-section">
-            <h3>🔬 Scientific Clinical Backing</h3>
-            <p>Isolated liquid culture syringe genetics represent a pre-germinated mycelial cell line. For taxonomists, studying liquid cultures under a microscope allows for the observation of hyphal branching, clamp connections, and cellular structure without waiting for spore germination.</p>
-            <p><strong>LEGAL COMPLIANCE & SAFETY NOTICE:</strong> Psilocybe liquid cultures and spore solutions are sold strictly for microscopy, taxonomy, and scientific laboratory research purposes. Cultivation of active species remains federally restricted. We do not provide cultivation instructions or support for active species. Check your local state guidelines before purchasing (shipping restrictions apply to GA, ID, and CA).</p>
-            <div class="science-ref">Scientific Reference: Stamets, P. (2000). Growing Gourmet and Medicinal Mushrooms. 'Mycelial morphology under microscopic examination.'</div>
+        <!-- ═══ SCIENTIFIC BREAKDOWN ═══ -->
+        <section class="product-section">
+            <h3>The Science & Mechanism of Action</h3>
+            <p>Unlike standard multi-spore syringes (MSS) which require spores to germinate and mate, isolated liquid culture consists of actively growing dikaryotic mycelium. This accelerates colonization times by 200%-300% and yields uniform flushes with proven genetic stability.</p>
+            <div class="product-citation">Laboratory Reference: Chang, S. T., & Miles, P. G. (2004). 'Mushrooms: Cultivation, Nutritional Value, Medicinal Effect, and Environmental Impact'. CRC Press.</div>
         </section>
 
-        <section class="usage-section">
-            <h3>📦 Dosage & Application</h3>
-            <p>For research, dispense 0.5 - 1 mL of the liquid culture onto a clean microscope slide. Cover with a cover slip and examine under 400x to 1000x magnification to study hyphal cell walls, septate junctions, and cytoplasmic streaming.</p>
+        <!-- ═══ DOSAGE & PROTOCOL ═══ -->
+        <section class="product-section">
+            <h3>Optimal Protocol & Application</h3>
+            <p>Store in a dark refrigerator at 38°F–42°F. Shake well before laboratory slide preparation or inoculation.</p>
         </section>
 
-        <div class="fda-disclaimer">
-            <strong>FDA & Legal Disclaimer:</strong> Spore syringes and liquid cultures are strictly for microscopy, taxonomy, and laboratory research. The buyer assumes all responsibility for operating within local state and federal laws.
-        </div>
+        <p class="product-disclaimer">For microscopy, taxonomy, and legal cultivation research only.</p>
     </main>
 
     <!-- ═══ FOOTER ═══ -->
@@ -275,25 +273,16 @@
         .then(r => r.json())
         .then(config => {
             const partner = config.partners['myyco'];
-            if (partner) {
-                let url = "https://www.myyco.com";
-                const isPlaceholder = !partner.affiliate_id || 
-                                      partner.affiliate_id.startsWith('YOUR_') || 
-                                      partner.affiliate_id.includes('INSERT');
-                if (!isPlaceholder) {
-                    if (partner.affiliate_url_template.includes('awinmid=')) {
-                        const midMatch = partner.affiliate_url_template.match(/awinmid=(\d+)/);
-                        const mid = midMatch ? midMatch[1] : '';
-                        url = `https://www.awin1.com/cread.php?awinmid=${mid}&awinaffid=${partner.affiliate_id}&ued=${encodeURIComponent(url)}`;
-                    } else {
-                        url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
-                    }
+            const btn = document.getElementById('cta-myyco');
+            if (partner && btn) {
+                if (partner.affiliate_id && !partner.affiliate_id.startsWith('YOUR_') && !partner.affiliate_id.includes('PENDING')) {
+                    let url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
+                    btn.href = url;
                 }
-                const btn = document.getElementById('cta-myyco');
-                if (btn) btn.href = url;
             }
         })
-        .catch(() => console.log('Config fetch skipped - using default links'));
+        .catch(() => console.log('Config fetch skipped - using active URLs'));
     </script>
+<script src="../assets/page-transitions.js"></script>
 </body>
 </html>
