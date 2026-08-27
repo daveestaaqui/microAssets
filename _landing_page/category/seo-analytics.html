@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SporlyWorks — SEO & Analytics</title>
+    <meta name="description" content="Analyze, audit, and optimize your site's search presence.">
+    <link rel="icon" type="image/png" href="../logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <nav id="mainNav" class="scrolled">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo" style="text-decoration: none; display: flex; align-items: center; gap: 12px; padding: 4px 0;">
+                <img src="../logo-64.png?v=960" alt="SporlyWorks" style="height: 52px; width: auto; object-fit: contain;">
+                <div style="display: flex; flex-direction: column; justify-content: center; transform: translateY(2px);">
+                    <span style="font-family: 'DM Serif Display', serif; font-size: 28px; font-weight: 400; color: var(--forest-deep); line-height: 1;">SporlyWorks</span>
+                    <span style="font-family: 'DM Serif Display', serif; font-size: 14px; font-weight: 400; color: var(--forest-light); letter-spacing: 0.2px; margin-top: 1px;"></span>
+                </div>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../#sporlyworks">About</a>
+                <a href="../#tools">Extensions</a>
+                <a href="../#categories">Categories</a>
+                <a href="../privacy.html">Privacy</a>
+                <a href="mailto:support@sporlyworks.com" class="nav-cta">Get Support</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="tools-section" style="padding-top: 140px;">
+        <div class="container">
+            <a href="../#categories" style="font-size:14px; color: var(--forest); text-decoration: none; font-weight: 600;">← Back to Categories</a>
+            <div style="display: flex; align-items: center; gap: 16px; margin: 24px 0 8px;">
+                <span style="font-size: 40px;">📈</span>
+                <h1 style="font-size: 42px; color: var(--forest-deep); letter-spacing: -1px;">SEO & Analytics</h1>
+            </div>
+            <p class="section-subtitle" style="text-align: left; margin-bottom: 40px;">Analyze, audit, and optimize your site's search presence. <strong>8 tools</strong> in this category.</p>
+
+            <div class="features-grid">
+
+            <a href="https://chromewebstore.google.com/detail/mjjfhbmgbehdllifbappcmolicdaikgf" class="ext-card" target="_blank">
+                <h3>Meta Tag Viewer & Editor</h3>
+                <p>View and edit meta tags, Open Graph, and Twitter Card data for any webpage. Perfect for SEO auditing.</p>
+            </a>
+            <a href="https://chromewebstore.google.com/detail/habmlmjcdcikknbdffkidhnhpginfpib" class="ext-card" target="_blank">
+                <h3>Network Speed Test — Bandwidth Meter</h3>
+                <p>Quick network speed test right from your browser toolbar. Test download speed in seconds.</p>
+            </a>
+            <a href="https://chromewebstore.google.com/detail/mhkmhnfnbjbbhlhhlgofkkcjjklcodij" class="ext-card" target="_blank">
+                <h3>Page SEO Analyzer & Meta Inspector</h3>
+                <p>Instantly analyze any page's title, meta description, Open Graph tags, headings, and canonical URL. Perfect for SEO pros.</p>
+            </a>
+            <a href="https://chromewebstore.google.com/detail/bklbehgnfjjldlkecnjgiclekjgpajcm" class="ext-card" target="_blank">
+                <h3>Robots.txt Viewer — SEO Inspector</h3>
+                <p>View and analyze any website robots.txt file. Check crawl rules, sitemaps, and blocked paths.</p>
+            </a>
+            <a href="https://chromewebstore.google.com/detail/ckfkcopdagjhlkchdnpohkhahmlajgjo" class="ext-card" target="_blank">
+                <h3>SEO Content Analyzer Pro</h3>
+                <p>Deep SEO analysis: keyword density, readability, heading structure, meta tags, links, and optimization tips.</p>
+            </a>
+            <a href="https://chromewebstore.google.com/detail/hgdjdehioibedckafagjpjjhblbhpade" class="ext-card" target="_blank">
+                <h3>Site Speed Analyzer</h3>
+                <p>Analyze page load time, DOM size, resource count, and performance metrics for any webpage with one click.</p>
+            </a>
+            <a href="https://chromewebstore.google.com/detail/alpdnmifjoapfbppblpepleklpmehdne" class="ext-card" target="_blank">
+                <h3>Website Change Monitor Pro</h3>
+                <p>Monitor any webpage for changes. Get notified when prices drop, content updates, or pages go down. Set check intervals.</p>
+            </a>
+            <a href="https://chromewebstore.google.com/detail/ifpioidddclcfiecdcaibjfgmobiaddh" class="ext-card" target="_blank">
+                <h3>Word & Character Counter for Any Page</h3>
+                <p>Instantly count words, characters, sentences, and paragraphs on any web page or selected text. Great for writers and SEO.</p>
+            </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 SporlyWorks. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('mobileToggle').addEventListener('click', () => {
+            document.getElementById('navLinks').classList.toggle('open');
+        });
+    </script>
+
+<script>
+// Mobile Navigation Toggle
+document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('mobileToggle');
+    const links = document.getElementById('navLinks');
+    if (toggle && links) {
+        toggle.addEventListener('click', () => {
+            links.classList.toggle('active');
+            toggle.classList.toggle('open');
+        });
+        
+        // Close menu on link click
+        links.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                links.classList.remove('active');
+                toggle.classList.remove('open');
+            });
+        });
+    }
+    
+    // Smooth sticky nav
+    const nav = document.getElementById('mainNav');
+    if (nav) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard — SporlyWorks</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=1200">
+    <style>
+        body { background: var(--cream); min-height: 100vh; display: flex; flex-direction: column; }
+        .dashboard-container {
+            max-width: 800px;
+            margin: 120px auto 80px;
+            padding: 0 24px;
+            flex-grow: 1;
+            width: 100%;
+        }
+        .header-wrap { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .page-title { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--charcoal); }
+        .logout-btn { color: var(--warm-gray); cursor: pointer; text-decoration: none; font-weight: 500; font-size: 15px; }
+        .logout-btn:hover { color: var(--charcoal); }
+        
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 32px;
+            border: 1px solid var(--cream-dark);
+            box-shadow: 0 12px 32px rgba(15,44,29,0.04);
+            margin-bottom: 24px;
+        }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        .card-title { font-weight: 600; font-size: 20px; color: var(--charcoal); }
+        .badge {
+            background: #f3f4f6; color: #4b5563;
+            padding: 4px 12px; border-radius: 999px;
+            font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+        }
+        .badge.pro { background: rgba(15,44,29,0.1); color: var(--forest-deep); }
+        
+        .data-row { display: flex; flex-direction: column; margin-bottom: 24px; }
+        .data-row:last-child { margin-bottom: 0; }
+        .data-label { font-size: 13px; color: var(--warm-gray); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; margin-bottom: 4px; }
+        .data-value { font-size: 16px; color: var(--charcoal); font-weight: 500; }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--forest), var(--forest-deep));
+            color: white;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+        .btn:hover { opacity: 0.9; }
+        
+        #loadingMsg { text-align: center; color: var(--warm-gray); margin-top: 100px; }
+        #dashboardContent { display: none; }
+    </style>
+</head>
+<body>
+    <nav id="mainNav">
+        <div class="nav-inner">
+            <a href="index.html" style="font-weight:700; color:var(--forest-deep); text-decoration:none; margin-right:auto;">SporlyWorks</a>
+            <div class="nav-links">
+                <a href="pricing.html">Pricing</a>
+                <a href="dashboard.html" class="nav-cta" style="background:var(--cream-dark); color:var(--charcoal);">Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <h2 id="loadingMsg">Loading your portal...</h2>
+        
+        <div id="dashboardContent">
+            <div class="header-wrap">
+                <h1 class="page-title">Dashboard</h1>
+                <a onclick="logout()" class="logout-btn">Log Out</a>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Account Status</span>
+                    <span id="tierBadge" class="badge">Free</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Email</span>
+                    <span class="data-value" id="userEmail">...</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Member Since</span>
+                    <span class="data-value" id="userDate">...</span>
+                </div>
+            </div>
+
+            <div class="card" id="upgradeCard">
+                <div class="card-header">
+                    <span class="card-title">Unlock OmniSuite</span>
+                </div>
+                <p style="color: var(--warm-gray); margin-bottom: 24px;">Upgrade to the Pro Suite to unlock all 172 assets instantly. Cancel anytime.</p>
+                <a href="pricing.html" class="btn" onclick="fetch(API_BASE+'/track', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({event:'click_upgrade'})}).catch(e=>console.error(e))">View Pricing</a>
+            </div>
+
+            <div class="card" id="proCard" style="display:none;">
+                <div class="card-header">
+                    <span class="card-title">Your Access</span>
+                </div>
+                <p style="color: var(--warm-gray); margin-bottom: 24px;">Your account is active. To manage your license or use the extensions, install the Chrome extension or check out the docs.</p>
+                <!-- We will add billing portal info later if desired via Stripe -->
+                <!-- <button class="btn" style="background: white; color: var(--charcoal); border: 1px solid #d1d5db;" onclick="handleBilling()">Manage Billing</button> -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container" style="text-align: center; padding: 40px 0;">
+            <p style="color: var(--warm-gray); font-size: 14px;">© 2026 SporlyWorks. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const API_BASE = "https://microassets-license-server-production.up.railway.app/api";
+
+        async function fetchUser() {
+            const token = localStorage.getItem('sw_token');
+            if (!token) {
+                window.location.href = "auth.html";
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/user/me`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (response.status === 401) {
+                    localStorage.removeItem('sw_token');
+                    window.location.href = "auth.html";
+                    return;
+                }
+
+                const data = await response.json();
+                
+                document.getElementById('loadingMsg').style.display = 'none';
+                document.getElementById('dashboardContent').style.display = 'block';
+
+                document.getElementById('userEmail').innerText = data.email;
+                if(data.created_at) {
+                    document.getElementById('userDate').innerText = new Date(data.created_at * 1000).toLocaleDateString();
+                }
+
+                const badge = document.getElementById('tierBadge');
+                badge.innerText = data.tier;
+                if (data.tier === 'Pro Suite') {
+                    badge.classList.add('pro');
+                    document.getElementById('upgradeCard').style.display = 'none';
+                    document.getElementById('proCard').style.display = 'block';
+                }
+            } catch (e) {
+                console.error("Dashboard error", e);
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('sw_token');
+            window.location.href = "index.html";
+        }
+
+        // On load
+        fetchUser();
+    </script>
+</body>
+</html>

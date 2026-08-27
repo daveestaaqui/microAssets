@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SporlyWorks — 20 Free VS Code Extensions That Actually Improve Productivity</title>
+<meta name="description" content="Lightweight VS Code extensions for developers. Todo highlights, git blame, regex testing, and more. All free, all under 5KB.">
+<meta property="og:title" content="20 Free VS Code Extensions That Actually Improve Productivity">
+<meta property="og:description" content="Lightweight VS Code extensions for developers. Todo highlights, git blame, regex testing, and more. All free, all under 5KB.">
+<meta property="og:url" content="https://sporlyworks.com/blog/vs-code-extensions-productivity-2026.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://sporlyworks.com/blog/vs-code-extensions-productivity-2026.html">
+<style>body{font-family:Inter,system-ui,sans-serif;background:#0d1117;color:#c9d1d9;max-width:720px;margin:0 auto;padding:20px;line-height:1.7}h1{color:#fff;font-size:2em}h2{color:#205c40; font-weight:bold;margin-top:2em}a{color:#667eea}code{background:rgba(102,126,234,0.15);padding:2px 6px;border-radius:4px}ul{padding-left:20px}li{margin-bottom:8px}p{margin-bottom:1em}</style>
+</head>
+<body>
+<p><a href="https://sporlyworks.com/">&larr; SporlyWorks Home</a> | <a href="../blog.html">Blog</a></p>
+<h1>20 Free VS Code Extensions That Actually Improve Productivity</h1>
+
+<p>VS Code's extension marketplace has thousands of tools, but most are bloated, slow, or track your usage. Here are 20 lightweight alternatives.</p>
+
+<h2>Code Quality</h2>
+<ul>
+<li><strong>Todo Highlights</strong> — Color-code TODO, FIXME, NOTE, and HACK comments</li>
+<li><strong>Error Lens Lite</strong> — Show errors inline at the end of each line</li>
+<li><strong>Bracket Scope Labels</strong> — See what each closing brace belongs to</li>
+</ul>
+
+<h2>Debugging</h2>
+<ul>
+<li><strong>Console Ninja</strong> — Insert/remove console.log with one shortcut</li>
+<li><strong>Regex Tester</strong> — Test patterns inline with match highlighting</li>
+<li><strong>Log Highlighter</strong> — Color-code ERROR/WARN/INFO in log files</li>
+</ul>
+
+<h2>Git</h2>
+<ul>
+<li><strong>Git Blame Inline</strong> — Lightweight line-by-line blame annotations</li>
+</ul>
+
+<h2>Editing</h2>
+<ul>
+<li><strong>Auto Rename Tag</strong> — Edit one HTML tag, the pair updates automatically</li>
+<li><strong>JSON Sorter</strong> — Sort JSON keys alphabetically</li>
+<li><strong>Lorem Generator</strong> — Generate placeholder text with commands</li>
+</ul>
+
+<h2>Download All 20</h2>
+<p><a href="https://github.com/daveestaaqui/flowkit-vscode/releases">Download all 20 VS Code extensions</a> — free, MIT licensed, zero tracking.</p>
+
+<hr style="border-color:rgba(255,255,255,0.1);margin:40px 0">
+<p><a href="https://sporlyworks.com/">SporlyWorks</a> — 66+ free browser extensions for developers. Zero tracking. Open source.</p>
+
+<script>
+// Mobile Navigation Toggle
+document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('mobileToggle');
+    const links = document.getElementById('navLinks');
+    if (toggle && links) {
+        toggle.addEventListener('click', () => {
+            links.classList.toggle('active');
+            toggle.classList.toggle('open');
+        });
+        
+        // Close menu on link click
+        links.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                links.classList.remove('active');
+                toggle.classList.remove('open');
+            });
+        });
+    }
+    
+    // Smooth sticky nav
+    const nav = document.getElementById('mainNav');
+    if (nav) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+    }
+});
+</script>
+
+</body>
+</html>

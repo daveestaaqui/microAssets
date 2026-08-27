@@ -1,0 +1,512 @@
+{
+  "ai-content-bouncer": {
+    "title": "AI Content Bouncer",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "amazon-fake-review-skimmer": {
+    "title": "Amazon Fake Review Skimmer",
+    "cws": "Shopping",
+    "amo": "Shopping",
+    "edge": "Shopping"
+  },
+  "amazon-wide-mode": {
+    "title": "Amazon Wide Mode & Product Enhancer",
+    "cws": "Shopping",
+    "amo": "Shopping",
+    "edge": "Shopping"
+  },
+  "api-tester-pro": {
+    "title": "API Tester Pro \u2014 REST Client",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "base64-encoder": {
+    "title": "Base64 Encoder & Decoder Tool",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "bookmark-manager": {
+    "title": "Bookmark Manager & Quick Search",
+    "cws": "Productivity",
+    "amo": "Tabs",
+    "edge": "Productivity"
+  },
+  "carbon-footprint-checker": {
+    "title": "Carbon Footprint Checker",
+    "cws": "Privacy and Security",
+    "amo": "Privacy & Security",
+    "edge": "Privacy and Security"
+  },
+  "clipboard-history": {
+    "title": "Clipboard History Manager",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "code-snippet-manager": {
+    "title": "Code Snippet Manager Pro",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "color-palette-generator": {
+    "title": "Color Palette Generator",
+    "cws": "Accessibility",
+    "amo": "Other",
+    "edge": "Accessibility"
+  },
+  "color-picker-eyedropper": {
+    "title": "Color Picker Eyedropper & Palette Extractor",
+    "cws": "Accessibility",
+    "amo": "Other",
+    "edge": "Accessibility"
+  },
+  "contract-highlighter": {
+    "title": "Contract Scanner: Highlight Risky Clauses",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "cookie-banner-rejector": {
+    "title": "Auto Cookie-Banner Rejector",
+    "cws": "Privacy and Security",
+    "amo": "Privacy & Security",
+    "edge": "Privacy and Security"
+  },
+  "cookie-manager": {
+    "title": "Cookie Manager & Viewer",
+    "cws": "Privacy and Security",
+    "amo": "Privacy & Security",
+    "edge": "Privacy and Security"
+  },
+  "copy-as-markdown": {
+    "title": "Copy to Markdown - Link Converter",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "css-box-shadow": {
+    "title": "CSS Box Shadow Generator",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "css-flexbox-generator": {
+    "title": "CSS Flexbox Generator",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "css-gradient-generator": {
+    "title": "CSS Gradient Generator & Picker",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "css-grid-generator": {
+    "title": "CSS Grid Generator",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "css-inspector-pro": {
+    "title": "CSS Inspector Pro",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "css-minifier": {
+    "title": "CSS & JS Minifier",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "dark-mode-everywhere": {
+    "title": "Dark Mode for All Websites",
+    "cws": "Accessibility",
+    "amo": "Other",
+    "edge": "Accessibility"
+  },
+  "diff-checker": {
+    "title": "Diff Checker",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "diff-viewer": {
+    "title": "Text Diff Viewer",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "dom-editor-pro": {
+    "title": "Live DOM Editor Pro",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "email-template-builder": {
+    "title": "Email Template Builder Pro",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "favicon-grabber": {
+    "title": "Favicon Grabber",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "font-identifier": {
+    "title": "Font Identifier & CSS Inspector",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "form-filler-pro": {
+    "title": "Smart Form Filler Pro",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "gdocs-focus-mode": {
+    "title": "Google Docs Focus Mode",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "github-line-numbers": {
+    "title": "GitHub Line Numbers & Code Viewer",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "github-quick-stats": {
+    "title": "GitHub Quick Stats",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "google-dark-search": {
+    "title": "Google Dark Search",
+    "cws": "Accessibility",
+    "amo": "Other",
+    "edge": "Accessibility"
+  },
+  "hash-generator": {
+    "title": "Hash Generator",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "html-table-extractor": {
+    "title": "HTML Table to CSV Extractor",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "http-headers": {
+    "title": "HTTP Headers Viewer",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "http-status-checker": {
+    "title": "HTTP Status Checker",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "instagram-clean-feed": {
+    "title": "Instagram Web Clean Feed",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "invoice-extractor": {
+    "title": "Invoice Data Extractor to CSV",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "jira-declutter": {
+    "title": "Jira Declutter",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "json-csv-converter": {
+    "title": "JSON to CSV Converter",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "json-formatter": {
+    "title": "JSON Formatter & Viewer Pro",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "json-path-finder": {
+    "title": "JSON Path Finder",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "jwt-decoder": {
+    "title": "JWT Decoder",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "link-checker": {
+    "title": "Broken Link Checker",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "linkedin-hide-feed": {
+    "title": "LinkedIn Feed Hider & Recruiter Block",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "llm-privacy-scrub": {
+    "title": "LLM Privacy Scrub & Data Redactor",
+    "cws": "Privacy and Security",
+    "amo": "Privacy & Security",
+    "edge": "Privacy and Security"
+  },
+  "lorem-ipsum-generator": {
+    "title": "Lorem Ipsum & Placeholder Text",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "markdown-preview": {
+    "title": "Markdown Preview",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "meet-zoom-automute": {
+    "title": "Google Meet Auto-Muter",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "meta-tag-editor": {
+    "title": "Meta Tag Viewer & Editor",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "network-monitor-pro": {
+    "title": "Network Request Monitor Pro",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "network-speed-test": {
+    "title": "Network Speed Test",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "og-previewer": {
+    "title": "Open Graph Previewer",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "page-ruler": {
+    "title": "Page Ruler & Measure",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "page-seo-analyzer": {
+    "title": "Page SEO Analyzer & Meta Inspector",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "password-generator": {
+    "title": "Secure Password Generator",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "pomodoro-anywhere": {
+    "title": "Pomodoro Timer Desktop Widget",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "privacy-scanner": {
+    "title": "GDPR/CCPA Privacy & Cookie Scanner",
+    "cws": "Privacy and Security",
+    "amo": "Privacy & Security",
+    "edge": "Privacy and Security"
+  },
+  "qr-code-generator": {
+    "title": "QR Code Generator - Instant URL to QR",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "quick-notepad": {
+    "title": "Quick Note Pad",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "reading-mode": {
+    "title": "Reader Mode \u2014 Clean Articles",
+    "cws": "Accessibility",
+    "amo": "Other",
+    "edge": "Accessibility"
+  },
+  "reading-time-badge": {
+    "title": "Estimated Reading Time Badge",
+    "cws": "Accessibility",
+    "amo": "Other",
+    "edge": "Accessibility"
+  },
+  "reddit-redirect": {
+    "title": "Old Reddit Redirect & UI Fixer",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "regex-tester": {
+    "title": "Regex Tester & Debugger",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "responsive-viewer": {
+    "title": "Responsive Viewport Tester",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "robots-viewer": {
+    "title": "Robots.txt Viewer",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "screenshot-capture": {
+    "title": "Screenshot Capture & Annotate Tool",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "seo-content-pro": {
+    "title": "SEO Content Analyzer Pro",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "site-speed-analyzer": {
+    "title": "Site Speed Analyzer",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "sponsor-skipper": {
+    "title": "Sponsor Skipper for YouTube",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "tab-groups-saver": {
+    "title": "Tab Groups Saver & Restorer",
+    "cws": "Productivity",
+    "amo": "Tabs",
+    "edge": "Productivity"
+  },
+  "tab-suspender": {
+    "title": "Tab Suspender - Reduce Memory Usage",
+    "cws": "Productivity",
+    "amo": "Tabs",
+    "edge": "Productivity"
+  },
+  "text-case-converter": {
+    "title": "Text Case Converter",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "time-tracker": {
+    "title": "Client Time Tracker - Auto Web Timer",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "timestamp-converter": {
+    "title": "Timestamp Converter",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "url-encoder-decoder": {
+    "title": "URL Encoder Decoder",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "url-shortener": {
+    "title": "URL Shortener & QR Generator",
+    "cws": "Developer Tools",
+    "amo": "Web Development",
+    "edge": "Developer Tools"
+  },
+  "user-agent-switcher": {
+    "title": "User Agent Switcher",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "wayback-machine-quick": {
+    "title": "Wayback Machine Quick",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "wcag-auditor": {
+    "title": "WCAG Accessibility Auditor & Contrast Checker",
+    "cws": "Accessibility",
+    "amo": "Other",
+    "edge": "Accessibility"
+  },
+  "website-monitor-pro": {
+    "title": "Website Change Monitor Pro",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "whois-lookup": {
+    "title": "Whois & DNS Lookup",
+    "cws": "Privacy and Security",
+    "amo": "Privacy & Security",
+    "edge": "Privacy and Security"
+  },
+  "word-counter": {
+    "title": "Word & Character Counter for Any Page",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  },
+  "microassets-master-suite": {
+    "title": "OmniSuite Dev Toolkit",
+    "cws": "Productivity",
+    "amo": "Other",
+    "edge": "Productivity"
+  }
+}

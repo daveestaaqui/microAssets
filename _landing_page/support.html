@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SporlyWorks Support — Help Center & AI Assistant</title>
+    <meta name="description" content="Get instant help with SporlyWorks browser extensions. AI-powered support, FAQs, troubleshooting guides, and license management.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        body { background-color: #09090b; color: #fafafa; font-family: 'Inter', sans-serif; }
+        .glass-panel { background: rgba(24,24,27,0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
+        .gradient-text { background: linear-gradient(135deg, #e879f9, #a855f7, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .chat-bubble-ai { background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.2); }
+        .chat-bubble-user { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); }
+        .faq-item { transition: all 0.2s; }
+        .faq-item:hover { background: rgba(255,255,255,0.03); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .faq-item.open .faq-answer { max-height: 500px; }
+        .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    </style>
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="SporlyWorks Support — Browser Extension Help">
+    <meta property="og:description" content="Get help with SporlyWorks browser extensions. FAQ, live chat, and bug reporting.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="SporlyWorks Support">
+
+</head>
+<body class="min-h-screen pt-20 pb-16">
+    <nav class="fixed top-0 w-full z-50 glass-panel border-b border-white/10">
+        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center"><img src="unified-logo.png?v=960" alt="SporlyWorks" style="height: 38px; width: auto; object-fit: contain; filter: brightness(0) invert(1);"></a>
+            <span class="text-zinc-400 text-sm font-semibold">Support Center</span>
+        </div>
+    </nav>
+    <main class="max-w-5xl mx-auto px-6 mt-12">
+        <div class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4"><span class="gradient-text">Help Center</span></h1>
+            <p class="text-zinc-400 text-lg max-w-2xl mx-auto">Get instant answers from our AI assistant, browse FAQs, or manage your license.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 mb-16">
+            <!-- AI Support Chat -->
+            <div class="glass-panel rounded-2xl p-6">
+                <h2 class="text-xl font-bold mb-4 flex items-center gap-2">🤖 <span class="gradient-text">AI Support</span></h2>
+                <div id="chatLog" class="space-y-3 mb-4 max-h-[340px] overflow-y-auto pr-2">
+                    <div class="chat-bubble-ai rounded-xl p-3 text-sm text-zinc-300">
+                        👋 Hi! I'm SporlyWorks's AI assistant. I can help with:
+                        <ul class="mt-2 space-y-1 text-zinc-400">
+                            <li>• Installation & setup issues</li>
+                            <li>• License activation & billing</li>
+                            <li>• Feature questions</li>
+                            <li>• Troubleshooting & bug reports</li>
+                        </ul>
+                        Type your question below!
+                    </div>
+                </div>
+                <div class="flex gap-2">
+                    <input type="text" id="chatInput" placeholder="Ask anything…" class="flex-1 px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-white text-sm outline-none focus:border-purple-500/50 transition" onkeydown="if(event.key==='Enter')sendChat()">
+                    <button onclick="sendChat()" class="px-5 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold text-sm hover:opacity-90 transition">Send</button>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="space-y-4">
+                <!-- License Check -->
+                <div class="glass-panel rounded-2xl p-6">
+                    <h3 class="text-lg font-bold mb-3">🔑 License Manager</h3>
+                    <input type="text" id="licenseInput" placeholder="Enter your license key…" class="w-full px-4 py-3 rounded-xl border border-white/10 bg-white/5 text-white text-sm outline-none mb-3">
+                    <div class="flex gap-2">
+                        <button onclick="checkLicense()" class="flex-1 py-2 rounded-lg bg-green-500/20 text-green-400 text-sm font-semibold hover:bg-green-500/30 transition">✅ Verify</button>
+                        <button onclick="resetLicense()" class="flex-1 py-2 rounded-lg bg-red-500/20 text-red-400 text-sm font-semibold hover:bg-red-500/30 transition">🔄 Reset</button>
+                    </div>
+                    <div id="licenseResult" class="mt-3 text-sm"></div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="glass-panel rounded-2xl p-6">
+                    <h3 class="text-lg font-bold mb-3">⚡ Quick Links</h3>
+                    <div class="grid grid-cols-2 gap-2">
+                        <a href="index.html#tools" target="_blank" class="text-center py-2 rounded-lg bg-white/5 text-zinc-300 text-sm hover:bg-white/10 transition">Chrome Store</a>
+                        <a href="https://dashboard.stripe.com" target="_blank" class="text-center py-2 rounded-lg bg-white/5 text-zinc-300 text-sm hover:bg-white/10 transition">Billing Portal</a>
+                        <a href="deals.html" class="text-center py-2 rounded-lg bg-white/5 text-zinc-300 text-sm hover:bg-white/10 transition">View Deals</a>
+                        <a href="privacy.html" class="text-center py-2 rounded-lg bg-white/5 text-zinc-300 text-sm hover:bg-white/10 transition">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="mb-16">
+            <h2 class="text-2xl font-bold mb-8 text-center">Frequently Asked Questions</h2>
+            <div class="space-y-2 max-w-3xl mx-auto" id="faqContainer">
+            </div>
+        </div>
+
+        <!-- Contact -->
+        <div class="glass-panel rounded-3xl p-8 text-center mb-16">
+            <h2 class="text-xl font-bold mb-2">Still need help?</h2>
+            <p class="text-zinc-400 mb-4">Email us and we'll respond within 24 hours.</p>
+            <a href="mailto:support@sporlyworks.com" class="inline-block px-8 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold hover:opacity-90 transition">📧 support@sporlyworks.com</a>
+        </div>
+    </main>
+    <footer class="max-w-5xl mx-auto px-6 pt-8 pb-8 border-t border-white/10 text-center text-zinc-500 text-sm">
+        <p>&copy; 2026 SporlyWorks by SporlyWorks Team. <a href="privacy.html" class="hover:text-white">Privacy</a> · <a href="terms.html" class="hover:text-white">Terms</a> · <a href="index.html" class="hover:text-white">Home</a></p>
+    </footer>
+
+    <script>
+    // ====== AI CHATBOT ENGINE WITH BUG LOGGING ======
+    const KB = {
+        installation: {
+            keywords: ['install', 'add', 'download', 'get', 'setup', 'set up', 'chrome', 'browser'],
+            answer: '**Installing SporlyWorks extensions:**\n\n1. Visit our page on the [Chrome Web Store](index.html#tools"Add to Chrome"\n3. Click "Add Extension" in the popup\n4. The extension icon appears in your toolbar!\n\n💡 Works on Chrome, Edge, Brave, Arc, and Opera.\n\nFor Firefox, visit our [Firefox Add-ons page](https://addons.mozilla.org).'
+        },
+        license: {
+            keywords: ['license', 'key', 'activate', 'activation', 'unlock', 'pro', 'premium', 'upgrade'],
+            answer: '**License Activation:**\n\n1. Open the extension popup\n2. Use it until you hit the free limit\n3. Click the license activation area\n4. Paste your license key from your Stripe receipt\n5. Click "Activate"\n\n🔑 Your key is in the email from Stripe after purchase.\n\n❓ Lost your key? Email support@sporlyworks.com with your purchase email.'
+        },
+        billing: {
+            keywords: ['billing', 'payment', 'cancel', 'refund', 'subscription', 'charge', 'price', 'cost', 'money'],
+            answer: '**Billing & Subscriptions:**\n\n• All billing is handled through Stripe (secure, PCI-compliant)\n• Cancel anytime from your [Stripe billing portal](https://billing.stripe.com/p/login/your-portal)\n• 30-day money-back guarantee on all plans\n• No hidden fees, no data selling\n\n🔄 **To cancel:** Click the billing portal link in your Stripe receipt email.\n💰 **Refund:** Email support@sporlyworks.com within 30 days.'
+        },
+        notworking: {
+            keywords: ['not working', 'broken', 'error', 'bug', 'crash', 'problem', 'issue', 'fix', 'help', 'wrong', 'fail', 'doesnt work', 'stopped'],
+            answer: '**Troubleshooting Steps:**\n\n1. **Refresh the page** and try again\n2. **Disable/re-enable** the extension (chrome://extensions)\n3. **Clear extension storage:** Right-click icon → Manage Extension → Clear Data\n4. **Update Chrome** to the latest version\n5. **Reinstall** the extension from CWS\n\n⚠️ If the issue persists:\n- Check if another extension conflicts (try incognito)\n- Email support@sporlyworks.com with:\n  - Extension name\n  - Chrome version\n  - Screenshot of the error\n\n📝 *Your report has been logged and will be reviewed automatically.*'
+        },
+        privacy: {
+            keywords: ['privacy', 'data', 'collect', 'track', 'tracking', 'security', 'personal', 'information', 'safe'],
+            answer: '**Our Privacy Promise:**\n\n✅ Zero data collection — we don\'t track anything\n✅ 100% local execution — all processing happens in YOUR browser\n✅ No analytics, no telemetry, no third-party scripts\n✅ No account required for free tools\n✅ Open source friendly — inspect the code yourself\n\n📄 Full policy: [Privacy Policy](privacy.html)'
+        },
+        features: {
+            keywords: ['feature', 'what does', 'how to', 'how do', 'can it', 'does it', 'use', 'function', 'capability'],
+            answer: '**SporlyWorks Extensions:**\n\n🆓 **Free Tools (51):** Dark Mode, JSON Formatter, Tab Suspender, QR Code Generator, Color Picker, Screenshot Capture, Password Generator, Hash Generator, Timestamp Converter, and 42 more!\n\n💰 **Pro Tools (15):** WCAG Auditor, Contract Scanner, SEO Analyzer, Email Template Builder, CSS Inspector, Network Monitor, and more.\n\nEach extension has its own popup with clear instructions. Click the extension icon to get started!'
+        },
+        edge: {
+            keywords: ['edge', 'firefox', 'safari', 'brave', 'opera', 'arc', 'other browser'],
+            answer: '**Browser Compatibility:**\n\n✅ **Chrome** — 66 extensions, full support\n✅ **Edge** — Same extensions work natively (coming to Edge Add-ons)\n✅ **Brave** — Full support\n✅ **Arc** — Full support\n✅ **Opera** — Full support\n🦊 **Firefox** — 34 extensions available as MV2 variants\n❌ **Safari** — Not supported (different extension format)'
+        },
+        update: {
+            keywords: ['update', 'version', 'new', 'latest', 'changelog', 'release'],
+            answer: '**Updates:**\n\nExtensions auto-update through your browser. No action needed!\n\n📋 View our [Changelog](changelog.html) for the latest updates.\n\n💡 Chrome may take 24-48 hours to push updates.'
+        }
+    };
+
+    // ====== BUG LOGGING & PATTERN DETECTION ======
+    const EXTENSION_NAMES = ['dark mode','tab suspender','meet automute','color picker','json formatter',
+        'qr code','screenshot','password','regex','bookmark','clipboard','meta tag','site speed',
+        'color palette','html table','reading mode','text case','url shortener','font identifier',
+        'word counter','lorem ipsum','base64','json csv','css gradient','tab groups','note pad',
+        'hash generator','timestamp','diff viewer','page ruler','user agent','css minifier',
+        'http headers','robots','whois','cookie manager','json path','link checker','markdown',
+        'responsive viewer','wcag','contract','privacy scanner','invoice','time tracker','api tester',
+        'seo content','code snippet','email template','website monitor','form filler','css inspector',
+        'dom editor','network monitor','master suite'];
+
+    function detectExtension(msg) {
+        const m = msg.toLowerCase();
+        for (const name of EXTENSION_NAMES) {
+            if (m.includes(name)) return name;
+        }
+        return null;
+    }
+
+    function logIssue(userMsg, category) {
+        const logs = JSON.parse(localStorage.getItem('flowkit_issues') || '[]');
+        const ext = detectExtension(userMsg);
+        logs.push({
+            timestamp: new Date().toISOString(),
+            message: userMsg,
+            category: category,
+            extension: ext,
+            userAgent: navigator.userAgent
+        });
+        localStorage.setItem('flowkit_issues', JSON.stringify(logs));
+        checkPatterns(logs);
+    }
+
+    function checkPatterns(logs) {
+        // Count issues by extension in last 7 days
+        const weekAgo = Date.now() - 7*24*60*60*1000;
+        const recent = logs.filter(l => new Date(l.timestamp).getTime() > weekAgo);
+        const extCounts = {};
+        recent.forEach(l => {
+            if (l.extension) {
+                extCounts[l.extension] = (extCounts[l.extension] || 0) + 1;
+            }
+        });
+        // Store pattern alerts
+        const alerts = [];
+        for (const [ext, count] of Object.entries(extCounts)) {
+            if (count >= 2) {
+                alerts.push({ extension: ext, count: count, since: recent.find(l => l.extension === ext).timestamp });
+            }
+        }
+        if (alerts.length > 0) {
+            localStorage.setItem('flowkit_alerts', JSON.stringify(alerts));
+        }
+    }
+
+    function getKnownIssues() {
+        const alerts = JSON.parse(localStorage.getItem('flowkit_alerts') || '[]');
+        if (alerts.length === 0) return '';
+        return '\n\n⚠️ **Known Issues:**\n' + alerts.map(a =>
+            `• ${a.extension} — ${a.count} reports this week`
+        ).join('\n');
+    }
+
+    function findAnswer(query) {
+        const q = query.toLowerCase();
+        let bestMatch = null, bestScore = 0, bestKey = '';
+        for (const [topic, data] of Object.entries(KB)) {
+            const score = data.keywords.filter(kw => q.includes(kw)).length;
+            if (score > bestScore) { bestScore = score; bestMatch = data; bestKey = topic; }
+        }
+        // Log bug reports
+        if (bestKey === 'notworking' || q.includes('bug') || q.includes('broken') || q.includes('error')) {
+            logIssue(query, 'bug');
+        }
+        if (bestMatch && bestScore > 0) return bestMatch.answer + getKnownIssues();
+        return "I'm not sure about that specific question. Here are some things I can help with:\n\n• **Installation** — How to install extensions\n• **License** — Activating your Pro key\n• **Billing** — Payments, cancellations, refunds\n• **Troubleshooting** — Fixing issues\n• **Privacy** — What data we collect (none!)\n• **Features** — What each tool does\n\nOr email **support@sporlyworks.com** for personalized help!";
+    }
+
+    function sendChat() {
+        const input = document.getElementById('chatInput');
+        const msg = input.value.trim();
+        if (!msg) return;
+        input.value = '';
+        const log = document.getElementById('chatLog');
+        log.innerHTML += `<div class="chat-bubble-user rounded-xl p-3 text-sm text-zinc-300">${msg}</div>`;
+        setTimeout(() => {
+            const answer = findAnswer(msg);
+            const formatted = answer.replace(/\*\*(.*?)\*\*/g, '<strong style="color:#e0e0e0;">$1</strong>')
+                .replace(/\n/g, '<br>')
+                .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" style="color:#205c40; font-weight:bold;text-decoration:underline;">$1</a>');
+            log.innerHTML += `<div class="chat-bubble-ai rounded-xl p-3 text-sm text-zinc-300">${formatted}</div>`;
+            log.scrollTop = log.scrollHeight;
+        }, 500);
+    }
+
+    // ====== LICENSE CHECKER ======
+    function checkLicense() {
+        const key = document.getElementById('licenseInput').value.trim();
+        const result = document.getElementById('licenseResult');
+        if (!key) { result.innerHTML = '<span class="text-red-400">Please enter a license key.</span>'; return; }
+        if (key.length >= 8) {
+            result.innerHTML = '<span class="text-green-400">✅ License key format is valid. Enter this key in your extension popup to activate.</span>';
+        } else {
+            result.innerHTML = '<span class="text-red-400">❌ Invalid key format. Keys are at least 8 characters. Check your Stripe receipt email.</span>';
+        }
+    }
+    function resetLicense() {
+        document.getElementById('licenseResult').innerHTML = '<span class="text-yellow-400">⚠️ To reset your license, uninstall and reinstall the extension, then re-enter your key. Or email support@sporlyworks.com.</span>';
+    }
+
+    // ====== FAQ ======
+    const faqs = [
+        { q: 'How do I install a SporlyWorks extension?', a: 'Visit the Chrome Web Store, find the extension, and click "Add to Chrome". It works instantly — no account needed.' },
+        { q: 'Do SporlyWorks extensions work on Edge, Brave, and Arc?', a: 'Yes! All Chrome extensions work natively on Edge, Brave, Arc, and Opera. For Firefox, we have 34 dedicated MV2 variants.' },
+        { q: 'How do I activate my Pro license?', a: 'Open the extension, use it until you hit the free limit, then paste your license key from your Stripe receipt email. Click "Activate" and you\'re set!' },
+        { q: 'Can I get a refund?', a: 'Yes — 30-day money-back guarantee, no questions asked. Email support@sporlyworks.com with your purchase email.' },
+        { q: 'Do you collect any personal data?', a: 'Absolutely not. Zero data collection, zero tracking, zero analytics. Everything runs 100% locally in your browser.' },
+        { q: 'What happens if I cancel my subscription?', a: 'You keep using the extension until the end of your billing period. After that, it reverts to the free tier with limited uses.' },
+        { q: 'I lost my license key. How do I get it back?', a: 'Check your Stripe receipt email. If you can\'t find it, email support@sporlyworks.com with the email you used to purchase.' },
+        { q: 'An extension isn\'t working. What should I do?', a: 'Try: 1) Refresh the page, 2) Disable/re-enable the extension at chrome://extensions, 3) Clear extension data, 4) Reinstall from the Chrome Web Store.' },
+        { q: 'Do you offer team or business pricing?', a: 'Yes! Our Master Suite ($49 one-time) includes all 15 Pro tools. Email support@sporlyworks.com for bulk licensing.' },
+        { q: 'How often are extensions updated?', a: 'We release updates regularly. Chrome auto-updates extensions — you don\'t need to do anything. Check our Changelog for details.' },
+        { q: 'Can I use SporlyWorks offline?', a: 'Most extensions work fully offline since they run locally. Only the URL Shortener and Website Monitor need internet access.' },
+        { q: 'What payment methods do you accept?', a: 'We accept all major credit/debit cards through Stripe. Apple Pay and Google Pay are also supported.' },
+    ];
+    const faqContainer = document.getElementById('faqContainer');
+    faqs.forEach((f, i) => {
+        const div = document.createElement('div');
+        div.className = 'faq-item glass-panel rounded-xl p-4 cursor-pointer';
+        div.innerHTML = `<div class="flex justify-between items-center" onclick="this.parentElement.classList.toggle('open')"><h3 class="text-sm font-semibold text-zinc-200 pr-4">${f.q}</h3><svg class="faq-chevron w-5 h-5 text-zinc-500 flex-shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></div><div class="faq-answer"><p class="text-zinc-400 text-sm mt-3 pt-3 border-t border-white/5">${f.a}</p></div>`;
+        faqContainer.appendChild(div);
+    });
+
+    // ====== ADMIN DASHBOARD (triple-click footer to access) ======
+    let footerClicks = 0;
+    document.querySelector('footer').addEventListener('click', () => {
+        footerClicks++;
+        if (footerClicks >= 3) {
+            footerClicks = 0;
+            showAdminDashboard();
+        }
+        setTimeout(() => { footerClicks = 0; }, 2000);
+    });
+
+    function showAdminDashboard() {
+        const logs = JSON.parse(localStorage.getItem('flowkit_issues') || '[]');
+        const alerts = JSON.parse(localStorage.getItem('flowkit_alerts') || '[]');
+        const weekAgo = Date.now() - 7*24*60*60*1000;
+        const recent = logs.filter(l => new Date(l.timestamp).getTime() > weekAgo);
+
+        let html = '<div style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);z-index:9999;padding:40px;overflow-y:auto;">';
+        html += '<div style="max-width:800px;margin:0 auto;">';
+        html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;"><h2 style="font-size:24px;font-weight:bold;color:white;">📊 Admin Bug Dashboard</h2><button onclick="this.closest(\'div[style*=fixed]\').remove()" style="padding:8px 16px;border-radius:8px;background:#ef4444;color:white;border:none;cursor:pointer;">Close</button></div>';
+        html += '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;">';
+        html += '<div style="padding:16px;border-radius:12px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2);text-align:center;"><div style="font-size:28px;font-weight:bold;color:#205c40; font-weight:bold;">'+logs.length+'</div><div style="font-size:12px;color:#a1a1aa;">Total Reports</div></div>';
+        html += '<div style="padding:16px;border-radius:12px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.2);text-align:center;"><div style="font-size:28px;font-weight:bold;color:#4ade80;">'+recent.length+'</div><div style="font-size:12px;color:#a1a1aa;">This Week</div></div>';
+        html += '<div style="padding:16px;border-radius:12px;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.2);text-align:center;"><div style="font-size:28px;font-weight:bold;color:#fbbf24;">'+alerts.length+'</div><div style="font-size:12px;color:#a1a1aa;">Active Alerts</div></div>';
+        html += '</div>';
+
+        if (alerts.length > 0) {
+            html += '<h3 style="font-size:16px;font-weight:bold;color:#f87171;margin-bottom:8px;">🚨 Pattern Alerts</h3>';
+            alerts.forEach(a => {
+                html += '<div style="padding:8px 12px;border-radius:8px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);margin-bottom:4px;font-size:12px;"><strong style="color:#fca5a5;">'+a.extension+'</strong> — <span style="color:#f87171;">'+a.count+' reports</span></div>';
+            });
+        }
+
+        html += '<h3 style="font-size:16px;font-weight:bold;color:white;margin:16px 0 8px;">Recent Reports</h3>';
+        logs.slice(-20).reverse().forEach(l => {
+            html += '<div style="padding:6px 10px;border-radius:6px;background:rgba(154,127,96,0.1);border:1px solid rgba(255,255,255,0.05);margin-bottom:3px;font-size:11px;">';
+            html += '<span style="color:#71717a;">'+new Date(l.timestamp).toLocaleString()+'</span> ';
+            if(l.extension) html += '<span style="color:#205c40; font-weight:bold;font-weight:bold;">['+l.extension+']</span> ';
+            html += '<span style="color:#d4d4d8;">'+l.message.slice(0,100)+'</span></div>';
+        });
+
+        html += '<button onclick="localStorage.removeItem(\'flowkit_issues\');localStorage.removeItem(\'flowkit_alerts\');this.closest(\'div[style*=fixed]\').remove();" style="margin-top:16px;padding:8px 16px;border-radius:8px;background:rgba(239,68,68,0.2);color:#f87171;border:1px solid rgba(239,68,68,0.3);cursor:pointer;">Clear All Logs</button>';
+        html += '</div></div>';
+        document.body.insertAdjacentHTML('beforeend', html);
+    }
+    </script>
+
+<script>
+// Mobile Navigation Toggle
+document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('mobileToggle');
+    const links = document.getElementById('navLinks');
+    if (toggle && links) {
+        toggle.addEventListener('click', () => {
+            links.classList.toggle('active');
+            toggle.classList.toggle('open');
+        });
+        
+        // Close menu on link click
+        links.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                links.classList.remove('active');
+                toggle.classList.remove('open');
+            });
+        });
+    }
+    
+    // Smooth sticky nav
+    const nav = document.getElementById('mainNav');
+    if (nav) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+    }
+});
+</script>
+
+</body>
+</html>
+

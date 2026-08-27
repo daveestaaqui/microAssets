@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Sign Up — SporlyWorks</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="64x64" href="logo-64.png">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=1200">
+    <style>
+        .auth-container {
+            max-width: 400px;
+            margin: 120px auto 80px;
+            background: white;
+            padding: 48px;
+            border-radius: 24px;
+            border: 1px solid var(--cream-dark);
+            box-shadow: 0 12px 32px rgba(15,44,29,0.08);
+            text-align: center;
+        }
+        .auth-logo { width: 56px; height: 56px; margin-bottom: 24px; border-radius: 12px; }
+        .auth-title { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--charcoal); margin-bottom: 8px; }
+        .auth-subtitle { color: var(--warm-gray); font-size: 15px; margin-bottom: 32px; }
+        .auth-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+        .auth-input:focus { border-color: var(--forest); }
+        .auth-btn {
+            width: 100%;
+            padding: 14px 24px;
+            background: linear-gradient(135deg, var(--forest), var(--forest-deep));
+            color: white;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+        .auth-btn:hover { opacity: 0.9; }
+        .auth-toggle {
+            margin-top: 24px;
+            font-size: 14px;
+            color: var(--warm-gray);
+        }
+        .auth-toggle a {
+            color: var(--forest);
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        #errorMsg { color: #dc2626; font-size: 14px; margin-bottom: 16px; display: none; }
+    </style>
+</head>
+<body style="background: var(--cream);">
+
+    <!-- NAVIGATION -->
+    <nav id="mainNav">
+        <div class="nav-inner">
+            <a href="index.html" style="font-weight:700; color:var(--forest-deep); text-decoration:none; margin-right:auto;">SporlyWorks</a>
+            <div class="nav-links">
+                <a href="pricing.html">Pricing</a>
+                <a href="auth.html" class="nav-cta">Log In</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="auth-container">
+        <img src="logo-128.png?v=960" alt="SporlyWorks Logo" class="auth-logo">
+        <h1 class="auth-title" id="formTitle">Welcome Back</h1>
+        <p class="auth-subtitle" id="formSubtitle">Log in to manage your OmniSuite access.</p>
+        
+        <div id="errorMsg"></div>
+
+        <form id="authForm" onsubmit="handleAuth(event)">
+            <input type="email" id="email" class="auth-input" placeholder="Email Address" required>
+            <input type="password" id="password" class="auth-input" placeholder="Password (min 6 chars)" minlength="6" required>
+            <button type="submit" class="auth-btn" id="submitBtn">Log In</button>
+        </form>
+
+        <div class="auth-toggle">
+            <span id="toggleText">Don't have an account?</span> 
+            <a onclick="toggleMode()" id="toggleLink">Sign Up</a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container" style="text-align: center; padding: 40px 0;">
+            <p style="color: var(--warm-gray); font-size: 14px;">© 2026 SporlyWorks. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const API_BASE = "http://localhost:8080/api"; // Default back port
+        let isSignup = false;
+
+        function toggleMode() {
+            isSignup = !isSignup;
+            document.getElementById('formTitle').innerText = isSignup ? "Create Account" : "Welcome Back";
+            document.getElementById('formSubtitle').innerText = isSignup ? "Sign up to unlock Pro features." : "Log in to manage your OmniSuite access.";
+            document.getElementById('submitBtn').innerText = isSignup ? "Sign Up" : "Log In";
+            document.getElementById('toggleText').innerText = isSignup ? "Already have an account?" : "Don't have an account?";
+            document.getElementById('toggleLink').innerText = isSignup ? "Log In" : "Sign Up";
+            document.getElementById('errorMsg').style.display = 'none';
+        }
+
+        async function handleAuth(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const endpoint = isSignup ? "/auth/register" : "/auth/login";
+            const btn = document.getElementById('submitBtn');
+            const errorMsg = document.getElementById('errorMsg');
+            
+            btn.disabled = true;
+            btn.innerText = "Please wait...";
+            errorMsg.style.display = 'none';
+
+            try {
+                const response = await fetch(`${API_BASE}${endpoint}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+                if (!response.ok) {
+                    throw new Error(data.error || 'Authentication failed');
+                }
+
+                localStorage.setItem('sw_token', data.token);
+                // Redirect based on tier or just go back
+                window.location.href = "dashboard.html";
+            } catch (err) {
+                errorMsg.innerText = err.message;
+                errorMsg.style.display = 'block';
+            } finally {
+                btn.disabled = false;
+                btn.innerText = isSignup ? "Sign Up" : "Log In";
+            }
+        }
+    </script>
+</body>
+</html>

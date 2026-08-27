@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SporlyWorks - CEO Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --charcoal: #1c1f1d;
+            --forest: #2a4d3e;
+            --forest-deep: #1a2f26;
+            --sage: #8ab09c;
+            --cream: #f9f8f6;
+            --cream-dark: #e8e6e1;
+            --warm-gray: #6b6a65;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--charcoal);
+            color: var(--cream);
+            line-height: 1.6;
+        }
+
+        nav {
+            padding: 24px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .brand {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: -0.5px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--forest);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 64px auto;
+            padding: 0 24px;
+        }
+
+        .header-section {
+            margin-bottom: 48px;
+        }
+
+        .subtitle {
+            color: var(--sage);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+            color: white;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+
+        .metric-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 32px;
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 4px;
+            background: var(--forest);
+            border-radius: 4px 4px 0 0;
+            opacity: 0.5;
+        }
+        
+        .metric-card.gold::before {
+            background: #e8b931;
+            opacity: 1;
+        }
+
+        .metric-title {
+            color: var(--sage);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .metric-value {
+            font-size: 56px;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            letter-spacing: -2px;
+            color: white;
+            line-height: 1;
+        }
+
+        .metric-sub {
+            color: rgba(255,255,255,0.4);
+            font-size: 14px;
+            margin-top: 12px;
+        }
+
+        .auth-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--charcoal);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .auth-box {
+            background: var(--forest-deep);
+            padding: 48px;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.05);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 32px 64px rgba(0,0,0,0.5);
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.2);
+            color: white;
+            font-size: 16px;
+            margin: 24px 0;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        input[type="password"]:focus {
+            border-color: var(--sage);
+        }
+
+        button {
+            width: 100%;
+            padding: 16px;
+            background: var(--cream);
+            color: var(--charcoal);
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            background: white;
+        }
+
+        .error-msg {
+            color: #ff6b6b;
+            font-size: 14px;
+            margin-top: 16px;
+            display: none;
+        }
+
+        .funnel-container {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 24px;
+            padding: 32px;
+            margin-bottom: 48px;
+        }
+
+        .funnel-header {
+            color: var(--sage);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .funnel-step {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: relative;
+        }
+
+        .funnel-step:last-child {
+            border-bottom: none;
+        }
+
+        .step-name {
+            font-weight: 600;
+            font-size: 16px;
+            color: white;
+            flex: 1;
+        }
+
+        .step-count {
+            font-family: 'Outfit', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            min-width: 80px;
+            text-align: right;
+        }
+
+        .step-dropoff {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ff6b6b;
+            min-width: 100px;
+            text-align: right;
+            margin-left: 24px;
+        }
+        
+        .step-conversion {
+            color: var(--sage);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Auth Overlay -->
+    <div class="auth-overlay" id="authOverlay">
+        <div class="auth-box">
+            <div class="brand" style="justify-content: center; margin-bottom: 24px;">
+                <div class="brand-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z" stroke="white" stroke-width="2"/>
+                    </svg>
+                </div>
+                SporlyWorks
+            </div>
+            <h2 style="font-family: 'Outfit'; font-size: 24px; margin-bottom: 8px;">Executive Login</h2>
+            <p style="color: var(--sage); font-size: 14px;">Enter ADMIN_SECRET to view analytics</p>
+            <input type="password" id="adminKey" placeholder="Admin Secret Key" />
+            <button onclick="login()">Authenticate</button>
+            <div class="error-msg" id="errorMsg">Invalid Secret Key</div>
+        </div>
+    </div>
+
+    <nav>
+        <div class="brand">
+            <div class="brand-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z" stroke="white" stroke-width="2"/>
+                    <path d="M8 14C8 14 10 16 12 16C14 16 16 14 16 14" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </div>
+            SporlyWorks
+        </div>
+        <div style="color: var(--sage); font-size: 14px; display: flex; align-items: center; gap: 8px;">
+            <div style="width: 8px; height: 8px; background: #e8b931; border-radius: 50%; box-shadow: 0 0 10px #e8b931;"></div>
+            Live Monitoring
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header-section">
+            <div class="subtitle">Funnel Analytics</div>
+            <h1>Business Health Dashboard</h1>
+            <p style="color: rgba(255,255,255,0.6); max-width: 600px;">Real-time tracking of registration metrics, suite upgrades, and overall conversion health to drive the First Dollar initiative.</p>
+        </div>
+
+        <div class="funnel-container">
+            <div class="funnel-header">Conversion Funnel Drop-off</div>
+            <div id="funnelSteps">
+                <div class="funnel-step"><span class="step-name">Landing Page Visits</span><span class="step-count" id="f_vis">0</span><span class="step-dropoff" id="d_vis"></span></div>
+                <div class="funnel-step"><span class="step-name">Registrations</span><span class="step-count" id="f_reg">0</span><span class="step-dropoff" id="d_reg"></span></div>
+                <div class="funnel-step"><span class="step-name">1st Dashboard Logins</span><span class="step-count" id="f_log">0</span><span class="step-dropoff" id="d_log"></span></div>
+                <div class="funnel-step"><span class="step-name">Upgrade Clicks</span><span class="step-count" id="f_upg">0</span><span class="step-dropoff" id="d_upg"></span></div>
+                <div class="funnel-step"><span class="step-name">Checkouts Initiated</span><span class="step-count" id="f_chk">0</span><span class="step-dropoff" id="d_chk"></span></div>
+                <div class="funnel-step"><span class="step-name">Successful Payments</span><span class="step-count" id="f_suc">0</span><span class="step-dropoff step-conversion" id="d_suc"></span></div>
+            </div>
+        </div>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    Total Registered
+                </div>
+                <div class="metric-value" id="valUsers">-</div>
+                <div class="metric-sub">Across all tiers</div>
+            </div>
+
+            <div class="metric-card gold">
+                <div class="metric-title" style="color: #e8b931;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    Pro Suite Users
+                </div>
+                <div class="metric-value" id="valPro">-</div>
+                <div class="metric-sub">Premium subscribers</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                    Conversion Rate
+                </div>
+                <div class="metric-value"><span id="valConv">-</span>%</div>
+                <div class="metric-sub">Free to Paid</div>
+            </div>
+
+            <div class="metric-card gold">
+                <div class="metric-title" style="color: #e8b931;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    Estimated Revenue
+                </div>
+                <div class="metric-value">$<span id="valMrr">-</span></div>
+                <div class="metric-sub">Based on $49 Pro tier</div>
+            </div>
+        </div>
+        
+        <div class="metrics-grid">
+            <div class="metric-card" style="grid-column: 1 / -1;">
+                <div class="metric-title">System Infrastructure</div>
+                <div style="display: flex; gap: 48px; margin-top: 24px;">
+                    <div>
+                        <div style="font-size: 14px; color: var(--sage); margin-bottom: 4px;">API Endpoint</div>
+                        <div style="font-family: monospace; color: white;">/api/admin/metrics</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 14px; color: var(--sage); margin-bottom: 4px;">Active API Keys</div>
+                        <div style="font-family: 'Outfit'; font-size: 24px; font-weight: 700; color: white;" id="valKeys">-</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 14px; color: var(--sage); margin-bottom: 4px;">DB Backups</div>
+                        <div style="font-family: 'Outfit'; font-size: 24px; font-weight: 700; color: white;" id="valBackup">-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'https://microassets-license-server-production.up.railway.app/metrics';
+
+        async function login() {
+            const key = document.getElementById('adminKey').value;
+            if(!key) return;
+
+            try {
+                const res = await fetch(API_URL, {
+                    headers: {'X-Admin-Key': key}
+                });
+
+                if(res.ok) {
+                    const data = await res.json();
+                    sessionStorage.setItem('admin_key', key);
+                    document.getElementById('authOverlay').style.display = 'none';
+                    updateDashboard(data);
+                    
+                    // Poll silently every 5 seconds
+                    setInterval(fetchMetrics, 5000);
+                } else {
+                    document.getElementById('errorMsg').style.display = 'block';
+                }
+            } catch (err) {
+                console.error(err);
+                document.getElementById('errorMsg').innerText = "Connection Failed.";
+                document.getElementById('errorMsg').style.display = 'block';
+            }
+        }
+
+        async function fetchMetrics() {
+            const key = sessionStorage.getItem('admin_key');
+            if(!key) return;
+
+            try {
+                const res = await fetch(API_URL, {
+                    headers: {'X-Admin-Key': key}
+                });
+                if(res.ok) {
+                    const data = await res.json();
+                    updateDashboard(data);
+                }
+            } catch(e) {}
+        }
+
+        function updateDashboard(data) {
+            document.getElementById('valUsers').innerText = data.total_users || 0;
+            document.getElementById('valPro').innerText = data.pro_users || 0;
+            document.getElementById('valConv').innerText = data.conversion_rate || 0;
+            document.getElementById('valMrr').innerText = (data.estimated_mrr || 0).toLocaleString();
+            
+            document.getElementById('valKeys').innerText = data.total_keys || 0;
+            document.getElementById('valBackup').innerText = data.backup_count || 0;
+            
+            if (data.funnel) {
+                const vis = data.funnel.visit_landing || 0;
+                const reg = data.funnel.register_user || 0;
+                const log = data.funnel.login_first_time || 0;
+                const upg = data.funnel.click_upgrade || 0;
+                const chk = data.funnel.initiate_checkout || 0;
+                const suc = data.funnel.success_conversion || 0;
+                
+                document.getElementById('f_vis').innerText = vis;
+                document.getElementById('f_reg').innerText = reg;
+                document.getElementById('f_log').innerText = log;
+                document.getElementById('f_upg').innerText = upg;
+                document.getElementById('f_chk').innerText = chk;
+                document.getElementById('f_suc').innerText = suc;
+                
+                const calcDrop = (current, prev) => {
+                    if (prev === 0) return "-";
+                    const pct = Math.round((prev - current) / prev * 100);
+                    return `-${pct}%`;
+                };
+                
+                document.getElementById('d_vis').innerText = "";
+                document.getElementById('d_reg').innerText = calcDrop(reg, vis);
+                document.getElementById('d_log').innerText = calcDrop(log, reg);
+                document.getElementById('d_upg').innerText = calcDrop(upg, log);
+                document.getElementById('d_chk').innerText = calcDrop(chk, upg);
+                
+                const totalConv = vis > 0 ? Math.round((suc / vis) * 100) : 0;
+                document.getElementById('d_suc').innerText = `${totalConv}% overall`;
+            }
+        }
+
+        // Auto-login check
+        window.onload = () => {
+            if(sessionStorage.getItem('admin_key')) {
+                document.getElementById('adminKey').value = sessionStorage.getItem('admin_key');
+                login();
+            }
+            
+            document.getElementById('adminKey').addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') login();
+            });
+        };
+    </script>
+</body>
+</html>

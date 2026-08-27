@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SporlyWorks — Privacy & Security</title>
+    <meta name="description" content="Protect your data, manage cookies, and stay private.">
+    <link rel="icon" type="image/png" href="../logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <nav id="mainNav" class="scrolled">
+        <div class="nav-inner">
+            <a href="../index.html" class="nav-logo" style="text-decoration: none; display: flex; align-items: center; gap: 12px; padding: 4px 0;">
+                <img src="../logo-64.png?v=960" alt="SporlyWorks" style="height: 52px; width: auto; object-fit: contain;">
+                <div style="display: flex; flex-direction: column; justify-content: center; transform: translateY(2px);">
+                    <span style="font-family: 'DM Serif Display', serif; font-size: 28px; font-weight: 400; color: var(--forest-deep); line-height: 1;">SporlyWorks</span>
+                    <span style="font-family: 'DM Serif Display', serif; font-size: 14px; font-weight: 400; color: var(--forest-light); letter-spacing: 0.2px; margin-top: 1px;"></span>
+                </div>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="../#sporlyworks">About</a>
+                <a href="../#tools">Extensions</a>
+                <a href="../#categories">Categories</a>
+                <a href="../privacy.html">Privacy</a>
+                <a href="mailto:support@sporlyworks.com" class="nav-cta">Get Support</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="tools-section" style="padding-top: 140px;">
+        <div class="container">
+            <a href="../#categories" style="font-size:14px; color: var(--forest); text-decoration: none; font-weight: 600;">← Back to Categories</a>
+            <div style="display: flex; align-items: center; gap: 16px; margin: 24px 0 8px;">
+                <span style="font-size: 40px;">🔒</span>
+                <h1 style="font-size: 42px; color: var(--forest-deep); letter-spacing: -1px;">Privacy & Security</h1>
+            </div>
+            <p class="section-subtitle" style="text-align: left; margin-bottom: 40px;">Protect your data, manage cookies, and stay private. <strong>8 tools</strong> in this category.</p>
+
+            <div class="features-grid">
+
+            <a href="https://chromewebstore.google.com/detail/adiokjgmebibpplkhpehljlamghhbhki" class="ext-card" target="_blank">
+                <h3>AI Content Bouncer</h3>
+                <p>Detects and highlights AI-generated text on web pages using heuristic analysis. Toggle detection from the popup.</p>
+            </a>
+            <a href="https://chromewebstore.google.com/detail/iocpppfidhnhdpnnlfidjmpmjkpikchn" class="ext-card" target="_blank">
+                <h3>Auto Cookie-Banner Rejector</h3>
+                <p>Attempts to detect and dismiss cookie consent banners on websites so you can browse without interruptions.</p>
+            </a>
+            <a href="https://chromewebstore.google.com/detail/dkcgnmnmkfpoaikadlhofpmdhplbpffj" class="ext-card" target="_blank">
+                <h3>Client Time Tracker - Auto Web Timer</h3>
+                <p>Auto-track billable hours by client based on URL patterns. Features idle detection, daily reports, and real-time badge timer.</p>
+            </a>
+            <a href="https://chromewebstore.google.com/detail/bmjhofaajmdmjghociahhjijifmbjnoc" class="ext-card" target="_blank">
+                <h3>Contract Scanner: Highlight Risky Clauses</h3>
+                <p>Instantly highlight risky legal clauses (indemnification, auto-renewal, liability) in any web contract or Google Docs.</p>
+            </a>
+            <a href="https://chromewebstore.google.com/detail/clpdkpijjapanbgknccmhlibpjobmnfo" class="ext-card" target="_blank">
+                <h3>Cookie Manager & Viewer</h3>
+                <p>View, edit, and delete cookies for any website. Search and filter cookies with one click.</p>
+            </a>
+            <a href="https://chromewebstore.google.com/detail/hgdimigfkphmenbhgbdjnlgccmdlodpo" class="ext-card" target="_blank">
+                <h3>GDPR/CCPA Privacy & Cookie Scanner</h3>
+                <p>Scan websites for hidden 3rd-party trackers, analyze cookie consent banners, and score GDPR/CCPA privacy compliance.</p>
+            </a>
+            <a href="https://chromewebstore.google.com/detail/ohlnoekleoijknaegfdhboebgnodcmei" class="ext-card" target="_blank">
+                <h3>LLM Privacy Scrub & Data Redactor</h3>
+                <p>Automatically detect and redact PII (emails, phone numbers, SSNs, credit cards) before you paste text into any AI chatbot.</p>
+            </a>
+            <a href="https://chromewebstore.google.com/detail/okkhiiehmfpldabmamifpfoehhilegmm" class="ext-card" target="_blank">
+                <h3>Secure Password Generator</h3>
+                <p>Generate strong, random passwords with customizable length, symbols, numbers, and uppercase options.</p>
+            </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 SporlyWorks. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('mobileToggle').addEventListener('click', () => {
+            document.getElementById('navLinks').classList.toggle('open');
+        });
+    </script>
+
+<script>
+// Mobile Navigation Toggle
+document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.getElementById('mobileToggle');
+    const links = document.getElementById('navLinks');
+    if (toggle && links) {
+        toggle.addEventListener('click', () => {
+            links.classList.toggle('active');
+            toggle.classList.toggle('open');
+        });
+        
+        // Close menu on link click
+        links.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                links.classList.remove('active');
+                toggle.classList.remove('open');
+            });
+        });
+    }
+    
+    // Smooth sticky nav
+    const nav = document.getElementById('mainNav');
+    if (nav) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+    }
+});
+</script>
+
+</body>
+</html>

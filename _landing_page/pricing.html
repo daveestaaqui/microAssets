@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing — SporlyWorks OmniSuite</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="256x256" href="logo-nav.png">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=1200">
+    <style>
+        .pricing-hero {
+            padding: 160px 0 60px;
+            text-align: center;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            max-width: 500px; 
+            margin: 0 auto 100px;
+            gap: 32px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s var(--transition-smooth) forwards;
+        }
+        @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+        .pricing-card {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 48px;
+            border: 1px solid rgba(26,26,26,0.08);
+            box-shadow: var(--shadow-hover);
+            position: relative;
+            text-align: left;
+        }
+        .pricing-badge {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--charcoal);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: var(--radius-sm);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        .plan-name { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--charcoal); margin-bottom: 8px; letter-spacing: -0.5px;}
+        .plan-price { font-size: 56px; font-weight: 700; color: var(--charcoal); margin-bottom: 24px; letter-spacing: -2px; }
+        .plan-price span { font-size: 18px; color: var(--slate-light); font-weight: 400; letter-spacing: 0; }
+        
+        .feature-list { margin: 32px 0; padding: 0; list-style: none;}
+        .feature-item { margin-bottom: 16px; font-size: 15px; color: var(--charcoal-soft); display: flex; align-items: flex-start; }
+        .feature-item svg { width: 20px; height: 20px; color: var(--slate); margin-right: 12px; flex-shrink: 0; }
+        
+        .btn-full {
+            display: block; width: 100%; text-align: center;
+            background: var(--charcoal);
+            color: white; border: none; padding: 18px 24px;
+            font-weight: 600; font-size: 16px; border-radius: var(--radius-sm);
+            cursor: pointer; transition: all 0.3s var(--transition-smooth);
+            box-shadow: 0 4px 12px rgba(26,26,26,0.1);
+        }
+        .btn-full:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(26,26,26,0.15); }
+        
+        .faq-section { max-width: 800px; margin: 0 auto 100px; }
+        .faq-header { font-family: 'DM Serif Display', serif; font-size: 42px; text-align: center; margin-bottom: 48px; letter-spacing: -1px; }
+        .faq-item {
+            background: white; border-radius: var(--radius-md); padding: 32px; margin-bottom: 16px;
+            border: 1px solid rgba(26,26,26,0.05); box-shadow: var(--shadow-soft);
+        }
+        .faq-q { font-weight: 600; font-size: 19px; color: var(--charcoal); margin-bottom: 12px; letter-spacing: -0.5px; }
+        .faq-a { color: var(--charcoal-soft); font-size: 15px; line-height: 1.7; }
+    </style>
+</head>
+<body style="background: transparent;">
+
+    <!-- NAVIGATION -->
+    <nav id="mainNav" class="scrolled">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo" style="text-decoration: none; display: flex; align-items: center; gap: 12px; padding: 4px 0;">
+                <img src="logo-64.png?v=960" alt="SporlyWorks" style="height: 52px; width: auto; object-fit: contain;">
+                <div style="display: flex; flex-direction: column; justify-content: center; transform: translateY(2px);">
+                    <span style="font-family: 'DM Serif Display', serif; font-size: 28px; font-weight: 400; color: var(--forest-deep); line-height: 1;">SporlyWorks</span>
+                    <span style="font-family: 'DM Serif Display', serif; font-size: 14px; font-weight: 400; color: var(--forest-light); letter-spacing: 0.2px; margin-top: 1px;"></span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="auth.html" class="nav-cta" id="navLoginBtn">Log In</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pricing-hero">
+        <div class="container">
+            <h1 class="hero-title" style="font-size: 56px;">One Sub. 172 Assets.</h1>
+            <p class="hero-subtitle">Simple, transparent pricing for teams and professionals.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-badge">First 1,000 Users</div>
+                <h3 class="plan-name">Pro Suite</h3>
+                <div class="plan-price">$29<span>/mo</span></div>
+                
+                <p style="color: var(--warm-gray); font-size: 15px;">Everything you need to automate your workflow without bloat.</p>
+                
+                <ul class="feature-list">
+                    <li class="feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg>
+                        Access to all 87 Chrome Extensions
+                    </li>
+                    <li class="feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg>
+                        Access to all 85 Android Apps
+                    </li>
+                    <li class="feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg>
+                        Privacy-First, Local Processing
+                    </li>
+                    <li class="feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"></path></svg>
+                        Instant Future Updates
+                    </li>
+                </ul>
+                
+                <button onclick="startCheckout()" class="btn-full" id="checkoutBtn">Get Pro Suite</button>
+                <div id="checkoutError" style="color:red; font-size:13px; text-align:center; display:none; margin-top:8px;"></div>
+            </div>
+        </div>
+        
+        <div class="faq-section">
+            <h2 class="faq-header">Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-q">Do I need to download all 172 assets?</div>
+                <div class="faq-a">No. You have access to all 172 assets through your account. You only install the extensions or apps you actually need. No bloatware.</div>
+            </div>
+             <div class="faq-item">
+                <div class="faq-q">Can I cancel anytime?</div>
+                <div class="faq-a">Yes. Subscriptions are billed monthly. You can cancel at any time directly from your dashboard.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Does the software track my data?</div>
+                <div class="faq-a">Never. Our brand promise is "No Bloat. No Tracking." All tools operate locally on your device unless an API strictly requires otherwise.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container" style="text-align: center; padding: 80px 0 40px;">
+            <a href="index.html" class="footer-logo">
+                <img src="logo-nav.png?v=960" alt="SporlyWorks" width="40" height="42" style="mix-blend-mode: multiply;">
+            </a>
+            <p style="color: var(--charcoal-soft); font-size: 14px; margin-top: 24px;">© 2026 SporlyWorks. Micro-Tools, Mega Impact.</p>
+        </div>
+    </footer>
+
+    <script>
+        const API_BASE = "http://localhost:8080/api";
+        
+        async function startCheckout() {
+            const token = localStorage.getItem('sw_token');
+            // If they aren't logged in, redirect to auth page to sign up first
+            if (!token) {
+                // Keep intent so they can be redirected, optionally
+                window.location.href = "auth.html";
+                return;
+            }
+
+            const btn = document.getElementById('checkoutBtn');
+            const err = document.getElementById('checkoutError');
+            btn.disabled = true;
+            btn.innerText = "Redirecting to Stripe...";
+            err.style.display = 'none';
+
+            try {
+                const response = await fetch(`${API_BASE}/checkout/create-session`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({ plan: "monthly" })
+                });
+
+                const data = await response.json();
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to initialize checkout');
+                }
+                
+                // Redirect to Stripe hosted checkout
+                window.location.href = data.checkoutUrl;
+            } catch (e) {
+                err.innerText = e.message;
+                err.style.display = 'block';
+                btn.disabled = false;
+                btn.innerText = "Get Pro Suite";
+            }
+        }
+        
+        // Update nav UI if logged in
+        if (localStorage.getItem('sw_token')) {
+            const navLoginBtn = document.getElementById('navLoginBtn');
+            navLoginBtn.innerText = "Dashboard";
+            navLoginBtn.href = "dashboard.html";
+            navLoginBtn.style.background = "var(--cream-dark)";
+            navLoginBtn.style.color = "var(--charcoal)";
+        }
+    </script>
+</body>
+</html>
