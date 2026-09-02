@@ -2,7 +2,7 @@
 import os
 import json
 
-BASE_DIR = "/Users/davidmahler/Desktop/microAssets"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PRODUCTS_DIR = os.path.join(BASE_DIR, "products")
 os.makedirs(PRODUCTS_DIR, exist_ok=True)
 

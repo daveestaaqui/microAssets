@@ -10,7 +10,7 @@ from pathlib import Path
 # Suppress warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
-BASE_DIR = Path("/Users/davidmahler/Desktop/microAssets")
+BASE_DIR = Path(__file__).resolve().parent.parent
 CONFIG_PATH = BASE_DIR / "affiliate_config.json"
 
 def load_config():

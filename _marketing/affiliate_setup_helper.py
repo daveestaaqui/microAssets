@@ -5,7 +5,7 @@ import webbrowser
 import subprocess
 from pathlib import Path
 
-BASE_DIR = Path("/Users/davidmahler/Desktop/microAssets")
+BASE_DIR = Path(__file__).resolve().parent.parent
 CONFIG_PATH = BASE_DIR / "affiliate_config.json"
 
 def load_config():

@@ -3,7 +3,7 @@ import os
 import json
 import datetime
 
-BASE_DIR = "/Users/davidmahler/Desktop/microAssets"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SOCIAL_DIR = os.path.join(BASE_DIR, "_social_engine")
 QUEUE_DIR = os.path.join(SOCIAL_DIR, "_queue")
 os.makedirs(QUEUE_DIR, exist_ok=True)

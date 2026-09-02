@@ -4,7 +4,7 @@ import json
 from affiliate_config import build_affiliate_url
 
 # Define the guides directory
-BASE_DIR = "/Users/davidmahler/Desktop/microAssets"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GUIDES_DIR = os.path.join(BASE_DIR, "guides")
 os.makedirs(GUIDES_DIR, exist_ok=True)
 

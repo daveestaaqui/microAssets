@@ -3,7 +3,7 @@ import os
 import datetime
 from pathlib import Path
 
-BASE_DIR = Path("/Users/davidmahler/Desktop/microAssets")
+BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_URL = "https://sporlyworks.com"
 
 def get_lastmod(filepath):

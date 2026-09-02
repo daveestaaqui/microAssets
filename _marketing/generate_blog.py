@@ -3,7 +3,7 @@ import os
 import re
 import datetime
 
-BASE_DIR = "/Users/davidmahler/Desktop/microAssets"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ARTICLES_DIR = os.path.join(BASE_DIR, "blog", "articles")
 OUTPUT_DIR = os.path.join(BASE_DIR, "blog")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
