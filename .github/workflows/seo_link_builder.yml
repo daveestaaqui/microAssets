@@ -137,5 +137,4 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "SporlyWorks SEO Bot"
           git add -A
-          git diff-index --quiet HEAD || git commit -m "chore(seo): weekly authority build — sitemap refresh, link audit, and content syndication drafts"
-          git push origin main
+          git diff-index --quiet HEAD || (git commit -m "chore(seo): weekly authority build — sitemap refresh, link audit, and content syndication drafts" && git pull --rebase origin main && git push origin main)
