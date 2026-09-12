@@ -1,5 +1,5 @@
 # SporlyWorks Weekly Link Building Report
-_Week 37 — Generated 2026-09-11_
+_Week 37 — Generated 2026-09-12_
 
 ---
 
