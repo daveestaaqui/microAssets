@@ -6,12 +6,17 @@ on:
     - cron: '0 10 * * *'
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
 jobs:
   seo-authority-builder:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -128,13 +133,29 @@ jobs:
           python3 _marketing/generate_blog.py
           python3 _marketing/generate_rss.py
           python3 _marketing/pSEO_generator.py
+          python3 scripts/generate_taxonomy_pages.py
+          python3 _marketing/generate_sitemap.py
+
+      - name: Run Site Health Check
+        run: |
+          python3 scripts/site_health_check.py
 
       # ═══════════════════════════════════════════════════
-      # STEP 5: Commit and Push
+      # STEP 5: Commit and Push (Clean-Before-Rebase)
       # ═══════════════════════════════════════════════════
       - name: Commit and Push SEO Updates
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "SporlyWorks SEO Bot"
           git add -A
-          git diff-index --quiet HEAD || (git commit -m "chore(seo): weekly authority build — sitemap refresh, link audit, and content syndication drafts" && git pull --rebase origin main && git push origin main)
+          if ! git diff-index --quiet HEAD; then
+            git commit -m "chore(seo): authority build — sitemap refresh, link audit, and content syndication drafts"
+            for attempt in 1 2 3; do
+              git pull --rebase origin main && git push origin main && break || {
+                echo "Push failed on attempt $attempt, cleaning working tree before retry..."
+                git checkout -- . || true
+                git clean -fd || true
+                sleep 5
+              }
+            done
+          fi

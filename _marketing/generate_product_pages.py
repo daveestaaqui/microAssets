@@ -19,6 +19,15 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
     <meta name="description" content="{description}">
     <meta name="keywords" content="{keywords}">
     <link rel="canonical" href="https://sporlyworks.com/products/{slug}.html">
+    <meta property="og:title" content="{title}">
+    <meta property="og:description" content="{description}">
+    <meta property="og:type" content="product">
+    <meta property="og:url" content="https://sporlyworks.com/products/{slug}.html">
+    <meta property="og:image" content="{image_full_url}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{title}">
+    <meta name="twitter:description" content="{description}">
+    <meta name="twitter:image" content="{image_full_url}">
     <link rel="icon" type="image/x-icon" href="{favicon}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -216,24 +225,33 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
                 <ul class="product-features-list">
                     {features_html}
                 </ul>
-                <a href="{partner_url}" id="cta-{partner_key}" class="product-cta-btn" target="_blank" rel="noopener sponsored">{cta_label}</a>
+                <a href="{partner_url}" id="cta-{partner_key}" data-affiliate-partner="{partner_key}" class="product-cta-btn" target="_blank" rel="noopener sponsored">{cta_label}</a>
+            </div>
+        </div>
+
+        <!-- Clinical Science Breakdown -->
+        <section class="science-card">
+            <h3>Mechanisms of Action &amp; Clinical Data</h3>
+            <div class="science-content">
+                {science_html}
+            </div>
+            <div class="science-cite">
+                <strong>Verified Citation:</strong> {science_citation}
             </div>
         </section>
 
-        <!-- ═══ SCIENTIFIC BREAKDOWN ═══ -->
-        <section class="product-section">
-            <h3>The Science & Mechanism of Action</h3>
-            {science_html}
-            <div class="product-citation">{science_citation}</div>
+        <!-- Recommended Laboratory Usage -->
+        <section class="usage-section">
+            <h3>Standard Protocols &amp; Usage</h3>
+            <div class="usage-content">
+                {usage_html}
+            </div>
         </section>
 
-        <!-- ═══ DOSAGE & PROTOCOL ═══ -->
-        <section class="product-section">
-            <h3>Optimal Protocol & Application</h3>
-            {usage_html}
-        </section>
-
-        <p class="product-disclaimer">{disclaimer}</p>
+        <!-- Compliance & Legal -->
+        <div class="product-disclaimer">
+            <strong>Compliance Advisory:</strong> {disclaimer}
+        </div>
     </main>
 
     <!-- ═══ FOOTER ═══ -->
@@ -277,22 +295,8 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
         </div>
     </footer>
 
-    <script>
-    fetch('../affiliate_config.json')
-        .then(r => r.json())
-        .then(config => {{
-            const partner = config.partners['{partner_key}'];
-            const btn = document.getElementById('cta-{partner_key}');
-            if (partner && btn) {{
-                if (partner.affiliate_id && !partner.affiliate_id.startsWith('YOUR_') && !partner.affiliate_id.includes('PENDING')) {{
-                    let url = partner.affiliate_url_template.replace('{{affiliate_id}}', partner.affiliate_id);
-                    btn.href = url;
-                }}
-            }}
-        }})
-        .catch(() => console.log('Config fetch skipped - using active URLs'));
-    </script>
-<script src="../assets/page-transitions.js"></script>
+    <script src="../assets/affiliate-manager.js"></script>
+    <script src="../assets/page-transitions.js"></script>
 </body>
 </html>
 """
@@ -679,7 +683,8 @@ for prod in products:
         science_html=prod["science_html"].strip(),
         science_citation=prod["science_citation"],
         usage_html=prod["usage_html"].strip(),
-        disclaimer=prod["disclaimer"]
+        disclaimer=prod["disclaimer"],
+        image_full_url=f"https://sporlyworks.com/{clean_image_url}"
     )
     
     file_path = os.path.join(PRODUCTS_DIR, f"{prod['slug']}.html")

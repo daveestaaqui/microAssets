@@ -1,0 +1,35 @@
+name: Site Health & Automated Verification Suite
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Run Unit Tests & Site Health Suite
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Institutional Unit Test Suite
+        run: |
+          python3 -m unittest discover -s tests -v
+
+      - name: Run Automated Site Health Verification
+        run: |
+          python3 scripts/site_health_check.py

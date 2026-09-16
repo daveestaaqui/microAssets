@@ -6,32 +6,53 @@ on:
     - cron: '0 12 * * 1'
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
 jobs:
   generate-blog-post:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Set up Python 3.10
+      - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.11'
 
-      - name: Run Auto Blog Generator
+      - name: Run Auto Blog Generator & Build Pipelines
         run: |
           python3 _marketing/auto_generate_blog_post.py
           python3 _marketing/generate_sitemap.py
           python3 _marketing/generate_rss.py
+          python3 scripts/generate_taxonomy_pages.py
+          python3 scripts/ping_indexnow.py --limit 20 || true
 
-      - name: Commit and Push New Content
+      - name: Run Automated Site Health Check
+        run: |
+          python3 scripts/site_health_check.py
+
+      - name: Commit and Push New Content (Clean-Before-Rebase)
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A
-          git diff-index --quiet HEAD || (git commit -m "chore(blog): auto-generate new research article and update sitemap" && git pull --rebase origin main && git push origin main)
+          if ! git diff-index --quiet HEAD; then
+            git commit -m "chore(blog): auto-generate new research article and update sitemap"
+            for attempt in 1 2 3; do
+              git pull --rebase origin main && git push origin main && break || {
+                echo "Push failed on attempt $attempt, cleaning working tree before retry..."
+                git checkout -- . || true
+                git clean -fd || true
+                sleep 5
+              }
+            done
+          fi

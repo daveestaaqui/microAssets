@@ -18,14 +18,44 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}} — SporlyWorks Mycology & Wellness Guides</title>
-    <meta name="description" content="{{description}}">
-    <meta name="keywords" content="{{keywords}}">
-    <link rel="canonical" href="https://sporlyworks.com/guides/{{slug}}.html">
-    <link rel="icon" type="image/x-icon" href="{{favicon}}">
+    <title>{title} — SporlyWorks Mycology &amp; Wellness Guides</title>
+    <meta name="description" content="{description}">
+    <meta name="keywords" content="{keywords}">
+    <link rel="canonical" href="https://sporlyworks.com/guides/{slug}.html">
+    <meta property="og:title" content="{title} — SporlyWorks">
+    <meta property="og:description" content="{description}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://sporlyworks.com/guides/{slug}.html">
+    <meta property="og:image" content="{og_image}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{title} — SporlyWorks">
+    <meta name="twitter:description" content="{description}">
+    <meta name="twitter:image" content="{og_image}">
+    <link rel="icon" type="image/x-icon" href="{favicon}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{style_path}}">
+    <link rel="stylesheet" href="{style_path}">
+    <script type="application/ld+json">
+    {{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "{title}",
+      "description": "{description}",
+      "url": "https://sporlyworks.com/guides/{slug}.html",
+      "author": {{
+        "@type": "Organization",
+        "name": "SporlyWorks Scientific Advisory Board"
+      }},
+      "publisher": {{
+        "@type": "Organization",
+        "name": "SporlyWorks",
+        "logo": {{
+          "@type": "ImageObject",
+          "url": "https://sporlyworks.com/assets/logo-nav.png"
+        }}
+      }}
+    }}
+    </script>
     <style>
         .guide-body {{
             max-width: 800px;
@@ -177,7 +207,7 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
             <div class="partner-cta-box">
                 <h3>Ready to Take the Next Step?</h3>
                 <p>{cta_text}</p>
-                <a href="{partner_url}" id="cta-{partner_key}" class="partner-cta-btn" target="_blank" rel="noopener">{partner_cta}</a>
+                <a href="{partner_url}" id="cta-{partner_key}" data-affiliate-partner="{partner_key}" class="partner-cta-btn" target="_blank" rel="noopener">{partner_cta}</a>
             </div>
         </article>
     </main>
@@ -223,44 +253,8 @@ PAGE_TEMPLATE = """<!DOCTYPE html>
         </div>
     </footer>
 
-    <script>
-    // Load affiliate config dynamically for this deep page
-    fetch('../affiliate_config.json')
-        .then(r => r.json())
-        .then(config => {{
-            const partner = config.partners['{partner_key}'];
-            const btn = document.getElementById('cta-{partner_key}');
-            if (partner && btn) {{
-                const isPlaceholder = !partner.affiliate_id || 
-                                      partner.affiliate_id.startsWith('YOUR_') || 
-                                      partner.affiliate_id.includes('INSERT');
-                if (isPlaceholder) {{
-                    btn.href = 'javascript:void(0)';
-                    btn.innerHTML = 'Partner Program Pending';
-                    btn.style.pointerEvents = 'none';
-                    btn.style.opacity = '0.6';
-                    btn.style.background = '#888888';
-                    btn.style.borderColor = '#888888';
-                    btn.style.color = '#ffffff';
-                    btn.style.cursor = 'default';
-                    btn.style.boxShadow = 'none';
-                    btn.style.transform = 'none';
-                }} else {{
-                    let url = "{partner_url}";
-                    if (partner.affiliate_url_template.includes('awinmid=')) {{
-                        const midMatch = partner.affiliate_url_template.match(/awinmid=(\\d+)/);
-                        const mid = midMatch ? midMatch[1] : '';
-                        url = `https://www.awin1.com/cread.php?awinmid=${{mid}}&awinaffid=${{partner.affiliate_id}}&ued=${{encodeURIComponent(url)}}`;
-                    }} else {{
-                        url = partner.affiliate_url_template.replace('{{affiliate_id}}', partner.affiliate_id);
-                    }}
-                    btn.href = url;
-                }}
-            }}
-        }})
-        .catch(() => console.log('Config fetch skipped - using static default'));
-    </script>
-<script src="../assets/page-transitions.js"></script>
+    <script src="../assets/affiliate-manager.js"></script>
+    <script src="../assets/page-transitions.js"></script>
 </body>
 </html>
 """
@@ -425,7 +419,8 @@ for guide in guides:
         partner_key=guide["partner_key"],
         partner_url=final_partner_url,
         cta_text=guide["cta_text"],
-        partner_cta=guide["partner_cta"]
+        partner_cta=guide["partner_cta"],
+        og_image=f"https://sporlyworks.com/{hero_image.replace('../', '')}"
     )
     
     file_path = os.path.join(GUIDES_DIR, f"{guide['slug']}.html")

@@ -31,33 +31,47 @@ def generate_sitemap():
     # Root files
     add_url(xml_content, "index.html", "1.0", BASE_DIR / "index.html")
     add_url(xml_content, "products.html", "0.9", BASE_DIR / "products.html")
+    add_url(xml_content, "privacy.html", "0.5", BASE_DIR / "privacy.html")
+    add_url(xml_content, "terms.html", "0.5", BASE_DIR / "terms.html")
+    add_url(xml_content, "welcome.html", "0.6", BASE_DIR / "welcome.html")
     
     # Products
     products_dir = BASE_DIR / "products"
     if products_dir.exists():
-        for f in products_dir.glob("*.html"):
-            add_url(xml_content, f"products/{f.name}", "0.8", f)
+        for f in sorted(products_dir.glob("*.html")):
+            add_url(xml_content, f"products/{f.name}", "0.85", f)
             
     # Tools
     tools_dir = BASE_DIR / "tools"
     if tools_dir.exists():
-        for f in tools_dir.glob("*.html"):
-            add_url(xml_content, f"tools/{f.name}", "0.8", f)
-            
-    # Blog
-    blog_dir = BASE_DIR / "blog"
-    if blog_dir.exists():
-        add_url(xml_content, "blog/index.html", "0.7", blog_dir / "index.html")
-        add_url(xml_content, "blog/rss.xml", "0.7", blog_dir / "rss.xml")
-        for f in blog_dir.glob("*.html"):
-            if f.name != "index.html":
-                add_url(xml_content, f"blog/{f.name}", "0.6", f)
+        for f in sorted(tools_dir.glob("*.html")):
+            add_url(xml_content, f"tools/{f.name}", "0.9", f)
+
+    # Embeddable Calculators
+    embed_dir = BASE_DIR / "embed"
+    if embed_dir.exists():
+        for f in sorted(embed_dir.glob("*.html")):
+            add_url(xml_content, f"embed/{f.name}", "0.6", f)
+
+    # Species Taxonomy Landing Pages
+    species_dir = BASE_DIR / "species"
+    if species_dir.exists():
+        for f in sorted(species_dir.glob("*.html")):
+            add_url(xml_content, f"species/{f.name}", "0.85", f)
 
     # Guides (Programmatic SEO)
     guides_dir = BASE_DIR / "guides"
     if guides_dir.exists():
-        for f in guides_dir.glob("*.html"):
-            add_url(xml_content, f"guides/{f.name}", "0.75", f)
+        for f in sorted(guides_dir.glob("*.html")):
+            add_url(xml_content, f"guides/{f.name}", "0.8", f)
+            
+    # Blog
+    blog_dir = BASE_DIR / "blog"
+    if blog_dir.exists():
+        add_url(xml_content, "blog/index.html", "0.8", blog_dir / "index.html")
+        for f in sorted(blog_dir.glob("*.html")):
+            if f.name != "index.html":
+                add_url(xml_content, f"blog/{f.name}", "0.7", f)
                 
     xml_content.append("</urlset>")
     

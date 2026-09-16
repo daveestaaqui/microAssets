@@ -3,14 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{title} — SporlyWorks Mycology & Wellness Guides</title>
-    <meta name="description" content="{description}">
-    <meta name="keywords" content="{keywords}">
-    <link rel="canonical" href="https://sporlyworks.com/guides/{slug}.html">
-    <link rel="icon" type="image/x-icon" href="{favicon}">
+    <title>Why Standard Probiotics Fail: The Dual-Capsule Delivery System — SporlyWorks Mycology &amp; Wellness Guides</title>
+    <meta name="description" content="Most probiotic supplements on store shelves never actually reach your gut. The high-acid environment of the stomach destroys live bacteria before they arrive in the colon. Here is the science of why delivery technology is just as important as the bacterial strains themselves.">
+    <meta name="keywords" content="probiotic survivability, daily synbiotic, gut microbiome health, seed probiotic, nested capsule delivery">
+    <link rel="canonical" href="https://sporlyworks.com/guides/ds01-synbiotic-gut-science.html">
+    <meta property="og:title" content="Why Standard Probiotics Fail: The Dual-Capsule Delivery System — SporlyWorks">
+    <meta property="og:description" content="Most probiotic supplements on store shelves never actually reach your gut. The high-acid environment of the stomach destroys live bacteria before they arrive in the colon. Here is the science of why delivery technology is just as important as the bacterial strains themselves.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://sporlyworks.com/guides/ds01-synbiotic-gut-science.html">
+    <meta property="og:image" content="https://sporlyworks.com/assets/illustrations/synbiotics.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Why Standard Probiotics Fail: The Dual-Capsule Delivery System — SporlyWorks">
+    <meta name="twitter:description" content="Most probiotic supplements on store shelves never actually reach your gut. The high-acid environment of the stomach destroys live bacteria before they arrive in the colon. Here is the science of why delivery technology is just as important as the bacterial strains themselves.">
+    <meta name="twitter:image" content="https://sporlyworks.com/assets/illustrations/synbiotics.jpg">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{style_path}">
+    <link rel="stylesheet" href="../style.css?v=930">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Why Standard Probiotics Fail: The Dual-Capsule Delivery System",
+      "description": "Most probiotic supplements on store shelves never actually reach your gut. The high-acid environment of the stomach destroys live bacteria before they arrive in the colon. Here is the science of why delivery technology is just as important as the bacterial strains themselves.",
+      "url": "https://sporlyworks.com/guides/ds01-synbiotic-gut-science.html",
+      "author": {
+        "@type": "Organization",
+        "name": "SporlyWorks Scientific Advisory Board"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "SporlyWorks",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://sporlyworks.com/assets/logo-nav.png"
+        }
+      }
+    }
+    </script>
     <style>
         .guide-body {
             max-width: 800px;
@@ -173,7 +203,7 @@
             <div class="partner-cta-box">
                 <h3>Ready to Take the Next Step?</h3>
                 <p>Invest in science-backed gut health with Seed's DS-01® Daily Synbiotic, engineered with ViaCap® survivability technology.</p>
-                <a href="https://seed.com" id="cta-seed" class="partner-cta-btn" target="_blank" rel="noopener">Get 15% Off Your First Month of Seed →</a>
+                <a href="https://seed.com" id="cta-seed" data-affiliate-partner="seed" class="partner-cta-btn" target="_blank" rel="noopener">Get 15% Off Your First Month of Seed →</a>
             </div>
         </article>
     </main>
@@ -219,43 +249,7 @@
         </div>
     </footer>
 
-    <script>
-    // Load affiliate config dynamically for this deep page
-    fetch('../affiliate_config.json')
-        .then(r => r.json())
-        .then(config => {
-            const partner = config.partners['seed'];
-            const btn = document.getElementById('cta-seed');
-            if (partner && btn) {
-                const isPlaceholder = !partner.affiliate_id || 
-                                      partner.affiliate_id.startsWith('YOUR_') || 
-                                      partner.affiliate_id.includes('INSERT');
-                if (isPlaceholder) {
-                    btn.href = 'javascript:void(0)';
-                    btn.innerHTML = 'Partner Program Pending';
-                    btn.style.pointerEvents = 'none';
-                    btn.style.opacity = '0.6';
-                    btn.style.background = '#888888';
-                    btn.style.borderColor = '#888888';
-                    btn.style.color = '#ffffff';
-                    btn.style.cursor = 'default';
-                    btn.style.boxShadow = 'none';
-                    btn.style.transform = 'none';
-                } else {
-                    let url = "https://seed.com";
-                    if (partner.affiliate_url_template.includes('awinmid=')) {
-                        const midMatch = partner.affiliate_url_template.match(/awinmid=(\d+)/);
-                        const mid = midMatch ? midMatch[1] : '';
-                        url = `https://www.awin1.com/cread.php?awinmid=${mid}&awinaffid=${partner.affiliate_id}&ued=${encodeURIComponent(url)}`;
-                    } else {
-                        url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
-                    }
-                    btn.href = url;
-                }
-            }
-        })
-        .catch(() => console.log('Config fetch skipped - using static default'));
-    </script>
-<script src="../assets/page-transitions.js"></script>
+    <script src="../assets/affiliate-manager.js"></script>
+    <script src="../assets/page-transitions.js"></script>
 </body>
 </html>

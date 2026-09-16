@@ -1,6 +1,6 @@
 ---
 title: "Mushroom Coffee and Nootropic Stacking: Combining Lion's Mane, Cordyceps, and L-Theanine"
-date: "2026-09-14"
+date: "2026-09-16"
 author: "SporlyWorks Science Board"
 summary: "Optimize your morning routine by understanding the synergistic effects of mushroom coffee, neurogenic compounds, and adaptogens."
 keywords: "mushroom coffee, nootropic stack, lions mane coffee"

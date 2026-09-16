@@ -7,6 +7,15 @@
     <meta name="description" content="Cellular Energy, ATP Production & Cardiovascular Endurance">
     <meta name="keywords" content="cordyceps powder, energy supplement, ATP oxygen endurance, cordycepin hplc, nootropics depot cordyceps">
     <link rel="canonical" href="https://sporlyworks.com/products/cordyceps-extract.html">
+    <meta property="og:title" content="Nootropics Depot Cordyceps Militaris 10:1 (Verified Cordycepin)">
+    <meta property="og:description" content="Cellular Energy, ATP Production & Cardiovascular Endurance">
+    <meta property="og:type" content="product">
+    <meta property="og:url" content="https://sporlyworks.com/products/cordyceps-extract.html">
+    <meta property="og:image" content="https://sporlyworks.com/assets/illustrations/cordyceps_extract.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nootropics Depot Cordyceps Militaris 10:1 (Verified Cordycepin)">
+    <meta name="twitter:description" content="Cellular Energy, ATP Production & Cardiovascular Endurance">
+    <meta name="twitter:image" content="https://sporlyworks.com/assets/illustrations/cordyceps_extract.jpg">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -207,25 +216,34 @@
             <li>Directly enhances adenosine triphosphate (ATP) cellular synthesis</li>
             <li>Third-party ISO-17025 lab verified for purity and active compounds</li>
                 </ul>
-                <a href="https://nootropicsdepot.com" id="cta-nootropicsdepot" class="product-cta-btn" target="_blank" rel="noopener sponsored">Shop Verified Cordyceps Militaris →</a>
+                <a href="https://nootropicsdepot.com" id="cta-nootropicsdepot" data-affiliate-partner="nootropicsdepot" class="product-cta-btn" target="_blank" rel="noopener sponsored">Shop Verified Cordyceps Militaris →</a>
+            </div>
+        </div>
+
+        <!-- Clinical Science Breakdown -->
+        <section class="science-card">
+            <h3>Mechanisms of Action &amp; Clinical Data</h3>
+            <div class="science-content">
+                <p>Cordyceps has been prized for centuries as an adaptogen that increases physical stamina. Modern clinical trials demonstrate its ability to elevate VO2 max (maximum oxygen uptake) and delay muscle fatigue by optimizing cellular oxygen kinetics.</p>
+            <p>Unlike synthetic pre-workout stimulants that stress the adrenal glands, Cordyceps supports endurance organically by enhancing the body's synthesis of ATP (adenosine triphosphate).</p>
+            </div>
+            <div class="science-cite">
+                <strong>Verified Citation:</strong> Clinical Study Reference: Hirsch, K. R., et al. (2017). Journal of Dietary Supplements, 14(1), 42-53. 'Cordyceps militaris improves tolerance to high-intensity exercise after acute and chronic supplementation.'
             </div>
         </section>
 
-        <!-- ═══ SCIENTIFIC BREAKDOWN ═══ -->
-        <section class="product-section">
-            <h3>The Science & Mechanism of Action</h3>
-            <p>Cordyceps has been prized for centuries as an adaptogen that increases physical stamina. Modern clinical trials demonstrate its ability to elevate VO2 max (maximum oxygen uptake) and delay muscle fatigue by optimizing cellular oxygen kinetics.</p>
-            <p>Unlike synthetic pre-workout stimulants that stress the adrenal glands, Cordyceps supports endurance organically by enhancing the body's synthesis of ATP (adenosine triphosphate).</p>
-            <div class="product-citation">Clinical Study Reference: Hirsch, K. R., et al. (2017). Journal of Dietary Supplements, 14(1), 42-53. 'Cordyceps militaris improves tolerance to high-intensity exercise after acute and chronic supplementation.'</div>
+        <!-- Recommended Laboratory Usage -->
+        <section class="usage-section">
+            <h3>Standard Protocols &amp; Usage</h3>
+            <div class="usage-content">
+                <p>Take 500 mg - 1,000 mg daily in the morning or 30-45 minutes before athletic training. Blends smoothly into morning coffee, smoothies, or water.</p>
+            </div>
         </section>
 
-        <!-- ═══ DOSAGE & PROTOCOL ═══ -->
-        <section class="product-section">
-            <h3>Optimal Protocol & Application</h3>
-            <p>Take 500 mg - 1,000 mg daily in the morning or 30-45 minutes before athletic training. Blends smoothly into morning coffee, smoothies, or water.</p>
-        </section>
-
-        <p class="product-disclaimer">These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.</p>
+        <!-- Compliance & Legal -->
+        <div class="product-disclaimer">
+            <strong>Compliance Advisory:</strong> These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.
+        </div>
     </main>
 
     <!-- ═══ FOOTER ═══ -->
@@ -269,21 +287,7 @@
         </div>
     </footer>
 
-    <script>
-    fetch('../affiliate_config.json')
-        .then(r => r.json())
-        .then(config => {
-            const partner = config.partners['nootropicsdepot'];
-            const btn = document.getElementById('cta-nootropicsdepot');
-            if (partner && btn) {
-                if (partner.affiliate_id && !partner.affiliate_id.startsWith('YOUR_') && !partner.affiliate_id.includes('PENDING')) {
-                    let url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
-                    btn.href = url;
-                }
-            }
-        })
-        .catch(() => console.log('Config fetch skipped - using active URLs'));
-    </script>
-<script src="../assets/page-transitions.js"></script>
+    <script src="../assets/affiliate-manager.js"></script>
+    <script src="../assets/page-transitions.js"></script>
 </body>
 </html>

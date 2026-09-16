@@ -5,8 +5,15 @@
     <link>https://sporlyworks.com/blog/</link>
     <description>Peer-reviewed functional mushroom research, liquid culture guides, and clinical adaptogen studies.</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 16 Sep 2026 17:52:55 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 16 Sep 2026 21:30:01 GMT</lastBuildDate>
     <atom:link href="https://sporlyworks.com/blog/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Wet Rot and Bacterial Blotch: Identifying, Preventing, and Treating Sour-Smelling Substrates</title>
+      <link>https://sporlyworks.com/blog/wet-rot-bacterial-contamination.html</link>
+      <guid>https://sporlyworks.com/blog/wet-rot-bacterial-contamination.html</guid>
+      <description>Learn how to detect bacterial contamination in grain spawn, prevent wet rot, and maintain ideal moisture parameters.</description>
+      <pubDate>Wed, 16 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>Bypassing Gastric Breakdown: The Physics and Biochemistry of ViaCap® Dual-Capsule Delivery</title>
       <link>https://sporlyworks.com/blog/viacap-microencapsulation-gut-transit.html</link>
@@ -29,6 +36,13 @@
       <pubDate>Sat, 11 Jul 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title>Why Your Mycelium Stalled: 7 Environmental and Genetic Causes</title>
+      <link>https://sporlyworks.com/blog/stalled-mycelium-troubleshooting.html</link>
+      <guid>https://sporlyworks.com/blog/stalled-mycelium-troubleshooting.html</guid>
+      <description>Diagnose the root causes of stalled mycelial growth, from gas exchange issues to senescence, and learn how to restart colonization.</description>
+      <pubDate>Wed, 16 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Ganoderic Acids and GABAergic Signaling: How Reishi Triterpenes Modulate Sleep Architecture</title>
       <link>https://sporlyworks.com/blog/reishi-triterpenes-sleep-architecture.html</link>
       <guid>https://sporlyworks.com/blog/reishi-triterpenes-sleep-architecture.html</guid>
@@ -47,7 +61,7 @@
       <link>https://sporlyworks.com/blog/mushroom-coffee-nootropic-stacks.html</link>
       <guid>https://sporlyworks.com/blog/mushroom-coffee-nootropic-stacks.html</guid>
       <description>Optimize your morning routine by understanding the synergistic effects of mushroom coffee, neurogenic compounds, and adaptogens.</description>
-      <pubDate>Mon, 14 Sep 2026 00:00:00 GMT</pubDate>
+      <pubDate>Wed, 16 Sep 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
       <title>Monotub Tek: Complete Beginner's Guide to Bulk Substrate Cultivation</title>
@@ -78,6 +92,20 @@
       <pubDate>Sat, 11 Jul 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title>The Gut-Brain Axis: How Probiotics Influence Serotonin Synthesis and Mental Clarity</title>
+      <link>https://sporlyworks.com/blog/gut-brain-axis-probiotics.html</link>
+      <guid>https://sporlyworks.com/blog/gut-brain-axis-probiotics.html</guid>
+      <description>Explore the vagus nerve connection and how a healthy microbiome directly dictates neurotransmitter production and emotional well-being.</description>
+      <pubDate>Wed, 16 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Green Mold (Trichoderma) Recovery Guide: When to Save a Grow and When to Toss It</title>
+      <link>https://sporlyworks.com/blog/green-mold-trichoderma-recovery.html</link>
+      <guid>https://sporlyworks.com/blog/green-mold-trichoderma-recovery.html</guid>
+      <description>Identify, contain, and make critical decisions regarding Trichoderma contamination in your mushroom cultivation projects.</description>
+      <pubDate>Wed, 16 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>Grain Spawn Prep: Pressure Cooking, Moisture Content, and Sterilization Science</title>
       <link>https://sporlyworks.com/blog/grain-spawn-preparation-sterilization.html</link>
       <guid>https://sporlyworks.com/blog/grain-spawn-preparation-sterilization.html</guid>
@@ -90,6 +118,13 @@
       <guid>https://sporlyworks.com/blog/fruiting-conditions-fae-humidity.html</guid>
       <description>Optimize your grow space by mastering the delicate balance of Fresh Air Exchange, relative humidity, and temperature triggers.</description>
       <pubDate>Mon, 27 Jul 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>First Flush vs. Subsequent Flushes: Yield Degradation Curves and Rehydration Technique</title>
+      <link>https://sporlyworks.com/blog/first-flush-vs-subsequent-flushes.html</link>
+      <guid>https://sporlyworks.com/blog/first-flush-vs-subsequent-flushes.html</guid>
+      <description>Master the art of harvesting multiple flushes by understanding substrate rehydration and yield degradation biology.</description>
+      <pubDate>Wed, 16 Sep 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
       <title>Cordyceps militaris vs. Synthetic Pre-Workout: A Clinical Head-to-Head Comparison</title>
@@ -110,7 +145,7 @@
       <link>https://sporlyworks.com/blog/chaga-antioxidant-orac-scores.html</link>
       <guid>https://sporlyworks.com/blog/chaga-antioxidant-orac-scores.html</guid>
       <description>An objective look at Chaga's antioxidant properties, ORAC scores, and the unique biological role of fungal melanin.</description>
-      <pubDate>Mon, 07 Sep 2026 00:00:00 GMT</pubDate>
+      <pubDate>Wed, 16 Sep 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
       <title>Beta-Glucan Extraction: Hot Water vs. Dual Extract and What the Labels Don't Tell You</title>

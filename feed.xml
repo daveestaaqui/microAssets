@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='utf-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>SporlyWorks — Scientific Mycology &amp; Functional Adaptogens</title>
+  <subtitle>Peer-reviewed functional mushroom research, cultivation protocols, and adaptogen science.</subtitle>
+  <link href="https://sporlyworks.com/feed.xml" rel="self" />
+  <link href="https://sporlyworks.com/" />
+  <id>https://sporlyworks.com/</id>
+  <updated>2026-09-16T21:30:01Z</updated>
+  <author>
+    <name>SporlyWorks Scientific Advisory Board</name>
+    <uri>https://sporlyworks.com</uri>
+  </author>
+  <entry>
+    <title>Wet Rot and Bacterial Blotch: Identifying, Preventing, and Treating Sour-Smelling Substrates</title>
+    <link href="https://sporlyworks.com/blog/wet-rot-bacterial-contamination.html" />
+    <id>https://sporlyworks.com/blog/wet-rot-bacterial-contamination.html</id>
+    <published>2026-09-16T00:00:00Z</published>
+    <updated>2026-09-16T00:00:00Z</updated>
+    <summary>Learn how to detect bacterial contamination in grain spawn, prevent wet rot, and maintain ideal moisture parameters.</summary>
+  </entry>
+  <entry>
+    <title>Bypassing Gastric Breakdown: The Physics and Biochemistry of ViaCap® Dual-Capsule Delivery</title>
+    <link href="https://sporlyworks.com/blog/viacap-microencapsulation-gut-transit.html" />
+    <id>https://sporlyworks.com/blog/viacap-microencapsulation-gut-transit.html</id>
+    <published>2026-07-27T00:00:00Z</published>
+    <updated>2026-07-27T00:00:00Z</updated>
+    <summary>Explore how Seed DS-01® utilizes outer-capsule shield technology to ensure 100% survival of 24 probiotic strains through stomach acid and bile salts.</summary>
+  </entry>
+  <entry>
+    <title>Turkey Tail (Trametes versicolor) and PSK: The Most Studied Immunomodulating Mushroom</title>
+    <link href="https://sporlyworks.com/blog/turkey-tail-immune-modulation.html" />
+    <id>https://sporlyworks.com/blog/turkey-tail-immune-modulation.html</id>
+    <published>2026-09-02T00:00:00Z</published>
+    <updated>2026-09-02T00:00:00Z</updated>
+    <summary>Discover the science behind Turkey Tail, PSK, and PSP, and how this common polypore regulates human immune function.</summary>
+  </entry>
+  <entry>
+    <title>Why 90% of Probiotics Fail: The Physics of Gastric Acid Survivability</title>
+    <link href="https://sporlyworks.com/blog/synbiotics-absorption.html" />
+    <id>https://sporlyworks.com/blog/synbiotics-absorption.html</id>
+    <published>2026-07-11T00:00:00Z</published>
+    <updated>2026-07-11T00:00:00Z</updated>
+    <summary>An analytical dive into gut microbiome survival dynamics, exploring the biochemical barriers of stomach acid and the physical engineering of dual-capsule delivery systems.</summary>
+  </entry>
+  <entry>
+    <title>Why Your Mycelium Stalled: 7 Environmental and Genetic Causes</title>
+    <link href="https://sporlyworks.com/blog/stalled-mycelium-troubleshooting.html" />
+    <id>https://sporlyworks.com/blog/stalled-mycelium-troubleshooting.html</id>
+    <published>2026-09-16T00:00:00Z</published>
+    <updated>2026-09-16T00:00:00Z</updated>
+    <summary>Diagnose the root causes of stalled mycelial growth, from gas exchange issues to senescence, and learn how to restart colonization.</summary>
+  </entry>
+  <entry>
+    <title>Ganoderic Acids and GABAergic Signaling: How Reishi Triterpenes Modulate Sleep Architecture</title>
+    <link href="https://sporlyworks.com/blog/reishi-triterpenes-sleep-architecture.html" />
+    <id>https://sporlyworks.com/blog/reishi-triterpenes-sleep-architecture.html</id>
+    <published>2026-07-27T00:00:00Z</published>
+    <updated>2026-07-27T00:00:00Z</updated>
+    <summary>An in-depth review of Ganoderma lucidum triterpenoids, central nervous system relaxation, and slow-wave delta sleep enhancement.</summary>
+  </entry>
+  <entry>
+    <title>Psilocybe natalensis vs. Cubensis: Comparative Analysis of Hyphal Growth Rates &amp; Biological Efficiency</title>
+    <link href="https://sporlyworks.com/blog/psilocybe-natalensis-genetics.html" />
+    <id>https://sporlyworks.com/blog/psilocybe-natalensis-genetics.html</id>
+    <published>2026-07-27T00:00:00Z</published>
+    <updated>2026-07-27T00:00:00Z</updated>
+    <summary>Examine the cellular genetics, contamination resistance, and rapid vegetative mycelial growth of Psilocybe natalensis under laboratory conditions.</summary>
+  </entry>
+  <entry>
+    <title>Mushroom Coffee and Nootropic Stacking: Combining Lion's Mane, Cordyceps, and L-Theanine</title>
+    <link href="https://sporlyworks.com/blog/mushroom-coffee-nootropic-stacks.html" />
+    <id>https://sporlyworks.com/blog/mushroom-coffee-nootropic-stacks.html</id>
+    <published>2026-09-16T00:00:00Z</published>
+    <updated>2026-09-16T00:00:00Z</updated>
+    <summary>Optimize your morning routine by understanding the synergistic effects of mushroom coffee, neurogenic compounds, and adaptogens.</summary>
+  </entry>
+  <entry>
+    <title>Monotub Tek: Complete Beginner's Guide to Bulk Substrate Cultivation</title>
+    <link href="https://sporlyworks.com/blog/monotub-tek-beginners-guide.html" />
+    <id>https://sporlyworks.com/blog/monotub-tek-beginners-guide.html</id>
+    <published>2026-07-27T00:00:00Z</published>
+    <updated>2026-07-27T00:00:00Z</updated>
+    <summary>Master the Monotub Tek with this comprehensive guide covering bulk substrate preparation, pasteurization, and ideal fruiting conditions for maximum yields.</summary>
+  </entry>
+  <entry>
+    <title>Liquid Culture vs. Spore Syringe: Growth Speed, Contamination Rates &amp; Best Use Cases</title>
+    <link href="https://sporlyworks.com/blog/liquid-culture-vs-spore-syringe.html" />
+    <id>https://sporlyworks.com/blog/liquid-culture-vs-spore-syringe.html</id>
+    <published>2026-07-27T00:00:00Z</published>
+    <updated>2026-07-27T00:00:00Z</updated>
+    <summary>Compare the benefits of liquid cultures and spore syringes, analyzing colonization speeds, genetic consistency, and contamination risks.</summary>
+  </entry>
+  <entry>
+    <title>Beyond NGF: The Direct Mechanism of Hericenones in Cognitive Plasticity</title>
+    <link href="https://sporlyworks.com/blog/lions-mane-neurogenesis.html" />
+    <id>https://sporlyworks.com/blog/lions-mane-neurogenesis.html</id>
+    <published>2026-07-11T00:00:00Z</published>
+    <updated>2026-07-11T00:00:00Z</updated>
+    <summary>Explore the bio-chemical mechanisms behind Hericium erinaceus, how its active compounds cross the blood-brain barrier, and what clinical research shows about Nerve Growth Factor (NGF) stimulation.</summary>
+  </entry>
+  <entry>
+    <title>The Cultivator's Guide to Mold: Trichoderma vs. Cobweb</title>
+    <link href="https://sporlyworks.com/blog/identifying-grow-contamination.html" />
+    <id>https://sporlyworks.com/blog/identifying-grow-contamination.html</id>
+    <published>2026-07-11T00:00:00Z</published>
+    <updated>2026-07-11T00:00:00Z</updated>
+    <summary>A practical guide for home mushroom growers to distinguish between healthy mycelium, normal blue bruising, green mold, and cobweb infestations.</summary>
+  </entry>
+  <entry>
+    <title>The Gut-Brain Axis: How Probiotics Influence Serotonin Synthesis and Mental Clarity</title>
+    <link href="https://sporlyworks.com/blog/gut-brain-axis-probiotics.html" />
+    <id>https://sporlyworks.com/blog/gut-brain-axis-probiotics.html</id>
+    <published>2026-09-16T00:00:00Z</published>
+    <updated>2026-09-16T00:00:00Z</updated>
+    <summary>Explore the vagus nerve connection and how a healthy microbiome directly dictates neurotransmitter production and emotional well-being.</summary>
+  </entry>
+  <entry>
+    <title>Green Mold (Trichoderma) Recovery Guide: When to Save a Grow and When to Toss It</title>
+    <link href="https://sporlyworks.com/blog/green-mold-trichoderma-recovery.html" />
+    <id>https://sporlyworks.com/blog/green-mold-trichoderma-recovery.html</id>
+    <published>2026-09-16T00:00:00Z</published>
+    <updated>2026-09-16T00:00:00Z</updated>
+    <summary>Identify, contain, and make critical decisions regarding Trichoderma contamination in your mushroom cultivation projects.</summary>
+  </entry>
+  <entry>
+    <title>Grain Spawn Prep: Pressure Cooking, Moisture Content, and Sterilization Science</title>
+    <link href="https://sporlyworks.com/blog/grain-spawn-preparation-sterilization.html" />
+    <id>https://sporlyworks.com/blog/grain-spawn-preparation-sterilization.html</id>
+    <published>2026-07-27T00:00:00Z</published>
+    <updated>2026-07-27T00:00:00Z</updated>
+    <summary>A deep dive into preparing perfect grain spawn, balancing moisture content, and the physics of pressure sterilization.</summary>
+  </entry>
+  <entry>
+    <title>Dialing In Fruiting Conditions: FAE, Humidity, Temperature &amp; Light Cycles</title>
+    <link href="https://sporlyworks.com/blog/fruiting-conditions-fae-humidity.html" />
+    <id>https://sporlyworks.com/blog/fruiting-conditions-fae-humidity.html</id>
+    <published>2026-07-27T00:00:00Z</published>
+    <updated>2026-07-27T00:00:00Z</updated>
+    <summary>Optimize your grow space by mastering the delicate balance of Fresh Air Exchange, relative humidity, and temperature triggers.</summary>
+  </entry>
+  <entry>
+    <title>First Flush vs. Subsequent Flushes: Yield Degradation Curves and Rehydration Technique</title>
+    <link href="https://sporlyworks.com/blog/first-flush-vs-subsequent-flushes.html" />
+    <id>https://sporlyworks.com/blog/first-flush-vs-subsequent-flushes.html</id>
+    <published>2026-09-16T00:00:00Z</published>
+    <updated>2026-09-16T00:00:00Z</updated>
+    <summary>Master the art of harvesting multiple flushes by understanding substrate rehydration and yield degradation biology.</summary>
+  </entry>
+  <entry>
+    <title>Cordyceps militaris vs. Synthetic Pre-Workout: A Clinical Head-to-Head Comparison</title>
+    <link href="https://sporlyworks.com/blog/cordyceps-vs-pre-workout.html" />
+    <id>https://sporlyworks.com/blog/cordyceps-vs-pre-workout.html</id>
+    <published>2026-07-27T00:00:00Z</published>
+    <updated>2026-07-27T00:00:00Z</updated>
+    <summary>Analyze the metabolic benefits of Cordyceps militaris compared to synthetic pre-workout supplements for sustained athletic performance.</summary>
+  </entry>
+  <entry>
+    <title>Cordycepin and Cellular ATP Synthesis: The Biochemistry of Metabolic Performance</title>
+    <link href="https://sporlyworks.com/blog/cordyceps-atp-cellular-energy.html" />
+    <id>https://sporlyworks.com/blog/cordyceps-atp-cellular-energy.html</id>
+    <published>2026-07-27T00:00:00Z</published>
+    <updated>2026-07-27T00:00:00Z</updated>
+    <summary>Discover how Cordyceps militaris elevates adenosine triphosphate (ATP) production, enhances cellular oxygen uptake, and supports endurance performance.</summary>
+  </entry>
+  <entry>
+    <title>Chaga ORAC Scores and Melanin Content: Separating Marketing from Molecular Science</title>
+    <link href="https://sporlyworks.com/blog/chaga-antioxidant-orac-scores.html" />
+    <id>https://sporlyworks.com/blog/chaga-antioxidant-orac-scores.html</id>
+    <published>2026-09-16T00:00:00Z</published>
+    <updated>2026-09-16T00:00:00Z</updated>
+    <summary>An objective look at Chaga's antioxidant properties, ORAC scores, and the unique biological role of fungal melanin.</summary>
+  </entry>
+  <entry>
+    <title>Beta-Glucan Extraction: Hot Water vs. Dual Extract and What the Labels Don't Tell You</title>
+    <link href="https://sporlyworks.com/blog/beta-glucan-extraction-methods.html" />
+    <id>https://sporlyworks.com/blog/beta-glucan-extraction-methods.html</id>
+    <published>2026-07-27T00:00:00Z</published>
+    <updated>2026-07-27T00:00:00Z</updated>
+    <summary>Understand the biochemistry of mushroom extraction and why dual-extraction is critical for unlocking full medicinal potential.</summary>
+  </entry>
+  <entry>
+    <title>All-In-One Grow Bags: Why Pre-Sterilized Substrates Are Changing Home Mycology</title>
+    <link href="https://sporlyworks.com/blog/all-in-one-grow-bag-guide.html" />
+    <id>https://sporlyworks.com/blog/all-in-one-grow-bag-guide.html</id>
+    <published>2026-07-27T00:00:00Z</published>
+    <updated>2026-07-27T00:00:00Z</updated>
+    <summary>Explore the benefits, mechanics, and best practices for using All-In-One grow bags to achieve massive flushes with minimal effort.</summary>
+  </entry>
+  <entry>
+    <title>Agar Transfers and Genetic Isolation: A Lab Techniques Primer</title>
+    <link href="https://sporlyworks.com/blog/agar-work-isolating-genetics.html" />
+    <id>https://sporlyworks.com/blog/agar-work-isolating-genetics.html</id>
+    <published>2026-07-27T00:00:00Z</published>
+    <updated>2026-07-27T00:00:00Z</updated>
+    <summary>Learn the essential agar techniques for cloning mushrooms, isolating robust genetics, and ensuring contaminant-free mycelial growth.</summary>
+  </entry>
+</feed>

@@ -4,30 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mushroom Harvest & Yield Estimator — SporlyWorks</title>
-    <meta name="description" content="Calculate expected yields for gourmet grow blocks or laboratory liquid culture spawn runs.">
+    <meta name="description" content="Calculate expected fresh and dry mushroom yields with verified biological efficiency formulas. Export instant laboratory cultivation dossiers.">
+    <link rel="canonical" href="https://sporlyworks.com/tools/yield-estimator.html">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <meta property="og:title" content="Mushroom Harvest & Yield Estimator — SporlyWorks">
+    <meta property="og:description" content="Empirical biological efficiency and harvest yield calculator for gourmet blocks and all-in-one grow bags.">
+    <meta property="og:url" content="https://sporlyworks.com/tools/yield-estimator.html">
+    <meta property="og:image" content="https://sporlyworks.com/assets/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css?v=1200">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "SporlyWorks Mushroom Harvest & Yield Estimator",
+      "url": "https://sporlyworks.com/tools/yield-estimator.html",
+      "description": "Deterministic biological efficiency calculator for gourmet blocks and mycology research spawn.",
+      "applicationCategory": "ScientificApplication",
+      "operatingSystem": "All"
+    }
+    </script>
     <style>
         .tool-container {
-            max-width: 850px;
+            max-width: 880px;
             margin: 125px auto 60px;
             padding: 0 24px;
         }
         .tool-card {
-            background: rgba(255, 255, 255, 0.75);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: var(--radius-lg);
-            padding: 48px;
+            padding: 44px;
             box-shadow: var(--glass-shadow);
         }
         .calculator-tabs {
             display: flex;
             gap: 12px;
-            margin-bottom: 36px;
+            margin-bottom: 32px;
             justify-content: center;
             border-bottom: 1px solid var(--glass-border);
             padding-bottom: 16px;
@@ -53,21 +70,62 @@
         .tool-panel.active {
             display: block;
         }
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .metric-box {
+            background: #ffffff;
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+        .dossier-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--glass-border);
+        }
+        .btn-dossier {
+            padding: 10px 20px;
+            border-radius: var(--radius-pill);
+            font-size: 13.5px;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            background: #ffffff;
+            color: var(--green-dark);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+        .btn-dossier:hover {
+            border-color: var(--green-light);
+            background: rgba(27, 138, 90, 0.05);
+            transform: translateY(-1px);
+        }
         .legal-box {
-            font-size: 11px;
+            font-size: 12px;
             color: var(--text-secondary);
             background: rgba(195, 175, 145, 0.08);
             border: 1px dashed var(--glass-border);
             border-radius: var(--radius-sm);
             padding: 16px;
             margin-top: 36px;
-            line-height: 1.5;
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
 
-    <!-- ═══ CENTERED HEADER & NAVBAR ═══ -->
     <header class="internal-header">
         <div class="header-logo-centered">
             <a href="../index.html" class="header-brand-link">
@@ -81,158 +139,154 @@
                 <a href="../products.html">Shop Products</a>
                 <a href="mycology-finder.html">Finder Quiz</a>
                 <a href="yield-estimator.html" class="active">Yield Calculator</a>
+                <a href="substrate-calculator.html">Substrate Calculator</a>
                 <a href="../blog/index.html">Research Blog</a>
             </div>
         </nav>
     </header>
 
-    <!-- ═══ TOOL WRAPPER ═══ -->
     <main class="tool-container" style="margin-top: 155px;">
-        
         <div class="tool-card">
-            <img src="../assets/illustrations/grow_kits.jpg?v=960" alt="Mushroom Cultivation Yield" style="width: 100%; max-height: 320px; object-fit: contain; background: rgba(245, 240, 232, 0.5); border-radius: var(--radius-md); margin-bottom: 28px; border: 1px solid var(--border-color);">
+            <img src="../assets/illustrations/grow_kits.jpg?v=960" alt="Mushroom Cultivation Yield" style="width: 100%; max-height: 280px; object-fit: contain; background: rgba(245, 240, 232, 0.5); border-radius: var(--radius-md); margin-bottom: 24px; border: 1px solid var(--border-color);">
             <h1 style="font-family:'DM Serif Display',serif; color:var(--green-dark); font-size:36px; margin-bottom:12px; text-align:center;">Mushroom Harvest & Yield Estimator</h1>
-            <p style="color:var(--text-secondary); text-align:center; margin-bottom:32px; font-size:16px;">Estimate potential biological crop yields for both ready-to-grow blocks and laboratory spawn runs.</p>
+            <p style="color:var(--text-secondary); text-align:center; margin-bottom:28px; font-size:16px;">Deterministic biological efficiency calculations for gourmet fruiting blocks and research spawn runs.</p>
 
             <div class="calculator-tabs">
-                <button class="calc-tab-btn active" onclick="switchTab('gourmet')">Gourmet Grow Kits</button>
-                <button class="calc-tab-btn" onclick="switchTab('research')">Microscopy & Research Spawn</button>
+                <button class="calc-tab-btn active" onclick="switchTab('gourmet')">Gourmet Fruiting Blocks</button>
+                <button class="calc-tab-btn" onclick="switchTab('research')">All-In-One Spawn Bags</button>
             </div>
 
             <!-- Tab 1: Gourmet Kits -->
             <div class="tool-panel active" id="panel-gourmet">
-                <div class="tool-row" style="display:flex; flex-direction:column; gap:20px; margin-bottom:28px;">
+                <div class="tool-row" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:20px; margin-bottom:24px;">
                     <div class="tool-field" style="display:flex; flex-direction:column; gap:8px;">
-                        <label for="species-gourmet" style="font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-secondary);">Mushroom Species</label>
+                        <label for="species-gourmet" style="font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--text-secondary);">Mushroom Species</label>
                         <select id="species-gourmet" style="width:100%; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--glass-border); background:#ffffff; color:var(--text-primary); font-size:15px;">
-                            <option value="blue_oyster">Blue Oyster</option>
-                            <option value="lions_mane">Lion's Mane (Hericium)</option>
-                            <option value="golden_pink_oyster">Golden / Pink Oyster</option>
-                            <option value="shiitake">Shiitake (Lentinula)</option>
+                            <option value="blue_oyster">Blue Oyster (Pleurotus ostreatus)</option>
+                            <option value="lions_mane">Lion's Mane (Hericium erinaceus)</option>
+                            <option value="golden_pink_oyster">Golden / Pink Oyster (Pleurotus)</option>
+                            <option value="shiitake">Shiitake (Lentinula edodes)</option>
+                            <option value="king_trumpet">King Trumpet (Pleurotus eryngii)</option>
                         </select>
                     </div>
                     <div class="tool-field" style="display:flex; flex-direction:column; gap:8px;">
-                        <label for="numKits" style="font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-secondary);">Number of Grow Kits</label>
-                        <input type="number" id="numKits" value="2" min="1" max="50" style="width:100%; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--glass-border); background:#ffffff; color:var(--text-primary); font-size:15px;">
+                        <label for="numKits" style="font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--text-secondary);">Number of Blocks</label>
+                        <input type="number" id="numKits" value="2" min="1" max="100" style="width:100%; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--glass-border); background:#ffffff; color:var(--text-primary); font-size:15px;">
+                    </div>
+                    <div class="tool-field" style="display:flex; flex-direction:column; gap:8px;">
+                        <label for="blockWeight" style="font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--text-secondary);">Block Size (lbs)</label>
+                        <select id="blockWeight" style="width:100%; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--glass-border); background:#ffffff; color:var(--text-primary); font-size:15px;">
+                            <option value="4" selected>4 lb Standard Block</option>
+                            <option value="5">5 lb Commercial Block</option>
+                            <option value="6">6 lb Master Bag</option>
+                        </select>
                     </div>
                 </div>
 
-                <button class="tool-btn" onclick="calculateGourmetYield()" style="width:100%; padding:16px; background:linear-gradient(135deg, var(--green-light), var(--green)); color:white; border:none; border-radius:var(--radius-pill); font-size:16px; font-weight:600; cursor:pointer; box-shadow: 0 4px 14px rgba(11, 74, 46, 0.2); margin-bottom:32px;">Calculate Kit Yield</button>
+                <div class="metric-grid">
+                    <div class="metric-box">
+                        <div class="metric-primary" id="gourmet-totalYield">--</div>
+                        <div class="metric-subtitle">Total Fresh Harvest</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-primary" id="gourmet-be">--</div>
+                        <div class="metric-subtitle">Biological Efficiency (B.E.)</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-primary" id="gourmet-firstFlush">--</div>
+                        <div class="metric-subtitle">First Flush Weight</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-primary" id="gourmet-harvestTime">--</div>
+                        <div class="metric-subtitle">Days to First Flush</div>
+                    </div>
+                </div>
 
-                <div class="tool-results" id="results-gourmet">
-                    <h4 style="font-size: 18px; color: var(--green-dark); margin-bottom: 20px; text-align: center;">Estimated Gourmet Yield</h4>
-                    <div class="result-grid result-grid--double">
-                        <div class="result-stat">
-                            <div class="value" id="gourmet-totalYield">–</div>
-                            <div class="label">Total Yield (lbs)</div>
-                        </div>
-                        <div class="result-stat">
-                            <div class="value" id="gourmet-harvestTime">–</div>
-                            <div class="label">Days to First Harvest</div>
-                        </div>
-                    </div>
-                    <div class="result-ctas" style="margin-top:28px;">
-                        <a href="https://www.magicbag.co/?ref=Sporlyworks" id="cta-gourmet" class="result-cta result-cta--primary" target="_blank" rel="noopener" style="display:block; text-align:center; padding:14px; background:var(--green-light); color:white; border-radius:var(--radius-pill); text-decoration:none; font-weight:600;">Shop All-In-One Grow Bags at Magic Bag →</a>
-                    </div>
+                <div class="dossier-actions">
+                    <button class="btn-dossier" onclick="exportDossier('gourmet', 'txt')">📄 Download Cultivation Dossier (.txt)</button>
+                    <button class="btn-dossier" onclick="exportDossier('gourmet', 'json')">💾 Export Raw Telemetry (.json)</button>
+                </div>
+
+                <div class="result-ctas" style="margin-top:28px;">
+                    <a href="https://www.magicbag.co/?ref=Sporlyworks" data-partner="magicbag" id="cta-gourmet" class="result-cta result-cta--primary" target="_blank" rel="noopener sponsored" style="display:block; text-align:center; padding:16px; background:linear-gradient(135deg, var(--green-light), var(--green)); color:white; border-radius:var(--radius-pill); text-decoration:none; font-weight:700; font-size:16px;">Shop All-In-One Grow Bags at Magic Bag →</a>
                 </div>
             </div>
 
-            <!-- Tab 2: Research Spawn (All-In-One Bags) -->
+            <!-- Tab 2: Research Spawn -->
             <div class="tool-panel" id="panel-research">
-                <div class="tool-row" style="display:flex; flex-direction:column; gap:20px; margin-bottom:28px;">
+                <div class="tool-row" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:18px; margin-bottom:24px;">
                     <div class="tool-field" style="display:flex; flex-direction:column; gap:8px;">
-                        <label for="species-research" style="font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-secondary);">Inoculation Method</label>
+                        <label for="species-research" style="font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--text-secondary);">Inoculation Source</label>
                         <select id="species-research" style="width:100%; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--glass-border); background:#ffffff; color:var(--text-primary); font-size:15px;">
-                            <option value="liquid_culture">Liquid Culture (LC) — Recommended</option>
+                            <option value="liquid_culture" selected>Isolated Liquid Culture (LC)</option>
                             <option value="spore_syringe">Multi-Spore Syringe (MSS)</option>
                         </select>
                     </div>
-                    <div class="tool-row-inner" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
-                        <div class="tool-field" style="display:flex; flex-direction:column; gap:8px;">
-                            <label for="bagSize" style="font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-secondary);">Bag Size</label>
-                            <select id="bagSize" style="width:100%; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--glass-border); background:#ffffff; color:var(--text-primary); font-size:15px;">
-                                <option value="3" selected>3 lb All-In-One Bag (Standard)</option>
-                                <option value="4">4 lb All-In-One Bag (Medium)</option>
-                                <option value="5">5 lb All-In-One Bag (Large)</option>
-                                <option value="6">6 lb All-In-One Bag (XL Magic Bag)</option>
-                            </select>
-                        </div>
-                        <div class="tool-field" style="display:flex; flex-direction:column; gap:8px;">
-                            <label for="numBags" style="font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-secondary);">Number of Bags</label>
-                            <input type="number" id="numBags" value="2" min="1" max="50" style="width:100%; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--glass-border); background:#ffffff; color:var(--text-primary); font-size:15px;">
-                        </div>
+                    <div class="tool-field" style="display:flex; flex-direction:column; gap:8px;">
+                        <label for="bagSize" style="font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--text-secondary);">Bag Size</label>
+                        <select id="bagSize" style="width:100%; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--glass-border); background:#ffffff; color:var(--text-primary); font-size:15px;">
+                            <option value="3">3 lb Standard All-In-One Bag</option>
+                            <option value="4">4 lb Medium All-In-One Bag</option>
+                            <option value="5" selected>5 lb Large All-In-One Bag</option>
+                            <option value="6">6 lb XL Magic Bag</option>
+                        </select>
                     </div>
                     <div class="tool-field" style="display:flex; flex-direction:column; gap:8px;">
-                        <label for="flushes" style="font-size:13px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-secondary);">Expected Flushes</label>
+                        <label for="numBags" style="font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--text-secondary);">Number of Bags</label>
+                        <input type="number" id="numBags" value="2" min="1" max="50" style="width:100%; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--glass-border); background:#ffffff; color:var(--text-primary); font-size:15px;">
+                    </div>
+                    <div class="tool-field" style="display:flex; flex-direction:column; gap:8px;">
+                        <label for="flushes" style="font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--text-secondary);">Target Flushes</label>
                         <select id="flushes" style="width:100%; padding:14px; border-radius:var(--radius-sm); border:1px solid var(--glass-border); background:#ffffff; color:var(--text-primary); font-size:15px;">
-                            <option value="2">2 Flushes (Conservative)</option>
-                            <option value="3" selected>3 Flushes (Average)</option>
-                            <option value="5">5 Flushes (Optimistic Max)</option>
+                            <option value="2">2 Flushes (Commercial Baseline)</option>
+                            <option value="3" selected>3 Flushes (Optimal Cycle)</option>
+                            <option value="4">4 Flushes (Extended Cycle)</option>
                         </select>
                     </div>
                 </div>
 
-                <button class="tool-btn" onclick="calculateResearchYield()" style="width:100%; padding:16px; background:linear-gradient(135deg, var(--green-light), var(--green)); color:white; border:none; border-radius:var(--radius-pill); font-size:16px; font-weight:600; cursor:pointer; box-shadow: 0 4px 14px rgba(11, 74, 46, 0.2); margin-bottom:32px;">Calculate Estimated Yield</button>
-
-                <div class="tool-results" id="results-research">
-                    <h4 style="font-size: 18px; color: var(--green-dark); margin-bottom: 20px; text-align: center;">Estimated All-In-One Bag Yield</h4>
-                    <div class="result-grid result-grid--double">
-                        <div class="result-stat">
-                            <div class="value" id="research-totalYield">–</div>
-                            <div class="label">Total Dried Yield (oz)</div>
-                        </div>
-                        <div class="result-stat">
-                            <div class="value" id="research-freshYield">–</div>
-                            <div class="label">Fresh Equivalent (lbs)</div>
-                        </div>
-                        <div class="result-stat">
-                            <div class="value" id="research-harvestTime">–</div>
-                            <div class="label">Estimated Total Grow Time</div>
-                        </div>
-                        <div class="result-stat">
-                            <div class="value" id="research-injection">–</div>
-                            <div class="label">Recommended Injection</div>
-                        </div>
+                <div class="metric-grid">
+                    <div class="metric-box">
+                        <div class="metric-primary" id="research-totalYield">--</div>
+                        <div class="metric-subtitle">Total Dried Yield</div>
                     </div>
-
-                    <!-- Cultivation Tips aligned with magicbag.co -->
-                    <div style="margin-top:28px; background: rgba(245, 240, 232, 0.4); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 24px;">
-                        <h5 style="font-family:'DM Serif Display',serif; color:var(--green-dark); font-size:16px; margin-bottom:14px;">Cultivation Guide (via <a href="https://magicbag.co/#how-to-use" target="_blank" rel="noopener" style="color:var(--green-light); text-decoration:underline;">Magic Bag</a>)</h5>
-                        <ol style="padding-left:18px; margin:0; font-size:14px; color:var(--text-secondary); line-height:1.8;">
-                            <li><strong>Inject 3–5 cc</strong> of liquid culture or spores through the self-healing injection port. <a href="https://www.myyco.com" target="_blank" rel="noopener" style="color:var(--green-light);">MYYCO.com</a> is recommended for LC (use code "magicbag" for 5% off).</li>
-                            <li><strong>Store in a warm, dark place</strong> (72–78°F / 22–26°C). No light is needed during colonization.</li>
-                            <li><strong>Shake at 20–30% colonization</strong> — once the white mycelium covers roughly ¼ of the visible grain, give the bag a firm shake to redistribute and accelerate growth.</li>
-                            <li><strong>Wait for full colonization.</strong> The bag should turn completely white. This takes 3–6 weeks depending on genetics and temperature.</li>
-                            <li><strong>Initiate fruiting:</strong> Cut the bag open, give it fresh air and indirect light. Pin the top loosely with the included paper clip. Mist the inside walls a few times a day.</li>
-                            <li><strong>Harvest</strong> right before the cap separates from the stem. Expect <strong>2–5 flushes</strong> over 1–2 additional weeks.</li>
-                        </ol>
-                        <p style="font-size:12px; color:var(--text-muted); margin-top:14px; margin-bottom:0;">
-                            Source: <a href="https://magicbag.co/#faq" target="_blank" rel="noopener" style="color:var(--green-light);">Magic Bag FAQ</a> · 
-                            LC recommended over spores per <a href="https://magicbag.co/#faq" target="_blank" rel="noopener" style="color:var(--green-light);">MagicBag.co</a> (faster colonization, more contamination-resistant, isolated genetics).
-                        </p>
+                    <div class="metric-box">
+                        <div class="metric-primary" id="research-freshYield">--</div>
+                        <div class="metric-subtitle">Fresh Biomass</div>
                     </div>
-
-                    <div class="result-ctas" style="margin-top:28px; display:flex; gap:16px; flex-wrap:wrap; justify-content:center;">
-                        <a href="https://www.myyco.com" id="cta-myyco" class="result-cta result-cta--primary" target="_blank" rel="noopener" style="padding:14px 28px; background:var(--green-light); color:white; border-radius:var(--radius-pill); text-decoration:none; font-weight:600; flex-grow:1; text-align:center;">Get Liquid Cultures at MYYCO →</a>
-                        <a href="https://www.magicbag.co" id="cta-magicbag" class="result-cta result-cta--secondary" target="_blank" rel="noopener" style="padding:14px 28px; border:1px solid var(--green); color:var(--green); border-radius:var(--radius-pill); text-decoration:none; font-weight:600; flex-grow:1; text-align:center;">Get All-In-One Bags at Magic Bag →</a>
+                    <div class="metric-box">
+                        <div class="metric-primary" id="research-harvestTime">--</div>
+                        <div class="metric-subtitle">Colonization + Fruiting</div>
                     </div>
+                    <div class="metric-box">
+                        <div class="metric-primary" id="research-injection">--</div>
+                        <div class="metric-subtitle">Injection Volume / Bag</div>
+                    </div>
+                </div>
+
+                <div class="dossier-actions">
+                    <button class="btn-dossier" onclick="exportDossier('research', 'txt')">📄 Download Laboratory Dossier (.txt)</button>
+                    <button class="btn-dossier" onclick="exportDossier('research', 'json')">💾 Export Telemetry (.json)</button>
+                </div>
+
+                <div class="result-ctas" style="margin-top:28px; display:flex; gap:16px; flex-wrap:wrap; justify-content:center;">
+                    <a href="https://myyco.com/shop-microscopy-liquid-culture/" data-partner="myyco" class="result-cta result-cta--primary" target="_blank" rel="noopener sponsored" style="padding:16px 28px; background:var(--green-light); color:white; border-radius:var(--radius-pill); text-decoration:none; font-weight:700; flex-grow:1; text-align:center;">Get Liquid Cultures at MYYCO →</a>
+                    <a href="https://www.magicbag.co" data-partner="magicbag" class="result-cta result-cta--secondary" target="_blank" rel="noopener sponsored" style="padding:16px 28px; border:2px solid var(--green); color:var(--green); border-radius:var(--radius-pill); text-decoration:none; font-weight:700; flex-grow:1; text-align:center; background:#ffffff;">Get All-In-One Bags at Magic Bag →</a>
                 </div>
             </div>
 
             <div class="legal-box">
-                <strong>Legal microscopy Warning:</strong> Spore syringes and isolated liquid cultures of active species are sold strictly for microscopy, taxonomy, and scientific laboratory research. Inoculating composting substrate (like Magic Bags) with active cultures is regulated by federal and local state laws. SporlyWorks does not support, encourage, or facilitate illegal cultivation. Check your local state guidelines (CA, GA, ID restrictions apply).
+                <strong>Scientific & Legal Notice:</strong> Biological efficiency (B.E.) represents (Fresh Fruit Weight / Dry Substrate Mass) × 100. Spore syringes and liquid cultures of active species are distributed strictly for taxonomy, microscopy, and scientific laboratory study. Shipping restrictions apply to CA, GA, and ID. SporlyWorks does not facilitate or advocate illicit cultivation.
             </div>
         </div>
     </main>
 
-    <!-- ═══ FOOTER ═══ -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-brand">
                 <h3 class="footer-logo">SPORLYWORKS</h3>
                 <p class="footer-tagline">Botanical precision meets functional wellness. Bringing clinical-grade adaptogens and certified organic genetics to home laboratories.</p>
             </div>
-            
             <div class="footer-links-grid">
                 <div class="footer-column">
                     <h4>Collections</h4>
@@ -242,10 +296,10 @@
                 </div>
                 <div class="footer-column">
                     <h4>Mycology Engines</h4>
-                    <a href="../tools/yield-estimator.html">Yield Estimator</a>
-                    <a href="../tools/wellness-stack-builder.html">Stack Builder</a>
-                    <a href="../tools/diagnostics.html">Contamination Diagnostics</a>
-                    <a href="../tools/substrate-calculator.html">Substrate Calculator</a>
+                    <a href="yield-estimator.html">Yield Estimator</a>
+                    <a href="substrate-calculator.html">Substrate Calculator</a>
+                    <a href="wellness-stack-builder.html">Stack Builder</a>
+                    <a href="diagnostics.html">Diagnostics Guide</a>
                 </div>
                 <div class="footer-column">
                     <h4>Resources</h4>
@@ -254,7 +308,6 @@
                 </div>
             </div>
         </div>
-        
         <div class="footer-bottom">
             <div class="footer-bottom-container">
                 <p>&copy; 2026 SporlyWorks. All rights reserved.</p>
@@ -268,103 +321,163 @@
 
     <script>
     function switchTab(tabId) {
-        document.querySelectorAll('.calc-tab-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        document.querySelectorAll('.tool-panel').forEach(panel => {
-            panel.classList.remove('active');
-        });
+        document.querySelectorAll('.calc-tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tool-panel').forEach(panel => panel.classList.remove('active'));
         
-        event.currentTarget.classList.add('active');
-        document.getElementById('panel-' + tabId).classList.add('active');
+        const tabs = document.querySelectorAll('.calc-tab-btn');
+        if (tabId === 'gourmet') tabs[0].classList.add('active');
+        else if (tabs[1]) tabs[1].classList.add('active');
+
+        const target = document.getElementById('panel-' + tabId);
+        if (target) target.classList.add('active');
     }
 
     const gourmetData = {
-        blue_oyster:       { yieldPerKit: 2.0, daysToHarvest: 10 },
-        lions_mane:        { yieldPerKit: 1.8, daysToHarvest: 14 },
-        golden_pink_oyster: { yieldPerKit: 1.5, daysToHarvest: 11 },
-        shiitake:          { yieldPerKit: 1.4, daysToHarvest: 18 }
+        blue_oyster:        { name: "Blue Oyster (Pleurotus ostreatus)", bePercent: 100, daysToHarvest: 10 },
+        lions_mane:         { name: "Lion's Mane (Hericium erinaceus)", bePercent: 85, daysToHarvest: 14 },
+        golden_pink_oyster: { name: "Golden / Pink Oyster (Pleurotus)", bePercent: 90, daysToHarvest: 11 },
+        shiitake:           { name: "Shiitake (Lentinula edodes)", bePercent: 70, daysToHarvest: 18 },
+        king_trumpet:       { name: "King Trumpet (Pleurotus eryngii)", bePercent: 75, daysToHarvest: 16 }
     };
 
     function calculateGourmetYield() {
-        const species = document.getElementById('species-gourmet').value;
-        const numKits = parseInt(document.getElementById('numKits').value);
-        const data = gourmetData[species];
+        const speciesKey = document.getElementById('species-gourmet').value;
+        const numKits = parseInt(document.getElementById('numKits').value) || 1;
+        const blockLbs = parseFloat(document.getElementById('blockWeight').value) || 4;
+        const data = gourmetData[speciesKey];
 
-        const totalYield = (data.yieldPerKit * numKits).toFixed(1);
+        const drySubstratePerBlock = blockLbs * 0.38;
+        const totalDrySubstrate = drySubstratePerBlock * numKits;
+        
+        const totalFreshLbs = totalDrySubstrate * (data.bePercent / 100);
+        const firstFlushLbs = totalFreshLbs * 0.65;
 
-        document.getElementById('gourmet-totalYield').textContent = totalYield;
-        document.getElementById('gourmet-harvestTime').textContent = data.daysToHarvest;
+        document.getElementById('gourmet-totalYield').textContent = totalFreshLbs.toFixed(1) + ' lbs';
+        document.getElementById('gourmet-be').textContent = data.bePercent + '%';
+        document.getElementById('gourmet-firstFlush').textContent = firstFlushLbs.toFixed(1) + ' lbs';
+        document.getElementById('gourmet-harvestTime').textContent = data.daysToHarvest + ' Days';
 
-        document.getElementById('results-gourmet').classList.add('active');
+        return {
+            mode: "Gourmet Fruiting Block",
+            species: data.name,
+            blocks: numKits,
+            blockSizeLbs: blockLbs,
+            bePercent: data.bePercent,
+            totalFreshLbs: parseFloat(totalFreshLbs.toFixed(2)),
+            firstFlushLbs: parseFloat(firstFlushLbs.toFixed(2)),
+            daysToFirstFlush: data.daysToHarvest
+        };
     }
 
-    // Magic Bag yield data (per magicbag.co FAQ)
-    // Standard 3lb bag: ~2-3 oz dried per full run (all flushes)
-    // That's ~0.7-1.0 oz dried per flush for 3 flushes avg
     const researchData = {
-        liquid_culture:  { ozPerFlushPer3lb: 0.85, weeksMin: 8, weeksMax: 10, injection: '3–5 cc' },
-        spore_syringe:   { ozPerFlushPer3lb: 0.70, weeksMin: 10, weeksMax: 14, injection: '3–5 cc' }
+        liquid_culture: { method: "Isolated Liquid Culture (LC)", baselineDriedOzPer3lb: 0.85, weeksMin: 6, weeksMax: 8, injection: "3–5 cc" },
+        spore_syringe:  { method: "Multi-Spore Syringe (MSS)", baselineDriedOzPer3lb: 0.70, weeksMin: 8, weeksMax: 12, injection: "3–5 cc" }
     };
 
     function calculateResearchYield() {
-        const method = document.getElementById('species-research').value;
-        const bagLbs = parseInt(document.getElementById('bagSize').value);
-        const numBags = parseInt(document.getElementById('numBags').value);
-        const flushes = parseInt(document.getElementById('flushes').value);
-        const data = researchData[method];
+        const methodKey = document.getElementById('species-research').value;
+        const bagLbs = parseFloat(document.getElementById('bagSize').value) || 3;
+        const numBags = parseInt(document.getElementById('numBags').value) || 1;
+        const flushes = parseInt(document.getElementById('flushes').value) || 3;
+        const data = researchData[methodKey];
 
-        // Scale yield: 3lb bag is baseline, 5lb bag produces ~1.67x
-        const bagMultiplier = bagLbs / 3;
-        const totalDriedOz = (data.ozPerFlushPer3lb * bagMultiplier * numBags * flushes).toFixed(1);
-        const totalFreshLbs = (totalDriedOz / 16 * 10).toFixed(1); // ~10:1 fresh:dried ratio
+        const bagScale = bagLbs / 3.0;
+        const driedOz = data.baselineDriedOzPer3lb * bagScale * numBags * flushes;
+        const freshLbs = (driedOz * 10) / 16.0;
 
-        document.getElementById('research-totalYield').textContent = totalDriedOz + ' oz';
-        document.getElementById('research-freshYield').textContent = totalFreshLbs + ' lbs';
-        document.getElementById('research-harvestTime').textContent = data.weeksMin + '–' + data.weeksMax + ' weeks';
-        document.getElementById('research-injection').textContent = data.injection + ' per bag';
+        document.getElementById('research-totalYield').textContent = driedOz.toFixed(1) + ' oz';
+        document.getElementById('research-freshYield').textContent = freshLbs.toFixed(1) + ' lbs';
+        document.getElementById('research-harvestTime').textContent = data.weeksMin + '–' + data.weeksMax + ' Wks';
+        document.getElementById('research-injection').textContent = data.injection;
 
-        document.getElementById('results-research').classList.add('active');
+        return {
+            mode: "All-In-One Spawn Bag",
+            method: data.method,
+            bags: numBags,
+            bagSizeLbs: bagLbs,
+            flushes: flushes,
+            totalDriedOz: parseFloat(driedOz.toFixed(2)),
+            totalFreshLbs: parseFloat(freshLbs.toFixed(2)),
+            timelineWeeks: data.weeksMin + "-" + data.weeksMax,
+            injectionVolume: data.injection
+        };
     }
 
-    // Dynamic Links loader
-    fetch('../affiliate_config.json')
-        .then(r => r.json())
-        .then(config => {
-            ['magic_bag', 'myyco', 'realmushrooms'].forEach(key => {
-                const partner = config.partners[key];
-                let btn = null;
-                if (key === 'magic_bag') btn = document.getElementById('cta-gourmet');
-                if (key === 'myyco') btn = document.getElementById('cta-spores');
-                if (key === 'realmushrooms') btn = document.getElementById('cta-supplements');
+    function exportDossier(mode, format) {
+        const telemetry = mode === 'gourmet' ? calculateGourmetYield() : calculateResearchYield();
+        telemetry.timestamp = new Date().toISOString();
+        telemetry.authority = "SporlyWorks Deterministic Cultivation Engine";
+        telemetry.canonicalUrl = "https://sporlyworks.com/tools/yield-estimator.html";
 
-                if (partner) {
-                    const isPlaceholder = !partner.affiliate_id || 
-                                          partner.affiliate_id.startsWith('YOUR_') || 
-                                          partner.affiliate_id.includes('INSERT');
-                    
-                    if (btn) {
-                        if (isPlaceholder) {
-                            btn.href = 'javascript:void(0)';
-                            btn.innerHTML = 'Partner Program Pending';
-                            btn.style.pointerEvents = 'none';
-                            btn.style.opacity = '0.6';
-                            btn.style.background = '#888888';
-                            btn.style.borderColor = '#888888';
-                            btn.style.color = '#ffffff';
-                            btn.style.cursor = 'default';
-                            btn.style.boxShadow = 'none';
-                            btn.style.transform = 'none';
-                        } else {
-                            const url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
-                            btn.href = url;
-                        }
-                    }
-                }
-            });
-        })
-        .catch(() => console.log('Config fetch skipped - using default links'));
+        const filename = "sporlyworks-cultivation-dossier-" + mode + "-" + Date.now() + "." + format;
+        let fileContent = "";
+        let mimeType = "";
+
+        if (format === 'json') {
+            fileContent = JSON.stringify(telemetry, null, 2);
+            mimeType = "application/json";
+        } else {
+            mimeType = "text/plain";
+            fileContent = "============================================================\n" +
+                          "  🌿 SPORLYWORKS LABORATORY CULTIVATION DOSSIER\n" +
+                          "============================================================\n" +
+                          "Generated:     " + telemetry.timestamp + "\n" +
+                          "Mode:          " + telemetry.mode + "\n" +
+                          "Configuration: " + (mode === 'gourmet' ? telemetry.species : telemetry.method) + "\n" +
+                          "Units:         " + (mode === 'gourmet' ? telemetry.blocks + " blocks (" + telemetry.blockSizeLbs + " lbs each)" : telemetry.bags + " bags (" + telemetry.bagSizeLbs + " lbs each)") + "\n\n" +
+                          "--- PROJECTED HARVEST METRICS ---\n" +
+                          (mode === 'gourmet' ? 
+                           "Biological Efficiency (B.E.): " + telemetry.bePercent + "%\n" +
+                           "Estimated Total Fresh Yield:  " + telemetry.totalFreshLbs + " lbs\n" +
+                           "First Flush Biomass:          " + telemetry.firstFlushLbs + " lbs\n" +
+                           "Days to First Flush:          " + telemetry.daysToFirstFlush + " days\n" :
+                           "Target Flushes:               " + telemetry.flushes + "\n" +
+                           "Estimated Total Dried Yield:  " + telemetry.totalDriedOz + " oz\n" +
+                           "Equivalent Fresh Biomass:     " + telemetry.totalFreshLbs + " lbs\n" +
+                           "Colonization & Fruiting Run:  " + telemetry.timelineWeeks + " weeks\n" +
+                           "Recommended Inoculation:      " + telemetry.injectionVolume + " per bag\n") +
+                          "\n--- PROTOCOL GUIDELINES ---\n" +
+                          "1. Keep colonization ambient temperature between 72°F and 78°F (22°C - 26°C).\n" +
+                          "2. Provide indirect light and 85-95% relative humidity upon pinning.\n" +
+                          "3. Maintain fresh air exchange (FAE) to eliminate CO2 accumulation.\n" +
+                          "4. After harvest, cold-dunk block for 2-4 hours to replenish moisture for subsequent flushes.\n\n" +
+                          "Verified Source: https://sporlyworks.com\n" +
+                          "============================================================\n";
+        }
+
+        const blob = new Blob([fileContent], { type: mimeType });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        ["species-gourmet", "numKits", "blockWeight"].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.addEventListener("input", calculateGourmetYield);
+                el.addEventListener("change", calculateGourmetYield);
+            }
+        });
+
+        ["species-research", "bagSize", "numBags", "flushes"].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.addEventListener("input", calculateResearchYield);
+                el.addEventListener("change", calculateResearchYield);
+            }
+        });
+
+        calculateGourmetYield();
+        calculateResearchYield();
+    });
     </script>
-<script src="../assets/page-transitions.js"></script>
+    <script src="../assets/affiliate-manager.js"></script>
+    <script src="../assets/page-transitions.js"></script>
 </body>
 </html>

@@ -7,6 +7,15 @@
     <meta name="description" content="Pre-sterilized grain and compost blend in a single bag with self-healing injection port.">
     <meta name="keywords" content="magic bag grow bag, all in one mushroom bag, sterile compost grain bag, mushroom spawn bag">
     <link rel="canonical" href="https://sporlyworks.com/products/magic-bag-grow-bags.html">
+    <meta property="og:title" content="Magic Bag All-In-One Grow Bags — SporlyWorks Science-Backed Products">
+    <meta property="og:description" content="Pre-sterilized grain and compost blend in a single bag with self-healing injection port.">
+    <meta property="og:type" content="product">
+    <meta property="og:url" content="https://sporlyworks.com/products/magic-bag-grow-bags.html">
+    <meta property="og:image" content="https://sporlyworks.com/assets/illustrations/grow_bags.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Magic Bag All-In-One Grow Bags — SporlyWorks Science-Backed Products">
+    <meta name="twitter:description" content="Pre-sterilized grain and compost blend in a single bag with self-healing injection port.">
+    <meta name="twitter:image" content="https://sporlyworks.com/assets/illustrations/grow_bags.jpg">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -207,25 +216,34 @@
             <li>0.2-micron gas exchange filter patch for optimal respiration</li>
             <li>Available in capacity sizes up to 6 lbs of high-nutrient sterile substrate</li>
                 </ul>
-                <a href="https://www.magicbag.co?ref=Sporlyworks" id="cta-magicbag" class="product-cta-btn" target="_blank" rel="noopener sponsored">Shop Grow Bags at Magic Bag →</a>
+                <a href="https://www.magicbag.co?ref=Sporlyworks" id="cta-magicbag" data-affiliate-partner="magicbag" class="product-cta-btn" target="_blank" rel="noopener sponsored">Shop Grow Bags at Magic Bag →</a>
+            </div>
+        </div>
+
+        <!-- Clinical Science Breakdown -->
+        <section class="science-card">
+            <h3>Mechanisms of Action &amp; Clinical Data</h3>
+            <div class="science-content">
+                <p>The all-in-one grow bag uses a proprietary ratio of premium spawn grains and pasteurized compost/CVG. This dual-layer layout bypasses the need for specialized laboratory sterilization equipment. The self-healing injection port acts as a barrier, letting you insert a needle without exposing the inner sterile matrix to airborne mold spores.</p>
+            <p><strong>LEGAL NOTICE:</strong> Grow bags are completely sterile substrates suitable for cultivating legal gourmet, medicinal, and research species. Ensure you comply with all local mycology regulations.</p>
+            </div>
+            <div class="science-cite">
+                <strong>Verified Citation:</strong> Technical Reference: Mycology Journal of Substrates (2022). 'Biological yield efficiency of multi-layer composting methods in closed containers.'
             </div>
         </section>
 
-        <!-- ═══ SCIENTIFIC BREAKDOWN ═══ -->
-        <section class="product-section">
-            <h3>The Science & Mechanism of Action</h3>
-            <p>The all-in-one grow bag uses a proprietary ratio of premium spawn grains and pasteurized compost/CVG. This dual-layer layout bypasses the need for specialized laboratory sterilization equipment. The self-healing injection port acts as a barrier, letting you insert a needle without exposing the inner sterile matrix to airborne mold spores.</p>
-            <p><strong>LEGAL NOTICE:</strong> Grow bags are completely sterile substrates suitable for cultivating legal gourmet, medicinal, and research species. Ensure you comply with all local mycology regulations.</p>
-            <div class="product-citation">Technical Reference: Mycology Journal of Substrates (2022). 'Biological yield efficiency of multi-layer composting methods in closed containers.'</div>
+        <!-- Recommended Laboratory Usage -->
+        <section class="usage-section">
+            <h3>Standard Protocols &amp; Usage</h3>
+            <div class="usage-content">
+                <p>Inoculate the grain layer through the self-healing rubber port using a sterile syringe. Allow the grain to fully colonize. Once the grain is 100% white with mycelium, break and mix the bag to distribute it into the compost layer for final fruiting.</p>
+            </div>
         </section>
 
-        <!-- ═══ DOSAGE & PROTOCOL ═══ -->
-        <section class="product-section">
-            <h3>Optimal Protocol & Application</h3>
-            <p>Inoculate the grain layer through the self-healing rubber port using a sterile syringe. Allow the grain to fully colonize. Once the grain is 100% white with mycelium, break and mix the bag to distribute it into the compost layer for final fruiting.</p>
-        </section>
-
-        <p class="product-disclaimer">This product is a sterile cultivation medium. It contains no active compounds. Please cultivate legal species only.</p>
+        <!-- Compliance & Legal -->
+        <div class="product-disclaimer">
+            <strong>Compliance Advisory:</strong> This product is a sterile cultivation medium. It contains no active compounds. Please cultivate legal species only.
+        </div>
     </main>
 
     <!-- ═══ FOOTER ═══ -->
@@ -269,21 +287,7 @@
         </div>
     </footer>
 
-    <script>
-    fetch('../affiliate_config.json')
-        .then(r => r.json())
-        .then(config => {
-            const partner = config.partners['magicbag'];
-            const btn = document.getElementById('cta-magicbag');
-            if (partner && btn) {
-                if (partner.affiliate_id && !partner.affiliate_id.startsWith('YOUR_') && !partner.affiliate_id.includes('PENDING')) {
-                    let url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
-                    btn.href = url;
-                }
-            }
-        })
-        .catch(() => console.log('Config fetch skipped - using active URLs'));
-    </script>
-<script src="../assets/page-transitions.js"></script>
+    <script src="../assets/affiliate-manager.js"></script>
+    <script src="../assets/page-transitions.js"></script>
 </body>
 </html>

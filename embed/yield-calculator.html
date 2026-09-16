@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mushroom Harvest Yield Calculator — SporlyWorks Embed</title>
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #fdfbf7;
+            color: #24211e;
+            padding: 16px;
+            overflow-x: hidden;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+        .embed-card {
+            background: #ffffff;
+            border: 1px solid rgba(92, 61, 46, 0.15);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .embed-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            border-bottom: 1px solid rgba(92, 61, 46, 0.1);
+            padding-bottom: 12px;
+        }
+        .embed-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 20px;
+            color: #0b4a2e;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        @media (max-width: 480px) {
+            .form-grid { grid-template-columns: 1fr; }
+        }
+        .form-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #63584e;
+            margin-bottom: 6px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid rgba(92, 61, 46, 0.2);
+            border-radius: 6px;
+            font-size: 14px;
+            background: #fff;
+            color: #24211e;
+        }
+        .metric-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .metric-box {
+            background: rgba(27, 138, 90, 0.05);
+            border: 1px solid rgba(27, 138, 90, 0.15);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+        .metric-val {
+            font-size: 22px;
+            font-weight: 800;
+            color: #0b4a2e;
+            line-height: 1.2;
+        }
+        .metric-lbl {
+            font-size: 11px;
+            font-weight: 600;
+            color: #63584e;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+        .embed-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 11.5px;
+            color: #8c827a;
+            border-top: 1px solid rgba(92, 61, 46, 0.1);
+            padding-top: 12px;
+            margin-top: 8px;
+        }
+        .embed-badge {
+            color: #0b4a2e;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .embed-badge:hover { text-decoration: underline; }
+        .btn-copy {
+            background: none;
+            border: 1px solid rgba(92, 61, 46, 0.2);
+            border-radius: 99px;
+            padding: 4px 10px;
+            font-size: 11px;
+            cursor: pointer;
+            color: #443c35;
+        }
+        .btn-copy:hover { background: #f5f0e8; }
+    </style>
+</head>
+<body>
+    <div class="embed-card">
+        <div class="embed-header">
+            <h2 class="embed-title">Mushroom Yield Estimator</h2>
+            <span style="font-size: 11px; background: rgba(27,138,90,0.1); color: #0b4a2e; padding: 2px 8px; border-radius: 99px; font-weight: 700;">Biological Efficiency</span>
+        </div>
+
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="species">Species</label>
+                <select id="species" class="form-control" onchange="calculate()">
+                    <option value="blue_oyster">Blue Oyster (100% B.E.)</option>
+                    <option value="lions_mane" selected>Lion's Mane (85% B.E.)</option>
+                    <option value="golden_oyster">Golden Oyster (90% B.E.)</option>
+                    <option value="shiitake">Shiitake (70% B.E.)</option>
+                    <option value="king_trumpet">King Trumpet (75% B.E.)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="numBlocks">Number of Blocks</label>
+                <input type="number" id="numBlocks" class="form-control" value="2" min="1" max="100" oninput="calculate()">
+            </div>
+        </div>
+
+        <div class="metric-grid">
+            <div class="metric-box">
+                <div class="metric-val" id="resTotal">--</div>
+                <div class="metric-lbl">Total Fresh Harvest</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-val" id="resFirst">--</div>
+                <div class="metric-lbl">First Flush Biomass</div>
+            </div>
+        </div>
+
+        <div class="embed-footer">
+            <a href="https://sporlyworks.com/tools/yield-estimator.html" target="_blank" rel="noopener" class="embed-badge">
+                ⚡ Powered by <strong>SporlyWorks Mycology Engine</strong>
+            </a>
+            <button class="btn-copy" onclick="copyEmbed()">📋 Embed Tool</button>
+        </div>
+    </div>
+
+    <script>
+    const speciesBE = {
+        blue_oyster: 1.00,
+        lions_mane: 0.85,
+        golden_oyster: 0.90,
+        shiitake: 0.70,
+        king_trumpet: 0.75
+    };
+
+    function calculate() {
+        const species = document.getElementById('species').value;
+        const blocks = parseInt(document.getElementById('numBlocks').value) || 1;
+        const be = speciesBE[species] || 0.85;
+        
+        // Standard 4 lb fruiting block has ~1.52 lb dry substrate
+        const drySubstrate = blocks * 1.52;
+        const totalFresh = drySubstrate * be;
+        const firstFlush = totalFresh * 0.65;
+
+        document.getElementById('resTotal').innerText = totalFresh.toFixed(1) + ' lbs';
+        document.getElementById('resFirst').innerText = firstFlush.toFixed(1) + ' lbs';
+    }
+
+    function copyEmbed() {
+        const code = '<iframe src="https://sporlyworks.com/embed/yield-calculator.html" width="100%" height="340" frameborder="0" style="border:none; border-radius:12px; max-width:600px;"></iframe>';
+        navigator.clipboard.writeText(code).then(() => alert('Embed iframe code copied to clipboard!'));
+    }
+
+    calculate();
+    </script>
+</body>
+</html>

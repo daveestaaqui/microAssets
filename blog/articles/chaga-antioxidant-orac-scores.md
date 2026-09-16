@@ -1,6 +1,6 @@
 ---
 title: "Chaga ORAC Scores and Melanin Content: Separating Marketing from Molecular Science"
-date: "2026-09-07"
+date: "2026-09-16"
 author: "SporlyWorks Science Board"
 summary: "An objective look at Chaga's antioxidant properties, ORAC scores, and the unique biological role of fungal melanin."
 keywords: "chaga antioxidant, ORAC score, chaga melanin"

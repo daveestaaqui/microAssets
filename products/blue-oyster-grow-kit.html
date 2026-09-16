@@ -7,6 +7,15 @@
     <meta name="description" content="Vigorous, rapid-colonizing Pleurotus ostreatus genetics rich in natural ergothioneine.">
     <meta name="keywords" content="blue oyster culture, myyco liquid culture, pleurotus ostreatus, gourmet mushroom genetics">
     <link rel="canonical" href="https://sporlyworks.com/products/blue-oyster-grow-kit.html">
+    <meta property="og:title" content="MYYCO Blue Oyster (Pleurotus ostreatus) Isolated Liquid Culture">
+    <meta property="og:description" content="Vigorous, rapid-colonizing Pleurotus ostreatus genetics rich in natural ergothioneine.">
+    <meta property="og:type" content="product">
+    <meta property="og:url" content="https://sporlyworks.com/products/blue-oyster-grow-kit.html">
+    <meta property="og:image" content="https://sporlyworks.com/assets/illustrations/blue_oyster_kit.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MYYCO Blue Oyster (Pleurotus ostreatus) Isolated Liquid Culture">
+    <meta name="twitter:description" content="Vigorous, rapid-colonizing Pleurotus ostreatus genetics rich in natural ergothioneine.">
+    <meta name="twitter:image" content="https://sporlyworks.com/assets/illustrations/blue_oyster_kit.jpg">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -207,24 +216,33 @@
             <li>Extremely aggressive rhizomorphic colonization velocity</li>
             <li>High biological efficiency and dense fruiting clusters</li>
                 </ul>
-                <a href="https://myyco.com/shop-microscopy-liquid-culture/?ref=SporlyWorks" id="cta-myyco" class="product-cta-btn" target="_blank" rel="noopener sponsored">Shop Blue Oyster Culture at MYYCO →</a>
+                <a href="https://myyco.com/shop-microscopy-liquid-culture/?ref=SporlyWorks" id="cta-myyco" data-affiliate-partner="myyco" class="product-cta-btn" target="_blank" rel="noopener sponsored">Shop Blue Oyster Culture at MYYCO →</a>
+            </div>
+        </div>
+
+        <!-- Clinical Science Breakdown -->
+        <section class="science-card">
+            <h3>Mechanisms of Action &amp; Clinical Data</h3>
+            <div class="science-content">
+                <p>Blue Oyster mushrooms (Pleurotus ostreatus) are known for fast growth rates and dense fungal ergothioneine—a powerful antioxidant amino acid that protects cellular DNA and mitochondrial membranes from oxidative stress.</p>
+            </div>
+            <div class="science-cite">
+                <strong>Verified Citation:</strong> Scientific Reference: Journal of Agricultural and Food Chemistry (2021). 'Antioxidant capacity and mitochondrial protection of Pleurotus ostreatus.'
             </div>
         </section>
 
-        <!-- ═══ SCIENTIFIC BREAKDOWN ═══ -->
-        <section class="product-section">
-            <h3>The Science & Mechanism of Action</h3>
-            <p>Blue Oyster mushrooms (Pleurotus ostreatus) are known for fast growth rates and dense fungal ergothioneine—a powerful antioxidant amino acid that protects cellular DNA and mitochondrial membranes from oxidative stress.</p>
-            <div class="product-citation">Scientific Reference: Journal of Agricultural and Food Chemistry (2021). 'Antioxidant capacity and mitochondrial protection of Pleurotus ostreatus.'</div>
+        <!-- Recommended Laboratory Usage -->
+        <section class="usage-section">
+            <h3>Standard Protocols &amp; Usage</h3>
+            <div class="usage-content">
+                <p>Store refrigerated at 38°F - 42°F until ready for use. Inoculate under sterile laboratory conditions.</p>
+            </div>
         </section>
 
-        <!-- ═══ DOSAGE & PROTOCOL ═══ -->
-        <section class="product-section">
-            <h3>Optimal Protocol & Application</h3>
-            <p>Store refrigerated at 38°F - 42°F until ready for use. Inoculate under sterile laboratory conditions.</p>
-        </section>
-
-        <p class="product-disclaimer">Certified clean liquid culture for microscopy, educational, and legal gourmet cultivation.</p>
+        <!-- Compliance & Legal -->
+        <div class="product-disclaimer">
+            <strong>Compliance Advisory:</strong> Certified clean liquid culture for microscopy, educational, and legal gourmet cultivation.
+        </div>
     </main>
 
     <!-- ═══ FOOTER ═══ -->
@@ -268,21 +286,7 @@
         </div>
     </footer>
 
-    <script>
-    fetch('../affiliate_config.json')
-        .then(r => r.json())
-        .then(config => {
-            const partner = config.partners['myyco'];
-            const btn = document.getElementById('cta-myyco');
-            if (partner && btn) {
-                if (partner.affiliate_id && !partner.affiliate_id.startsWith('YOUR_') && !partner.affiliate_id.includes('PENDING')) {
-                    let url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
-                    btn.href = url;
-                }
-            }
-        })
-        .catch(() => console.log('Config fetch skipped - using active URLs'));
-    </script>
-<script src="../assets/page-transitions.js"></script>
+    <script src="../assets/affiliate-manager.js"></script>
+    <script src="../assets/page-transitions.js"></script>
 </body>
 </html>

@@ -1,0 +1,150 @@
+{
+  "total_sent": 20,
+  "total_delivered": 18,
+  "total_bounced": 2,
+  "bounce_rate": 0.1,
+  "circuit_breaker_tripped": true,
+  "last_updated": "2026-09-16T21:30:06.290215+00:00",
+  "history": [
+    {
+      "timestamp": "2026-09-16T21:30:06.288701+00:00",
+      "recipient": "valid0@lab.org",
+      "success": true,
+      "is_bounce": false,
+      "current_bounce_rate": 0.0
+    },
+    {
+      "timestamp": "2026-09-16T21:30:06.288871+00:00",
+      "recipient": "valid1@lab.org",
+      "success": true,
+      "is_bounce": false,
+      "current_bounce_rate": 0.0
+    },
+    {
+      "timestamp": "2026-09-16T21:30:06.288974+00:00",
+      "recipient": "valid2@lab.org",
+      "success": true,
+      "is_bounce": false,
+      "current_bounce_rate": 0.0
+    },
+    {
+      "timestamp": "2026-09-16T21:30:06.289054+00:00",
+      "recipient": "valid3@lab.org",
+      "success": true,
+      "is_bounce": false,
+      "current_bounce_rate": 0.0
+    },
+    {
+      "timestamp": "2026-09-16T21:30:06.289126+00:00",
+      "recipient": "valid4@lab.org",
+      "success": true,
+      "is_bounce": false,
+      "current_bounce_rate": 0.0
+    },
+    {
+      "timestamp": "2026-09-16T21:30:06.289196+00:00",
+      "recipient": "valid5@lab.org",
+      "success": true,
+      "is_bounce": false,
+      "current_bounce_rate": 0.0
+    },
+    {
+      "timestamp": "2026-09-16T21:30:06.289271+00:00",
+      "recipient": "valid6@lab.org",
+      "success": true,
+      "is_bounce": false,
+      "current_bounce_rate": 0.0
+    },
+    {
+      "timestamp": "2026-09-16T21:30:06.289333+00:00",
+      "recipient": "valid7@lab.org",
+      "success": true,
+      "is_bounce": false,
+      "current_bounce_rate": 0.0
+    },
+    {
+      "timestamp": "2026-09-16T21:30:06.289393+00:00",
+      "recipient": "valid8@lab.org",
+      "success": true,
+      "is_bounce": false,
+      "current_bounce_rate": 0.0
+    },
+    {
+      "timestamp": "2026-09-16T21:30:06.289455+00:00",
+      "recipient": "valid9@lab.org",
+      "success": true,
+      "is_bounce": false,
+      "current_bounce_rate": 0.0
+    },
+    {
+      "timestamp": "2026-09-16T21:30:06.289528+00:00",
+      "recipient": "valid10@lab.org",
+      "success": true,
+      "is_bounce": false,
+      "current_bounce_rate": 0.0
+    },
+    {
+      "timestamp": "2026-09-16T21:30:06.289593+00:00",
+      "recipient": "valid11@lab.org",
+      "success": true,
+      "is_bounce": false,
+      "current_bounce_rate": 0.0
+    },
+    {
+      "timestamp": "2026-09-16T21:30:06.289666+00:00",
+      "recipient": "valid12@lab.org",
+      "success": true,
+      "is_bounce": false,
+      "current_bounce_rate": 0.0
+    },
+    {
+      "timestamp": "2026-09-16T21:30:06.289740+00:00",
+      "recipient": "valid13@lab.org",
+      "success": true,
+      "is_bounce": false,
+      "current_bounce_rate": 0.0
+    },
+    {
+      "timestamp": "2026-09-16T21:30:06.289815+00:00",
+      "recipient": "valid14@lab.org",
+      "success": true,
+      "is_bounce": false,
+      "current_bounce_rate": 0.0
+    },
+    {
+      "timestamp": "2026-09-16T21:30:06.289895+00:00",
+      "recipient": "valid15@lab.org",
+      "success": true,
+      "is_bounce": false,
+      "current_bounce_rate": 0.0
+    },
+    {
+      "timestamp": "2026-09-16T21:30:06.289978+00:00",
+      "recipient": "valid16@lab.org",
+      "success": true,
+      "is_bounce": false,
+      "current_bounce_rate": 0.0
+    },
+    {
+      "timestamp": "2026-09-16T21:30:06.290049+00:00",
+      "recipient": "valid17@lab.org",
+      "success": true,
+      "is_bounce": false,
+      "current_bounce_rate": 0.0
+    },
+    {
+      "timestamp": "2026-09-16T21:30:06.290126+00:00",
+      "recipient": "bad1@lab.org",
+      "success": false,
+      "is_bounce": true,
+      "current_bounce_rate": 0.0526
+    },
+    {
+      "timestamp": "2026-09-16T21:30:06.290209+00:00",
+      "recipient": "bad2@lab.org",
+      "success": false,
+      "is_bounce": true,
+      "current_bounce_rate": 0.1
+    }
+  ]
+}

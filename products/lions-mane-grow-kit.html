@@ -7,6 +7,15 @@
     <meta name="description" content="Laboratory-isolated Hericium erinaceus genetics optimized for neurotrophic vigor.">
     <meta name="keywords" content="myyco lions mane, lions mane liquid culture, hericium erinaceus culture, mushroom genetics">
     <link rel="canonical" href="https://sporlyworks.com/products/lions-mane-grow-kit.html">
+    <meta property="og:title" content="MYYCO Lion's Mane (Hericium erinaceus) Isolated Liquid Culture">
+    <meta property="og:description" content="Laboratory-isolated Hericium erinaceus genetics optimized for neurotrophic vigor.">
+    <meta property="og:type" content="product">
+    <meta property="og:url" content="https://sporlyworks.com/products/lions-mane-grow-kit.html">
+    <meta property="og:image" content="https://sporlyworks.com/assets/illustrations/lions_mane_kit.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MYYCO Lion's Mane (Hericium erinaceus) Isolated Liquid Culture">
+    <meta name="twitter:description" content="Laboratory-isolated Hericium erinaceus genetics optimized for neurotrophic vigor.">
+    <meta name="twitter:image" content="https://sporlyworks.com/assets/illustrations/lions_mane_kit.jpg">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -207,24 +216,33 @@
             <li>Selected for rapid icicle-formation and potent erinacine expression</li>
             <li>Includes sterile dispensing needle and alcohol pads</li>
                 </ul>
-                <a href="https://myyco.com/shop-microscopy-liquid-culture/?ref=SporlyWorks" id="cta-myyco" class="product-cta-btn" target="_blank" rel="noopener sponsored">Shop Lion's Mane Culture at MYYCO →</a>
+                <a href="https://myyco.com/shop-microscopy-liquid-culture/?ref=SporlyWorks" id="cta-myyco" data-affiliate-partner="myyco" class="product-cta-btn" target="_blank" rel="noopener sponsored">Shop Lion's Mane Culture at MYYCO →</a>
+            </div>
+        </div>
+
+        <!-- Clinical Science Breakdown -->
+        <section class="science-card">
+            <h3>Mechanisms of Action &amp; Clinical Data</h3>
+            <div class="science-content">
+                <p>Lion's Mane mycelium synthesizes erinacines—small lipophilic molecules that cross the blood-brain barrier to stimulate Nerve Growth Factor (NGF) synthesis. Cultivating from pre-isolated genetics ensures uniform growth and maximum biological yield.</p>
+            </div>
+            <div class="science-cite">
+                <strong>Verified Citation:</strong> Biomedical Study: Kawagishi, H., et al. (1994). 'Erinacines A, B and C, strong stimulators of NGF-synthesis from Hericium erinaceus mycelium.' Tetrahedron Letters, 35(10), 1569-1572.
             </div>
         </section>
 
-        <!-- ═══ SCIENTIFIC BREAKDOWN ═══ -->
-        <section class="product-section">
-            <h3>The Science & Mechanism of Action</h3>
-            <p>Lion's Mane mycelium synthesizes erinacines—small lipophilic molecules that cross the blood-brain barrier to stimulate Nerve Growth Factor (NGF) synthesis. Cultivating from pre-isolated genetics ensures uniform growth and maximum biological yield.</p>
-            <div class="product-citation">Biomedical Study: Kawagishi, H., et al. (1994). 'Erinacines A, B and C, strong stimulators of NGF-synthesis from Hericium erinaceus mycelium.' Tetrahedron Letters, 35(10), 1569-1572.</div>
+        <!-- Recommended Laboratory Usage -->
+        <section class="usage-section">
+            <h3>Standard Protocols &amp; Usage</h3>
+            <div class="usage-content">
+                <p>Inoculate sterilized grains or pre-made grow bags in a sterile environment (SAB or flow hood).</p>
+            </div>
         </section>
 
-        <!-- ═══ DOSAGE & PROTOCOL ═══ -->
-        <section class="product-section">
-            <h3>Optimal Protocol & Application</h3>
-            <p>Inoculate sterilized grains or pre-made grow bags in a sterile environment (SAB or flow hood).</p>
-        </section>
-
-        <p class="product-disclaimer">Legal gourmet and medicinal mycology culture.</p>
+        <!-- Compliance & Legal -->
+        <div class="product-disclaimer">
+            <strong>Compliance Advisory:</strong> Legal gourmet and medicinal mycology culture.
+        </div>
     </main>
 
     <!-- ═══ FOOTER ═══ -->
@@ -268,21 +286,7 @@
         </div>
     </footer>
 
-    <script>
-    fetch('../affiliate_config.json')
-        .then(r => r.json())
-        .then(config => {
-            const partner = config.partners['myyco'];
-            const btn = document.getElementById('cta-myyco');
-            if (partner && btn) {
-                if (partner.affiliate_id && !partner.affiliate_id.startsWith('YOUR_') && !partner.affiliate_id.includes('PENDING')) {
-                    let url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
-                    btn.href = url;
-                }
-            }
-        })
-        .catch(() => console.log('Config fetch skipped - using active URLs'));
-    </script>
-<script src="../assets/page-transitions.js"></script>
+    <script src="../assets/affiliate-manager.js"></script>
+    <script src="../assets/page-transitions.js"></script>
 </body>
 </html>

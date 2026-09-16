@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulk Substrate CVG Calculator — SporlyWorks Embed</title>
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #fdfbf7;
+            color: #24211e;
+            padding: 16px;
+            overflow-x: hidden;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+        .embed-card {
+            background: #ffffff;
+            border: 1px solid rgba(92, 61, 46, 0.15);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .embed-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            border-bottom: 1px solid rgba(92, 61, 46, 0.1);
+            padding-bottom: 12px;
+        }
+        .embed-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 20px;
+            color: #0b4a2e;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        @media (max-width: 480px) {
+            .form-grid { grid-template-columns: 1fr; }
+        }
+        .form-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #63584e;
+            margin-bottom: 6px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid rgba(92, 61, 46, 0.2);
+            border-radius: 6px;
+            font-size: 14px;
+            background: #fff;
+            color: #24211e;
+        }
+        .result-list {
+            background: rgba(245, 240, 232, 0.4);
+            border-radius: 8px;
+            border: 1px solid rgba(92, 61, 46, 0.1);
+            padding: 12px 16px;
+            margin-bottom: 16px;
+        }
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13.5px;
+            padding: 6px 0;
+            border-bottom: 1px dashed rgba(92, 61, 46, 0.1);
+        }
+        .result-row:last-child { border-bottom: none; }
+        .result-row strong { color: #0b4a2e; }
+        .embed-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 11.5px;
+            color: #8c827a;
+            border-top: 1px solid rgba(92, 61, 46, 0.1);
+            padding-top: 12px;
+        }
+        .embed-badge {
+            color: #0b4a2e;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .embed-badge:hover { text-decoration: underline; }
+        .btn-copy {
+            background: none;
+            border: 1px solid rgba(92, 61, 46, 0.2);
+            border-radius: 99px;
+            padding: 4px 10px;
+            font-size: 11px;
+            cursor: pointer;
+            color: #443c35;
+        }
+        .btn-copy:hover { background: #f5f0e8; }
+    </style>
+</head>
+<body>
+    <div class="embed-card">
+        <div class="embed-header">
+            <h2 class="embed-title">CVG Substrate Calculator</h2>
+            <span style="font-size: 11px; background: rgba(27,138,90,0.1); color: #0b4a2e; padding: 2px 8px; border-radius: 99px; font-weight: 700;">Field Capacity</span>
+        </div>
+
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="tubSize">Tub Size</label>
+                <select id="tubSize" class="form-control" onchange="calculate()">
+                    <option value="6">6 Qt Shoebox</option>
+                    <option value="16">16 Qt Compact</option>
+                    <option value="32" selected>32 Qt Standard</option>
+                    <option value="54">54 Qt Large</option>
+                    <option value="66">66 Qt Commercial</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="spawnRatio">Spawn Ratio</label>
+                <select id="spawnRatio" class="form-control" onchange="calculate()">
+                    <option value="1">1 : 1 (Commercial)</option>
+                    <option value="2" selected>1 : 2 (Standard)</option>
+                    <option value="3">1 : 3 (Economical)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="result-list">
+            <div class="result-row"><span>Dry Coco Coir:</span><strong id="coir">--</strong></div>
+            <div class="result-row"><span>Vermiculite:</span><strong id="verm">--</strong></div>
+            <div class="result-row"><span>Gypsum:</span><strong id="gypsum">--</strong></div>
+            <div class="result-row"><span>Boiling Water:</span><strong id="water">--</strong></div>
+            <div class="result-row"><span>Spawn Required:</span><strong id="spawn">--</strong></div>
+        </div>
+
+        <div class="embed-footer">
+            <a href="https://sporlyworks.com/tools/substrate-calculator.html" target="_blank" rel="noopener" class="embed-badge">
+                ⚡ Powered by <strong>SporlyWorks Mycology Engine</strong>
+            </a>
+            <button class="btn-copy" onclick="copyEmbed()">📋 Embed Tool</button>
+        </div>
+    </div>
+
+    <script>
+    const tubMap = {
+        "6":  { volumeQuarts: 3.5 },
+        "16": { volumeQuarts: 7.2 },
+        "32": { volumeQuarts: 12.8 },
+        "54": { volumeQuarts: 16.5 },
+        "66": { volumeQuarts: 19.2 }
+    };
+
+    function calculate() {
+        const size = document.getElementById('tubSize').value;
+        const spawnRatio = parseInt(document.getElementById('spawnRatio').value) || 2;
+        const volumeQuarts = tubMap[size].volumeQuarts;
+
+        const totalParts = 1 + spawnRatio;
+        const spawnQuarts = volumeQuarts / totalParts;
+        const subQuarts = volumeQuarts - spawnQuarts;
+        const ratioMult = subQuarts / 8.45;
+
+        const coirGrams = Math.round(650 * ratioMult);
+        const vermLiters = (2.0 * ratioMult).toFixed(1);
+        const gypsumGrams = Math.round(100 * ratioMult);
+        const waterLiters = (3.5 * ratioMult).toFixed(1);
+
+        document.getElementById('coir').innerText = coirGrams + 'g (' + (coirGrams / 650).toFixed(1) + ' brick)';
+        document.getElementById('verm').innerText = vermLiters + ' L';
+        document.getElementById('gypsum').innerText = gypsumGrams + 'g';
+        document.getElementById('water').innerText = waterLiters + ' L';
+        document.getElementById('spawn').innerText = spawnQuarts.toFixed(1) + ' Quarts';
+    }
+
+    function copyEmbed() {
+        const code = '<iframe src="https://sporlyworks.com/embed/substrate-calculator.html" width="100%" height="340" frameborder="0" style="border:none; border-radius:12px; max-width:600px;"></iframe>';
+        navigator.clipboard.writeText(code).then(() => alert('Embed iframe code copied to clipboard!'));
+    }
+
+    calculate();
+    </script>
+</body>
+</html>

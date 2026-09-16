@@ -7,6 +7,15 @@
     <meta name="description" content="Cognitive Clarity, Memory Support & Nerve Growth Factor (NGF) Stimulation">
     <meta name="keywords" content="lions mane powder, lab tested mushroom extract, NGF brain supplement, cognitive health, nootropics depot lions mane">
     <link rel="canonical" href="https://sporlyworks.com/products/lions-mane-extract.html">
+    <meta property="og:title" content="Nootropics Depot HPLC-Tested Lion's Mane 8:1 & 1:1 Extract">
+    <meta property="og:description" content="Cognitive Clarity, Memory Support & Nerve Growth Factor (NGF) Stimulation">
+    <meta property="og:type" content="product">
+    <meta property="og:url" content="https://sporlyworks.com/products/lions-mane-extract.html">
+    <meta property="og:image" content="https://sporlyworks.com/assets/illustrations/lions_mane_extract.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nootropics Depot HPLC-Tested Lion's Mane 8:1 & 1:1 Extract">
+    <meta name="twitter:description" content="Cognitive Clarity, Memory Support & Nerve Growth Factor (NGF) Stimulation">
+    <meta name="twitter:image" content="https://sporlyworks.com/assets/illustrations/lions_mane_extract.jpg">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -207,25 +216,34 @@
             <li>Guaranteed >25% Beta-glucans content verified by HPLC/AOAC assay</li>
             <li>Zero added grain, starch, or mycelial biomass fillers</li>
                 </ul>
-                <a href="https://nootropicsdepot.com" id="cta-nootropicsdepot" class="product-cta-btn" target="_blank" rel="noopener sponsored">Shop Lab-Tested Lion's Mane →</a>
+                <a href="https://nootropicsdepot.com" id="cta-nootropicsdepot" data-affiliate-partner="nootropicsdepot" class="product-cta-btn" target="_blank" rel="noopener sponsored">Shop Lab-Tested Lion's Mane →</a>
+            </div>
+        </div>
+
+        <!-- Clinical Science Breakdown -->
+        <section class="science-card">
+            <h3>Mechanisms of Action &amp; Clinical Data</h3>
+            <div class="science-content">
+                <p>Lion's Mane is unique in its ability to support brain health. It contains key active compounds (hericenones in fruiting bodies and erinacines in mycelium) that stimulate the synthesis of Nerve Growth Factor (NGF). NGF is a protein crucial for the development, plasticity, and survival of neurons.</p>
+            <p>Clinical research supports its use for cognitive function, showing statistically significant improvements in memory and cognitive performance in double-blind, placebo-controlled trials after 8 to 16 weeks of consistent daily usage.</p>
+            </div>
+            <div class="science-cite">
+                <strong>Verified Citation:</strong> Clinical Study Reference: Mori, K., et al. (2009). Phytotherapy Research, 23(3), 367-372. 'Improving effects of the mushroom Yamabushitake (Hericium erinaceus) on mild cognitive impairment.'
             </div>
         </section>
 
-        <!-- ═══ SCIENTIFIC BREAKDOWN ═══ -->
-        <section class="product-section">
-            <h3>The Science & Mechanism of Action</h3>
-            <p>Lion's Mane is unique in its ability to support brain health. It contains key active compounds (hericenones in fruiting bodies and erinacines in mycelium) that stimulate the synthesis of Nerve Growth Factor (NGF). NGF is a protein crucial for the development, plasticity, and survival of neurons.</p>
-            <p>Clinical research supports its use for cognitive function, showing statistically significant improvements in memory and cognitive performance in double-blind, placebo-controlled trials after 8 to 16 weeks of consistent daily usage.</p>
-            <div class="product-citation">Clinical Study Reference: Mori, K., et al. (2009). Phytotherapy Research, 23(3), 367-372. 'Improving effects of the mushroom Yamabushitake (Hericium erinaceus) on mild cognitive impairment.'</div>
+        <!-- Recommended Laboratory Usage -->
+        <section class="usage-section">
+            <h3>Standard Protocols &amp; Usage</h3>
+            <div class="usage-content">
+                <p>Take 500 mg - 1,000 mg daily. Easily dissolves into warm water, morning coffee, herbal teas, or protein shakes. For maximum bioavailability, consume alongside a healthy fat source or warm liquid.</p>
+            </div>
         </section>
 
-        <!-- ═══ DOSAGE & PROTOCOL ═══ -->
-        <section class="product-section">
-            <h3>Optimal Protocol & Application</h3>
-            <p>Take 500 mg - 1,000 mg daily. Easily dissolves into warm water, morning coffee, herbal teas, or protein shakes. For maximum bioavailability, consume alongside a healthy fat source or warm liquid.</p>
-        </section>
-
-        <p class="product-disclaimer">These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.</p>
+        <!-- Compliance & Legal -->
+        <div class="product-disclaimer">
+            <strong>Compliance Advisory:</strong> These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.
+        </div>
     </main>
 
     <!-- ═══ FOOTER ═══ -->
@@ -269,21 +287,7 @@
         </div>
     </footer>
 
-    <script>
-    fetch('../affiliate_config.json')
-        .then(r => r.json())
-        .then(config => {
-            const partner = config.partners['nootropicsdepot'];
-            const btn = document.getElementById('cta-nootropicsdepot');
-            if (partner && btn) {
-                if (partner.affiliate_id && !partner.affiliate_id.startsWith('YOUR_') && !partner.affiliate_id.includes('PENDING')) {
-                    let url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
-                    btn.href = url;
-                }
-            }
-        })
-        .catch(() => console.log('Config fetch skipped - using active URLs'));
-    </script>
-<script src="../assets/page-transitions.js"></script>
+    <script src="../assets/affiliate-manager.js"></script>
+    <script src="../assets/page-transitions.js"></script>
 </body>
 </html>

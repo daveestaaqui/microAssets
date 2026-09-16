@@ -102,10 +102,41 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
     <meta name="description" content="{description}">
     <meta name="keywords" content="{keywords}">
     <link rel="canonical" href="https://sporlyworks.com/blog/{slug}.html">
+    <meta property="og:title" content="{title}">
+    <meta property="og:description" content="{description}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://sporlyworks.com/blog/{slug}.html">
+    <meta property="og:image" content="{og_image}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{title}">
+    <meta name="twitter:description" content="{description}">
+    <meta name="twitter:image" content="{og_image}">
     <link rel="icon" type="image/x-icon" href="{favicon}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{style_path}">
+    <script type="application/ld+json">
+    {{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "{title}",
+      "description": "{description}",
+      "url": "https://sporlyworks.com/blog/{slug}.html",
+      "datePublished": "{date}",
+      "author": {{
+        "@type": "Organization",
+        "name": "{author}"
+      }},
+      "publisher": {{
+        "@type": "Organization",
+        "name": "SporlyWorks",
+        "logo": {{
+          "@type": "ImageObject",
+          "url": "https://sporlyworks.com/assets/logo-nav.png"
+        }}
+      }}
+    }}
+    </script>
     <style>
         .blog-container {{
             max-width: 800px;
@@ -352,8 +383,18 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SporlyWorks Blog — Science-Backed Mycology & Functional Nutrition</title>
+    <title>SporlyWorks Blog — Science-Backed Mycology &amp; Functional Nutrition</title>
     <meta name="description" content="Explore peer-reviewed articles and grow logs from the SporlyWorks science board. Discover neurogenesis, survivability, and cultivation guides.">
+    <link rel="canonical" href="https://sporlyworks.com/blog/index.html">
+    <meta property="og:title" content="SporlyWorks Blog — Science-Backed Mycology &amp; Functional Nutrition">
+    <meta property="og:description" content="Explore peer-reviewed articles and grow logs from the SporlyWorks science board. Discover neurogenesis, survivability, and cultivation guides.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sporlyworks.com/blog/index.html">
+    <meta property="og:image" content="https://sporlyworks.com/assets/illustrations/grow_kits.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SporlyWorks Blog — Science-Backed Mycology &amp; Functional Nutrition">
+    <meta name="twitter:description" content="Explore peer-reviewed articles and grow logs from the SporlyWorks science board. Discover neurogenesis, survivability, and cultivation guides.">
+    <meta name="twitter:image" content="https://sporlyworks.com/assets/illustrations/grow_kits.jpg">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -605,7 +646,8 @@ def generate_blog():
                 body=body_html,
                 cta_desc=cta_desc,
                 cta_url=cta_url,
-                cta_btn=cta_btn
+                cta_btn=cta_btn,
+                og_image=f"https://sporlyworks.com/{hero_image.replace('../', '')}"
             )
 
             # Output HTML page

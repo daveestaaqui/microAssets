@@ -3,14 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{title} — SporlyWorks Mycology & Wellness Guides</title>
-    <meta name="description" content="{description}">
-    <meta name="keywords" content="{keywords}">
-    <link rel="canonical" href="https://sporlyworks.com/guides/{slug}.html">
-    <link rel="icon" type="image/x-icon" href="{favicon}">
+    <title>Lion's Mane Mushroom Guide: Cognitive Health & NGF Stimulation — SporlyWorks Mycology &amp; Wellness Guides</title>
+    <meta name="description" content="Hericium erinaceus, commonly known as Lion's Mane, is a culinary and medicinal mushroom with unique neurological properties. Emerging research points to its ability to stimulate Nerve Growth Factor (NGF) and actively support memory and focus.">
+    <meta name="keywords" content="lions mane supplement, neurogenesis NGF, organic mushroom extract, brain health supplements, focus memory">
+    <link rel="canonical" href="https://sporlyworks.com/guides/lions-mane-cognitive-wellness.html">
+    <meta property="og:title" content="Lion's Mane Mushroom Guide: Cognitive Health & NGF Stimulation — SporlyWorks">
+    <meta property="og:description" content="Hericium erinaceus, commonly known as Lion's Mane, is a culinary and medicinal mushroom with unique neurological properties. Emerging research points to its ability to stimulate Nerve Growth Factor (NGF) and actively support memory and focus.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://sporlyworks.com/guides/lions-mane-cognitive-wellness.html">
+    <meta property="og:image" content="https://sporlyworks.com/assets/illustrations/lions_mane_kit.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Lion's Mane Mushroom Guide: Cognitive Health & NGF Stimulation — SporlyWorks">
+    <meta name="twitter:description" content="Hericium erinaceus, commonly known as Lion's Mane, is a culinary and medicinal mushroom with unique neurological properties. Emerging research points to its ability to stimulate Nerve Growth Factor (NGF) and actively support memory and focus.">
+    <meta name="twitter:image" content="https://sporlyworks.com/assets/illustrations/lions_mane_kit.jpg">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{style_path}">
+    <link rel="stylesheet" href="../style.css?v=930">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Lion's Mane Mushroom Guide: Cognitive Health & NGF Stimulation",
+      "description": "Hericium erinaceus, commonly known as Lion's Mane, is a culinary and medicinal mushroom with unique neurological properties. Emerging research points to its ability to stimulate Nerve Growth Factor (NGF) and actively support memory and focus.",
+      "url": "https://sporlyworks.com/guides/lions-mane-cognitive-wellness.html",
+      "author": {
+        "@type": "Organization",
+        "name": "SporlyWorks Scientific Advisory Board"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "SporlyWorks",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://sporlyworks.com/assets/logo-nav.png"
+        }
+      }
+    }
+    </script>
     <style>
         .guide-body {
             max-width: 800px;
@@ -173,7 +203,7 @@
             <div class="partner-cta-box">
                 <h3>Ready to Take the Next Step?</h3>
                 <p>Get the highest-purity, USDA Organic Lion's Mane extract powder directly from our trusted scientific partner, FreshCap.</p>
-                <a href="https://freshcap.com" id="cta-freshcap" class="partner-cta-btn" target="_blank" rel="noopener">Shop Lion's Mane Extract at FreshCap →</a>
+                <a href="https://freshcap.com" id="cta-freshcap" data-affiliate-partner="freshcap" class="partner-cta-btn" target="_blank" rel="noopener">Shop Lion's Mane Extract at FreshCap →</a>
             </div>
         </article>
     </main>
@@ -219,43 +249,7 @@
         </div>
     </footer>
 
-    <script>
-    // Load affiliate config dynamically for this deep page
-    fetch('../affiliate_config.json')
-        .then(r => r.json())
-        .then(config => {
-            const partner = config.partners['freshcap'];
-            const btn = document.getElementById('cta-freshcap');
-            if (partner && btn) {
-                const isPlaceholder = !partner.affiliate_id || 
-                                      partner.affiliate_id.startsWith('YOUR_') || 
-                                      partner.affiliate_id.includes('INSERT');
-                if (isPlaceholder) {
-                    btn.href = 'javascript:void(0)';
-                    btn.innerHTML = 'Partner Program Pending';
-                    btn.style.pointerEvents = 'none';
-                    btn.style.opacity = '0.6';
-                    btn.style.background = '#888888';
-                    btn.style.borderColor = '#888888';
-                    btn.style.color = '#ffffff';
-                    btn.style.cursor = 'default';
-                    btn.style.boxShadow = 'none';
-                    btn.style.transform = 'none';
-                } else {
-                    let url = "https://freshcap.com";
-                    if (partner.affiliate_url_template.includes('awinmid=')) {
-                        const midMatch = partner.affiliate_url_template.match(/awinmid=(\d+)/);
-                        const mid = midMatch ? midMatch[1] : '';
-                        url = `https://www.awin1.com/cread.php?awinmid=${mid}&awinaffid=${partner.affiliate_id}&ued=${encodeURIComponent(url)}`;
-                    } else {
-                        url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
-                    }
-                    btn.href = url;
-                }
-            }
-        })
-        .catch(() => console.log('Config fetch skipped - using static default'));
-    </script>
-<script src="../assets/page-transitions.js"></script>
+    <script src="../assets/affiliate-manager.js"></script>
+    <script src="../assets/page-transitions.js"></script>
 </body>
 </html>

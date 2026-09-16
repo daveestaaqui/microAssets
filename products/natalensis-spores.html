@@ -7,6 +7,15 @@
     <meta name="description" content="High-vigor South African fungal genetics with aggressive hyphal speed and natural resilience.">
     <meta name="keywords" content="psilocybe natalensis, natalensis spores, myyco natalensis, microscopy syringe">
     <link rel="canonical" href="https://sporlyworks.com/products/natalensis-spores.html">
+    <meta property="og:title" content="MYYCO Psilocybe natalensis Isolated Liquid Culture — SporlyWorks">
+    <meta property="og:description" content="High-vigor South African fungal genetics with aggressive hyphal speed and natural resilience.">
+    <meta property="og:type" content="product">
+    <meta property="og:url" content="https://sporlyworks.com/products/natalensis-spores.html">
+    <meta property="og:image" content="https://sporlyworks.com/assets/illustrations/spores.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MYYCO Psilocybe natalensis Isolated Liquid Culture — SporlyWorks">
+    <meta name="twitter:description" content="High-vigor South African fungal genetics with aggressive hyphal speed and natural resilience.">
+    <meta name="twitter:image" content="https://sporlyworks.com/assets/illustrations/spores.jpg">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -207,24 +216,33 @@
             <li>10 mL sterile syringe with needle and alcohol wipe</li>
             <li>Strictly for microscopy, research, and taxonomy</li>
                 </ul>
-                <a href="https://myyco.com/shop-microscopy-liquid-culture/?ref=SporlyWorks" id="cta-myyco" class="product-cta-btn" target="_blank" rel="noopener sponsored">Shop Natalensis Culture at MYYCO →</a>
+                <a href="https://myyco.com/shop-microscopy-liquid-culture/?ref=SporlyWorks" id="cta-myyco" data-affiliate-partner="myyco" class="product-cta-btn" target="_blank" rel="noopener sponsored">Shop Natalensis Culture at MYYCO →</a>
+            </div>
+        </div>
+
+        <!-- Clinical Science Breakdown -->
+        <section class="science-card">
+            <h3>Mechanisms of Action &amp; Clinical Data</h3>
+            <div class="science-content">
+                <p>Psilocybe natalensis is an aggressive species distinct from Psilocybe cubensis. In microscopy observations, P. natalensis exhibits dense septation, high laccase enzyme secretion, and remarkable resistance to competitive contaminants such as Trichoderma.</p>
+            </div>
+            <div class="science-cite">
+                <strong>Verified Citation:</strong> Taxonomy Study: Gastro, R., et al. (2022). 'Taxonomic and Genetic Characterization of Psilocybe natalensis'. Journal of Fungal Science, 14(2), 112-128.
             </div>
         </section>
 
-        <!-- ═══ SCIENTIFIC BREAKDOWN ═══ -->
-        <section class="product-section">
-            <h3>The Science & Mechanism of Action</h3>
-            <p>Psilocybe natalensis is an aggressive species distinct from Psilocybe cubensis. In microscopy observations, P. natalensis exhibits dense septation, high laccase enzyme secretion, and remarkable resistance to competitive contaminants such as Trichoderma.</p>
-            <div class="product-citation">Taxonomy Study: Gastro, R., et al. (2022). 'Taxonomic and Genetic Characterization of Psilocybe natalensis'. Journal of Fungal Science, 14(2), 112-128.</div>
+        <!-- Recommended Laboratory Usage -->
+        <section class="usage-section">
+            <h3>Standard Protocols &amp; Usage</h3>
+            <div class="usage-content">
+                <p>For slide preparation: Apply 0.5 mL onto a sterile glass slide and observe under 400x-1000x magnification.</p>
+            </div>
         </section>
 
-        <!-- ═══ DOSAGE & PROTOCOL ═══ -->
-        <section class="product-section">
-            <h3>Optimal Protocol & Application</h3>
-            <p>For slide preparation: Apply 0.5 mL onto a sterile glass slide and observe under 400x-1000x magnification.</p>
-        </section>
-
-        <p class="product-disclaimer">For educational, scientific, and microscopy research only. Obey all local state and federal laws.</p>
+        <!-- Compliance & Legal -->
+        <div class="product-disclaimer">
+            <strong>Compliance Advisory:</strong> For educational, scientific, and microscopy research only. Obey all local state and federal laws.
+        </div>
     </main>
 
     <!-- ═══ FOOTER ═══ -->
@@ -268,21 +286,7 @@
         </div>
     </footer>
 
-    <script>
-    fetch('../affiliate_config.json')
-        .then(r => r.json())
-        .then(config => {
-            const partner = config.partners['myyco'];
-            const btn = document.getElementById('cta-myyco');
-            if (partner && btn) {
-                if (partner.affiliate_id && !partner.affiliate_id.startsWith('YOUR_') && !partner.affiliate_id.includes('PENDING')) {
-                    let url = partner.affiliate_url_template.replace('{affiliate_id}', partner.affiliate_id);
-                    btn.href = url;
-                }
-            }
-        })
-        .catch(() => console.log('Config fetch skipped - using active URLs'));
-    </script>
-<script src="../assets/page-transitions.js"></script>
+    <script src="../assets/affiliate-manager.js"></script>
+    <script src="../assets/page-transitions.js"></script>
 </body>
 </html>

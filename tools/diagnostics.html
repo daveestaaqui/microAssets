@@ -8,6 +8,23 @@
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="canonical" href="https://sporlyworks.com/tools/diagnostics.html">
+    <meta property="og:title" content="Mushroom Cultivation Diagnostic Tool — SporlyWorks">
+    <meta property="og:description" content="Is it mold or healthy mycelium? Troubleshoot your mushroom grow kits, spawn bags, and substrates with our interactive diagnostic assistant.">
+    <meta property="og:url" content="https://sporlyworks.com/tools/diagnostics.html">
+    <meta property="og:image" content="https://sporlyworks.com/assets/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "SporlyWorks Mushroom Cultivation Diagnostic Tool",
+      "url": "https://sporlyworks.com/tools/diagnostics.html",
+      "description": "Interactive diagnostic assistant for mushroom contamination, bacterial wet rot, and healthy mycelial growth.",
+      "applicationCategory": "ScientificApplication",
+      "operatingSystem": "All"
+    }
+    </script>
     <link rel="stylesheet" href="../style.css?v=1200">
     <style>
         .diag-container {
@@ -275,7 +292,7 @@
             font-weight: 700;
             text-decoration: none;
             transition: all 0.3s ease;
-            white-space: nowrap;
+            overflow-wrap: break-word; text-align: center; display: inline-block;
         }
         .btn-rec:hover {
             background: #1e3527;
@@ -663,6 +680,55 @@
             }
         }
 
+        
+        function exportDiagDossier(format) {
+            const data = diagnosticsData[selectedEnv][selectedSymptomIndex];
+            const telemetry = {
+                timestamp: new Date().toISOString(),
+                authority: "SporlyWorks Contamination Diagnostic Desk",
+                environment: selectedEnv,
+                issue: data.title,
+                severity: data.severity,
+                description: data.desc,
+                remediationProtocols: data.remediation,
+                recommendedAction: data.rec
+            };
+
+            const filename = "sporlyworks-diagnostic-report-" + Date.now() + "." + format;
+            let fileContent = "";
+            let mimeType = "";
+
+            if (format === 'json') {
+                fileContent = JSON.stringify(telemetry, null, 2);
+                mimeType = "application/json";
+            } else {
+                mimeType = "text/plain";
+                fileContent = "============================================================\n" +
+                              "  🌿 SPORLYWORKS CULTIVATION DIAGNOSTIC REPORT\n" +
+                              "============================================================\n" +
+                              "Generated:   " + telemetry.timestamp + "\n" +
+                              "Environment: " + telemetry.environment + "\n" +
+                              "Diagnosis:   " + telemetry.issue + "\n" +
+                              "Severity:    " + telemetry.severity.toUpperCase() + "\n\n" +
+                              "--- CLINICAL DESCRIPTION ---\n" +
+                              telemetry.description + "\n\n" +
+                              "--- REMEDIATION PROTOCOLS ---\n" +
+                              telemetry.remediationProtocols.map((p, i) => `${i+1}. ${p}`).join('\n') + "\n\n" +
+                              "Verified Source: https://sporlyworks.com/tools/diagnostics.html\n" +
+                              "============================================================\n";
+            }
+
+            const blob = new Blob([fileContent], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    
         function resetWizard() {
             currentStep = 1;
             selectedEnv = '';
@@ -679,5 +745,6 @@
         }
     </script>
 <script src="../assets/page-transitions.js"></script>
+    <script src="../assets/affiliate-manager.js"></script>
 </body>
 </html>
