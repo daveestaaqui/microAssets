@@ -1,0 +1,5 @@
+First Flush vs. Subsequent Flushes: Yield Degradation Curves and Rehydration Technique
+
+Read the full guide on sporlyworks.com/blog/first-flush-vs-subsequent-flushes
+
+#mushroomflush #rehydration #subsequentflushesyield #sporlyworks
