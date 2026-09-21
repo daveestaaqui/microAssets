@@ -4,11 +4,11 @@
 # ============================================================
 
 [config]
-# Use gpt-4o for deep, thorough code reviews (~$0.10-0.20 per review)
-model = "gpt-4o"
-fallback_models = ["gpt-4o-mini"]
-# Max tokens for the model response (gpt-4o supports 128k context)
-max_model_tokens = 8192
+# Use free-tier model (zero external API cost)
+model = "gemini-2.5-flash"
+fallback_models = ["gemini-1.5-flash"]
+# Max tokens for the model response
+max_model_tokens = 4096
 # Larger patch for better context
 patching_extra_lines = 5
 

@@ -27,7 +27,7 @@ All variables the SporlyWorks Railway worker needs across its 11 jobs.
 
 | Variable | Used By | Description |
 |---|---|---|
-| `GEMINI_API_KEY` | Support Agent, Review Scanner, Factory, Updater | Google Gemini/AI API key |
+| `GEMINI_API_KEY` | Factory, Updater, Board | Google AI Studio 100% Free Tier API key (Gemini 2.5 Flash only, no Pro/Search/Imagen) |
 | `SUPPORT_EMAIL_USER` | Support Agent | Gmail address for support inbox |
 | `SUPPORT_EMAIL_PASSWORD` | Support Agent | Gmail app password |
 | `SUPPORT_ESCALATION_EMAIL` | Support Agent | Forwarding address for complex tickets |

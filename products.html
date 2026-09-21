@@ -18,6 +18,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=1200">
     <style>
@@ -47,12 +48,13 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
     <!-- ═══ CENTERED HEADER & NAVBAR ═══ -->
     <header class="internal-header">
         <div class="header-logo-centered">
             <a href="index.html" class="header-brand-link">
-                <img src="assets/logo-nav.png?v=960" alt="SporlyWorks" class="header-logo-img">
+                <img fetchpriority="high" src="assets/logo-nav.png?v=960" alt="SporlyWorks" class="header-logo-img">
                 <span class="header-wordmark">SPORLYWORKS</span>
             </a>
         </div>
@@ -68,7 +70,7 @@
     </header>
 
     <!-- ═══ MAIN CONTENT ═══ -->
-    <main class="products-page-container" style="margin-top: 155px;">
+    <main id="main-content" class="products-page-container" style="margin-top: 155px;">
         
         <div class="collections-hero-card" style="text-align: center; margin-bottom: 50px; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(92, 61, 46, 0.12); border-radius: var(--radius-lg); padding: 44px 36px; box-shadow: 0 8px 32px rgba(44, 36, 24, 0.06); max-width: 900px; margin-left: auto; margin-right: auto;">
             <h1 style="font-family: 'DM Serif Display', Georgia, serif; font-size: 46px; color: var(--green-dark); margin-bottom: 16px; font-weight: 400; letter-spacing: -0.5px;">Our Products & Cultivation Collection</h1>
@@ -101,7 +103,7 @@
             <div class="product-grid">
                 <!-- Blue Oyster Grow Kit -->
                 <a href="products/blue-oyster-grow-kit.html" class="product-card">
-                    <img src="assets/illustrations/blue_oyster_kit.jpg?v=960" alt="Magic Bag Blue Oyster Grow Kit" class="product-img">
+                    <img loading="lazy" src="assets/illustrations/blue_oyster_kit.jpg?v=960" alt="Magic Bag Blue Oyster Grow Kit" class="product-img">
                     <div class="product-info">
                         <h3 class="product-title">Blue Oyster Grow Kit</h3>
                         <p class="product-desc">The fastest growing and highest yielding gourmet block. Certified organic hardwood sawdust pre-colonized with aggressive Pleurotus ostreatus mycelium. Produces heavy flushes of tender blue oyster mushrooms.</p>
@@ -116,7 +118,7 @@
 
                 <!-- Lion's Mane Grow Kit -->
                 <a href="products/lions-mane-grow-kit.html" class="product-card">
-                    <img src="assets/illustrations/lions_mane_kit.jpg?v=960" alt="Magic Bag Lion's Mane Grow Kit" class="product-img">
+                    <img loading="lazy" src="assets/illustrations/lions_mane_kit.jpg?v=960" alt="Magic Bag Lion's Mane Grow Kit" class="product-img">
                     <div class="product-info">
                         <h3 class="product-title">Lion's Mane Grow Kit</h3>
                         <p class="product-desc">Grow cognitive-boosting Hericium erinaceus right in your kitchen. Guaranteed to fruit into large, shaggy pom-poms with a sweet, seafood-like flavor when cooked.</p>
@@ -131,7 +133,7 @@
 
                 <!-- Golden Oyster Grow Kit -->
                 <a href="products/golden-oyster-grow-kit.html" class="product-card">
-                    <img src="assets/illustrations/golden_oyster_kit.jpg?v=960" alt="Magic Bag Golden Oyster Grow Kit" class="product-img">
+                    <img loading="lazy" src="assets/illustrations/golden_oyster_kit.jpg?v=960" alt="Magic Bag Golden Oyster Grow Kit" class="product-img">
                     <div class="product-info">
                         <h3 class="product-title">Golden Oyster Grow Kit</h3>
                         <p class="product-desc">A beautiful, prolific warm-weather fruiter. Produces stunning clusters of bright golden-yellow caps with a delicate nutty and slightly sweet flavor profile. Ideal for beginners.</p>
@@ -146,7 +148,7 @@
 
                 <!-- Tidal Wave Spores -->
                 <a href="products/tidal-wave-spores.html" class="product-card">
-                    <img src="assets/illustrations/tidal_wave_spores.jpg?v=960" alt="MYYCO Tidal Wave Spore Solution" class="product-img">
+                    <img loading="lazy" src="assets/illustrations/tidal_wave_spores.jpg?v=960" alt="MYYCO Tidal Wave Spore Solution" class="product-img">
                     <div class="product-info">
                         <h3 class="product-title">Tidal Wave Spores</h3>
                         <p class="product-desc">Premium isolated liquid culture spore syringe of the award-winning hybrid Tidal Wave lineage. Celebrated for its unique wavy gills and aggressive mycelial development.</p>
@@ -161,7 +163,7 @@
 
                 <!-- Natalensis Spores -->
                 <a href="products/natalensis-spores.html" class="product-card">
-                    <img src="assets/illustrations/natalensis_spores.jpg?v=960" alt="MYYCO Natalensis Spore Solution" class="product-img">
+                    <img loading="lazy" src="assets/illustrations/natalensis_spores.jpg?v=960" alt="MYYCO Natalensis Spore Solution" class="product-img">
                     <div class="product-info">
                         <h3 class="product-title">Natalensis Spores</h3>
                         <p class="product-desc">Highly aggressive, contamination-resistant isolated liquid culture of Psilocybe natalensis. Famously the easiest and best strain to study and grow.</p>
@@ -176,7 +178,7 @@
 
                 <!-- Rusty Melmac Revert Spores -->
                 <a href="products/rusty-melmac-revert-spores.html" class="product-card">
-                    <img src="assets/illustrations/rusty_melmac_revert_spores.jpg?v=960" alt="MYYCO Rusty Melmac Revert Spore Solution" class="product-img">
+                    <img loading="lazy" src="assets/illustrations/rusty_melmac_revert_spores.jpg?v=960" alt="MYYCO Rusty Melmac Revert Spore Solution" class="product-img">
                     <div class="product-info">
                         <h3 class="product-title">Rusty Melmac Revert Spores</h3>
                         <p class="product-desc">The newest hybrid genetic release, crossing the genetics of Rusty Whyte and Melmac. Features a unique rust-orange spore pigmentation profile prized by taxonomists.</p>
@@ -191,7 +193,7 @@
 
                 <!-- Magic Bag -->
                 <a href="products/magic-bag-grow-bags.html" class="product-card">
-                    <img src="assets/illustrations/grow_bags.jpg?v=960" alt="Magic Bag All-In-One Grow Bag" class="product-img">
+                    <img loading="lazy" src="assets/illustrations/grow_bags.jpg?v=960" alt="Magic Bag All-In-One Grow Bag" class="product-img">
                     <div class="product-info">
                         <h3 class="product-title">Magic Bag All-In-One Bags</h3>
                         <p class="product-desc">Pre-sterilized grain and compost blend in a single bag with self-healing injection port and micron filter. Bypasses the need for autoclaves and cleanrooms.</p>
@@ -225,13 +227,13 @@
             <div class="product-grid">
                 <!-- Lion's Mane Extract -->
                 <a href="products/lions-mane-extract.html" class="product-card">
-                    <img src="assets/illustrations/lions_mane_extract.jpg?v=960" alt="FreshCap Organic Lion's Mane" class="product-img">
+                    <img loading="lazy" src="assets/illustrations/lions_mane_extract.jpg?v=960" alt="Real Mushrooms Organic Lion's Mane" class="product-img">
                     <div class="product-info">
                         <h3 class="product-title">Organic Lion's Mane Extract</h3>
-                        <p class="product-desc">100% organic fruiting body extract verified for beta-glucans. Direct stimulation of Nerve Growth Factor (NGF) for brain wellness and focus.</p>
+                        <p class="product-desc">100% organic fruiting body extract verified for active beta-glucans. Stimulates Nerve Growth Factor (NGF) for cognitive clarity and memory.</p>
                         <div class="product-features">
-                            <span class="product-feature">NGF & Memory</span>
-                            <span class="product-feature">>25% Beta-Glucans</span>
+                            <span class="product-feature">NGF &amp; Neurogenesis</span>
+                            <span class="product-feature">&gt;25% Beta-Glucans</span>
                             <span class="product-feature">USDA Organic</span>
                         </div>
                         <span class="btn-card">View Lion's Mane Extract →</span>
@@ -240,14 +242,14 @@
 
                 <!-- Cordyceps Extract -->
                 <a href="products/cordyceps-extract.html" class="product-card">
-                    <img src="assets/illustrations/cordyceps_extract.jpg?v=960" alt="FreshCap Organic Cordyceps" class="product-img">
+                    <img loading="lazy" src="assets/illustrations/cordyceps_extract.jpg?v=960" alt="Real Mushrooms Organic Cordyceps" class="product-img">
                     <div class="product-info">
-                        <h3 class="product-title">Organic Cordyceps Extract</h3>
-                        <p class="product-desc">Optimizes oxygen utilization, ATP energy production, and physical stamina. Hot-water extracted militaris fruiting body.</p>
+                        <h3 class="product-title">Organic Cordyceps-M Extract</h3>
+                        <p class="product-desc">Optimizes cellular ATP synthesis and oxygen uptake for physical stamina. Hot-water extracted militaris fruiting bodies.</p>
                         <div class="product-features">
-                            <span class="product-feature">Energy & ATP</span>
-                            <span class="product-feature">>20% Beta-Glucans</span>
-                            <span class="product-feature">USDA Organic</span>
+                            <span class="product-feature">Energy &amp; ATP</span>
+                            <span class="product-feature">&gt;25% Beta-Glucans</span>
+                            <span class="product-feature">Cordycepin Verified</span>
                         </div>
                         <span class="btn-card">View Cordyceps Extract →</span>
                     </div>
@@ -255,13 +257,13 @@
 
                 <!-- Reishi Extract -->
                 <a href="products/reishi-extract.html" class="product-card">
-                    <img src="assets/illustrations/reishi_extract.jpg?v=960" alt="FreshCap Organic Reishi" class="product-img">
+                    <img loading="lazy" src="assets/illustrations/reishi_extract.jpg?v=960" alt="Real Mushrooms Organic Reishi" class="product-img">
                     <div class="product-info">
-                        <h3 class="product-title">Organic Reishi Extract</h3>
-                        <p class="product-desc">Dual-extracted red Reishi rich in calming triterpenes and immune-modulating polysaccharides. Supports sleep and stress resilience.</p>
+                        <h3 class="product-title">Organic Reishi 415 Extract</h3>
+                        <p class="product-desc">Dual-extracted red Reishi rich in bioactive ganoderic triterpenes. Modulates central GABA pathways for calm and deep sleep.</p>
                         <div class="product-features">
-                            <span class="product-feature">Calm & Sleep</span>
-                            <span class="product-feature">>4% Triterpenes</span>
+                            <span class="product-feature">Calm &amp; Sleep</span>
+                            <span class="product-feature">&gt;4% Triterpenes</span>
                             <span class="product-feature">USDA Organic</span>
                         </div>
                         <span class="btn-card">View Reishi Extract →</span>
@@ -270,7 +272,7 @@
 
                 <!-- Seed Probiotics -->
                 <a href="products/seed-ds01.html" class="product-card">
-                    <img src="assets/illustrations/synbiotics.jpg?v=960" alt="Seed DS-01 Daily Synbiotic" class="product-img">
+                    <img loading="lazy" src="assets/illustrations/synbiotics.jpg?v=960" alt="Seed DS-01 Daily Synbiotic" class="product-img">
                     <div class="product-info">
                         <h3 class="product-title">Seed DS-01® Daily Synbiotic</h3>
                         <p class="product-desc">24-strain broad-spectrum probiotic and prebiotic. Clinically studied for digestive, skin, heart, and immune health. Nested Dual-capsule for maximum survivability.</p>
@@ -292,7 +294,7 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <h3 class="footer-logo">SPORLYWORKS</h3>
-                <p class="footer-tagline">Botanical precision meets functional wellness. Bringing clinical-grade adaptogens and certified organic genetics to home laboratories.</p>
+                <p class="footer-tagline">Precision mycology for home laboratories and human performance. Clean isolated genetics, sterile substrate systems, and verified fruiting body extracts.</p>
                 <div class="social-links" style="display: flex; gap: 16px; margin-top: 24px;">
                     <a href="https://instagram.com/sporlyworks" target="_blank" rel="noopener noreferrer" style="color: var(--text-muted); hover: color: var(--gold); transition: color 0.3s;">Instagram</a>
                 </div>
@@ -343,6 +345,8 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.product-card').forEach(el => observer.observe(el));
     </script>
-<script src="assets/page-transitions.js"></script>
+    <script defer src="assets/affiliate-manager.js"></script>
+    <script src="assets/page-transitions.js"></script>
+    <script defer src="assets/site-analytics.js"></script>
 </body>
 </html>

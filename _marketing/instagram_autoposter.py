@@ -144,7 +144,7 @@ def post_via_instagrapi(image_path, caption, username, password, delete_media_id
                 print(f"⚠️ Profile picture update notice: {pe}")
 
         try:
-            bio_text = "Botanical precision × functional mycology. Organic cultivation science, clinical adaptogenic extracts & sterile genetics. 🍄 sporlyworks.com"
+            bio_text = "Precision mycology for cultivation and cognitive performance. Clean isolated genetics, sterile substrates & pure fruiting body extracts. 🍄 sporlyworks.com"
             print("📝 Updating Instagram channel biography...")
             cl.set_account_biography(bio_text)
             print("✅ Channel biography updated successfully!")

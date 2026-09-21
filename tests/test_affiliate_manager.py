@@ -22,7 +22,7 @@ class TestAffiliateManager(unittest.TestCase):
 
     def test_required_partners_present(self):
         """Verify all primary partners exist in config."""
-        expected_partners = {"myyco", "magicbag", "nootropicsdepot", "seed", "freshcap"}
+        expected_partners = {"myyco", "magicbag", "realmushrooms", "nootropicsdepot", "seed", "freshcap"}
         configured = set(self.config["partners"].keys())
         for p in expected_partners:
             self.assertIn(p, configured, f"Partner '{p}' missing from config")
@@ -43,13 +43,25 @@ class TestAffiliateManager(unittest.TestCase):
             sys.path.insert(0, marketing_path)
         from affiliate_config import build_affiliate_url
 
-        # Test active partner MYYCO
+        # Test active partner MYYCO (verified UAP ID 497)
         myyco_url = build_affiliate_url("myyco", "https://myyco.com")
         self.assertIn("ref=SporlyWorks", myyco_url)
 
-        # Test pending partner (e.g. nootropicsdepot) routes cleanly to base_url, never invalid
+        # Test active partner Magic Bag (verified UAP ID 304)
+        mb_url = build_affiliate_url("magicbag", "https://www.magicbag.co")
+        self.assertIn("ref=Sporlyworks", mb_url)
+
+        # Test active partner North Spore (verified Awin Publisher ID 3016315)
+        ns_url = build_affiliate_url("north_spore", "https://northspore.com")
+        self.assertIn("awinaffid=3016315", ns_url)
+
+        # Test unmonetized fallback partner routing cleanly to base_url without fake query params
+        rm_url = build_affiliate_url("realmushrooms", "https://shop.realmushrooms.com")
+        self.assertEqual(rm_url, "https://shop.realmushrooms.com")
+        self.assertNotIn("ref=", rm_url)
+
         nd_url = build_affiliate_url("nootropicsdepot", "https://nootropicsdepot.com")
-        self.assertTrue(nd_url.startswith("https://nootropicsdepot.com"))
+        self.assertEqual(nd_url, "https://nootropicsdepot.com")
         self.assertNotIn("YOUR_", nd_url)
         self.assertNotIn("INSERT", nd_url)
 

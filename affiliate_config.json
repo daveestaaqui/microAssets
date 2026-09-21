@@ -1,17 +1,31 @@
 {
-  "version": "2.0",
+  "version": "2.2",
   "compliance": {
     "ftc_disclosure": "SporlyWorks participates in select partner and affiliate referral programs. When you purchase through links on our site, we may earn an affiliate commission at zero additional cost to you. All product analyses, cultivation metrics, and biological recommendations remain independent and scientifically grounded.",
     "fda_disclaimer": "These statements have not been evaluated by the Food and Drug Administration. Functional mushroom extracts and dietary supplements referenced on this site are not intended to diagnose, treat, cure, or prevent any disease.",
     "microscopy_disclaimer": "All active spore syringes and isolated liquid cultures are sold strictly for microscopy, taxonomy, and scientific laboratory research. Inoculation of active species into substrate is strictly governed by applicable federal, state, and local laws. Shipping restrictions apply to CA, GA, and ID."
+  },
+  "networks": {
+    "awin": {
+      "publisher_id": "3016315",
+      "status": "active",
+      "approved_date": "2026-08-01"
+    },
+    "impact": {
+      "media_partner_id": "7488636",
+      "status": "application_submitted",
+      "submitted_date": "2026-07-27"
+    }
   },
   "partners": {
     "myyco": {
       "name": "MYYCO",
       "tagline": "Premium Liquid Cultures & Spore Genetics",
       "affiliate_id": "SporlyWorks",
+      "network": "Ultimate Affiliate Pro",
+      "account_id": "497",
       "base_url": "https://myyco.com/shop-microscopy-liquid-culture/",
-      "fallback_url": "https://myyco.com/shop-microscopy-liquid-culture/",
+      "fallback_url": "https://myyco.com/shop-microscopy-liquid-culture/?ref=SporlyWorks",
       "affiliate_url_template": "https://myyco.com/shop-microscopy-liquid-culture/?ref={affiliate_id}",
       "category": "microscopy",
       "description": "Lab-tested isolated liquid cultures and spore syringes. 100% sterile, densely packed with vigorous mycelium for scientific study and taxonomy.",
@@ -23,8 +37,10 @@
       "name": "Magic Bag",
       "tagline": "All-In-One Mushroom Grow Bags",
       "affiliate_id": "Sporlyworks",
+      "network": "Ultimate Affiliate Pro",
+      "account_id": "304",
       "base_url": "https://www.magicbag.co",
-      "fallback_url": "https://www.magicbag.co",
+      "fallback_url": "https://www.magicbag.co/?ref=Sporlyworks",
       "affiliate_url_template": "https://www.magicbag.co/?ref={affiliate_id}",
       "category": "cultivation",
       "description": "Pre-sterilized grain and compost blend in a single bag with self-healing injection port and micron filter. Bypasses cleanroom setup.",
@@ -32,28 +48,44 @@
       "features": ["Pre-Sterilized", "Self-Healing Port", "0.2μm Filter Patch"],
       "status": "active"
     },
-    "nootropicsdepot": {
-      "name": "Nootropics Depot",
-      "tagline": "Lab-Verified Active Fungal Extracts (HPLC/HPTLC Tested)",
+    "north_spore": {
+      "name": "North Spore",
+      "tagline": "Ready-to-Grow Gourmet Kits & Pure Tinctures",
+      "affiliate_id": "3016315",
+      "network": "awin",
+      "network_merchant_id": "34891",
+      "base_url": "https://northspore.com",
+      "fallback_url": "https://northspore.com",
+      "affiliate_url_template": "https://www.awin1.com/cread.php?awinmid=34891&awinaffid={affiliate_id}&ued=https%3A%2F%2Fnorthspore.com%2F",
+      "category": "cultivation",
+      "description": "Pre-inoculated, fully colonized mushroom grow kits and USDA organic dual-extracted tinctures. Made in Maine.",
+      "image": "assets/illustrations/grow_kits.jpg",
+      "features": ["Maine-Grown Hardwoods", "100% Guaranteed First Flush", "Dual-Extracted Tinctures"],
+      "status": "active"
+    },
+    "realmushrooms": {
+      "name": "Real Mushrooms",
+      "tagline": "100% Certified Organic Fruiting Body Extracts",
       "affiliate_id": "",
-      "base_url": "https://nootropicsdepot.com",
-      "fallback_url": "https://nootropicsdepot.com",
-      "affiliate_url_template": "https://nootropicsdepot.com/?ref={affiliate_id}",
+      "base_url": "https://shop.realmushrooms.com",
+      "fallback_url": "https://shop.realmushrooms.com",
+      "affiliate_url_template": "https://shop.realmushrooms.com",
       "category": "supplements",
-      "description": "The gold standard in analytical mycology. 100% pure fruiting body extracts tested via HPLC, HPTLC, and AOAC beta-glucan assays with verified active compound percentages.",
+      "commission": "15% per sale",
+      "description": "The gold standard in analytical mycology founded by pioneer Jeff Chilton. 100% certified organic fruiting body extracts tested with verified beta-glucan percentages and zero grain or starch fillers.",
       "image": "assets/illustrations/supplements.jpg",
-      "features": ["HPLC/HPTLC Analytical Testing", "Verified Beta-Glucans & Cordycepin", "No Fillers, Grain, or Mycelium"],
+      "features": ["100% Organic Fruiting Bodies", "Verified >25% Beta-Glucans", "Zero Grain or Starch Fillers"],
       "status": "live_fallback"
     },
     "seed": {
       "name": "Seed Probiotics",
       "tagline": "DS-01® Daily Synbiotic (ViaCap® Delivery)",
       "affiliate_id": "",
-      "base_url": "https://seed.com",
-      "fallback_url": "https://seed.com",
-      "affiliate_url_template": "https://seed.com/?ref={affiliate_id}",
+      "base_url": "https://seed.com/daily-synbiotic",
+      "fallback_url": "https://seed.com/daily-synbiotic",
+      "affiliate_url_template": "https://seed.com/daily-synbiotic",
       "category": "synbiotics",
-      "description": "24 clinically validated bacterial strains protected by outer prebiotic passion fruit shield for 100% survivability through human stomach acid.",
+      "description": "24 clinically validated bacterial strains protected by outer prebiotic shield for 100% survivability through human stomach acid to colonize the lower bowel.",
       "image": "assets/illustrations/synbiotics.jpg",
       "features": ["ViaCap® 2-in-1 Capsule", "53.6 Billion AFU", "100% Colon Delivery"],
       "status": "live_fallback"
@@ -66,12 +98,25 @@
       "account_id": "7488636",
       "base_url": "https://freshcap.com",
       "fallback_url": "https://freshcap.com",
-      "affiliate_url_template": "https://freshcap.com/?ref={affiliate_id}",
+      "affiliate_url_template": "https://freshcap.com",
       "category": "supplements",
-      "description": "100% organic, water-extracted mushroom fruiting bodies. No starch, grains, or mycelium fillers.",
+      "description": "100% organic, hot-water extracted mushroom fruiting bodies. No starch, grains, or mycelium fillers.",
       "image": "assets/illustrations/supplements.jpg",
       "features": ["100% Fruiting Body", "Verified Beta-Glucans", "USDA Organic"],
-      "status": "Application Submitted via Impact.com (Account ID: 7488636)"
+      "status": "live_fallback"
+    },
+    "nootropicsdepot": {
+      "name": "Nootropics Depot",
+      "tagline": "Lab-Verified Active Fungal Extracts",
+      "affiliate_id": "",
+      "base_url": "https://nootropicsdepot.com",
+      "fallback_url": "https://nootropicsdepot.com",
+      "affiliate_url_template": "https://nootropicsdepot.com",
+      "category": "supplements",
+      "description": "Analytical extracts tested via HPLC assays with verified active compound percentages.",
+      "image": "assets/illustrations/supplements.jpg",
+      "features": ["HPLC Analytical Testing", "Verified Beta-Glucans", "Active Compounds"],
+      "status": "live_fallback"
     }
   }
 }

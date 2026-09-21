@@ -13,6 +13,7 @@
     <meta property="og:image" content="https://sporlyworks.com/assets/illustrations/grow_kits.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css?v=1200">
     <script type="application/ld+json">
@@ -49,7 +50,7 @@
       },
       "offers": {
         "@type": "Offer",
-        "url": "https://www.magicbag.co",
+        "url": "https://www.magicbag.co/?ref=Sporlyworks",
         "priceCurrency": "USD",
         "availability": "https://schema.org/InStock"
       }
@@ -103,10 +104,11 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <header class="internal-header">
         <div class="header-logo-centered">
             <a href="../index.html" class="header-brand-link">
-                <img src="../assets/logo-nav.png?v=960" alt="SporlyWorks" class="header-logo-img">
+                <img fetchpriority="high" src="../assets/logo-nav.png?v=960" alt="SporlyWorks" class="header-logo-img">
                 <span class="header-wordmark">SPORLYWORKS</span>
             </a>
         </div>
@@ -120,14 +122,14 @@
             </div>
         </nav>
     </header>
-    <main class="species-page-container">
+    <main id="main-content" class="species-page-container">
         <div class="species-hero-card">
-            <img src="../assets/illustrations/grow_kits.jpg" alt="King Trumpet" class="species-hero-img">
+            <img fetchpriority="high" src="../assets/illustrations/grow_kits.jpg" alt="King Trumpet" class="species-hero-img">
             <div>
                 <h1 class="species-title">King Trumpet</h1>
                 <div class="species-sci">Pleurotus eryngii</div>
                 <p class="species-tagline">Culinary Excellence & High-Density Ergothioneine Antioxidant Source</p>
-                <a href="https://www.magicbag.co" data-partner="magicbag" class="btn-cta" target="_blank" rel="noopener sponsored">Shop All-In-One Grow Bags →</a>
+                <a href="https://www.magicbag.co/?ref=Sporlyworks" data-partner="magicbag" class="btn-cta" target="_blank" rel="noopener sponsored">Shop All-In-One Grow Bags →</a>
             </div>
         </div>
         <h2 class="section-header">1. Taxonomic & Scientific Classification</h2>
@@ -146,7 +148,7 @@
         <div class="data-table-wrap">
             <table class="data-table">
                 <thead>
-                    <tr><th>Active Compound</th><th>Botanical Source</th><th>Physiological Mechanism</th></tr>
+                    <tr><th>Active Compound</th><th>Fungal Source</th><th>Physiological Mechanism</th></tr>
                 </thead>
                 <tbody><tr><th>L-Ergothioneine</th><td>Full Fruiting Body</td><td>Master intracellular antioxidant with dedicated human cellular transporter (OCTN1).</td></tr><tr><th>Lovastatin (Mevinolin)</th><td>Mycelium & Cap</td><td>Naturally occurring HMG-CoA reductase inhibitor supporting lipid metabolism.</td></tr><tr><th>Pleurotus Polysaccharides</th><td>Cell Wall</td><td>Supports macrophage activation and gut microbiome diversity.</td></tr></tbody>
             </table>
@@ -154,7 +156,7 @@
         <div class="cta-banner">
             <h3 style="font-family:'DM Serif Display',serif; color:var(--green-dark); font-size:24px; margin-bottom:8px;">Certified Laboratory Genetics & Verified Formulations</h3>
             <p style="color:var(--text-secondary); max-width:600px; margin:0 auto 16px; font-size:15px;">Access sterile liquid culture syringes and analytical fruiting body extracts tested via HPLC/HPTLC.</p>
-            <a href="https://www.magicbag.co" data-partner="magicbag" class="btn-cta" target="_blank" rel="noopener sponsored">Shop All-In-One Grow Bags →</a>
+            <a href="https://www.magicbag.co/?ref=Sporlyworks" data-partner="magicbag" class="btn-cta" target="_blank" rel="noopener sponsored">Shop All-In-One Grow Bags →</a>
         </div>
         <h2 class="section-header">4. Scientific Questions & Empirical Protocols</h2>
         <div class="faq-item"><div class="faq-q">Why does King Trumpet require a temperature drop to fruit?</div><p class="faq-a">Pleurotus eryngii is a cool-season Mediterranean species whose pinning mechanism is biologically governed by an environmental temperature reduction from 75°F down to 58°F–62°F.</p></div><div class="faq-item"><div class="faq-q">What makes King Trumpet mushrooms rich in ergothioneine?</div><p class="faq-a">King Trumpets are among the richest dietary sources of L-ergothioneine, an antioxidant that cells absorb through the specialized OCTN1 transporter to shield mitochondrial DNA from oxidative stress.</p></div>
@@ -166,7 +168,7 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <h3 class="footer-logo">SPORLYWORKS</h3>
-                <p class="footer-tagline">Botanical precision meets functional wellness. Bringing clinical-grade adaptogens and certified organic genetics to home laboratories.</p>
+                <p class="footer-tagline">Precision mycology for home laboratories and human performance. Clean isolated genetics, sterile substrate systems, and verified fruiting body extracts.</p>
             </div>
             <div class="footer-links-grid">
                 <div class="footer-column">
@@ -199,7 +201,8 @@
             </div>
         </div>
     </footer>
-    <script src="../assets/affiliate-manager.js"></script>
+    <script defer src="../assets/affiliate-manager.js"></script>
     <script src="../assets/page-transitions.js"></script>
+    <script defer src="../assets/site-analytics.js"></script>
 </body>
 </html>

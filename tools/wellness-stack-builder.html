@@ -13,6 +13,7 @@
     <meta property="og:image" content="https://sporlyworks.com/assets/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css?v=1200">
     <script type="application/ld+json">
@@ -146,11 +147,12 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
     <header class="internal-header">
         <div class="header-logo-centered">
             <a href="../index.html" class="header-brand-link">
-                <img src="../assets/logo-nav.png?v=960" alt="SporlyWorks" class="header-logo-img">
+                <img fetchpriority="high" src="../assets/logo-nav.png?v=960" alt="SporlyWorks" class="header-logo-img">
                 <span class="header-wordmark">SPORLYWORKS</span>
             </a>
         </div>
@@ -166,9 +168,9 @@
         </nav>
     </header>
 
-    <main class="tool-container" style="margin-top: 155px;">
+    <main id="main-content" class="tool-container" style="margin-top: 155px;">
         <div class="tool-card">
-            <img src="../assets/illustrations/supplements.jpg?v=960" alt="Daily Wellness Stack" style="width: 100%; max-height: 240px; object-fit: cover; border-radius: var(--radius-md); margin-bottom: 24px; border: 1px solid var(--border-color);">
+            <img loading="lazy" src="../assets/illustrations/supplements.jpg?v=960" alt="Daily Wellness Stack" style="width: 100%; max-height: 240px; object-fit: cover; border-radius: var(--radius-md); margin-bottom: 24px; border: 1px solid var(--border-color);">
             <h1 style="font-family:'DM Serif Display',serif; color:var(--green-dark); font-size:36px; margin-bottom:12px; text-align:center;">Daily Wellness Stack Builder</h1>
             <p style="color:var(--text-secondary); text-align:center; margin-bottom:32px; font-size:16px;">Select your physiological targets to formulate your custom adaptogen and synbiotic regimen.</p>
 
@@ -199,7 +201,7 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <h3 class="footer-logo">SPORLYWORKS</h3>
-                <p class="footer-tagline">Botanical precision meets functional wellness. Bringing clinical-grade adaptogens and certified organic genetics to home laboratories.</p>
+                <p class="footer-tagline">Precision mycology for home laboratories and human performance. Clean isolated genetics, sterile substrate systems, and verified fruiting body extracts.</p>
             </div>
             <div class="footer-links-grid">
                 <div class="footer-column">
@@ -237,12 +239,12 @@
     const selectedGoals = new Set();
 
     const stackCatalog = {
-        focus:    { partner: 'nootropicsdepot', name: "Lion's Mane 8:1 Extract", compound: "Hericenones & Erinacines", action: "Stimulates Nerve Growth Factor (NGF) synthesis to support synaptic plasticity and focus.", img: "../assets/illustrations/lions_mane_extract.jpg" },
-        immunity: { partner: 'freshcap', name: "Organic Reishi Extract", compound: "1,3/1,6 Beta-D-Glucans", action: "Modulates innate and adaptive immune cell signaling without over-stimulation.", img: "../assets/illustrations/reishi_extract.jpg" },
-        energy:   { partner: 'nootropicsdepot', name: "Cordyceps militaris Extract", compound: "Cordycepin (3'-deoxyadenosine)", action: "Enhances cellular ATP generation and VO2 max oxygen consumption.", img: "../assets/illustrations/cordyceps_extract.jpg" },
+        focus:    { partner: 'realmushrooms', name: "Real Mushrooms Organic Lion's Mane Extract", compound: "Hericenones & Erinacines", action: "Stimulates Nerve Growth Factor (NGF) synthesis to support synaptic plasticity and focus.", img: "../assets/illustrations/lions_mane_extract.jpg" },
+        immunity: { partner: 'realmushrooms', name: "Real Mushrooms Organic Reishi 415 Extract", compound: "1,3/1,6 Beta-D-Glucans", action: "Modulates innate and adaptive immune cell signaling without over-stimulation.", img: "../assets/illustrations/reishi_extract.jpg" },
+        energy:   { partner: 'realmushrooms', name: "Real Mushrooms Organic Cordyceps-M Extract", compound: "Cordycepin (3'-deoxyadenosine)", action: "Enhances cellular ATP generation and VO2 max oxygen consumption.", img: "../assets/illustrations/cordyceps_extract.jpg" },
         gut:      { partner: 'seed', name: "Seed DS-01® Daily Synbiotic", compound: "ViaCap® 2-in-1 Nested Delivery", action: "Ensures 100% bacterial survivability through gastric acid to colonize the lower GI tract.", img: "../assets/illustrations/synbiotics.jpg" },
-        stress:   { partner: 'freshcap', name: "Reishi Adaptogen Powder", compound: "Triterpenes (Ganoderic Acids)", action: "Blunts excess cortisol release and calms autonomic nervous system arousal.", img: "../assets/illustrations/reishi_extract.jpg" },
-        sleep:    { partner: 'freshcap', name: "Reishi Sleep Formulation", compound: "GABAergic Ganoderic Triterpenoids", action: "Increases slow-wave delta sleep stages and promotes restorative REM cycles.", img: "../assets/illustrations/reishi_extract.jpg" }
+        stress:   { partner: 'realmushrooms', name: "Real Mushrooms Organic Reishi 415 Extract", compound: "Triterpenes (Ganoderic Acids)", action: "Blunts excess cortisol release and calms autonomic nervous system arousal.", img: "../assets/illustrations/reishi_extract.jpg" },
+        sleep:    { partner: 'realmushrooms', name: "Real Mushrooms Organic Reishi 415 Extract", compound: "GABAergic Ganoderic Triterpenoids", action: "Increases slow-wave delta sleep stages and promotes restorative REM cycles.", img: "../assets/illustrations/reishi_extract.jpg" }
     };
 
     function toggleGoal(el) {
@@ -286,7 +288,7 @@
 
         cardsDiv.innerHTML = activeStack.map(item => `
             <div class="stack-item-card">
-                <img src="${item.img}" alt="${item.name}" class="stack-item-img">
+                <img loading="lazy" src="${item.img}" alt="${item.name}" class="stack-item-img">
                 <div class="stack-item-body">
                     <h4 class="stack-item-title">${item.name}</h4>
                     <p style="font-size:12px; font-weight:700; color:var(--gold-dark); text-transform:uppercase; margin-bottom:4px;">Active: ${item.compound}</p>
@@ -296,9 +298,9 @@
         `).join('');
 
         const partnerDetails = {
-            nootropicsdepot: { name: "Nootropics Depot Extracts", url: "https://nootropicsdepot.com" },
+            realmushrooms:   { name: "Real Mushrooms Extracts", url: "https://shop.realmushrooms.com" },
             freshcap:        { name: "FreshCap Organic Extracts", url: "https://freshcap.com" },
-            seed:            { name: "Seed DS-01® Synbiotic", url: "https://seed.com" }
+            seed:            { name: "Seed DS-01® Synbiotic", url: "https://seed.com/daily-synbiotic" }
         };
 
         ctasDiv.innerHTML = Array.from(partnersUsed).map(key => {
@@ -357,7 +359,8 @@
         URL.revokeObjectURL(url);
     }
     </script>
-    <script src="../assets/affiliate-manager.js"></script>
+    <script defer src="../assets/affiliate-manager.js"></script>
     <script src="../assets/page-transitions.js"></script>
+    <script defer src="../assets/site-analytics.js"></script>
 </body>
 </html>

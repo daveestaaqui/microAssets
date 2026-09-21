@@ -17,17 +17,19 @@
     <meta name="twitter:image" content="https://sporlyworks.com/assets/illustrations/grow_kits.jpg">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=1200">
 
 </head>
 <body class="legal-page">
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
     <!-- ═══ NAVIGATION ═══ -->
     <nav id="mainNav" class="scrolled">
         <div class="nav-inner">
             <a href="index.html" class="nav-brand">
-                <img src="assets/logo-nav.png?v=960" alt="SporlyWorks" class="nav-icon">
+                <img fetchpriority="high" src="assets/logo-nav.png?v=960" alt="SporlyWorks" class="nav-icon">
                 <span class="nav-wordmark">SPORLYWORKS</span>
             </a>
             <div class="nav-menu-row">
@@ -44,7 +46,7 @@
     </nav>
 
     <!-- ═══ CONTENT AREA ═══ -->
-    <main class="legal-container container">
+    <main id="main-content" class="legal-container container">
         <article class="glass-panel legal-content">
             <h1 class="legal-title">Privacy Policy</h1>
             <p class="legal-subtitle">Last updated: May 20, 2026</p>
@@ -87,7 +89,7 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <h3 class="footer-logo">SPORLYWORKS</h3>
-                <p class="footer-tagline">Botanical precision meets functional wellness. Bringing clinical-grade adaptogens and certified organic genetics to home laboratories.</p>
+                <p class="footer-tagline">Precision mycology for home laboratories and human performance. Clean isolated genetics, sterile substrate systems, and verified fruiting body extracts.</p>
                 <div class="social-links" style="display: flex; gap: 16px; margin-top: 24px;">
                     <a href="https://instagram.com/sporlyworks" target="_blank" rel="noopener noreferrer" style="color: var(--text-muted); hover: color: var(--gold); transition: color 0.3s;">Instagram</a>
                 </div>
@@ -126,5 +128,6 @@
         </div>
     </footer>
 <script src="assets/page-transitions.js"></script>
+    <script defer src="assets/site-analytics.js"></script>
 </body>
 </html>

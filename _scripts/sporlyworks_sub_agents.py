@@ -35,45 +35,73 @@ logging.basicConfig(
 )
 
 
-# ── Helper: Safe OpenAI call ────────────────────────────────────────────
+# ── Zero-Cost Multi-LLM Helper (Local Ollama / Gemini Free Tier) ────────
+LOCAL_OLLAMA_URL = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434/v1")
 
-def _call_llm(prompt, api_key, max_tokens=2000, max_retries=3):
-    """Make a single OpenAI call with exponential backoff. Returns raw string content."""
-    url = "https://api.openai.com/v1/chat/completions"
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {api_key}"
-    }
-    data = json.dumps({
-        "model": "gpt-4o-mini",
-        "messages": [{"role": "system", "content": prompt}],
-        "temperature": 0.6,
-        "max_tokens": max_tokens
-    }).encode("utf-8")
+def _strip_code_fences(content):
+    """Clean markdown code fences from LLM output."""
+    if not content:
+        return ""
+    content = content.strip()
+    for prefix in ["```html", "```json", "```javascript", "```js", "```css", "```"]:
+        if content.startswith(prefix):
+            content = content[len(prefix):]
+            break
+    if content.endswith("```"):
+        content = content[:-3]
+    return content.strip()
 
+
+def _call_llm(prompt, api_key=None, max_tokens=2000, max_retries=3):
+    """Make a zero-cost LLM call. Priority: Local Ollama (gemma4) → Google Gemini Free Tier Flash.
+    Guarantees $0.00 cost: Never invokes paid OpenAI or Pro models."""
     import time
-    for attempt in range(1, max_retries + 1):
+
+    # Priority 1: Local Ollama (100% free, private, infinite compute)
+    if LOCAL_OLLAMA_URL:
+        ollama_url = f"{LOCAL_OLLAMA_URL.rstrip('/')}/chat/completions"
+        headers = {"Content-Type": "application/json"}
+        payload = {
+            "model": os.environ.get("CLAUDE_CODE_MODEL", "gemma4"),
+            "messages": [{"role": "user", "content": prompt}],
+            "temperature": 0.5,
+            "max_tokens": max_tokens
+        }
         try:
-            req = urllib.request.Request(url, data=data, headers=headers)
-            with urllib.request.urlopen(req, timeout=60) as response:
+            req = urllib.request.Request(ollama_url, data=json.dumps(payload).encode("utf-8"), headers=headers)
+            with urllib.request.urlopen(req, timeout=90) as response:
                 result = json.loads(response.read().decode("utf-8"))
-                content = result["choices"][0]["message"]["content"].strip()
-                # Strip markdown code fences
-                if content.startswith("```html"):
-                    content = content[7:]
-                elif content.startswith("```json"):
-                    content = content[7:]
-                elif content.startswith("```"):
-                    content = content[3:]
-                if content.endswith("```"):
-                    content = content[:-3]
-                return content.strip()
+                content = result["choices"][0]["message"]["content"]
+                return _strip_code_fences(content)
         except Exception as e:
-            logging.error(f"LLM API error (attempt {attempt}/{max_retries}): {e}")
-            if attempt < max_retries:
-                time.sleep(2 ** attempt)
-            else:
-                raise
+            logging.debug(f"Local Ollama call failed, falling back to Gemini Free Tier: {e}")
+
+    # Priority 2: Google AI Studio Free Tier (Gemini Flash)
+    google_key = api_key or os.environ.get("GOOGLE_API_KEY")
+    if google_key and not google_key.startswith("sk-"):  # Ignore openai keys
+        target_model = "gemini-2.5-flash"
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{target_model}:generateContent?key={google_key}"
+        headers = {"Content-Type": "application/json"}
+        data = json.dumps({
+            "contents": [{"parts": [{"text": prompt}]}],
+            "generationConfig": {"temperature": 0.5, "maxOutputTokens": max_tokens}
+        }).encode("utf-8")
+
+        for attempt in range(1, max_retries + 1):
+            try:
+                req = urllib.request.Request(url, data=data, headers=headers)
+                with urllib.request.urlopen(req, timeout=60) as response:
+                    result = json.loads(response.read().decode("utf-8"))
+                    if "candidates" in result and result["candidates"]:
+                        raw = result["candidates"][0]["content"]["parts"][0]["text"]
+                        return _strip_code_fences(raw)
+            except Exception as e:
+                logging.error(f"Gemini Free Tier API error (attempt {attempt}/{max_retries}): {e}")
+                if attempt < max_retries:
+                    time.sleep(2 ** attempt)
+
+    logging.warning("No free LLM available for sub-agent (ensure Ollama is running or GOOGLE_API_KEY is configured).")
+    return ""
 
 
 def _check_url_status(url, timeout=10):

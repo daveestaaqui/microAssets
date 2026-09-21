@@ -371,3 +371,24 @@ footer { padding: 80px 24px 40px; background: var(--surface); border-top: 1px so
 }
 
 .nav-logo img { height: 150px !important; width: auto !important; background: transparent !important; }
+
+/* ═══ ACCESSIBILITY ═══ */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--green-dark);
+    color: var(--text-on-dark);
+    padding: 8px 16px;
+    z-index: 10000;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    transition: top 0.3s;
+}
+.skip-link:focus {
+    top: 0;
+}
+*:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+}

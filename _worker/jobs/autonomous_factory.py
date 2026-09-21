@@ -40,13 +40,12 @@ async def generate_extension_idea():
     )
     
     try:
-        # Inject Google Search Tool capabilities natively
+        # Use Gemini Free Tier Flash model without paid Search Grounding
         response = client.models.generate_content(
-            model='gemini-2.5-pro',
+            model='gemini-2.5-flash',
             contents=prompt,
             config=types.GenerateContentConfig(
                 temperature=0.7,
-                tools=[types.Tool(google_search=types.GoogleSearch())]
             )
         )
         
@@ -152,7 +151,7 @@ async def generate_extension_code(app_slug, app_name, description):
     for attempt in range(3):
         try:
             response = client.models.generate_content(
-                model='gemini-2.5-pro',
+                model='gemini-2.5-flash',
                 contents=prompt,
             )
             text = response.text.strip()

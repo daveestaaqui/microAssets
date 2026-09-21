@@ -337,7 +337,7 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
         <div class="footer-container">
             <div class="footer-brand">
                 <h3 class="footer-logo">SPORLYWORKS</h3>
-                <p class="footer-tagline">Botanical precision meets functional wellness. Bringing clinical-grade adaptogens and certified organic genetics to home laboratories.</p>
+                <p class="footer-tagline">Precision mycology for home laboratories and human performance. Clean isolated genetics, sterile substrate systems, and verified fruiting body extracts.</p>
             </div>
             
             <div class="footer-links-grid">
@@ -373,6 +373,9 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
         </div>
     </footer>
 <script src="../assets/page-transitions.js"></script>
+    <script defer src="../assets/affiliate-manager.js"></script>
+    <script defer src="../assets/site-analytics.js"></script>
+    <script defer src="../assets/conversion-bar.js"></script>
 </body>
 </html>
 """
@@ -522,7 +525,7 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
         <div class="footer-container">
             <div class="footer-brand">
                 <h3 class="footer-logo">SPORLYWORKS</h3>
-                <p class="footer-tagline">Botanical precision meets functional wellness. Bringing clinical-grade adaptogens and certified organic genetics to home laboratories.</p>
+                <p class="footer-tagline">Precision mycology for home laboratories and human performance. Clean isolated genetics, sterile substrate systems, and verified fruiting body extracts.</p>
             </div>
             
             <div class="footer-links-grid">
@@ -558,6 +561,9 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
         </div>
     </footer>
 <script src="../assets/page-transitions.js"></script>
+    <script defer src="../assets/affiliate-manager.js"></script>
+    <script defer src="../assets/site-analytics.js"></script>
+    <script defer src="../assets/conversion-bar.js"></script>
 </body>
 </html>
 """

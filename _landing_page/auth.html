@@ -61,8 +61,10 @@
         }
         #errorMsg { color: #dc2626; font-size: 14px; margin-bottom: 16px; display: none; }
     </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body style="background: var(--cream);">
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
     <!-- NAVIGATION -->
     <nav id="mainNav">
@@ -76,7 +78,7 @@
     </nav>
 
     <div class="auth-container">
-        <img src="logo-128.png?v=960" alt="SporlyWorks Logo" class="auth-logo">
+        <img fetchpriority="high" src="logo-128.png?v=960" alt="SporlyWorks Logo" class="auth-logo">
         <h1 class="auth-title" id="formTitle">Welcome Back</h1>
         <p class="auth-subtitle" id="formSubtitle">Log in to manage your OmniSuite access.</p>
         
@@ -151,5 +153,6 @@
             }
         }
     </script>
+    <script defer src="../assets/site-analytics.js"></script>
 </body>
 </html>

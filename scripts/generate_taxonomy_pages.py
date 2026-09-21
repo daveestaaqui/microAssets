@@ -35,10 +35,10 @@ SPECIES_DATA = [
             {"compound": "Erinacines (A–I)", "source": "Cultured Mycelium", "mechanism": "Potent diterpenoid inducers of brain-derived neurotrophic factor (BDNF)."},
             {"compound": "1,3/1,6 Beta-D-Glucans", "source": "Cell Wall Matrix", "mechanism": ">25% concentration via AOAC 995.16 assay; activates macrophage phagocytosis."}
         ],
-        "partner": "nootropicsdepot",
-        "partner_product": "Nootropics Depot HPLC-Tested Lion's Mane 8:1 Extract",
-        "partner_url": "https://nootropicsdepot.com",
-        "partner_cta": "Shop Lab-Tested Lion's Mane →",
+        "partner": "realmushrooms",
+        "partner_product": "Real Mushrooms Organic Lion's Mane Extract (>25% Beta-Glucans)",
+        "partner_url": "https://shop.realmushrooms.com",
+        "partner_cta": "Shop Organic Lion's Mane at Real Mushrooms →",
         "faq": [
             {"q": "How does Lion's Mane stimulate Nerve Growth Factor (NGF)?", "a": "Low molecular weight hericenones easily pass through the blood-brain barrier, triggering astrocytes to synthesize endogenous NGF required for hippocampal neurogenesis and synaptic plasticity."},
             {"q": "What is the best substrate for cultivating Hericium erinaceus?", "a": "The gold standard is Masters Mix: an equal 50/50 dry mass blend of coarse hardwood sawdust (oak or maple) and unpelleted soybean hulls, hydrated to 60% moisture and autoclaved at 15 PSI for 2.5 hours."}
@@ -69,10 +69,10 @@ SPECIES_DATA = [
             {"compound": "Adenosine", "source": "Full Spectrum", "mechanism": "Supports coronary vasodilation and cellular energy transfer."},
             {"compound": "Cordycepic Acid (D-mannitol)", "source": "Fruiting Body", "mechanism": "Osmotic diuretic and metabolic scavenger supporting respiratory function."}
         ],
-        "partner": "nootropicsdepot",
-        "partner_product": "Nootropics Depot HPLC-Standardized Cordyceps militaris",
-        "partner_url": "https://nootropicsdepot.com",
-        "partner_cta": "Shop Standardized Cordyceps →",
+        "partner": "realmushrooms",
+        "partner_product": "Real Mushrooms Organic Cordyceps-M Extract (Verified Cordycepin)",
+        "partner_url": "https://shop.realmushrooms.com",
+        "partner_cta": "Shop Organic Cordyceps at Real Mushrooms →",
         "faq": [
             {"q": "How does cordycepin enhance athletic endurance?", "a": "Cordycepin structurally mimics adenosine, accelerating mitochondrial phosphorylation and elevating cellular ATP reserves while facilitating oxygen extraction in peripheral tissues."},
             {"q": "Can Cordyceps militaris be cultivated vegetatively without insects?", "a": "Yes. Modern scientific mycology cultivates Cordyceps militaris on organic enriched grain broths, producing cordycepin levels significantly higher than wild insect-harvested Ophiocordyceps sinensis."}
@@ -103,10 +103,10 @@ SPECIES_DATA = [
             {"compound": "1,3/1,6 Beta-D-Glucans", "source": "Chitin Matrix", "mechanism": "Activates natural killer (NK) cells and cytokine signaling."},
             {"compound": "Sterols (Ergosterol)", "source": "Cell Membrane", "mechanism": "Biological precursor to vitamin D2 with immunomodulatory properties."}
         ],
-        "partner": "freshcap",
-        "partner_product": "FreshCap 100% Organic Reishi Fruiting Body Extract",
-        "partner_url": "https://freshcap.com",
-        "partner_cta": "Shop Organic Reishi Extract →",
+        "partner": "realmushrooms",
+        "partner_product": "Real Mushrooms Organic Reishi 415 Extract (>4% Triterpenes)",
+        "partner_url": "https://shop.realmushrooms.com",
+        "partner_cta": "Shop Organic Reishi at Real Mushrooms →",
         "faq": [
             {"q": "How do reishi triterpenoids improve deep sleep?", "a": "Ganoderic acids interact directly with GABAergic neuro-pathways in the central nervous system, calming autonomic nervous arousal and significantly increasing deep slow-wave delta sleep cycles."},
             {"q": "What determines whether Reishi grows as antlers or conks?", "a": "Carbon dioxide concentration. In elevated CO2 environments (>2000 ppm), the fungus grows elongated 'antler' stipes. Introducing high fresh air exchange (FAE) triggers horizontal conk cap expansion."}
@@ -139,7 +139,7 @@ SPECIES_DATA = [
         ],
         "partner": "magicbag",
         "partner_product": "Magic Bag Pre-Sterilized All-In-One Substrate Bags",
-        "partner_url": "https://www.magicbag.co",
+        "partner_url": "https://www.magicbag.co/?ref=Sporlyworks",
         "partner_cta": "Shop All-In-One Grow Bags →",
         "faq": [
             {"q": "Why does King Trumpet require a temperature drop to fruit?", "a": "Pleurotus eryngii is a cool-season Mediterranean species whose pinning mechanism is biologically governed by an environmental temperature reduction from 75°F down to 58°F–62°F."},
@@ -173,7 +173,7 @@ SPECIES_DATA = [
         ],
         "partner": "myyco",
         "partner_product": "MYYCO Isolated Psilocybe natalensis Liquid Culture Syringe",
-        "partner_url": "https://myyco.com/shop-microscopy-liquid-culture/",
+        "partner_url": "https://myyco.com/shop-microscopy-liquid-culture/?ref=SporlyWorks",
         "partner_cta": "Shop MYYCO Microscopy Genetics →",
         "faq": [
             {"q": "How does Psilocybe natalensis differ cytologically from Psilocybe cubensis?", "a": "Under 400x–1000x magnification, P. natalensis exhibits accelerated septal wall formation, wider hyphal branching angles (45°–60°), and denser cord-like rhizomorphic growth with elevated natural contamination resistance."},
@@ -207,7 +207,7 @@ SPECIES_DATA = [
         ],
         "partner": "magicbag",
         "partner_product": "Magic Bag Blue Oyster Grow Kit",
-        "partner_url": "https://www.magicbag.co",
+        "partner_url": "https://www.magicbag.co/?ref=Sporlyworks",
         "partner_cta": "Shop Blue Oyster Kit →",
         "faq": [
             {"q": "Why do oyster mushrooms produce long stems with tiny caps?", "a": "This is a direct symptom of CO2 buildup and insufficient fresh air exchange (FAE). Oyster mushrooms require brisk air movement to trigger broad cap development."},
@@ -240,7 +240,7 @@ SPECIES_DATA = [
         ],
         "partner": "magicbag",
         "partner_product": "Magic Bag Golden Oyster Grow Kit",
-        "partner_url": "https://www.magicbag.co",
+        "partner_url": "https://www.magicbag.co/?ref=Sporlyworks",
         "partner_cta": "Shop Golden Oyster Kit →",
         "faq": [
             {"q": "Can Golden Oyster mushrooms grow in hot summer conditions?", "a": "Yes. Pleurotus citrinopileatus thrives in warmer ambient temperatures between 70°F and 80°F, making it the premier warm-weather gourmet species."}
@@ -270,10 +270,10 @@ SPECIES_DATA = [
             {"compound": "Lentinan", "source": "Fruiting Body", "mechanism": "High-molecular weight 1,3 beta-glucan used clinically in Japan as an approved biological response modifier."},
             {"compound": "Eritadenine", "source": "Cap & Stipe", "mechanism": "Accelerates blood cholesterol clearance and supports vascular elasticity."}
         ],
-        "partner": "nootropicsdepot",
-        "partner_product": "Nootropics Depot Lab-Tested Fungal Extracts",
-        "partner_url": "https://nootropicsdepot.com",
-        "partner_cta": "Shop Lab-Tested Extracts →",
+        "partner": "realmushrooms",
+        "partner_product": "Real Mushrooms Organic Shiitake 415 Extract",
+        "partner_url": "https://shop.realmushrooms.com",
+        "partner_cta": "Shop Organic Shiitake at Real Mushrooms →",
         "faq": [
             {"q": "Why does Shiitake mycelium turn dark brown before fruiting?", "a": "Shiitake undergoes a distinct 'popcorning' and 'browning' phase where outer mycelial cells melanize. This protective pseudo-bark layer seals moisture in the block and signals physiological readiness for fruiting."},
             {"q": "What is the biological role of Lentinan?", "a": "Lentinan is a purified 1,3 beta-D-glucan polysaccharide that stimulates helper T-cells and macrophage cytotoxicity, extensively validated in peer-reviewed clinical literature."}
@@ -368,7 +368,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         <div class="data-table-wrap">
             <table class="data-table">
                 <thead>
-                    <tr><th>Active Compound</th><th>Botanical Source</th><th>Physiological Mechanism</th></tr>
+                    <tr><th>Active Compound</th><th>Fungal Source</th><th>Physiological Mechanism</th></tr>
                 </thead>
                 <tbody>{bio_rows}</tbody>
             </table>
@@ -388,7 +388,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
         <div class="footer-container">
             <div class="footer-brand">
                 <h3 class="footer-logo">SPORLYWORKS</h3>
-                <p class="footer-tagline">Botanical precision meets functional wellness. Bringing clinical-grade adaptogens and certified organic genetics to home laboratories.</p>
+                <p class="footer-tagline">Precision mycology for home laboratories and human performance. Clean isolated genetics, sterile substrate systems, and verified fruiting body extracts.</p>
             </div>
             <div class="footer-links-grid">
                 <div class="footer-column">
@@ -451,7 +451,7 @@ def generate():
                     "@id": f"{canonical}#product",
                     "name": sp["partner_product"],
                     "description": sp["tagline"],
-                    "brand": {"@type": "Brand", "name": sp["partner"].capitalize()},
+                    "brand": {"@type": "Brand", "name": "Real Mushrooms" if sp["partner"] == "realmushrooms" else sp["partner"].capitalize()},
                     "offers": {"@type": "Offer", "url": sp["partner_url"], "priceCurrency": "USD", "availability": "https://schema.org/InStock"}
                 },
                 {

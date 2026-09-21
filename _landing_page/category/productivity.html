@@ -7,14 +7,16 @@
     <meta name="description" content="Save time and streamline your daily workflow.">
     <link rel="icon" type="image/png" href="../logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <nav id="mainNav" class="scrolled">
         <div class="nav-inner">
             <a href="../index.html" class="nav-logo" style="text-decoration: none; display: flex; align-items: center; gap: 12px; padding: 4px 0;">
-                <img src="../logo-64.png?v=960" alt="SporlyWorks" style="height: 52px; width: auto; object-fit: contain;">
+                <img fetchpriority="high" src="../logo-64.png?v=960" alt="SporlyWorks" style="height: 52px; width: auto; object-fit: contain;">
                 <div style="display: flex; flex-direction: column; justify-content: center; transform: translateY(2px);">
                     <span style="font-family: 'DM Serif Display', serif; font-size: 28px; font-weight: 400; color: var(--forest-deep); line-height: 1;">SporlyWorks</span>
                     <span style="font-family: 'DM Serif Display', serif; font-size: 14px; font-weight: 400; color: var(--forest-light); letter-spacing: 0.2px; margin-top: 1px;"></span>
@@ -33,7 +35,7 @@
         </div>
     </nav>
 
-    <section class="tools-section" style="padding-top: 140px;">
+    <section id="main-content" class="tools-section" style="padding-top: 140px;">
         <div class="container">
             <a href="../#categories" style="font-size:14px; color: var(--forest); text-decoration: none; font-weight: 600;">← Back to Categories</a>
             <div style="display: flex; align-items: center; gap: 16px; margin: 24px 0 8px;">
@@ -153,5 +155,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+    <script defer src="../../assets/site-analytics.js"></script>
 </body>
 </html>

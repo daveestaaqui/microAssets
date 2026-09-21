@@ -18,6 +18,7 @@
     <meta name="twitter:image" content="https://sporlyworks.com/assets/illustrations/grow_kits.jpg">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css?v=930">
     <script type="application/ld+json">
@@ -150,12 +151,13 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
     <!-- ═══ CENTERED HEADER & NAVBAR ═══ -->
     <header class="internal-header">
         <div class="header-logo-centered">
             <a href="../index.html" class="header-brand-link">
-                <img src="../assets/logo-nav.png?v=908" alt="SporlyWorks" class="header-logo-img">
+                <img fetchpriority="high" src="../assets/logo-nav.png?v=908" alt="SporlyWorks" class="header-logo-img">
                 <span class="header-wordmark">SPORLYWORKS</span>
             </a>
         </div>
@@ -171,12 +173,12 @@
     </header>
 
     <!-- ═══ MAIN CONTENT ═══ -->
-    <main class="guide-body" style="margin-top: 155px;">
+    <main id="main-content" class="guide-body" style="margin-top: 155px;">
         <article class="guide-card">
             <header class="guide-header">
                 <div class="guide-meta">Category: Cultivation · Technical Guide</div>
                 <h1 class="guide-title">Maximizing Yields: The Science Behind Pre-Colonized Grow Blocks</h1>
-                <img src="../assets/illustrations/grow_kits.jpg?v=912" alt="Maximizing Mushroom Grow Kit Yield: The Science of Biological Efficiency" class="guide-hero-img" style="width:100%; height:320px; object-fit:cover; border-radius:var(--radius-lg); margin-top:24px; border:1px solid var(--border-color);">
+                <img fetchpriority="high" src="../assets/illustrations/grow_kits.jpg?v=912" alt="Maximizing Mushroom Grow Kit Yield: The Science of Biological Efficiency" class="guide-hero-img" style="width:100%; height:320px; object-fit:cover; border-radius:var(--radius-lg); margin-top:24px; border:1px solid var(--border-color);">
             </header>
             
             <p class="guide-intro">Starting a mushroom crop from scratch requires months of sterile lab work, pressure cookers, and high contamination risks. Pre-colonized mushroom grow blocks solve these barriers, utilizing fully established mycelial networks to guarantee massive gourmet harvests.</p>
@@ -208,7 +210,7 @@
             <div class="partner-cta-box">
                 <h3>Ready to Take the Next Step?</h3>
                 <p>Pre-sterilized grain and compost substrate with self-healing injection port and 0.2µm filter patch.</p>
-                <a href="https://www.magicbag.co" id="cta-magic_bag" data-affiliate-partner="magic_bag" class="partner-cta-btn" target="_blank" rel="noopener">Shop All-In-One Grow Bags at Magic Bag →</a>
+                <a href="https://www.magicbag.co/?ref=Sporlyworks" id="cta-magicbag" data-affiliate-partner="magicbag" class="partner-cta-btn" target="_blank" rel="noopener sponsored">Shop All-In-One Grow Bags at Magic Bag →</a>
             </div>
         </article>
     </main>
@@ -218,7 +220,7 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <h3 class="footer-logo">SPORLYWORKS</h3>
-                <p class="footer-tagline">Botanical precision meets functional wellness. Bringing clinical-grade adaptogens and certified organic genetics to home laboratories.</p>
+                <p class="footer-tagline">Precision mycology for home laboratories and human performance. Clean isolated genetics, sterile substrate systems, and verified fruiting body extracts.</p>
             </div>
             
             <div class="footer-links-grid">
@@ -254,7 +256,9 @@
         </div>
     </footer>
 
-    <script src="../assets/affiliate-manager.js"></script>
+    <script defer src="../assets/affiliate-manager.js"></script>
     <script src="../assets/page-transitions.js"></script>
+    <script defer src="../assets/site-analytics.js"></script>
+    <script defer src="../assets/conversion-bar.js"></script>
 </body>
 </html>

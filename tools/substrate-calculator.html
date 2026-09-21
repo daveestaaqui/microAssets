@@ -13,6 +13,7 @@
     <meta property="og:image" content="https://sporlyworks.com/assets/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css?v=1200">
     <script type="application/ld+json">
@@ -185,11 +186,12 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
     <header class="internal-header">
         <div class="header-logo-centered">
             <a href="../index.html" class="header-brand-link">
-                <img src="../assets/logo-nav.png?v=960" alt="SporlyWorks" class="header-logo-img">
+                <img fetchpriority="high" src="../assets/logo-nav.png?v=960" alt="SporlyWorks" class="header-logo-img">
                 <span class="header-wordmark">SPORLYWORKS</span>
             </a>
         </div>
@@ -205,7 +207,7 @@
         </nav>
     </header>
 
-    <main class="calc-container" style="margin-top: 155px;">
+    <main id="main-content" class="calc-container" style="margin-top: 155px;">
         <div style="text-align: center; margin-bottom: 36px;">
             <h1 style="font-family:'DM Serif Display',serif; color:var(--green-dark); font-size:38px; margin-bottom:10px;">Bulk Substrate & Field Capacity Calculator</h1>
             <p style="color:var(--text-secondary); max-width:640px; margin:0 auto; font-size:16px;">Calculate precise dry-to-wet mass ratios, boiling water volumes, and grain spawn requirements for 60–65% moisture field capacity.</p>
@@ -299,12 +301,19 @@
                 <div class="dossier-actions">
                     <button class="btn-dossier" onclick="exportDossier('txt')">📄 Download Protocol (.txt)</button>
                     <button class="btn-dossier" onclick="exportDossier('json')">💾 Export Telemetry (.json)</button>
+                    <button class="btn-dossier" onclick="toggleEmbedBox()" style="border-color:var(--gold); color:var(--gold-dark);">⚡ Embed Tool</button>
+                </div>
+
+                <div id="embedBox" style="display:none; margin-top:16px; padding:16px; background:rgba(245,240,232,0.6); border:1px solid var(--border-color); border-radius:var(--radius-md); text-align:left;">
+                    <h5 style="margin:0 0 6px; font-size:13px; color:var(--green-dark);">Embed this Calculator on your Blog or Forum:</h5>
+                    <textarea readonly id="embedSnippet" style="width:100%; height:60px; font-size:11px; font-family:monospace; padding:8px; border:1px solid var(--border-color); border-radius:4px; resize:none;">&lt;iframe src="https://sporlyworks.com/embed/substrate-calculator.html" width="100%" height="340" frameborder="0" style="border:none; border-radius:12px; max-width:600px;"&gt;&lt;/iframe&gt;&lt;p style="font-size:11px; text-align:right;"&gt;&lt;a href="https://sporlyworks.com/tools/substrate-calculator.html" target="_blank" rel="noopener"&gt;Substrate Calculator by SporlyWorks&lt;/a&gt;&lt;/p&gt;</textarea>
+                    <button class="btn-dossier" onclick="copyEmbedSnippet()" id="btnCopyEmbed" style="margin-top:8px; width:100%;">📋 Copy Embed Code</button>
                 </div>
 
                 <div class="rec-cta-box">
                     <h5 style="font-family:'DM Serif Display',serif; color:var(--green-dark); margin:0 0 6px; font-size:17px;">Bypass Substrate Prep & Contamination Risk</h5>
                     <p style="font-size:13.5px; color:var(--text-secondary); margin:0 0 12px; line-height:1.5;">Get pre-sterilized organic grain and compost grow bags with injection port and 0.2μm filter patch.</p>
-                    <a href="https://www.magicbag.co/?ref=Sporlyworks" data-partner="magicbag" class="btn-rec-cta">Get All-In-One Magic Bags →</a>
+                    <a rel="noopener sponsored" href="https://www.magicbag.co/?ref=Sporlyworks" data-partner="magicbag" class="btn-rec-cta">Get All-In-One Magic Bags →</a>
                 </div>
             </div>
         </div>
@@ -314,7 +323,7 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <h3 class="footer-logo">SPORLYWORKS</h3>
-                <p class="footer-tagline">Botanical precision meets functional wellness. Bringing clinical-grade adaptogens and certified organic genetics to home laboratories.</p>
+                <p class="footer-tagline">Precision mycology for home laboratories and human performance. Clean isolated genetics, sterile substrate systems, and verified fruiting body extracts.</p>
             </div>
             <div class="footer-links-grid">
                 <div class="footer-column">
@@ -469,6 +478,33 @@
             URL.revokeObjectURL(url);
         }
 
+        function toggleEmbedBox() {
+            var box = document.getElementById('embedBox');
+            if (box) {
+                box.style.display = box.style.display === 'none' ? 'block' : 'none';
+                if (window.SporlyAnalytics) {
+                    window.SporlyAnalytics.track('tool_embed_open', { tool: 'substrate-calculator' });
+                }
+            }
+        }
+
+        function copyEmbedSnippet() {
+            var snippet = document.getElementById('embedSnippet');
+            if (snippet) {
+                snippet.select();
+                navigator.clipboard.writeText(snippet.value).then(function() {
+                    var btn = document.getElementById('btnCopyEmbed');
+                    if (btn) {
+                        btn.innerText = '✓ Copied to Clipboard!';
+                        setTimeout(function() { btn.innerText = '📋 Copy Embed Code'; }, 2000);
+                    }
+                    if (window.SporlyAnalytics) {
+                        window.SporlyAnalytics.track('tool_embed_copied', { tool: 'substrate-calculator' });
+                    }
+                });
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
             tubSizeSelect.addEventListener('change', function() {
                 customDims.style.display = this.value === 'custom' ? 'block' : 'none';
@@ -485,7 +521,8 @@
             calculateCVG();
         });
     </script>
-    <script src="../assets/affiliate-manager.js"></script>
+    <script defer src="../assets/affiliate-manager.js"></script>
     <script src="../assets/page-transitions.js"></script>
+    <script defer src="../assets/site-analytics.js"></script>
 </body>
 </html>

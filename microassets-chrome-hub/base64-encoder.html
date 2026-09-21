@@ -13,8 +13,11 @@
         .gradient-text { background: linear-gradient(135deg, #a78bfa, #38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .hero-glow { position: absolute; top: 50%; left: 50%; width: 600px; height: 600px; background: rgba(167, 139, 250, 0.15); filter: blur(100px); transform: translate(-50%, -50%); z-index: -1; border-radius: 50%; }
     </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body class="antialiased selection:bg-purple-500 selection:text-white pb-24 relative overflow-x-hidden">
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
     <div class="hero-glow"></div>
 
@@ -28,7 +31,7 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="max-w-4xl mx-auto px-6 pt-32 pb-16 text-center">
+    <main id="main-content" class="max-w-4xl mx-auto px-6 pt-32 pb-16 text-center">
         <div class="inline-block glass px-4 py-1 rounded-full text-xs font-bold text-purple-300 uppercase tracking-widest mb-6">
             Chrome Extension
         </div>
@@ -64,5 +67,6 @@
            <a href="blog/base64-encoder-guide.html" class="hover:text-purple-300 underline">Read our deep-dive guide on automating your workflow →</a>
         </div>
     </section>
+    <script defer src="../assets/site-analytics.js"></script>
 </body>
 </html>

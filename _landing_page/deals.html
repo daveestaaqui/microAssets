@@ -16,15 +16,17 @@
         .pulse { animation: pulse 2s infinite; }
         @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.7} }
     </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body class="min-h-screen pt-20 pb-16">
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <nav class="fixed top-0 w-full z-50 glass-panel border-b border-white/10">
         <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="index.html" class="flex items-center"><img src="unified-logo.png?v=960" alt="SporlyWorks" style="height: 38px; width: auto; object-fit: contain; filter: brightness(0) invert(1);"></a>
+            <a href="index.html" class="flex items-center"><img fetchpriority="high" src="unified-logo.png?v=960" alt="SporlyWorks" style="height: 38px; width: auto; object-fit: contain; filter: brightness(0) invert(1);"></a>
             <span class="text-zinc-400 text-sm font-semibold">🔥 Limited-Time Deals</span>
         </div>
     </nav>
-    <main class="max-w-5xl mx-auto px-6 mt-12">
+    <main id="main-content" class="max-w-5xl mx-auto px-6 mt-12">
         <div class="text-center mb-16">
             <span class="inline-block mb-4 px-3 py-1 rounded-full bg-red-500/20 text-red-400 text-xs font-bold uppercase tracking-widest pulse">🔥 Limited Time</span>
             <h1 class="text-4xl md:text-6xl font-extrabold mb-4"><span class="gradient-text">Launch Deals</span></h1>
@@ -145,5 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+    <script defer src="../assets/site-analytics.js"></script>
 </body>
 </html>

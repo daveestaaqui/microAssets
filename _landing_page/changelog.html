@@ -13,15 +13,17 @@
         .gradient-text { background: linear-gradient(135deg, #e879f9, #a855f7, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .timeline-dot { width: 12px; height: 12px; border-radius: 50%; background: linear-gradient(135deg, #a855f7, #ec4899); flex-shrink: 0; }
     </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body class="min-h-screen pt-20 pb-16">
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <nav class="fixed top-0 w-full z-50 glass-panel border-b border-white/10">
         <div class="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="index.html" class="flex items-center"><img src="unified-logo.png?v=960" alt="SporlyWorks" style="height: 38px; width: auto; object-fit: contain; filter: brightness(0) invert(1);"></a>
+            <a href="index.html" class="flex items-center"><img fetchpriority="high" src="unified-logo.png?v=960" alt="SporlyWorks" style="height: 38px; width: auto; object-fit: contain; filter: brightness(0) invert(1);"></a>
             <span class="text-zinc-400 text-sm font-semibold">Changelog</span>
         </div>
     </nav>
-    <main class="max-w-4xl mx-auto px-6 mt-12">
+    <main id="main-content" class="max-w-4xl mx-auto px-6 mt-12">
         <h1 class="text-4xl md:text-5xl font-extrabold mb-4"><span class="gradient-text">Changelog</span></h1>
         <p class="text-zinc-400 text-lg mb-12">Every update, feature, and improvement — all in one place.</p>
 
@@ -129,5 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+    <script defer src="../assets/site-analytics.js"></script>
 </body>
 </html>

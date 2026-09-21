@@ -1,24 +1,11 @@
-import os
-import io
-from PIL import Image
-try:
-    from google import genai
-    from google.genai import types
+"""
+Test Script: Imagen 3 Disabled
+==============================
+Google Imagen 3 ('imagen-3.0-generate-002') is a PAID service with no free tier.
+It has been deactivated to guarantee $0.00 billing on Google Cloud.
+"""
+import sys
 
-    client = genai.Client() # Assumes GEMINI_API_KEY is in env
-    
-    result = client.models.generate_images(
-        model='imagen-3.0-generate-002',
-        prompt='A simple square.',
-        config=types.GenerateImagesConfig(
-            number_of_images=1,
-            output_mime_type="image/png",
-            aspect_ratio="1:1"
-        )
-    )
-    for generated_image in result.generated_images:
-        image = Image.open(io.BytesIO(generated_image.image.image_bytes))
-        image.save('test_genai_output.png')
-    print("SUCCESS")
-except Exception as e:
-    print("FAILED:", e)
+print("⚠️  Imagen 3 image generation is disabled to prevent paid Google Cloud API billing.")
+print("   For all icons and assets, use local deterministic PIL/SVG generators.")
+sys.exit(0)

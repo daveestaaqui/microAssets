@@ -115,7 +115,8 @@ CEO_DISPLAY_NAME = "Lena Voss, CEO - SporlyWorks"
 LEDGER_FILE = os.path.join(SCRIPT_DIR, "board_ledger.json")
 HISTORY_FILE = os.path.join(SCRIPT_DIR, "board_history.json")
 BACKUP_DIR = os.path.join(SCRIPT_DIR, ".ledger_backups")
-LOCAL_PROXY_URL = "http://localhost:4000"
+LOCAL_PROXY_URL = os.environ.get("LOCAL_PROXY_URL", "http://localhost:4000")
+LOCAL_OLLAMA_URL = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434/v1")
 
 def update_agent_health(agent_name, success, ledger):
     """Maintain a performance-based health score for each department agent."""
@@ -514,16 +515,39 @@ Body: {cmd['body']}
 
 
 
-# ── Multi-LLM Integration (Gemini 2.5 Pro → Flash → GPT-4o fallback) ──
+# ── Zero-Cost Multi-LLM Integration (Local Ollama / Gemma 4 → Gemini Flash Free Tier) ──
 
+# VRAM Protection Protocol: Global lock for local inference
+local_vram_lock = threading.Lock()
+
+def _call_local_ollama(prompt, model="gemma4", max_retries=2):
+    """Call local Ollama server (standard OpenAI-compatible /v1 endpoint on port 11434). 100% free & local."""
+    if not LOCAL_OLLAMA_URL:
+        return None
+    url = f"{LOCAL_OLLAMA_URL.rstrip('/')}/chat/completions"
+    headers = {"Content-Type": "application/json"}
+    data = json.dumps({
+        "model": os.environ.get("CLAUDE_CODE_MODEL", model),
+        "messages": [{"role": "user", "content": prompt}],
+        "temperature": 0.4
+    }).encode("utf-8")
+
+    for attempt in range(1, max_retries + 1):
+        try:
+            with local_vram_lock:
+                req = urllib.request.Request(url, data=data, headers=headers)
+                with urllib.request.urlopen(req, timeout=120) as response:
+                    result = json.loads(response.read().decode("utf-8"))
+                    return result["choices"][0]["message"]["content"].strip()
+        except Exception as e:
+            logging.debug(f"Local Ollama attempt {attempt} failed: {e}")
+            if attempt < max_retries:
+                time.sleep(1)
     return None
 
 
-# VRAM Protection Protocol: Global lock for Gemma 4 inference
-gemma_vram_lock = threading.Lock()
-
-def _call_local_gemma(prompt, max_retries=3):
-    """Call the local Gemma 4 proxy (Antigravity toolchain)."""
+def _call_local_gemma(prompt, max_retries=2):
+    """Call the local Gemma 4 proxy (port 4000). 100% free & local."""
     if not LOCAL_PROXY_URL:
         return None
     
@@ -540,25 +564,26 @@ def _call_local_gemma(prompt, max_retries=3):
 
     for attempt in range(1, max_retries + 1):
         try:
-            with gemma_vram_lock:
-                logging.info(f"VRAM LOCK ACQUIRED for attempt {attempt}")
+            with local_vram_lock:
                 req = urllib.request.Request(url, data=data, headers=headers)
-                with urllib.request.urlopen(req, timeout=180) as response:
+                with urllib.request.urlopen(req, timeout=120) as response:
                     result = json.loads(response.read().decode("utf-8"))
-                    # Proxy returns Anthropic-style response
                     return result["content"][0]["text"].strip()
         except Exception as e:
-            logging.error(f"Local Gemma 4 error (attempt {attempt}/{max_retries}): {e}")
+            logging.debug(f"Local proxy error (attempt {attempt}/{max_retries}): {e}")
             if attempt < max_retries:
                 time.sleep(2 ** attempt)
     return None
 
 
-def _call_gemini(prompt, model="gemini-1.5-pro", max_retries=3):
-    """Call Google Gemini API directly via REST."""
+def _call_gemini(prompt, model="gemini-2.5-flash", max_retries=3):
+    """Call Google Gemini API directly via REST on the 100% Free of Charge Tier.
+    Strictly forbids Pro models or paid features to guarantee zero billing."""
     if not GOOGLE_API_KEY:
         return None
-    target_model = model if "2.5" not in model else "gemini-1.5-pro"
+    
+    # Enforce 100% Free Tier Flash models only - never call paid Pro models
+    target_model = "gemini-2.5-flash" if "2.5" in str(model) else "gemini-1.5-flash"
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{target_model}:generateContent?key={GOOGLE_API_KEY}"
     headers = {"Content-Type": "application/json"}
     payload = {
@@ -579,77 +604,52 @@ def _call_gemini(prompt, model="gemini-1.5-pro", max_retries=3):
     return None
 
 
-def _call_openai_raw(prompt, max_retries=3):
-    """Call OpenAI GPT-4o API. Returns raw text."""
-    if not OPENAI_KEY:
-        logging.error("Missing OPENAI_API_KEY.")
-        return None
-
-    url = "https://api.openai.com/v1/chat/completions"
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {OPENAI_KEY}"
-    }
-    data = json.dumps({
-        "model": "gpt-4o",
-        "messages": [{"role": "system", "content": prompt}],
-        "temperature": 0.4,
-    }).encode("utf-8")
-
-    for attempt in range(1, max_retries + 1):
-        try:
-            req = urllib.request.Request(url, data=data, headers=headers)
-            with urllib.request.urlopen(req, timeout=90) as response:
-                result = json.loads(response.read().decode("utf-8"))
-                return result["choices"][0]["message"]["content"].strip()
-        except Exception as e:
-            logging.error(f"OpenAI API error (attempt {attempt}/{max_retries}): {e}")
-            if attempt < max_retries:
-                time.sleep(2 ** attempt)
-    return None
-
-
 def _get_llm_provider():
-    """Return the active LLM provider name."""
-    # Check local proxy first
+    """Return the active zero-cost LLM provider name."""
+    # Check local Ollama first
+    try:
+        req = urllib.request.Request(f"{LOCAL_OLLAMA_URL.rstrip('/')}/models")
+        urllib.request.urlopen(req, timeout=1).close()
+        return "local-ollama (gemma4 - 100% free)"
+    except:
+        pass
+    # Check local proxy
     try:
         urllib.request.urlopen(LOCAL_PROXY_URL, timeout=1).close()
-        return "gemma-4 (local-proxy)"
+        return "local-proxy (gemma-4 - 100% free)"
     except:
         pass
     if GOOGLE_API_KEY:
-        return "gemini-2.5-pro"
-    if OPENAI_KEY:
-        return "gpt-4o"
+        return "gemini-2.5-flash (Google AI Studio Free Tier)"
     return None
 
 
 def _call_llm_text(prompt, max_retries=3):
-    """Call the best available LLM and return raw text.
-    Failover chain: Local Gemma 4 → Gemini 2.5 Pro → Gemini 2.5 Flash → GPT-4o."""
-    # Priority 0: Local Gemma 4 (Highest Intelligence + Infinite Compute)
-    logging.info("Trying Local Gemma 4 proxy...")
-    # result = _call_local_gemma(prompt, max_retries=2)
-    result = None # Disabled to save local VRAM
-    if result:
-        return result
+    """Call the best available ZERO-COST LLM and return raw text.
+    Failover chain: Local Ollama (gemma4) → Local Proxy → Gemini 2.5 Flash (Free Tier) → Gemini 1.5 Flash (Free Tier).
+    Guarantees $0.00 cost: Strictly no paid models, no OpenAI, and no Imagen."""
+    # Priority 1: Local Ollama (100% free, private, infinite compute)
+    ollama_result = _call_local_ollama(prompt, max_retries=1)
+    if ollama_result:
+        return ollama_result
 
+    # Priority 2: Local proxy (100% free)
+    proxy_result = _call_local_gemma(prompt, max_retries=1)
+    if proxy_result:
+        return proxy_result
+
+    # Priority 3: Google Gemini Free Tier
     if GOOGLE_API_KEY:
-        # Try Gemini 2.5 Pro first (best cloud intelligence)
-        logging.info("Trying Gemini 2.5 Pro...")
-        result = _call_gemini(prompt, model="gemini-2.5-pro", max_retries=2)
+        logging.info("Using Google AI Studio Free Tier (Gemini 2.5 Flash)...")
+        result = _call_gemini(prompt, model="gemini-2.5-flash", max_retries=2)
         if result:
             return result
-        # Fall back to Gemini 2.5 Flash (free, still smart)
-        logging.warning("Gemini Pro unavailable, trying Gemini 2.5 Flash...")
-        result = _call_gemini(prompt, model="gemini-2.5-flash", max_retries=max_retries)
+        logging.warning("Gemini 2.5 Flash unavailable, trying Gemini 1.5 Flash Free Tier...")
+        result = _call_gemini(prompt, model="gemini-1.5-flash", max_retries=max_retries)
         if result:
             return result
-        logging.warning("All Gemini models failed, falling back to OpenAI...")
-    if OPENAI_KEY:
-        logging.info("Using OpenAI GPT-4o for LLM call.")
-        return _call_openai_raw(prompt, max_retries=max_retries)
-    logging.error("No LLM API key available (set GOOGLE_API_KEY or OPENAI_API_KEY).")
+
+    logging.error("No free LLM available. Please ensure Ollama is running or GOOGLE_API_KEY is set with Free Tier quota.")
     return None
 
 
@@ -984,7 +984,7 @@ def execute_dispatches(dispatches, ledger):
         logging.info(f"==> Dispatching [{agent}]: {summary}")
 
         try:
-            success = sporlyworks_sub_agents.route_payload(dispatch, OPENAI_KEY)
+            success = sporlyworks_sub_agents.route_payload(dispatch, GOOGLE_API_KEY)
             results.append({
                 "agent": agent,
                 "summary": summary,
@@ -1383,7 +1383,7 @@ def main():
     print("=" * 60)
     print("SPORLYWORKS CEO COORDINATOR v11.0 — Lena Voss")
     print(f"Cycle Start: {datetime.now(timezone.utc).isoformat()}Z")
-    print(f"LLM Provider: {_get_llm_provider() or 'NONE — set GOOGLE_API_KEY or OPENAI_API_KEY'}")
+    print(f"LLM Provider: {_get_llm_provider() or 'NONE — start Ollama (gemma4) or set GOOGLE_API_KEY for Free Tier'}")
     sender_identity = f"{CEO_DISPLAY_NAME} <{os.environ.get('SENDER_EMAIL', CEO_EMAIL)}>"
     print(f"CEO Email Identity: {sender_identity}")
     print("=" * 60)

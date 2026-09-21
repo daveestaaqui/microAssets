@@ -38,7 +38,7 @@ async def fix_extension_code(client: genai.Client, ext_slug: str, bug_details: s
     
     try:
         response = client.models.generate_content(
-            model='gemini-2.5-pro',
+            model='gemini-2.5-flash',
             contents=prompt,
         )
         text = response.text.strip()

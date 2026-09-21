@@ -13,6 +13,7 @@
     <meta property="og:image" content="https://sporlyworks.com/assets/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css?v=1200">
     <script type="application/ld+json">
@@ -125,11 +126,12 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
     <header class="internal-header">
         <div class="header-logo-centered">
             <a href="../index.html" class="header-brand-link">
-                <img src="../assets/logo-nav.png?v=960" alt="SporlyWorks" class="header-logo-img">
+                <img fetchpriority="high" src="../assets/logo-nav.png?v=960" alt="SporlyWorks" class="header-logo-img">
                 <span class="header-wordmark">SPORLYWORKS</span>
             </a>
         </div>
@@ -145,9 +147,9 @@
         </nav>
     </header>
 
-    <main class="tool-container" style="margin-top: 155px;">
+    <main id="main-content" class="tool-container" style="margin-top: 155px;">
         <div class="tool-card">
-            <img src="../assets/illustrations/grow_kits.jpg?v=960" alt="Mushroom Cultivation Yield" style="width: 100%; max-height: 280px; object-fit: contain; background: rgba(245, 240, 232, 0.5); border-radius: var(--radius-md); margin-bottom: 24px; border: 1px solid var(--border-color);">
+            <img loading="lazy" src="../assets/illustrations/grow_kits.jpg?v=960" alt="Mushroom Cultivation Yield" style="width: 100%; max-height: 280px; object-fit: contain; background: rgba(245, 240, 232, 0.5); border-radius: var(--radius-md); margin-bottom: 24px; border: 1px solid var(--border-color);">
             <h1 style="font-family:'DM Serif Display',serif; color:var(--green-dark); font-size:36px; margin-bottom:12px; text-align:center;">Mushroom Harvest & Yield Estimator</h1>
             <p style="color:var(--text-secondary); text-align:center; margin-bottom:28px; font-size:16px;">Deterministic biological efficiency calculations for gourmet fruiting blocks and research spawn runs.</p>
 
@@ -267,11 +269,18 @@
                 <div class="dossier-actions">
                     <button class="btn-dossier" onclick="exportDossier('research', 'txt')">📄 Download Laboratory Dossier (.txt)</button>
                     <button class="btn-dossier" onclick="exportDossier('research', 'json')">💾 Export Telemetry (.json)</button>
+                    <button class="btn-dossier" onclick="toggleEmbedBox()" style="border-color:var(--gold); color:var(--gold-dark);">⚡ Embed Tool</button>
+                </div>
+
+                <div id="embedBox" style="display:none; margin-top:16px; padding:16px; background:rgba(245,240,232,0.6); border:1px solid var(--border-color); border-radius:var(--radius-md); text-align:left;">
+                    <h5 style="margin:0 0 6px; font-size:13px; color:var(--green-dark);">Embed this Yield Estimator on your Blog or Forum:</h5>
+                    <textarea readonly id="embedSnippet" style="width:100%; height:60px; font-size:11px; font-family:monospace; padding:8px; border:1px solid var(--border-color); border-radius:4px; resize:none;">&lt;iframe src="https://sporlyworks.com/embed/yield-calculator.html" width="100%" height="340" frameborder="0" style="border:none; border-radius:12px; max-width:600px;"&gt;&lt;/iframe&gt;&lt;p style="font-size:11px; text-align:right;"&gt;&lt;a href="https://sporlyworks.com/tools/yield-estimator.html" target="_blank" rel="noopener"&gt;Yield Estimator by SporlyWorks&lt;/a&gt;&lt;/p&gt;</textarea>
+                    <button class="btn-dossier" onclick="copyEmbedSnippet()" id="btnCopyEmbed" style="margin-top:8px; width:100%;">📋 Copy Embed Code</button>
                 </div>
 
                 <div class="result-ctas" style="margin-top:28px; display:flex; gap:16px; flex-wrap:wrap; justify-content:center;">
-                    <a href="https://myyco.com/shop-microscopy-liquid-culture/" data-partner="myyco" class="result-cta result-cta--primary" target="_blank" rel="noopener sponsored" style="padding:16px 28px; background:var(--green-light); color:white; border-radius:var(--radius-pill); text-decoration:none; font-weight:700; flex-grow:1; text-align:center;">Get Liquid Cultures at MYYCO →</a>
-                    <a href="https://www.magicbag.co" data-partner="magicbag" class="result-cta result-cta--secondary" target="_blank" rel="noopener sponsored" style="padding:16px 28px; border:2px solid var(--green); color:var(--green); border-radius:var(--radius-pill); text-decoration:none; font-weight:700; flex-grow:1; text-align:center; background:#ffffff;">Get All-In-One Bags at Magic Bag →</a>
+                    <a href="https://myyco.com/shop-microscopy-liquid-culture/?ref=SporlyWorks" data-partner="myyco" class="result-cta result-cta--primary" target="_blank" rel="noopener sponsored" style="padding:16px 28px; background:var(--green-light); color:white; border-radius:var(--radius-pill); text-decoration:none; font-weight:700; flex-grow:1; text-align:center;">Get Liquid Cultures at MYYCO →</a>
+                    <a href="https://www.magicbag.co/?ref=Sporlyworks" data-partner="magicbag" class="result-cta result-cta--secondary" target="_blank" rel="noopener sponsored" style="padding:16px 28px; border:2px solid var(--green); color:var(--green); border-radius:var(--radius-pill); text-decoration:none; font-weight:700; flex-grow:1; text-align:center; background:#ffffff;">Get All-In-One Bags at Magic Bag →</a>
                 </div>
             </div>
 
@@ -285,7 +294,7 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <h3 class="footer-logo">SPORLYWORKS</h3>
-                <p class="footer-tagline">Botanical precision meets functional wellness. Bringing clinical-grade adaptogens and certified organic genetics to home laboratories.</p>
+                <p class="footer-tagline">Precision mycology for home laboratories and human performance. Clean isolated genetics, sterile substrate systems, and verified fruiting body extracts.</p>
             </div>
             <div class="footer-links-grid">
                 <div class="footer-column">
@@ -456,6 +465,33 @@
         URL.revokeObjectURL(url);
     }
 
+    function toggleEmbedBox() {
+        var box = document.getElementById('embedBox');
+        if (box) {
+            box.style.display = box.style.display === 'none' ? 'block' : 'none';
+            if (window.SporlyAnalytics) {
+                window.SporlyAnalytics.track('tool_embed_open', { tool: 'yield-estimator' });
+            }
+        }
+    }
+
+    function copyEmbedSnippet() {
+        var snippet = document.getElementById('embedSnippet');
+        if (snippet) {
+            snippet.select();
+            navigator.clipboard.writeText(snippet.value).then(function() {
+                var btn = document.getElementById('btnCopyEmbed');
+                if (btn) {
+                    btn.innerText = '✓ Copied to Clipboard!';
+                    setTimeout(function() { btn.innerText = '📋 Copy Embed Code'; }, 2000);
+                }
+                if (window.SporlyAnalytics) {
+                    window.SporlyAnalytics.track('tool_embed_copied', { tool: 'yield-estimator' });
+                }
+            });
+        }
+    }
+
     document.addEventListener("DOMContentLoaded", function() {
         ["species-gourmet", "numKits", "blockWeight"].forEach(id => {
             const el = document.getElementById(id);
@@ -477,7 +513,8 @@
         calculateResearchYield();
     });
     </script>
-    <script src="../assets/affiliate-manager.js"></script>
+    <script defer src="../assets/affiliate-manager.js"></script>
     <script src="../assets/page-transitions.js"></script>
+    <script defer src="../assets/site-analytics.js"></script>
 </body>
 </html>

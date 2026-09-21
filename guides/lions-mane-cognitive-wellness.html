@@ -18,6 +18,7 @@
     <meta name="twitter:image" content="https://sporlyworks.com/assets/illustrations/lions_mane_kit.jpg">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css?v=930">
     <script type="application/ld+json">
@@ -150,12 +151,13 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
     <!-- ═══ CENTERED HEADER & NAVBAR ═══ -->
     <header class="internal-header">
         <div class="header-logo-centered">
             <a href="../index.html" class="header-brand-link">
-                <img src="../assets/logo-nav.png?v=908" alt="SporlyWorks" class="header-logo-img">
+                <img fetchpriority="high" src="../assets/logo-nav.png?v=908" alt="SporlyWorks" class="header-logo-img">
                 <span class="header-wordmark">SPORLYWORKS</span>
             </a>
         </div>
@@ -171,12 +173,12 @@
     </header>
 
     <!-- ═══ MAIN CONTENT ═══ -->
-    <main class="guide-body" style="margin-top: 155px;">
+    <main id="main-content" class="guide-body" style="margin-top: 155px;">
         <article class="guide-card">
             <header class="guide-header">
                 <div class="guide-meta">Category: Supplements · Technical Guide</div>
                 <h1 class="guide-title">The Scientific Case for Lion's Mane in Cognitive Wellness</h1>
-                <img src="../assets/illustrations/lions_mane_kit.jpg?v=912" alt="Lion's Mane Mushroom Guide: Cognitive Health & NGF Stimulation" class="guide-hero-img" style="width:100%; height:320px; object-fit:cover; border-radius:var(--radius-lg); margin-top:24px; border:1px solid var(--border-color);">
+                <img fetchpriority="high" src="../assets/illustrations/lions_mane_kit.jpg?v=912" alt="Lion's Mane Mushroom Guide: Cognitive Health & NGF Stimulation" class="guide-hero-img" style="width:100%; height:320px; object-fit:cover; border-radius:var(--radius-lg); margin-top:24px; border:1px solid var(--border-color);">
             </header>
             
             <p class="guide-intro">Hericium erinaceus, commonly known as Lion's Mane, is a culinary and medicinal mushroom with unique neurological properties. Emerging research points to its ability to stimulate Nerve Growth Factor (NGF) and actively support memory and focus.</p>
@@ -202,8 +204,8 @@
 
             <div class="partner-cta-box">
                 <h3>Ready to Take the Next Step?</h3>
-                <p>Get the highest-purity, USDA Organic Lion's Mane extract powder directly from our trusted scientific partner, FreshCap.</p>
-                <a href="https://freshcap.com" id="cta-freshcap" data-affiliate-partner="freshcap" class="partner-cta-btn" target="_blank" rel="noopener">Shop Lion's Mane Extract at FreshCap →</a>
+                <p>Hot-water extracted from 100% organic fruiting bodies with lab-verified &gt;25% beta-glucans and zero grain starches.</p>
+                <a href="https://shop.realmushrooms.com" id="cta-realmushrooms" data-affiliate-partner="realmushrooms" class="partner-cta-btn" target="_blank" rel="noopener">Shop Organic Lion's Mane at Real Mushrooms →</a>
             </div>
         </article>
     </main>
@@ -213,7 +215,7 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <h3 class="footer-logo">SPORLYWORKS</h3>
-                <p class="footer-tagline">Botanical precision meets functional wellness. Bringing clinical-grade adaptogens and certified organic genetics to home laboratories.</p>
+                <p class="footer-tagline">Precision mycology for home laboratories and human performance. Clean isolated genetics, sterile substrate systems, and verified fruiting body extracts.</p>
             </div>
             
             <div class="footer-links-grid">
@@ -249,7 +251,9 @@
         </div>
     </footer>
 
-    <script src="../assets/affiliate-manager.js"></script>
+    <script defer src="../assets/affiliate-manager.js"></script>
     <script src="../assets/page-transitions.js"></script>
+    <script defer src="../assets/site-analytics.js"></script>
+    <script defer src="../assets/conversion-bar.js"></script>
 </body>
 </html>

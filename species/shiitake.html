@@ -13,6 +13,7 @@
     <meta property="og:image" content="https://sporlyworks.com/assets/illustrations/grow_kits.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css?v=1200">
     <script type="application/ld+json">
@@ -41,15 +42,15 @@
     {
       "@type": "Product",
       "@id": "https://sporlyworks.com/species/shiitake.html#product",
-      "name": "Nootropics Depot Lab-Tested Fungal Extracts",
+      "name": "Real Mushrooms Organic Shiitake 415 Extract",
       "description": "Traditional Lignocellulose Decayer Rich in Lentinan & AHCC Precursors",
       "brand": {
         "@type": "Brand",
-        "name": "Nootropicsdepot"
+        "name": "Real Mushrooms"
       },
       "offers": {
         "@type": "Offer",
-        "url": "https://nootropicsdepot.com",
+        "url": "https://shop.realmushrooms.com",
         "priceCurrency": "USD",
         "availability": "https://schema.org/InStock"
       }
@@ -103,10 +104,11 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <header class="internal-header">
         <div class="header-logo-centered">
             <a href="../index.html" class="header-brand-link">
-                <img src="../assets/logo-nav.png?v=960" alt="SporlyWorks" class="header-logo-img">
+                <img fetchpriority="high" src="../assets/logo-nav.png?v=960" alt="SporlyWorks" class="header-logo-img">
                 <span class="header-wordmark">SPORLYWORKS</span>
             </a>
         </div>
@@ -120,14 +122,14 @@
             </div>
         </nav>
     </header>
-    <main class="species-page-container">
+    <main id="main-content" class="species-page-container">
         <div class="species-hero-card">
-            <img src="../assets/illustrations/grow_kits.jpg" alt="Shiitake" class="species-hero-img">
+            <img fetchpriority="high" src="../assets/illustrations/grow_kits.jpg" alt="Shiitake" class="species-hero-img">
             <div>
                 <h1 class="species-title">Shiitake</h1>
                 <div class="species-sci">Lentinula edodes</div>
                 <p class="species-tagline">Traditional Lignocellulose Decayer Rich in Lentinan & AHCC Precursors</p>
-                <a href="https://nootropicsdepot.com" data-partner="nootropicsdepot" class="btn-cta" target="_blank" rel="noopener sponsored">Shop Lab-Tested Extracts →</a>
+                <a href="https://shop.realmushrooms.com" data-partner="realmushrooms" class="btn-cta" target="_blank" rel="noopener sponsored">Shop Organic Shiitake at Real Mushrooms →</a>
             </div>
         </div>
         <h2 class="section-header">1. Taxonomic & Scientific Classification</h2>
@@ -146,7 +148,7 @@
         <div class="data-table-wrap">
             <table class="data-table">
                 <thead>
-                    <tr><th>Active Compound</th><th>Botanical Source</th><th>Physiological Mechanism</th></tr>
+                    <tr><th>Active Compound</th><th>Fungal Source</th><th>Physiological Mechanism</th></tr>
                 </thead>
                 <tbody><tr><th>Lentinan</th><td>Fruiting Body</td><td>High-molecular weight 1,3 beta-glucan used clinically in Japan as an approved biological response modifier.</td></tr><tr><th>Eritadenine</th><td>Cap & Stipe</td><td>Accelerates blood cholesterol clearance and supports vascular elasticity.</td></tr></tbody>
             </table>
@@ -154,7 +156,7 @@
         <div class="cta-banner">
             <h3 style="font-family:'DM Serif Display',serif; color:var(--green-dark); font-size:24px; margin-bottom:8px;">Certified Laboratory Genetics & Verified Formulations</h3>
             <p style="color:var(--text-secondary); max-width:600px; margin:0 auto 16px; font-size:15px;">Access sterile liquid culture syringes and analytical fruiting body extracts tested via HPLC/HPTLC.</p>
-            <a href="https://nootropicsdepot.com" data-partner="nootropicsdepot" class="btn-cta" target="_blank" rel="noopener sponsored">Shop Lab-Tested Extracts →</a>
+            <a href="https://shop.realmushrooms.com" data-partner="realmushrooms" class="btn-cta" target="_blank" rel="noopener sponsored">Shop Organic Shiitake at Real Mushrooms →</a>
         </div>
         <h2 class="section-header">4. Scientific Questions & Empirical Protocols</h2>
         <div class="faq-item"><div class="faq-q">Why does Shiitake mycelium turn dark brown before fruiting?</div><p class="faq-a">Shiitake undergoes a distinct 'popcorning' and 'browning' phase where outer mycelial cells melanize. This protective pseudo-bark layer seals moisture in the block and signals physiological readiness for fruiting.</p></div><div class="faq-item"><div class="faq-q">What is the biological role of Lentinan?</div><p class="faq-a">Lentinan is a purified 1,3 beta-D-glucan polysaccharide that stimulates helper T-cells and macrophage cytotoxicity, extensively validated in peer-reviewed clinical literature.</p></div>
@@ -166,7 +168,7 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <h3 class="footer-logo">SPORLYWORKS</h3>
-                <p class="footer-tagline">Botanical precision meets functional wellness. Bringing clinical-grade adaptogens and certified organic genetics to home laboratories.</p>
+                <p class="footer-tagline">Precision mycology for home laboratories and human performance. Clean isolated genetics, sterile substrate systems, and verified fruiting body extracts.</p>
             </div>
             <div class="footer-links-grid">
                 <div class="footer-column">
@@ -199,7 +201,8 @@
             </div>
         </div>
     </footer>
-    <script src="../assets/affiliate-manager.js"></script>
+    <script defer src="../assets/affiliate-manager.js"></script>
     <script src="../assets/page-transitions.js"></script>
+    <script defer src="../assets/site-analytics.js"></script>
 </body>
 </html>

@@ -61,8 +61,10 @@
         #loadingMsg { text-align: center; color: var(--warm-gray); margin-top: 100px; }
         #dashboardContent { display: none; }
     </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <nav id="mainNav">
         <div class="nav-inner">
             <a href="index.html" style="font-weight:700; color:var(--forest-deep); text-decoration:none; margin-right:auto;">SporlyWorks</a>
@@ -173,5 +175,6 @@
         // On load
         fetchUser();
     </script>
+    <script defer src="../assets/site-analytics.js"></script>
 </body>
 </html>

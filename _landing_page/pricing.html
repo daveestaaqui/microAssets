@@ -75,14 +75,16 @@
         .faq-q { font-weight: 600; font-size: 19px; color: var(--charcoal); margin-bottom: 12px; letter-spacing: -0.5px; }
         .faq-a { color: var(--charcoal-soft); font-size: 15px; line-height: 1.7; }
     </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body style="background: transparent;">
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
     <!-- NAVIGATION -->
     <nav id="mainNav" class="scrolled">
         <div class="nav-inner">
             <a href="index.html" class="nav-logo" style="text-decoration: none; display: flex; align-items: center; gap: 12px; padding: 4px 0;">
-                <img src="logo-64.png?v=960" alt="SporlyWorks" style="height: 52px; width: auto; object-fit: contain;">
+                <img fetchpriority="high" src="logo-64.png?v=960" alt="SporlyWorks" style="height: 52px; width: auto; object-fit: contain;">
                 <div style="display: flex; flex-direction: column; justify-content: center; transform: translateY(2px);">
                     <span style="font-family: 'DM Serif Display', serif; font-size: 28px; font-weight: 400; color: var(--forest-deep); line-height: 1;">SporlyWorks</span>
                     <span style="font-family: 'DM Serif Display', serif; font-size: 14px; font-weight: 400; color: var(--forest-light); letter-spacing: 0.2px; margin-top: 1px;"></span>
@@ -157,7 +159,7 @@
     <footer>
         <div class="container" style="text-align: center; padding: 80px 0 40px;">
             <a href="index.html" class="footer-logo">
-                <img src="logo-nav.png?v=960" alt="SporlyWorks" width="40" height="42" style="mix-blend-mode: multiply;">
+                <img fetchpriority="high" src="logo-nav.png?v=960" alt="SporlyWorks" width="40" height="42" style="mix-blend-mode: multiply;">
             </a>
             <p style="color: var(--charcoal-soft); font-size: 14px; margin-top: 24px;">© 2026 SporlyWorks. Micro-Tools, Mega Impact.</p>
         </div>
@@ -215,5 +217,6 @@
             navLoginBtn.style.color = "var(--charcoal)";
         }
     </script>
+    <script defer src="../assets/site-analytics.js"></script>
 </body>
 </html>

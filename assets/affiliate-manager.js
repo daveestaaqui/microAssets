@@ -11,38 +11,52 @@
         partners: {
             myyco: {
                 base_url: "https://myyco.com/shop-microscopy-liquid-culture/",
-                fallback_url: "https://myyco.com/shop-microscopy-liquid-culture/",
+                fallback_url: "https://myyco.com/shop-microscopy-liquid-culture/?ref=SporlyWorks",
                 affiliate_id: "SporlyWorks",
                 ref_param: "ref",
                 affiliate_url_template: "https://myyco.com/shop-microscopy-liquid-culture/?ref={affiliate_id}"
             },
             magicbag: {
                 base_url: "https://www.magicbag.co",
-                fallback_url: "https://www.magicbag.co",
+                fallback_url: "https://www.magicbag.co/?ref=Sporlyworks",
                 affiliate_id: "Sporlyworks",
                 ref_param: "ref",
                 affiliate_url_template: "https://www.magicbag.co/?ref={affiliate_id}"
             },
-            nootropicsdepot: {
-                base_url: "https://nootropicsdepot.com",
-                fallback_url: "https://nootropicsdepot.com",
+            northspore: {
+                base_url: "https://northspore.com",
+                fallback_url: "https://northspore.com",
+                affiliate_id: "3016315",
+                ref_param: "awinaffid",
+                affiliate_url_template: "https://www.awin1.com/cread.php?awinmid=34891&awinaffid={affiliate_id}&ued=https%3A%2F%2Fnorthspore.com%2F"
+            },
+            realmushrooms: {
+                base_url: "https://shop.realmushrooms.com",
+                fallback_url: "https://shop.realmushrooms.com",
                 affiliate_id: "",
                 ref_param: "ref",
-                affiliate_url_template: "https://nootropicsdepot.com/?ref={affiliate_id}"
+                affiliate_url_template: "https://shop.realmushrooms.com"
             },
             seed: {
-                base_url: "https://seed.com",
-                fallback_url: "https://seed.com",
+                base_url: "https://seed.com/daily-synbiotic",
+                fallback_url: "https://seed.com/daily-synbiotic",
                 affiliate_id: "",
                 ref_param: "ref",
-                affiliate_url_template: "https://seed.com/?ref={affiliate_id}"
+                affiliate_url_template: "https://seed.com/daily-synbiotic"
             },
             freshcap: {
                 base_url: "https://freshcap.com",
                 fallback_url: "https://freshcap.com",
                 affiliate_id: "",
                 ref_param: "ref",
-                affiliate_url_template: "https://freshcap.com/?ref={affiliate_id}"
+                affiliate_url_template: "https://freshcap.com"
+            },
+            nootropicsdepot: {
+                base_url: "https://nootropicsdepot.com",
+                fallback_url: "https://nootropicsdepot.com",
+                affiliate_id: "",
+                ref_param: "ref",
+                affiliate_url_template: "https://nootropicsdepot.com"
             }
         }
     };
@@ -68,6 +82,7 @@
             // Check aliases
             if (key === "magicbagco") partner = partners.magicbag;
             else if (key === "nootropics") partner = partners.nootropicsdepot;
+            else if (key === "realmushrooms" || key === "real") partner = partners.realmushrooms;
             else partner = FALLBACK_CONFIG.partners[key];
         }
 
@@ -89,9 +104,9 @@
     }
 
     function updatePageLinks() {
-        // 1. Explicit data-partner buttons
-        document.querySelectorAll("[data-partner]").forEach(el => {
-            const partnerKey = el.getAttribute("data-partner");
+        // 1. Explicit data-partner / data-affiliate-partner buttons
+        document.querySelectorAll("[data-partner], [data-affiliate-partner]").forEach(el => {
+            const partnerKey = el.getAttribute("data-partner") || el.getAttribute("data-affiliate-partner");
             const destination = getPartnerUrl(partnerKey);
             if (destination && destination !== "#") {
                 el.setAttribute("href", destination);
@@ -106,9 +121,11 @@
         const domainMap = {
             "myyco.com": "myyco",
             "magicbag.co": "magicbag",
-            "nootropicsdepot.com": "nootropicsdepot",
+            "realmushrooms.com": "realmushrooms",
+            "shop.realmushrooms.com": "realmushrooms",
             "seed.com": "seed",
-            "freshcap.com": "freshcap"
+            "freshcap.com": "freshcap",
+            "nootropicsdepot.com": "nootropicsdepot"
         };
 
         document.querySelectorAll("a[href]").forEach(a => {

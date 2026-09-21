@@ -70,14 +70,16 @@
         .browser-item .b-label { font-weight: 700; letter-spacing: -0.3px; }
         .browser-item .b-url { font-size: 12px; color: var(--slate-light); font-family: 'Inter', sans-serif; opacity: 0.8; }
     </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body style="background: transparent;">
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
     <!-- ═══ NAVIGATION ═══ -->
     <nav id="mainNav" class="scrolled">
         <div class="nav-inner">
             <a href="index.html" class="nav-logo" style="text-decoration: none; display: flex; align-items: center; gap: 12px; padding: 4px 0;">
-                <img src="logo-64.png?v=960" alt="SporlyWorks" style="height: 52px; width: auto; object-fit: contain;">
+                <img fetchpriority="high" src="logo-64.png?v=960" alt="SporlyWorks" style="height: 52px; width: auto; object-fit: contain;">
                 <div style="display: flex; flex-direction: column; justify-content: center; transform: translateY(2px);">
                     <span style="font-family: 'DM Serif Display', serif; font-size: 28px; font-weight: 400; color: var(--forest-deep); line-height: 1;">SporlyWorks</span>
                     <span style="font-family: 'DM Serif Display', serif; font-size: 14px; font-weight: 400; color: var(--forest-light); letter-spacing: 0.2px; margin-top: 1px;"></span>
@@ -96,7 +98,7 @@
     </nav>
 
     <!-- ═══ HERO ═══ -->
-    <section class="hero" id="hero" style="padding-top: 180px; padding-bottom: 60px;">
+    <section class="hero" id="main-content" style="padding-top: 180px; padding-bottom: 60px;">
         <div class="hero-bg-pattern"></div>
         <div class="container" style="position:relative; z-index:1; max-width:860px; text-align:center;">
             <span class="section-tag center" style="margin-bottom: 24px;">Works on Every OS</span>
@@ -270,5 +272,6 @@
         });
     </script>
 
+    <script defer src="../assets/site-analytics.js"></script>
 </body>
 </html>

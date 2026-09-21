@@ -14,8 +14,11 @@
         .modal-hidden { display: none; opacity: 0; pointer-events: none; }
         .modal-active { display: flex; opacity: 1; pointer-events: auto; }
     </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body class="antialiased selection:bg-indigo-500 selection:text-white relative">
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
     <!-- Enterprise Authentication Modal -->
     <div id="auth-modal" class="modal-hidden fixed inset-0 z-[99999] bg-slate-900/90 backdrop-blur-sm transition-opacity duration-300 items-center justify-center p-6">
@@ -44,7 +47,7 @@
     </nav>
 
     <!-- Hero -->
-    <main class="max-w-6xl mx-auto px-6 py-24 flex flex-col md:flex-row items-center gap-12">
+    <main id="main-content" class="max-w-6xl mx-auto px-6 py-24 flex flex-col md:flex-row items-center gap-12">
         <div class="flex-1 space-y-8">
             <div class="inline-block glass px-4 py-1.5 rounded-full text-xs font-bold text-indigo-300 uppercase tracking-widest border border-indigo-500/30">
                 Offline-First B2B Application
@@ -102,5 +105,6 @@
             <a href="#" class="hover:text-white">Contact</a>
         </div>
     </footer>
+    <script defer src="../assets/site-analytics.js"></script>
 </body>
 </html>

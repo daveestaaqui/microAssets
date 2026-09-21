@@ -259,7 +259,7 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
         <div class="footer-container">
             <div class="footer-brand">
                 <h3 class="footer-logo">SPORLYWORKS</h3>
-                <p class="footer-tagline">Botanical precision meets functional wellness. Bringing clinical-grade adaptogens and certified organic genetics to home laboratories.</p>
+                <p class="footer-tagline">Precision mycology for home laboratories and human performance. Clean isolated genetics, sterile substrate systems, and verified fruiting body extracts.</p>
             </div>
             
             <div class="footer-links-grid">
@@ -304,45 +304,45 @@ PRODUCT_TEMPLATE = """<!DOCTYPE html>
 products = [
     {
         "slug": "lions-mane-extract",
-        "title": "Nootropics Depot HPLC-Tested Lion's Mane 8:1 & 1:1 Extract",
+        "title": "Real Mushrooms Organic Lion's Mane Extract (>25% Beta-Glucans)",
         "category": "Nootropic Mushroom Extracts",
-        "product_name": "Lab-Verified Lion's Mane Extract (Hericium erinaceus)",
+        "product_name": "Organic Lion's Mane Extract Powder & Capsules",
         "tagline": "Cognitive Clarity, Memory Support & Nerve Growth Factor (NGF) Stimulation",
         "image_url": "../assets/illustrations/lions_mane_extract.jpg",
-        "partner_key": "nootropicsdepot",
-        "partner_url": "https://nootropicsdepot.com",
-        "cta_label": "Shop Lab-Tested Lion's Mane →",
+        "partner_key": "realmushrooms",
+        "partner_url": "https://shop.realmushrooms.com",
+        "cta_label": "Shop Lion's Mane at Real Mushrooms →",
         "features_html": """
-            <li>100% Organic Lion's Mane Fruiting Bodies (Hericium erinaceus)</li>
-            <li>Dual-extracted (water + ethanol) for full-spectrum erinacines and hericenones</li>
-            <li>Guaranteed >25% Beta-glucans content verified by HPLC/AOAC assay</li>
+            <li>100% Certified Organic Lion's Mane Fruiting Bodies (Hericium erinaceus)</li>
+            <li>Hot-water extracted with guaranteed >25% Beta-glucans verified by third-party labs</li>
+            <li>Active hericenones cross the blood-brain barrier to stimulate NGF synthesis</li>
             <li>Zero added grain, starch, or mycelial biomass fillers</li>
         """,
         "science_html": """
-            <p>Lion's Mane is unique in its ability to support brain health. It contains key active compounds (hericenones in fruiting bodies and erinacines in mycelium) that stimulate the synthesis of Nerve Growth Factor (NGF). NGF is a protein crucial for the development, plasticity, and survival of neurons.</p>
-            <p>Clinical research supports its use for cognitive function, showing statistically significant improvements in memory and cognitive performance in double-blind, placebo-controlled trials after 8 to 16 weeks of consistent daily usage.</p>
+            <p>Lion's Mane (Hericium erinaceus) contains low-molecular-weight hericenones that pass through the blood-brain barrier to stimulate the synthesis of Nerve Growth Factor (NGF). NGF is essential for hippocampal neurogenesis and synaptic plasticity.</p>
+            <p>Unlike grain-grown mycelium products that test at 50%+ starch, Real Mushrooms uses 100% organic fruiting bodies to deliver verified active beta-glucans without filler.</p>
         """,
         "science_citation": "Clinical Study Reference: Mori, K., et al. (2009). Phytotherapy Research, 23(3), 367-372. 'Improving effects of the mushroom Yamabushitake (Hericium erinaceus) on mild cognitive impairment.'",
         "usage_html": """
             <p>Take 500 mg - 1,000 mg daily. Easily dissolves into warm water, morning coffee, herbal teas, or protein shakes. For maximum bioavailability, consume alongside a healthy fat source or warm liquid.</p>
         """,
         "disclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
-        "keywords": "lions mane powder, lab tested mushroom extract, NGF brain supplement, cognitive health, nootropics depot lions mane"
+        "keywords": "lions mane powder, real mushrooms lions mane, lab tested mushroom extract, NGF brain supplement, cognitive health"
     },
     {
         "slug": "cordyceps-extract",
-        "title": "Nootropics Depot Cordyceps Militaris 10:1 (Verified Cordycepin)",
+        "title": "Real Mushrooms Organic Cordyceps-M Extract (Verified Cordycepin)",
         "category": "Cellular Energy & Adaptogens",
-        "product_name": "HPLC-Verified Cordyceps Militaris Extract",
+        "product_name": "Organic Cordyceps-M Extract",
         "tagline": "Cellular Energy, ATP Production & Cardiovascular Endurance",
         "image_url": "../assets/illustrations/cordyceps_extract.jpg",
-        "partner_key": "nootropicsdepot",
-        "partner_url": "https://nootropicsdepot.com",
-        "cta_label": "Shop Verified Cordyceps Militaris →",
+        "partner_key": "realmushrooms",
+        "partner_url": "https://shop.realmushrooms.com",
+        "cta_label": "Shop Cordyceps at Real Mushrooms →",
         "features_html": """
-            <li>100% Fruiting Bodies with verified high-potency Cordycepin (>0.3% HPLC)</li>
-            <li>Hot-water extracted with quantified Beta-Glucans (>25%)</li>
-            <li>Directly enhances adenosine triphosphate (ATP) cellular synthesis</li>
+            <li>100% Organic Cordyceps militaris fruiting bodies (pure stroma)</li>
+            <li>Hot-water extracted with quantified Beta-Glucans (>25%) and active Cordycepin</li>
+            <li>Accelerates adenosine triphosphate (ATP) cellular synthesis</li>
             <li>Third-party ISO-17025 lab verified for purity and active compounds</li>
         """,
         "science_html": """
@@ -354,21 +354,21 @@ products = [
             <p>Take 500 mg - 1,000 mg daily in the morning or 30-45 minutes before athletic training. Blends smoothly into morning coffee, smoothies, or water.</p>
         """,
         "disclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
-        "keywords": "cordyceps powder, energy supplement, ATP oxygen endurance, cordycepin hplc, nootropics depot cordyceps"
+        "keywords": "cordyceps powder, real mushrooms cordyceps, energy supplement, ATP oxygen endurance, cordycepin hplc"
     },
     {
         "slug": "reishi-extract",
-        "title": "Nootropics Depot Red Reishi (Ganoderma lucidum) Dual Extract",
+        "title": "Real Mushrooms Organic Reishi 415 Extract (Ganoderma lucidum)",
         "category": "Stress Resilience & Sleep Architecture",
-        "product_name": "HPLC-Standardized Red Reishi Mushroom Extract",
+        "product_name": "Organic Reishi 415 Extract",
         "tagline": "Stress Resilience, Calming Support & Immune Modulation",
         "image_url": "../assets/illustrations/reishi_extract.jpg",
-        "partner_key": "nootropicsdepot",
-        "partner_url": "https://nootropicsdepot.com",
-        "cta_label": "Shop Verified Red Reishi →",
+        "partner_key": "realmushrooms",
+        "partner_url": "https://shop.realmushrooms.com",
+        "cta_label": "Shop Reishi at Real Mushrooms →",
         "features_html": """
-            <li>100% Red Reishi (Ganoderma lucidum) fruiting body dual-extract</li>
-            <li>Standardized for both active Ganoderic Acids (Triterpenes >4%) and Beta-Glucans</li>
+            <li>100% Red Reishi (Ganoderma lucidum) organic fruiting body extract</li>
+            <li>Standardized for active Ganoderic Acids (Triterpenes >4%) and Beta-Glucans (>15%)</li>
             <li>Interacts with GABA pathways to promote deep restorative sleep architecture</li>
             <li>USDA Organic, gluten-free, vegan, and zero fillers</li>
         """,
@@ -381,7 +381,7 @@ products = [
             <p>Take 500 mg - 1,000 mg daily in the evening, 1 hour before sleep. Mix into warm herbal tea, hot cocoa, or take in capsule form.</p>
         """,
         "disclaimer": "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.",
-        "keywords": "reishi powder, stress adaptogen, calm sleep supplement, ganoderic acids, organic reishi extract"
+        "keywords": "reishi powder, real mushrooms reishi, stress adaptogen, calm sleep supplement, ganoderic acids"
     },
     {
         "slug": "seed-ds01",
@@ -391,7 +391,7 @@ products = [
         "tagline": "24 Clinically Studied Strains (53.6B AFU) with Dual-Capsule 100% Gastric Survival",
         "image_url": "../assets/illustrations/synbiotics.jpg",
         "partner_key": "seed",
-        "partner_url": "https://seed.com",
+        "partner_url": "https://seed.com/daily-synbiotic",
         "cta_label": "Explore Seed DS-01® Daily Synbiotic →",
         "features_html": """
             <li>24 Broad-Spectrum Clinically Studied Strains (53.6 Billion AFU)</li>
@@ -650,11 +650,12 @@ products = [
 from affiliate_config import build_affiliate_url
 
 PARTNER_NAMES = {
-    "nootropicsdepot": "Nootropics Depot",
+    "realmushrooms": "Real Mushrooms",
     "seed": "Seed Health",
     "myyco": "MYYCO",
     "magicbag": "Magic Bag",
-    "freshcap": "FreshCap"
+    "freshcap": "FreshCap",
+    "nootropicsdepot": "Real Mushrooms"
 }
 
 for prod in products:

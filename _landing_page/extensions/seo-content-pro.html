@@ -39,12 +39,14 @@
         .btn-pro { background: linear-gradient(135deg, #1a6b3c, #0F2C1D); color: white; padding: 10px 20px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 14px; transition: 0.3s; border: none; }
         .btn-pro:hover { transform: scale(1.05); }
     </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <nav id="mainNav" class="scrolled">
         <div class="nav-inner">
             <a href="../index.html" class="nav-logo" style="text-decoration: none; display: flex; align-items: center; gap: 12px; padding: 4px 0;">
-                <img src="../logo-64.png?v=960" alt="SporlyWorks" style="height: 52px; width: auto; object-fit: contain;">
+                <img fetchpriority="high" src="../logo-64.png?v=960" alt="SporlyWorks" style="height: 52px; width: auto; object-fit: contain;">
                 <div style="display: flex; flex-direction: column; justify-content: center; transform: translateY(2px);">
                     <span style="font-family: 'DM Serif Display', serif; font-size: 28px; font-weight: 400; color: var(--forest-deep); line-height: 1;">SporlyWorks</span>
                     <span style="font-family: 'DM Serif Display', serif; font-size: 14px; font-weight: 400; color: var(--forest-light); letter-spacing: 0.2px; margin-top: 1px;"></span>
@@ -57,7 +59,7 @@
         </div>
     </nav>
 
-    <main class="ext-page">
+    <main id="main-content" class="ext-page">
         <a href="../#tools" class="back-link">← All Extensions</a>
         <div class="ext-badge">OmniSuite Ecosystem</div>
         <h1>SEO Content Analyzer Pro</h1>
@@ -96,5 +98,6 @@
             <strong>Version:</strong> 1.0
         </div>
     </main>
+    <script defer src="../../assets/site-analytics.js"></script>
 </body>
 </html>

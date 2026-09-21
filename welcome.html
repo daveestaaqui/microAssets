@@ -13,6 +13,7 @@
     <meta property="og:image" content="https://sporlyworks.com/assets/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css?v=1200">
     <script type="application/ld+json">
@@ -107,11 +108,12 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
     <header class="internal-header">
         <div class="header-logo-centered">
             <a href="index.html" class="header-brand-link">
-                <img src="assets/logo-nav.png?v=960" alt="SporlyWorks" class="header-logo-img">
+                <img fetchpriority="high" src="assets/logo-nav.png?v=960" alt="SporlyWorks" class="header-logo-img">
                 <span class="header-wordmark">SPORLYWORKS</span>
             </a>
         </div>
@@ -126,7 +128,7 @@
         </nav>
     </header>
 
-    <main class="welcome-container">
+    <main id="main-content" class="welcome-container">
         <div class="welcome-card">
             <span class="welcome-badge">✓ Laboratory Access Confirmed</span>
             <h1 class="welcome-title">Welcome to the SporlyWorks Protocol</h1>
@@ -166,7 +168,7 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <h3 class="footer-logo">SPORLYWORKS</h3>
-                <p class="footer-tagline">Botanical precision meets functional wellness. Bringing clinical-grade adaptogens and certified organic genetics to home laboratories.</p>
+                <p class="footer-tagline">Precision mycology for home laboratories and human performance. Clean isolated genetics, sterile substrate systems, and verified fruiting body extracts.</p>
             </div>
             <div class="footer-links-grid">
                 <div class="footer-column">
@@ -199,7 +201,8 @@
             </div>
         </div>
     </footer>
-    <script src="assets/affiliate-manager.js"></script>
+    <script defer src="assets/affiliate-manager.js"></script>
     <script src="assets/page-transitions.js"></script>
+    <script defer src="assets/site-analytics.js"></script>
 </body>
 </html>

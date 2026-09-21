@@ -11,8 +11,11 @@
         .glass { background: rgba(20, 26, 40, 0.4); backdrop-filter: blur(12px); }
         .gradient-text { background: linear-gradient(135deg, #a78bfa, #38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body class="antialiased selection:bg-purple-500 selection:text-white">
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
     <header class="text-center py-24 px-6 relative overflow-hidden">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-600/10 blur-[100px] rounded-full -z-10"></div>
@@ -24,7 +27,7 @@
         </p>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 pb-32">
+    <main id="main-content" class="max-w-7xl mx-auto px-6 pb-32">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             
         <div class="glass p-6 rounded-2xl hover:scale-[1.02] transition duration-300 border border-slate-800 hover:border-purple-500 group relative">
@@ -1062,5 +1065,6 @@
         </div>
     </main>
 
+    <script defer src="../assets/site-analytics.js"></script>
 </body>
 </html>
