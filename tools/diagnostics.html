@@ -713,12 +713,6 @@
                         <a href="${data.rec.url}" ${partnerAttr} class="btn-rec">${data.rec.btn}</a>
                     </div>
                 `;
-                contentHTML += `
-                    <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
-                        <button type="button" class="btn-diag btn-diag-back" onclick="goToStep2()">← Back to Symptoms</button>
-                        <button type="button" class="btn-diag btn-diag-back" onclick="resetWizard()">↺ Start Over</button>
-                    </div>
-                `;
                 document.getElementById('resultContent').innerHTML = contentHTML;
 
                 currentStep = 3;

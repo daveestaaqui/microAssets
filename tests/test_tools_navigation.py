@@ -41,10 +41,16 @@ class TestToolNavigation(unittest.TestCase):
         self.assertIn("diagResult.style.display = 'none';", self.diag_html)
         self.assertIn("renderStep2Options();", self.diag_html)
 
-    def test_diagnostics_result_inpage_back_button(self):
-        """Verify in-page back button exists inside diagnosis results for instant access."""
-        self.assertIn('onclick="goToStep2()"', self.diag_html,
-                      "Diagnostics results content must include direct 'goToStep2()' back button")
+    def test_diagnostics_no_duplicate_buttons(self):
+        """Verify there are no duplicate back or start over buttons on Step 3."""
+        # Ensure resultContent does not inject duplicate action buttons
+        self.assertNotIn('onclick="goToStep2()"', self.diag_html,
+                         "resultContent should not contain duplicate inline back buttons")
+        self.assertNotIn('onclick="resetWizard()"', self.diag_html,
+                         "resultContent should not contain duplicate inline start over buttons")
+        # Ensure only the single canonical btnBack and btnNext exist in diagActions
+        self.assertEqual(len(re.findall(r'id="btnBack"', self.diag_html)), 1)
+        self.assertEqual(len(re.findall(r'id="btnNext"', self.diag_html)), 1)
 
     def test_finder_step1_no_back_button(self):
         """Verify Step 1 of mycology-finder has no back button."""
