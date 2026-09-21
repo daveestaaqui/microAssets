@@ -7,6 +7,7 @@
     <meta name="description" content="Is it mold or healthy mycelium? Troubleshoot your mushroom grow kits, spawn bags, and substrates with our interactive diagnostic assistant.">
     <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
         <link rel="canonical" href="https://sporlyworks.com/tools/diagnostics.html">
     <meta property="og:title" content="Mushroom Cultivation Diagnostic Tool — SporlyWorks">
@@ -305,12 +306,13 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
     <!-- ═══ CENTERED HEADER & NAVBAR ═══ -->
     <header class="internal-header">
         <div class="header-logo-centered">
             <a href="../index.html" class="header-brand-link">
-                <img src="../assets/logo-nav.png?v=960" alt="SporlyWorks" class="header-logo-img">
+                <img fetchpriority="high" src="../assets/logo-nav.png?v=960" alt="SporlyWorks" class="header-logo-img">
                 <span class="header-wordmark">SPORLYWORKS</span>
             </a>
         </div>
@@ -326,9 +328,9 @@
     </header>
 
     <!-- ═══ INTERACTIVE DIAGNOSTIC WIZARD ═══ -->
-    <main class="diag-container" style="margin-top: 155px;">
+    <main id="main-content" class="diag-container" style="margin-top: 155px;">
         <div class="diag-card">
-            <img src="../assets/illustrations/grow_bags.jpg?v=960" alt="Mushroom Cultivation Diagnostic Wizard" style="width: 100%; height: 220px; object-fit: cover; border-radius: var(--radius-md); margin-bottom: 28px; border: 1px solid var(--border-color);">
+            <img loading="lazy" src="../assets/illustrations/grow_bags.jpg?v=960" alt="Mushroom Cultivation Diagnostic Wizard" style="width: 100%; height: 220px; object-fit: cover; border-radius: var(--radius-md); margin-bottom: 28px; border: 1px solid var(--border-color);">
             <h1 style="font-family:'DM Serif Display',serif; color:var(--green-dark); font-size:36px; margin-bottom:12px; text-align:center;">Contamination Diagnostics</h1>
             <p style="color:var(--text-secondary); text-align:center; margin-bottom:32px; font-size:16px;">Diagnose environmental contamination issues and visual symptoms in your home cultivation runs.</p>
             
@@ -379,8 +381,8 @@
 
             <!-- Nav Controls -->
             <div class="diag-actions" id="diagActions">
-                <button class="btn-diag btn-diag-back" id="btnBack" disabled>Back</button>
-                <button class="btn-diag btn-diag-next" id="btnNext" disabled>Next</button>
+                <button class="btn-diag btn-diag-back" id="btnBack" style="display: none;">← Back</button>
+                <button class="btn-diag btn-diag-next" id="btnNext" style="margin-left: auto;" disabled>Next Step →</button>
             </div>
 
         </div>
@@ -391,7 +393,7 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <h3 class="footer-logo">SPORLYWORKS</h3>
-                <p class="footer-tagline">Botanical precision meets functional wellness. Bringing clinical-grade adaptogens and certified organic genetics to home laboratories.</p>
+                <p class="footer-tagline">Precision mycology for home laboratories and human performance. Clean isolated genetics, sterile substrate systems, and verified fruiting body extracts.</p>
             </div>
             
             <div class="footer-links-grid">
@@ -441,10 +443,11 @@
                         "Dispose of the sealed bag in an outdoor trash receptacle."
                     ],
                     rec: {
-                        text: "Start fresh with sterile gear",
-                        desc: "Get a replacement Magic Bag with a self-healing injection port to minimize contamination risks.",
-                        url: "../products/magic-bag-grow-bags.html",
-                        btn: "Get Magic Bag →"
+                        text: "Restart with Guaranteed Sterile Gear",
+                        desc: "Substrate cannot be saved once Trichoderma sporulates. Get pre-sterilized all-in-one organic grow bags with self-healing injection ports.",
+                        url: "https://www.magicbag.co/?ref=Sporlyworks",
+                        partner: "magicbag",
+                        btn: "Get Magic Bag (10% Off) →"
                     }
                 },
                 {
@@ -458,10 +461,11 @@
                         "Ensure your ambient temperature is kept below 78°F, as high heat accelerates mold."
                     ],
                     rec: {
-                        text: "Ensure clean genetics next run",
-                        desc: "Use lab-tested, sterile MYYCO isolated liquid cultures to reduce wild spore contaminants.",
-                        url: "../products/tidal-wave-spores.html",
-                        btn: "Shop MYYCO Spores →"
+                        text: "Inoculate with Isolated Genetics",
+                        desc: "Wild spores carry contamination risk. Switch to lab-isolated MYYCO liquid culture syringes for fast 7-10 day colonization.",
+                        url: "https://myyco.com/shop-microscopy-liquid-culture/?ref=SporlyWorks",
+                        partner: "myyco",
+                        btn: "Get MYYCO Liquid Cultures →"
                     }
                 },
                 {
@@ -492,10 +496,11 @@
                         "Discard the bag safely."
                     ],
                     rec: {
-                        text: "Start fresh with sterile gear",
-                        desc: "Try a new pre-sterilized all-in-one grow bag with a clean port.",
-                        url: "../products/magic-bag-grow-bags.html",
-                        btn: "Get Magic Bag →"
+                        text: "Bypass Grain Pre-Sterilization",
+                        desc: "Wet rot results from bacterial endospores surviving home pressure cookers. Switch to certified sterile all-in-one bags.",
+                        url: "https://www.magicbag.co/?ref=Sporlyworks",
+                        partner: "magicbag",
+                        btn: "Get Sterile Magic Bags →"
                     }
                 }
             ],
@@ -545,10 +550,11 @@
                         "Ensure the slits remain humid but never let standing water pool around the base of the block."
                     ],
                     rec: {
-                        text: "Shop Pro Kits",
-                        desc: "Grow shaggy, robust Lion's Mane blocks that tolerate indoor ambient air well.",
-                        url: "../products/lions-mane-grow-kit.html",
-                        btn: "Get Lion's Mane Kit →"
+                        text: "Shop Guaranteed Fruiting Kits",
+                        desc: "Grow robust Lion's Mane and Oyster fruiting blocks pre-inoculated and certified organic.",
+                        url: "https://www.awin1.com/cread.php?awinmid=34891&awinaffid=3016315&ued=https%3A%2F%2Fnorthspore.com%2Fcollections%2Fgrow-kits",
+                        partner: "north_spore",
+                        btn: "Get North Spore Grow Kit →"
                     }
                 }
             ]
@@ -567,58 +573,124 @@
         const btnNext = document.getElementById('btnNext');
         const diagActions = document.getElementById('diagActions');
 
-        // Setup Event Listeners on Step 1 Option Cards
-        document.querySelectorAll('.quiz-step[data-step="1"] .diag-option').forEach(option => {
-            option.addEventListener('click', function() {
-                document.querySelectorAll('.quiz-step[data-step="1"] .diag-option').forEach(o => o.classList.remove('selected'));
-                this.classList.add('selected');
-                selectedEnv = this.getAttribute('data-value');
+        function updateNavButtons() {
+            if (currentStep === 1) {
+                btnBack.style.display = 'none';
+                btnNext.style.display = 'inline-flex';
+                btnNext.style.alignItems = 'center';
+                btnNext.style.justifyContent = 'center';
+                btnNext.style.marginLeft = 'auto';
+                btnNext.innerText = 'Next Step →';
+                btnNext.disabled = !selectedEnv;
+            } else if (currentStep === 2) {
+                btnBack.style.display = 'inline-flex';
+                btnBack.style.alignItems = 'center';
+                btnBack.style.justifyContent = 'center';
+                btnBack.innerText = '← Back';
+                btnBack.disabled = false;
+                btnNext.style.display = 'inline-flex';
+                btnNext.style.alignItems = 'center';
+                btnNext.style.justifyContent = 'center';
+                btnNext.style.marginLeft = 'auto';
+                btnNext.innerText = 'View Diagnosis →';
+                btnNext.disabled = selectedSymptomIndex === null;
+            } else if (currentStep === 3) {
+                btnBack.style.display = 'inline-flex';
+                btnBack.style.alignItems = 'center';
+                btnBack.style.justifyContent = 'center';
+                btnBack.innerText = '← Back to Symptoms';
+                btnBack.disabled = false;
+                btnNext.style.display = 'inline-flex';
+                btnNext.style.alignItems = 'center';
+                btnNext.style.justifyContent = 'center';
+                btnNext.style.marginLeft = 'auto';
+                btnNext.innerText = '↺ Start Over';
                 btnNext.disabled = false;
+            }
+        }
+
+        function renderStep2Options() {
+            if (!selectedEnv || !diagnosticsData[selectedEnv]) return;
+            symptomOptions.innerHTML = '';
+            diagnosticsData[selectedEnv].forEach((item, index) => {
+                const opt = document.createElement('div');
+                opt.className = 'diag-option' + (selectedSymptomIndex === index ? ' selected' : '');
+                opt.setAttribute('data-index', index);
+                opt.innerHTML = `
+                    <div class="radio-circle"></div>
+                    <span class="diag-option-text">${item.text}</span>
+                `;
+                opt.addEventListener('click', () => {
+                    document.querySelectorAll('#symptomOptions .diag-option').forEach(o => o.classList.remove('selected'));
+                    opt.classList.add('selected');
+                    selectedSymptomIndex = index;
+                    updateNavButtons();
+                });
+                symptomOptions.appendChild(opt);
+            });
+        }
+
+        function goToStep1() {
+            diagResult.style.display = 'none';
+            document.querySelector('.quiz-step[data-step="2"]').style.display = 'none';
+            document.querySelector('.quiz-step[data-step="1"]').style.display = 'block';
+            quizFlow.style.display = 'block';
+            currentStep = 1;
+            updateProgress();
+            updateNavButtons();
+            const card = document.querySelector('.diag-card');
+            if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function goToStep2() {
+            if (!selectedEnv) return;
+            diagResult.style.display = 'none';
+            document.querySelector('.quiz-step[data-step="1"]').style.display = 'none';
+            document.querySelector('.quiz-step[data-step="2"]').style.display = 'block';
+            quizFlow.style.display = 'block';
+            renderStep2Options();
+            currentStep = 2;
+            updateProgress();
+            updateNavButtons();
+            const card = document.querySelector('.diag-card');
+            if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Render Step 1
+        document.querySelectorAll('.quiz-step[data-step="1"] .diag-option').forEach(option => {
+            option.addEventListener('click', () => {
+                document.querySelectorAll('.quiz-step[data-step="1"] .diag-option').forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                selectedEnv = option.getAttribute('data-value');
+                updateNavButtons();
             });
         });
 
         btnNext.addEventListener('click', () => {
             if (currentStep === 1) {
-                // Populate Step 2 Options
-                symptomOptions.innerHTML = '';
-                diagnosticsData[selectedEnv].forEach((symptom, idx) => {
-                    const div = document.createElement('div');
-                    div.className = 'diag-option';
-                    div.innerHTML = `
-                        <div class="radio-circle"></div>
-                        <span class="diag-option-text">${symptom.text}</span>
-                    `;
-                    div.addEventListener('click', function() {
-                        document.querySelectorAll('.quiz-step[data-step="2"] .diag-option').forEach(o => o.classList.remove('selected'));
-                        this.classList.add('selected');
-                        selectedSymptomIndex = idx;
-                        btnNext.disabled = false;
-                    });
-                    symptomOptions.appendChild(div);
-                });
-
-                // Transition to Step 2
+                if (!selectedEnv) return;
+                renderStep2Options();
                 document.querySelector('.quiz-step[data-step="1"]').style.display = 'none';
                 document.querySelector('.quiz-step[data-step="2"]').style.display = 'block';
                 currentStep = 2;
-                btnBack.disabled = false;
-                btnNext.disabled = selectedSymptomIndex === null;
                 updateProgress();
+                updateNavButtons();
+                const card = document.querySelector('.diag-card');
+                if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
             } else if (currentStep === 2) {
-                // Display Results (Step 3)
+                if (selectedSymptomIndex === null) return;
+                // Show Result
                 quizFlow.style.display = 'none';
+                document.querySelector('.quiz-step[data-step="2"]').style.display = 'none';
                 diagResult.style.display = 'block';
                 
                 const data = diagnosticsData[selectedEnv][selectedSymptomIndex];
                 
-                // Set Severity
+                // Severity Badge
                 const badge = document.getElementById('severityBadge');
-                badge.innerText = data.severity;
-                badge.className = 'severity-badge';
-                if (data.severity === 'normal') badge.classList.add('severity-normal');
-                else if (data.severity === 'concern') badge.classList.add('severity-concern');
-                else badge.classList.add('severity-fatal');
-
+                badge.innerText = data.severity.toUpperCase();
+                badge.className = `severity-badge ${data.severity}`;
+                
                 document.getElementById('resultTitle').innerText = data.title;
                 
                 // Build Content HTML
@@ -631,46 +703,62 @@
                         </ul>
                     </div>
                 `;
+                let partnerAttr = data.rec.partner ? `data-partner="${data.rec.partner}" target="_blank" rel="noopener sponsored"` : '';
                 contentHTML += `
                     <div class="recommendation-panel">
                         <div class="rec-text">
                             <h5>${data.rec.text}</h5>
                             <p>${data.rec.desc}</p>
                         </div>
-                        <a href="${data.rec.url}" class="btn-rec">${data.rec.btn}</a>
+                        <a href="${data.rec.url}" ${partnerAttr} class="btn-rec">${data.rec.btn}</a>
+                    </div>
+                `;
+                contentHTML += `
+                    <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+                        <button type="button" class="btn-diag btn-diag-back" onclick="goToStep2()">← Back to Symptoms</button>
+                        <button type="button" class="btn-diag btn-diag-back" onclick="resetWizard()">↺ Start Over</button>
                     </div>
                 `;
                 document.getElementById('resultContent').innerHTML = contentHTML;
 
                 currentStep = 3;
-                btnNext.innerText = 'Start Over';
                 updateProgress();
+                updateNavButtons();
+                const card = document.querySelector('.diag-card');
+                if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
             } else if (currentStep === 3) {
-                // Restart
                 resetWizard();
             }
         });
 
         btnBack.addEventListener('click', () => {
             if (currentStep === 2) {
-                document.querySelector('.quiz-step[data-step="2"]').style.display = 'none';
-                document.querySelector('.quiz-step[data-step="1"]').style.display = 'block';
-                currentStep = 1;
-                btnBack.disabled = true;
-                btnNext.disabled = false;
-                updateProgress();
+                goToStep1();
+            } else if (currentStep === 3) {
+                goToStep2();
             }
         });
 
+        // Clickable progress dots
+        document.querySelectorAll('.progress-dot').forEach(dot => {
+            dot.style.cursor = 'pointer';
+            dot.addEventListener('click', () => {
+                const step = parseInt(dot.getAttribute('data-step'));
+                if (step === 1 && currentStep > 1) {
+                    goToStep1();
+                } else if (step === 2 && currentStep === 3) {
+                    goToStep2();
+                }
+            });
+        });
+
         function updateProgress() {
-            // Update dots
             document.querySelectorAll('.progress-dot').forEach(dot => {
                 const step = parseInt(dot.getAttribute('data-step'));
                 dot.className = 'progress-dot';
                 if (step === currentStep) dot.classList.add('active');
                 else if (step < currentStep) dot.classList.add('completed');
             });
-            // Update line
             if (currentStep === 1) {
                 progressBarFill.style.width = '0%';
             } else if (currentStep === 2) {
@@ -738,13 +826,18 @@
             document.querySelector('.quiz-step[data-step="2"]').style.display = 'none';
             quizFlow.style.display = 'block';
             diagResult.style.display = 'none';
-            btnBack.disabled = true;
-            btnNext.disabled = true;
-            btnNext.innerText = 'Next';
+            symptomOptions.innerHTML = '';
             updateProgress();
+            updateNavButtons();
+            const card = document.querySelector('.diag-card');
+            if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+
+        // Initialize button states
+        updateNavButtons();
     </script>
 <script src="../assets/page-transitions.js"></script>
-    <script src="../assets/affiliate-manager.js"></script>
+    <script defer src="../assets/affiliate-manager.js"></script>
+    <script defer src="../assets/site-analytics.js"></script>
 </body>
 </html>

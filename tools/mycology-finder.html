@@ -13,6 +13,7 @@
     <meta property="og:image" content="https://sporlyworks.com/assets/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css?v=1200">
     <script type="application/ld+json">
@@ -207,11 +208,12 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
 
     <header class="internal-header">
         <div class="header-logo-centered">
             <a href="../index.html" class="header-brand-link">
-                <img src="../assets/logo-nav.png?v=960" alt="SporlyWorks" class="header-logo-img">
+                <img fetchpriority="high" src="../assets/logo-nav.png?v=960" alt="SporlyWorks" class="header-logo-img">
                 <span class="header-wordmark">SPORLYWORKS</span>
             </a>
         </div>
@@ -227,7 +229,7 @@
         </nav>
     </header>
 
-    <main class="quiz-container" style="margin-top: 155px;">
+    <main id="main-content" class="quiz-container" style="margin-top: 155px;">
         <div class="quiz-card">
             <div class="quiz-header">
                 <h1>Interactive Mycology & Adaptogen Finder</h1>
@@ -269,10 +271,13 @@
                         <span class="option-title">Still Air Box / Monotub Ready</span>
                         <span class="option-desc">Comfortable working with liquid cultures, grain spawn, and bulk pasteurization.</span>
                     </div>
-                    <div class="option-btn" onclick="selectOption(2, 'supplement_only')">
+                    <div class="option-btn" onclick="selectOption(2, 'supplement_only', this)">
                         <span class="option-title">Ready-to-Consume Formats Only</span>
                         <span class="option-desc">Prefer clinically tested capsules and water-extracted powders over cultivation.</span>
                     </div>
+                </div>
+                <div style="margin-top:24px; display:flex; justify-content:flex-start;">
+                    <button type="button" class="btn-step-back" onclick="prevStep(1)" style="background:transparent; border:1px solid var(--border-color); padding:10px 22px; border-radius:var(--radius-pill); font-family:'Plus Jakarta Sans',sans-serif; font-size:13.5px; font-weight:600; color:var(--text-secondary); cursor:pointer; transition:all 0.2s;">← Back to Step 1</button>
                 </div>
             </div>
 
@@ -280,18 +285,21 @@
             <div class="quiz-step" id="step3">
                 <div class="question-title">3. What is your target outcome?</div>
                 <div class="options-grid">
-                    <div class="option-btn" onclick="selectOption(3, 'high_yield')">
+                    <div class="option-btn" onclick="selectOption(3, 'high_yield', this)">
                         <span class="option-title">Maximum Biological Yield</span>
                         <span class="option-desc">Harvest multiple heavy flushes with minimal time investment.</span>
                     </div>
-                    <div class="option-btn" onclick="selectOption(3, 'brain_gut')">
+                    <div class="option-btn" onclick="selectOption(3, 'brain_gut', this)">
                         <span class="option-title">Brain-Gut Axis & Focus</span>
                         <span class="option-desc">Elevate Nerve Growth Factor, mental clarity, and 100% viable probiotic delivery.</span>
                     </div>
-                    <div class="option-btn" onclick="selectOption(3, 'clean_genetics')">
+                    <div class="option-btn" onclick="selectOption(3, 'clean_genetics', this)">
                         <span class="option-title">Contamination-Resistant Genetics</span>
                         <span class="option-desc">Aggressive rhizomorphic expansion with documented South African vigor.</span>
                     </div>
+                </div>
+                <div style="margin-top:24px; display:flex; justify-content:flex-start;">
+                    <button type="button" class="btn-step-back" onclick="prevStep(2)" style="background:transparent; border:1px solid var(--border-color); padding:10px 22px; border-radius:var(--radius-pill); font-family:'Plus Jakarta Sans',sans-serif; font-size:13.5px; font-weight:600; color:var(--text-secondary); cursor:pointer; transition:all 0.2s;">← Back to Step 2</button>
                 </div>
             </div>
 
@@ -308,6 +316,7 @@
                 <div class="dossier-actions">
                     <button class="btn-dossier" onclick="exportDossier('txt')">📄 Download Recommendation Dossier (.txt)</button>
                     <button class="btn-dossier" onclick="exportDossier('json')">💾 Export Telemetry (.json)</button>
+                    <button class="btn-dossier" onclick="prevStep(3)" style="background:#faf8f5;">← Back to Quiz</button>
                     <button class="btn-dossier" onclick="resetQuiz()" style="background:#faf8f5;">↺ Retake Quiz</button>
                 </div>
             </div>
@@ -318,7 +327,7 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <h3 class="footer-logo">SPORLYWORKS</h3>
-                <p class="footer-tagline">Botanical precision meets functional wellness. Bringing clinical-grade adaptogens and certified organic genetics to home laboratories.</p>
+                <p class="footer-tagline">Precision mycology for home laboratories and human performance. Clean isolated genetics, sterile substrate systems, and verified fruiting body extracts.</p>
             </div>
             <div class="footer-links-grid">
                 <div class="footer-column">
@@ -355,11 +364,15 @@
     <script>
     const userAnswers = {};
 
-    function selectOption(step, value) {
+    function selectOption(step, value, el) {
         userAnswers['step' + step] = value;
         const currentStep = document.getElementById('step' + step);
         currentStep.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
-        if (event && event.currentTarget) event.currentTarget.classList.add('selected');
+        if (el) {
+            el.classList.add('selected');
+        } else if (window.event && window.event.currentTarget) {
+            window.event.currentTarget.classList.add('selected');
+        }
 
         if (step === 1) {
             nextStep(2);
@@ -374,6 +387,16 @@
         document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
         document.getElementById('step' + stepNum).classList.add('active');
         document.getElementById('progressFill').style.width = (stepNum * 33) + '%';
+    }
+
+    function prevStep(stepNum) {
+        document.getElementById('resultsBox').classList.remove('active');
+        document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+        const target = document.getElementById('step' + stepNum);
+        if (target) target.classList.add('active');
+        document.getElementById('progressFill').style.width = (stepNum * 33) + '%';
+        const card = document.querySelector('.quiz-card');
+        if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     let activeRecs = [];
@@ -406,7 +429,7 @@
             activeRecs.push({
                 tag: 'Clinical Neurogenesis Extract',
                 partner: 'nootropicsdepot',
-                name: 'Nootropics Depot HPLC-Tested Lion's Mane 8:1 Extract',
+                name: "Nootropics Depot HPLC-Tested Lion's Mane 8:1 Extract",
                 desc: '100% organic fruiting body extract verified by HPLC and AOAC assays for active hericenones and >25% beta-glucans. Stimulates Nerve Growth Factor (NGF) synthesis.',
                 cta: 'Shop Nootropics Depot Extract →',
                 link: 'https://nootropicsdepot.com'
@@ -499,11 +522,16 @@
     function resetQuiz() {
         document.getElementById('resultsBox').classList.remove('active');
         document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+        for (let k in userAnswers) delete userAnswers[k];
         document.getElementById('step1').classList.add('active');
         document.getElementById('progressFill').style.width = '33%';
+        const card = document.querySelector('.quiz-card');
+        if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     </script>
-    <script src="../assets/affiliate-manager.js"></script>
+    <script defer src="../assets/affiliate-manager.js"></script>
     <script src="../assets/page-transitions.js"></script>
+    <script defer src="../assets/site-analytics.js"></script>
 </body>
 </html>
