@@ -30,16 +30,19 @@
     <style>
         .quiz-container {
             max-width: 820px;
-            margin: 130px auto 80px;
+            margin: 160px auto 80px;
             padding: 0 24px;
+            scroll-margin-top: 160px;
         }
         .quiz-card {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.92);
             border-radius: var(--radius-lg);
             border: 1px solid var(--border-color);
             padding: 44px 36px;
             box-shadow: var(--shadow-medium);
             backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            scroll-margin-top: 160px;
         }
         .quiz-header {
             text-align: center;
@@ -50,6 +53,7 @@
             font-size: 36px;
             color: var(--green-dark);
             margin-bottom: 12px;
+            line-height: 1.2;
         }
         .quiz-header p {
             font-size: 16.5px;
@@ -97,30 +101,50 @@
             padding: 20px 22px;
             text-align: left;
             cursor: pointer;
-            transition: all 0.25s ease;
+            transition: all 0.2s ease;
             display: flex;
             flex-direction: column;
             gap: 6px;
+            font-family: inherit;
+            width: 100%;
+            -webkit-appearance: none;
+            appearance: none;
+            outline: none;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .option-btn * {
+            pointer-events: none;
         }
         .option-btn:hover {
             border-color: var(--green-light);
             background: rgba(27, 138, 90, 0.03);
             transform: translateY(-2px);
         }
+        .option-btn:focus-visible {
+            outline: 3px solid var(--green);
+            outline-offset: 2px;
+        }
         .option-btn.selected {
             border-color: var(--green);
-            background: rgba(27, 138, 90, 0.08);
-            box-shadow: 0 4px 14px rgba(11, 74, 46, 0.12);
+            background: rgba(27, 138, 90, 0.09);
+            box-shadow: 0 4px 14px rgba(11, 74, 46, 0.14);
+            transform: scale(0.99);
         }
         .option-title {
             font-weight: 700;
             font-size: 16px;
             color: var(--green-dark);
+            display: block;
         }
         .option-desc {
             font-size: 13.5px;
             color: var(--text-secondary);
             line-height: 1.4;
+            display: block;
         }
         .results-box {
             display: none;
@@ -195,11 +219,89 @@
             background: #ffffff;
             color: var(--green-dark);
             transition: all 0.2s ease;
+            font-family: inherit;
         }
         .btn-dossier:hover {
             border-color: var(--green-light);
             background: rgba(27, 138, 90, 0.05);
             transform: translateY(-1px);
+        }
+        .btn-step-back {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            padding: 10px 22px;
+            border-radius: var(--radius-pill);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-step-back:hover {
+            border-color: var(--green-light);
+            color: var(--green-dark);
+            background: rgba(27, 138, 90, 0.04);
+        }
+        @media (max-width: 768px) {
+            .quiz-container {
+                margin: 130px auto 40px;
+                padding: 0 16px;
+                scroll-margin-top: 130px;
+            }
+            .quiz-card {
+                padding: 28px 20px;
+                scroll-margin-top: 130px;
+            }
+            .quiz-header {
+                margin-bottom: 24px;
+            }
+            .quiz-header h1 {
+                font-size: 27px;
+            }
+            .quiz-header p {
+                font-size: 15px;
+            }
+            .question-title {
+                font-size: 19px;
+                margin-bottom: 18px;
+            }
+            .options-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                margin-bottom: 24px;
+            }
+            .option-btn {
+                padding: 16px 18px;
+            }
+            .dossier-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .btn-dossier {
+                text-align: center;
+                width: 100%;
+            }
+        }
+        @media (max-width: 480px) {
+            .quiz-container {
+                margin: 120px auto 30px;
+                padding: 0 12px;
+                scroll-margin-top: 120px;
+            }
+            .quiz-card {
+                padding: 22px 14px;
+                scroll-margin-top: 120px;
+            }
+            .quiz-header h1 {
+                font-size: 23px;
+            }
+            .quiz-header p {
+                font-size: 14px;
+            }
+            .question-title {
+                font-size: 17px;
+            }
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(8px); }
@@ -229,95 +331,95 @@
         </nav>
     </header>
 
-    <main id="main-content" class="quiz-container" style="margin-top: 155px;">
+    <main id="main-content" class="quiz-container">
         <div class="quiz-card">
             <div class="quiz-header">
                 <h1>Interactive Mycology & Adaptogen Finder</h1>
                 <p>Answer 3 quick questions to generate your personalized cultivation protocol and verified adaptogenic stack.</p>
             </div>
 
-            <div class="progress-bar-wrap">
+            <div class="progress-bar-wrap" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" aria-label="Quiz completion progress">
                 <div class="progress-bar-fill" id="progressFill"></div>
             </div>
 
             <!-- Step 1 -->
-            <div class="quiz-step active" id="step1">
-                <div class="question-title">1. What is your primary mycological objective?</div>
+            <div class="quiz-step active" id="step1" role="radiogroup" aria-labelledby="q1-title">
+                <div class="question-title" id="q1-title">1. What is your primary mycological objective?</div>
                 <div class="options-grid">
-                    <div class="option-btn" onclick="selectOption(1, 'cultivation')">
+                    <button type="button" class="option-btn" role="radio" aria-checked="false" onclick="selectOption(1, 'cultivation', this)">
                         <span class="option-title">Gourmet Home Cultivation</span>
                         <span class="option-desc">Fresh culinary Lion's Mane, Blue Oyster, or Shiitake mushrooms grown on your countertop.</span>
-                    </div>
-                    <div class="option-btn" onclick="selectOption(1, 'microscopy')">
+                    </button>
+                    <button type="button" class="option-btn" role="radio" aria-checked="false" onclick="selectOption(1, 'microscopy', this)">
                         <span class="option-title">Laboratory Microscopy</span>
                         <span class="option-desc">Isolated spore syringe genetics, hyphal cytology, and cleanroom taxonomy research.</span>
-                    </div>
-                    <div class="option-btn" onclick="selectOption(1, 'cognition')">
+                    </button>
+                    <button type="button" class="option-btn" role="radio" aria-checked="false" onclick="selectOption(1, 'cognition', this)">
                         <span class="option-title">Cognitive & Physical Wellness</span>
                         <span class="option-desc">Lab-verified active extracts (NGF, ATP, beta-glucans) and daily bio-fermented synbiotics.</span>
-                    </div>
+                    </button>
                 </div>
             </div>
 
             <!-- Step 2 -->
-            <div class="quiz-step" id="step2">
-                <div class="question-title">2. What is your experience level and equipment setup?</div>
+            <div class="quiz-step" id="step2" role="radiogroup" aria-labelledby="q2-title">
+                <div class="question-title" id="q2-title">2. What is your experience level and equipment setup?</div>
                 <div class="options-grid">
-                    <div class="option-btn" onclick="selectOption(2, 'beginner')">
+                    <button type="button" class="option-btn" role="radio" aria-checked="false" onclick="selectOption(2, 'beginner', this)">
                         <span class="option-title">Complete Beginner / Zero Cleanroom</span>
                         <span class="option-desc">No pressure cooker, laminar flow hood, or sterile lab setup required.</span>
-                    </div>
-                    <div class="option-btn" onclick="selectOption(2, 'intermediate')">
+                    </button>
+                    <button type="button" class="option-btn" role="radio" aria-checked="false" onclick="selectOption(2, 'intermediate', this)">
                         <span class="option-title">Still Air Box / Monotub Ready</span>
                         <span class="option-desc">Comfortable working with liquid cultures, grain spawn, and bulk pasteurization.</span>
-                    </div>
-                    <div class="option-btn" onclick="selectOption(2, 'supplement_only', this)">
+                    </button>
+                    <button type="button" class="option-btn" role="radio" aria-checked="false" onclick="selectOption(2, 'supplement_only', this)">
                         <span class="option-title">Ready-to-Consume Formats Only</span>
                         <span class="option-desc">Prefer clinically tested capsules and water-extracted powders over cultivation.</span>
-                    </div>
+                    </button>
                 </div>
                 <div style="margin-top:24px; display:flex; justify-content:flex-start;">
-                    <button type="button" class="btn-step-back" onclick="prevStep(1)" style="background:transparent; border:1px solid var(--border-color); padding:10px 22px; border-radius:var(--radius-pill); font-family:'Plus Jakarta Sans',sans-serif; font-size:13.5px; font-weight:600; color:var(--text-secondary); cursor:pointer; transition:all 0.2s;">← Back to Step 1</button>
+                    <button type="button" class="btn-step-back" onclick="prevStep(1)">← Back to Step 1</button>
                 </div>
             </div>
 
             <!-- Step 3 -->
-            <div class="quiz-step" id="step3">
-                <div class="question-title">3. What is your target outcome?</div>
+            <div class="quiz-step" id="step3" role="radiogroup" aria-labelledby="q3-title">
+                <div class="question-title" id="q3-title">3. What is your target outcome?</div>
                 <div class="options-grid">
-                    <div class="option-btn" onclick="selectOption(3, 'high_yield', this)">
+                    <button type="button" class="option-btn" role="radio" aria-checked="false" onclick="selectOption(3, 'high_yield', this)">
                         <span class="option-title">Maximum Biological Yield</span>
                         <span class="option-desc">Harvest multiple heavy flushes with minimal time investment.</span>
-                    </div>
-                    <div class="option-btn" onclick="selectOption(3, 'brain_gut', this)">
+                    </button>
+                    <button type="button" class="option-btn" role="radio" aria-checked="false" onclick="selectOption(3, 'brain_gut', this)">
                         <span class="option-title">Brain-Gut Axis & Focus</span>
                         <span class="option-desc">Elevate Nerve Growth Factor, mental clarity, and 100% viable probiotic delivery.</span>
-                    </div>
-                    <div class="option-btn" onclick="selectOption(3, 'clean_genetics', this)">
+                    </button>
+                    <button type="button" class="option-btn" role="radio" aria-checked="false" onclick="selectOption(3, 'clean_genetics', this)">
                         <span class="option-title">Contamination-Resistant Genetics</span>
                         <span class="option-desc">Aggressive rhizomorphic expansion with documented South African vigor.</span>
-                    </div>
+                    </button>
                 </div>
                 <div style="margin-top:24px; display:flex; justify-content:flex-start;">
-                    <button type="button" class="btn-step-back" onclick="prevStep(2)" style="background:transparent; border:1px solid var(--border-color); padding:10px 22px; border-radius:var(--radius-pill); font-family:'Plus Jakarta Sans',sans-serif; font-size:13.5px; font-weight:600; color:var(--text-secondary); cursor:pointer; transition:all 0.2s;">← Back to Step 2</button>
+                    <button type="button" class="btn-step-back" onclick="prevStep(2)">← Back to Step 2</button>
                 </div>
             </div>
 
             <!-- Results Step -->
-            <div class="results-box" id="resultsBox">
+            <div class="results-box" id="resultsBox" role="region" aria-label="Personalized Results Dossier">
                 <div style="text-align: center; margin-bottom: 28px;">
                     <span class="rec-tag">Personalized Results Dossier</span>
                     <h2 style="font-family:'DM Serif Display',serif; color:var(--green-dark); font-size:28px; margin:8px 0;">Your Matched Mycology Architecture</h2>
                     <p style="color:var(--text-secondary); font-size:15px; margin:0;">Grounded in verified analytical chemistry and sterile laboratory protocols.</p>
                 </div>
 
-                <div id="recommendationsList"></div>
+                <div id="recommendationsList" aria-live="polite"></div>
 
                 <div class="dossier-actions">
-                    <button class="btn-dossier" onclick="exportDossier('txt')">📄 Download Recommendation Dossier (.txt)</button>
-                    <button class="btn-dossier" onclick="exportDossier('json')">💾 Export Telemetry (.json)</button>
-                    <button class="btn-dossier" onclick="prevStep(3)" style="background:#faf8f5;">← Back to Quiz</button>
-                    <button class="btn-dossier" onclick="resetQuiz()" style="background:#faf8f5;">↺ Retake Quiz</button>
+                    <button type="button" class="btn-dossier" onclick="exportDossier('txt')">📄 Download Recommendation Dossier (.txt)</button>
+                    <button type="button" class="btn-dossier" onclick="exportDossier('json')">💾 Export Telemetry (.json)</button>
+                    <button type="button" class="btn-dossier" onclick="prevStep(3)" style="background:#faf8f5;">← Back to Quiz</button>
+                    <button type="button" class="btn-dossier" onclick="resetQuiz()" style="background:#faf8f5;">↺ Retake Quiz</button>
                 </div>
             </div>
         </div>
@@ -363,75 +465,126 @@
 
     <script>
     const userAnswers = {};
+    let isTransitioning = false;
+
+    function scrollToQuiz() {
+        const card = document.querySelector('.quiz-card');
+        if (!card) return;
+        const header = document.querySelector('.internal-header');
+        const headerOffset = header ? header.offsetHeight + 18 : 140;
+        const targetY = card.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+        window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+    }
 
     function selectOption(step, value, el) {
+        if (isTransitioning) return;
         userAnswers['step' + step] = value;
         const currentStep = document.getElementById('step' + step);
-        currentStep.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
-        if (el) {
-            el.classList.add('selected');
-        } else if (window.event && window.event.currentTarget) {
-            window.event.currentTarget.classList.add('selected');
+        if (currentStep) {
+            currentStep.querySelectorAll('.option-btn').forEach(b => {
+                b.classList.remove('selected');
+                b.setAttribute('aria-checked', 'false');
+            });
+        }
+        
+        const targetBtn = el || (window.event && (window.event.currentTarget || (window.event.target ? window.event.target.closest('.option-btn') : null)));
+        if (targetBtn) {
+            targetBtn.classList.add('selected');
+            targetBtn.setAttribute('aria-checked', 'true');
         }
 
-        if (step === 1) {
-            nextStep(2);
-        } else if (step === 2) {
-            nextStep(3);
-        } else if (step === 3) {
-            calculateResults();
-        }
+        isTransitioning = true;
+        setTimeout(() => {
+            if (step === 1) {
+                nextStep(2);
+            } else if (step === 2) {
+                nextStep(3);
+            } else if (step === 3) {
+                calculateResults();
+            }
+            isTransitioning = false;
+        }, 160);
     }
 
     function nextStep(stepNum) {
         document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
-        document.getElementById('step' + stepNum).classList.add('active');
-        document.getElementById('progressFill').style.width = (stepNum * 33) + '%';
+        const next = document.getElementById('step' + stepNum);
+        if (next) {
+            next.classList.add('active');
+            if (userAnswers['step' + stepNum]) {
+                const btn = next.querySelector(`.option-btn[onclick*="'${userAnswers['step' + stepNum]}'"]`);
+                if (btn) {
+                    btn.classList.add('selected');
+                    btn.setAttribute('aria-checked', 'true');
+                }
+            }
+        }
+        const fill = document.getElementById('progressFill');
+        const wrap = document.querySelector('.progress-bar-wrap');
+        const pct = Math.min(100, Math.round(stepNum * 33.3));
+        if (fill) fill.style.width = pct + '%';
+        if (wrap) wrap.setAttribute('aria-valuenow', pct);
+        scrollToQuiz();
     }
 
     function prevStep(stepNum) {
         document.getElementById('resultsBox').classList.remove('active');
+        const quizHeader = document.querySelector('.quiz-header');
+        const progressWrap = document.querySelector('.progress-bar-wrap');
+        if (quizHeader) quizHeader.style.display = 'block';
+        if (progressWrap) progressWrap.style.display = 'block';
+
         document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
         const target = document.getElementById('step' + stepNum);
-        if (target) target.classList.add('active');
-        document.getElementById('progressFill').style.width = (stepNum * 33) + '%';
-        const card = document.querySelector('.quiz-card');
-        if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (target) {
+            target.classList.add('active');
+            if (userAnswers['step' + stepNum]) {
+                const btn = target.querySelector(`.option-btn[onclick*="'${userAnswers['step' + stepNum]}'"]`);
+                if (btn) {
+                    btn.classList.add('selected');
+                    btn.setAttribute('aria-checked', 'true');
+                }
+            }
+        }
+        const fill = document.getElementById('progressFill');
+        const pct = Math.min(100, Math.round(stepNum * 33.3));
+        if (fill) fill.style.width = pct + '%';
+        if (progressWrap) progressWrap.setAttribute('aria-valuenow', pct);
+        scrollToQuiz();
     }
 
     let activeRecs = [];
 
     function calculateResults() {
         document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
-        document.getElementById('progressFill').style.width = '100%';
+        const fill = document.getElementById('progressFill');
+        const progressWrap = document.querySelector('.progress-bar-wrap');
+        if (fill) fill.style.width = '100%';
+        if (progressWrap) {
+            progressWrap.setAttribute('aria-valuenow', '100');
+            progressWrap.style.display = 'none';
+        }
+
+        const quizHeader = document.querySelector('.quiz-header');
+        if (quizHeader) quizHeader.style.display = 'none';
+
         document.getElementById('resultsBox').classList.add('active');
+        scrollToQuiz();
 
         activeRecs = [];
 
-        if (userAnswers.step1 === 'cultivation' || userAnswers.step3 === 'high_yield') {
-            activeRecs.push({
-                tag: 'Optimal Fruiting Matrix',
-                partner: 'magicbag',
-                name: 'Magic Bag All-In-One Mushroom Grow Bags',
-                desc: 'Pre-sterilized organic grain and compost substrate with self-healing injection port and 0.2µm filter patch. Eliminates pressure cooking and sterile cleanroom requirements.',
-                cta: 'Shop Magic Bag Grow Bags →',
-                link: 'https://www.magicbag.co/?ref=Sporlyworks'
-            });
-            activeRecs.push({
-                tag: 'Clean Liquid Genetics',
-                partner: 'myyco',
-                name: 'MYYCO Laboratory Isolated Liquid Cultures',
-                desc: 'Certified sterile liquid culture syringes with dense vegetative mycelium for rapid colonization and maximum contamination resistance.',
-                cta: 'Shop MYYCO Genetics →',
-                link: 'https://myyco.com/shop-microscopy-liquid-culture/?ref=SporlyWorks'
-            });
-        } else if (userAnswers.step1 === 'cognition' || userAnswers.step3 === 'brain_gut') {
+        const s1 = userAnswers.step1 || 'cultivation';
+        const s2 = userAnswers.step2 || 'beginner';
+        const s3 = userAnswers.step3 || 'high_yield';
+
+        // 1. Ready-to-Consume Formats OR Cognitive & Physical Wellness Goal
+        if (s1 === 'cognition' || s2 === 'supplement_only' || s3 === 'brain_gut') {
             activeRecs.push({
                 tag: 'Clinical Neurogenesis Extract',
                 partner: 'nootropicsdepot',
                 name: "Nootropics Depot HPLC-Tested Lion's Mane 8:1 Extract",
                 desc: '100% organic fruiting body extract verified by HPLC and AOAC assays for active hericenones and >25% beta-glucans. Stimulates Nerve Growth Factor (NGF) synthesis.',
-                cta: 'Shop Nootropics Depot Extract →',
+                cta: "Shop Nootropics Depot Extract →",
                 link: 'https://nootropicsdepot.com'
             });
             activeRecs.push({
@@ -440,9 +593,21 @@
                 name: 'Seed DS-01® Daily Synbiotic (ViaCap®)',
                 desc: '24 clinically validated bacterial strains with outer prebiotic shield for 100% survivability through human stomach acid and complete colon delivery.',
                 cta: 'Shop Seed Daily Synbiotic →',
-                link: 'https://seed.com'
+                link: 'https://seed.com/daily-synbiotic'
             });
-        } else {
+            if (s3 === 'high_yield' || s1 === 'cognition') {
+                activeRecs.push({
+                    tag: 'Pure Fruiting Body Complex',
+                    partner: 'freshcap',
+                    name: 'FreshCap Ultimate Mushroom Complex',
+                    desc: 'Dual-extracted blend of Lion’s Mane, Reishi, Cordyceps, and Chaga with verified beta-glucan markers and zero grain or starch fillers.',
+                    cta: 'Shop FreshCap Extracts →',
+                    link: 'https://freshcap.com'
+                });
+            }
+        } 
+        // 2. Laboratory Microscopy / Cleanroom Taxonomy Research
+        else if (s1 === 'microscopy' || s3 === 'clean_genetics') {
             activeRecs.push({
                 tag: 'Taxonomy & Microscopy Standard',
                 partner: 'myyco',
@@ -459,6 +624,35 @@
                 cta: 'Shop Magic Bag Substrates →',
                 link: 'https://www.magicbag.co/?ref=Sporlyworks'
             });
+        } 
+        // 3. Home Cultivation (Beginner or Intermediate Setup)
+        else {
+            activeRecs.push({
+                tag: s2 === 'beginner' ? 'Zero-Cleanroom All-In-One Matrix' : 'Optimal Bulk Fruiting Matrix',
+                partner: 'magicbag',
+                name: 'Magic Bag All-In-One Mushroom Grow Bags',
+                desc: 'Pre-sterilized organic grain and compost substrate with self-healing injection port and 0.2µm filter patch. Eliminates pressure cooking and sterile cleanroom requirements.',
+                cta: 'Shop Magic Bag Grow Bags →',
+                link: 'https://www.magicbag.co/?ref=Sporlyworks'
+            });
+            activeRecs.push({
+                tag: 'Clean Liquid Genetics',
+                partner: 'myyco',
+                name: 'MYYCO Laboratory Isolated Liquid Cultures',
+                desc: 'Certified sterile liquid culture syringes with dense vegetative mycelium for rapid colonization and maximum contamination resistance.',
+                cta: 'Shop MYYCO Genetics →',
+                link: 'https://myyco.com/shop-microscopy-liquid-culture/?ref=SporlyWorks'
+            });
+            if (s2 === 'beginner') {
+                activeRecs.push({
+                    tag: 'Pre-Inoculated Countertop Kit',
+                    partner: 'northspore',
+                    name: 'North Spore Golden Oyster Mushroom Grow Kit',
+                    desc: '100% guaranteed first flush right out of the box. Spray with water twice daily on your kitchen countertop.',
+                    cta: 'Shop North Spore Kits →',
+                    link: 'https://northspore.com'
+                });
+            }
         }
 
         const html = activeRecs.map(r => `
@@ -493,7 +687,7 @@
             fileContent = JSON.stringify(telemetry, null, 2);
             mimeType = "application/json";
         } else {
-            mimeType = "text/plain";
+            mimeType = "text/plain;charset=utf-8";
             fileContent = "============================================================\n" +
                           "  🌿 SPORLYWORKS PERSONALIZED MYCOLOGY DOSSIER\n" +
                           "============================================================\n" +
@@ -515,19 +709,32 @@
         a.download = filename;
         document.body.appendChild(a);
         a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
+        setTimeout(() => {
+            if (a.parentNode) a.parentNode.removeChild(a);
+            URL.revokeObjectURL(url);
+        }, 2000);
     }
 
     function resetQuiz() {
         document.getElementById('resultsBox').classList.remove('active');
+        const quizHeader = document.querySelector('.quiz-header');
+        const progressWrap = document.querySelector('.progress-bar-wrap');
+        if (quizHeader) quizHeader.style.display = 'block';
+        if (progressWrap) {
+            progressWrap.style.display = 'block';
+            progressWrap.setAttribute('aria-valuenow', '33');
+        }
+
         document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
-        document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+        document.querySelectorAll('.option-btn').forEach(b => {
+            b.classList.remove('selected');
+            b.setAttribute('aria-checked', 'false');
+        });
         for (let k in userAnswers) delete userAnswers[k];
         document.getElementById('step1').classList.add('active');
-        document.getElementById('progressFill').style.width = '33%';
-        const card = document.querySelector('.quiz-card');
-        if (card) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const fill = document.getElementById('progressFill');
+        if (fill) fill.style.width = '33%';
+        scrollToQuiz();
     }
     </script>
     <script defer src="../assets/affiliate-manager.js"></script>
