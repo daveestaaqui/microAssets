@@ -64,6 +64,10 @@ jobs:
         run: |
           python3 _marketing/generate_pinterest_pins.py
 
+      - name: Execute Automated Tool & Community Syndication
+        run: |
+          python3 scripts/syndicate_tools_community.py || true
+
       - name: Ping Search Engine Indexing Endpoints
         run: |
           python3 scripts/ping_indexnow.py --limit 10 || true

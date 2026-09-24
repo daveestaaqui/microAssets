@@ -239,12 +239,12 @@
     const selectedGoals = new Set();
 
     const stackCatalog = {
-        focus:    { partner: 'realmushrooms', name: "Real Mushrooms Organic Lion's Mane Extract", compound: "Hericenones & Erinacines", action: "Stimulates Nerve Growth Factor (NGF) synthesis to support synaptic plasticity and focus.", img: "../assets/illustrations/lions_mane_extract.jpg" },
-        immunity: { partner: 'realmushrooms', name: "Real Mushrooms Organic Reishi 415 Extract", compound: "1,3/1,6 Beta-D-Glucans", action: "Modulates innate and adaptive immune cell signaling without over-stimulation.", img: "../assets/illustrations/reishi_extract.jpg" },
-        energy:   { partner: 'realmushrooms', name: "Real Mushrooms Organic Cordyceps-M Extract", compound: "Cordycepin (3'-deoxyadenosine)", action: "Enhances cellular ATP generation and VO2 max oxygen consumption.", img: "../assets/illustrations/cordyceps_extract.jpg" },
-        gut:      { partner: 'seed', name: "Seed DS-01® Daily Synbiotic", compound: "ViaCap® 2-in-1 Nested Delivery", action: "Ensures 100% bacterial survivability through gastric acid to colonize the lower GI tract.", img: "../assets/illustrations/synbiotics.jpg" },
-        stress:   { partner: 'realmushrooms', name: "Real Mushrooms Organic Reishi 415 Extract", compound: "Triterpenes (Ganoderic Acids)", action: "Blunts excess cortisol release and calms autonomic nervous system arousal.", img: "../assets/illustrations/reishi_extract.jpg" },
-        sleep:    { partner: 'realmushrooms', name: "Real Mushrooms Organic Reishi 415 Extract", compound: "GABAergic Ganoderic Triterpenoids", action: "Increases slow-wave delta sleep stages and promotes restorative REM cycles.", img: "../assets/illustrations/reishi_extract.jpg" }
+        focus:    { partner: 'northspore', name: "North Spore Organic Lion's Mane Dual-Extract", compound: "Hericenones & Erinacines", action: "Stimulates Nerve Growth Factor (NGF) synthesis to support synaptic plasticity, recall, and focus.", img: "../assets/illustrations/lions_mane_extract.jpg" },
+        immunity: { partner: 'northspore', name: "North Spore Organic Chaga & Reishi Extract", compound: "1,3/1,6 Beta-D-Glucans", action: "Modulates innate and adaptive immune cell signaling with wild-harvested Maine birch chaga.", img: "../assets/illustrations/reishi_extract.jpg" },
+        energy:   { partner: 'northspore', name: "North Spore Organic Cordyceps militaris Extract", compound: "Cordycepin (3'-deoxyadenosine)", action: "Enhances cellular ATP generation, stamina, and VO2 max oxygen consumption.", img: "../assets/illustrations/cordyceps_extract.jpg" },
+        gut:      { partner: 'northspore', name: "North Spore 5-Mushroom Synergy Tincture", compound: "Prebiotic Polysaccharides & Phenolics", action: "Feeds beneficial bifidobacteria and protects gut-lining mucosal integrity.", img: "../assets/illustrations/synbiotics.jpg" },
+        stress:   { partner: 'northspore', name: "North Spore Organic Reishi Adaptogenic Tincture", compound: "Triterpenes (Ganoderic Acids)", action: "Blunts excess cortisol release and calms autonomic nervous system arousal.", img: "../assets/illustrations/reishi_extract.jpg" },
+        sleep:    { partner: 'northspore', name: "North Spore Organic Deep Sleep Reishi Extract", compound: "GABAergic Ganoderic Triterpenoids", action: "Increases slow-wave delta sleep stages and promotes restorative REM cycles.", img: "../assets/illustrations/reishi_extract.jpg" }
     };
 
     function toggleGoal(el) {
@@ -298,14 +298,12 @@
         `).join('');
 
         const partnerDetails = {
-            realmushrooms:   { name: "Real Mushrooms Extracts", url: "https://shop.realmushrooms.com" },
-            freshcap:        { name: "FreshCap Organic Extracts", url: "https://freshcap.com" },
-            seed:            { name: "Seed DS-01® Synbiotic", url: "https://seed.com/daily-synbiotic" }
+            northspore: { name: "North Spore Organic Extracts", url: "https://www.awin1.com/cread.php?awinmid=34891&awinaffid=3016315&ued=https%3A%2F%2Fnorthspore.com%2Fcollections%2Fextracts" }
         };
 
         ctasDiv.innerHTML = Array.from(partnersUsed).map(key => {
-            const p = partnerDetails[key] || { name: "Shop Adaptogens", url: "../products.html" };
-            return `<a href="${p.url}" data-partner="${key}" class="result-cta result-cta--primary" target="_blank" rel="noopener sponsored" style="padding:14px 28px; background:var(--green-light); color:white; border-radius:var(--radius-pill); text-decoration:none; font-weight:700; font-size:14.5px;">Shop ${p.name} →</a>`;
+            const p = partnerDetails[key] || { name: "Shop North Spore Extracts", url: "https://www.awin1.com/cread.php?awinmid=34891&awinaffid=3016315&ued=https%3A%2F%2Fnorthspore.com%2Fcollections%2Fextracts" };
+            return `<a href="${p.url}" data-partner="northspore" class="result-cta result-cta--primary" target="_blank" rel="noopener sponsored" style="padding:14px 28px; background:var(--green-light); color:white; border-radius:var(--radius-pill); text-decoration:none; font-weight:700; font-size:14.5px;">Shop ${p.name} →</a>`;
         }).join('');
 
         resultsWrap.classList.add('active');

@@ -31,32 +31,32 @@
                 affiliate_url_template: "https://www.awin1.com/cread.php?awinmid=34891&awinaffid={affiliate_id}&ued=https%3A%2F%2Fnorthspore.com%2F"
             },
             realmushrooms: {
-                base_url: "https://shop.realmushrooms.com",
-                fallback_url: "https://shop.realmushrooms.com",
-                affiliate_id: "",
-                ref_param: "ref",
-                affiliate_url_template: "https://shop.realmushrooms.com"
+                base_url: "https://northspore.com/collections/extracts",
+                fallback_url: "https://www.awin1.com/cread.php?awinmid=34891&awinaffid=3016315&ued=https%3A%2F%2Fnorthspore.com%2Fcollections%2Fextracts",
+                affiliate_id: "3016315",
+                ref_param: "awinaffid",
+                affiliate_url_template: "https://www.awin1.com/cread.php?awinmid=34891&awinaffid={affiliate_id}&ued=https%3A%2F%2Fnorthspore.com%2Fcollections%2Fextracts"
             },
             seed: {
-                base_url: "https://seed.com/daily-synbiotic",
-                fallback_url: "https://seed.com/daily-synbiotic",
-                affiliate_id: "",
-                ref_param: "ref",
-                affiliate_url_template: "https://seed.com/daily-synbiotic"
+                base_url: "https://northspore.com/collections/extracts",
+                fallback_url: "https://www.awin1.com/cread.php?awinmid=34891&awinaffid=3016315&ued=https%3A%2F%2Fnorthspore.com%2Fcollections%2Fextracts",
+                affiliate_id: "3016315",
+                ref_param: "awinaffid",
+                affiliate_url_template: "https://www.awin1.com/cread.php?awinmid=34891&awinaffid={affiliate_id}&ued=https%3A%2F%2Fnorthspore.com%2Fcollections%2Fextracts"
             },
             freshcap: {
-                base_url: "https://freshcap.com",
-                fallback_url: "https://freshcap.com",
-                affiliate_id: "",
-                ref_param: "ref",
-                affiliate_url_template: "https://freshcap.com"
+                base_url: "https://northspore.com/collections/extracts",
+                fallback_url: "https://www.awin1.com/cread.php?awinmid=34891&awinaffid=3016315&ued=https%3A%2F%2Fnorthspore.com%2Fcollections%2Fextracts",
+                affiliate_id: "3016315",
+                ref_param: "awinaffid",
+                affiliate_url_template: "https://www.awin1.com/cread.php?awinmid=34891&awinaffid={affiliate_id}&ued=https%3A%2F%2Fnorthspore.com%2Fcollections%2Fextracts"
             },
             nootropicsdepot: {
-                base_url: "https://nootropicsdepot.com",
-                fallback_url: "https://nootropicsdepot.com",
-                affiliate_id: "",
-                ref_param: "ref",
-                affiliate_url_template: "https://nootropicsdepot.com"
+                base_url: "https://northspore.com/collections/extracts",
+                fallback_url: "https://www.awin1.com/cread.php?awinmid=34891&awinaffid=3016315&ued=https%3A%2F%2Fnorthspore.com%2Fcollections%2Fextracts",
+                affiliate_id: "3016315",
+                ref_param: "awinaffid",
+                affiliate_url_template: "https://www.awin1.com/cread.php?awinmid=34891&awinaffid={affiliate_id}&ued=https%3A%2F%2Fnorthspore.com%2Fcollections%2Fextracts"
             }
         }
     };

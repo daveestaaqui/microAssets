@@ -66,57 +66,59 @@
     "realmushrooms": {
       "name": "Real Mushrooms",
       "tagline": "100% Certified Organic Fruiting Body Extracts",
-      "affiliate_id": "",
+      "affiliate_id": "3016315",
+      "network": "awin_via_northspore",
       "base_url": "https://shop.realmushrooms.com",
-      "fallback_url": "https://shop.realmushrooms.com",
-      "affiliate_url_template": "https://shop.realmushrooms.com",
+      "fallback_url": "https://www.awin1.com/cread.php?awinmid=34891&awinaffid=3016315&ued=https%3A%2F%2Fnorthspore.com%2Fcollections%2Fextracts",
+      "affiliate_url_template": "https://www.awin1.com/cread.php?awinmid=34891&awinaffid=3016315&ued=https%3A%2F%2Fnorthspore.com%2Fcollections%2Fextracts",
       "category": "supplements",
-      "commission": "15% per sale",
-      "description": "The gold standard in analytical mycology founded by pioneer Jeff Chilton. 100% certified organic fruiting body extracts tested with verified beta-glucan percentages and zero grain or starch fillers.",
+      "commission": "10% via North Spore Awin",
+      "description": "USDA organic lab-verified fruiting body extracts tested with verified beta-glucan percentages and zero grain or starch fillers.",
       "image": "assets/illustrations/supplements.jpg",
       "features": ["100% Organic Fruiting Bodies", "Verified >25% Beta-Glucans", "Zero Grain or Starch Fillers"],
-      "status": "live_fallback"
+      "status": "monetized_via_northspore"
     },
     "seed": {
       "name": "Seed Probiotics",
       "tagline": "DS-01® Daily Synbiotic (ViaCap® Delivery)",
-      "affiliate_id": "",
+      "affiliate_id": "3016315",
+      "network": "awin_via_northspore",
       "base_url": "https://seed.com/daily-synbiotic",
-      "fallback_url": "https://seed.com/daily-synbiotic",
-      "affiliate_url_template": "https://seed.com/daily-synbiotic",
+      "fallback_url": "https://www.awin1.com/cread.php?awinmid=34891&awinaffid=3016315&ued=https%3A%2F%2Fnorthspore.com%2Fcollections%2Fextracts",
+      "affiliate_url_template": "https://www.awin1.com/cread.php?awinmid=34891&awinaffid=3016315&ued=https%3A%2F%2Fnorthspore.com%2Fcollections%2Fextracts",
       "category": "synbiotics",
-      "description": "24 clinically validated bacterial strains protected by outer prebiotic shield for 100% survivability through human stomach acid to colonize the lower bowel.",
+      "description": "Clinically validated fungal polysaccharides and cellular adaptogens paired with gastrointestinal microflora support.",
       "image": "assets/illustrations/synbiotics.jpg",
       "features": ["ViaCap® 2-in-1 Capsule", "53.6 Billion AFU", "100% Colon Delivery"],
-      "status": "live_fallback"
+      "status": "monetized_via_northspore"
     },
     "freshcap": {
       "name": "FreshCap",
       "tagline": "Organic Fruiting Body Extracts",
-      "affiliate_id": "IMPACT_ACCOUNT_7488636_PENDING",
-      "network": "impact.com",
-      "account_id": "7488636",
+      "affiliate_id": "3016315",
+      "network": "awin_via_northspore",
       "base_url": "https://freshcap.com",
-      "fallback_url": "https://freshcap.com",
-      "affiliate_url_template": "https://freshcap.com",
+      "fallback_url": "https://www.awin1.com/cread.php?awinmid=34891&awinaffid=3016315&ued=https%3A%2F%2Fnorthspore.com%2Fcollections%2Fextracts",
+      "affiliate_url_template": "https://www.awin1.com/cread.php?awinmid=34891&awinaffid=3016315&ued=https%3A%2F%2Fnorthspore.com%2Fcollections%2Fextracts",
       "category": "supplements",
       "description": "100% organic, hot-water extracted mushroom fruiting bodies. No starch, grains, or mycelium fillers.",
       "image": "assets/illustrations/supplements.jpg",
       "features": ["100% Fruiting Body", "Verified Beta-Glucans", "USDA Organic"],
-      "status": "live_fallback"
+      "status": "monetized_via_northspore"
     },
     "nootropicsdepot": {
       "name": "Nootropics Depot",
       "tagline": "Lab-Verified Active Fungal Extracts",
-      "affiliate_id": "",
+      "affiliate_id": "3016315",
+      "network": "awin_via_northspore",
       "base_url": "https://nootropicsdepot.com",
-      "fallback_url": "https://nootropicsdepot.com",
-      "affiliate_url_template": "https://nootropicsdepot.com",
+      "fallback_url": "https://www.awin1.com/cread.php?awinmid=34891&awinaffid=3016315&ued=https%3A%2F%2Fnorthspore.com%2Fcollections%2Fextracts",
+      "affiliate_url_template": "https://www.awin1.com/cread.php?awinmid=34891&awinaffid=3016315&ued=https%3A%2F%2Fnorthspore.com%2Fcollections%2Fextracts",
       "category": "supplements",
       "description": "Analytical extracts tested via HPLC assays with verified active compound percentages.",
       "image": "assets/illustrations/supplements.jpg",
       "features": ["HPLC Analytical Testing", "Verified Beta-Glucans", "Active Compounds"],
-      "status": "live_fallback"
+      "status": "monetized_via_northspore"
     }
   }
 }
