@@ -64,6 +64,17 @@ jobs:
         run: |
           python3 _marketing/generate_pinterest_pins.py
 
+      - name: Auto-Post to Pinterest (If Credentials Configured)
+        env:
+          PINTEREST_ACCESS_TOKEN: ${{ secrets.PINTEREST_ACCESS_TOKEN }}
+          PINTEREST_BOARD_ID: ${{ secrets.PINTEREST_BOARD_ID }}
+        run: |
+          if [ -n "$PINTEREST_ACCESS_TOKEN" ] && [ -n "$PINTEREST_BOARD_ID" ]; then
+            python3 _marketing/pinterest_autoposter.py --access-token "$PINTEREST_ACCESS_TOKEN" --board-id "$PINTEREST_BOARD_ID" || true
+          else
+            echo "ℹ️ Pinterest credentials not set in GitHub Secrets yet. Skipping live auto-post (drafts compiled successfully)."
+          fi
+
       - name: Execute Automated Tool & Community Syndication
         run: |
           python3 scripts/syndicate_tools_community.py || true
