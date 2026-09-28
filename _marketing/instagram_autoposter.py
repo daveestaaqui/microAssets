@@ -172,7 +172,7 @@ def post_via_instagrapi(image_path, caption, username=None, password=None, sessi
         if os.path.exists(avatar_path):
             try:
                 print("🖼️ Updating Instagram profile picture to new logo...")
-                cl.change_profile_picture(avatar_path)
+                cl.account_change_picture(avatar_path)
                 print("✅ Instagram profile picture updated successfully!")
             except Exception as pe:
                 print(f"⚠️ Profile picture update notice: {pe}")
@@ -180,7 +180,7 @@ def post_via_instagrapi(image_path, caption, username=None, password=None, sessi
         try:
             bio_text = "Precision mycology for cultivation and cognitive performance. Clean isolated genetics, sterile substrates & pure fruiting body extracts. 🍄 sporlyworks.com"
             print("📝 Updating Instagram channel biography...")
-            cl.set_account_biography(bio_text)
+            cl.account_set_biography(bio_text)
             print("✅ Channel biography updated successfully!")
         except Exception as be:
             print(f"⚠️ Channel bio update notice: {be}")
