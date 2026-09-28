@@ -32,52 +32,59 @@ def save_state(state):
     with open(STATE_PATH, "w") as f:
         json.dump(state, f, indent=2)
 
-def get_latest_otp():
-    """Connects to Gmail and fetches the latest 6-digit Instagram verification code."""
-    print("⏳ Connecting to Gmail IMAP to search for verification code...")
-    try:
-        mail = imaplib.IMAP4_SSL("imap.gmail.com")
-        mail.login(GMAIL_USER, GMAIL_PASS)
-        mail.select('"[Gmail]/All Mail"')
-        
-        # Search for recent emails from Instagram
-        status, messages = mail.search(None, 'FROM "mail.instagram.com"')
-        if status != "OK" or not messages[0]:
-            mail.logout()
-            return None
+def get_latest_otp(max_retries=8, delay_seconds=5):
+    """Connects to Gmail and fetches the latest 6-digit Instagram verification code with retries."""
+    if not GMAIL_USER or not GMAIL_PASS:
+        print("⚠️ GMAIL_USER or GMAIL_PASS not configured; cannot fetch OTP automatically.")
+        return None
+
+    print(f"⏳ Connecting to Gmail IMAP to search for Instagram verification code (up to {max_retries * delay_seconds}s)...")
+    for attempt in range(1, max_retries + 1):
+        try:
+            mail = imaplib.IMAP4_SSL("imap.gmail.com")
+            mail.login(GMAIL_USER, GMAIL_PASS)
+            mail.select('"[Gmail]/All Mail"')
             
-        ids = messages[0].split()
-        # Fetch the latest email
-        latest_id = sorted(ids, key=lambda x: int(x), reverse=True)[0]
-        res, msg_data = mail.fetch(latest_id, "(RFC822)")
+            # Search for recent emails from Instagram
+            status, messages = mail.search(None, 'FROM "mail.instagram.com"')
+            if status == "OK" and messages[0]:
+                ids = messages[0].split()
+                if ids:
+                    latest_id = sorted(ids, key=lambda x: int(x), reverse=True)[0]
+                    res, msg_data = mail.fetch(latest_id, "(RFC822)")
+                    
+                    for response_part in msg_data:
+                        if isinstance(response_part, tuple):
+                            msg = email.message_from_bytes(response_part[1])
+                            body = ""
+                            if msg.is_multipart():
+                                for part in msg.walk():
+                                    if part.get_content_type() in ("text/html", "text/plain"):
+                                        body += part.get_payload(decode=True).decode(errors='ignore')
+                            else:
+                                body = msg.get_payload(decode=True).decode(errors='ignore')
+                            
+                            # Search for 6-digit numeric codes
+                            codes = re.findall(r"\b\d{6}\b", body)
+                            if codes:
+                                print(f"✅ Found code in email on attempt {attempt}: {codes[0]} (Subject: {msg.get('Subject')})")
+                                mail.logout()
+                                return codes[0]
+            mail.logout()
+        except Exception as e:
+            print(f"⚠️ Gmail IMAP attempt {attempt} notice: {e}")
         
-        for response_part in msg_data:
-            if isinstance(response_part, tuple):
-                msg = email.message_from_bytes(response_part[1])
-                body = ""
-                if msg.is_multipart():
-                    for part in msg.walk():
-                        if part.get_content_type() == "text/html" or part.get_content_type() == "text/plain":
-                            body += part.get_payload(decode=True).decode(errors='ignore')
-                else:
-                    body = msg.get_payload(decode=True).decode(errors='ignore')
-                
-                # Search for 6-digit numeric codes
-                codes = re.findall(r"\b\d{6}\b", body)
-                if codes:
-                    print(f"✅ Found code in email: {codes[0]} (Email Subject: {msg.get('Subject')})")
-                    mail.logout()
-                    return codes[0]
-        mail.logout()
-    except Exception as e:
-        print(f"❌ Error fetching OTP from Gmail: {e}")
+        if attempt < max_retries:
+            time.sleep(delay_seconds)
+
+    print("❌ No Instagram OTP found in Gmail after maximum retries.")
     return None
 
 def challenge_code_handler(username, choice):
     """Callback for instagrapi when a checkpoint security challenge occurs."""
-    print(f"⚠️ Instagram login challenge triggered. Waiting 10 seconds for email...")
-    time.sleep(10)
-    return get_latest_otp()
+    print(f"⚠️ Instagram login challenge triggered for @{username}. Waiting 5 seconds before checking Gmail...")
+    time.sleep(5)
+    return get_latest_otp(max_retries=8, delay_seconds=5)
 
 def post_via_official_api(image_url, caption, access_token, instagram_account_id):
     """Posts an image using Meta's official Instagram Graph API."""

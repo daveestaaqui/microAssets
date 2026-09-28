@@ -31,7 +31,7 @@ jobs:
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install Pillow requests
+          pip install Pillow requests instagrapi
 
       - name: Generate Social Media Post Drafts & Avatars
         run: |
