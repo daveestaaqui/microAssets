@@ -80,11 +80,6 @@ jobs:
             echo "ℹ️ Instagram credentials not set in GitHub Secrets yet. Skipping live auto-post (drafts compiled successfully)."
           fi
 
-          # Clean up delete target once executed
-          if [ -f "_marketing/delete_target.txt" ]; then
-            rm -f _marketing/delete_target.txt
-          fi
-
       - name: Rebuild Blog & RSS Feed
         run: |
           python3 _marketing/generate_blog.py

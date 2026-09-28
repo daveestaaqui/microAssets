@@ -152,6 +152,9 @@ def post_via_instagrapi(image_path, caption, username=None, password=None, sessi
                     print(f"🗑️ Attempting to delete previous post media ID: {delete_media_id}...")
                     cl.media_delete(delete_media_id)
                     print(f"✅ Successfully deleted previous media ID {delete_media_id}!")
+                    target_file = os.path.join(BASE_DIR, "_marketing", "delete_target.txt")
+                    if os.path.exists(target_file):
+                        os.remove(target_file)
                 except Exception as de:
                     print(f"⚠️ Media deletion notice (can also delete directly in Instagram app): {de}")
 
@@ -185,6 +188,9 @@ def post_via_instagrapi(image_path, caption, username=None, password=None, sessi
                     print(f"🗑️ Attempting to delete previous post media ID: {delete_media_id}...")
                     cl.media_delete(delete_media_id)
                     print(f"✅ Successfully deleted previous media ID {delete_media_id}!")
+                    target_file = os.path.join(BASE_DIR, "_marketing", "delete_target.txt")
+                    if os.path.exists(target_file):
+                        os.remove(target_file)
                 except Exception as de:
                     print(f"⚠️ Media deletion notice (can also delete directly in Instagram app): {de}")
 
