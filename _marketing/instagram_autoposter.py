@@ -126,19 +126,46 @@ def post_via_official_api(image_url, caption, access_token, instagram_account_id
         print(f"❌ Graph API exception: {e}")
         return False
 
-def post_via_instagrapi(image_path, caption, username, password, delete_media_id=None):
-    """Posts an image using the unofficial instagrapi client with auto-OTP solving and updates profile picture."""
+def post_via_instagrapi(image_path, caption, username=None, password=None, session_id=None, delete_media_id=None):
+    """Posts an image using the instagrapi client with session persistence and auto-OTP solving."""
     print("🚀 Attempting to connect via Instagrapi client...")
     try:
         from instagrapi import Client
         cl = Client()
         
-        # Inject our custom Gmail OTP solver callback
-        cl.challenge_code_handler = challenge_code_handler
-        
-        print(f"Logging in as {username}...")
-        cl.login(username, password)
-        print("✅ Login successful.")
+        # Load cached session settings if available
+        settings_path = os.path.join(BASE_DIR, "_marketing", "instagram_session.json")
+        if os.path.exists(settings_path):
+            try:
+                print("🔄 Loading cached Instagram session settings...")
+                cl.load_settings(settings_path)
+            except Exception as se:
+                print(f"⚠️ Notice loading cached session: {se}")
+
+        if session_id:
+            print("🔑 Authenticating via Instagram session ID...")
+            cl.login_by_sessionid(session_id)
+            print("✅ Session ID authentication successful.")
+        elif username and password:
+            cl.challenge_code_handler = challenge_code_handler
+            try:
+                cl.set_app("446.0.0.49.77")
+            except Exception as ae:
+                print(f"Notice setting app version: {ae}")
+
+            print(f"Logging in as {username}...")
+            cl.login(username, password)
+            print("✅ Login successful.")
+        else:
+            print("❌ Neither session ID nor username/password provided.")
+            return False
+
+        # Cache session to avoid full re-authentication next time
+        try:
+            cl.dump_settings(settings_path)
+            print("💾 Instagram session settings cached for future posts.")
+        except Exception as de:
+            print(f"Notice caching settings: {de}")
         
         # 1. Update Profile Picture & Biography
         avatar_path = os.path.join(BASE_DIR, "assets", "instagram_avatar.jpg")
@@ -179,6 +206,7 @@ def post_via_instagrapi(image_path, caption, username, password, delete_media_id
 def run_autoposter():
     parser = argparse.ArgumentParser(description="SporlyWorks Instagram Autoposter")
     parser.add_argument("--dry-run", action="store_true", help="Scan queue and drafts without posting")
+    parser.add_argument("--session-id", help="Instagram sessionid cookie value (bypasses login challenges)")
     parser.add_argument("--username", help="Instagram username")
     parser.add_argument("--password", help="Instagram password")
     parser.add_argument("--access-token", help="Meta Graph API Page/User Access Token")
@@ -227,22 +255,15 @@ def run_autoposter():
             save_state(state)
             return
 
-    # Try Unofficial Method
-    elif args.username and args.password:
-        # Install instagrapi if not available
-        try:
-            import instagrapi
-        except ImportError:
-            print("⏳ Installing instagrapi library...")
-            os.system(f"{sys.executable} -m pip install instagrapi")
-            
-        success = post_via_instagrapi(next_post["image"], caption, args.username, args.password)
+    # Try Unofficial Method (Session ID or Username/Password)
+    elif args.session_id or (args.username and args.password):
+        success = post_via_instagrapi(next_post["image"], caption, username=args.username, password=args.password, session_id=args.session_id)
         if success:
             state["published"].append(next_post["id"])
             save_state(state)
             return
     else:
-        print("❌ Missing credentials. Specify either Meta Graph API args or Instagram credentials.")
+        print("❌ Missing credentials. Specify either Meta Graph API args, session ID, or Instagram credentials.")
 
 if __name__ == "__main__":
     run_autoposter()
