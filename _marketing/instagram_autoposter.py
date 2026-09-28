@@ -211,9 +211,27 @@ def run_autoposter():
     parser.add_argument("--access-token", help="Meta Graph API Page/User Access Token")
     parser.add_argument("--account-id", help="Meta Instagram Business Account ID")
     parser.add_argument("--delete-media-id", help="Delete a specific Instagram media ID")
+    parser.add_argument("--update-avatar", action="store_true", help="Update Instagram profile picture using assets/instagram_avatar.jpg")
     args = parser.parse_args()
 
     state = load_state()
+
+    # Standalone avatar update if requested
+    if args.update_avatar:
+        avatar_path = os.path.join(BASE_DIR, "assets", "instagram_avatar.jpg")
+        print(f"🖼️ Attempting profile picture update from {avatar_path}...")
+        try:
+            from instagrapi import Client
+            cl = Client()
+            if args.session_id:
+                cl.login_by_sessionid(args.session_id)
+            elif args.username and args.password:
+                cl.challenge_code_handler = challenge_code_handler
+                cl.login(args.username, args.password)
+            cl.account_change_picture(avatar_path)
+            print("✅ Successfully updated Instagram profile picture!")
+        except Exception as e:
+            print(f"⚠️ Notice on profile picture update: {e}")
     
     # Standalone deletion if requested and queue is empty
     if args.delete_media_id and not os.path.exists(DRAFTS_DIR):
