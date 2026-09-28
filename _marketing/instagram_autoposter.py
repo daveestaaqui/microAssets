@@ -211,11 +211,27 @@ def run_autoposter():
     parser.add_argument("--password", help="Instagram password")
     parser.add_argument("--access-token", help="Meta Graph API Page/User Access Token")
     parser.add_argument("--account-id", help="Meta Instagram Business Account ID")
-    parser.add_argument("--public-url", help="Publicly accessible URL of the image (needed for Graph API container)")
+    parser.add_argument("--delete-media-id", help="Delete a specific Instagram media ID")
     args = parser.parse_args()
 
     state = load_state()
     
+    # Standalone deletion if requested and queue is empty
+    if args.delete_media_id and not os.path.exists(DRAFTS_DIR):
+        print(f"🗑️ Deleting specified media ID: {args.delete_media_id}...")
+        try:
+            from instagrapi import Client
+            cl = Client()
+            if args.session_id:
+                cl.login_by_sessionid(args.session_id)
+            elif args.username and args.password:
+                cl.login(args.username, args.password)
+            cl.media_delete(args.delete_media_id)
+            print(f"✅ Successfully deleted media ID {args.delete_media_id}!")
+        except Exception as e:
+            print(f"❌ Error deleting media: {e}")
+        return
+
     # 1. Scan for drafts
     drafts = []
     if os.path.exists(DRAFTS_DIR):
@@ -231,6 +247,20 @@ def run_autoposter():
                     })
                     
     if not drafts:
+        if args.delete_media_id:
+            print(f"🗑️ Deleting specified media ID: {args.delete_media_id}...")
+            try:
+                from instagrapi import Client
+                cl = Client()
+                if args.session_id:
+                    cl.login_by_sessionid(args.session_id)
+                elif args.username and args.password:
+                    cl.login(args.username, args.password)
+                cl.media_delete(args.delete_media_id)
+                print(f"✅ Successfully deleted media ID {args.delete_media_id}!")
+            except Exception as e:
+                print(f"❌ Error deleting media: {e}")
+            return
         print("✅ No new posts in the queue. All drafts published.")
         return
 
@@ -257,7 +287,14 @@ def run_autoposter():
 
     # Try Unofficial Method (Session ID or Username/Password)
     elif args.session_id or (args.username and args.password):
-        success = post_via_instagrapi(next_post["image"], caption, username=args.username, password=args.password, session_id=args.session_id)
+        success = post_via_instagrapi(
+            next_post["image"],
+            caption,
+            username=args.username,
+            password=args.password,
+            session_id=args.session_id,
+            delete_media_id=args.delete_media_id
+        )
         if success:
             state["published"].append(next_post["id"])
             save_state(state)

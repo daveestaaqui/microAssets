@@ -1,12 +1,19 @@
-🍄 LAB PROFILE: Biological Efficiency (BE) in Mushroom Cultivation
+Most commercial "dual-extract" mushroom supplements on the market are cutting corners.
 
-Biological Efficiency (BE) is the standard metric used by commercial and home laboratories to measure spawn performance. It represents the ratio of fresh mushroom harvest weight relative to the dry weight of substrate used. 
+Here is the underlying biochemistry:
 
-Achieving high BE (>80%) requires precise hydration (field capacity), professional spawn inoculation, and sterile HEPA flow environments.
+1. Hot Water Extraction:
+Fungal cell walls are made of indigestible chitin. High-temperature water decoction is required to fracture the chitinous matrix and release water-soluble Beta-1,3/1,6-D-Glucans—the primary compounds responsible for immune modulation and macrophage activation.
 
-🔬 Scientific Source:
-Stamets, P. (2000). Growing Gourmet and Medicinal Mushrooms (3rd ed.). Ten Speed Press.
+2. Ethanol (Alcohol) Extraction:
+Non-polar bioactive compounds like Triterpenes (in Reishi) and Hericenones (in Lion’s Mane) are practically insoluble in water. They require pure grain alcohol soaking to dissolve and concentrate.
 
-Simplify your home laboratory parameters with our free Substrate Calculator and Yield Estimator tools at sporlyworks.com
+The Trap? Many brands take cheap mycelium grown on oats or rice, grind up the starch filler, and label it "dual extract" without verifying active compound percentages.
 
-#mushroomcultivation #mycologysociety #homebiology #spores #steriletechnique #mycelium #fungi #growblocks #sporlyworks
+Look for 100% organic fruiting bodies with third-party tested beta-glucan percentages (>25%), not total polysaccharide counts padded by grain starch.
+
+Do you brew your own mushroom tinctures or buy dual extracts? Share your setup below 🍄
+
+Check out our full extraction protocols and interactive wellness stacks at sporlyworks.com
+
+#functionalmushrooms #nootropics #lionsmane #reishi #cordyceps #adaptogens #biohacking #neurogenesis #sporlyworks

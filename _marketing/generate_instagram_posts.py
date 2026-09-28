@@ -1,33 +1,42 @@
+#!/usr/bin/env python3
+"""
+SporlyWorks — High-Converting Instagram Parameter Card Generator
+Architected by Astra (GPT-6 Astra) to maximize saves, shares, and authentic cultivator engagement.
+Avoids generic AI summaries; produces screenshot-worthy parameter cards and field benchmarks.
+"""
+
 import os
 import sys
-import re
-import glob
 from PIL import Image, ImageDraw, ImageFont
 
-# Set paths
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DRAFTS_DIR = os.path.join(BASE_DIR, "_marketing", "instagram_drafts")
-BLOG_DIR = os.path.join(BASE_DIR, "blog", "articles")
 os.makedirs(DRAFTS_DIR, exist_ok=True)
 
 # Select Fonts
 FONT_SERIF_PATHS = [
     "/System/Library/Fonts/Supplemental/Georgia.ttf",
+    "/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf",
     "/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf"
+]
+FONT_SANS_BOLD_PATHS = [
+    "/System/Library/Fonts/Supplemental/Arial Bold.ttf",
+    "/System/Library/Fonts/Supplemental/Arial.ttf",
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+    "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 ]
 FONT_SANS_PATHS = [
     "/System/Library/Fonts/Supplemental/Arial.ttf",
     "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 ]
 
-LOGO_PATH = os.path.join(BASE_DIR, "assets", "logo.png")
-
 def get_font(paths, size):
     for path in paths:
-        try:
-            return ImageFont.truetype(path, size)
-        except IOError:
-            continue
+        if os.path.exists(path):
+            try:
+                return ImageFont.truetype(path, size)
+            except IOError:
+                continue
     return ImageFont.load_default()
 
 def wrap_text(text, font, max_width, draw):
@@ -53,27 +62,14 @@ def wrap_text(text, font, max_width, draw):
         lines.append(" ".join(current_line))
     return lines
 
-def parse_frontmatter(file_path):
-    with open(file_path, "r", encoding="utf-8") as f:
-        content = f.read()
-    
-    parts = content.split("---")
-    if len(parts) >= 3:
-        frontmatter = parts[1]
-        data = {}
-        for line in frontmatter.strip().split("\n"):
-            if ":" in line:
-                key, val = line.split(":", 1)
-                data[key.strip()] = val.strip().strip('"').strip("'")
-        return data
-    return {}
-
-def draw_post(title, quote, source, output_name):
-    # Dimensions (1080x1080 Square Post)
+def draw_parameter_card(badge, title, parameters, footer_cta, output_name):
     width, height = 1080, 1080
-    
-    # Load Parchment Background or Cream
+
+    # 1. Base Canvas & Parchment Texture
     parchment_path = os.path.join(BASE_DIR, "assets", "parchment-tile.jpg")
+    if not os.path.exists(parchment_path):
+        parchment_path = os.path.join(BASE_DIR, "assets", "parchment-seamless.jpg")
+
     if os.path.exists(parchment_path):
         tile = Image.open(parchment_path).convert("RGB")
         img = Image.new("RGB", (width, height))
@@ -82,202 +78,305 @@ def draw_post(title, quote, source, output_name):
                 img.paste(tile, (x, y))
     else:
         img = Image.new("RGB", (width, height), "#FCFAF6")
-        
+
     draw = ImageDraw.Draw(img)
-    
-    # Colors
+
+    # Palette
     forest_green = "#0B4A2E"
     deep_green = "#143A27"
     gold = "#C59B27"
+    gold_dark = "#9E7B1B"
     earth_text = "#2C2418"
-    
-    # 1. Outer Elegant Borders
-    draw.rectangle([30, 30, 1050, 1050], outline=forest_green, width=2)
-    draw.rectangle([42, 42, 1038, 1038], outline=gold, width=1)
-    
-    # 2. Paste Clean Mushroom Emblem Logo (No embedded text in logo image)
-    logo_placed = False
+    card_bg = "#FFFFFF"
+    card_border = "#0B4A2E"
+    row_alt_bg = "#F7F5EE"
+    alert_red = "#8B1E1E"
+
+    # 2. Outer Architectural Borders
+    draw.rectangle([24, 24, width - 24, height - 24], outline=forest_green, width=3)
+    draw.rectangle([34, 34, width - 34, height - 34], outline=gold, width=1)
+
+    # 3. Official Logo Emblem Header
     logo_path = os.path.join(BASE_DIR, "assets", "logo-nav.png")
     if os.path.exists(logo_path):
         try:
-            logo_img = Image.open(logo_path).convert("RGBA")
-            # Target height 110px for clean elegant emblem header
-            w, h = logo_img.size
-            aspect = w / h
-            target_h = 110
+            logo = Image.open(logo_path).convert("RGBA")
+            target_h = 85
+            aspect = logo.width / logo.height
             target_w = int(target_h * aspect)
-            logo_scaled = logo_img.resize((target_w, target_h), Image.Resampling.LANCZOS)
-            logo_x = (width - target_w) // 2
-            img.paste(logo_scaled, (logo_x, 50), logo_scaled)
-            logo_placed = True
+            logo_scaled = logo.resize((target_w, target_h), Image.Resampling.LANCZOS)
+            img.paste(logo_scaled, ((width - target_w) // 2, 48), logo_scaled)
         except Exception as e:
-            print(f"⚠️ Error pasting logo: {e}")
-            
-    # 3. Header Wordmark & Category Title
-    header_y = 175 if logo_placed else 80
-    header_font = get_font(FONT_SERIF_PATHS, 24)
-    draw.text((width // 2, header_y), "SPORLYWORKS", fill=gold, font=header_font, anchor="mm")
-    
-    cat_y = header_y + 35
-    cat_font = get_font(FONT_SANS_PATHS, 16)
-    draw.text((width // 2, cat_y), title.upper()[:45], fill=forest_green, font=cat_font, anchor="mm")
-    draw.line([(width // 2) - 80, cat_y + 18, (width // 2) + 80, cat_y + 18], fill=gold, width=1)
-    
-    # 4. Main Editorial Quote Text
-    quote_font = get_font(FONT_SERIF_PATHS, 38)
-    wrapped_lines = wrap_text(f"“{quote}”", quote_font, 840, draw)
-    
-    total_text_height = len(wrapped_lines) * 56
-    content_center_y = 560
-    start_y = content_center_y - (total_text_height // 2)
-    
-    for idx, line in enumerate(wrapped_lines):
-        line_y = start_y + (idx * 56)
-        draw.text((width // 2, line_y), line, fill=earth_text, font=quote_font, anchor="mm")
-        
-    # 5. Citation
-    source_font = get_font(FONT_SANS_PATHS, 20)
-    draw.text((width // 2, 860), f"Reference: {source}", fill=forest_green, font=source_font, anchor="mm")
-    
-    # 6. Footer
-    footer_text = "SPORLYWORKS × MYCOLOGY & FUNCTIONAL WELLNESS"
-    footer_font = get_font(FONT_SANS_PATHS, 16)
-    draw.text((width // 2, 1000), footer_text, fill=gold, font=footer_font, anchor="mm")
-    
-    # Save Image
-    img_path = os.path.join(DRAFTS_DIR, f"{output_name}.jpg")
-    img.save(img_path, "JPEG", quality=98)
-    print(f"Generated post image: {img_path}")
+            print(f"Notice pasting logo: {e}")
 
-# Authentic, human, non-AI post captions
-ENGAGING_TEMPLATES = {
-    "lions-mane-neurogenesis": {
-        "title": "Lion's Mane & Neural Regeneration: What the Research Shows",
-        "caption": """Lion’s Mane (Hericium erinaceus) isn't magic—it’s biochemistry.
+    # 4. Brand Mark Wordmark
+    brand_font = get_font(FONT_SERIF_PATHS, 20)
+    draw.text((width // 2, 145), "SPORLYWORKS", fill=gold_dark, font=brand_font, anchor="mm")
 
-The mushroom contains two unique groups of active compounds: hericenones (found in the fruiting body) and erinacines (found in the mycelium).
+    # 5. Category Badge Pill
+    badge_font = get_font(FONT_SANS_BOLD_PATHS, 13)
+    badge_text = badge.upper()
+    b_bbox = draw.textbbox((0, 0), badge_text, font=badge_font)
+    bw = b_bbox[2] - b_bbox[0] + 28
+    bh = 26
+    bx1 = (width - bw) // 2
+    by1 = 172
+    draw.rounded_rectangle([bx1, by1, bx1 + bw, by1 + bh], radius=13, fill="#EFECE3", outline=gold, width=1)
+    draw.text((width // 2, by1 + (bh // 2)), badge_text, fill=forest_green, font=badge_font, anchor="mm")
 
-Research shows these small molecules can cross the blood-brain barrier. Once inside, they stimulate Nerve Growth Factor (NGF)—a primary protein responsible for maintaining cholinergic neurons and building new synaptic connections.
+    # 6. Main Action Headline
+    title_font = get_font(FONT_SERIF_PATHS, 32)
+    t_lines = wrap_text(title, title_font, 920, draw)
+    title_y = 230
+    for line in t_lines:
+        draw.text((width // 2, title_y), line, fill=earth_text, font=title_font, anchor="mm")
+        title_y += 42
 
-What that means in practice:
-• Steady cognitive focus without caffeine crash
-• Support for long-term memory retention & neuroplasticity
-• Natural nerve growth stimulation
+    # 7. Central Parameter Box (The High-Value Screenshot Card)
+    card_x1 = 60
+    card_x2 = width - 60
+    card_y1 = max(title_y + 10, 290)
+    card_y2 = 910
+    card_height = card_y2 - card_y1
 
-If you take Lion's Mane, look for 100% organic hot-water extracted fruiting body powders with verified beta-glucan percentages (>25%), rather than products made from cheap grain fillers.
+    # White/Cream high-contrast card background with subtle shadow
+    draw.rounded_rectangle([card_x1 + 3, card_y1 + 4, card_x2 + 3, card_y2 + 4], radius=16, fill="#E2DDD0")
+    draw.rounded_rectangle([card_x1, card_y1, card_x2, card_y2], radius=16, fill=card_bg, outline=card_border, width=2)
 
-Read our full biochemical breakdown and try our interactive Wellness Stack Builder at sporlyworks.com
+    # Render Parameter Rows
+    num_rows = len(parameters)
+    row_height = card_height / num_rows
 
-#mycology #lionsmane #nootropics #neurogenesis #functionalmushrooms #sporlyworks"""
+    label_font = get_font(FONT_SANS_BOLD_PATHS, 15)
+    val_font = get_font(FONT_SERIF_PATHS, 18)
+    sub_font = get_font(FONT_SANS_PATHS, 14)
+
+    for i, param in enumerate(parameters):
+        ry1 = int(card_y1 + (i * row_height))
+        ry2 = int(card_y1 + ((i + 1) * row_height))
+
+        # Alternating subtle row tint
+        if i % 2 == 1:
+            draw.rectangle([card_x1 + 2, ry1, card_x2 - 2, ry2], fill=row_alt_bg)
+
+        # Divider line
+        if i > 0:
+            draw.line([(card_x1 + 10), ry1, (card_x2 - 10), ry1], fill="#E5DFCE", width=1)
+
+        # Row Content
+        label = param.get("label", "").upper()
+        value = param.get("value", "")
+        note = param.get("note", "")
+        is_alert = param.get("alert", False)
+
+        tag_color = alert_red if is_alert else forest_green
+        content_y = ry1 + int(row_height // 2)
+
+        # Tag Badge
+        draw.text((card_x1 + 35, content_y - 12), label, fill=tag_color, font=label_font, anchor="lm")
+        # Value Text
+        draw.text((card_x1 + 35, content_y + 12), value, fill=earth_text, font=val_font, anchor="lm")
+
+        # Optional right-hand badge/note
+        if note:
+            draw.text((card_x2 - 35, content_y), note, fill=gold_dark, font=sub_font, anchor="rm")
+
+    # 8. Footer Brand & Discovery Bar
+    footer_y = 960
+    draw.line([(width // 2) - 180, footer_y - 20, (width // 2) + 180, footer_y - 20], fill=gold, width=1)
+
+    cta_font = get_font(FONT_SANS_BOLD_PATHS, 16)
+    draw.text((width // 2, footer_y), footer_cta.upper(), fill=forest_green, font=cta_font, anchor="mm")
+
+    sub_footer_font = get_font(FONT_SANS_PATHS, 13)
+    draw.text((width // 2, footer_y + 26), "SAVE THIS PROTOCOL FOR LAB DAY • SPORLYWORKS.COM", fill=gold_dark, font=sub_footer_font, anchor="mm")
+
+    # Save High-Resolution Image
+    out_path = os.path.join(DRAFTS_DIR, f"{output_name}.jpg")
+    img.save(out_path, "JPEG", quality=98)
+    print(f"✅ Generated upgraded parameter card: {out_path}")
+    return out_path
+
+MASTER_POSTS = [
+    {
+        "id": "post1",
+        "badge": "Cultivation Protocol • Substrate Hydration",
+        "title": "Field Capacity: The 3-Drop Squeeze Rule",
+        "parameters": [
+            {
+                "label": "Target Moisture",
+                "value": "65% – 68% Substrate Hydration",
+                "note": "Field Capacity Standard"
+            },
+            {
+                "label": "The Hand Squeeze Test",
+                "value": "Firm grip yields exactly 1 to 3 drops between knuckles",
+                "note": "Optimal Benchmark"
+            },
+            {
+                "label": "Over-Saturated (Streaming Water)",
+                "value": "Anaerobic micro-pockets ➔ Trichoderma & sour rot",
+                "note": "High Contam Risk",
+                "alert": True
+            },
+            {
+                "label": "Under-Saturated (Zero Drops)",
+                "value": "Mycelium desiccates & stalls out before pinhead initiation",
+                "note": "Yield Deficit"
+            },
+            {
+                "label": "Coir Expansion Metric",
+                "value": "1x Dry Coir Brick (650g) expands with ~3.25L Boiling Water",
+                "note": "5:1 Ratio"
+            }
+        ],
+        "footer_cta": "Calculate exact hydration for your tub ➔ sporlyworks.com",
+        "caption": """Ever lost a monotub to green mold or sour rot? 90% of the time, the culprit isn't dirty genetics—it's over-saturated substrate.
+
+When substrate is too wet, it suffocates the mycelial network. The lack of oxygen creates anaerobic micro-pockets where Trichoderma and bacterial blotch thrive before your mushroom mycelium can colonize.
+
+Here is the exact field benchmark every veteran cultivator uses:
+Grab a handful of pasteurized substrate and squeeze as hard as you can:
+• Water streams out? ❌ Too wet. Add dry vermiculite immediately.
+• Zero drops fall? ❌ Too dry. Your flush will stall before pins form.
+• Exactly 1 to 3 drops between your knuckles? ✅ Perfect field capacity (65–68% hydration).
+
+💡 Pro Tip: Standard coco coir bricks expand approximately 5x by weight. A standard 650g brick typically requires between 3.1L and 3.4L of boiling water.
+
+What's your go-to substrate recipe? Straight coir, or CVG (Coir/Verm/Gypsum)? Drop your mix below 🧪👇
+
+Save this protocol card to your collection for your next substrate prep day.
+
+Need exact water measurements for your custom tub size? Use our free interactive Substrate Hydration Calculator at sporlyworks.com (link in bio).
+
+#mushroomcultivation #mycologysociety #homebiology #growblocks #monotubtek #spores #steriletechnique #mycelium #sporlyworks"""
     },
-    "all-in-one-grow-bag-guide": {
-        "title": "All-In-One Grow Bags: How to Avoid Contamination",
-        "caption": """If you’ve ever lost a mushroom grow to Trichoderma, you know how frustrating it is.
+    {
+        "id": "post2",
+        "badge": "Biochemistry • Functional Extraction",
+        "title": "Hot Water vs Alcohol: The Dual-Extract Trap",
+        "parameters": [
+            {
+                "label": "Hot Water Extraction",
+                "value": "Fractures chitin walls to release Beta-1,3/1,6-D-Glucans",
+                "note": "Immunomodulation"
+            },
+            {
+                "label": "Ethanol Alcohol Extraction",
+                "value": "Dissolves non-polar Triterpenes, Hericenones & Sterols",
+                "note": "Neurogenesis"
+            },
+            {
+                "label": "The Commercial Trap",
+                "value": "Grain-grown mycelium with 50%+ unfermented starch fillers",
+                "note": "Zero Efficacy",
+                "alert": True
+            },
+            {
+                "label": "Verified Lab Benchmark",
+                "value": ">25% Verified Beta-Glucans from 100% Pure Fruiting Body",
+                "note": "Gold Standard"
+            },
+            {
+                "label": "Mushroom Synergy",
+                "value": "Lion's Mane: Fruiting body + mycelium | Reishi: Dual extract required",
+                "note": "Species Specific"
+            }
+        ],
+        "footer_cta": "Explore active extraction science ➔ sporlyworks.com",
+        "caption": """Most commercial "dual-extract" mushroom supplements on the market are cutting corners.
 
-The biggest point of failure in home mycology is during inoculation—exposing sterile grain or substrate to unsterile room air.
+Here is the underlying biochemistry:
 
-All-in-one grow bags solve this with two built-in safety mechanisms:
-1. Self-healing injection ports that let you inject liquid culture without opening the bag.
-2. 0.2-micron filter patches that allow gas exchange while blocking mold spores and bacteria.
+1. Hot Water Extraction:
+Fungal cell walls are made of indigestible chitin. High-temperature water decoction is required to fracture the chitinous matrix and release water-soluble Beta-1,3/1,6-D-Glucans—the primary compounds responsible for immune modulation and macrophage activation.
 
-Quick tip: When your bag hits about 30% colonization, break up the mycelium and shake the bag thoroughly. Mixing the colonized grain evenly into the substrate cuts your total fruiting time almost in half.
+2. Ethanol (Alcohol) Extraction:
+Non-polar bioactive compounds like Triterpenes (in Reishi) and Hericenones (in Lion’s Mane) are practically insoluble in water. They require pure grain alcohol soaking to dissolve and concentrate.
 
-Calculate your substrate ratios and yield potential with our free calculators at sporlyworks.com
+The Trap? Many brands take cheap mycelium grown on oats or rice, grind up the starch filler, and label it "dual extract" without verifying active compound percentages.
 
-#mushroomgrowing #mycology #growbags #steriletechnique #homebiology #sporlyworks"""
+Look for 100% organic fruiting bodies with third-party tested beta-glucan percentages (>25%), not total polysaccharide counts padded by grain starch.
+
+Do you brew your own mushroom tinctures or buy dual extracts? Share your setup below 🍄
+
+Check out our full extraction protocols and interactive wellness stacks at sporlyworks.com
+
+#functionalmushrooms #nootropics #lionsmane #reishi #cordyceps #adaptogens #biohacking #neurogenesis #sporlyworks"""
     },
-    "cordyceps-atp-cellular-energy": {
-        "title": "Cordyceps & ATP Synthesis: Clean Endurance Science",
-        "caption": """Unlike pre-workout stimulants that spike your central nervous system, Cordyceps militaris works at the cellular level.
+    {
+        "id": "post3",
+        "badge": "Laboratory Protocol • Genetics Isolation",
+        "title": "Agar vs Liquid Culture: The Isolator's Guide",
+        "parameters": [
+            {
+                "label": "Stage 1: Spore to Agar (2% MEA)",
+                "value": "Germinate and sector ropey rhizomorphic growth away from bacteria",
+                "note": "Genetic Cleaning"
+            },
+            {
+                "label": "Stage 2: Agar to Liquid Culture (4% LME)",
+                "value": "Rapid 14-day 500mL expansion of verified monoculture",
+                "note": "Rapid Inoculation"
+            },
+            {
+                "label": "Direct Spore to Grain Inoculation",
+                "value": "High bacterial risk & multi-strain genetic competition",
+                "note": "Avoid in Production",
+                "alert": True
+            },
+            {
+                "label": "Storage Benchmark",
+                "value": "Liquid Culture: 6–9 months at 38°F (4°C) in sealed borosilicate",
+                "note": "Cold Vault"
+            },
+            {
+                "label": "Contamination Detection",
+                "value": "Cloudy/turbid broth = Bacteria | Clean clear broth = Healthy mycelium",
+                "note": "Visual QC"
+            }
+        ],
+        "footer_cta": "Master sterile laboratory technique ➔ sporlyworks.com",
+        "caption": """Stop injecting multi-spore syringes directly into grain bags.
 
-Cordyceps contains cordycepin and adenosine—two nucleoside compounds that directly support ATP (adenosine triphosphate) synthesis in human cells.
+A single spore syringe contains millions of competing genetic pairings—plus whatever microscopic airborne bacteria hitched a ride during spore printing. Inoculating grain directly is rolling the dice.
 
-Key physiological benefits:
-• Increased oxygen uptake & VO2 kinetics
-• Natural cellular ATP energy production
-• Clean physical stamina without jitters or blood pressure spikes
+Here is the clean two-stage protocol:
 
-Taking 1,000mg to 1,500mg about 45 minutes before exercise supports aerobic stamina naturally.
+Step 1: Spore to Agar (2% Malt Extract Agar)
+Germinate your spores on petri dishes. As mycelium expands, identify the fastest, ropey rhizomorphic growth. Take a sterile 2mm scalpel transfer from the outer leading edge to a fresh plate. You now have clean, sector-isolated genetics with zero bacterial load.
 
-Read our full research breakdown at sporlyworks.com
+Step 2: Clean Agar to Liquid Culture (4% LME Broth)
+Drop a clean colonized agar wedge into sterile malt extract broth. Within 10–14 days, you have 500mL of high-potency liquid mycelium ready to inoculate dozens of grain jars in record time.
 
-#cordyceps #endurance #cellularhealth #functionalmushrooms #vo2max #sporlyworks"""
-    },
-    "identifying-grow-contamination": {
-        "title": "How to Spot Trichoderma Before It Spreads",
-        "caption": """The most common nightmare in cultivation is Trichoderma green mold.
+Are you team Agar plates or team Liquid Culture? Drop your vote below 👇
 
-Here’s how to catch it early:
-• Dense, ultra-bright white growth that turns emerald green within 24 hours is Trichoderma sporulating.
-• Light yellow liquid droplets on mycelium are just secondary metabolites ('myc piss')—a normal stress response, not mold.
+Save this isolation protocol for your next laboratory session.
 
-Crucial rule: If you see green mold in a tub or bag, do NOT open it inside your grow space. Airborne spores will float across the room and contaminate future grows. Isolate the block immediately.
+Calculate your exact malt and dextrose broth measurements with our free tools at sporlyworks.com
 
-Use our free visual Contamination Diagnostic Guide at sporlyworks.com/tools/diagnostics.html
-
-#mycology #growerrors #trichoderma #contamination #fungi #sporlyworks"""
-    },
-    "monotub-tek-beginners-guide": {
-        "title": "The Standard CVG Substrate Formula",
-        "caption": """Field capacity is the single most important parameter when preparing bulk mushroom substrate.
-
-Too wet, and you risk sour rot. Too dry, and your mycelium stalls out before fruiting.
-
-Standard CVG Substrate Recipe:
-• 650g Coir Brick
-• 2 Quarts Vermiculite
-• 1 Cup Gypsum
-• 3.5 to 4.0 Liters Boiling Water
-
-Test field capacity: Take a handful of prepped substrate and squeeze hard. Only a few drops of water should squeeze out between your knuckles.
-
-Use our free interactive CVG Substrate Calculator at sporlyworks.com/tools/substrate-calculator.html
-
-#monotub #cvg #coir #substrateratio #mushroomcultivation #mycology #sporlyworks"""
+#mycology #steriletechnique #agar #liquidculture #spores #fungi #mushroomgrower #labprotocols #sporlyworks"""
     }
-}
+]
 
-def generate_caption(title, keywords, slug, summary):
-    custom = ENGAGING_TEMPLATES.get(slug)
-    if custom:
-        return custom["caption"]
-        
-    kw_tags = " ".join([f"#{k.strip().replace(' ', '').replace('-', '')}" for k in keywords.split(",") if k.strip()])
-    return (
-        f"{title}\n\n"
-        f"{summary}\n\n"
-        f"Read the complete research breakdown and use our free mycology tools at sporlyworks.com/blog/{slug}.html\n\n"
-        f"{kw_tags} #sporlyworks #mycology #functionalmushrooms"
-    )
-
-def main():
-    if not os.path.exists(BLOG_DIR):
-        print(f"No blog directory found at {BLOG_DIR}")
-        return
-        
-    for md_file in glob.glob(os.path.join(BLOG_DIR, "*.md")):
-        slug = os.path.splitext(os.path.basename(md_file))[0]
-        data = parse_frontmatter(md_file)
-        
-        title = data.get("title", "SporlyWorks Journal")
-        summary = data.get("summary", "")
-        keywords = data.get("keywords", "wellness, adaptogens")
-        
-        if not summary:
-            continue
-            
-        draw_post(
-            title=title,
-            quote=summary,
-            source=f"sporlyworks.com/blog/{slug}",
-            output_name=f"post_{slug}"
+def generate_all_posts():
+    print("🎨 Generating upgraded Astra-designed Instagram Parameter Cards...")
+    for post in MASTER_POSTS:
+        # 1. Render Graphic
+        draw_parameter_card(
+            badge=post["badge"],
+            title=post["title"],
+            parameters=post["parameters"],
+            footer_cta=post["footer_cta"],
+            output_name=post["id"]
         )
-        
-        caption = generate_caption(title, keywords, slug, summary)
-        cap_path = os.path.join(DRAFTS_DIR, f"post_{slug}.txt")
+        # 2. Write Caption
+        cap_path = os.path.join(DRAFTS_DIR, f"{post['id']}.txt")
         with open(cap_path, "w", encoding="utf-8") as f:
-            f.write(caption)
-        print(f"Generated post caption: {cap_path}")
+            f.write(post["caption"])
+        print(f"📝 Wrote caption for {post['id']}: {cap_path}")
+
+    print("🎉 All upgraded Instagram posts compiled successfully!")
 
 if __name__ == "__main__":
-    main()
+    generate_all_posts()

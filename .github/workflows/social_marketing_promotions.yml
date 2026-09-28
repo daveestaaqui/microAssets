@@ -48,14 +48,28 @@ jobs:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_PASS: ${{ secrets.GMAIL_PASS }}
         run: |
+          DELETE_FLAG=""
+          if [ -f "_marketing/delete_target.txt" ]; then
+            TARGET_ID=$(cat _marketing/delete_target.txt | tr -d '[:space:]')
+            if [ -n "$TARGET_ID" ]; then
+              DELETE_FLAG="--delete-media-id $TARGET_ID"
+              echo "🗑️ Detected delete target: $TARGET_ID"
+            fi
+          fi
+
           if [ -n "$INSTAGRAM_SESSION_ID" ]; then
-            python3 _marketing/instagram_autoposter.py --session-id "$INSTAGRAM_SESSION_ID" || true
+            python3 _marketing/instagram_autoposter.py --session-id "$INSTAGRAM_SESSION_ID" $DELETE_FLAG || true
           elif [ -n "$INSTAGRAM_USER" ] && [ -n "$INSTAGRAM_PASS" ]; then
-            python3 _marketing/instagram_autoposter.py --username "$INSTAGRAM_USER" --password "$INSTAGRAM_PASS" || true
+            python3 _marketing/instagram_autoposter.py --username "$INSTAGRAM_USER" --password "$INSTAGRAM_PASS" $DELETE_FLAG || true
           elif [ -n "$INSTAGRAM_ACCESS_TOKEN" ] && [ -n "$INSTAGRAM_ACCOUNT_ID" ]; then
             python3 _marketing/instagram_autoposter.py --access-token "$INSTAGRAM_ACCESS_TOKEN" --account-id "$INSTAGRAM_ACCOUNT_ID" --public-url "https://sporlyworks.com/_marketing/instagram_drafts" || true
           else
             echo "ℹ️ Instagram credentials not set in GitHub Secrets yet. Skipping live auto-post (drafts compiled successfully)."
+          fi
+
+          # Clean up delete target once executed
+          if [ -f "_marketing/delete_target.txt" ]; then
+            rm -f _marketing/delete_target.txt
           fi
 
       - name: Rebuild Blog & RSS Feed
