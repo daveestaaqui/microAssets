@@ -193,6 +193,9 @@ def run_engagement_cycle(args):
             if not authenticated:
                 print("❌ No valid Instagram authentication succeeded.")
                 return
+        except Exception as e:
+            print(f"❌ Error during Instagram authentication: {e}")
+            return
 
     # 1. Unfollow Maintenance Routine (Prune unreciprocated follows older than 7 days)
     if args.unfollow_inactive and not args.dry_run:
