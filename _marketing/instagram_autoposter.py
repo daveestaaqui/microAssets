@@ -171,10 +171,6 @@ def post_via_instagrapi(image_path, caption, username=None, password=None, sessi
         try:
             cl = Client()
             cl.challenge_code_handler = challenge_code_handler
-            try:
-                cl.set_app("446.0.0.49.77")
-            except Exception as ae:
-                print(f"Notice setting app version: {ae}")
 
             cl.login(username, password)
             print("✅ Username/password login successful.")
