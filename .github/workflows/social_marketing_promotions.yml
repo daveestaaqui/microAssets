@@ -80,6 +80,29 @@ jobs:
             echo "ℹ️ Instagram credentials not set in GitHub Secrets yet. Skipping live auto-post (drafts compiled successfully)."
           fi
 
+      - name: Organic Instagram Growth & Community Engagement (Astra Growth Engine)
+        env:
+          INSTAGRAM_SESSION_ID: ${{ secrets.INSTAGRAM_SESSION_ID }}
+          INSTAGRAM_USER: ${{ secrets.INSTAGRAM_USER }}
+          INSTAGRAM_PASS: ${{ secrets.INSTAGRAM_PASS }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_PASS: ${{ secrets.GMAIL_PASS }}
+        run: |
+          ENGAGE_ARGS=""
+          if [ -n "$INSTAGRAM_SESSION_ID" ]; then
+            ENGAGE_ARGS="--session-id $INSTAGRAM_SESSION_ID"
+          elif [ -n "$INSTAGRAM_USER" ] && [ -n "$INSTAGRAM_PASS" ]; then
+            ENGAGE_ARGS="--username $INSTAGRAM_USER --password $INSTAGRAM_PASS"
+          fi
+
+          if [ -n "$ENGAGE_ARGS" ]; then
+            echo "🚀 Running organic Instagram community engagement cycle..."
+            python3 _marketing/instagram_engagement_engine.py $ENGAGE_ARGS --max-follows 5 --max-comments 3 --max-likes 8 --unfollow-inactive || true
+          else
+            echo "ℹ️ Instagram credentials not set. Running dry-run engagement simulation..."
+            python3 _marketing/instagram_engagement_engine.py --dry-run || true
+          fi
+
       - name: Rebuild Blog & RSS Feed
         run: |
           python3 _marketing/generate_blog.py
