@@ -164,21 +164,35 @@ def run_engagement_cycle(args):
         try:
             from instagrapi import Client
             cl = Client()
+            authenticated = False
+
             if args.session_id:
                 print("🔑 Authenticating via Instagram session ID...")
-                cl.login_by_sessionid(args.session_id)
-                print("✅ Session ID authenticated.")
-            elif args.username and args.password:
+                try:
+                    cl.login_by_sessionid(args.session_id)
+                    print("✅ Session ID authenticated.")
+                    authenticated = True
+                except Exception as se:
+                    print(f"⚠️ Session ID login failed: {se}")
+                    if not (args.username and args.password):
+                        return
+                    print("🔄 Falling back to username/password login...")
+
+            if not authenticated and args.username and args.password:
+                cl = Client()
                 cl.challenge_code_handler = challenge_code_handler
                 print(f"Logging in as @{args.username}...")
-                cl.login(args.username, args.password)
-                print("✅ Logged in successfully.")
-            else:
-                print("❌ No Instagram credentials provided for live mode. Use --dry-run or provide credentials.")
+                try:
+                    cl.login(args.username, args.password)
+                    print("✅ Logged in successfully via username/password.")
+                    authenticated = True
+                except Exception as ue:
+                    print(f"❌ Username/password login failed: {ue}")
+                    return
+
+            if not authenticated:
+                print("❌ No valid Instagram authentication succeeded.")
                 return
-        except Exception as e:
-            print(f"❌ Instagram client initialization error: {e}")
-            return
 
     # 1. Unfollow Maintenance Routine (Prune unreciprocated follows older than 7 days)
     if args.unfollow_inactive and not args.dry_run:

@@ -90,9 +90,13 @@ jobs:
         run: |
           ENGAGE_ARGS=""
           if [ -n "$INSTAGRAM_SESSION_ID" ]; then
-            ENGAGE_ARGS="--session-id $INSTAGRAM_SESSION_ID"
-          elif [ -n "$INSTAGRAM_USER" ] && [ -n "$INSTAGRAM_PASS" ]; then
-            ENGAGE_ARGS="--username $INSTAGRAM_USER --password $INSTAGRAM_PASS"
+            ENGAGE_ARGS="$ENGAGE_ARGS --session-id $INSTAGRAM_SESSION_ID"
+          fi
+          if [ -n "$INSTAGRAM_USER" ]; then
+            ENGAGE_ARGS="$ENGAGE_ARGS --username $INSTAGRAM_USER"
+          fi
+          if [ -n "$INSTAGRAM_PASS" ]; then
+            ENGAGE_ARGS="$ENGAGE_ARGS --password $INSTAGRAM_PASS"
           fi
 
           if [ -n "$ENGAGE_ARGS" ]; then
