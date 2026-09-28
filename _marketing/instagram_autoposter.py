@@ -32,7 +32,7 @@ def save_state(state):
     with open(STATE_PATH, "w") as f:
         json.dump(state, f, indent=2)
 
-def get_latest_otp(max_retries=8, delay_seconds=5):
+def get_latest_otp(max_retries=12, delay_seconds=5):
     """Connects to Gmail and fetches the latest 6-digit Instagram verification code with retries."""
     if not GMAIL_USER or not GMAIL_PASS:
         print("⚠️ GMAIL_USER or GMAIL_PASS not configured; cannot fetch OTP automatically.")
@@ -45,31 +45,37 @@ def get_latest_otp(max_retries=8, delay_seconds=5):
             mail.login(GMAIL_USER, GMAIL_PASS)
             mail.select('"[Gmail]/All Mail"')
             
-            # Search for recent emails from Instagram
-            status, messages = mail.search(None, 'FROM "mail.instagram.com"')
+            # Search for recent emails mentioning Instagram
+            status, messages = mail.search(None, '(FROM "instagram")')
+            if status != "OK" or not messages[0]:
+                status, messages = mail.search(None, 'ALL')
+
             if status == "OK" and messages[0]:
                 ids = messages[0].split()
                 if ids:
-                    latest_id = sorted(ids, key=lambda x: int(x), reverse=True)[0]
-                    res, msg_data = mail.fetch(latest_id, "(RFC822)")
-                    
-                    for response_part in msg_data:
-                        if isinstance(response_part, tuple):
-                            msg = email.message_from_bytes(response_part[1])
-                            body = ""
-                            if msg.is_multipart():
-                                for part in msg.walk():
-                                    if part.get_content_type() in ("text/html", "text/plain"):
-                                        body += part.get_payload(decode=True).decode(errors='ignore')
-                            else:
-                                body = msg.get_payload(decode=True).decode(errors='ignore')
-                            
-                            # Search for 6-digit numeric codes
-                            codes = re.findall(r"\b\d{6}\b", body)
-                            if codes:
-                                print(f"✅ Found code in email on attempt {attempt}: {codes[0]} (Subject: {msg.get('Subject')})")
-                                mail.logout()
-                                return codes[0]
+                    recent_ids = sorted(ids, key=lambda x: int(x), reverse=True)[:6]
+                    for m_id in recent_ids:
+                        res, msg_data = mail.fetch(m_id, "(RFC822)")
+                        for response_part in msg_data:
+                            if isinstance(response_part, tuple):
+                                msg = email.message_from_bytes(response_part[1])
+                                sender = str(msg.get("From", "")).lower()
+                                subject = str(msg.get("Subject", "")).lower()
+                                
+                                if "instagram" in sender or "instagram" in subject or "security" in subject or "code" in subject:
+                                    body = ""
+                                    if msg.is_multipart():
+                                        for part in msg.walk():
+                                            if part.get_content_type() in ("text/html", "text/plain"):
+                                                body += part.get_payload(decode=True).decode(errors='ignore')
+                                    else:
+                                        body = msg.get_payload(decode=True).decode(errors='ignore')
+                                    
+                                    codes = re.findall(r"\b\d{6}\b", body)
+                                    if codes:
+                                        print(f"✅ Found Instagram OTP on attempt {attempt}: {codes[0]} (Subject: {msg.get('Subject')})")
+                                        mail.logout()
+                                        return codes[0]
             mail.logout()
         except Exception as e:
             print(f"⚠️ Gmail IMAP attempt {attempt} notice: {e}")
@@ -82,9 +88,9 @@ def get_latest_otp(max_retries=8, delay_seconds=5):
 
 def challenge_code_handler(username, choice):
     """Callback for instagrapi when a checkpoint security challenge occurs."""
-    print(f"⚠️ Instagram login challenge triggered for @{username}. Waiting 5 seconds before checking Gmail...")
-    time.sleep(5)
-    return get_latest_otp(max_retries=8, delay_seconds=5)
+    print(f"⚠️ Instagram login challenge ({choice}) triggered for @{username}. Waiting 10 seconds for email delivery...")
+    time.sleep(10)
+    return get_latest_otp(max_retries=12, delay_seconds=5)
 
 def post_via_official_api(image_url, caption, access_token, instagram_account_id):
     """Posts an image using Meta's official Instagram Graph API."""
@@ -128,64 +134,67 @@ def post_via_official_api(image_url, caption, access_token, instagram_account_id
 
 def post_via_instagrapi(image_path, caption, username=None, password=None, session_id=None, delete_media_id=None):
     """Posts an image using the instagrapi client with session persistence and auto-OTP solving."""
-    print("🚀 Attempting to connect via Instagrapi client...")
-    try:
-        from instagrapi import Client
-        cl = Client()
-        
-        settings_path = os.path.join(BASE_DIR, "_marketing", "instagram_session.json")
+    from instagrapi import Client
 
-        if session_id:
-            print("🔑 Authenticating via Instagram session ID...")
+    # Tier 1: Try Session ID if provided
+    if session_id:
+        print("🚀 Attempting to connect via Instagram session ID...")
+        try:
+            cl = Client()
             cl.login_by_sessionid(session_id)
             print("✅ Session ID authentication successful.")
-        elif username and password:
-            # Load cached session settings if available for credential login
-            if os.path.exists(settings_path):
-                try:
-                    print("🔄 Loading cached Instagram session settings...")
-                    cl.load_settings(settings_path)
-                except Exception as se:
-                    print(f"⚠️ Notice loading cached session: {se}")
+            print("Uploading photo...")
+            media = cl.photo_upload(image_path, caption)
+            print(f"🎉 Post published successfully via Session ID! Media ID: {media.pk}")
 
+            if delete_media_id:
+                try:
+                    print(f"🗑️ Attempting to delete previous post media ID: {delete_media_id}...")
+                    cl.media_delete(delete_media_id)
+                    print(f"✅ Successfully deleted previous media ID {delete_media_id}!")
+                except Exception as de:
+                    print(f"⚠️ Media deletion notice (can also delete directly in Instagram app): {de}")
+
+            return True
+        except Exception as se:
+            print(f"⚠️ Session ID attempt failed: {se}")
+            if not (username and password):
+                return False
+            print("🔄 Falling back to username/password login with automatic OTP resolver...")
+
+    # Tier 2: Username and password login with automatic OTP challenge solver
+    if username and password:
+        print(f"🚀 Attempting login as @{username}...")
+        try:
+            cl = Client()
             cl.challenge_code_handler = challenge_code_handler
             try:
                 cl.set_app("446.0.0.49.77")
             except Exception as ae:
                 print(f"Notice setting app version: {ae}")
 
-            print(f"Logging in as {username}...")
             cl.login(username, password)
-            print("✅ Login successful.")
-            
-            # Cache session to avoid full re-authentication next time
-            try:
-                cl.dump_settings(settings_path)
-                print("💾 Instagram session settings cached for future posts.")
-            except Exception as de:
-                print(f"Notice caching settings: {de}")
-        else:
-            print("❌ Neither session ID nor username/password provided.")
+            print("✅ Username/password login successful.")
+
+            print("Uploading photo...")
+            media = cl.photo_upload(image_path, caption)
+            print(f"🎉 Post published successfully via credentials! Media ID: {media.pk}")
+
+            if delete_media_id:
+                try:
+                    print(f"🗑️ Attempting to delete previous post media ID: {delete_media_id}...")
+                    cl.media_delete(delete_media_id)
+                    print(f"✅ Successfully deleted previous media ID {delete_media_id}!")
+                except Exception as de:
+                    print(f"⚠️ Media deletion notice (can also delete directly in Instagram app): {de}")
+
+            return True
+        except Exception as ue:
+            print(f"❌ Username/password login failed: {ue}")
             return False
 
-        # 1. Post photo directly
-        print("Uploading photo...")
-        media = cl.photo_upload(image_path, caption)
-        print(f"🎉 Post published successfully via Instagrapi! Media ID: {media.pk}")
-
-        # 2. Cleanup previous test post if requested (non-fatal)
-        if delete_media_id:
-            try:
-                print(f"🗑️ Attempting to delete previous post media ID: {delete_media_id}...")
-                cl.media_delete(delete_media_id)
-                print(f"✅ Successfully deleted previous media ID {delete_media_id}!")
-            except Exception as de:
-                print(f"⚠️ Media deletion notice (post can also be deleted directly in the Instagram app): {de}")
-
-        return True
-    except Exception as e:
-        print(f"❌ Instagrapi exception: {e}")
-        return False
+    print("❌ Neither valid session ID nor username/password provided.")
+    return False
 
 def run_autoposter():
     parser = argparse.ArgumentParser(description="SporlyWorks Instagram Autoposter")
