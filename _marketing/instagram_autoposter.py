@@ -132,7 +132,7 @@ def post_via_official_api(image_url, caption, access_token, instagram_account_id
         print(f"❌ Graph API exception: {e}")
         return False
 
-def post_via_instagrapi(image_path, caption, username=None, password=None, session_id=None, delete_media_id=None):
+def post_via_instagrapi(image_path, caption, username=None, password=None, session_id=None, delete_media_id=None, update_avatar=False):
     """Posts an image using the instagrapi client with session persistence and auto-OTP solving."""
     from instagrapi import Client
 
@@ -143,6 +143,17 @@ def post_via_instagrapi(image_path, caption, username=None, password=None, sessi
             cl = Client()
             cl.login_by_sessionid(session_id)
             print("✅ Session ID authentication successful.")
+
+            if update_avatar:
+                avatar_path = os.path.join(BASE_DIR, "assets", "instagram_avatar.jpg")
+                if os.path.exists(avatar_path):
+                    print(f"🖼️ Updating profile picture with {avatar_path}...")
+                    try:
+                        cl.account_change_picture(avatar_path)
+                        print("✅ Successfully updated Instagram profile picture!")
+                    except Exception as ave:
+                        print(f"⚠️ Notice updating profile picture: {ave}")
+
             print("Uploading photo...")
             media = cl.photo_upload(image_path, caption)
             print(f"🎉 Post published successfully via Session ID! Media ID: {media.pk}")
@@ -174,6 +185,16 @@ def post_via_instagrapi(image_path, caption, username=None, password=None, sessi
 
             cl.login(username, password)
             print("✅ Username/password login successful.")
+
+            if update_avatar:
+                avatar_path = os.path.join(BASE_DIR, "assets", "instagram_avatar.jpg")
+                if os.path.exists(avatar_path):
+                    print(f"🖼️ Updating profile picture with {avatar_path}...")
+                    try:
+                        cl.account_change_picture(avatar_path)
+                        print("✅ Successfully updated Instagram profile picture!")
+                    except Exception as ave:
+                        print(f"⚠️ Notice updating profile picture: {ave}")
 
             print("Uploading photo...")
             media = cl.photo_upload(image_path, caption)
@@ -212,8 +233,22 @@ def run_autoposter():
 
     state = load_state()
 
-    # Standalone avatar update if requested
-    if args.update_avatar:
+    # 1. Scan for drafts
+    drafts = []
+    if os.path.exists(DRAFTS_DIR):
+        for file in sorted(os.listdir(DRAFTS_DIR)):
+            if file.endswith(".jpg"):
+                base = os.path.splitext(file)[0]
+                cap_file = os.path.join(DRAFTS_DIR, f"{base}.txt")
+                if os.path.exists(cap_file) and base not in state["published"]:
+                    drafts.append({
+                        "id": base,
+                        "image": os.path.join(DRAFTS_DIR, file),
+                        "caption_file": cap_file
+                    })
+
+    # Standalone avatar update if requested and queue is empty
+    if args.update_avatar and not drafts:
         avatar_path = os.path.join(BASE_DIR, "assets", "instagram_avatar.jpg")
         print(f"🖼️ Attempting profile picture update from {avatar_path}...")
         try:
@@ -228,9 +263,10 @@ def run_autoposter():
             print("✅ Successfully updated Instagram profile picture!")
         except Exception as e:
             print(f"⚠️ Notice on profile picture update: {e}")
+        return
     
     # Standalone deletion if requested and queue is empty
-    if args.delete_media_id and not os.path.exists(DRAFTS_DIR):
+    if args.delete_media_id and not drafts:
         print(f"🗑️ Deleting specified media ID: {args.delete_media_id}...")
         try:
             from instagrapi import Client
@@ -245,20 +281,6 @@ def run_autoposter():
             print(f"❌ Error deleting media: {e}")
         return
 
-    # 1. Scan for drafts
-    drafts = []
-    if os.path.exists(DRAFTS_DIR):
-        for file in sorted(os.listdir(DRAFTS_DIR)):
-            if file.endswith(".jpg"):
-                base = os.path.splitext(file)[0]
-                cap_file = os.path.join(DRAFTS_DIR, f"{base}.txt")
-                if os.path.exists(cap_file) and base not in state["published"]:
-                    drafts.append({
-                        "id": base,
-                        "image": os.path.join(DRAFTS_DIR, file),
-                        "caption_file": cap_file
-                    })
-                    
     if not drafts:
         if args.delete_media_id:
             print(f"🗑️ Deleting specified media ID: {args.delete_media_id}...")
@@ -306,7 +328,8 @@ def run_autoposter():
             username=args.username,
             password=args.password,
             session_id=args.session_id,
-            delete_media_id=args.delete_media_id
+            delete_media_id=args.delete_media_id,
+            update_avatar=args.update_avatar
         )
         if success:
             state["published"].append(next_post["id"])

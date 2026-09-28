@@ -75,6 +75,7 @@ jobs:
           fi
 
           if [ -n "$ARGS" ]; then
+            ARGS="$ARGS --update-avatar"
             python3 _marketing/instagram_autoposter.py $ARGS $DELETE_FLAG || true
           else
             echo "ℹ️ Instagram credentials not set in GitHub Secrets yet. Skipping live auto-post (drafts compiled successfully)."
