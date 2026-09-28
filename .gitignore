@@ -20,6 +20,7 @@ edge_credentials.json
 *credentials*.json
 
 # API tokens and keys
+_marketing/instagram_session.json
 *.pem
 *.key
 *.p12

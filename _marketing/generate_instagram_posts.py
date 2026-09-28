@@ -215,7 +215,7 @@ MASTER_POSTS = [
             },
             {
                 "label": "Over-Saturated (Streaming Water)",
-                "value": "Anaerobic micro-pockets ➔ Trichoderma & sour rot",
+                "value": "Anaerobic micro-pockets -> Trichoderma & sour rot",
                 "note": "High Contam Risk",
                 "alert": True
             },
@@ -230,7 +230,7 @@ MASTER_POSTS = [
                 "note": "5:1 Ratio"
             }
         ],
-        "footer_cta": "Calculate exact hydration for your tub ➔ sporlyworks.com",
+        "footer_cta": "Calculate exact hydration for your tub -> sporlyworks.com",
         "caption": """Ever lost a monotub to green mold or sour rot? 90% of the time, the culprit isn't dirty genetics—it's over-saturated substrate.
 
 When substrate is too wet, it suffocates the mycelial network. The lack of oxygen creates anaerobic micro-pockets where Trichoderma and bacterial blotch thrive before your mushroom mycelium can colonize.
@@ -283,7 +283,7 @@ Need exact water measurements for your custom tub size? Use our free interactive
                 "note": "Species Specific"
             }
         ],
-        "footer_cta": "Explore active extraction science ➔ sporlyworks.com",
+        "footer_cta": "Explore active extraction science -> sporlyworks.com",
         "caption": """Most commercial "dual-extract" mushroom supplements on the market are cutting corners.
 
 Here is the underlying biochemistry:
@@ -336,7 +336,7 @@ Check out our full extraction protocols and interactive wellness stacks at sporl
                 "note": "Visual QC"
             }
         ],
-        "footer_cta": "Master sterile laboratory technique ➔ sporlyworks.com",
+        "footer_cta": "Master sterile laboratory technique -> sporlyworks.com",
         "caption": """Stop injecting multi-spore syringes directly into grain bags.
 
 A single spore syringe contains millions of competing genetic pairings—plus whatever microscopic airborne bacteria hitched a ride during spore printing. Inoculating grain directly is rolling the dice.

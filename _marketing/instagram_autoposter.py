@@ -133,20 +133,21 @@ def post_via_instagrapi(image_path, caption, username=None, password=None, sessi
         from instagrapi import Client
         cl = Client()
         
-        # Load cached session settings if available
         settings_path = os.path.join(BASE_DIR, "_marketing", "instagram_session.json")
-        if os.path.exists(settings_path):
-            try:
-                print("🔄 Loading cached Instagram session settings...")
-                cl.load_settings(settings_path)
-            except Exception as se:
-                print(f"⚠️ Notice loading cached session: {se}")
 
         if session_id:
             print("🔑 Authenticating via Instagram session ID...")
             cl.login_by_sessionid(session_id)
             print("✅ Session ID authentication successful.")
         elif username and password:
+            # Load cached session settings if available for credential login
+            if os.path.exists(settings_path):
+                try:
+                    print("🔄 Loading cached Instagram session settings...")
+                    cl.load_settings(settings_path)
+                except Exception as se:
+                    print(f"⚠️ Notice loading cached session: {se}")
+
             cl.challenge_code_handler = challenge_code_handler
             try:
                 cl.set_app("446.0.0.49.77")
@@ -156,48 +157,31 @@ def post_via_instagrapi(image_path, caption, username=None, password=None, sessi
             print(f"Logging in as {username}...")
             cl.login(username, password)
             print("✅ Login successful.")
+            
+            # Cache session to avoid full re-authentication next time
+            try:
+                cl.dump_settings(settings_path)
+                print("💾 Instagram session settings cached for future posts.")
+            except Exception as de:
+                print(f"Notice caching settings: {de}")
         else:
             print("❌ Neither session ID nor username/password provided.")
             return False
 
-        # Cache session to avoid full re-authentication next time
-        try:
-            cl.dump_settings(settings_path)
-            print("💾 Instagram session settings cached for future posts.")
-        except Exception as de:
-            print(f"Notice caching settings: {de}")
-        
-        # 1. Update Profile Picture & Biography
-        avatar_path = os.path.join(BASE_DIR, "assets", "instagram_avatar.jpg")
-        if os.path.exists(avatar_path):
-            try:
-                print("🖼️ Updating Instagram profile picture to new logo...")
-                cl.account_change_picture(avatar_path)
-                print("✅ Instagram profile picture updated successfully!")
-            except Exception as pe:
-                print(f"⚠️ Profile picture update notice: {pe}")
-
-        try:
-            bio_text = "Precision mycology for cultivation and cognitive performance. Clean isolated genetics, sterile substrates & pure fruiting body extracts. 🍄 sporlyworks.com"
-            print("📝 Updating Instagram channel biography...")
-            cl.account_set_biography(bio_text)
-            print("✅ Channel biography updated successfully!")
-        except Exception as be:
-            print(f"⚠️ Channel bio update notice: {be}")
-
-        # 2. Delete specified media ID if requested
-        if delete_media_id:
-            try:
-                print(f"🗑️ Deleting previous post media ID: {delete_media_id}...")
-                cl.media_delete(delete_media_id)
-                print(f"✅ Successfully deleted media ID {delete_media_id}!")
-            except Exception as de:
-                print(f"⚠️ Media deletion notice: {de}")
-        
-        # 3. Post photo
+        # 1. Post photo directly
         print("Uploading photo...")
         media = cl.photo_upload(image_path, caption)
         print(f"🎉 Post published successfully via Instagrapi! Media ID: {media.pk}")
+
+        # 2. Cleanup previous test post if requested (non-fatal)
+        if delete_media_id:
+            try:
+                print(f"🗑️ Attempting to delete previous post media ID: {delete_media_id}...")
+                cl.media_delete(delete_media_id)
+                print(f"✅ Successfully deleted previous media ID {delete_media_id}!")
+            except Exception as de:
+                print(f"⚠️ Media deletion notice (post can also be deleted directly in the Instagram app): {de}")
+
         return True
     except Exception as e:
         print(f"❌ Instagrapi exception: {e}")
